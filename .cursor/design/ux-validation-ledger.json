@@ -1,0 +1,610 @@
+{
+  "version": "1.0.0",
+  "updated_at": "2026-07-06T18:29:02Z",
+  "design_tokens": {
+    "background": "#FAF8F5",
+    "foreground_navy": "#0F1729",
+    "accent_gold": "#C4A574"
+  },
+  "apps": {
+    "aadharchain": {
+      "base_url": "http://127.0.0.1:43100",
+      "nav": [
+        "Home",
+        "Apps",
+        "Activity",
+        "Settings"
+      ],
+      "pages": [
+        {
+          "id": "ac-landing",
+          "route": "/",
+          "mockup": "aadharchain/landing.png",
+          "states": [
+            "disconnected"
+          ],
+          "preconditions": [
+            "Stack :43100 up"
+          ],
+          "pass_signals": [
+            "Single hero visible",
+            "CTA Get started links to /verify or wallet connect",
+            "No 5-chapter GSAP scroll"
+          ],
+          "validation_steps": [
+            "curl -s -o /dev/null -w '%{http_code}' http://127.0.0.1:43100/ \u2192 200",
+            "Page has one primary CTA"
+          ],
+          "manual_runs": "2 pass",
+          "blocks": [
+            "ac-home-*"
+          ],
+          "removed_in_v1": "AnimatedLanding 5-chapter GSAP landing"
+        },
+        {
+          "id": "ac-home-empty",
+          "route": "/home",
+          "mockup": "aadharchain/home-no-wallet.png",
+          "states": [
+            "no_wallet"
+          ],
+          "preconditions": [
+            "Wallet not connected"
+          ],
+          "pass_signals": [
+            "Empty state Connect your wallet",
+            "No Localnet label",
+            "No transaction signing checkpoint"
+          ],
+          "validation_steps": [
+            "Load /home without wallet",
+            "Connect wallet CTA visible"
+          ],
+          "manual_runs": "2 pass",
+          "blocks": [],
+          "removed_in_v1": "dashboard empty state with ops copy"
+        },
+        {
+          "id": "ac-home-unverified",
+          "route": "/home",
+          "mockup": "aadharchain/home-unverified.png",
+          "states": [
+            "wallet_connected",
+            "no_identity_or_unverified"
+          ],
+          "preconditions": [
+            "Wallet connected",
+            "GET /api/identity/{wallet}/trust \u2192 trust_state \u2260 verified"
+          ],
+          "pass_signals": [
+            "CTA Verify Aadhaar \u2192 /verify",
+            "No seed field on home"
+          ],
+          "validation_steps": [
+            "Connect wallet",
+            "Load /home",
+            "Primary CTA links to /verify"
+          ],
+          "manual_runs": "1 pass",
+          "blocks": [
+            "ac-verify-wizard"
+          ],
+          "removed_in_v1": "Quick next steps grid with 3 equal tiles"
+        },
+        {
+          "id": "ac-home-pending",
+          "route": "/home",
+          "mockup": "aadharchain/home-pending.png",
+          "states": [
+            "manual_review"
+          ],
+          "preconditions": [
+            "Identity exists",
+            "trust_state manual_review or pending"
+          ],
+          "pass_signals": [
+            "Under review copy",
+            "Link to /activity"
+          ],
+          "validation_steps": [
+            "Submit Aadhaar stub PDF",
+            "Home shows pending state"
+          ],
+          "manual_runs": "1 pass",
+          "blocks": [],
+          "removed_in_v1": null
+        },
+        {
+          "id": "ac-home-verified",
+          "route": "/home",
+          "mockup": "aadharchain/home-verified.png",
+          "states": [
+            "verified"
+          ],
+          "preconditions": [
+            "GET /api/identity/{wallet}/trust \u2192 trust_state verified"
+          ],
+          "pass_signals": [
+            "Trust ring or Verified badge",
+            "Apps summary",
+            "Open ONDC app CTAs",
+            "No Sign ownership transaction"
+          ],
+          "validation_steps": [
+            "Fixture verified or complete verify flow",
+            "GET trust \u2192 verified",
+            "Screenshot matches mockup"
+          ],
+          "manual_runs": "1 pass",
+          "blocks": [
+            "buy-checkout",
+            "sell-catalog-edit"
+          ],
+          "removed_in_v1": "Transaction signing checkpoint card"
+        },
+        {
+          "id": "ac-verify-wizard",
+          "route": "/verify",
+          "mockup": "aadharchain/verify-anchor.png",
+          "states": [
+            "anchor",
+            "upload",
+            "status"
+          ],
+          "preconditions": [
+            "Wallet connected",
+            "Stack :43100 :43101 up"
+          ],
+          "pass_signals": [
+            "Single wizard creates identity + submits Aadhaar",
+            "No visible seed field",
+            "gateway-state.json has identity + verification",
+            "Redirects to /home on complete"
+          ],
+          "validation_steps": [
+            "Hermes identity-onboarding adapted to /verify",
+            "POST create identity",
+            "POST aadhaar multipart",
+            "Poll status"
+          ],
+          "manual_runs": "1 pass",
+          "blocks": [],
+          "removed_in_v1": "/identity/create + /verify/aadhaar separate routes"
+        },
+        {
+          "id": "ac-login",
+          "route": "/login",
+          "mockup": "aadharchain/login-sso.png",
+          "states": [
+            "sso"
+          ],
+          "preconditions": [
+            "?return= allowlisted",
+            "?aud=ondcbuyer|ondcseller"
+          ],
+          "pass_signals": [
+            "signed_in via proof-token",
+            "cookie aadharcha_session",
+            "redirect to return URL"
+          ],
+          "validation_steps": [
+            "python3 scripts/portfolio_browser.py sso solflare seller",
+            "JSON signed_in true"
+          ],
+          "manual_runs": "2 pass",
+          "blocks": [],
+          "removed_in_v1": null
+        },
+        {
+          "id": "ac-apps",
+          "route": "/apps",
+          "mockup": "aadharchain/apps.png",
+          "states": [
+            "default"
+          ],
+          "preconditions": [
+            "Verified trust recommended"
+          ],
+          "pass_signals": [
+            "Lists ONDC Buyer :43102",
+            "ONDC Seller :43103",
+            "FlatWatch :43105",
+            "Open app links work"
+          ],
+          "validation_steps": [
+            "Load /apps",
+            "Click ONDC Buyer opens :43102"
+          ],
+          "manual_runs": "2 pass",
+          "blocks": [],
+          "removed_in_v1": "implicit navigation only"
+        },
+        {
+          "id": "ac-activity",
+          "route": "/activity",
+          "mockup": "aadharchain/activity.png",
+          "states": [
+            "default"
+          ],
+          "preconditions": [
+            "Wallet connected"
+          ],
+          "pass_signals": [
+            "Verification timeline",
+            "Issued credentials from trust surface"
+          ],
+          "validation_steps": [
+            "Load /activity after verify",
+            "Credential cards or timeline visible"
+          ],
+          "manual_runs": "2 pass",
+          "blocks": [],
+          "removed_in_v1": "/credentials route"
+        },
+        {
+          "id": "ac-settings",
+          "route": "/settings",
+          "mockup": null,
+          "states": [
+            "default"
+          ],
+          "preconditions": [],
+          "pass_signals": [
+            "No PAN verify link in nav",
+            "/verify/pan redirects to /home"
+          ],
+          "validation_steps": [
+            "GET /verify/pan \u2192 redirect /home",
+            "Nav has 4 items only"
+          ],
+          "manual_runs": "2 pass",
+          "blocks": [],
+          "removed_in_v1": "/verify/pan route removed"
+        }
+      ]
+    },
+    "ondcbuyer": {
+      "base_url": "http://127.0.0.1:43102",
+      "nav_primary": [
+        "Search",
+        "Cart",
+        "Orders"
+      ],
+      "nav_secondary": [
+        "Agent"
+      ],
+      "pages": [
+        {
+          "id": "buy-search",
+          "route": "/search",
+          "mockup": "ondcbuyer/search.png",
+          "states": [
+            "default"
+          ],
+          "preconditions": [
+            "VITE_IDENTITY_AUTH_ENABLED=true"
+          ],
+          "pass_signals": [
+            "No Sign buyer proof card",
+            "Trust chip in header",
+            "/",
+            " redirects to /search"
+          ],
+          "validation_steps": [
+            "GET / \u2192 200 at /search",
+            "Grep SearchPage no buyer proof"
+          ],
+          "manual_runs": "2 pass",
+          "blocks": [
+            "buy-checkout"
+          ],
+          "removed_in_v1": "buyer proof card on SearchPage"
+        },
+        {
+          "id": "buy-results",
+          "route": "/results",
+          "mockup": "ondcbuyer/results.png",
+          "states": [
+            "default"
+          ],
+          "preconditions": [],
+          "pass_signals": [
+            "Product grid renders",
+            "Add to cart works"
+          ],
+          "validation_steps": [
+            "Navigate /results?q=rice",
+            "Add to cart"
+          ],
+          "manual_runs": "2 pass",
+          "blocks": [],
+          "removed_in_v1": null
+        },
+        {
+          "id": "buy-product",
+          "route": "/product/:id",
+          "mockup": "ondcbuyer/product.png",
+          "states": [
+            "default"
+          ],
+          "preconditions": [],
+          "pass_signals": [
+            "Add to cart button"
+          ],
+          "validation_steps": [
+            "Open product from results",
+            "Add to cart"
+          ],
+          "manual_runs": "1 pass",
+          "blocks": [],
+          "removed_in_v1": null
+        },
+        {
+          "id": "buy-cart",
+          "route": "/cart",
+          "mockup": "ondcbuyer/cart.png",
+          "states": [
+            "unverified_notice"
+          ],
+          "preconditions": [
+            "Cart non-empty"
+          ],
+          "pass_signals": [
+            "TrustNotice when unverified",
+            "Proceed to checkout button"
+          ],
+          "validation_steps": [
+            "Load cart with items unverified",
+            "Notice visible"
+          ],
+          "manual_runs": "2 pass",
+          "blocks": [],
+          "removed_in_v1": null
+        },
+        {
+          "id": "buy-checkout",
+          "route": "/checkout",
+          "mockup": "ondcbuyer/checkout.png",
+          "states": [
+            "verified"
+          ],
+          "preconditions": [
+            "SSO session",
+            "verified trust",
+            "cart non-empty",
+            "useSubject wallet for trust"
+          ],
+          "pass_signals": [
+            "No proof card",
+            "Place order \u2192 /orders/:id",
+            "trust from SSO wallet"
+          ],
+          "validation_steps": [
+            "Solflare SSO",
+            "fixture verified",
+            "checkout complete"
+          ],
+          "manual_runs": "1 pass",
+          "blocks": [],
+          "removed_in_v1": "buyer_checkout_identity_proof UI"
+        },
+        {
+          "id": "buy-orders",
+          "route": "/orders",
+          "mockup": "ondcbuyer/orders.png",
+          "states": [
+            "default"
+          ],
+          "preconditions": [],
+          "pass_signals": [
+            "Order list tabs"
+          ],
+          "validation_steps": [
+            "Load /orders after checkout"
+          ],
+          "manual_runs": "2 pass",
+          "blocks": [],
+          "removed_in_v1": null
+        },
+        {
+          "id": "buy-order-detail",
+          "route": "/orders/:id",
+          "mockup": "ondcbuyer/order-detail.png",
+          "states": [
+            "default"
+          ],
+          "preconditions": [
+            "Completed order"
+          ],
+          "pass_signals": [
+            "Order detail renders",
+            "useSubject trust on cancel"
+          ],
+          "validation_steps": [
+            "Open order from list"
+          ],
+          "manual_runs": "2 pass",
+          "blocks": [],
+          "removed_in_v1": null
+        },
+        {
+          "id": "buy-agent",
+          "route": "/agent",
+          "mockup": "ondcbuyer/agent.png",
+          "states": [
+            "secondary_nav"
+          ],
+          "preconditions": [
+            "subjectId"
+          ],
+          "pass_signals": [
+            "Agent not in primary nav",
+            "Accessible via More/Agent link"
+          ],
+          "validation_steps": [
+            "Primary nav excludes Agent",
+            "Footer/More links to /agent"
+          ],
+          "manual_runs": "2 pass",
+          "blocks": [],
+          "removed_in_v1": "Agent in primary nav"
+        }
+      ]
+    },
+    "ondcseller": {
+      "base_url": "http://127.0.0.1:43103",
+      "nav_primary": [
+        "Dashboard",
+        "Catalog",
+        "Orders",
+        "Config"
+      ],
+      "nav_secondary": [
+        "Agent"
+      ],
+      "pages": [
+        {
+          "id": "sell-dashboard",
+          "route": "/dashboard",
+          "mockup": "ondcseller/dashboard.png",
+          "states": [
+            "default"
+          ],
+          "preconditions": [
+            "VITE_IDENTITY_AUTH_ENABLED=true"
+          ],
+          "pass_signals": [
+            "No Sign seller proof card",
+            "/",
+            " redirects to /dashboard",
+            "Trust chip Verified when fixture"
+          ],
+          "validation_steps": [
+            "Load /dashboard",
+            "No seller proof button"
+          ],
+          "manual_runs": "2 pass",
+          "blocks": [
+            "sell-catalog-edit"
+          ],
+          "removed_in_v1": "seller_catalog_identity_proof card"
+        },
+        {
+          "id": "sell-catalog",
+          "route": "/catalog",
+          "mockup": "ondcseller/catalog.png",
+          "states": [
+            "default"
+          ],
+          "preconditions": [],
+          "pass_signals": [
+            "Inventory table",
+            "Add product when verified"
+          ],
+          "validation_steps": [
+            "Load /catalog"
+          ],
+          "manual_runs": "2 pass",
+          "blocks": [],
+          "removed_in_v1": null
+        },
+        {
+          "id": "sell-catalog-edit",
+          "route": "/catalog/new",
+          "mockup": "ondcseller/catalog-edit.png",
+          "states": [
+            "verified"
+          ],
+          "preconditions": [
+            "verified trust",
+            "SSO seller"
+          ],
+          "pass_signals": [
+            "Form saves in demo mode",
+            "Redirect /catalog"
+          ],
+          "validation_steps": [
+            "SSO seller",
+            "fixture",
+            "create product"
+          ],
+          "manual_runs": "1 pass",
+          "blocks": [],
+          "removed_in_v1": null
+        },
+        {
+          "id": "sell-orders",
+          "route": "/orders",
+          "mockup": "ondcseller/orders.png",
+          "states": [
+            "default"
+          ],
+          "preconditions": [],
+          "pass_signals": [
+            "Order queue filters"
+          ],
+          "validation_steps": [
+            "Load /orders"
+          ],
+          "manual_runs": "2 pass",
+          "blocks": [],
+          "removed_in_v1": null
+        },
+        {
+          "id": "sell-order-detail",
+          "route": "/orders/:id",
+          "mockup": "ondcseller/order-detail.png",
+          "states": [
+            "default"
+          ],
+          "preconditions": [],
+          "pass_signals": [
+            "Order detail timeline"
+          ],
+          "validation_steps": [
+            "Open order"
+          ],
+          "manual_runs": "2 pass",
+          "blocks": [],
+          "removed_in_v1": null
+        },
+        {
+          "id": "sell-config",
+          "route": "/config",
+          "mockup": "ondcseller/config.png",
+          "states": [
+            "default"
+          ],
+          "preconditions": [],
+          "pass_signals": [
+            "ONDC credentials form"
+          ],
+          "validation_steps": [
+            "Load /config"
+          ],
+          "manual_runs": "2 pass",
+          "blocks": [],
+          "removed_in_v1": null
+        },
+        {
+          "id": "sell-agent",
+          "route": "/agent",
+          "mockup": "ondcseller/agent.png",
+          "states": [
+            "secondary_nav"
+          ],
+          "preconditions": [],
+          "pass_signals": [
+            "Agent in secondary nav only"
+          ],
+          "validation_steps": [
+            "Primary nav excludes Agent"
+          ],
+          "manual_runs": "2 pass",
+          "blocks": [],
+          "removed_in_v1": "Agent in primary nav; orphan LoginPage"
+        }
+      ]
+    }
+  }
+}

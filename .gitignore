@@ -1,0 +1,22 @@
+# Nested app repos (own remotes)
+/aadharchain/
+/ondcbuyer/
+/ondcseller/
+/flatwatch/
+/aadharsolana/
+
+# Runtime / local
+/logs/
+**/.venv/
+**/node_modules/
+**/__pycache__/
+**/.DS_Store
+.env
+.env.local
+**/.env
+**/.env.local
+.rumdl_cache/
+.optimization/
+.claude/session-data/
+*.pyc
+.Python

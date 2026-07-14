@@ -1,0 +1,179 @@
+# Portfolio CI — deterministic graders before any deploy.
+# Nested apps live in separate public repos (gitignored locally); this workflow
+# checks them out and runs the same gates as TESTINGPLAN / verify-portfolio.
+name: Portfolio CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+concurrency:
+  group: portfolio-ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+env:
+  AADHAAR_CHAIN_REPO: ${{ vars.AADHAAR_CHAIN_REPO || 'ingpoc/aadhaar-chain' }}
+  ONDC_BUYER_REPO: ${{ vars.ONDC_BUYER_REPO || 'ingpoc/ondc-buyer' }}
+  ONDC_SELLER_REPO: ${{ vars.ONDC_SELLER_REPO || 'ingpoc/ondc-seller' }}
+  AADHAAR_CHAIN_REF: ${{ vars.AADHAAR_CHAIN_REF || 'main' }}
+  ONDC_BUYER_REF: ${{ vars.ONDC_BUYER_REF || 'main' }}
+  ONDC_SELLER_REF: ${{ vars.ONDC_SELLER_REF || 'main' }}
+
+jobs:
+  secret-scan:
+    name: Secret scan
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install gitleaks
+        run: |
+          set -euo pipefail
+          VER=8.21.2
+          curl -sSL "https://github.com/gitleaks/gitleaks/releases/download/v${VER}/gitleaks_${VER}_linux_x64.tar.gz" \
+            | sudo tar -xz -C /usr/local/bin gitleaks
+          gitleaks version
+
+      - name: Scan workspace tree
+        run: gitleaks detect --source . --verbose --redact --exit-code 1
+
+  gateway:
+    name: Gateway pytest
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Checkout aadharchain
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ env.AADHAAR_CHAIN_REPO }}
+          ref: ${{ env.AADHAAR_CHAIN_REF }}
+          path: aadharchain
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: aadharchain/gateway/requirements.txt
+
+      - name: Install gateway deps
+        working-directory: aadharchain/gateway
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: verify-portfolio --ci (gateway pytest)
+        env:
+          PYTEST_DISABLE_PLUGIN_AUTOLOAD: "1"
+        run: ./scripts/verify-portfolio.sh --ci
+
+  ondcbuyer:
+    name: ONDC Buyer test+build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: ${{ env.ONDC_BUYER_REPO }}
+          ref: ${{ env.ONDC_BUYER_REF }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+          cache-dependency-path: package-lock.json
+
+      - name: Install
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Test
+        run: npm test
+
+      - name: Build
+        # Do not set VITE_COMMERCE_DEMO_MODE here — leave app / Vercel defaults.
+        run: npm run build
+
+  ondcseller:
+    name: ONDC Seller test+build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: ${{ env.ONDC_SELLER_REPO }}
+          ref: ${{ env.ONDC_SELLER_REF }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+          cache-dependency-path: package-lock.json
+
+      - name: Install
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Test
+        run: npm test
+
+      - name: Build
+        run: npm run build
+
+  ondc-offline:
+    name: ONDC offline graders
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: ondc_ci_graders --offline
+        run: python3 scripts/ondc_ci_graders.py --offline
+
+  ondc-fqdn-soft:
+    name: ONDC FQDN probes (soft)
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Live FQDN graders (soft — Free cold start OK)
+        run: |
+          python3 scripts/ondc_ci_graders.py --live --soft \
+            --gateway https://gateway.aadharcha.in \
+            --buyer https://ondcbuyer.aadharcha.in \
+            --seller https://ondcseller.aadharcha.in
+          python3 scripts/ondc_preprod_smoke.py --ci \
+            --base https://gateway.aadharcha.in || true
+
+  ci-ok:
+    name: CI graders green
+    needs: [secret-scan, gateway, ondcbuyer, ondcseller, ondc-offline]
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "All portfolio CI graders passed (FQDN soft probes are advisory)"

@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "name": "cursor-demo-video-recording",
+  "cwd": "../../../..",
+  "source_paths": ["..", "../../HARDENING.md", "../../../../scripts/validate_cursor_skill.py"],
+  "ignore_parts": ["evidence", "__pycache__"],
+  "steps": [{
+    "name": "validate",
+    "command": ["bash", ".cursor/skills/demo-video-recording/scripts/validate.sh"],
+    "timeout_seconds": 15,
+    "budget_seconds": 3,
+    "fail_patterns": ["Traceback", "\\bFAILED\\b", "\\bERROR\\b", "stale guidance remains", "skill audit failed"]
+  }],
+  "ledger_path": "~/.cache/elon-algorithm/cursor-demo-video-recording/ledger.json"
+}

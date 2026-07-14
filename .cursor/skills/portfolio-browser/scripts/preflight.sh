@@ -71,20 +71,39 @@ echo "  socket: $HERMES_CHROME_BRIDGE_SOCKET"
 echo "→ Native host hygiene (WIP only)"
 cleanup_orphan_wip_hosts
 
+# Repair Chrome/Comet NativeMessagingHosts so path is native_host_wip.sh (not .py).
+# Without this, extension can be loaded while socket binds ~/.hermes/run → SOCKET_DOWN.
+ENSURE_WIP_NATIVE="$WIP_ROOT/scripts/ensure-wip-native-host.sh"
+if [[ -x "$ENSURE_WIP_NATIVE" ]]; then
+  echo "→ Ensure WIP native-host manifests (Chrome + Comet)"
+  bash "$ENSURE_WIP_NATIVE" || true
+elif [[ -f "$ENSURE_WIP_NATIVE" ]]; then
+  chmod +x "$ENSURE_WIP_NATIVE" || true
+  bash "$ENSURE_WIP_NATIVE" || true
+fi
+
 echo "→ Hermes Chrome WIP bridge"
 if ! bridge_ready 2>/dev/null; then
   if [[ -x "$WIP_SYNC" ]]; then
     echo "→ Bridge down — running sync-wip.sh..."
-    bash "$WIP_SYNC" 2>&1 | tail -20 || true
+    bash "$WIP_SYNC" 2>&1 | tail -30 || true
   fi
   # Wake: status ping after short wait (extension must be loaded in Comet/Chrome)
   sleep 2
   if ! bridge_ready 2>/dev/null; then
-    echo "✗ WIP bridge not ready"
-    echo "  1. Load unpacked: $WIP_ROOT/deploy/extension"
+    LIVE_SOCK="${HOME}/.hermes/run/chrome-bridge.sock"
+    echo "✗ WIP bridge not ready (need socket at $HERMES_CHROME_BRIDGE_SOCKET)"
+    if [[ -S "$LIVE_SOCK" && ! -S "$HERMES_CHROME_BRIDGE_SOCKET" ]]; then
+      echo "  TRAP: live socket exists at ~/.hermes/run/chrome-bridge.sock but WIP socket is missing."
+      echo "  Do NOT point agents at ~/.hermes — portfolio uses WIP only."
+      echo "  Cause: NativeMessagingHosts path was native_host.py (no WIP env)."
+      echo "  ensure-wip-native-host.sh repairs manifests; reload unpacked WIP extension next."
+    fi
+    echo "  1. Load/reload unpacked: $WIP_ROOT/deploy/extension"
     echo "  2. Confirm native host parent is that browser (Comet or Chrome)"
-    echo "  3. export HERMES_CHROME_BRIDGE_SOCKET=$HERMES_CHROME_BRIDGE_SOCKET"
-    echo "  4. Re-run preflight"
+    echo "  3. Confirm manifest path ends with native_host_wip.sh (never native_host.py)"
+    echo "  4. export HERMES_CHROME_BRIDGE_SOCKET=$HERMES_CHROME_BRIDGE_SOCKET"
+    echo "  5. Re-run preflight"
     fail=1
   fi
 else

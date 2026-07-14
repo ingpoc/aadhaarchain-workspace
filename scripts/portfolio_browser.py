@@ -4,13 +4,15 @@
 Usage:
   python3 scripts/portfolio_browser.py lane [burner|solflare] [seller|buyer|all]
   python3 scripts/portfolio_browser.py preflight
+  python3 scripts/portfolio_browser.py sso demo [seller|buyer|all]
   python3 scripts/portfolio_browser.py sso burner [seller|buyer|all]
   python3 scripts/portfolio_browser.py sso solflare [seller|buyer]
   python3 scripts/portfolio_browser.py smoke
   python3 scripts/portfolio_browser.py closeout [leave_url]
   python3 scripts/portfolio_browser.py onboarding [--fixture]
   python3 scripts/portfolio_browser.py commerce seller|buyer [--fixture]
-  python3 scripts/portfolio_browser.py agentguard seller|buyer|flatwatch [--fixture]
+  python3 scripts/portfolio_browser.py agentguard seller|buyer [--fixture]
+  python3 scripts/portfolio_browser.py two-sided [--fixture]
   python3 scripts/portfolio_browser.py full [burner|solflare]
   python3 scripts/portfolio_browser.py diag [--url URL]
   python3 scripts/portfolio_browser.py status
@@ -23,18 +25,21 @@ import os
 import pathlib
 import subprocess
 import sys
+import time
+import uuid
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 SKILL_SCRIPTS = ROOT / ".cursor/skills/portfolio-browser/scripts"
 HERMES_BRIDGE = SKILL_SCRIPTS / "hermes_bridge.py"
 PAGE_DIAG = SKILL_SCRIPTS / "page_diag.py"
 SSO_SCRIPT = ROOT / "scripts/hermes_portfolio_sso.py"
+DEMO_SSO_SCRIPT = ROOT / "scripts/hermes_demo_sso.py"
 SOLFLARE_SSO = SKILL_SCRIPTS / "solflare_sso.py"
 ONBOARDING_SCRIPT = ROOT / "scripts/hermes_identity_onboarding.py"
 COMMERCE_SCRIPT = ROOT / "scripts/hermes_elevated_commerce.py"
 AGENTGUARD_SELLER_SCRIPT = ROOT / "scripts/hermes_agentguard_seller.py"
 AGENTGUARD_BUYER_SCRIPT = ROOT / "scripts/hermes_agentguard_buyer.py"
-AGENTGUARD_FLATWATCH_SCRIPT = ROOT / "scripts/hermes_agentguard_flatwatch.py"
+TWO_SIDED_SCRIPT = ROOT / "scripts/hermes_two_sided_commerce.py"
 
 
 def _load_page_diag():
@@ -131,7 +136,7 @@ def cmd_diag(args: list[str]) -> int:
 
 def cmd_sso(args: list[str]) -> int:
     if not args:
-        print("Usage: sso burner|solflare [seller|buyer|all]", file=sys.stderr)
+        print("Usage: sso demo|burner|solflare [seller|buyer|all]", file=sys.stderr)
         return 2
     maybe_preflight()
     wallet = args[0].lower()
@@ -143,8 +148,19 @@ def cmd_sso(args: list[str]) -> int:
             return 2
         return run([sys.executable, str(SOLFLARE_SSO), app])
 
+    if wallet == "demo":
+        apps = ["seller", "buyer"] if app == "all" else [app]
+        for name in apps:
+            if name not in {"seller", "buyer"}:
+                print(f"Unknown app {name!r}. Use seller, buyer, or all.", file=sys.stderr)
+                return 2
+            code = run([sys.executable, str(DEMO_SSO_SCRIPT), name])
+            if code != 0:
+                return code
+        return 0
+
     if wallet != "burner":
-        print(f"Unknown wallet {wallet!r}. Use: burner | solflare", file=sys.stderr)
+        print(f"Unknown mode {wallet!r}. Use: demo | burner | solflare", file=sys.stderr)
         return 2
 
     apps = ["seller", "buyer"] if app == "all" else [app]
@@ -222,20 +238,15 @@ def cmd_commerce(args: list[str]) -> int:
 
 
 def cmd_agentguard(args: list[str]) -> int:
-    """AgentGuard lanes (Hermes mutex): seller | buyer | flatwatch."""
+    """AgentGuard vertical slice (Hermes mutex / Token Nxt demo)."""
     app = (args[0] if args else "seller").lower()
-    if app not in {"seller", "buyer", "flatwatch"}:
-        print("Usage: agentguard seller|buyer|flatwatch [--fixture]", file=sys.stderr)
+    if app not in {"seller", "buyer"}:
+        print("Usage: agentguard seller|buyer [--fixture]", file=sys.stderr)
         return 2
     maybe_preflight()
-    if app == "flatwatch":
-        return subprocess.run(
-            [sys.executable, str(AGENTGUARD_FLATWATCH_SCRIPT)],
-            cwd=ROOT,
-        ).returncode
-    sso_app = "seller" if app == "seller" else "buyer"
-    if cmd_sso(["burner", sso_app]) != 0:
-        return 1
+    if os.environ.get("AGENTGUARD_SKIP_SSO") != "1":
+        if cmd_sso(["demo", app]) != 0:
+            return 1
     env = os.environ.copy()
     env["AGENTGUARD_SKIP_SSO"] = "1"
     script = AGENTGUARD_SELLER_SCRIPT if app == "seller" else AGENTGUARD_BUYER_SCRIPT
@@ -244,6 +255,22 @@ def cmd_agentguard(args: list[str]) -> int:
         cwd=ROOT,
         env=env,
     ).returncode
+
+
+def cmd_two_sided(args: list[str]) -> int:
+    """Two-sided local commerce proof with unique run-scoped evidence."""
+    cmd = [sys.executable, str(TWO_SIDED_SCRIPT)]
+    if "--fixture" in args or not args:
+        cmd.append("--fixture")
+    # Always mint a unique run-id unless caller already passed --run-id.
+    if "--run-id" not in args:
+        cmd.extend(["--run-id", f"ag-{int(time.time())}-{uuid.uuid4().hex[:6]}"])
+    else:
+        # Forward explicit --run-id VALUE from args
+        i = args.index("--run-id")
+        if i + 1 < len(args):
+            cmd.extend(["--run-id", args[i + 1]])
+    return subprocess.run(cmd, cwd=ROOT, env=os.environ.copy()).returncode
 
 
 def cmd_full(args: list[str]) -> int:
@@ -308,6 +335,7 @@ def main() -> int:
         "onboarding": cmd_onboarding,
         "commerce": cmd_commerce,
         "agentguard": cmd_agentguard,
+        "two-sided": cmd_two_sided,
         "preflight": cmd_preflight,
         "closeout": cmd_closeout,
         "urls": cmd_urls,

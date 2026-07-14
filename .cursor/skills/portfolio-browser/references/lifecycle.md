@@ -7,7 +7,8 @@ Runs `scripts/preflight.sh`. Exit **0** required before SSO or custom browser wo
 | Check | Fail symptom | Fix |
 | --- | --- | --- |
 | Orphan `native_host.py` (no `chrome-extension://` in argv) | `EMPTY_RESPONSE` | Auto-killed; socket cleared |
-| Hermes bridge `ready` | Bridge timeout | `sync-wip.sh` + reload **WIP** unpacked extension; socket `…/hermes-chrome-cursor-wip/run/chrome-bridge.sock` |
+| Hermes bridge `ready` | Bridge timeout | `sync-wip.sh` + `ensure-wip-native-host.sh` + reload **WIP** unpacked extension; socket `…/hermes-chrome-cursor-wip/run/chrome-bridge.sock` |
+| Extension loaded but `SOCKET_DOWN` | Manifest `path` was `native_host.py` → socket under `~/.hermes/run` | `ensure-wip-native-host.sh` (preflight auto); never rewrite to `.py` |
 | HTTP 2xx on :43100/login, :43101/health, :43102/search, :43103/dashboard | timeout after 30s | Preflight auto-runs `./scripts/start-dev.sh`; retries 30s |
 | Solana validator :8899 getHealth (burner only) | SSO hangs / `wait_for_url_change` on login | Auto: `aadharsolana/scripts/ensure-validator.sh`. Do not `pkill` / wipe ledger for browser lanes |
 | Chrome on **same macOS Space** as Cursor | `Chrome portfolio tabs not visible` | Move Chrome desktop, re-run |

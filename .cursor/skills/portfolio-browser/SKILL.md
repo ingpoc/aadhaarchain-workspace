@@ -3,16 +3,22 @@ name: portfolio-browser
 description: >-
   Browser-test AadhaarChain portfolio (43100–43103) via Hermes Chrome WIP only
   (never ~/.codex or ~/.hermes live). Scripts: portfolio_browser.py,
-  parallel_smoke_wip.py. Parallel smoke = 0-token scout then mini fixer. SSO mutex.
+  parallel_smoke_wip.py. Parallel smoke = 0-token scout then mini fixer. SSO mutex. AgentGuard acceptance uses `sso demo` (no wallet); burner/Solflare are hangar-only.
   Triggers: portfolio browser, Hermes WIP, SSO, Solflare, smoke, parallel smoke,
   multi-app, fixer_packets, preflight, closeout, page diag, console errors.
-  Not for MeitY API Setu / DigiLocker partner signup — use apisetu-partner-onboarding.
+  Not for partner onboarding workflow ownership (ONDC portal / Setu.co / MeitY) —
+  that skill owns the rails; this skill is the Hermes browser driver only.
 ---
 
 # Portfolio browser
 
-**Out of scope:** MeitY API Setu / MeriPehchaan / DigiLocker partner org registration → [`.cursor/skills/apisetu-partner-onboarding/`](../apisetu-partner-onboarding/SKILL.md) + `PRODUCTION-READINESS.md`.
+> **Self-validate after edits.** Run `./scripts/validate.sh` from this skill directory.
 
+**Standing rule:** append durable browser/WIP findings to this skill + [`references/troubleshooting.md`](references/troubleshooting.md) / validation ledger; **no secrets** in markdown.
+
+**Partner onboarding:** ONDC Participant Portal / Setu.co / MeitY DigiLocker → workflow owned by [`.cursor/skills/apisetu-partner-onboarding/`](../apisetu-partner-onboarding/SKILL.md) + `PRODUCTION-READINESS.md`. This skill drives the browser (Hermes WIP); do not invent parallel partner checklists here. MeitY rail remains **paused** inside that skill.
+
+**Related:** Samantha/UX matrix → [`ondc-testing`](../ondc-testing/SKILL.md). Auth0 → [`authentication`](../authentication/SKILL.md). FQDN/CI deploy → [`portfolio-deploy`](../portfolio-deploy/SKILL.md). PreProd demo video (Hermes cursor dry-run → record) → [`demo-video-recording`](../demo-video-recording/SKILL.md).
 ## Agent context rule (always)
 
 On every Hermes page under test, treat **UI + console + backend** as one compact context.
@@ -21,6 +27,12 @@ Do not conclude pass/fail from UI alone.
 **Bridge = Hermes Chrome WIP only** — `wip_hermes.py` forces  
 `HERMES_CHROME_BRIDGE_SOCKET=…/hermes-chrome-cursor-wip/run/chrome-bridge.sock`.  
 Load unpacked: `…/hermes-chrome-cursor-wip/deploy/extension`. Do **not** use Codex live Hermes.
+
+**SOCKET_DOWN:** evidence first (`ls`/`lsof` WIP sock + Comet/Chrome manifest `path` + extension **service worker Active vs Inactive**) before repairing. Two distinct causes: (1) SW Inactive → native host died (2026-07-12 Auth0/portal afternoon — manifests already `native_host_wip.sh`); (2) classic path trap (`path` → `native_host.py` → binds `~/.hermes/run`). Do **not** `launch-wip-chrome` to fix Comet, rewrite manifests to `.py`, or switch to live `~/.hermes`. Details: [`references/troubleshooting.md`](references/troubleshooting.md) § WIP socket trap.
+
+**Local stack (2026-07-13):** FQDN `VITE_*` process bake, Vite dying after Shell teardown, SSO on `chrome://` error tabs, orb toggle, `/api`→`:3001` — see troubleshooting table + § Local VITE bake. PreProd UX bar: [`ondc-testing`](../ondc-testing/SKILL.md). Demo video record gate: [`demo-video-recording`](../demo-video-recording/SKILL.md).
+
+**Cursor / wrong-app traps:** Hermes WIP pointer starts at `opacity: 0` until first move/click; “no cursor” usually = wrong host app (Comet vs Chrome) or window behind IDE — see troubleshooting § Cursor visibility.
 
 | Signal | Source | How |
 | --- | --- | --- |
@@ -34,7 +46,7 @@ python3 scripts/portfolio_browser.py diag
 python3 scripts/portfolio_browser.py diag --url http://127.0.0.1:43100/verify
 ```
 
-`hermes_run` / bridge `run` auto-attach `page_diag` (install console hooks after each `goto`, dump at end).
+`page_diag` starts native `network_watch` before navigation, then reads native `console_tail` and `network_summary`; it does not monkey-patch console/fetch or mutate the page through `evaluate`.
 If `page_diag.ok` is false, surface `page_diag.issues` before retrying or claiming success.
 
 ## Multi-app orchestration (cost/quality)
@@ -78,7 +90,7 @@ lane  →  preflight → smoke → sso → closeout   (one preflight; auto-start
 | **closeout** | After browser work | exit 0, `bridge ready=True` |
 | **diag** | When debugging / after any failed step | compact JSON; `ok: true` or actionable `issues` |
 
-Preflight auto-starts `./scripts/start-dev.sh` when the stack is down. Burner SSO: preflight runs `ensure-validator.sh` (JSON-RPC `getHealth` on `:8899`).
+Preflight auto-starts `./scripts/start-dev.sh` when the stack is down. Burner SSO: preflight runs `ensure-validator.sh` (JSON-RPC `getHealth` on `:8899`). FlatWatch `.env` (incl. `CURSOR_API_KEY`) must be loaded into the process via `start-dev.sh` — file present ≠ loaded.
 
 ## Commands
 
@@ -86,7 +98,7 @@ Preflight auto-starts `./scripts/start-dev.sh` when the stack is down. Burner SS
 # API-only (stack health + gateway pytest; validated 2×)
 ./scripts/verify-portfolio.sh
 
-# Validated full lane (preferred)
+# Validated full lane (preferred SSO regression)
 python3 scripts/portfolio_browser.py lane burner seller
 
 # Ad-hoc steps (each runs preflight unless PORTFOLIO_SKIP_PREFLIGHT=1)
@@ -95,13 +107,24 @@ python3 scripts/portfolio_browser.py smoke
 python3 scripts/portfolio_browser.py sso burner [seller|buyer|all]
 python3 scripts/portfolio_browser.py sso solflare [seller|buyer]
 python3 scripts/portfolio_browser.py commerce seller|buyer [--fixture]
-python3 scripts/portfolio_browser.py agentguard seller|buyer|flatwatch [--fixture]
+
+# AgentGuard (Token Nxt) — Hermes judged lanes validated 2026-07-11 evening
+python3 scripts/portfolio_browser.py agentguard seller [--fixture]
+python3 scripts/portfolio_browser.py agentguard buyer [--fixture]
+# Two-sided: use unique --run-id via hermes_two_sided_commerce.py for consecutive proofs
+python3 scripts/portfolio_browser.py two-sided [--fixture]
+python3 scripts/hermes_two_sided_commerce.py --fixture --run-id "ag-$(date +%s)-a"
+# M12 Samantha / checkout user journeys → ondc-testing skill
+python3 scripts/hermes_ondc_testing_matrix.py buyer|seller
+
 python3 scripts/portfolio_browser.py closeout [leave_url]
 python3 scripts/portfolio_browser.py diag [--url URL]
 
 # API + browser automation
 ./scripts/verify-portfolio.sh --browser
 ```
+
+**SSO stays mutex** with AgentGuard lanes (do not parallelize). Parallel smoke / multi-agent isolation leases are OK without SSO.
 
 ## Pass signals
 
@@ -110,12 +133,24 @@ python3 scripts/portfolio_browser.py diag [--url URL]
 | `smoke` | JSON `"success": true`, titles include **ONDC Buyer** + **ONDC Seller** |
 | `sso solflare` | `"signed_in": true`, buttons include **Sign out** |
 | `sso burner` | exit 0, Hermes lands on app with **Sign out** |
+| `agentguard seller --fixture` | JSON `"success": true`; checks policy/allow/need/replay/pause/deny |
+| `agentguard buyer --fixture` | JSON `"success": true`; checks allow/approval/consume/replay/pause/deny |
+| `two-sided` / `hermes_two_sided_commerce.py` | `"success": true` with **unique** `run_id` per consecutive pass |
 | `diag` | `ok: true` (no console/backend errors); else fix `issues` first |
-
+| Multi-agent isolation (optional gate) | `HERMES_CHROME_BRIDGE_SOCKET=…/run/chrome-bridge.sock python3 …/hermes-chrome-cursor-wip/plugin/hermes_chrome/tests/test_multi_agent_isolation.py` exit 0 |
 ## Progressive disclosure
 
 - Preflight/closeout checks: [`references/lifecycle.md`](references/lifecycle.md)
 - Failures: [`references/troubleshooting.md`](references/troubleshooting.md)
 - Parallel multi-app (0-token scout): this file § Multi-app orchestration + `scripts/parallel_smoke_wip.py`
 
-Built with **workflow-hardening** skill (`make it work → validate → simplify → optimize → automate`).
+Harden with the **Elon Algorithm** (`question → make work → verify → delete → optimize → automate → encode`) and require its source-frozen final gate.
+
+## Related skills
+
+| Skill | Role |
+| --- | --- |
+| [`ondc-testing`](../ondc-testing/SKILL.md) | Samantha claim→screenshot matrix (local + web FQDN) |
+| [`portfolio-deploy`](../portfolio-deploy/SKILL.md) | CI/CD, Free/Hobby FQDN deploy — not required for local lanes |
+| [`authentication`](../authentication/SKILL.md) | Auth0 / demo SSO principals |
+| [`apisetu-partner-onboarding`](../apisetu-partner-onboarding/SKILL.md) | Portal rails; this skill is driver only |

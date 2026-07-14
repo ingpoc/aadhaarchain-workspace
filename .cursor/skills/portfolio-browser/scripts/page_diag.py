@@ -3,7 +3,7 @@
 
 Merges three signals agents need on every page:
   1. UI — page_context (url/title/headings/buttons)
-  2. Console — injected console + failed fetch capture
+  2. Console/network — native Hermes DevTools diagnostics
   3. Backend — recent error lines from portfolio service logs
 
 Usage:
@@ -30,72 +30,15 @@ LOG_FILES = (
     "flatwatch-backend.log",
 )
 
-# Install as early as possible after each goto. Survives same-document work;
-# re-run after every navigation.
-INSTALL_CONSOLE_JS = """
-(() => {
-  if (window.__acDiag && window.__acDiag.v === 2) {
-    return { already: true, count: window.__acDiag.events.length };
-  }
-  const events = [];
-  const push = (level, args) => {
-    try {
-      const msg = args.map((a) => {
-        if (typeof a === 'string') return a;
-        if (a instanceof Error) return a.stack || a.message;
-        try { return JSON.stringify(a); } catch (_) { return String(a); }
-      }).join(' ').slice(0, 500);
-      events.push({ t: Date.now(), level, msg });
-      if (events.length > 80) events.shift();
-    } catch (_) {}
-  };
-  ['error', 'warn'].forEach((level) => {
-    const orig = console[level].bind(console);
-    console[level] = (...args) => { push(level, args); orig(...args); };
-  });
-  window.addEventListener('error', (e) => {
-    push('error', [e.message || 'window.error', e.filename || '', e.lineno || '']);
-  });
-  window.addEventListener('unhandledrejection', (e) => {
-    const r = e.reason;
-    push('error', ['unhandledrejection', r && (r.stack || r.message || String(r))]);
-  });
-  const wrapFetch = (orig) => async (...args) => {
-    const input = args[0];
-    const url = typeof input === 'string' ? input : (input && input.url) || '';
-    try {
-      const res = await orig(...args);
-      if (!res.ok) push('error', [`fetch ${res.status}`, url.slice(0, 180)]);
-      return res;
-    } catch (err) {
-      push('error', ['fetch failed', url.slice(0, 180), err && err.message]);
-      throw err;
-    }
-  };
-  if (window.fetch) window.fetch = wrapFetch(window.fetch.bind(window));
-  window.__acDiag = { v: 2, events };
-  return { installed: true, count: 0 };
-})()
-"""
-
-DUMP_CONSOLE_JS = """
-(() => {
-  const d = window.__acDiag;
-  if (!d) return { installed: false, errors: [], warns: [], total: 0 };
-  const errors = d.events.filter((e) => e.level === 'error').slice(-12);
-  const warns = d.events.filter((e) => e.level === 'warn').slice(-6);
-  return {
-    installed: true,
-    total: d.events.length,
-    errors: errors.map((e) => e.msg),
-    warns: warns.map((e) => e.msg),
-  };
-})()
-"""
-
 ERROR_LINE = re.compile(
     r"(error|exception|traceback|failed|ECONNREFUSED|TypeError|ReferenceError|Unhandled)",
     re.I,
+)
+
+IGNORED_BROWSER_WARNINGS = (
+    "MaxListenersExceededWarning",
+    'ObjectMultiplex - orphaned data for stream "app-init-liveness"',
+    'ObjectMultiplex - orphaned data for stream "background-liveness"',
 )
 
 
@@ -118,24 +61,27 @@ def hermes_call(handler, payload: dict) -> dict:
 
 
 def install_actions() -> list[dict[str, Any]]:
-    return [{"type": "evaluate", "expression": INSTALL_CONSOLE_JS}]
+    """Enable native network capture without mutating application globals."""
+    return [{"type": "network_watch", "clear": True}]
 
 
 def dump_actions() -> list[dict[str, Any]]:
     return [
         {"type": "page_context"},
-        {"type": "evaluate", "expression": DUMP_CONSOLE_JS},
+        {"type": "console_tail", "levels": ["error", "warn"], "limit": 12},
+        {"type": "network_summary"},
     ]
 
 
 def wrap_actions(actions: list[dict[str, Any]]) -> list[dict[str, Any]]:
-    """Inject console install after every goto; dump UI+console at end."""
+    """Capture native diagnostics around navigation and dump them at the end."""
     out: list[dict[str, Any]] = []
     for action in actions:
-        out.append(action)
         if action.get("type") == "goto":
             out.extend(install_actions())
-            # Give page scripts a beat so early errors land in the buffer.
+        out.append(action)
+        if action.get("type") == "goto":
+            # Give page scripts a beat so early errors land in native buffers.
             out.append({"type": "wait", "ms": 400})
     out.extend(dump_actions())
     return out
@@ -148,7 +94,7 @@ def backend_errors(*, max_per_file: int = 4, max_total: int = 12) -> list[dict[s
         if not path.exists():
             continue
         try:
-            lines = path.read_text(errors="replace").splitlines()[-200:]
+            lines = path.read_text(errors="replace").splitlines()[-80:]
         except OSError:
             continue
         file_hits = []
@@ -164,7 +110,8 @@ def backend_errors(*, max_per_file: int = 4, max_total: int = 12) -> list[dict[s
 
 def extract_diag(result: dict) -> dict[str, Any]:
     ui: dict[str, Any] = {}
-    console: dict[str, Any] = {"installed": False, "errors": [], "warns": [], "total": 0}
+    console: dict[str, Any] = {"installed": True, "errors": [], "warns": [], "total": 0}
+    network: dict[str, Any] = {}
     for step in result.get("results", []):
         if step.get("type") == "page_context":
             ui = {
@@ -173,21 +120,51 @@ def extract_diag(result: dict) -> dict[str, Any]:
                 "headings": [h.get("text") for h in (step.get("headings") or [])[:5]],
                 "buttons": (step.get("buttons") or [])[:10],
             }
-        if step.get("type") == "evaluate":
+        if step.get("type") == "console_tail":
+            entries = step.get("entries") or step.get("messages") or step.get("result") or []
+            if isinstance(entries, dict):
+                entries = entries.get("entries") or entries.get("messages") or []
+            if not isinstance(entries, list):
+                entries = []
+            errors: list[str] = []
+            warns: list[str] = []
+            for entry in entries:
+                if isinstance(entry, str):
+                    errors.append(entry)
+                    continue
+                if not isinstance(entry, dict):
+                    continue
+                level = str(entry.get("level") or entry.get("type") or "error").lower()
+                message = str(entry.get("message") or entry.get("text") or entry.get("value") or entry)[:500]
+                if any(ignored in message for ignored in IGNORED_BROWSER_WARNINGS):
+                    continue
+                (warns if level == "warn" else errors).append(message)
+            console = {"installed": True, "errors": errors, "warns": warns, "total": len(entries)}
+        if step.get("type") == "network_summary":
             value = step.get("result") if "result" in step else step.get("value")
-            if isinstance(value, dict) and ("errors" in value or "installed" in value):
-                if "errors" in value or "warns" in value:
-                    console = value
+            network = value if isinstance(value, dict) else step
     backend = backend_errors()
     issues = []
     for msg in console.get("errors") or []:
         issues.append({"source": "console", "level": "error", "msg": msg})
     for msg in console.get("warns") or []:
         issues.append({"source": "console", "level": "warn", "msg": msg})
+    network_errors = int(network.get("error_count") or network.get("errors") or 0)
+    if network_errors:
+        issues.append(
+            {
+                "source": "network",
+                "level": "error",
+                "msg": str(network.get("last_error") or f"{network_errors} request errors"),
+            }
+        )
+    # The log tail can contain failures from an earlier run. Keep it available
+    # for diagnosis, but let current browser console/network evidence own the
+    # pass/fail result.
     for hit in backend:
-        issues.append({"source": "backend", "level": "error", "msg": f"{hit['log']}: {hit['line']}"})
+        issues.append({"source": "backend", "level": "context", "msg": f"{hit['log']}: {hit['line']}"})
     return {
-        "ok": len([i for i in issues if i["level"] == "error"]) == 0,
+        "ok": not any(i["level"] == "error" for i in issues),
         "ui": ui,
         "console": {
             "installed": bool(console.get("installed")),
@@ -195,6 +172,7 @@ def extract_diag(result: dict) -> dict[str, Any]:
             "errors": (console.get("errors") or [])[:8],
             "warns": (console.get("warns") or [])[:4],
         },
+        "network": network,
         "backend": backend[:8],
         "issues": issues[:16],
         "final_url": result.get("final_url"),
@@ -207,26 +185,9 @@ def collect(*, url: str | None = None, session: str = "portfolio-page-diag") -> 
     if url:
         actions.append({"type": "goto", "url": url})
         actions.append({"type": "wait", "ms": 1200})
-    actions.extend(install_actions())
+    if not url:
+        actions.extend(install_actions())
     actions.append({"type": "wait", "ms": 800})
-    # Nudge a known failing pattern into the buffer if page already errored earlier:
-    # re-read auth/me so fetch failures show up.
-    actions.append(
-        {
-            "type": "evaluate",
-            "expression": """
-(async () => {
-  try {
-    const r = await fetch('http://127.0.0.1:43101/api/auth/me', { credentials: 'include' });
-    return { status: r.status };
-  } catch (e) {
-    return { error: String(e && e.message || e) };
-  }
-})()
-""",
-        }
-    )
-    actions.append({"type": "wait", "ms": 300})
     actions.extend(dump_actions())
     result = hermes_call(
         handler,

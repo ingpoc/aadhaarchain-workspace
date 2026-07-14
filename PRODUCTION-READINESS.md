@@ -1,18 +1,34 @@
-# Production readiness — trust substrate + ONDC + UCP
+# Production readiness — ops after the local AgentGuard demo
 
-Owner path for going from local demo → production-grade AadhaarChain portfolio.
-Update status in place. Do not invent access; stop when human org credentials are required.
+Owner path for **external pilot / production ops** (hosting, KYC rails, ONDC portal,
+payments). Not the Token Nxt demo build plan.
+
+| Concern | Owner |
+| --- | --- |
+| Product / demo narrative | [`PRODUCTIDEA.md`](PRODUCTIDEA.md) |
+| Local demo build | [`IMPLEMENTATIONPLAN.md`](IMPLEMENTATIONPLAN.md) milestones 0–7; agent-as-executor M10–12 |
+| Demo / PreProd / ONDC test gates | [`TESTINGPLAN.md`](TESTINGPLAN.md) |
+| Shared architecture | [`ARCHITECTURE.md`](ARCHITECTURE.md) |
+
+**Token Nxt PreProd demo:** AgentGuard across **ONDC Buyer + ONDC Seller** (two-sided
+commerce loop). Not reputation, credit, land, FlatWatch, or claimed live UAP/ONDC.
+
+Host identity (AadhaarChain SSO / Setu / fixtures) is an **optional adapter**, not
+the product hierarchy. AgentGuard principals must become identity-neutral
+(IMPLEMENTATIONPLAN Milestone 1).
 
 ## Locked recommendation (2026-07-11)
 
 | Rail | Choice | Why |
 | --- | --- | --- |
-| KYC (now) | **Local demo + commercial Setu.co eKYC sandbox** | Ship verify → trust without MeitY org KYC / GST |
-| KYC (later) | MeitY API Setu / DigiLocker | Paused — resume when ready for gov production access |
-| ONDC | **Buyer NP first** (still later) | After trust rail is live |
-| UCP | **After ONDC protocol client** | Needs real order lifecycle |
+| Local / FQDN PreProd | IMPLEMENTATIONPLAN 0–7 + TESTINGPLAN demo gate + `W-*` | Token Nxt proof on Auth0 + PreProd network |
+| KYC (optional host assurance) | Local demo + Setu.co sandbox | Non-blocking for AgentGuard demo; use when replacing fixtures |
+| KYC (gov production) | MeitY API Setu / DigiLocker | **Paused** — resume only for production identity |
+| Live ONDC | Milestone 9 + TESTINGPLAN Layer 8 | After portal/keys; never required for local demo complete |
+| UCP / payments | After real order lifecycle + regulated PSP | No fake NPCI claims |
 
-**Operator decision (2026-07-11):** pause GST Part B + MeitY partner signup; stay local; pursue **Setu.co sandbox**.
+**Operator decision (2026-07-11):** pause GST Part B + MeitY partner signup; stay local;
+pursue **Setu.co sandbox** only as optional KYC. Do not block AgentGuard milestones on GST/MeitY/ONDC portal.
 
 GST TRN `272600333290TRN` kept only if MeitY resumes (Part B due 26/07/2026) — do not block on it.
 
@@ -59,32 +75,32 @@ Docs: https://docs.setu.co/data/ekyc/quickstart — support: `support@setu.co` i
 
 ## Goal
 
-**Hierarchy:** AadhaarChain trust substrate → **AgentGuard** (flagship) → ONDC Seller first → Buyer / FlatWatch later.
-
-Product promise: verify once, disclose minimally, delegate safely, revoke anytime — not “Aadhaar on blockchain,” not SSI wallets, not universal reputation, not land title tokenization.
+**Product hierarchy:** **AgentGuard** → demonstrated on **ONDC Buyer + ONDC Seller**.
+Gateway lives in `aadharchain/` as a legacy host. FlatWatch deferred. Aadhaar / wallet
+SSO / Setu are replaceable host-assurance adapters — not the submission thesis.
 
 | Owner | Path |
 | --- | --- |
 | Product thesis | [`PRODUCTIDEA.md`](PRODUCTIDEA.md) |
-| AadhaarChain | [`aadharchain/GOAL.md`](aadharchain/GOAL.md) |
-| ONDC Seller (first AgentGuard deploy) | [`ondcseller/GOAL.md`](ondcseller/GOAL.md) |
+| Demo build / verification | [`IMPLEMENTATIONPLAN.md`](IMPLEMENTATIONPLAN.md), [`TESTINGPLAN.md`](TESTINGPLAN.md) |
+| AadhaarChain (legacy host) | [`aadharchain/GOAL.md`](aadharchain/GOAL.md) |
+| ONDC Seller | [`ondcseller/GOAL.md`](ondcseller/GOAL.md) |
 | ONDC Buyer | [`ondcbuyer/GOAL.md`](ondcbuyer/GOAL.md) |
 | FlatWatch | [`flatwatch/GOAL.md`](flatwatch/GOAL.md) |
 
-### Goal map (what each surface needs)
+### Goal map (local demo vs production later)
 
-| Surface | Needs for the goal | Sandbox / local test (enough now) | Production later |
-| --- | --- | --- | --- |
-| **AadhaarChain** (`:43100` / `:43101`) | Verify → minimal trust claims → SSO + proof-tokens; AgentGuard foundation | Demo upload **or** Setu sandbox → trust; burner SSO; fixtures OK for lanes | Live KYC; durable DB; AgentGuard policy/approval |
-| **ONDC Buyer** (`:43102`) | AadhaarChain login; trust chip; elevated checkout = verified + `buyer_checkout_identity_proof` | Identity auth on; demo commerce; elevated lane with fixture/Setu-verified wallet | Real Beckn; NP whitelist; payments |
-| **ONDC Seller** (`:43103`) | First AgentGuard surface; elevated publish = verified + seller proof-token | Same SSO/trust; demo catalog; AgentGuard refund demo next | Real BPP / network catalog |
-| **Setu.co sandbox** | Optional non-fixture KYC → gateway completes verification → trust | Client id/secret + product instance | Live keys + Bridge org KYC |
-| **MeitY / GST** | Not required for local or Setu sandbox | **Paused** | Only if gov KYC chosen |
-| **ONDC portal / UCP** | Not required for trust+SSO+demo proof | **Later** | After trust + AgentGuard seller slice |
+| Surface | Local demo (Token Nxt) | Production / pilot later |
+| --- | --- | --- |
+| **AgentGuard** (`:43101`) | Milestones 0–7: identity-neutral principals, mandates, shared exchange, signed receipts, two-sided browser proof | Durable DB, multi-tenant, pen test — TESTINGPLAN production security gate |
+| **ONDC Buyer / Seller** | Real partial PreProd Beckn BAP/BPP + shared exchange + AgentGuard journeys; signed Seller discovery visibly proven | Official conformance, full lifecycle and production network after Milestone 9 |
+| **Host identity / SSO** | Auth0/demo session principal adapter; AgentGuard rejects wallet override | Live KYC only if a customer requires that rail |
+| **Setu.co sandbox** | Optional non-fixture KYC | Live keys + Bridge org KYC |
+| **MeitY / GST / ONDC portal / UCP** | **Not required** for demo complete | Only when choosing that rail |
 
-**Elevated commerce (goal-critical):** SSO cookie alone is not enough — checkout / catalog publish need `trust_state=verified` + purpose-specific proof-token.
+**Current interim elevated gates:** some demo writes still check verified trust + purpose proof-tokens. Milestone 4 makes AgentGuard the sole authorization owner.
 
-**Sandbox test order:** (1) `lane burner seller` → (2) trust verified (fixture or Setu) → (3) elevated demo commerce → (4) Setu secrets only to replace fixtures. Do not block 1–3 on GST/MeitY/Bridge go-live.
+**Do not block** IMPLEMENTATIONPLAN 0–7 on GST, MeitY, Bridge go-live, or ONDC portal signup.
 
 ---
 
@@ -92,18 +108,35 @@ Product promise: verify once, disclose minimally, delegate safely, revoke anytim
 
 | # | Item | Who | Status | Link / action |
 | --- | --- | --- | --- | --- |
-| A1 | KYC rail (active) | Locked | **Setu.co sandbox + local demo** | Bridge signup + `SETU_EKYC_*` |
+| A1 | KYC rail (optional host assurance) | Locked optional | **Setu.co sandbox + local demo** — not required for AgentGuard milestones 0–7 | Bridge signup + `SETU_EKYC_*` |
 | A2 | MeitY API Setu partner signup | Paused | **paused** | https://partners.apisetu.gov.in/signup — resume later |
 | A3 | Org docs + MeitY approval | Paused | **paused** | |
 | A3b | **GSTIN (HUF)** | Paused | **Part A done only** — TRN `272600333290TRN`; Part B optional by 26/07/2026 | Do not block sandbox on GST |
 | A4 | Subscribe Aadhaar / DigiLocker APIs | You + API provider approve | after A3 | Client ID / secret issued |
 | A5 | ONDC Participant Portal account | You | **STOP — signup** | https://portal.ondc.org — complete profile 100% |
 | A6 | ONDC subscriber_id whitelist | You request; ONDC approves | after A5 | FQDN + SSL |
-| A7 | Production domain + TLS | You / infra | pending | e.g. `buyer.aadharcha.in` |
-| A8 | ONDC signing + encryption keypairs | Agent generates; you store secrets | after A7 | |
+| A7 | Production domain + TLS | You / infra | **Buyer/Seller FQDNs live** | `ondcbuyer.aadharcha.in`, `ondcseller.aadharcha.in` (Vercel); gateway still Render |
+| A8 | ONDC signing + encryption keypairs | Agent generates; you store secrets | after A7 | `python3 scripts/ondc_generate_keys.py` |
+| A8b | **Auth0 tenant (production IdP)** | You | **code ready — HARD STOP on creds** | Dashboard URLs + deploy checklist: `.cursor/skills/authentication/SKILL.md`; paste `AUTH0_DOMAIN` / `CLIENT_ID` / `CLIENT_SECRET` into gateway `.env` + Render |
 | A9 | UCP capability profile | Agent later | after ONDC client | https://ucp.dev |
-| A10 | Payments (UPI / PSP) | You | pending | not demo mode |
+| A10 | Payments (UPI / PSP) | You | stub routes ready | `POST /api/commerce-integrations/payments/intents` (requires AG receipt) |
 | A11 | Hosting non-ephemeral state | Agent can blueprint | pending | Postgres + object storage |
+
+### Operator values (fill after portal — never commit secrets)
+
+| Field | Staging | Production |
+| --- | --- | --- |
+| Auth0 domain | | |
+| Auth0 client id | | |
+| ONDC subscriber_id | | |
+| BAP URI / callback host | | |
+| Buyer app origin | | |
+| Seller app origin | | |
+| Gateway public URL | | |
+| Signing unique_key_id | | |
+
+Gateway ONDC adapter: `GET /api/ondc/status`, `POST /api/ondc/search|confirm`, `POST /api/ondc/callback/{action}`.
+Flip commerce demo off only via `python3 scripts/commerce_demo_mode_gate.py --allow-with-evidence <file>`.
 
 ### STOP checklist — MeitY API Setu (paused — do not drive unless resumed)
 
@@ -136,7 +169,7 @@ Support: `apisetu.support@digitalindia.gov.in` / DigiLocker partners `partners@d
 
 **Use-case draft (edit freely):**
 
-> AadhaarChain anchors a Solana wallet to a verified Indian identity for ONDC buyer/seller trust. We request DigiLocker requester access to obtain user-consented e-Aadhaar / identity documents, store only masked fields + verification decision off-chain, and expose a trust read API to portfolio apps (ONDC buyer/seller). No full Aadhaar number is retained. Callback / redirect URI: `https://aadharcha.in` (and local `http://127.0.0.1:43100` for sandbox if allowed).
+> AgentGuard authorizes agentic commerce on ONDC Buyer and Seller for Indian users. We request DigiLocker requester access only if an optional host-assurance KYC rail is required beyond Auth0 session identity. We store only masked fields + verification decision off-chain. Callback / redirect URI: `https://aadharcha.in` (and local gateway callbacks for sandbox if allowed).
 
 After approval + credentials, paste into `aadharchain/gateway/.env` (never commit):
 
@@ -192,15 +225,27 @@ VITE_ONDC_REGISTRY_URL=
 
 ---
 
-## D. Agentic UCP
+## D. Agentic runtime
 
 | # | Item | Status |
 | --- | --- | --- |
-| D1 | Cursor agent runtime (local FlatWatch/ONDC agent pages) | **local done** |
+| D1 | Cursor agent runtime (text `/agent`) | **FQDN validated** — Buyer + Seller background handoff |
+| D1b | Shared tool runner under AgentGuard | **FQDN validated** — Buyer checkout + Seller refund/publish; production security gate remains |
+| D1c | Buyer Realtime voice (`gpt-realtime-2.1-mini`) | **partial** — gateway/text tools pass; physical mic proof blocked in Hermes |
 | D2 | `/.well-known/ucp` capability manifest | **not built** |
 | D3 | Map ONDC order lifecycle ↔ UCP | after C2 |
 | D4 | Identity linking for agent checkout | after B2 live |
 | D5 | Optional: Google Merchant / AI Mode | later |
+| D6 | OpenAI Agents SDK host swap | **deferred** until tool runner proven |
+
+### Realtime (M12) env — never commit
+
+```bash
+# aadharchain/gateway/.env
+OPENAI_API_KEY=sk-...
+OPENAI_REALTIME_MODEL=gpt-realtime-2.1
+# Browser uses ephemeral client secret from gateway; no OpenAI key in Vite
+```
 
 ---
 

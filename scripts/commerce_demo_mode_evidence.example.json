@@ -1,0 +1,7 @@
+{
+  "ondc_conformance": true,
+  "subscriber_id": "REPLACE_WITH_ONDC_SUBSCRIBER_ID",
+  "environment": "staging",
+  "attested_at": "2026-07-12T00:00:00Z",
+  "notes": "Copy this file, fill after official staging/pre-prod conformance, then run: python3 scripts/commerce_demo_mode_gate.py --allow-with-evidence path/to/this.json"
+}

@@ -57,7 +57,13 @@ export interface SignedIdentityProofResult {
 }
 
 export interface SSOUser {
-  wallet_address: string;
+  principal_id?: string;
+  identity_provider?: string;
+  assurance_level?: string;
+  display_name?: string;
+  email?: string;
+  /** Legacy wallet SSO only — absent for Google/demo principals. */
+  wallet_address?: string;
   did?: string;
 }
 
@@ -78,15 +84,15 @@ export const TRUST_STATE_META: Record<
 > = {
   no_identity: {
     buyerActionMessage:
-      'Create an identity anchor in AadhaarChain before continuing.',
+      'Sign in before elevated buyer actions.',
     sellerActionMessage:
-      'Create an identity anchor in AadhaarChain before acting as a verified seller.',
+      'Sign in before elevated seller actions.',
   },
   identity_present_unverified: {
     buyerActionMessage:
-      'Complete AadhaarChain verification before checkout and other elevated buyer actions.',
+      'Identity is unverified. Sign in so AgentGuard can authorize elevated actions.',
     sellerActionMessage:
-      'Complete AadhaarChain verification before publishing or managing high-trust seller actions.',
+      'Identity is unverified. Sign in so AgentGuard can authorize elevated actions.',
   },
   verified: {
     buyerActionMessage: 'Trust is verified.',
@@ -101,9 +107,9 @@ export const TRUST_STATE_META: Record<
   },
   revoked_or_blocked: {
     buyerActionMessage:
-      'Your trust state is blocked or revoked. Review AadhaarChain before attempting elevated buyer actions.',
+      'Your trust state is blocked or revoked. Sign in again or review your identity before elevated buyer actions.',
     sellerActionMessage:
-      'Your trust state is blocked or revoked. Review AadhaarChain before attempting elevated seller actions.',
+      'Your trust state is blocked or revoked. Sign in again or review your identity before elevated seller actions.',
   },
 };
 

@@ -1,0 +1,313 @@
+# Manual / operator-gated deploy. Never auto-deploys on push.
+# HARD POLICY: $0 only — confirm Free (Render) / Hobby (Vercel) before running.
+# Re-runs CI graders, then deploys selected surfaces, then post-probes.
+name: Portfolio Deploy
+
+on:
+  workflow_dispatch:
+    inputs:
+      surface:
+        description: Surfaces to deploy
+        required: true
+        type: choice
+        default: all
+        options:
+          - all
+          - gateway
+          - buyer
+          - seller
+      confirm_free_tier:
+        description: Confirm Render=Free and Vercel=Hobby ($0 — abort if not)
+        required: true
+        type: boolean
+        default: false
+      skip_graders:
+        description: Skip re-running graders (emergency only; prefer false)
+        required: true
+        type: boolean
+        default: false
+
+concurrency:
+  group: portfolio-deploy
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+env:
+  AADHAAR_CHAIN_REPO: ${{ vars.AADHAAR_CHAIN_REPO || 'ingpoc/aadhaar-chain' }}
+  ONDC_BUYER_REPO: ${{ vars.ONDC_BUYER_REPO || 'ingpoc/ondc-buyer' }}
+  ONDC_SELLER_REPO: ${{ vars.ONDC_SELLER_REPO || 'ingpoc/ondc-seller' }}
+  AADHAAR_CHAIN_REF: ${{ vars.AADHAAR_CHAIN_REF || 'main' }}
+  ONDC_BUYER_REF: ${{ vars.ONDC_BUYER_REF || 'main' }}
+  ONDC_SELLER_REF: ${{ vars.ONDC_SELLER_REF || 'main' }}
+  GATEWAY_URL: https://identity-aadhar-gateway-main.onrender.com
+  BUYER_URL: https://ondcbuyer.aadharcha.in
+  SELLER_URL: https://ondcseller.aadharcha.in
+
+jobs:
+  gate:
+    name: Free-tier + grader gate
+    runs-on: ubuntu-latest
+    steps:
+      - name: Require free-tier confirmation
+        if: ${{ inputs.confirm_free_tier != true }}
+        run: |
+          echo "::error::Abort: confirm_free_tier must be true. \$0 only — Render Free + Vercel Hobby."
+          exit 1
+
+      - uses: actions/checkout@v4
+        if: ${{ inputs.skip_graders != true }}
+
+      - name: Checkout aadharchain
+        if: ${{ inputs.skip_graders != true }}
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ env.AADHAAR_CHAIN_REPO }}
+          ref: ${{ env.AADHAAR_CHAIN_REF }}
+          path: aadharchain
+
+      - name: Checkout ondcbuyer
+        if: ${{ inputs.skip_graders != true }}
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ env.ONDC_BUYER_REPO }}
+          ref: ${{ env.ONDC_BUYER_REF }}
+          path: ondcbuyer
+
+      - name: Checkout ondcseller
+        if: ${{ inputs.skip_graders != true }}
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ env.ONDC_SELLER_REPO }}
+          ref: ${{ env.ONDC_SELLER_REF }}
+          path: ondcseller
+
+      - uses: actions/setup-python@v5
+        if: ${{ inputs.skip_graders != true }}
+        with:
+          python-version: "3.12"
+
+      - uses: actions/setup-node@v4
+        if: ${{ inputs.skip_graders != true }}
+        with:
+          node-version: "20"
+
+      - name: Install gitleaks
+        if: ${{ inputs.skip_graders != true }}
+        run: |
+          set -euo pipefail
+          VER=8.21.2
+          curl -sSL "https://github.com/gitleaks/gitleaks/releases/download/v${VER}/gitleaks_${VER}_linux_x64.tar.gz" \
+            | sudo tar -xz -C /usr/local/bin gitleaks
+
+      - name: Secret scan (workspace + app trees)
+        if: ${{ inputs.skip_graders != true }}
+        run: |
+          set -euo pipefail
+          gitleaks detect --source . --verbose --redact --exit-code 1
+          gitleaks detect --source aadharchain --verbose --redact --exit-code 1
+          gitleaks detect --source ondcbuyer --verbose --redact --exit-code 1
+          gitleaks detect --source ondcseller --verbose --redact --exit-code 1
+
+      - name: Gateway pytest + verify-portfolio --ci
+        if: ${{ inputs.skip_graders != true }}
+        env:
+          PYTEST_DISABLE_PLUGIN_AUTOLOAD: "1"
+        run: |
+          set -euo pipefail
+          python -m pip install --upgrade pip
+          pip install -r aadharchain/gateway/requirements.txt
+          ./scripts/verify-portfolio.sh --ci
+
+      - name: Buyer test+build
+        if: ${{ inputs.skip_graders != true }}
+        working-directory: ondcbuyer
+        run: |
+          npm ci
+          npm test
+          npm run build
+
+      - name: Seller test+build
+        if: ${{ inputs.skip_graders != true }}
+        working-directory: ondcseller
+        run: |
+          npm ci
+          npm test
+          npm run build
+
+  deploy-gateway:
+    name: Deploy Render gateway
+    needs: gate
+    if: ${{ inputs.surface == 'all' || inputs.surface == 'gateway' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Require Render secrets
+        env:
+          RENDER_API_KEY: ${{ secrets.RENDER_API_KEY }}
+          RENDER_GATEWAY_SERVICE_ID: ${{ secrets.RENDER_GATEWAY_SERVICE_ID }}
+        run: |
+          set -euo pipefail
+          if [[ -z "${RENDER_API_KEY:-}" || -z "${RENDER_GATEWAY_SERVICE_ID:-}" ]]; then
+            echo "::error::Missing secrets RENDER_API_KEY and/or RENDER_GATEWAY_SERVICE_ID (names only — set in repo Settings → Secrets)."
+            exit 1
+          fi
+
+      - name: Trigger Render deploy
+        env:
+          RENDER_API_KEY: ${{ secrets.RENDER_API_KEY }}
+          RENDER_GATEWAY_SERVICE_ID: ${{ secrets.RENDER_GATEWAY_SERVICE_ID }}
+        run: |
+          set -euo pipefail
+          curl -fsS -X POST \
+            "https://api.render.com/v1/services/${RENDER_GATEWAY_SERVICE_ID}/deploys" \
+            -H "Authorization: Bearer ${RENDER_API_KEY}" \
+            -H "Accept: application/json" \
+            -H "Content-Type: application/json" \
+            -d '{"clearCache":"do_not_clear"}' \
+            | tee /tmp/render-deploy.json
+          echo "Render deploy requested (Free plan only — do not upgrade)."
+
+  deploy-buyer:
+    name: Deploy Vercel Buyer
+    needs: gate
+    if: ${{ inputs.surface == 'all' || inputs.surface == 'buyer' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Require Vercel secrets
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID_BUYER }}
+        run: |
+          set -euo pipefail
+          if [[ -z "${VERCEL_TOKEN:-}" || -z "${VERCEL_ORG_ID:-}" || -z "${VERCEL_PROJECT_ID:-}" ]]; then
+            echo "::error::Missing VERCEL_TOKEN, VERCEL_ORG_ID, and/or VERCEL_PROJECT_ID_BUYER."
+            exit 1
+          fi
+
+      - uses: actions/checkout@v4
+        with:
+          repository: ${{ env.ONDC_BUYER_REPO }}
+          ref: ${{ env.ONDC_BUYER_REF }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install Vercel CLI
+        run: npm install -g vercel@39
+
+      - name: Deploy Buyer (Hobby)
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID_BUYER }}
+        run: |
+          set -euo pipefail
+          # Do not flip VITE_COMMERCE_DEMO_MODE here — use project env on Vercel.
+          vercel pull --yes --environment=production --token="$VERCEL_TOKEN"
+          vercel build --prod --token="$VERCEL_TOKEN"
+          vercel deploy --prebuilt --prod --token="$VERCEL_TOKEN"
+
+  deploy-seller:
+    name: Deploy Vercel Seller
+    needs: gate
+    if: ${{ inputs.surface == 'all' || inputs.surface == 'seller' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Require Vercel secrets
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID_SELLER }}
+        run: |
+          set -euo pipefail
+          if [[ -z "${VERCEL_TOKEN:-}" || -z "${VERCEL_ORG_ID:-}" || -z "${VERCEL_PROJECT_ID:-}" ]]; then
+            echo "::error::Missing VERCEL_TOKEN, VERCEL_ORG_ID, and/or VERCEL_PROJECT_ID_SELLER."
+            exit 1
+          fi
+
+      - uses: actions/checkout@v4
+        with:
+          repository: ${{ env.ONDC_SELLER_REPO }}
+          ref: ${{ env.ONDC_SELLER_REF }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install Vercel CLI
+        run: npm install -g vercel@39
+
+      - name: Deploy Seller (Hobby)
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID_SELLER }}
+        run: |
+          set -euo pipefail
+          vercel pull --yes --environment=production --token="$VERCEL_TOKEN"
+          vercel build --prod --token="$VERCEL_TOKEN"
+          vercel deploy --prebuilt --prod --token="$VERCEL_TOKEN"
+
+  post-probe:
+    name: Post-deploy probes
+    needs: [gate, deploy-gateway, deploy-buyer, deploy-seller]
+    if: >-
+      always() &&
+      needs.gate.result == 'success' &&
+      !contains(needs.*.result, 'failure') &&
+      !contains(needs.*.result, 'cancelled')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Wake + probe public FQDNs
+        run: |
+          set -euo pipefail
+          wake() {
+            local url="$1"
+            local code
+            for i in 1 2 3 4 5 6; do
+              code=$(curl -sS -o /dev/null -w "%{http_code}" --max-time 30 "$url" || echo 000)
+              echo "$url → $code (attempt $i)"
+              if [[ "$code" =~ ^2 ]]; then
+                return 0
+              fi
+              sleep 15
+            done
+            echo "::error::Probe failed after wake retries: $url (last=$code)"
+            return 1
+          }
+
+          # Prefer custom domain; fall back to Render URL for Free cold start.
+          GW="${{ env.GATEWAY_URL }}"
+          if ! curl -fsS --max-time 20 "https://gateway.aadharcha.in/api/health" >/dev/null; then
+            wake "${GW}/api/health"
+          else
+            GW="https://gateway.aadharcha.in"
+            wake "${GW}/api/health"
+          fi
+          curl -fsS "${GW}/api/auth/providers" | head -c 500
+          echo
+          wake "${GW}/ondc/np/buyer/status" || true
+          wake "${GW}/ondc/np/seller/status" || true
+
+          if [[ "${{ inputs.surface }}" == "all" || "${{ inputs.surface }}" == "buyer" ]]; then
+            wake "${BUYER_URL}/ondc-site-verification.html"
+          fi
+          if [[ "${{ inputs.surface }}" == "all" || "${{ inputs.surface }}" == "seller" ]]; then
+            wake "${SELLER_URL}/ondc-site-verification.html"
+          fi
+
+          python3 scripts/ondc_ci_graders.py --live --soft \
+            --gateway https://gateway.aadharcha.in \
+            --buyer "${BUYER_URL}" \
+            --seller "${SELLER_URL}"
+
+          echo "Post-probes complete. Stay on Free/Hobby — do not upgrade on failure."

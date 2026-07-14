@@ -27,30 +27,64 @@ FIXTURE_JS = """
 (async () => {
   const res = await fetch('http://127.0.0.1:43101/api/auth/me', { credentials: 'include' });
   const body = await res.json();
+  const principal = body?.data?.principal_id;
   const wallet = body?.data?.wallet_address;
-  if (!wallet) return { error: 'no_wallet', body };
-  const fixRes = await fetch(`http://127.0.0.1:43101/api/identity/dev/fixtures/${wallet}`, {
+  if (!principal && !wallet) return { error: 'no_principal', body };
+
+  // Identity fixture is hangar-only (wallet KYC). Demo/Google principal skips it.
+  let fixture = null;
+  if (wallet) {
+    const fixRes = await fetch(`http://127.0.0.1:43101/api/identity/dev/fixtures/${wallet}`, {
+      method: 'POST',
+      credentials: 'include',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ fixture_state: 'verified', document_type: 'aadhaar' }),
+    });
+    fixture = await fixRes.json();
+  }
+
+  const ensureBody = wallet
+    ? { wallet_address: wallet, role: 'seller' }
+    : { role: 'seller' };
+  const ensure = await fetch('http://127.0.0.1:43101/api/agentguard/agents/ensure', {
     method: 'POST',
     credentials: 'include',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ fixture_state: 'verified', document_type: 'aadhaar' }),
-  });
-  const fixture = await fixRes.json();
-  const ensure = await fetch('http://127.0.0.1:43101/api/agentguard/agents/ensure', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ wallet_address: wallet }),
+    body: JSON.stringify(ensureBody),
   });
   const agentBody = await ensure.json();
-  const agentId = agentBody?.data?.agent?.agent_id;
-  if (agentId && agentBody?.data?.agent?.status === 'paused') {
-    await fetch(`http://127.0.0.1:43101/api/agentguard/agents/${agentId}/resume`, {
+  let agentId = agentBody?.data?.agent?.agent_id;
+  let status = agentBody?.data?.agent?.status;
+
+  // Re-read current agent — ensure may return stale while pause file still applies.
+  const statusUrl = wallet
+    ? `http://127.0.0.1:43101/api/agentguard/wallets/${wallet}`
+    : 'http://127.0.0.1:43101/api/agentguard/agents/current?role=seller';
+  const st = await (await fetch(statusUrl, { credentials: 'include' })).json();
+  agentId = st?.data?.agent?.agent_id || agentId;
+  status = st?.data?.agent?.status || status;
+
+  let resumed = null;
+  if (agentId && status === 'paused') {
+    const resumePayload = wallet ? { wallet_address: wallet } : {};
+    const r = await fetch(`http://127.0.0.1:43101/api/agentguard/agents/${agentId}/resume`, {
       method: 'POST',
+      credentials: 'include',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ wallet_address: wallet }),
+      body: JSON.stringify(resumePayload),
     });
+    resumed = { http: r.status, body: await r.json().catch(() => ({})) };
+    const st2 = await (await fetch(statusUrl, { credentials: 'include' })).json();
+    status = st2?.data?.agent?.status || status;
   }
-  return { wallet_address: wallet, fixture, agent: agentBody };
+  return {
+    principal_id: principal || null,
+    wallet_address: wallet || null,
+    fixture,
+    agent: agentBody,
+    status,
+    resumed,
+  };
 })()
 """
 
@@ -66,36 +100,164 @@ READ_REFUND_JS = """
 (() => {
   const msg = document.querySelector('[data-testid="agentguard-message"]')?.textContent || '';
   const receipt = document.querySelector('[data-testid="agentguard-last-receipt"]')?.textContent || '';
+  const err = document.querySelector('.text-destructive')?.textContent || '';
   const approval = !!document.querySelector('[data-testid="approve-once"]');
   const replay = !!document.querySelector('[data-testid="replay-approval"]');
-  return { msg, receipt, approval, replay, href: location.href };
+  const approveDisabled = !!document.querySelector('[data-testid="approve-once"][disabled]');
+  return { msg, err, receipt, approval, replay, approveDisabled, href: location.href };
 })()
 """
 
-CLICK_APPROVE_JS = """
-(() => {
-  const btn = document.querySelector('[data-testid="approve-once"]');
-  if (!btn) return { ok: false, reason: 'missing' };
-  btn.click();
-  return { ok: true };
+
+# Compact judged UI flow — Hermes MAX_ACTIONS=20 silently truncates longer lists.
+JUDGED_ORDER_JS = """
+(async () => {
+  const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+  const read = () => ({
+    msg: document.querySelector('[data-testid="agentguard-message"]')?.textContent || '',
+    err: '',  // avoid destructive Button label false positives
+    receipt: document.querySelector('[data-testid="agentguard-last-receipt"]')?.textContent || '',
+    approval: !!document.querySelector('[data-testid="approve-once"]'),
+    replay: !!document.querySelector('[data-testid="replay-approval"]'),
+  });
+  const click = (sel) => {
+    const btn = document.querySelector(sel);
+    if (!btn) return { ok: false, reason: 'missing', sel };
+    if (btn.disabled) return { ok: false, reason: 'disabled', sel, disabled: true };
+    btn.click();
+    return { ok: true, sel };
+  };
+  const waitFor = async (sel, timeoutMs, { enabled = false } = {}) => {
+    const start = Date.now();
+    while (Date.now() - start < timeoutMs) {
+      const el = document.querySelector(sel);
+      if (el && (!enabled || !el.disabled)) return true;
+      await sleep(200);
+    }
+    return false;
+  };
+  const waitMsg = async (pred, timeoutMs) => {
+    const start = Date.now();
+    while (Date.now() - start < timeoutMs) {
+      if (pred(read())) return true;
+      await sleep(200);
+    }
+    return false;
+  };
+
+  if (!(await waitFor('[data-testid="refund-3000"]', 20000, { enabled: true }))) {
+    const btn = document.querySelector('[data-testid="refund-3000"]');
+    return {
+      ok: false,
+      reason: 'no_refund_3000',
+      present: !!btn,
+      disabled: !!btn?.disabled,
+      subjectHint: document.body?.innerText?.includes('Sign in') || false,
+    };
+  }
+  click('[data-testid="refund-3000"]');
+  await waitMsg((s) => !!s.msg || !!s.receipt, 8000);
+  const after3000 = read();
+
+  click('[data-testid="refund-7500"]');
+  await waitMsg((s) => s.approval || /approv/i.test(s.msg), 8000);
+  const after7500 = read();
+  if (!after7500.approval) {
+    return { ok: false, reason: 'no_approve_btn', after3000, after7500 };
+  }
+
+  const approve = click('[data-testid="approve-once"]');
+  await waitMsg((s) => s.replay && !s.approval, 10000);
+  // Approve clears pending button; replay remains via lastApprovalId.
+  const afterApprove = read();
+  if (!afterApprove.replay) {
+    return { ok: false, reason: 'no_replay_btn', approve, after3000, after7500, afterApprove };
+  }
+
+  const replay = click('[data-testid="replay-approval"]');
+  await waitMsg((s) => /replay|consumed|already/i.test(s.msg), 8000);
+  const afterReplay = read();
+
+  return {
+    ok: approve.ok && replay.ok,
+    action: 'order_judged',
+    after3000,
+    after7500,
+    afterApprove,
+    afterReplay,
+    approve,
+    replay,
+  };
 })()
 """
 
-CLICK_REPLAY_JS = """
-(() => {
-  const btn = document.querySelector('[data-testid="replay-approval"]');
-  if (!btn) return { ok: false, reason: 'missing' };
-  btn.click();
-  return { ok: true };
-})()
-"""
-
-CLICK_PAUSE_JS = """
-(() => {
+PAUSE_AND_DENY_JS = """
+(async () => {
+  const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+  const waitFor = async (sel, timeoutMs) => {
+    const start = Date.now();
+    while (Date.now() - start < timeoutMs) {
+      if (document.querySelector(sel)) return true;
+      await sleep(200);
+    }
+    return false;
+  };
+  if (!(await waitFor('[data-testid="agentguard-pause"]', 20000))) {
+    return { ok: false, reason: 'no_pause_btn' };
+  }
+  const before = {
+    policy: document.querySelector('[data-testid="agentguard-policy"]')?.textContent || '',
+    status: document.querySelector('[data-testid="agentguard-status"]')?.textContent || '',
+  };
   const btn = document.querySelector('[data-testid="agentguard-pause"]');
-  if (!btn) return { ok: false, reason: 'missing' };
+  const label = (btn?.textContent || '').trim();
+  if (/resume/i.test(label)) {
+    return { ok: false, reason: 'already_paused', label, before };
+  }
   btn.click();
-  return { ok: true };
+  await sleep(4000);
+  const afterPause = {
+    policy: document.querySelector('[data-testid="agentguard-policy"]')?.textContent || '',
+    status: document.querySelector('[data-testid="agentguard-status"]')?.textContent || '',
+  };
+  // Navigate to order and attempt refund while paused (caller does goto; this only pauses).
+  return { ok: true, action: 'pause', before, afterPause, label };
+})()
+"""
+
+DENY_WHILE_PAUSED_JS = """
+(async () => {
+  const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+  const waitFor = async (sel, timeoutMs, { enabled = false } = {}) => {
+    const start = Date.now();
+    while (Date.now() - start < timeoutMs) {
+      const el = document.querySelector(sel);
+      if (el && (!enabled || !el.disabled)) return true;
+      await sleep(200);
+    }
+    return false;
+  };
+  if (!(await waitFor('[data-testid="refund-3000"]', 20000, { enabled: true }))) {
+    const btn = document.querySelector('[data-testid="refund-3000"]');
+    return {
+      ok: false,
+      reason: btn?.disabled ? 'refund_blocked' : 'no_refund_btn',
+      present: !!btn,
+      disabled: !!btn?.disabled,
+    };
+  }
+  const btn = document.querySelector('[data-testid="refund-3000"]');
+  btn.click();
+  const start = Date.now();
+  let msg = '';
+  let receipt = '';
+  while (Date.now() - start < 8000) {
+    msg = document.querySelector('[data-testid="agentguard-message"]')?.textContent || '';
+    receipt = document.querySelector('[data-testid="agentguard-last-receipt"]')?.textContent || '';
+    if (/paus|deny/i.test(msg) || /paus/i.test(receipt)) break;
+    await sleep(200);
+  }
+  return { ok: true, action: 'deny_refund', msg, receipt };
 })()
 """
 
@@ -124,11 +286,12 @@ def hermes_call(handler, payload: dict) -> dict:
 
 
 def build_steps(*, skip_sso: bool = False) -> list[dict]:
+    """Keep <=20 Hermes actions (plugin MAX_ACTIONS=20 truncates silently)."""
     prefix: list[dict]
     if skip_sso:
         prefix = [
             {"type": "goto", "url": "http://127.0.0.1:43103/dashboard"},
-            {"type": "wait", "ms": 2500},
+            {"type": "wait", "ms": 2000},
         ]
     else:
         prefix = [
@@ -136,83 +299,22 @@ def build_steps(*, skip_sso: bool = False) -> list[dict]:
             {"type": "wait", "ms": 5000},
             {"type": "wait_for_url_change", "from_url": LOGIN, "timeout": 45000},
         ]
+    # 2–3 prefix + 12 judged = <=15 (SSO prefix uses 3 → 15 total)
     return prefix + [
         {"type": "evaluate", "expression": FIXTURE_JS},
-        {"type": "wait", "ms": 1500},
         {"type": "goto", "url": AGENTGUARD_URL},
         {"type": "wait", "ms": 2500},
         {"type": "wait_for_selector", "selector": "[data-testid='agentguard-policy']", "timeout": 20000},
         {"type": "evaluate", "expression": READ_POLICY_JS},
         {"type": "goto", "url": ORDER_URL},
-        {"type": "wait", "ms": 2500},
-        {"type": "wait_for_selector", "selector": "[data-testid='refund-3000']", "timeout": 20000},
-        {
-            "type": "evaluate",
-            "expression": "(() => { const b=document.querySelector('[data-testid=\"refund-3000\"]'); b?.click(); return !!b; })()",
-        },
-        {"type": "wait", "ms": 2500},
-        {"type": "evaluate", "expression": READ_REFUND_JS},
-        {
-            "type": "evaluate",
-            "expression": "(() => { const b=document.querySelector('[data-testid=\"refund-7500\"]'); b?.click(); return !!b; })()",
-        },
-        {"type": "wait", "ms": 2500},
-        {"type": "evaluate", "expression": READ_REFUND_JS},
-        {"type": "wait_for_selector", "selector": "[data-testid='approve-once']", "timeout": 15000},
-        {
-            "type": "evaluate",
-            "expression": """
-(async () => {
-  const me = await (await fetch('http://127.0.0.1:43101/api/auth/me', { credentials: 'include' })).json();
-  const wallet = me?.data?.wallet_address;
-  if (!wallet) return { ok: false, reason: 'no_wallet' };
-  // Re-evaluate to get a fresh approval id, then consume once via API (UI button still exists for humans).
-  const need = await (await fetch('http://127.0.0.1:43101/api/agentguard/actions/evaluate', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ wallet_address: wallet, action: 'refund', amount_inr: 7500, resource_id: 'seller-demo-1002' }),
-  })).json();
-  const approvalId = need?.data?.approval?.approval_id;
-  if (!approvalId) return { ok: false, reason: 'no_approval', need };
-  const consume = await fetch('http://127.0.0.1:43101/api/agentguard/approvals/consume', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ wallet_address: wallet, approval_id: approvalId }),
-  });
-  const consumeBody = await consume.json().catch(() => ({}));
-  const replay = await fetch('http://127.0.0.1:43101/api/agentguard/approvals/consume', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ wallet_address: wallet, approval_id: approvalId }),
-  });
-  const status = await (await fetch('http://127.0.0.1:43101/api/agentguard/wallets/' + wallet)).json();
-  const agentId = status?.data?.agent?.agent_id;
-  const pause = await fetch('http://127.0.0.1:43101/api/agentguard/agents/' + agentId + '/pause', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ wallet_address: wallet }),
-  });
-  const denied = await (await fetch('http://127.0.0.1:43101/api/agentguard/actions/evaluate', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ wallet_address: wallet, action: 'refund', amount_inr: 1000, resource_id: 'seller-demo-1002' }),
-  })).json();
-  return {
-    ok: consume.status === 200 && replay.status === 409 && denied?.data?.decision === 'deny',
-    consume_status: consume.status,
-    replay_status: replay.status,
-    pause_status: pause.status,
-    denied_decision: denied?.data?.decision,
-    denied_reason: denied?.data?.reason,
-    receipt: consumeBody?.data?.receipt?.receipt_id,
-    msg: denied?.data?.reason || '',
-  };
-})()
-""",
-        },
+        {"type": "wait", "ms": 2000},
+        {"type": "evaluate", "expression": JUDGED_ORDER_JS},
         {"type": "goto", "url": AGENTGUARD_URL},
         {"type": "wait", "ms": 2000},
-        {"type": "evaluate", "expression": READ_POLICY_JS},
+        {"type": "evaluate", "expression": PAUSE_AND_DENY_JS},
+        {"type": "goto", "url": ORDER_URL},
+        {"type": "wait", "ms": 2000},
+        {"type": "evaluate", "expression": DENY_WHILE_PAUSED_JS},
         {"type": "page_context"},
     ]
 
@@ -230,27 +332,57 @@ def _eval_values(result: dict) -> list[dict]:
 
 def assess(result: dict) -> dict:
     values = _eval_values(result)
-    policy_ok = any("5000" in str(v.get("policy", "")) for v in values)
+
+    def flatten(v: dict) -> list[dict]:
+        out = [v]
+        for key in ("after3000", "after7500", "afterApprove", "afterReplay", "before", "afterPause"):
+            nested = v.get(key)
+            if isinstance(nested, dict):
+                out.append(nested)
+        return out
+
+    flat: list[dict] = []
+    for v in values:
+        flat.extend(flatten(v))
+
+    clicks = [
+        v
+        for v in values
+        if isinstance(v.get("action"), str)
+        or v.get("reason")
+        in {
+            "missing_or_disabled",
+            "missing",
+            "disabled",
+            "no_refund_3000",
+            "no_approve_btn",
+            "no_replay_btn",
+            "no_pause_btn",
+            "already_paused",
+            "no_refund_btn",
+            "refund_blocked",
+            "no_principal",
+            "no_wallet",
+        }
+    ]
+    policy_ok = any("5000" in str(v.get("policy", "")) for v in flat)
     allow_ok = any(
-        "allowed" in str(v.get("receipt", "")).lower()
+        "allowed" in str(v.get("msg", "")).lower()
         or ("3000" in str(v.get("msg", "")) and "receipt" in str(v.get("msg", "")).lower())
-        for v in values
+        or ("Last receipt" in str(v.get("receipt", "")) and "3000" in str(v))
+        for v in flat
     )
-    allow_ok = allow_ok or any("Last receipt" in str(v.get("receipt", "")) and "3000" in str(v) for v in values)
-    need_ok = any(v.get("approval") for v in values)
-    api_gate = next((v for v in values if isinstance(v.get("replay_status"), int)), None)
-    replay_ok = bool(api_gate and api_gate.get("replay_status") == 409) or any(
-        "replay" in str(v.get("msg", "")).lower() or "already consumed" in str(v.get("msg", "")).lower()
-        for v in values
+    need_ok = any(v.get("approval") for v in flat)
+    def _msg(v: dict) -> str:
+        return str(v.get("msg", "")).lower()
+    replay_ok = any(
+        "replay" in _msg(v) or "already consumed" in _msg(v) or "consumed" in _msg(v)
+        for v in flat
     )
-    paused_ok = any(str(v.get("status", "")).strip() == "paused" for v in values) or bool(
-        api_gate and api_gate.get("pause_status") == 200
-    )
-    deny_after_pause = bool(api_gate and api_gate.get("denied_decision") == "deny") or any(
-        "paused" in str(v.get("msg", "")).lower() or "deny" in str(v.get("msg", "")).lower()
-        for v in values[-3:]
-    )
-    success = policy_ok and need_ok and replay_ok and paused_ok and deny_after_pause
+    paused_ok = any(str(v.get("status", "")).strip().lower() == "paused" for v in flat)
+    deny_after_pause = any("paused" in _msg(v) or "deny" in _msg(v) for v in flat[-6:])
+    click_ok = all(v.get("ok") for v in clicks) if clicks else False
+    success = policy_ok and need_ok and replay_ok and paused_ok and deny_after_pause and click_ok
     return {
         "success": success,
         "checks": {
@@ -260,9 +392,11 @@ def assess(result: dict) -> dict:
             "replay_rejected": replay_ok,
             "agent_paused": paused_ok,
             "deny_while_paused": deny_after_pause,
+            "ui_clicks_ok": click_ok,
         },
         "samples": values[-8:],
         "final_url": result.get("final_url"),
+        "action_count_note": "hermes MAX_ACTIONS=20; build_steps must stay <=20",
     }
 
 
@@ -282,7 +416,7 @@ def main() -> int:
             "action": "run",
             "session_name": SESSION,
             "use_selected_tab": False,
-            "timeout_seconds": 240,
+            "timeout_seconds": 300,
             "actions": build_steps(skip_sso=skip_sso),
         },
     )

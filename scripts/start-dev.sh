@@ -13,6 +13,8 @@ start_python() {
   local dir="$2"
   local port="$3"
   local module="$4"
+  local env_file=""
+  local -a env_args=("PORT=$port")
 
   lsof -ti:"$port" | xargs kill -9 2>/dev/null || true
 
@@ -21,7 +23,24 @@ start_python() {
     PYTHON_BIN=".venv/bin/python"
   fi
 
-  nohup env PORT="$port" "$PYTHON_BIN" -m uvicorn "$module" --host 127.0.0.1 --port "$port" \
+  # Load service .env into the process (uvicorn does not auto-load dotenv).
+  if [ -f .env ]; then
+    env_file=".env"
+  elif [ -f .env.local ]; then
+    env_file=".env.local"
+  fi
+  if [ -n "$env_file" ]; then
+    while IFS= read -r line || [ -n "$line" ]; do
+      case "$line" in
+        ''|\#*) continue ;;
+      esac
+      if [[ "$line" == *=* ]]; then
+        env_args+=("$line")
+      fi
+    done <"$env_file"
+  fi
+
+  nohup env "${env_args[@]}" "$PYTHON_BIN" -m uvicorn "$module" --host 127.0.0.1 --port "$port" \
     >"$LOG_DIR/$name.log" 2>&1 &
   echo $! >"$LOG_DIR/$name.pid"
   echo "Started $name on :$port (pid $(cat "$LOG_DIR/$name.pid"))"
@@ -31,13 +50,56 @@ start_node() {
   local name="$1"
   local dir="$2"
   local port="$3"
+  local env_file=""
 
   lsof -ti:"$port" | xargs kill -9 2>/dev/null || true
 
   cd "$dir"
-  nohup npm run dev >"$LOG_DIR/$name.log" 2>&1 &
-  echo $! >"$LOG_DIR/$name.pid"
-  echo "Started $name on :$port (pid $(cat "$LOG_DIR/$name.pid"))"
+
+  # Vite prefers process env over .env.local. Shell/FQDN VITE_* leaks
+  # (e.g. gateway.aadharcha.in) break local booth Realtime/AgentGuard.
+  # Prefer .env.local, else .env; strip inherited VITE_* then apply file.
+  # Start in a new process group so Cursor Shell teardown cannot SIGKILL Vite.
+  if [ -f .env.local ]; then
+    env_file=".env.local"
+  elif [ -f .env ]; then
+    env_file=".env"
+  fi
+
+  ROOT_DIR="$(cd "$ROOT" && pwd)"
+  APP_DIR="$(pwd)"
+  LOG_FILE="$LOG_DIR/$name.log"
+  PID_FILE="$LOG_DIR/$name.pid"
+  python3 - "$APP_DIR" "$LOG_FILE" "$PID_FILE" "$env_file" <<'PY'
+import os, subprocess, sys
+from pathlib import Path
+app, log_path, pid_path, env_file = sys.argv[1:5]
+env = os.environ.copy()
+for k in list(env):
+    if k.startswith("VITE_"):
+        del env[k]
+ef = Path(app) / env_file if env_file else None
+if ef and ef.is_file():
+    for line in ef.read_text(encoding="utf-8", errors="replace").splitlines():
+        line = line.strip()
+        if not line or line.startswith("#") or "=" not in line:
+            continue
+        if line.startswith("VITE_") or line.startswith("PORT="):
+            key, _, val = line.partition("=")
+            env[key] = val
+logf = open(log_path, "w")
+proc = subprocess.Popen(
+    ["npm", "run", "dev"],
+    cwd=app,
+    env=env,
+    stdout=logf,
+    stderr=subprocess.STDOUT,
+    start_new_session=True,
+)
+Path(pid_path).write_text(str(proc.pid), encoding="utf-8")
+print(proc.pid)
+PY
+  echo "Started $name on :$port (pid $(cat "$LOG_DIR/$name.pid"))${env_file:+ [env=$env_file,detached]}"
 }
 
 echo "=== Starting AadhaarChain portfolio dev stack ==="

@@ -22,7 +22,12 @@ Browser: **WIP Hermes on Comet** (logged-in GoDaddy session). Not Cursor IDE bro
 | Domain | `aadharcha.in` |
 | Expires | Oct 29, 2026 |
 | Auto-renew | **Off** (operator decision) |
-| Apex / www / app hosts | A → `76.76.21.21` (Vercel-style) for `@`, `www`, `ondcbuyer`, `ondcseller`, `flatwatch` |
+| Apex / www / app hosts | A → `76.76.21.21` (Vercel) for `@`, `www`, `ondcbuyer`, `ondcseller`, `flatwatch` |
+| Gateway FQDN | `gateway.aadharcha.in` — CNAME → `identity-aadhar-gateway-main.onrender.com` (added 2026-07-12; Render Free custom domain + TLS) |
+| ONDC Buyer FQDN | `ondcbuyer.aadharcha.in` — operator confirmed 2026-07-12; dig A `76.76.21.21`; HTTPS 200 Vite app |
+| ONDC Seller FQDN | `ondcseller.aadharcha.in` — operator confirmed 2026-07-12; dig A `76.76.21.21`; HTTPS 200 Vite app |
+| Nameservers (observed) | GoDaddy `ns73/74.domaincontrol.com` + NS1 `dns1–4.p06.nsone.net` (Vercel-style) |
+| Live probe | 2026-07-12 — TLS OK (`strict-transport-security`, `server: Vercel`); no GoDaddy DNS edit needed |
 
 DNS tabs present: Records, Forwarding, Nameservers, Hostnames, DNSSEC.  
 Quick actions: Manage DNS, Forward Domain, Connect Email, Verify Domain Ownership.

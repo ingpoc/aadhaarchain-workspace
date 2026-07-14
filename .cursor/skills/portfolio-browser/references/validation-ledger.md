@@ -4,7 +4,39 @@ Track **manual** runs before simplifying or automating. Update after each full-p
 
 Phase order: make it work → **validate (this file)** → simplify → optimize → automate.
 
-**Lane status:** Portfolio API + browser (burner) + first-run setup + identity onboarding + on-chain anchor validate + **gateway on-chain E2E** validated. Solflare/commerce scaffolded; **AgentGuard seller** validated (2026-07-11) — see [AgentGuard seller lane](#agentguard-seller-lane).
+**Lane status:** Portfolio API + browser (burner) + first-run setup + identity onboarding + on-chain lanes validated historically. **AgentGuard seller Hermes** pass 2026-07-11 evening (WIP bridge recovered). **AgentGuard buyer Hermes** first judged pass 2026-07-11 evening; re-pass 15:54Z. **Buyer `/config` + Samantha** operator path 1× pass 15:55Z; **full Buyer journey** re-pass 16:10Z (UI search apples + tool cart + AG + orb; live mic env-dependent). **Buyer Samantha operator-long** 11/11 + cart/memory re-pass 2026-07-11 night. **Seller Samantha ops** (`hermes_samantha_seller_ops.py`) 5/5 + memory on `/agentguard` same night. **Two-sided** consecutive unique run_ids pass. FlatWatch AgentGuard remains **deferred**.
+
+## Milestone 0 baseline (IMPLEMENTATIONPLAN)
+
+| Command | Result | When |
+| --- | --- | --- |
+| `aadharchain/gateway`: `.venv/bin/python -m pytest tests/ -q` | exit 0; **56** passed | 2026-07-11 |
+| `ondcbuyer`: `npm test` + `npm run build` | 117 passed; build OK | 2026-07-11 |
+| `ondcseller`: `npm test` + `npm run build` | 150 passed; build OK | 2026-07-11 |
+| `agentguard seller --fixture` | **2 pass** (2026-07-11) + **2 pass** night | same; demo principal UI path |
+
+Known old seller `tsc` errors are resolved in this workspace. `refundedAmount` compiled as numeric in the installed shared order type; nested `refund.amount` remains a price object.
+
+
+
+## Milestone 8 cleanup (validated 2026-07-11T14:51Z)
+
+| Change | Result |
+| --- | --- |
+| Delete dead `agentCommerceState.ts`, `sellerBackendEnforcement*` | Done |
+| Seller Hermes approve/replay/pause/deny via UI (no consume API in judged path) | **Pass** — compressed ≤20 Hermes actions (`MAX_ACTIONS=20` silent truncate was the abort) |
+| Unique `run_id` for `two-sided` / `hermes_two_sided_commerce.py` | Done (auto in `portfolio_browser.py two-sided`) |
+| Fixture resumes paused agent before judged path | Done (`FIXTURE_JS` wallet re-read + resume) |
+| Remaining | Buyer Hermes still API-gated for consume/replay/pause; local* commerce fixtures still authoritative fallbacks |
+
+| Gate | Result |
+| --- | --- |
+| Gateway pytest | **56 passed** (2026-07-11T14:48Z) |
+| `agentguard seller --fixture` UI path | **Pass** checks all true (incl. `ui_clicks_ok`); consecutive skip-sso + `portfolio_browser` SSO→Hermes |
+| `agentguard buyer --fixture` | **Pass** all checks true (API-gated judged path) |
+| Two-sided unique runs | **2 pass** `ag-1783781283-36e172`, `ag-1783781283-db290e` |
+| Seller UI sample (judged) | allow `rcpt_7a2140b63d3846db` → approve `rcpt_bd3a041283194f80` → msg `Approval already consumed (replay rejected).` → status `paused` → deny `Agent is paused.` |
+
 
 ## Portfolio API lane
 
@@ -216,10 +248,16 @@ ONDC Seller AgentGuard vertical slice (PRODUCTIDEA / `ondcseller/GOAL.md`): poli
 
 | Step | Preconditions | Pass signal | Manual runs | Notes |
 | --- | --- | --- | --- | --- |
-| `agentguard seller --fixture` | Stack up; WIP Hermes; gateway AgentGuard routes | JSON `"success": true`; checks policy/need/replay/paused/deny | **2 pass** (2026-07-11) | `python3 scripts/portfolio_browser.py agentguard seller --fixture` (SSO then Hermes script) |
+| `agentguard seller --fixture` | Stack up; WIP Hermes; gateway AgentGuard routes | JSON `"success": true`; checks policy/need/replay/paused/deny | **2+2 pass** (day + night demo principal) | `python3 scripts/portfolio_browser.py agentguard seller --fixture` (demo SSO then Hermes) |
 | Gateway pytest | gateway `.venv` | `tests/test_agentguard.py` pass | API | Does not replace Hermes lane |
 
-**Validated bookend (2026-07-11):** two consecutive `AGENTGUARD_SKIP_SSO=1` Hermes script passes after burner SSO — UI refunds + API consume/replay/pause/deny.
+**Validated bookend (2026-07-11):** two consecutive `AGENTGUARD_SKIP_SSO=1` Hermes script passes after burner SSO — UI refunds + UI approve/replay/pause/deny (M8; Hermes `MAX_ACTIONS=20`).
+
+**Re-validated (2026-07-11T14:51Z):** `portfolio_browser.py agentguard seller --fixture` → all checks true (UI judged path).
+
+**Re-validated (2026-07-11 night, demo principal):** two consecutive `portfolio_browser.py agentguard seller --fixture` → all checks true (`policy_5000`, allow, need approval, replay rejected, paused, deny while paused, `ui_clicks_ok`). Fix: order refund UI + Hermes fixture use cookie `principal_id` (not wallet).
+
+2026-07-11 API proof after client/shared-commerce wiring: Seller refund INR 3,000 allowed; INR 7,500 required approval; consume 200; replay 409; pause 200; next refund denied with `Agent is paused.` Receipt `rcpt_ce7d8c1de73643ab`. Same-day Hermes rerun was blocked by WIP bridge/session readiness, not by the AgentGuard API checks.
 
 **Parallel with other lanes?** No — Hermes mutex with `lane` / SSO / commerce / onboarding.
 
@@ -227,39 +265,79 @@ ONDC Seller AgentGuard vertical slice (PRODUCTIDEA / `ondcseller/GOAL.md`): poli
 
 **Validator `:8899`?** No.
 
-**Blocked by:** Fixture verified trust + seller SSO (`dev_auto` in script).
+**Blocked by:** Demo principal SSO (`sso demo seller`); stack + WIP Hermes.
 
 ## AgentGuard buyer lane
 
-ONDC Buyer checkout consume (`ondcbuyer/GOAL.md` phase-one): allow ≤ INR 10k → need approval over → consume once → replay 409 → pause → deny. UI checkout lands `/orders/…` with AgentGuard note.
+**Validated (2026-07-11 evening):** `python3 scripts/portfolio_browser.py agentguard buyer --fixture` →
+`"success": true` (checkout_allow, approval_required, approval_consumed, replay_rejected, agent_paused, deny_while_paused). Receipt `rcpt_c1503c4cd116494d`.
 
-| Step | Preconditions | Pass signal | Manual runs | Notes |
-| --- | --- | --- | --- | --- |
-| `agentguard buyer --fixture` | Stack up; WIP Hermes; seller lane green | JSON `"success": true`; order + gate checks | **1 pass** (2026-07-11) | SSO then `AGENTGUARD_SKIP_SSO=1`; note may clear after `/orders` redirect |
-| Gateway pytest | gateway `.venv` | checkout cases in `test_agentguard.py` | API | — |
+```bash
+python3 scripts/portfolio_browser.py agentguard buyer --fixture
+```
 
-**Manual bookend (2026-07-11):** checkout → `/orders/…` + API allow/need/consume/replay/pause/deny.
+Earlier same-day API proof (pre-Hermes recovery): Buyer checkout INR 3,000 allowed; INR 15,000 required approval; consume 200; replay 409; pause 200; next checkout denied. Receipt `rcpt_0e66b0e999b345f3`.
 
-**Parallel with other lanes?** No — Hermes mutex.
+**Re-run (2026-07-11T15:54Z, commit `6907ce3` WT):** `agentguard buyer --fixture` → `"success": true` all checks; receipt `rcpt_f5a78757a06547c4`; SSO **Sign out**; orb button **S** on `/search`. Gateway pytest via `verify-portfolio.sh`: **57 passed**.
 
-**Hermes / Chrome?** Yes.
+## Buyer Config + Samantha (M10/M12 operator path)
 
-**Validator `:8899`?** Burner SSO only (preflight).
+Operator proof for `/config` mandate editor + Realtime orb (not a `portfolio_browser` subcommand yet). WIP Hermes only.
+
+| Step | Pass signal | Result (2026-07-11T15:55Z) |
+| --- | --- | --- |
+| Stack / realtime status | `GET :43101/api/realtime/status` → `configured:true`, model `gpt-realtime-2.1-mini`, `agent_name:Samantha` | **Pass** |
+| Client-secret mint | `POST :43101/api/realtime/client-secret` HTTP 200; ephemeral `ek_…` secret; no long-lived key in browser | **Pass** (secret_len 35, expires_at set) |
+| Buyer SSO | burner `dev_auto`; **Sign out** on `:43102` | **Pass** |
+| `/config` UI | H1 `AgentGuard & Samantha`; cards AgentGuard mandate + Samantha memory; Confirm mandate | **Pass** — note `Mandate confirmed.`; memory Likes/Dislikes/Preferences/Notes |
+| Mandate confirm API | compile + `POST …/mandates/{id}/confirm` → 200, status `active` | **Pass** — `mandate_8a6e0f1bb7344c1a` |
+| Samantha orb | bottom-right **S**; hint; link Preferences & AgentGuard | **Pass** — hint `Connecting Samantha…`; link visible |
+| Mic / WebRTC listen | mic connected; no NotFoundError | **Blocked (automation)** — `permissions mic=prompt`; console `Requested device not found` / `NotFoundError` after orb click (no host mic device). Product gates above still pass. |
+
+**Commands used:** `./scripts/verify-portfolio.sh` → `./scripts/start-dev.sh` (preflight auto-restart) → `portfolio_browser.py preflight` → `agentguard buyer --fixture` → ad-hoc Hermes session `samantha-config-op` on `/config` → `closeout`.
+
+**TESTINGPLAN gap:** M10–M12 Layer 5 are prose-only (no `portfolio_browser` lane for `/config` or Samantha). Baseline § still says buyer AgentGuard is unimplemented — stale vs this ledger. Encode a scripted config/orb lane only after a second consecutive manual pass of this path.
+
+**Ops note:** gateway `:43101` dropped between verify and immediate follow-up curls; preflight/`start-dev.sh` recovered. Treat stack as verify-ready only after a fresh health check.
+
+### Full Buyer journey re-pass (2026-07-11T16:10Z, Hermes WIP `buyer-full-journey`)
+
+Utterance-style intents replayed as operator (not live mic): “looking for apple / Shimla Apples”, preferences (organic / noise-cancelling / hate bright colors), cheapest under budget, checkout over mandate max, unknown product, duplicate add, orb start/stop.
+
+| Journey step | Result |
+| --- | --- |
+| Land `/search` + nav (Search/Cart/Orders/Config) + orb **S** | **Pass** |
+| Burner SSO sticky (**Sign out**) | **Pass** |
+| UI search `apple` → results (was 0 matches) | **Pass** after fix — mock fallback + grocery includes fruits |
+| UI Add → `/cart` shows Shimla | **Pass** |
+| Tool path `runBuyerTool` search→add→localCart; empty/unknown reject; memory | **Pass** |
+| `/config` mandate confirm max=100; memory likes/dislikes/prefs visible | **Pass** |
+| AG evaluate under=allow / over=`need_approval` | **Pass** |
+| `/product/fresh-apples-1kg`, `/orders`, `/agent` (no VoiceShoppingPanel) | **Pass** |
+| Orb start/stop + Preferences link; stop-during-connect no longer throws | **Pass** (listening on this host; mic still env-dependent) |
+| Cart title uses `name` when descriptor missing; qty +/- | **Pass** |
+
+**Fixes this pass:** `useApi.ts` empty demo search → mock; `mockSearch.ts` grocery∋fruits; `SamanthaOrb.tsx` abort-safe WebRTC + mic errors; `CartComponents.tsx` title fallback; `agentTools.ts` skip spaced-id commerce 404 + label cartAdds.
+
+**Still limited:** live spoken Realtime mic path depends on host mic; no `portfolio_browser` subcommand for full Buyer journey yet (2nd consecutive pass of this path still needed before automating).
 
 ## AgentGuard FlatWatch lane
 
-FlatWatch dual-control (`flatwatch/GOAL.md`): create payment/correction proposal → 2-of-2 approve → replay reject (409).
+**Deferred — out of Token Nxt scope.** Hermes `agentguard flatwatch` deleted. Do not rebuild until FlatWatch reactivation gate in `flatwatch/GOAL.md`.
 
-| Step | Preconditions | Pass signal | Manual runs | Notes |
-| --- | --- | --- | --- | --- |
-| `agentguard flatwatch` | Stack up; FlatWatch `:43104`/`:43105` | JSON `"success": true`; approved + replay 409 | **1 pass** (2026-07-11) | API in-process (CORS); Hermes page evidence on `:43105` |
-| FlatWatch pytest | backend `.venv` | `tests/test_dual_control.py` pass | API | — |
+## Two-sided commerce lane
 
-**Manual bookend (2026-07-11):** dual-control 2-of-2 + replay 409 + FlatWatch home title.
+**Validated (2026-07-11 evening):** consecutive unique run_ids after WIP bridge recovery.
 
-**Parallel with other lanes?** No — Hermes mutex.
+```bash
+python3 scripts/hermes_two_sided_commerce.py --fixture --run-id "ag-$(date +%s)-a"
+python3 scripts/hermes_two_sided_commerce.py --fixture --run-id "ag-$(date +%s)-b"
+# or: python3 scripts/portfolio_browser.py two-sided --fixture  (use unique run-ids for consecutive proofs)
+```
 
-**Hermes / Chrome?** Yes (page context on `:43105`; API on `:43104`).
+Passes: `ag-1783781283-36e172`, `ag-1783781283-db290e` (earlier: `ag-hermes-1783779577-a`, `ag-hermes-1783779578-b`, API `ag-1783778465`). Checks: seller publish → buyer search → checkout → seller order/issue/remedy.
+
+**Cleared 2026-07-11 evening:** WIP bridge recovered. **Re-validated 2026-07-11T14:51Z:** judged seller UI + buyer + two consecutive two-sided + gateway 56 pytest.
 
 ## Subagent orchestration
 
@@ -310,3 +388,81 @@ Hermes WIP + host browser = **one agent at a time** for **SSO / onboarding / com
 **First-run setup: met** (2026-07-06) — two consecutive `setup.sh` exit 0 + stack URL bookend (verify-only; stack already up).
 **Elevated commerce: met** (2026-07-10) — seller `--fixture` → `/catalog`; buyer checkout → `/orders/demo-…` (evaluate fill; WIP `fill_selector` Detach).
 **On-chain anchor validate: met** (2/2, 58/58 each). **Gateway init config + bridge E2E: met** (2026-07-06 night) — deploy-only ~27s; init config with `skip_preflight`; approve path writes `chain_transaction_signature` (2 consecutive API smokes). `verify-solana.sh` remains automation candidate (phase 5).
+
+## Samantha operator-long text (2026-07-11)
+
+Command: `python3 scripts/hermes_samantha_operator_long.py`
+
+| Signal | Result |
+| --- | --- |
+| 11/11 operator utterances replied | **Pass** |
+| Cart has Shimla/Organic apples | **Pass** |
+| Preference recall in dialogue | **Pass** |
+| Empty catalog (unicorn cereal) | **Pass** |
+| Config memory UI | Partial before merge fix |
+| Milk under 100 in cart | Miss this run |
+| checkout_commit / navigate_to | Soft model refuse — instructions tightened |
+
+## Samantha Buyer re-pass + Seller ops (2026-07-11 night)
+
+| Lane | Command | Result |
+| --- | --- | --- |
+| Buyer operator-long | `python3 scripts/hermes_samantha_operator_long.py` | **Pass** — 11/11, `cart_ok`, `/config` shows AgentGuard + Samantha memory (organic / bright / noise-cancelling) |
+| Buyer unit | `ondcbuyer` `agentTools` + `mockSearch` | **Pass** — milk under 100, navigate_to, subjectId memory, checkout_commit AG path |
+| Seller Samantha ops | `python3 scripts/hermes_samantha_seller_ops.py` | **Pass** — 5/5, mandate boot active, `/agentguard` orb + Samantha memory (`brief refund confirmations`), `memory_ok` + `nav_ok` |
+| Seller unit | `ondcseller` `agentTools.test.ts` | **Pass** — navigate / remember / refund need_approval |
+| AgentGuard seller fixture | `portfolio_browser.py agentguard seller --fixture` | **Pass ×2** (2026-07-11 night) — all checks true under demo principal SSO; root cause was refund UI gating on `walletAddress` (buttons disabled) + fixture `no_wallet`, not Hermes `MAX_ACTIONS` |
+
+**Demo gate (Token Nxt local):** Buyer Samantha operator-long **11/11** · Seller Samantha ops **5/5** · Seller AG fixture **Pass ×2** (principal UI approve/replay/pause/deny).
+
+**Fixes this pass:** mock milk + dairy under grocery; mock search “under N” price filter; commerce/mock search conflict fallback; Buyer/Seller Samantha instructions; Seller `SamanthaOrb` + seller memory; gateway realtime `role:seller`; AgentGuard page principal (`subjectId`) + memory card; deterministic `remember_preference` / `navigate_to` text cmds for Hermes; Seller order refunds bind `subjectId` (demo principal) instead of wallet; Hermes fixture ensure/resume via cookie principal.
+
+**Residual non-goals:** live ONDC/NPCI; live mic host-dependent; Google OAuth credentials optional (demo principal sufficient); milk-in-cart still soft under model lag (unit + catalog covered).
+
+## Samantha banana visible journey (2026-07-12)
+
+| Gate | Result |
+| --- | --- |
+| Ask “add banana to my cart” (text orb) | **Pass** — `search_catalog` → `add_to_cart` (`banana-robusta-dozen`); URL `/cart`; body shows **Robusta Bananas (12 pcs)** |
+| “hi” spot-check | **Pass** — stayed `/search`, no cart tools |
+| Closeout | **Pass** — `http://127.0.0.1:43102/cart`, bridge ready |
+
+**Root cause:** `session.update` used invalid `output_modalities: ['audio','text']` (API allows one) → session error; silent mic track left VAD on → ghost turns; model talked without tools. Also hardened `extractRealtimeToolCalls` for GA nested `item` shape.
+
+**Fixes:** `SamanthaOrb.tsx` modalities + `turn_detection: null` in text mode; wait for `session.updated`; `agentTools` search/cart `navigateTo`; `realtimeToolCalls.ts` nested item extraction.
+
+## Final deployed AgentGuard FQDN gate (2026-07-14)
+
+Final surfaces: `gateway.aadharcha.in`, `ondcbuyer.aadharcha.in`,
+`ondcseller.aadharcha.in`. Vercel Hobby and Render Free were confirmed before
+deploy; no billing/plan changes were made.
+
+| Gate | Command / evidence | Result |
+| --- | --- | --- |
+| Gateway deterministic | `./scripts/verify-portfolio.sh --ci` | **Pass** — gateway **80/80** |
+| Buyer deterministic | `npm test`, lint, build | **Pass** — **151/151** |
+| Seller deterministic | `npm test`, lint, build | **Pass** — **158/158** |
+| Live hard grader | `python3 scripts/ondc_ci_graders.py --live --hard` | **Pass ×2** — gateway ACK + configured Seller ACK; exact Atta callback; rewrites/runtime/Realtime/bundles |
+| Buyer FQDN pass 1 | `web-e2e-thorough-20260714-030751.json` | **Pass** — session/mandate, exact Atta, cart, paid checkout+receipt, pause/resume, activity, verify, runtime; mic Blocked |
+| Seller FQDN pass 1 | `web-e2e-thorough-20260714-023601.json` | **Pass** — publish, latest-order refund, detail, allow receipt, approval, consume, replay rejection, memory/runtime; mic Blocked |
+| Final combined pass 2 | `web-e2e-thorough-20260714-031443.json` | **Pass** — all strict Buyer + Seller assertions repeated; no `Fail`; session closeout clean |
+| Browser lease audit | WIP Hermes `sessions` | **Pass** — empty inventory |
+
+Delivered corrections: semantic ONDC ACK/payment intent, signed configured-BPP
+search beside normal PreProd fanout, exact Buyer query normalization, scoped
+principal storage, Seller route/runtime tests, latest-order refund, shared-order
+detail, server-principal approval, per-attempt idempotency, replay proof, Buyer
+pause/activity/receipt verification, strict non-mutating FQDN grader, and guarded
+archive deploy script.
+
+Open boundaries (not release blockers for the PreProd demo claim):
+
+- Physical microphone proof remains **Blocked** in Hermes; do not claim the M12
+  mic exit criterion. Realtime configuration, text tools, and runtime passed.
+- Render Free state is file-backed under `/tmp` and may reset on restart/redeploy;
+  the Buyer UI now discloses this. Durable production storage remains open.
+- Install audit remains **120 Buyer / 125 Seller advisories** (five critical
+  each); production-only audit is **111 Buyer / 117 Seller** (two critical
+  each). No unsafe `npm audit fix --force` was run.
+- A removed Voyage key remains in git history and must be revoked/rotated outside
+  this repo. Current tracked files no longer contain it.

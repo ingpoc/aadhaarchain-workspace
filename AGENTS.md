@@ -1,8 +1,28 @@
 # AadhaarChain Portfolio — Agent Control Surface
 
-Read this file first. Repo-local `AGENTS.md` files add app-specific detail only.
+Read this file first. Repo-local app `GOAL.md` files add outcome detail only.
 
-**Product hierarchy:** AadhaarChain trust substrate → AgentGuard (flagship) → ONDC Seller first → Buyer / FlatWatch. Thesis: [`PRODUCTIDEA.md`](PRODUCTIDEA.md). Per-app owners: `*/GOAL.md`.
+**Product:** [AgentGuard](PRODUCTIDEA.md) — safe agentic commerce authority. Token Nxt demo is **ONDC Buyer + ONDC Seller** under one control contract. `aadharchain/` hosts the gateway only (legacy checkout, not the product). FlatWatch / Solana are deferred hangars.
+
+## Owner map (do not invent parallel contracts)
+
+| Concern | Owner |
+| --- | --- |
+| Product thesis / non-goals | [`PRODUCTIDEA.md`](PRODUCTIDEA.md) |
+| Shared contracts / protocol | [`ARCHITECTURE.md`](ARCHITECTURE.md) |
+| Build order / milestones | [`IMPLEMENTATIONPLAN.md`](IMPLEMENTATIONPLAN.md) |
+| Verification gates / evidence | [`TESTINGPLAN.md`](TESTINGPLAN.md) |
+| Buyer outcome | [`ondcbuyer/GOAL.md`](ondcbuyer/GOAL.md) |
+| Seller outcome | [`ondcseller/GOAL.md`](ondcseller/GOAL.md) |
+| Gateway decomposition | [`aadharchain/GOAL.md`](aadharchain/GOAL.md) |
+| FlatWatch (deferred) | [`flatwatch/GOAL.md`](flatwatch/GOAL.md) |
+| Ops / KYC / ONDC portal later | [`PRODUCTION-READINESS.md`](PRODUCTION-READINESS.md) |
+
+Work in IMPLEMENTATIONPLAN milestone order. PreProd-ready Token Nxt demo =
+milestones 0–7 + TESTINGPLAN demo gate + FQDN `W-*`. **Agent-as-executor** =
+milestones 10–12 (mandate editor, Cursor tool runner, Buyer Realtime voice).
+Live ONDC = milestone 9 only. AgentGuard remains the sole authorization owner;
+do not invent parallel auth contracts.
 
 ## Workflow hardening gate (read before changing scripts)
 
@@ -14,128 +34,114 @@ Read this file first. Repo-local `AGENTS.md` files add app-specific detail only.
 5. Automate       — wrapper scripts last
 ```
 
-**Do not simplify or remove steps until phase 2 is done** (two consecutive manual passes, documented in `validation-ledger.md`). Fixes discovered during manual runs (wrong URL, missing wait) are validate-phase fixes — not simplification.
+**Do not simplify or remove steps until phase 2 is done** (two consecutive manual passes in `validation-ledger.md`). Improvised recovery during verify/browser ⇒ encode before done.
 
-**Friction closeout:** improvised recovery during verify/browser ⇒ encode before done (`~/.codex/AGENTS.md` AFTER + `workflow-hardening`). Example: `:8899` → `ensure-validator.sh`.
-
-## First commands (manual lanes)
+## First commands
 
 ```bash
-# 0. First-run setup (fresh clone or missing deps)
-./scripts/setup.sh   # then ./scripts/start-dev.sh only if :43100–43105 are not all 2xx
+# 0. Fresh clone / missing deps
+./scripts/setup.sh   # then ./scripts/start-dev.sh if :43100–43105 are not all 2xx
 
-# 1. Portfolio API lane (stack if needed + gateway pytest)
+# 1. Baseline (TESTINGPLAN)
 ./scripts/verify-portfolio.sh
+cd ondcbuyer && npm test && npm run build
+cd ../ondcseller && npm test && npm run build
 
-# Manual split: ./scripts/start-dev.sh then cd aadharchain/gateway && .venv/bin/python -m pytest tests/ -q
+# 2. Current validated AgentGuard browser lane (Seller only today)
+python3 scripts/portfolio_browser.py agentguard seller --fixture
 
-# 2. Optional: local Solana validator (on-chain lane only)
-./aadharsolana/scripts/start-validator.sh
-cd aadharsolana && ./scripts/validate-onchain.sh
+# 3. Demo principal SSO (AgentGuard acceptance — no wallet)
+python3 scripts/portfolio_browser.py sso demo buyer
 ```
 
-Restart ONDC buyer/seller dev servers after changing `.env.local` (Vite reads env at startup).
+Restart ONDC buyer/seller after changing `.env.local`. Solana `:8899` is **not** part of AgentGuard acceptance.
 
-## Portfolio browser (validated lane)
+## Portfolio browser
 
-Bookends + pass signals — see `.cursor/skills/portfolio-browser/SKILL.md`.
+Bookends: `.cursor/skills/portfolio-browser/SKILL.md`. Ledger: `.cursor/skills/portfolio-browser/references/validation-ledger.md`. Samantha / ONDC user journeys: `.cursor/skills/ondc-testing/SKILL.md`. Auth / Auth0 / sessions: `.cursor/skills/authentication/SKILL.md`. Public Render/Vercel deploy + **CI/CD** (graders, `ci.yml` / `deploy.yml`, Free/Hobby): `.cursor/skills/portfolio-deploy/SKILL.md` (`references/ci-cd.md`).
 
-```bash
-# Full lane — preflight auto-starts stack; one preflight for smoke+sso+closeout
-python3 scripts/portfolio_browser.py lane burner seller
+| Lane | Status |
+| --- | --- |
+| `agentguard seller --fixture` | **Validated** UI path ×2 (2026-07-11 night; demo principal approve/replay/pause/deny) |
+| `agentguard buyer --fixture` | **Validated** API/Hermes (2026-07-11); strict FQDN discovery→cart→checkout→receipt/pause/verify **2×** (2026-07-14) |
+| `two-sided --fixture` | **Validated** unique run_ids (2026-07-11) |
+| Mandate editor / agent tools / Realtime | M10 code present; M11 text tools/runtime **FQDN validated**; M12 Realtime configured + text validated, physical mic still blocked |
+| FlatWatch AgentGuard | **Deferred** — out of scope |
 
-# Or API + browser wrapper
-./scripts/verify-portfolio.sh --browser
+Use **WIP Hermes only** (never `~/.codex` / `~/.hermes` live). SSO stays mutex. Parallel smoke → skill Multi-app orchestration.
 
-# Parallel multi-app smoke (WIP Hermes only — 0-token scout)
-export HERMES_CHROME_BRIDGE_SOCKET=/Users/gurusharan/plugins/hermes-chrome-cursor-wip/run/chrome-bridge.sock
-python3 scripts/parallel_smoke_wip.py
-```
-
-**Trigger:** parallel apps / cheaper scouts / console triage → skill **Multi-app orchestration** (script scout → mini fixer; SSO stays mutex). Portfolio browser uses **WIP Hermes only** (never `~/.codex` / `~/.hermes` live).
-
-**Validated fixes (from manual runs):** preflight auto-starts `start-dev.sh` when stack is down; HTTP retries 30s; burner SSO auto-`ensure-validator.sh` (`getHealth` on `:8899` — do not improvise `pkill`/ledger wipe); `lane` avoids triple preflight.
-
-Validation ledger: `.cursor/skills/portfolio-browser/references/validation-ledger.md` (includes scaffolded lanes: onboarding, Solflare SSO, first-run setup, elevated commerce).
+**Validated ops fixes:** preflight auto-starts `start-dev.sh`; HTTP retries 30s; AG lanes use **demo principal SSO** (no Solana); legacy burner SSO auto-`ensure-validator.sh` only for hangar wallet lanes; `lane` avoids triple preflight; WIP `SOCKET_DOWN` — evidence first: **SW Inactive** (primary 2026-07-12) vs classic path trap (`native_host.py` → `~/.hermes/run`); preflight `ensure-wip-native-host.sh` must keep `native_host_wip.sh`; wake/Reload in Comet — do not `launch-wip-chrome` to fix Comet.
 
 ## Ports (local)
 
 | Service | URL |
 | --- | --- |
-| AadhaarChain web | http://127.0.0.1:43100 |
-| AadhaarChain gateway | http://127.0.0.1:43101 |
+| AadhaarChain web (legacy host UI) | http://127.0.0.1:43100 |
+| Gateway + AgentGuard | http://127.0.0.1:43101 |
 | ONDC Buyer | http://127.0.0.1:43102 |
 | ONDC Seller | http://127.0.0.1:43103 |
-| FlatWatch API | http://127.0.0.1:43104 |
-| FlatWatch web | http://127.0.0.1:43105 |
-| Solana validator (optional) | http://127.0.0.1:8899 |
+| FlatWatch API / web | http://127.0.0.1:43104 / `:43105` |
+| Solana validator (optional, not AG) | http://127.0.0.1:8899 |
 
-## What is real vs stubbed (2026-07)
+## What is real vs stubbed (2026-07-12)
 
 | Subsystem | Status |
 | --- | --- |
-| Identity anchor + verification state | **Real** — file-backed `aadharchain/gateway/data/gateway-state.json` |
-| Trust read API | **Real** — `GET /api/identity/{wallet}/trust` |
-| Aadhaar eKYC | **Active:** local demo + Setu.co sandbox (`SETU_EKYC_*`). **Paused:** MeitY API Setu / DigiLocker (skill `apisetu-partner-onboarding`). See `PRODUCTION-READINESS.md` |
-| Portfolio SSO | **Real** — proof-token `sso_login` → `aadharcha_session` cookie → `/api/auth/me` |
-| Login page | **Real** — `http://127.0.0.1:43100/login?return=…&aud=ondcbuyer\|ondcseller` |
-| On-chain identity writes from gateway | **Flagged** — `SOLANA_ON_CHAIN_ENABLED=true` + oracle key; see `./scripts/verify-solana.sh` |
-| ONDC commerce (search/cart/orders) | **Stubbed** — `VITE_COMMERCE_DEMO_MODE=true`; protocol scaffold in `ondcbuyer/src/lib/ondc/` |
-| Like-minded app SSO | **Out of scope** — not in this workspace |
-| `aadharsolana` programs | **Separate stack** — not wired to portfolio gateway yet |
+| AgentGuard domain (evaluate / consume / pause / receipts) | **Real** — file-backed; `DATA_DIR=/tmp/…` on Render Free; principal-keyed |
+| ONDC Seller AgentGuard UI | **Real** — refund demo + `/agentguard` |
+| Buyer AgentGuard checkout | **Real** on FQDN (Auth0 + DATA_DIR) |
+| Shared commerce exchange | **Partial** — `/api/demo-commerce`; Seller publish feeds PreProd BPP catalog; Buyer uses network fanout plus signed configured-BPP search for deterministic portfolio discovery |
+| Signed receipt verify | **Partial** — routes exist; FQDN browser proof thin |
+| Authenticated principal on AG APIs | **Real** — session cookie principal; body wallet cannot override social/demo session |
+| ONDC commerce UI labels | **Demo mode off** — `VITE_COMMERCE_DEMO_MODE=false` (gate evidence 2026-07-12); label **ONDC network**; payment still simulated (not live UPI) |
+| Host identity | **Auth0** (FQDN PreProd) + local `AUTH_DEMO_CONTINUE` (Hermes only) |
+| ONDC PreProd Beckn (BAP+BPP) | **Real, partial** — `ONDC_ENABLED`; signed lookup/search; gateway fanout + signed configured Seller BPP search; Seller `search`→`on_search`; **select→init→confirm** ACK + `on_*` stubs. Buyer visibly finds Seller Atta 2×. Not prod/conformance-complete. Matrix: `.cursor/skills/ondc-testing/references/preprod-network-matrix.md` |
+| Buyer mock grocery fallback | **Removed** when ONDC adapter ready |
+| Trust / demo KYC | **Deferred hangar** — not AgentGuard acceptance |
+| MeitY DigiLocker / **prod** ONDC / NPCI agent UPI | **Out of scope** — PRODUCTION-READINESS; UPI Circle AI = CUG only |
+| FlatWatch AgentGuard / reputation / land | **Non-goal** for Token Nxt |
+| Solana / burner wallet for AG | **Non-goal** — hangar only; AG lanes use `sso demo` |
 
-## SSO flow (ONDC buyer + seller only)
+## Host identity (AgentGuard principal adapter)
 
-1. App header **Login with AadhaarChain** → `:43100/login?return=<app-url>&aud=ondcbuyer|ondcseller`
-2. Connect wallet → issue proof-token (`purpose: sso_login`) → **Phantom signMessage** (manual)
-3. Verify with `credentials: include` → gateway sets cookie on `:43101`
-4. Redirect back → app calls `GET :43101/api/auth/me` with credentials
+Buyer/Seller bind AgentGuard to a **server session principal**, not a wallet:
 
-Local dev requires `VITE_IDENTITY_AUTH_ENABLED=true` in `ondcbuyer/.env.local` and `ondcseller/.env.local`.
+1. **Sign in (Auth0)** → `:43101/api/auth/auth0/start` → cookie `aadharcha_session` with `principal:auth0:…` ([Auth0 Authorization Code Flow](https://auth0.com/docs/get-started/authentication-and-authorization-flow/authorization-code-flow))
+2. **Optional Google** (legacy direct) → `:43101/api/auth/google/start` → `principal:google:…` (prefer Google as an Auth0 connection)
+3. **Demo continue** (local only) → `:43101/api/auth/demo-continue` → `principal:demo:…` — forced off in staging/production unless `AUTH_DEMO_CONTINUE_FORCE=true`
+4. App → `GET :43101/api/auth/me` with credentials → `{ principal_id, identity_provider, … }`
+5. AgentGuard routes derive principal from the cookie; body `wallet_address` is legacy-only and rejected when it would override a social/demo session
 
-Elevated actions (checkout, catalog publish) still need **verified** trust + separate proof-token (`buyer_checkout_identity_proof`, etc.) — not the SSO cookie alone.
+`VITE_IDENTITY_AUTH_ENABLED=true` in both ONDC `.env.local`. Set `AUTH0_DOMAIN` / `AUTH0_CLIENT_ID` / `AUTH0_CLIENT_SECRET` on the gateway for PreProd/prod; `AUTH_DEMO_CONTINUE=true` for local Hermes automation only.
 
-## Portfolio browser test order
-
-Validated lane (agents):
-
-```bash
-python3 scripts/portfolio_browser.py lane burner seller
-```
-
-Extended manual order (onboarding + trust):
-
-1. **Lane** — `lane burner seller` (or step through preflight → smoke → sso → closeout)
-2. **Onboarding** — `:43100/verify` (anchor → upload → status wizard)
-3. **Trust shortcut** — `POST :43101/api/identity/dev/fixtures/{wallet}` with `{"fixture_state":"verified","document_type":"aadhaar"}`
-4. **Post-login** — trust chip, demo cart/catalog
-
-Record results in `validation-ledger.md`.
+Wallet burner / Solflare SSO remains available for legacy host regression only — **not** AgentGuard acceptance.
 
 ## Do not route agents to
 
-- `../docs/workflow/*` — not present in this workspace; use this file instead
-- Port `3002` / `3000` for ONDC apps — use `43102` / `43103`
-- Production URLs (`aadharcha.in`) when testing locally — use loopback env vars
-- Building new auth endpoints — SSO reuses existing proof-token issue/verify + cookie
+- Expanding AadhaarChain as an identity product — see `aadharchain/GOAL.md`
+- **Production** ONDC / NPCI claims before milestone 9 + official evidence (PreProd Beckn search ≠ prod)
+- Port `3002` / `3000` for ONDC — use `43102` / `43103`
+- Production URLs when testing locally
+- New parallel auth contracts — evolve `/api/agentguard` per IMPLEMENTATIONPLAN
+- FlatWatch AgentGuard or Solana for Token Nxt acceptance
+- `../docs/workflow/*` — not in this workspace
 
-## Agent runtime (Cursor SDK only)
+## Agent runtime (executor hosts)
 
-Portfolio AI runs through the **Cursor SDK** (`cursor-sdk`) using your Cursor subscription API key.
+Runtime agents **execute app tools** under AgentGuard (IMPLEMENTATIONPLAN M11+).
+Chat-only is insufficient for the PreProd executor story.
 
-| App | Runtime host | Env |
+| Host | Env | Role |
 | --- | --- | --- |
-| AadhaarChain gateway agents | `:43101` | `CURSOR_API_KEY`, `CURSOR_AGENT_MODEL=composer-2.5` |
-| FlatWatch chat + ONDC agent pages | `:43104` | `CURSOR_API_KEY`, `CURSOR_AGENT_MODEL=composer-2.5` |
+| Cursor SDK (text) | Gateway: `CURSOR_API_KEY`, `CURSOR_AGENT_MODEL=composer-2.5`; FQDN `/api/agent/*` on `gateway.aadharcha.in` (Buyer/Seller Vercel rewrite) | Long `delegate_to_runtime_agent` handoff |
+| OpenAI Realtime `gpt-realtime-2.1` | Gateway: `OPENAI_API_KEY` (server); ephemeral client secrets for browser | Buyer voice (M12) |
+| FlatWatch `:43104` | Local vite proxy only (optional) | Local Cursor SSE when gateway not used |
 
-Create `CURSOR_API_KEY` at [cursor.com/dashboard/integrations](https://cursor.com/dashboard/integrations). Set it in `aadharchain/gateway/.env` and `flatwatch/backend/.env`, then restart `./scripts/start-dev.sh`.
+Set Cursor key in `aadharchain/gateway/.env` (and `flatwatch/backend/.env` for local FlatWatch); restart
+`start-dev.sh`. Keep `VITE_AGENT_RUNTIME_ENABLED=true` in ONDC `.env.local`. Leave
+`VITE_AGENT_CONTROL_PLANE_URL` empty on FQDN so `/api/agent/*` uses same-origin rewrites → **gateway** (not FlatWatch — FQDN FlatWatch 401s portfolio `X-User-Id`). Loopback `.env.local` bake guarded by `loopback.ts`.
+Do **not** force-migrate to OpenAI Agents SDK before the shared tool runner works.
+CI: `ondc_ci_graders.py --offline` blocks PR; FQDN soft graders are advisory (`continue-on-error`) — detail in portfolio-deploy `ci-cd.md`.
 
-ONDC buyer/seller proxy `/api/agent/*` → FlatWatch `:43104`. Keep `VITE_AGENT_RUNTIME_ENABLED=true` in ONDC `.env.local`.
-
-Shared module: `shared/cursor_agent_runtime/`.
-
-## Shared package
-
-`shared/trust-client/` — trust reads and identity proof helpers for ONDC buyer/seller.
-
-`shared/cursor_agent_runtime/` — Cursor SDK policy, streaming, and one-shot prompt helpers for gateway + FlatWatch control plane.
+Shared: `shared/cursor_agent_runtime/`, `shared/trust-client/` (host assurance helpers during migration).
+AgentGuard APIs on `:43101` remain the sole authorization boundary.

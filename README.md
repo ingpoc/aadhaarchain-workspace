@@ -1,41 +1,55 @@
 # AadhaarChain Portfolio Workspace
 
-Local workspace for the portfolio apps. Product thesis: **AadhaarChain AgentGuard** — see [`PRODUCTIDEA.md`](PRODUCTIDEA.md). Per-app goals: [`aadharchain/GOAL.md`](aadharchain/GOAL.md), [`ondcseller/GOAL.md`](ondcseller/GOAL.md), [`ondcbuyer/GOAL.md`](ondcbuyer/GOAL.md), [`flatwatch/GOAL.md`](flatwatch/GOAL.md).
+**Product:** [AgentGuard](PRODUCTIDEA.md) — humans authorize AI agents for
+intent-limited commerce with one-time approval, replay rejection, pause, and
+verifiable Intent Receipts.
 
-| App | Directory | Local URL |
+**Token Nxt local demo:** AgentGuard across **ONDC Buyer + ONDC Seller** (shared
+mandate/approval/receipt contract; simulated ONDC exchange and payment until
+Milestone 9).
+
+| App | Role | Local URL |
 | --- | --- | --- |
-| AadhaarChain | `aadharchain/` | http://127.0.0.1:43100 |
-| ONDC Buyer | `ondcbuyer/` | http://127.0.0.1:43102 |
-| ONDC Seller | `ondcseller/` | http://127.0.0.1:43103 |
-| FlatWatch | `flatwatch/` | http://127.0.0.1:43105 |
-| Aadhar Solana | `aadharsolana/` | Solana/Anchor monorepo (bridge target; not portfolio SoT) |
+| AadhaarChain | Legacy host; AgentGuard gateway lives here | http://127.0.0.1:43100 / `:43101` |
+| ONDC Buyer | **Active demo** — shopping agent + guarded checkout | http://127.0.0.1:43102 |
+| ONDC Seller | **Active demo** — ops agent + guarded refund/catalog | http://127.0.0.1:43103 |
+| FlatWatch | Deferred hangar | http://127.0.0.1:43105 |
+| Aadhar Solana | Deferred research; not AgentGuard acceptance | local validator `:8899` |
 
-AadhaarChain gateway (trust producer) runs at http://127.0.0.1:43101. FlatWatch backend runs at http://127.0.0.1:43104.
+## Owner docs
+
+| Doc | Owns |
+| --- | --- |
+| [`PRODUCTIDEA.md`](PRODUCTIDEA.md) | Product thesis |
+| [`ARCHITECTURE.md`](ARCHITECTURE.md) | Shared contracts / protocol |
+| [`IMPLEMENTATIONPLAN.md`](IMPLEMENTATIONPLAN.md) | Build milestones |
+| [`TESTINGPLAN.md`](TESTINGPLAN.md) | Verification gates |
+| [`ondcbuyer/GOAL.md`](ondcbuyer/GOAL.md) / [`ondcseller/GOAL.md`](ondcseller/GOAL.md) | App outcomes |
+| [`aadharchain/GOAL.md`](aadharchain/GOAL.md) | Gateway decomposition |
+| [`AGENTS.md`](AGENTS.md) | Agent routing / first commands |
+| [`PRODUCTION-READINESS.md`](PRODUCTION-READINESS.md) | Ops / KYC / live ONDC later |
 
 ## Quick start
 
 ```bash
-chmod +x scripts/setup.sh scripts/start-dev.sh
 ./scripts/setup.sh
 ./scripts/start-dev.sh
+./scripts/verify-portfolio.sh
+python3 scripts/portfolio_browser.py agentguard seller --fixture
 ```
 
-## Repos cloned from ingpoc
+Current validated browser lane is **Seller AgentGuard**. Buyer and two-sided lanes
+are required by TESTINGPLAN and not implemented yet.
+
+## Repos
 
 - https://github.com/ingpoc/aadhaar-chain → `aadharchain/`
-- https://github.com/ingpoc/ondc-buyer → `ondcbuyer/`
 - https://github.com/ingpoc/ondc-seller → `ondcseller/`
+- https://github.com/ingpoc/ondc-buyer → `ondcbuyer/`
 - https://github.com/ingpoc/flatwatch → `flatwatch/`
 - https://github.com/ingpoc/aadhar-solana → `aadharsolana/`
-
-## Shared package
-
-`shared/trust-client/` is the local workspace package used by the ONDC buyer and seller apps for AadhaarChain trust reads and identity proof signing.
+- https://github.com/ingpoc/aadhaarchain-workspace → workspace scripts / ledger
 
 ## For agents
 
-Read [`AGENTS.md`](AGENTS.md) before browser testing, SSO work, or trust/onboarding changes. It is the current control surface for ports, real vs stubbed behavior, and portfolio test order.
-
-## Local env
-
-Local `.env.local` / `.env` files point all apps at the loopback ports above with `VITE_COMMERCE_DEMO_MODE=true` for buyer and seller. ONDC apps also set `VITE_IDENTITY_AUTH_ENABLED=true` for portfolio SSO in local dev.
+Read [`AGENTS.md`](AGENTS.md) first, then IMPLEMENTATIONPLAN before structural edits.

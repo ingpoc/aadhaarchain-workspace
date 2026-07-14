@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "name": "cursor-authentication",
+  "cwd": "../../../..",
+  "source_paths": ["..", "../../HARDENING.md", "../../../../scripts/validate_cursor_skill.py"],
+  "ignore_parts": ["evidence", "__pycache__"],
+  "steps": [{
+    "name": "validate",
+    "command": ["bash", ".cursor/skills/authentication/scripts/validate.sh"],
+    "timeout_seconds": 20,
+    "budget_seconds": 5,
+    "fail_patterns": ["Traceback", "\\bFAILED\\b", "\\bERROR\\b", "stale guidance remains", "skill audit failed"]
+  }],
+  "ledger_path": "~/.cache/elon-algorithm/cursor-authentication/ledger.json"
+}

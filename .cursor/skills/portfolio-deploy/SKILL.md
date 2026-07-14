@@ -215,6 +215,7 @@ Then hand back to partner-onboarding ladder (lookup / subscribe only if needed).
 | PreProd ONDC enable | `ONDC_ENABLED=true` + BAP (`ONDC_SUBSCRIBER_ID`/`BAP_URI`/`UNIQUE_KEY_ID`) + BPP (`ONDC_BPP_ID`/`BPP_URI`/`ONDC_SELLER_UNIQUE_KEY_ID`); keep `*_PEM_B64` + `DATA_DIR=/tmp/aadharchain-data` |
 | Vercel ONDC rewrites | **Both** apps need `/ondc/:path*` → `gateway…/ondc/np/{buyer\|seller}/:path*` (not only `on_subscribe`) — else `on_search`/`search` → SPA/405 |
 | Nested git deploy | Gateway lives in **`aadharchain/`** nested repo (`ingpoc/aadhaar-chain`); workspace root gitignores it — push that repo’s branch for Render |
+| GitHub multi-account | Before pushing `ingpoc/*`, run `gh auth status`; if another account is active, use `gh auth switch --hostname github.com --user ingpoc` + `gh auth setup-git --hostname github.com` |
 | HUF git-author | Vercel monorepo git deploy → `TEAM_ACCESS_REQUIRED` — **always** non-git stage + `--archive=tgz` + alias FQDN |
 | Hobby Vite bake | `.env.local` loopback must not win on FQDN — `loopback.ts` + empty commerce/`VITE_AGENT_CONTROL_PLANE_URL`; `/api/agent` → **gateway** (FlatWatch FQDN 401s portfolio `X-User-Id`) |
 

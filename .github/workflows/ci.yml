@@ -144,6 +144,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Checkout aadharchain
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ env.AADHAAR_CHAIN_REPO }}
+          ref: ${{ env.AADHAAR_CHAIN_REF }}
+          path: aadharchain
+
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"

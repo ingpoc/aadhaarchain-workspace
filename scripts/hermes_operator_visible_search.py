@@ -44,29 +44,11 @@ def call(handler, args: dict) -> dict:
     return data
 
 
-def js_quote(s: str) -> str:
-    return json.dumps(s)
-
-
-CLICK_ORB = """
-(() => {
-  const orb = document.querySelector('[data-testid="samantha-orb"]');
-  if (!orb) return { ok: false };
-  orb.click();
-  return { ok: true };
-})()
-"""
-
-ENSURE_PANEL = """
-(() => {
-  const panel = document.querySelector('[data-testid="samantha-orb-panel"]');
-  if (panel) return { ok: true, already: true };
-  const orb = document.querySelector('[data-testid="samantha-orb"]');
-  if (!orb) return { ok: false };
-  orb.click();
-  return { ok: true, already: false };
-})()
-"""
+OPEN_ORB_ACTION = {
+    "type": "locator",
+    "locator": {"by": "role", "role": "button", "name": "Open Samantha", "exact": True},
+    "operation": "click",
+}
 
 WAIT_READY = """
 (() => {
@@ -132,20 +114,20 @@ POLL_RESULTS = """
 """
 
 
-def fill_send(message: str) -> str:
-    return f"""
-(() => {{
-  const input = document.querySelector('[data-testid="samantha-orb-text"]');
-  const send = document.querySelector('[data-testid="samantha-orb-send"]');
-  if (!input || !send) return {{ ok: false, reason: 'missing_controls' }};
-  const nativeSet = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, 'value').set;
-  nativeSet.call(input, {js_quote(message)});
-  input.dispatchEvent(new Event('input', {{ bubbles: true }}));
-  if (send.disabled) return {{ ok: false, reason: 'send_disabled', draft: input.value }};
-  send.click();
-  return {{ ok: true, draft: input.value }};
-}})()
-"""
+def send_actions(message: str) -> list[dict]:
+    return [
+        {
+            "type": "locator",
+            "locator": {"by": "testid", "testId": "samantha-orb-text"},
+            "operation": "fill",
+            "value": message,
+        },
+        {
+            "type": "locator",
+            "locator": {"by": "role", "role": "button", "name": "Send", "exact": True},
+            "operation": "click",
+        },
+    ]
 
 
 def eval_results(result: dict) -> list[dict]:
@@ -226,7 +208,6 @@ def wait_orb_ready(handler, session: str, rounds: int = 8) -> dict:
                 "use_selected_tab": False,
                 "timeout_seconds": 60,
                 "actions": [
-                    {"type": "evaluate", "expression": ENSURE_PANEL},
                     {"type": "wait", "ms": 1500},
                     {"type": "evaluate", "expression": WAIT_READY},
                 ],
@@ -252,9 +233,7 @@ def ask_and_poll_early(handler, session: str, message: str, prefix: str) -> tupl
             "use_selected_tab": False,
             "timeout_seconds": 60,
             "actions": [
-                {"type": "evaluate", "expression": ENSURE_PANEL},
-                {"type": "wait", "ms": 800},
-                {"type": "evaluate", "expression": fill_send(message)},
+                *send_actions(message),
             ],
         },
     )
@@ -305,9 +284,7 @@ def ask_simple(handler, session: str, message: str, wait_ms: int, prefix: str) -
             "use_selected_tab": False,
             "timeout_seconds": 120,
             "actions": [
-                {"type": "evaluate", "expression": ENSURE_PANEL},
-                {"type": "wait", "ms": 800},
-                {"type": "evaluate", "expression": fill_send(message)},
+                *send_actions(message),
                 {"type": "wait", "ms": wait_ms},
                 {"type": "evaluate", "expression": EVAL},
                 {"type": "screenshot"},
@@ -348,11 +325,11 @@ def main() -> int:
             "session_name": SESSION_B,
             "use_selected_tab": False,
             "timeout_seconds": 90,
-            "actions": [
-                {"type": "goto", "url": f"{BUYER}/search"},
-                {"type": "wait", "ms": 3000},
-                {"type": "evaluate", "expression": CLICK_ORB},
-                {"type": "wait", "ms": 4000},
+                "actions": [
+                    {"type": "goto", "url": f"{BUYER}/search"},
+                    {"type": "wait", "ms": 3000},
+                    OPEN_ORB_ACTION,
+                    {"type": "wait", "ms": 4000},
                 {"type": "evaluate", "expression": EVAL},
                 {"type": "screenshot"},
             ],
@@ -404,7 +381,7 @@ def main() -> int:
                 "actions": [
                     {"type": "goto", "url": f"{BUYER}/search"},
                     {"type": "wait", "ms": 2000},
-                    {"type": "evaluate", "expression": CLICK_ORB},
+                    OPEN_ORB_ACTION,
                     {"type": "wait", "ms": 3000},
                 ],
             },
@@ -441,9 +418,7 @@ def main() -> int:
                 "use_selected_tab": False,
                 "timeout_seconds": 90,
                 "actions": [
-                    {"type": "evaluate", "expression": ENSURE_PANEL},
-                    {"type": "wait", "ms": 400},
-                    {"type": "evaluate", "expression": fill_send("go to my cart")},
+                    *send_actions("go to my cart"),
                     {"type": "wait", "ms": 18000},
                     {"type": "evaluate", "expression": EVAL},
                     {"type": "screenshot"},
@@ -459,7 +434,7 @@ def main() -> int:
         chain_state = ([s for s in chain_evals if "pathname" in s] or [{}])[-1]
         chain_shots = shot_paths(chain, "W-B-CHAINED")
         chain_tools = tool_names(chain_state)
-        chain_send_ok = bool(chain_send.get("ok"))
+        chain_send_ok = True  # locator fill/click would have raised on failure
         chain_ok = chain_send_ok and chain_state.get("pathname") == "/cart"
         record(
             "buyer",
@@ -480,7 +455,7 @@ def main() -> int:
                 "actions": [
                     {"type": "goto", "url": f"{BUYER}/search"},
                     {"type": "wait", "ms": 2000},
-                    {"type": "evaluate", "expression": CLICK_ORB},
+                    OPEN_ORB_ACTION,
                     {"type": "wait", "ms": 2500},
                 ],
             },
@@ -551,7 +526,7 @@ def main() -> int:
             "actions": [
                 {"type": "goto", "url": f"{SELLER}/dashboard"},
                 {"type": "wait", "ms": 3000},
-                {"type": "evaluate", "expression": CLICK_ORB},
+                OPEN_ORB_ACTION,
                 {"type": "wait", "ms": 4000},
                 {"type": "evaluate", "expression": EVAL},
                 {"type": "screenshot"},

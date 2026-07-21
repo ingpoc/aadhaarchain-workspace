@@ -14,7 +14,7 @@ description: >-
 > **Self-validate after edits.** Run `./scripts/validate.sh` from this skill directory.
 
 Durable owner for multi-rail partner onboarding (ONDC + GST companion + Setu + MeitY paused).
-Browser driver only: [portfolio-browser](../portfolio-browser/SKILL.md) (Hermes Chrome WIP).
+Browser UI owner: bundled `@chrome`. [portfolio-browser](../portfolio-browser/SKILL.md) is legacy deterministic replay/diagnosis only.
 Ops ladder: [`PRODUCTION-READINESS.md`](../../../PRODUCTION-READINESS.md) § A5–A8, C3.
 Deploy / CI: [portfolio-deploy](../portfolio-deploy/SKILL.md). Auth0: [authentication](../authentication/SKILL.md).
 
@@ -74,7 +74,12 @@ python3 scripts/portfolio_browser.py preflight   # if bridge down
 ```
 
 - WIP socket only (never `~/.codex` / `~/.hermes` live).
-- Sessions: `ondc-portal-onboard` (portal); `gst-huf-check` (GST idle / CA — do not destroy ONDC tab).
+- **Multi-page fills** (Token Nxt MS Forms, ONDC portal wizard): one
+  `durable_lease_controller.py` for the whole campaign — not short-lived
+  `python3 -c` / one-shot `hermes_run` (exiting orphans the lease; see hermes-chrome
+  `optimize.md` 2026-07-20).
+- Sessions: `ondc-portal-onboard` (portal); `token-nxt-form` (Token Nxt application);
+  `gst-huf-check` (GST idle / CA — do not destroy ONDC tab).
 - Actions: `goto`, `wait` (`ms`), semantic `locator`, `screenshot`, and `page_context`. Use `testId` (camel case) for `by: "testid"`.
 - SPA duplicates: scope a semantic locator with `within`, `visible`, `exact`, or `nth`; use read-only `evaluate` only for diagnosis. Never click, fill, or dispatch events through `evaluate`.
 - Ignore `page_diag` noise from google-analytics / Vite HMR.

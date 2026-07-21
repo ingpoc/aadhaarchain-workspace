@@ -4,8 +4,8 @@
 
 | # | Check | Command / proof | Pass criteria | Status |
 | --- | --- | --- | --- | --- |
-| 1 | Hermes WIP | `python3 scripts/portfolio_browser.py preflight` | `tier: hermes-wip`; Comet/Chrome up | |
-| 2 | Screen Recording | macos-cua permissions preflight | capturable true | |
+| 1 | Chrome plugin | Chrome cheap preflight + smallest browser-client check | Existing/claimed Chrome tab controllable | |
+| 2 | Native display | `@Computer` app state + screenshot | Chrome visible on intended display | |
 | 3 | ffmpeg devices | `ffmpeg -f avfoundation -list_devices true -i ""` | Screen index for Comet known | |
 | 4 | Gateway health | `curl` FQDN `gateway.aadharcha.in/health` (wake Free if needed) | 2xx | |
 | 5 | Realtime (if claimed) | `GET …/api/realtime/status` on FQDN | `configured: true` | |
@@ -13,7 +13,7 @@
 | 7 | Seller FQDN | `https://ondcseller.aadharcha.in` | App 2xx | |
 | 8 | Buyer Auth0 | Sign in → Sign out on Buyer | Principal bound | |
 | 9 | Seller Auth0 | Sign in → `/agentguard` | Confirm/Pause visible; not Sign-in not configured | |
-| 10 | Display | Comet on recorded monitor | Operator sees labeled Hermes cursor | |
+| 10 | Display | Chrome on recorded monitor | Operator sees intended Chrome window | |
 
 ## Patterns / antipatterns (PreProd record)
 

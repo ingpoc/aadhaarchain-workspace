@@ -15,7 +15,7 @@ description: >-
 
 **Standing rule:** append durable recording findings to this skill + `references/`; **no secrets**.
 
-**Drivers:** browser = [portfolio-browser](../portfolio-browser/SKILL.md) (Hermes WIP only). Native focus/display = `macos-cua`. Samantha/UX claims = [ondc-testing](../ondc-testing/SKILL.md) (**PreProd FQDN `W-*` bar**). Deploy/FQDN = [portfolio-deploy](../portfolio-deploy/SKILL.md). Partner/Token Nxt form = [apisetu-partner-onboarding](../apisetu-partner-onboarding/SKILL.md).
+**Drivers:** browser = bundled `@chrome`; native focus/display = bundled `@Computer`. [portfolio-browser](../portfolio-browser/SKILL.md) is legacy replay/diagnosis only. Samantha/UX claims = [ondc-testing](../ondc-testing/SKILL.md) (**PreProd FQDN `W-*` bar**). Deploy/FQDN = [portfolio-deploy](../portfolio-deploy/SKILL.md). Partner/Token Nxt form = [apisetu-partner-onboarding](../apisetu-partner-onboarding/SKILL.md).
 
 **Default record surface:** FQDN PreProd — `ondcbuyer.aadharcha.in` / `ondcseller.aadharcha.in` / `gateway.aadharcha.in` + Auth0. Loopback only for automation recovery.
 
@@ -44,13 +44,13 @@ Run and require Pass before scripting deep UI:
 
 | Check | How | Pass |
 | --- | --- | --- |
-| Hermes WIP bridge | `python3 scripts/portfolio_browser.py preflight` | `tier: hermes-wip`, Comet/Chrome visible |
-| Screen Recording | `macos-cua` workflow preflight permissions | `screen_recording` + capturable true |
+| Chrome plugin | Chrome cheap preflight + smallest browser-client check | Existing/claimed Chrome tab is controllable |
+| Native display | `@Computer` app state + screenshot | Recorded display/app state is visible |
 | ffmpeg | `which ffmpeg` + `ffmpeg -f avfoundation -list_devices true -i ""` | Screen index known (which monitor has Comet) |
 | PreProd stack | FQDN gateway health + Buyer/Seller 2xx | Realtime `configured:true` if voice claimed |
 | App env bake | FQDN apps use gateway identity URL (not accidental loopback) | `gateway.aadharcha.in` on live |
 | Auth | Auth0 Sign in (FQDN) | Sign out / principal bound on AG surfaces |
-| Display | Comet focused on recorded monitor (`MACOS_CUA_DISPLAY`) | Operator can see labeled Hermes cursor |
+| Display | Chrome focused on recorded monitor through `@Computer` | Operator can see the intended Chrome window |
 
 Details: [`references/access-checklist.md`](references/access-checklist.md).
 

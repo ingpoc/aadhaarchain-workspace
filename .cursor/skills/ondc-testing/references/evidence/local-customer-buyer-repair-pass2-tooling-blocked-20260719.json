@@ -1,0 +1,22 @@
+{
+  "recorded_at": "2026-07-19T16:20:11+0530",
+  "base_source_hash": "af98738a621dfb6109e06d06c2833a20e593cb6e4cf8f08d3edb23dd3781088e",
+  "ui_repair_fingerprint": "sha256:22235abcd344ace09c4d9b4ba22483174a976fee38040204f2e1dc8c4e133267",
+  "scope": "final-local-visible-customer-acceptance",
+  "status": "buyer_pass_2_tooling_blocked",
+  "run": "buyer-novice-repair-pass2",
+  "actor": "0e1e3c24-a494-44da-898c-6cc9b1dcdd52",
+  "verdict": "Tooling Blocked",
+  "lease_ready_at": "2026-07-19T10:42:58Z",
+  "verdict_at": "2026-07-19T10:49:19Z",
+  "session_id": "buyer-novice-repair-pass2",
+  "principal_id": "principal:demo:31fd72d3769e451f",
+  "final_url": "http://127.0.0.1:43102/search",
+  "created_order": false,
+  "session_absent_after_closeout": true,
+  "first_friction": "Durable driver/controller died after lease ready before first page_context; same-session reclaim hit LEASE_HELD then exited",
+  "screenshots": [],
+  "owner": "hermes-chrome WIP lease durability (not Buyer product)",
+  "bounded_recovery_allowed": true,
+  "next": "One main-thread bounded recovery: clear host, re-SSO, rerun whole Buyer pass2 with new session id"
+}

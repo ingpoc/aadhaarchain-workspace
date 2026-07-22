@@ -16,6 +16,11 @@ SKILLS_ROOT = ROOT / ".cursor" / "skills"
 AUDIT = Path.home() / ".codex" / "skills" / "create-skill" / "scripts" / "audit.py"
 
 REQUIRED_MARKERS: dict[str, tuple[str, ...]] = {
+    "agent-runtime-design": (
+        "Model owns semantic intent",
+        "Context and token efficiency",
+        "No deterministic user-intent routing",
+    ),
     "apisetu-partner-onboarding": (
         'semantic `locator`',
         "Use `testId` (camel case)",
@@ -35,11 +40,15 @@ REQUIRED_MARKERS: dict[str, tuple[str, ...]] = {
         "started → heartbeat → completed",
         "scripts/hermes_ondc_testing_matrix.py",
         'semantic `locator` actions',
+        "references/independent-customer-gate.md",
+        "One coherent journey per lease",
+        'fork_turns="none"',
     ),
     "portfolio-browser": (
         "native `network_watch`",
         "native `console_tail`",
         "scripts/hermes_ondc_testing_matrix.py buyer|seller",
+        "use its exact Chrome profile",
     ),
     "portfolio-deploy": (
         "Validation is read-only/offline and never deploys",
@@ -55,6 +64,9 @@ FORBIDDEN_GUIDANCE = (
     "no `portfolio_browser` subcommand yet",
     "workflow-hardening",
     "button[data-testid=samantha-orb]",
+    "Current WIP host (2026-07-14)",
+    "Current owner: Chrome profile directory `robo-trader-testing`",
+    "Current: Google Chrome / robo-trader-testing.",
 )
 
 
@@ -105,11 +117,32 @@ def validate_guidance(name: str, skill_dir: Path) -> None:
     corpus = "\n".join(markdown)
     missing = [marker for marker in REQUIRED_MARKERS[name] if marker not in corpus]
     stale = [marker for marker in FORBIDDEN_GUIDANCE if marker.casefold() in corpus.casefold()]
-    if missing or stale:
+    structure_errors: list[str] = []
+    if name == "ondc-testing":
+        skill_text = (skill_dir / "SKILL.md").read_text(encoding="utf-8")
+        protocol = skill_dir / "references" / "operator-protocol.md"
+        if "testing-framework" not in skill_text:
+            structure_errors.append("SKILL.md must point to testing-framework doctrine")
+        if "references/operator-protocol.md" not in skill_text:
+            structure_errors.append("SKILL.md must route protocol/thorough bar to operator-protocol.md")
+        if not protocol.is_file():
+            structure_errors.append("missing references/operator-protocol.md")
+        else:
+            protocol_text = protocol.read_text(encoding="utf-8")
+            runtime_step = protocol_text.find("7. **Runtime**")
+            hermes_step = protocol_text.find("10. **Hermes contract**")
+            reviewer_gate = protocol_text.find("## Independent customer gate")
+            if not (runtime_step != -1 and runtime_step < hermes_step < reviewer_gate):
+                structure_errors.append(
+                    "operator-protocol.md steps 7-10 must remain contiguous before Independent customer gate"
+                )
+    if missing or stale or structure_errors:
         for marker in missing:
             print(f"missing required marker: {marker}", file=sys.stderr)
         for marker in stale:
             print(f"stale guidance remains: {marker}", file=sys.stderr)
+        for error in structure_errors:
+            print(f"invalid owner structure: {error}", file=sys.stderr)
         raise SystemExit(1)
     print("owner guidance: clean")
 

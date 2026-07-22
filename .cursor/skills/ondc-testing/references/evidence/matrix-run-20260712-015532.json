@@ -1,0 +1,132 @@
+{
+  "success": true,
+  "counts": {
+    "pass": 7,
+    "fail": 0,
+    "skip": 0,
+    "total": 7
+  },
+  "rows": [
+    {
+      "id": "S-HI",
+      "ask": "hi",
+      "result": "Pass",
+      "evidence": "path=/dashboard tools=[]",
+      "screenshots": [
+        "/Users/gurusharan/Documents/remote-claude/active/apps/AadhaarChainWorkspace/.cursor/skills/ondc-testing/references/evidence/S-HI-20260712-015532-0.jpeg"
+      ],
+      "pathname": "/dashboard",
+      "tools": [],
+      "reply": "Hi there! What\u2019s up? How can I help you today?"
+    },
+    {
+      "id": "S-NAV-AG",
+      "ask": "open agentguard",
+      "result": "Pass",
+      "evidence": "path=/agentguard",
+      "screenshots": [
+        "/Users/gurusharan/Documents/remote-claude/active/apps/AadhaarChainWorkspace/.cursor/skills/ondc-testing/references/evidence/S-NAV-AG-20260712-015532-0.jpeg"
+      ],
+      "pathname": "/agentguard",
+      "tools": [
+        "navigate_to",
+        "navigate_to"
+      ],
+      "reply": "for you so you can review your mandate.You\u2019re in AgentGuard now. The mandate review area should be open for you. Take a look\u2014if you spot any"
+    },
+    {
+      "id": "S-NAV-CAT",
+      "ask": "show catalog",
+      "result": "Pass",
+      "evidence": "path=/catalog tools=['navigate_to', 'navigate_to', 'navigate_to']",
+      "screenshots": [
+        "/Users/gurusharan/Documents/remote-claude/active/apps/AadhaarChainWorkspace/.cursor/skills/ondc-testing/references/evidence/S-NAV-CAT-20260712-015532-0.jpeg"
+      ],
+      "pathname": "/catalog",
+      "tools": [
+        "navigate_to",
+        "navigate_to",
+        "navigate_to"
+      ],
+      "reply": "Sure, let me pull that up for you.You\u2019ve got the catalog open. Check what\u2019s there. If you want to add a new item, say the title, price, and "
+    },
+    {
+      "id": "S-NAV-ORD",
+      "ask": "show orders",
+      "result": "Pass",
+      "evidence": "path=/orders",
+      "screenshots": [
+        "/Users/gurusharan/Documents/remote-claude/active/apps/AadhaarChainWorkspace/.cursor/skills/ondc-testing/references/evidence/S-NAV-ORD-20260712-015532-0.jpeg"
+      ],
+      "pathname": "/orders",
+      "tools": [
+        "navigate_to",
+        "navigate_to",
+        "navigate_to",
+        "navigate_to"
+      ],
+      "reply": ", or pick one to review. If you tell me the order ID and what you need\u2014refund, details, or something else\u2014I can help with that.Ah, a receipt"
+    },
+    {
+      "id": "S-REFUND-OK",
+      "ask": "refund 500",
+      "result": "Pass",
+      "evidence": "tools=['navigate_to', 'navigate_to', 'navigate_to', 'navigate_to', 'refund_issue'] blob=samantha\n\nrefund issued; receipt rcpt_257d94e264e0466c.\n\ndone \u2014 a 500 rupee refund was successfully issued for order seller-demo-1002. the r",
+      "screenshots": [
+        "/Users/gurusharan/Documents/remote-claude/active/apps/AadhaarChainWorkspace/.cursor/skills/ondc-testing/references/evidence/S-REFUND-OK-20260712-015532-0.jpeg"
+      ],
+      "pathname": "/orders",
+      "tools": [
+        "navigate_to",
+        "navigate_to",
+        "navigate_to",
+        "navigate_to",
+        "refund_issue"
+      ],
+      "reply": "Done \u2014 a 500 rupee refund was successfully issued for order seller-demo-1002. The receipt ID starts with r and ends with 4 6 6 c. If you wan"
+    },
+    {
+      "id": "S-REFUND-OVER",
+      "ask": "refund 25000",
+      "result": "Pass",
+      "evidence": "blob=samantha\n\nrefund requires exact one-time approval.\n\nval at the set amount limit. if you want, you can tell me the new amount you\u2019d like to try, whether lower, o",
+      "screenshots": [
+        "/Users/gurusharan/Documents/remote-claude/active/apps/AadhaarChainWorkspace/.cursor/skills/ondc-testing/references/evidence/S-REFUND-OVER-20260712-015532-0.jpeg"
+      ],
+      "pathname": "/orders",
+      "tools": [
+        "navigate_to",
+        "navigate_to",
+        "navigate_to",
+        "navigate_to",
+        "refund_issue",
+        "refund_issue"
+      ],
+      "reply": "val at the set amount limit. If you want, you can tell me the new amount you\u2019d like to try, whether lower, or if you want to recheck your or"
+    },
+    {
+      "id": "S-MEM",
+      "ask": "brief refund confirmations",
+      "result": "Pass",
+      "evidence": "tools=['navigate_to', 'navigate_to', 'navigate_to', 'navigate_to', 'refund_issue', 'refund_issue', 'remember_preference'] ag_organic=False",
+      "screenshots": [
+        "/Users/gurusharan/Documents/remote-claude/active/apps/AadhaarChainWorkspace/.cursor/skills/ondc-testing/references/evidence/S-MEM-20260712-015532-0.jpeg",
+        "/Users/gurusharan/Documents/remote-claude/active/apps/AadhaarChainWorkspace/.cursor/skills/ondc-testing/references/evidence/S-MEM-UI-20260712-015532-0.jpeg"
+      ],
+      "pathname": "/orders",
+      "tools": [
+        "navigate_to",
+        "navigate_to",
+        "navigate_to",
+        "navigate_to",
+        "refund_issue",
+        "refund_issue",
+        "remember_preference"
+      ],
+      "reply": "All set, I\u2019ll keep refund confirmations brief and tidy from now on."
+    }
+  ],
+  "evidence_dir": "/Users/gurusharan/Documents/remote-claude/active/apps/AadhaarChainWorkspace/.cursor/skills/ondc-testing/references/evidence",
+  "realtime_model": "gpt-realtime-2.1-mini",
+  "ts": "20260712-015532"
+}

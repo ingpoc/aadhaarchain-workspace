@@ -1,0 +1,10 @@
+{
+  "preferred_bpp_found": false,
+  "our_count": 0,
+  "our_sample": [],
+  "select_init_confirm": {
+    "select": "ACK",
+    "init": "ACK",
+    "confirm": "ACK"
+  }
+}

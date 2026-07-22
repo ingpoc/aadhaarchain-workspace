@@ -1,0 +1,63 @@
+{
+  "ondc_conformance": true,
+  "subscriber_id": "ondcbuyer.aadharcha.in",
+  "environment": "preprod",
+  "attested_at": "2026-07-12T14:20:00Z",
+  "notes": "PreProd BAP+BPP configured (not production). Gate unlocks VITE_COMMERCE_DEMO_MODE=false after signed lookup+search ACK, Seller BPP search→on_search Atta proof, and select/init/confirm wiring. Prior network Atta discovery: preprod-seller-bpp-20260712.json (has_our_bpp+has_atta_item). Fresh smoke 2026-07-12T14:16Z: status configured, lookup SUBSCRIBED, search ACK txn 470cb825; catalog fanout variance (148 items, our BPP absent this poll — known). Direct Seller FQDN /ondc/search ACK. Payment remains simulated — not live UPI. select/init/confirm shipped in gateway post-a7a4355.",
+  "related_evidence": [
+    ".cursor/skills/ondc-testing/references/evidence/preprod-network-20260712.json",
+    ".cursor/skills/ondc-testing/references/evidence/preprod-seller-bpp-20260712.json"
+  ],
+  "probes": {
+    "P-STATUS": {
+      "http": 200,
+      "enabled": true,
+      "configured": true,
+      "subscriber_id": "ondcbuyer.aadharcha.in",
+      "uk": "1aee68ad-bc2a-4fc4-b233-7e14c6abba9b"
+    },
+    "P-BPP-STATUS": {
+      "ready": true,
+      "bpp_id": "ondcseller.aadharcha.in",
+      "published_item_count": 1
+    },
+    "P-LOOKUP": {
+      "http": 200,
+      "status": "SUBSCRIBED"
+    },
+    "P-SEARCH": {
+      "http": 200,
+      "ack": "ACK",
+      "dispatched": true,
+      "transaction_id": "470cb825-36c1-41eb-ae5b-d575e1594f84"
+    },
+    "P-NETWORK-ATTA-PRIOR": {
+      "source": "preprod-seller-bpp-20260712.json",
+      "has_our_bpp": true,
+      "has_atta_item": true,
+      "transaction_id": "51ac0470-d8bb-4547-a3e1-233e7aaff134"
+    },
+    "P-FANOUT-VARIANCE": {
+      "txn": "470cb825-36c1-41eb-ae5b-d575e1594f84",
+      "catalog_count": 148,
+      "has_our_bpp_this_poll": false,
+      "note": "PreProd gateway fanout variance — do not declare Seller broken"
+    },
+    "select_init_confirm": {
+      "status": "wired_in_gateway",
+      "routes": [
+        "POST /api/ondc/select",
+        "POST /api/ondc/init",
+        "POST /api/ondc/confirm",
+        "POST /ondc/np/seller/select|init|confirm"
+      ],
+      "live_api_proof": "pending_redeploy"
+    }
+  },
+  "tier": {
+    "render": "Free",
+    "vercel": "Hobby",
+    "policy": "$0 abort upgrades"
+  },
+  "not_production": true
+}

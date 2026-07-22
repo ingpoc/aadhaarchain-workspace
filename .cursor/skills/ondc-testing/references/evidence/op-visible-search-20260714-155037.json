@@ -1,0 +1,98 @@
+{
+  "stamp": "20260714-155037",
+  "buyer": [
+    {
+      "id": "W-B-SPA-SESSION",
+      "result": "Blocked",
+      "shots": [
+        "W-B-OP-BOOT-20260714-155037-0.jpeg"
+      ],
+      "notes": "sign_out=False ready=True hint=Samantha\n\nText mode ready (no mic)\n\nSend\nPreferences and AgentGuard",
+      "state": {
+        "body_snip": "ONDC Buyer\nShop with Samantha under AgentGuard\nAsk Samantha\nSearch\nCart\nOrders\nConfig\nSign in\nAsk Samantha. Shop the network.\n\nYour agent finds offers and checks out under AgentGuard limits you control.\n\nAsk Samantha\nSearch catalog\nAgent status\nTrust\nSign in required\nCheckout\nLocked\nCompanion\nSamantha orb\nTrust check: Unsigned\n\nSign in before elevated buyer actions.\n\nSearch the network\n\nSign in before elevated checkout.\n\nCategory\nGrocery\nGrocery\nRestaurant\nFashion\nElectronics\nSearch\nSearch\nHow it works\n\nSamantha\n\nConnecting text mode\u2026\n\nSend\nPreferences and AgentGuard\nS",
+        "cart_empty": false,
+        "cart_line": false,
+        "has_atta": false,
+        "has_banana": false,
+        "has_pulling": true,
+        "has_sign_out": false,
+        "headings": [
+          "Ask Samantha. Shop the network.",
+          "Search the network"
+        ],
+        "hint": "Samantha\n\nConnecting text mode\u2026\n\nSend\nPreferences and AgentGuard",
+        "href": "https://ondcbuyer.aadharcha.in/search",
+        "navSupersededAny": false,
+        "pathname": "/search",
+        "reply": "",
+        "search": "",
+        "tools": [],
+        "ready": {
+          "connecting": false,
+          "err": false,
+          "hint": "Samantha\n\nText mode ready (no mic)\n\nSend\nPreferences and AgentGuard",
+          "ready": true
+        }
+      }
+    },
+    {
+      "id": "W-B-FIND-ATTA",
+      "result": "Blocked",
+      "shots": [],
+      "notes": "no Auth0 Sign out \u2014 session missing",
+      "state": {}
+    }
+  ],
+  "seller": [
+    {
+      "id": "W-S-SPA-SESSION",
+      "result": "Blocked",
+      "shots": [
+        "W-S-OP-BOOT-20260714-155037-0.jpeg"
+      ],
+      "notes": "sign_out=False ready=True",
+      "state": {
+        "body_snip": "ONDC Seller\nCatalog under AgentGuard authority\nAgentGuard\nDashboard\nCatalog\nOrders\nConfig\nSign in\nCatalog and trust\nPublish listings when verified. Open catalog to manage the full shelf.\nAdd product\nOpen catalog\nAgentGuard\nTrust check: Unsigned\n\nSign in before elevated seller actions.\n\nProducts\n1\nLive listings in the demo catalog\nCategories\n1\nSingle category so far\nTrust\nNeeds action\nRequired for elevated publish actions\nInventory snapshot\nAgentGuard PreProd Atta 1kg\nNetwork-visible Seller catalog item for PreProd Buyer discovery\ndemo-commerce\nAsk Samantha\nHow it works\n\nSamantha\n\nText mode ready (no mic)\n\nSend\nAgentGuard and memory\nS",
+        "cart_empty": false,
+        "cart_line": true,
+        "has_atta": true,
+        "has_banana": false,
+        "has_pulling": false,
+        "has_sign_out": false,
+        "headings": [
+          "Catalog and trust",
+          "Inventory snapshot"
+        ],
+        "hint": "Samantha\n\nText mode ready (no mic)\n\nSend\nAgentGuard and memory",
+        "href": "https://ondcseller.aadharcha.in/dashboard",
+        "navSupersededAny": false,
+        "pathname": "/dashboard",
+        "reply": "",
+        "search": "",
+        "tools": []
+      }
+    },
+    {
+      "id": "W-S-NAV-CAT",
+      "result": "Blocked",
+      "shots": [],
+      "notes": "no Auth0 session",
+      "state": {}
+    }
+  ],
+  "meta": {
+    "realtime": {
+      "configured": true,
+      "model": "gpt-realtime-2.1-mini",
+      "agent_name": "Samantha"
+    },
+    "ensure_demo": {
+      "keys": [
+        "success",
+        "data"
+      ],
+      "snip": "{\"success\": true, \"data\": {\"item\": {\"item_id\": \"item_5e8d701427184a7d\", \"version\": 2, \"status\": \"published\", \"seller_id\": \"ondcseller.aadharcha.in\", \"title\": \"AgentGuard PreProd Atta 1kg\", \"description\": \"Network-visible Seller catalog item for PreProd Buyer discovery\", \"price_inr\": 89, \"created_at\": \"2026-07-14T09:53:37.323098+00:00\", \"updated_at\": \"2026-07-14T09:53:37.323700+00:00\"}, \"created\": "
+    },
+    "preflight_ready": true
+  }
+}

@@ -13,7 +13,6 @@ Usage:
 from __future__ import annotations
 
 import argparse
-import importlib.util
 import json
 import pathlib
 import re
@@ -50,14 +49,15 @@ def load_handler():
 
 
 def hermes_call(handler, payload: dict) -> dict:
-    from wip_hermes import ensure_wip_env
+    from wip_hermes import DEFAULT_PORTFOLIO_AGENT_ID, run_with_session_preflight
 
-    ensure_wip_env()
-    raw = handler._handle_hermes_chrome_browser(payload, task_id="portfolio-page-diag")
-    data = json.loads(raw) if isinstance(raw, str) else raw
-    if not data.get("success"):
-        raise RuntimeError(data.get("error") or data)
-    return data
+    # Same agent id as the rest of portfolio-browser — do not open a second
+    # window per diag PID (that was flooding Chrome with orphan leases).
+    return run_with_session_preflight(
+        handler,
+        payload,
+        task_id=DEFAULT_PORTFOLIO_AGENT_ID,
+    )
 
 
 def install_actions() -> list[dict[str, Any]]:
@@ -179,7 +179,9 @@ def extract_diag(result: dict) -> dict[str, Any]:
     }
 
 
-def collect(*, url: str | None = None, session: str = "portfolio-page-diag") -> dict[str, Any]:
+def collect(*, url: str | None = None, session: str | None = None) -> dict[str, Any]:
+    from wip_hermes import DEFAULT_PORTFOLIO_AGENT_ID
+
     handler = load_handler()
     actions: list[dict[str, Any]] = []
     if url:
@@ -193,7 +195,7 @@ def collect(*, url: str | None = None, session: str = "portfolio-page-diag") -> 
         handler,
         {
             "action": "run",
-            "session_name": session,
+            "session_name": session or DEFAULT_PORTFOLIO_AGENT_ID,
             "use_selected_tab": False,
             "timeout_seconds": 45,
             "actions": actions,
@@ -205,7 +207,11 @@ def collect(*, url: str | None = None, session: str = "portfolio-page-diag") -> 
 def main() -> int:
     parser = argparse.ArgumentParser(description="Compact Hermes page diagnostics")
     parser.add_argument("--url", help="Navigate here before collecting diag")
-    parser.add_argument("--session", default="portfolio-page-diag")
+    parser.add_argument(
+        "--session",
+        default=None,
+        help="Optional label; lease identity stays portfolio-browser unless HERMES_AGENT_ID is set",
+    )
     args = parser.parse_args()
     try:
         out = collect(url=args.url, session=args.session)

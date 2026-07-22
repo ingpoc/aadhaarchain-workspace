@@ -1,0 +1,40 @@
+{
+  "recorded_at": "2026-07-19T15:35:48+0530",
+  "executable_source_hash": "af98738a621dfb6109e06d06c2833a20e593cb6e4cf8f08d3edb23dd3781088e",
+  "scope": "final-local-visible-customer-acceptance",
+  "status": "buyer_pass_1",
+  "run": "buyer-novice-af987-pass1-fixed",
+  "actor": "360af1e7-2daf-4c69-9b28-51d520400392",
+  "verdict": "Pass",
+  "lease_ready_at": "2026-07-19T10:00:55Z",
+  "verdict_at": "2026-07-19T10:04:23Z",
+  "session_id": "buyer-novice-af987-pass1-fixed",
+  "principal_id": "principal:demo:dfcc748d9bd04b5f",
+  "final_url": "http://127.0.0.1:43102/orders/order_d305e2ef40f548f3",
+  "order_id": "order_d305e2ef40f548f3",
+  "order_ref": "D305E2EF",
+  "auth_ref": "5A59FF2A",
+  "item": "Fresh Farm Toor Dal 1kg x 1",
+  "amount_inr": 149,
+  "created_order": true,
+  "created_receipt": true,
+  "session_absent_after_closeout": true,
+  "first_friction": "Search for atta returned 0 matches; browse available groceries used instead",
+  "screenshots": [
+    {
+      "path": "/Users/gurusharan/plugins/hermes-chrome-cursor-wip/run/cache/hermes-chrome/0425d5d0-455f-448c-a7a7-6edb7b4561b1-6.png",
+      "readback": "Cart: Fresh Farm Toor Dal 1kg x1, INR 149, Proceed to checkout; Sign out visible"
+    },
+    {
+      "path": "/Users/gurusharan/plugins/hermes-chrome-cursor-wip/run/cache/hermes-chrome/3248c142-e4b7-4ff7-8ef1-a092528d6d2a-4.png",
+      "readback": "Checkout authorized; auth ref 5A59FF2A; INR 149; signed reference verified"
+    },
+    {
+      "path": "/Users/gurusharan/plugins/hermes-chrome-cursor-wip/run/cache/hermes-chrome/613b4861-3473-41a4-b8c4-604c18e0adbd-4.png",
+      "readback": "Order D305E2EF Created; Authorized signed ref 5A59FF2A; fulfillment Pending"
+    }
+  ],
+  "main_thread_verified": true,
+  "hermes_leases_after": [],
+  "next": "Buyer UX/accessibility smoke on same signed-in audience before Buyer pass 2"
+}

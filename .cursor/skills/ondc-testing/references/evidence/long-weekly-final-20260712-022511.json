@@ -1,0 +1,30 @@
+{
+  "id": "B-LONG-WEEKLY",
+  "result": "Pass",
+  "note": "handoff path=/search tools=['delegate_to_runtime_agent'] tool_ok=True",
+  "screenshots": [
+    "evidence/B-LONG-WEEKLY-20260712-022511-7.jpeg"
+  ],
+  "state": {
+    "has_handoff": true,
+    "hint": "Samantha\n\nI've started that \u2014 I'll let you know when it's done.\n\nOkay, let me set that up in the background and get things moving for you.Alright, I\u2019ve started planning your weekly groceries under 2000 rupees. I\u2019ll let you know when it\u2019s ready.Hey there! You\u2019re in the middle of it. I\u2019m working on that plan in the background, so you\u2019ll get a clear result when it\u2019s ready.\n\nSend\nPreferences & AgentGuard",
+    "leaked_cursor": false,
+    "pathname": "/search",
+    "reply": "Okay, let me set that up in the background and get things moving for you.Alright, I\u2019ve started planning your weekly groceries under 2000 rupees. I\u2019ll let you know when it\u2019s ready.Hey there! You\u2019re in the middle of it. I\u2019m working on that plan in the background, so you\u2019ll get a clear result when it\u2019s ready.",
+    "tools": [
+      {
+        "amount_inr": null,
+        "at": 1783803337926,
+        "callId": "call_zOhrGPpFcItC4uiS",
+        "cartAdds": [],
+        "decision": null,
+        "message": "I've started that \u2014 I'll let you know when it's done.",
+        "name": "delegate_to_runtime_agent",
+        "navigateTo": null,
+        "ok": true,
+        "receiptId": null,
+        "session_id": null
+      }
+    ]
+  }
+}

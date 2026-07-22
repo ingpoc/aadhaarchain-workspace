@@ -1,0 +1,120 @@
+{
+  "buyer": {
+    "_meta": {
+      "do_not_post_until": "whitelist ACK for staging (or confirm PreProd portal request covers staging registry)",
+      "endpoint": "https://staging.registry.ondc.org/subscribe",
+      "callback_full": "https://ondcbuyer.aadharcha.in/ondc/on_subscribe",
+      "site_verification": "https://ondcbuyer.aadharcha.in/ondc-site-verification.html",
+      "request_id": "aadhaar-1c5c5540-4870-4e10-b937-07600fb5a0ba",
+      "unique_key_id": "uk-buyer-001",
+      "note_msn": "seller ISN => msn false"
+    },
+    "context": {
+      "operation": {
+        "ops_no": 1
+      }
+    },
+    "message": {
+      "request_id": "aadhaar-1c5c5540-4870-4e10-b937-07600fb5a0ba",
+      "timestamp": "2026-07-12T08:11:43Z",
+      "entity": {
+        "gst": {
+          "legal_entity_name": "GURUSHARAN GUPTA HUF",
+          "business_address": "J-702 Marvel Fria, Wagholi, Pune, Maharashtra 412207",
+          "city_code": [
+            "std:020"
+          ],
+          "gst_no": "PENDING_CA_GSTIN"
+        },
+        "pan": {
+          "name_as_per_pan": "GURUSHARAN GUPTA HUF",
+          "pan_no": "AAJHG6948N",
+          "date_of_incorporation": "24/08/2024"
+        },
+        "name_of_authorised_signatory": "Gurusharan Gupta",
+        "email_id": "gurusharan.gupta@aadharcha.in",
+        "mobile_no": "REPLACE_MOBILE",
+        "country": "IND",
+        "subscriber_id": "ondcbuyer.aadharcha.in",
+        "unique_key_id": "uk-buyer-001",
+        "callback_url": "/ondc",
+        "key_pair": {
+          "signing_public_key": "ypxX/HlnPxcQDpRlFphvzepOlnbzldXJZqfLuji96ds=",
+          "encryption_public_key": "MCowBQYDK2VuAyEAZzNlvGEIy6PPYTit//d0VG3hqUh0w/A8JJKIt2cITRM=",
+          "valid_from": "2026-07-12T08:11:43Z",
+          "valid_until": "2027-07-12T08:11:43Z"
+        }
+      },
+      "network_participant": [
+        {
+          "subscriber_url": "/ondc",
+          "domain": "ONDC:RET10",
+          "type": "buyerApp",
+          "msn": false,
+          "city_code": [
+            "std:020"
+          ]
+        }
+      ]
+    }
+  },
+  "seller": {
+    "_meta": {
+      "do_not_post_until": "whitelist ACK for staging (or confirm PreProd portal request covers staging registry)",
+      "endpoint": "https://staging.registry.ondc.org/subscribe",
+      "callback_full": "https://ondcseller.aadharcha.in/ondc/on_subscribe",
+      "site_verification": "https://ondcseller.aadharcha.in/ondc-site-verification.html",
+      "request_id": "aadhaar-seller-bd56d3d98714",
+      "unique_key_id": "uk-seller-001",
+      "note_msn": "seller ISN => msn false"
+    },
+    "context": {
+      "operation": {
+        "ops_no": 2
+      }
+    },
+    "message": {
+      "request_id": "aadhaar-seller-bd56d3d98714",
+      "timestamp": "2026-07-12T08:11:43Z",
+      "entity": {
+        "gst": {
+          "legal_entity_name": "GURUSHARAN GUPTA HUF",
+          "business_address": "J-702 Marvel Fria, Wagholi, Pune, Maharashtra 412207",
+          "city_code": [
+            "std:020"
+          ],
+          "gst_no": "PENDING_CA_GSTIN"
+        },
+        "pan": {
+          "name_as_per_pan": "GURUSHARAN GUPTA HUF",
+          "pan_no": "AAJHG6948N",
+          "date_of_incorporation": "24/08/2024"
+        },
+        "name_of_authorised_signatory": "Gurusharan Gupta",
+        "email_id": "gurusharan.gupta@aadharcha.in",
+        "mobile_no": "REPLACE_MOBILE",
+        "country": "IND",
+        "subscriber_id": "ondcseller.aadharcha.in",
+        "unique_key_id": "uk-seller-001",
+        "callback_url": "/ondc",
+        "key_pair": {
+          "signing_public_key": "Vajns0AvxxgEwIPQNETSuPm04OxrZnHQq67ik3ziTu8=",
+          "encryption_public_key": "MCowBQYDK2VuAyEAqBDlxS/UuoqDU+L5S/VemG2TTrWlwcvfI6HCzbW8gig=",
+          "valid_from": "2026-07-12T08:11:43Z",
+          "valid_until": "2027-07-12T08:11:43Z"
+        }
+      },
+      "network_participant": [
+        {
+          "subscriber_url": "/ondc",
+          "domain": "ONDC:RET10",
+          "type": "sellerApp",
+          "msn": false,
+          "city_code": [
+            "std:020"
+          ]
+        }
+      ]
+    }
+  }
+}

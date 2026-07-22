@@ -1,0 +1,134 @@
+{
+  "artifact": "agentguard-local-safety-final",
+  "recorded_at": "2026-07-17T08:23:43+05:30",
+  "environment": "local",
+  "source_hash_scope": "AgentGuard shared contract, gateway app/tests, Buyer/Seller manifests, locks, public assets, shared packages, frontend source and build configuration; docs and evidence excluded",
+  "source_hash_sha256": "d940189015a07678ac2704554a80da16874d0c0021b15c9b5d2bb7ec54684a05",
+  "targeted_adversarial": [
+    {
+      "run_id": "LOCAL-ADVERSARIAL-20260717-D940-P1",
+      "command": "cd aadharchain/gateway && PYTHONPATH=. PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 .venv/bin/python -m pytest -q -p asyncio tests/test_agentguard_contract.py tests/test_agentguard.py tests/test_commerce_demo.py tests/test_payment_adapter.py tests/test_social_auth.py tests/test_demo_dependency_independence.py tests/test_routes.py tests/test_ondc_bpp.py",
+      "passed": 87,
+      "failed": 0
+    },
+    {
+      "run_id": "LOCAL-ADVERSARIAL-20260717-D940-P2",
+      "command": "cd aadharchain/gateway && PYTHONPATH=. PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 .venv/bin/python -m pytest -q -p asyncio tests/test_agentguard_contract.py tests/test_agentguard.py tests/test_commerce_demo.py tests/test_payment_adapter.py tests/test_social_auth.py tests/test_demo_dependency_independence.py tests/test_routes.py tests/test_ondc_bpp.py",
+      "passed": 87,
+      "failed": 0
+    }
+  ],
+  "passes": [
+    {
+      "run_id": "LOCAL-SAFETY-20260717-D940-P1",
+      "commands": [
+        "./scripts/verify-portfolio.sh",
+        "cd ondcbuyer && npx vitest run --reporter=json && npm run typecheck && npm run build",
+        "cd ondcseller && npx vitest run --reporter=json && npm run typecheck && npm run build"
+      ],
+      "gateway": { "passed": 129, "failed": 0 },
+      "buyer": { "passed": 151, "failed": 0, "typecheck": "pass", "build": "pass" },
+      "seller": { "passed": 172, "failed": 0, "typecheck": "pass", "build": "pass" }
+    },
+    {
+      "run_id": "LOCAL-SAFETY-20260717-D940-P2",
+      "commands": [
+        "./scripts/verify-portfolio.sh",
+        "cd ondcbuyer && npx vitest run --reporter=json && npm run typecheck && npm run build",
+        "cd ondcseller && npx vitest run --reporter=json && npm run typecheck && npm run build"
+      ],
+      "gateway": { "passed": 129, "failed": 0 },
+      "buyer": { "passed": 151, "failed": 0, "typecheck": "pass", "build": "pass" },
+      "seller": { "passed": 172, "failed": 0, "typecheck": "pass", "build": "pass" }
+    }
+  ],
+  "requirement_evidence": {
+    "shared_schema": [
+      "tests/test_agentguard_contract.py::test_python_canonicalizes_and_hashes_shared_golden_action_request",
+      "ondcbuyer/src/lib/agentGuardContract.test.ts"
+    ],
+    "tenant_isolation": [
+      "tests/test_agentguard.py::test_approval_cannot_cross_tenants",
+      "tests/test_agentguard.py::test_cross_tenant_commerce_mutations_fail_without_state_changes",
+      "tests/test_commerce_demo.py::test_commerce_reads_are_session_scoped_by_audience_and_principal"
+    ],
+    "approval_binding_expiry_replay": [
+      "tests/test_agentguard.py::test_consume_approval_checks_bound_fields",
+      "tests/test_agentguard.py::test_expired_approval_fails_closed_and_persists_expired_status",
+      "tests/test_agentguard.py::test_consume_approval_once_replay_conflicts",
+      "tests/test_agentguard.py::test_concurrent_approval_consume_has_exactly_one_winner"
+    ],
+    "commerce_lifecycle_reconciliation": [
+      "tests/test_commerce_demo.py::test_publish_search_order_and_idempotency",
+      "tests/test_commerce_demo.py::test_seller_fulfilment_and_remedy_reach_buyer_state",
+      "tests/test_agentguard.py::test_refund_is_capped_to_remaining_order_value_and_reconciled_once",
+      "tests/test_payment_adapter.py::test_unknown_payment_reconciles_without_double_charge"
+    ],
+    "pause_revoke_races": [
+      "tests/test_agentguard.py::test_stop_and_consume_race_has_no_pending_or_duplicate_approval[pause]",
+      "tests/test_agentguard.py::test_stop_and_consume_race_has_no_pending_or_duplicate_approval[revoke]"
+    ],
+    "receipt_tampering": [
+      "tests/test_agentguard.py::test_receipt_verify_and_tamper_detection"
+    ],
+    "prompt_and_direct_api_bypass": [
+      "tests/test_agentguard.py::test_prompt_injection_payload_cannot_expand_confirmed_mandate",
+      "tests/test_agentguard.py::test_direct_executor_call_without_required_approval_has_no_effect",
+      "tests/test_commerce_demo.py::test_public_mutation_routes_cannot_bypass_agentguard"
+    ],
+    "dependency_boundary": [
+      "tests/test_demo_dependency_independence.py::test_gateway_imports_when_solana_packages_are_unavailable",
+      "tests/test_demo_dependency_independence.py::test_demo_core_works_with_optional_integrations_disabled",
+      "Buyer and Seller production-copy gates"
+    ]
+  },
+  "visible_browser": {
+    "status": "tooling_blocked",
+    "source_hash": "d940189015a07678ac2704554a80da16874d0c0021b15c9b5d2bb7ec54684a05",
+    "attempts": [
+      {
+        "run_id": "SELLER-UX-D940-A1",
+        "verdict": "Tooling Blocked",
+        "blocker": "Lease-bound semantic context reported the Settings page while the owned screenshot showed the earlier Catalog page.",
+        "session_id": "seller-ux-d940-42bb721d",
+        "closeout": "pass; session absent"
+      },
+      {
+        "run_id": "SELLER-UX-D940-A2-BOUNDED-RETRY",
+        "verdict": "Tooling Blocked",
+        "blocker": "The owned Hermes lease disappeared before the initial read and again after the recovered dashboard inspection.",
+        "session_ids": [
+          "seller-ux-3a46b7eb-3dd5-46ed-9e7b-7bf2611f9938",
+          "seller-ux-recovery-691f9129-62ea-43e5-9eb1-d54c01076641"
+        ],
+        "closeout": "pass; owned sessions absent",
+        "screenshot": "/Users/gurusharan/plugins/hermes-chrome-cursor-wip/run/cache/hermes-chrome/54dd2a4e-f794-4919-9212-5f4b58fe46b1-2.png"
+      }
+    ],
+    "seller_customer_passes": 0,
+    "buyer_customer_passes": 0,
+    "two_sided_passes": 0,
+    "note": "The campaign stopped after the one allowed recovery repeated the same lease-ownership class of failure. Prior Seller customer passes were on an invalidated source hash and are not counted."
+  },
+  "browser_owner_diagnosis": {
+    "reviewer_cleanup_ruled_out": true,
+    "reviewer_ttl_seconds": 360,
+    "earliest_divergence": "A successful session_preflight returned an owned window and tab; the next run reported no active lease, sessions was empty, and reaped was empty.",
+    "real_url_probe_after_3_seconds": "pass; inventory present, page_context and screenshot succeeded, closeout clean",
+    "real_url_probe_after_35_seconds": "pass; inventory present, page_context succeeded, closeout clean",
+    "isolation_suite_lease_lifecycle": "pass through preflight, inventory, concurrent operations and closeout; suite overall failed later on an unrelated debug-evaluate side-effect guard",
+    "remaining_unknown": "The bridge does not retain a tombstone identifying what removed the reviewer-owned window or lease."
+  },
+  "warnings": [
+    "Gateway emitted dependency deprecation warnings only.",
+    "Buyer build emitted the existing greater-than-500-kB chunk-size advisory."
+  ],
+  "excluded_claims": [
+    "deployment",
+    "Milestone 9",
+    "external pilot",
+    "live network integration",
+    "regulated payment integration",
+    "physical microphone proof"
+  ]
+}

@@ -1,0 +1,50 @@
+ffmpeg version 8.0.1 Copyright (c) 2000-2025 the FFmpeg developers
+  built with Apple clang version 17.0.0 (clang-1700.6.3.2)
+  configuration: --prefix=/opt/homebrew/Cellar/ffmpeg/8.0.1_4 --enable-shared --enable-pthreads --enable-version3 --cc=clang --host-cflags= --host-ldflags= --enable-ffplay --enable-gpl --enable-libsvtav1 --enable-libopus --enable-libx264 --enable-libmp3lame --enable-libdav1d --enable-libvpx --enable-libx265 --enable-openssl --enable-videotoolbox --enable-audiotoolbox --enable-neon
+  libavutil      60.  8.100 / 60.  8.100
+  libavcodec     62. 11.100 / 62. 11.100
+  libavformat    62.  3.100 / 62.  3.100
+  libavdevice    62.  1.100 / 62.  1.100
+  libavfilter    11.  4.100 / 11.  4.100
+  libswscale      9.  1.100 /  9.  1.100
+  libswresample   6.  1.100 /  6.  1.100
+Input #0, mov,mp4,m4a,3gp,3g2,mj2, from '/Users/gurusharan/Documents/remote-claude/active/apps/AadhaarChainWorkspace/.cursor/skills/apisetu-partner-onboarding/references/evidence/token-nxt-demo/ui_raw.mp4':
+  Metadata:
+    major_brand     : isom
+    minor_version   : 512
+    compatible_brands: isomiso2avc1mp41
+    encoder         : Lavf62.3.100
+  Duration: 00:01:32.20, start: 0.000000, bitrate: 528 kb/s
+  Stream #0:0[0x1](und): Video: h264 (Constrained Baseline) (avc1 / 0x31637661), yuv420p(progressive), 2560x1440, 526 kb/s, 25.41 fps, 30 tbr, 1000k tbn (default)
+    Metadata:
+      handler_name    : VideoHandler
+      vendor_id       : [0][0][0][0]
+      encoder         : Lavc62.11.100 libx264
+[aist#1:0/pcm_s16le @ 0xa70c0c600] Guessed Channel Layout: mono
+Input #1, wav, from '/Users/gurusharan/Documents/remote-claude/active/apps/AadhaarChainWorkspace/.cursor/skills/apisetu-partner-onboarding/references/evidence/token-nxt-demo/vo.wav':
+  Metadata:
+    encoder         : Lavf62.3.100
+  Duration: 00:01:21.08, bitrate: 705 kb/s
+  Stream #1:0: Audio: pcm_s16le ([1][0][0][0] / 0x0001), 44100 Hz, mono, s16, 705 kb/s
+Stream mapping:
+  Stream #1:0 (pcm_s16le) -> apad:default
+  Stream #0:0 -> #0:0 (copy)
+  apad:default -> Stream #0:1 (aac)
+Press [q] to stop, [?] for help
+Output #0, mp4, to '/Users/gurusharan/Documents/remote-claude/active/apps/AadhaarChainWorkspace/.cursor/skills/apisetu-partner-onboarding/references/evidence/token-nxt-demo/token-nxt-demo-draft-v1.mp4':
+  Metadata:
+    major_brand     : isom
+    minor_version   : 512
+    compatible_brands: isomiso2avc1mp41
+    encoder         : Lavf62.3.100
+  Stream #0:0(und): Video: h264 (Constrained Baseline) (avc1 / 0x31637661), yuv420p(progressive), 2560x1440, q=2-31, 526 kb/s, 25.41 fps, 30 tbr, 1000k tbn (default)
+    Metadata:
+      handler_name    : VideoHandler
+      vendor_id       : [0][0][0][0]
+      encoder         : Lavc62.11.100 libx264
+  Stream #0:1: Audio: aac (LC) (mp4a / 0x6134706D), 44100 Hz, mono, fltp, 128 kb/s
+    Metadata:
+      encoder         : Lavc62.11.100 aac
+frame= 1811 fps=0.0 q=-1.0 size=    5632KiB time=00:01:11.72 bitrate= 643.2kbits/s speed= 143x elapsed=0:00:00.50    [out#0/mp4 @ 0xa71028540] video:5870KiB audio:1319KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: 1.123280%
+frame= 2342 fps=0.0 q=-1.0 Lsize=    7269KiB time=00:01:32.20 bitrate= 645.9kbits/s speed= 161x elapsed=0:00:00.57    
+[aac @ 0xa71039500] Qavg: 8266.677

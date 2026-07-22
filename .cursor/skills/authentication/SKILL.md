@@ -158,6 +158,8 @@ Do in order; ONDC portal/whitelist is a **parallel** track (other agent) — not
 | Local demo (`http://127.0.0.1:43101`) | false | `lax` | host-only |
 | Staging/prod or HTTPS `PUBLIC_GATEWAY_URL` | true | `none` | host-only unless gateway host is `*.aadharcha.in` → `.aadharcha.in` |
 
+**Local host trap:** open Buyer/Seller as `http://127.0.0.1:4310x`, not `http://localhost:4310x`. Gateway cookie is host-only on `127.0.0.1`; `localhost` ≠ `127.0.0.1` for SameSite, so Accept succeeds but SPA still looks signed-out. SPAs redirect `localhost` → `127.0.0.1` in DEV (`ensureCanonicalLoopbackHost`). Do **not** fetch `/api/auth/me` via Vite same-origin proxy — cookie never lands on `:43102`/`:43103`.
+
 ## Auth0 features — fit to this ecosystem
 
 Use Auth0 for **identity**; keep **AgentGuard** as the only money/mandate authority. Do not put AG limits in Auth0 Actions.

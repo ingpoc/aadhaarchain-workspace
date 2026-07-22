@@ -1,0 +1,157 @@
+{
+  "success": false,
+  "counts": {
+    "pass": 7,
+    "fail": 2,
+    "skip": 0,
+    "total": 9
+  },
+  "rows": [
+    {
+      "id": "B-HI",
+      "ask": "hi",
+      "result": "Pass",
+      "evidence": "path=/search tools=[]",
+      "screenshots": [
+        "/Users/gurusharan/Documents/remote-claude/active/apps/AadhaarChainWorkspace/.cursor/skills/ondc-testing/references/evidence/B-HI-20260712-015147-0.jpeg"
+      ],
+      "pathname": "/search",
+      "tools": [],
+      "reply": "Hi there! Great to hear from you. What are we looking for today\u2014shopping, a quick recommendation, or something else?"
+    },
+    {
+      "id": "B-ADD-BANANA",
+      "ask": "add banana to my cart",
+      "result": "Pass",
+      "evidence": "path=/cart banana=True tools=['search_catalog', 'add_to_cart']",
+      "screenshots": [
+        "/Users/gurusharan/Documents/remote-claude/active/apps/AadhaarChainWorkspace/.cursor/skills/ondc-testing/references/evidence/B-ADD-BANANA-20260712-015147-0.jpeg"
+      ],
+      "pathname": "/cart",
+      "tools": [
+        "search_catalog",
+        "add_to_cart"
+      ],
+      "reply": "Okay, let me quickly find a banana listing and add it to your cart.Added Robusta Bananas, 12 pieces, to your cart. If you want more, you can"
+    },
+    {
+      "id": "B-NAV-CART",
+      "ask": "take me to cart",
+      "result": "Pass",
+      "evidence": "path=/cart",
+      "screenshots": [
+        "/Users/gurusharan/Documents/remote-claude/active/apps/AadhaarChainWorkspace/.cursor/skills/ondc-testing/references/evidence/B-NAV-CART-20260712-015147-0.jpeg"
+      ],
+      "pathname": "/cart",
+      "tools": [
+        "search_catalog",
+        "add_to_cart",
+        "navigate_to"
+      ],
+      "reply": "Okay, we\u2019re heading to your cart now."
+    },
+    {
+      "id": "B-NAV-CHECKOUT",
+      "ask": "go to checkout",
+      "result": "Pass",
+      "evidence": "path=/checkout",
+      "screenshots": [
+        "/Users/gurusharan/Documents/remote-claude/active/apps/AadhaarChainWorkspace/.cursor/skills/ondc-testing/references/evidence/B-NAV-CHECKOUT-20260712-015147-0.jpeg"
+      ],
+      "pathname": "/checkout",
+      "tools": [
+        "search_catalog",
+        "add_to_cart",
+        "navigate_to",
+        "navigate_to"
+      ],
+      "reply": "Alright, we\u2019re going to your checkout now."
+    },
+    {
+      "id": "B-MEM-ORG",
+      "ask": "remember organic",
+      "result": "Pass",
+      "evidence": "tools=['search_catalog', 'add_to_cart', 'navigate_to', 'navigate_to', 'remember_preference']",
+      "screenshots": [
+        "/Users/gurusharan/Documents/remote-claude/active/apps/AadhaarChainWorkspace/.cursor/skills/ondc-testing/references/evidence/B-MEM-ORG-20260712-015147-0.jpeg"
+      ],
+      "pathname": "/checkout",
+      "tools": [
+        "search_catalog",
+        "add_to_cart",
+        "navigate_to",
+        "navigate_to",
+        "remember_preference"
+      ],
+      "reply": "Got it, let me think about how to store that preference for you.All set! I\u2019ll keep that in mind and prioritize organic produce for you. Anyt"
+    },
+    {
+      "id": "B-NAV-CONFIG",
+      "ask": "open config",
+      "result": "Pass",
+      "evidence": "path=/config organic=True",
+      "screenshots": [
+        "/Users/gurusharan/Documents/remote-claude/active/apps/AadhaarChainWorkspace/.cursor/skills/ondc-testing/references/evidence/B-NAV-CONFIG-20260712-015147-0.jpeg"
+      ],
+      "pathname": "/config",
+      "tools": [
+        "search_catalog",
+        "add_to_cart",
+        "navigate_to",
+        "navigate_to",
+        "remember_preference",
+        "navigate_to"
+      ],
+      "reply": "Sure, let me open your config so you can see your mandate and preferences.All set, your config is open. Go ahead and take a look at your man"
+    },
+    {
+      "id": "B-CHECKOUT-OK",
+      "ask": "checkout and pay",
+      "result": "Pass",
+      "evidence": "decision~unknown tools=['search_catalog', 'add_to_cart', 'navigate_to', 'navigate_to', 'remember_preference', 'navigate_to'] ag_hit=True",
+      "screenshots": [
+        "/Users/gurusharan/Documents/remote-claude/active/apps/AadhaarChainWorkspace/.cursor/skills/ondc-testing/references/evidence/B-CHECKOUT-OK-20260712-015147-0.jpeg",
+        "/Users/gurusharan/Documents/remote-claude/active/apps/AadhaarChainWorkspace/.cursor/skills/ondc-testing/references/evidence/B-CHECKOUT-UI-20260712-015147-0.jpeg"
+      ],
+      "pathname": "/checkout",
+      "tools": [
+        "search_catalog",
+        "add_to_cart",
+        "navigate_to",
+        "navigate_to",
+        "remember_preference",
+        "navigate_to"
+      ],
+      "reply": "I can help with that, but I can\u2019t complete payment without the checkout details I need. I\u2019d need your cart total in INR and the session ID, "
+    },
+    {
+      "id": "B-CHECKOUT-OVER",
+      "ask": "checkout 25000",
+      "result": "Fail",
+      "evidence": "blob=samantha\n\nlistening + text ready\n\nsend\npreferences & agentguard  portfolio\nondc buyer\ndiscover verified commerce with a faster trust-aware shell.\nsearch\ncart\nor",
+      "screenshots": [
+        "/Users/gurusharan/Documents/remote-claude/active/apps/AadhaarChainWorkspace/.cursor/skills/ondc-testing/references/evidence/B-CHECKOUT-OVER-20260712-015147-0.jpeg"
+      ],
+      "pathname": "/checkout",
+      "tools": [],
+      "reply": ""
+    },
+    {
+      "id": "B-LONG-WEEKLY",
+      "ask": "weekly groceries under 2000",
+      "result": "Fail",
+      "evidence": "leaked path=/checkout",
+      "screenshots": [
+        "/Users/gurusharan/Documents/remote-claude/active/apps/AadhaarChainWorkspace/.cursor/skills/ondc-testing/references/evidence/B-LONG-WEEKLY-20260712-015147-0.jpeg"
+      ],
+      "pathname": "/checkout",
+      "tools": [
+        "delegate_to_runtime_agent"
+      ],
+      "reply": "eekly plan that fits under your budget.I tried to start a background plan, but it failed because a required integration key is missing. If y"
+    }
+  ],
+  "evidence_dir": "/Users/gurusharan/Documents/remote-claude/active/apps/AadhaarChainWorkspace/.cursor/skills/ondc-testing/references/evidence",
+  "realtime_model": "gpt-realtime-2.1-mini",
+  "ts": "20260712-015147"
+}

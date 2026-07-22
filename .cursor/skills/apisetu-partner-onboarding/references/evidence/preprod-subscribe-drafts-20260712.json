@@ -1,0 +1,128 @@
+{
+  "buyer": {
+    "_meta": {
+      "do_not_post_until": "public gateway live + FQDN verification/on_subscribe 200; confirm PreProd lookup first \u2014 portal already Subscribed",
+      "endpoint": "https://preprod.registry.ondc.org/ondc/subscribe",
+      "lookup": "https://preprod.registry.ondc.org/ondc/v2.0/lookup",
+      "callback_full": "https://ondcbuyer.aadharcha.in/ondc/on_subscribe",
+      "site_verification": "https://ondcbuyer.aadharcha.in/ondc-site-verification.html",
+      "request_id": "aadhaar-portal-buyer-1aee68ad",
+      "unique_key_id": "1aee68ad-bc2a-4fc4-b233-7e14c6abba9b",
+      "keys_source": "portal-download (Downloads keys.json=Buyer; keys (1).json / key1=Seller)",
+      "signing_public_fp16": "35d7fa62daaa968d",
+      "encryption_public_fp16": "e7d26d936ee99cff",
+      "note": "Portal UI already shows PreProd Subscribed for this uk_id \u2014 blind re-POST may conflict. Prefer lookup first."
+    },
+    "context": {
+      "operation": {
+        "ops_no": 1
+      }
+    },
+    "message": {
+      "request_id": "aadhaar-portal-buyer-1aee68ad",
+      "timestamp": "2026-07-12T09:19:53Z",
+      "entity": {
+        "gst": {
+          "legal_entity_name": "GURUSHARAN GUPTA HUF",
+          "business_address": "J-702 Marvel Fria, Wagholi, Pune, Maharashtra 412207",
+          "city_code": [
+            "std:020"
+          ],
+          "gst_no": "PENDING_CA_GSTIN"
+        },
+        "pan": {
+          "name_as_per_pan": "GURUSHARAN GUPTA HUF",
+          "pan_no": "AAJHG6948N",
+          "date_of_incorporation": "24/08/2024"
+        },
+        "name_of_authorised_signatory": "Gurusharan Gupta",
+        "email_id": "gurusharan.gupta@aadharcha.in",
+        "mobile_no": "REPLACE_MOBILE",
+        "country": "IND",
+        "subscriber_id": "ondcbuyer.aadharcha.in",
+        "unique_key_id": "1aee68ad-bc2a-4fc4-b233-7e14c6abba9b",
+        "callback_url": "/ondc",
+        "key_pair": {
+          "signing_public_key": "ZRhviWsJWmC6ZxfQLVFnshJlrmSGPMArhZXSkxRXkKw=",
+          "encryption_public_key": "MCowBQYDK2VuAyEAK9alCEqSh+aAX6TSmLrBwJhrZBhcyDaVWEkFE5swxBo=",
+          "valid_from": "2026-07-12T09:19:53Z",
+          "valid_until": "2027-07-12T09:19:53Z"
+        }
+      },
+      "network_participant": [
+        {
+          "subscriber_url": "/ondc",
+          "domain": "ONDC:RET10",
+          "type": "buyerApp",
+          "msn": false,
+          "city_code": [
+            "std:020"
+          ]
+        }
+      ]
+    }
+  },
+  "seller": {
+    "_meta": {
+      "do_not_post_until": "public gateway live + FQDN verification/on_subscribe 200; confirm PreProd lookup first \u2014 portal already Subscribed",
+      "endpoint": "https://preprod.registry.ondc.org/ondc/subscribe",
+      "lookup": "https://preprod.registry.ondc.org/ondc/v2.0/lookup",
+      "callback_full": "https://ondcseller.aadharcha.in/ondc/on_subscribe",
+      "site_verification": "https://ondcseller.aadharcha.in/ondc-site-verification.html",
+      "request_id": "aadhaar-portal-seller-baf58086",
+      "unique_key_id": "baf58086-7024-438a-becf-4cfa056ec8d9",
+      "keys_source": "portal-download (Downloads keys.json=Buyer; keys (1).json / key1=Seller)",
+      "signing_public_fp16": "e0031e7817d922fb",
+      "encryption_public_fp16": "fcfd57b2783a258e",
+      "note": "Portal UI already shows PreProd Subscribed for this uk_id \u2014 blind re-POST may conflict. Prefer lookup first."
+    },
+    "context": {
+      "operation": {
+        "ops_no": 2
+      }
+    },
+    "message": {
+      "request_id": "aadhaar-portal-seller-baf58086",
+      "timestamp": "2026-07-12T09:19:53Z",
+      "entity": {
+        "gst": {
+          "legal_entity_name": "GURUSHARAN GUPTA HUF",
+          "business_address": "J-702 Marvel Fria, Wagholi, Pune, Maharashtra 412207",
+          "city_code": [
+            "std:020"
+          ],
+          "gst_no": "PENDING_CA_GSTIN"
+        },
+        "pan": {
+          "name_as_per_pan": "GURUSHARAN GUPTA HUF",
+          "pan_no": "AAJHG6948N",
+          "date_of_incorporation": "24/08/2024"
+        },
+        "name_of_authorised_signatory": "Gurusharan Gupta",
+        "email_id": "gurusharan.gupta@aadharcha.in",
+        "mobile_no": "REPLACE_MOBILE",
+        "country": "IND",
+        "subscriber_id": "ondcseller.aadharcha.in",
+        "unique_key_id": "baf58086-7024-438a-becf-4cfa056ec8d9",
+        "callback_url": "/ondc",
+        "key_pair": {
+          "signing_public_key": "LoAEdNyf3Y439cCdUF4/oHmKUv/LDKes8YortFmN+yY=",
+          "encryption_public_key": "MCowBQYDK2VuAyEA25Y4Rq38IVnYI1ZsL+yAyDMI/AKakHi1CWGIDtipd08=",
+          "valid_from": "2026-07-12T09:19:53Z",
+          "valid_until": "2027-07-12T09:19:53Z"
+        }
+      },
+      "network_participant": [
+        {
+          "subscriber_url": "/ondc",
+          "domain": "ONDC:RET10",
+          "type": "sellerApp",
+          "msn": false,
+          "city_code": [
+            "std:020"
+          ]
+        }
+      ]
+    }
+  }
+}

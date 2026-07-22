@@ -1,0 +1,739 @@
+{
+  "stamp": "20260712-173341",
+  "steps": [
+    {
+      "id": "W-B-ADD-BANANA",
+      "state": {
+        "body": "PORTFOLIO\nONDC Buyer\nDiscover commerce under AgentGuard authorization.\nSearch\nCart\nOrders\nConfig\nSign out\nCART\nShopping cart\n\n2 items ready for trust-aware checkout.\n\nSharbati Atta 5kg\nINR 325.00 \u00d7 1\n1\nRemove\nRobusta Bananas (12 pcs)\nINR 78.00 \u00d7 4\n4\nRemove\nOrder summary\nSubtotal\nINR 637.00\nTotal\nINR 637.00\nProceed to checkout\nNeed more items?\nContinue shopping\nAgent chat\nHow it works\n\nSamantha\n\nAdded Robusta Bananas (12 pcs) \u00d7 1 to cart.\n\nGot it\u2014I'll quickly look up bananas and then add the best match to your cart.Done! I added Robusta Bananas (12 pcs) to your cart.\n\nSend\nPreferences & AgentGuard\nS",
+        "errors": [],
+        "events": [
+          "response.output_item.added",
+          "conversation.item.added",
+          "response.content_part.added",
+          "response.output_text.delta",
+          "response.output_text.delta",
+          "response.output_text.delta",
+          "response.output_text.delta",
+          "response.output_text.delta",
+          "response.output_text.delta",
+          "response.output_text.delta",
+          "response.output_text.delta",
+          "response.output_text.delta",
+          "response.output_text.delta",
+          "response.output_text.delta",
+          "response.output_text.delta",
+          "response.output_text.delta",
+          "response.output_text.delta",
+          "response.output_text.delta",
+          "response.output_text.delta",
+          "response.output_text.done",
+          "response.content_part.done",
+          "conversation.item.done",
+          "response.output_item.done",
+          "response.done",
+          "rate_limits.updated"
+        ],
+        "has_approval": false,
+        "has_banana": true,
+        "has_handoff": false,
+        "has_milk": false,
+        "has_organic": false,
+        "has_paid": false,
+        "has_receipt": false,
+        "has_sign_out": true,
+        "hint": "Samantha\n\nAdded Robusta Bananas (12 pcs) \u00d7 1 to cart.\n\nGot it\u2014I'll quickly look up bananas and then add the best match to your cart.Done! I added Robusta Bananas (12 pcs) to your cart.\n\nSend\nPreferences & AgentGuard",
+        "href": "https://ondcbuyer.aadharcha.in/cart",
+        "pathname": "/cart",
+        "reply": "Got it\u2014I'll quickly look up bananas and then add the best match to your cart.Done! I added Robusta Bananas (12 pcs) to your cart.",
+        "tools": [
+          {
+            "amount_inr": null,
+            "at": 1783857841283,
+            "callId": "call_Z0UjMv3YyWYEmebt",
+            "cartAdds": [],
+            "decision": null,
+            "message": "Found 1 item(s) for \u201cbanana\u201d.",
+            "name": "search_catalog",
+            "navigateTo": "/results?category=grocery&q=banana",
+            "ok": true,
+            "receiptId": null,
+            "session_id": null
+          },
+          {
+            "amount_inr": null,
+            "at": 1783857841856,
+            "callId": "call_qhj7Bf5SVRqac7uE",
+            "cartAdds": [
+              "banana-robusta-dozen"
+            ],
+            "decision": null,
+            "message": "Added Robusta Bananas (12 pcs) \u00d7 1 to cart.",
+            "name": "add_to_cart",
+            "navigateTo": "/cart",
+            "ok": true,
+            "receiptId": null,
+            "session_id": null
+          }
+        ]
+      },
+      "shots": [
+        "W-B-ADD-BANANA-20260712-173341-0.jpeg"
+      ]
+    },
+    {
+      "id": "W-B-CART",
+      "state": {
+        "body": "PORTFOLIO\nONDC Buyer\nDiscover commerce under AgentGuard authorization.\nSearch\nCart\nOrders\nConfig\nSign out\nCART\nShopping cart\n\n2 items ready for trust-aware checkout.\n\nSharbati Atta 5kg\nINR 325.00 \u00d7 1\n1\nRemove\nRobusta Bananas (12 pcs)\nINR 78.00 \u00d7 4\n4\nRemove\nOrder summary\nSubtotal\nINR 637.00\nTotal\nINR 637.00\nProceed to checkout\nNeed more items?\nContinue shopping\nAgent chat\nHow it works\n\nSamantha\n\nAdded Robusta Bananas (12 pcs) \u00d7 1 to cart.\n\nGot it\u2014I'll quickly look up bananas and then add the best match to your cart.Done! I added Robusta Bananas (12 pcs) to your cart.\n\nSend\nPreferences & AgentGuard\nS",
+        "errors": [],
+        "events": [
+          "response.output_item.added",
+          "conversation.item.added",
+          "response.content_part.added",
+          "response.output_text.delta",
+          "response.output_text.delta",
+          "response.output_text.delta",
+          "response.output_text.delta",
+          "response.output_text.delta",
+          "response.output_text.delta",
+          "response.output_text.delta",
+          "response.output_text.delta",
+          "response.output_text.delta",
+          "response.output_text.delta",
+          "response.output_text.delta",
+          "response.output_text.delta",
+          "response.output_text.delta",
+          "response.output_text.delta",
+          "response.output_text.delta",
+          "response.output_text.delta",
+          "response.output_text.done",
+          "response.content_part.done",
+          "conversation.item.done",
+          "response.output_item.done",
+          "response.done",
+          "rate_limits.updated"
+        ],
+        "has_approval": false,
+        "has_banana": true,
+        "has_handoff": false,
+        "has_milk": false,
+        "has_organic": false,
+        "has_paid": false,
+        "has_receipt": false,
+        "has_sign_out": true,
+        "hint": "Samantha\n\nAdded Robusta Bananas (12 pcs) \u00d7 1 to cart.\n\nGot it\u2014I'll quickly look up bananas and then add the best match to your cart.Done! I added Robusta Bananas (12 pcs) to your cart.\n\nSend\nPreferences & AgentGuard",
+        "href": "https://ondcbuyer.aadharcha.in/cart",
+        "pathname": "/cart",
+        "reply": "Got it\u2014I'll quickly look up bananas and then add the best match to your cart.Done! I added Robusta Bananas (12 pcs) to your cart.",
+        "tools": [
+          {
+            "amount_inr": null,
+            "at": 1783857841283,
+            "callId": "call_Z0UjMv3YyWYEmebt",
+            "cartAdds": [],
+            "decision": null,
+            "message": "Found 1 item(s) for \u201cbanana\u201d.",
+            "name": "search_catalog",
+            "navigateTo": "/results?category=grocery&q=banana",
+            "ok": true,
+            "receiptId": null,
+            "session_id": null
+          },
+          {
+            "amount_inr": null,
+            "at": 1783857841856,
+            "callId": "call_qhj7Bf5SVRqac7uE",
+            "cartAdds": [
+              "banana-robusta-dozen"
+            ],
+            "decision": null,
+            "message": "Added Robusta Bananas (12 pcs) \u00d7 1 to cart.",
+            "name": "add_to_cart",
+            "navigateTo": "/cart",
+            "ok": true,
+            "receiptId": null,
+            "session_id": null
+          }
+        ]
+      },
+      "shots": [
+        "W-B-CART-20260712-173341-0.jpeg"
+      ]
+    },
+    {
+      "id": "W-B-NAV-CHECKOUT",
+      "state": {
+        "body": "PORTFOLIO\nONDC Buyer\nDiscover commerce under AgentGuard authorization.\nSearch\nCart\nOrders\nConfig\nSign out\nCHECKOUT\nCheckout denied\n\nAgentGuard blocked automatic checkout. Review the decision below.\n\nAGENTGUARD DECISION\nDenied\n\n[Errno 13] Permission denied: 'data'\n\nAmount INR 637\n\nDismiss\nBUYER DETAILS\nBilling information\nFull name *\nEmail *\nPhone *\nGSTIN\n\nOptional, used for business purchases and GST invoices.\n\nDELIVERY\nDelivery address\nStreet address *\nCity *\nState *\nPostal code *\n\nUse a 6-digit PIN code so local quote generation can estimate delivery.\n\nPAYMENT\nPayment method\nUPI\nCard\nNet banking\nWallet\nCash on delivery\nPay using any UPI app like GPay, PhonePe, or Paytm.\nUPI ID\n\nEnter a UPI handle like mobile@upi or username@oksbi.\n\nCART PREVIEW\nCurrent basket\nSharbati Atta 5kg \u00d7 1\nINR 325.00\nRobusta Bananas (12 pcs) \u00d7 4\nINR 312.00\nSubtotal\nINR 637.00\n\nComplete the form to estimate delivery, tax, and the final quote.\n\nBUYER AUTHORITY\nShopping agent limits\nAuto-approve checkout up to (INR)\n\nRoutine checkout up to INR 10000 can proceed without step-up. Higher carts need exact one-time",
+        "errors": [],
+        "events": [
+          "conversation.item.added",
+          "conversation.item.done",
+          "response.created",
+          "response.output_item.added",
+          "conversation.item.added",
+          "response.content_part.added",
+          "response.output_text.delta",
+          "response.output_text.delta",
+          "response.output_text.delta",
+          "response.output_text.delta",
+          "response.output_text.delta",
+          "response.output_text.delta",
+          "response.output_text.delta",
+          "response.output_text.delta",
+          "response.output_text.delta",
+          "response.output_text.delta",
+          "response.output_text.delta",
+          "response.output_text.delta",
+          "response.output_text.delta",
+          "response.output_text.delta",
+          "response.output_text.delta",
+          "response.output_text.delta",
+          "response.output_text.delta",
+          "response.output_text.delta",
+          "response.output_item.added"
+        ],
+        "has_approval": false,
+        "has_banana": true,
+        "has_handoff": false,
+        "has_milk": false,
+        "has_organic": false,
+        "has_paid": false,
+        "has_receipt": true,
+        "has_sign_out": true,
+        "hint": "Samantha\n\n[Errno 13] Permission denied: 'data'\n\nI\u2019ll go ahead and trigger checkout for your cart through the safe flow\u2014one moment.I tried to proceed with checkout, but the system blocked it with a permission error on the checkout transaction. I also navigated you to the checkout page so you can continue from there. If you want, you can try again or let me know if you\u2019d prefer to review your cart first.\n\nSend\nPreferences & AgentGuard",
+        "href": "https://ondcbuyer.aadharcha.in/checkout",
+        "pathname": "/checkout",
+        "reply": "I\u2019ll go ahead and trigger checkout for your cart through the safe flow\u2014one moment.I tried to proceed with checkout, but the system blocked it with a permission error on the checkout transaction. I also navigated you to the checkout page so you can continue from there. If you want, you can try again or let me know if you\u2019d prefer to review your cart first.",
+        "tools": [
+          {
+            "amount_inr": null,
+            "at": 1783857841283,
+            "callId": "call_Z0UjMv3YyWYEmebt",
+            "cartAdds": [],
+            "decision": null,
+            "message": "Found 1 item(s) for \u201cbanana\u201d.",
+            "name": "search_catalog",
+            "navigateTo": "/results?category=grocery&q=banana",
+            "ok": true,
+            "receiptId": null,
+            "session_id": null
+          },
+          {
+            "amount_inr": null,
+            "at": 1783857841856,
+            "callId": "call_qhj7Bf5SVRqac7uE",
+            "cartAdds": [
+              "banana-robusta-dozen"
+            ],
+            "decision": null,
+            "message": "Added Robusta Bananas (12 pcs) \u00d7 1 to cart.",
+            "name": "add_to_cart",
+            "navigateTo": "/cart",
+            "ok": true,
+            "receiptId": null,
+            "session_id": null
+          },
+          {
+            "amount_inr": 637,
+            "at": 1783857895121,
+            "callId": "call_EXTR9rPoH4Iy7yB5",
+            "cartAdds": [],
+            "decision": null,
+            "message": "[Errno 13] Permission denied: 'data'",
+            "name": "checkout_commit",
+            "navigateTo": "/checkout",
+            "ok": false,
+            "receiptId": null,
+            "session_id": "session-1769264983827-fzqlgs6"
+          },
+          {
+            "amount_inr": 637,
+            "at": 1783857896092,
+            "callId": "call_jytZoRcLnjMO2PCq",
+            "cartAdds": [],
+            "decision": null,
+            "message": "[Errno 13] Permission denied: 'data'",
+            "name": "checkout_commit",
+            "navigateTo": "/checkout",
+            "ok": false,
+            "receiptId": null,
+            "session_id": "session-1769264983827-fzqlgs6"
+          }
+        ]
+      },
+      "shots": [
+        "W-B-NAV-CHECKOUT-20260712-173341-0.jpeg"
+      ]
+    },
+    {
+      "id": "W-B-MEM-ORG",
+      "state": {
+        "body": "PORTFOLIO\nONDC Buyer\nDiscover commerce under AgentGuard authorization.\nSearch\nCart\nOrders\nConfig\nSign out\nCHECKOUT\nCheckout denied\n\nAgentGuard blocked automatic checkout. Review the decision below.\n\nAGENTGUARD DECISION\nDenied\n\n[Errno 13] Permission denied: 'data'\n\nAmount INR 637\n\nDismiss\nBUYER DETAILS\nBilling information\nFull name *\nEmail *\nPhone *\nGSTIN\n\nOptional, used for business purchases and GST invoices.\n\nDELIVERY\nDelivery address\nStreet address *\nCity *\nState *\nPostal code *\n\nUse a 6-digit PIN code so local quote generation can estimate delivery.\n\nPAYMENT\nPayment method\nUPI\nCard\nNet banking\nWallet\nCash on delivery\nPay using any UPI app like GPay, PhonePe, or Paytm.\nUPI ID\n\nEnter a UPI handle like mobile@upi or username@oksbi.\n\nCART PREVIEW\nCurrent basket\nSharbati Atta 5kg \u00d7 1\nINR 325.00\nRobusta Bananas (12 pcs) \u00d7 4\nINR 312.00\nSubtotal\nINR 637.00\n\nComplete the form to estimate delivery, tax, and the final quote.\n\nBUYER AUTHORITY\nShopping agent limits\nAuto-approve checkout up to (INR)\n\nRoutine checkout up to INR 10000 can proceed without step-up. Higher carts need exact one-time",
+        "errors": [],
+        "events": [
+          "conversation.item.added",
+          "conversation.item.done",
+          "response.created",
+          "response.output_item.added",
+          "conversation.item.added",
+          "response.content_part.added",
+          "response.output_text.delta",
+          "response.output_text.delta",
+          "response.output_text.delta",
+          "response.output_text.delta",
+          "response.output_text.delta",
+          "response.output_text.delta",
+          "response.output_text.delta",
+          "response.output_text.delta",
+          "response.output_text.delta",
+          "response.output_text.delta",
+          "response.output_text.delta",
+          "response.output_text.delta",
+          "response.output_text.delta",
+          "response.output_text.delta",
+          "response.output_text.delta",
+          "response.output_text.delta",
+          "response.output_text.delta",
+          "response.output_text.delta",
+          "response.output_item.added"
+        ],
+        "has_approval": false,
+        "has_banana": true,
+        "has_handoff": false,
+        "has_milk": false,
+        "has_organic": true,
+        "has_paid": false,
+        "has_receipt": true,
+        "has_sign_out": true,
+        "hint": "Samantha\n\nRemembered preference: User prefers organic items.\n\nGot it\u2014I\u2019ve saved your preference to prefer organic items.\n\nSend\nPreferences & AgentGuard",
+        "href": "https://ondcbuyer.aadharcha.in/checkout",
+        "pathname": "/checkout",
+        "reply": "Got it\u2014I\u2019ve saved your preference to prefer organic items.",
+        "tools": [
+          {
+            "amount_inr": null,
+            "at": 1783857841283,
+            "callId": "call_Z0UjMv3YyWYEmebt",
+            "cartAdds": [],
+            "decision": null,
+            "message": "Found 1 item(s) for \u201cbanana\u201d.",
+            "name": "search_catalog",
+            "navigateTo": "/results?category=grocery&q=banana",
+            "ok": true,
+            "receiptId": null,
+            "session_id": null
+          },
+          {
+            "amount_inr": null,
+            "at": 1783857841856,
+            "callId": "call_qhj7Bf5SVRqac7uE",
+            "cartAdds": [
+              "banana-robusta-dozen"
+            ],
+            "decision": null,
+            "message": "Added Robusta Bananas (12 pcs) \u00d7 1 to cart.",
+            "name": "add_to_cart",
+            "navigateTo": "/cart",
+            "ok": true,
+            "receiptId": null,
+            "session_id": null
+          },
+          {
+            "amount_inr": 637,
+            "at": 1783857895121,
+            "callId": "call_EXTR9rPoH4Iy7yB5",
+            "cartAdds": [],
+            "decision": null,
+            "message": "[Errno 13] Permission denied: 'data'",
+            "name": "checkout_commit",
+            "navigateTo": "/checkout",
+            "ok": false,
+            "receiptId": null,
+            "session_id": "session-1769264983827-fzqlgs6"
+          },
+          {
+            "amount_inr": 637,
+            "at": 1783857896092,
+            "callId": "call_jytZoRcLnjMO2PCq",
+            "cartAdds": [],
+            "decision": null,
+            "message": "[Errno 13] Permission denied: 'data'",
+            "name": "checkout_commit",
+            "navigateTo": "/checkout",
+            "ok": false,
+            "receiptId": null,
+            "session_id": "session-1769264983827-fzqlgs6"
+          },
+          {
+            "amount_inr": null,
+            "at": 1783857927663,
+            "callId": "call_aDl2inFhispp2z4v",
+            "cartAdds": [],
+            "decision": null,
+            "message": "Remembered preference: User prefers organic items.",
+            "name": "remember_preference",
+            "navigateTo": null,
+            "ok": true,
+            "receiptId": null,
+            "session_id": null
+          }
+        ]
+      },
+      "shots": [
+        "W-B-MEM-ORG-20260712-173341-0.jpeg"
+      ]
+    },
+    {
+      "id": "W-B-CONFIG",
+      "state": {
+        "body": "PORTFOLIO\nONDC Buyer\nDiscover commerce under AgentGuard authorization.\nSearch\nCart\nOrders\nConfig\nSign out\nCONFIG\nAgentGuard & Samantha\n\nAuthorize what the shopping agent may do. Samantha remembers compact likes and preferences while you talk.\n\nAgentGuard mandate\nAuto-approve checkout up to (INR)\nAllowed actions\nCheckout\nCancel order\nReturn\nAccept remedy\nConfirm mandate\nnot confirmed\nCheckout\nSamantha memory\n\nLikes\n\n\u2014\n\nDislikes\n\n\u2014\n\nPreferences\n\nUser prefers organic items. \u00d7\n\nNotes\n\n\u2014\n\nClear memory\n\nUpdated 7/12/2026, 5:35:27 PM\n\nAgent chat\nHow it works\nS",
+        "errors": [],
+        "events": [],
+        "has_approval": false,
+        "has_banana": false,
+        "has_handoff": false,
+        "has_milk": false,
+        "has_organic": true,
+        "has_paid": false,
+        "has_receipt": false,
+        "has_sign_out": true,
+        "hint": "",
+        "href": "https://ondcbuyer.aadharcha.in/config",
+        "pathname": "/config",
+        "reply": "",
+        "tools": []
+      },
+      "shots": [
+        "W-B-CONFIG-20260712-173341-0.jpeg"
+      ]
+    },
+    {
+      "id": "W-B-CHECKOUT",
+      "state": {
+        "body": "PORTFOLIO\nONDC Buyer\nDiscover commerce under AgentGuard authorization.\nSearch\nCart\nOrders\nConfig\nSign out\nCHECKOUT\nCheckout denied\n\nAgentGuard blocked automatic checkout. Review the decision below.\n\nAGENTGUARD DECISION\nDenied\n\n[Errno 13] Permission denied: 'data'\n\nAmount INR 637\n\nDismiss\nBUYER DETAILS\nBilling information\nFull name *\nEmail *\nPhone *\nGSTIN\n\nOptional, used for business purchases and GST invoices.\n\nDELIVERY\nDelivery address\nStreet address *\nCity *\nState *\nPostal code *\n\nUse a 6-digit PIN code so local quote generation can estimate delivery.\n\nPAYMENT\nPayment method\nUPI\nCard\nNet banking\nWallet\nCash on delivery\nPay using any UPI app like GPay, PhonePe, or Paytm.\nUPI ID\n\nEnter a UPI handle like mobile@upi or username@oksbi.\n\nCART PREVIEW\nCurrent basket\nSharbati Atta 5kg \u00d7 1\nINR 325.00\nRobusta Bananas (12 pcs) \u00d7 4\nINR 312.00\nSubtotal\nINR 637.00\n\nComplete the form to estimate delivery, tax, and the final quote.\n\nBUYER AUTHORITY\nShopping agent limits\nAuto-approve checkout up to (INR)\n\nRoutine checkout up to INR 10000 can proceed without step-up. Higher carts need exact one-time",
+        "errors": [],
+        "events": [
+          "response.output_text.delta",
+          "response.output_text.delta",
+          "response.output_text.delta",
+          "response.output_text.delta",
+          "response.output_text.delta",
+          "response.output_text.delta",
+          "response.output_text.delta",
+          "response.output_text.delta",
+          "response.output_text.delta",
+          "response.output_text.delta",
+          "response.output_text.delta",
+          "response.output_text.delta",
+          "response.output_text.delta",
+          "response.output_text.delta",
+          "response.output_text.delta",
+          "response.output_text.delta",
+          "response.output_text.delta",
+          "response.output_text.delta",
+          "response.output_text.delta",
+          "response.output_text.done",
+          "response.content_part.done",
+          "conversation.item.done",
+          "response.output_item.done",
+          "response.done",
+          "rate_limits.updated"
+        ],
+        "has_approval": false,
+        "has_banana": true,
+        "has_handoff": false,
+        "has_milk": false,
+        "has_organic": false,
+        "has_paid": false,
+        "has_receipt": true,
+        "has_sign_out": true,
+        "hint": "Samantha\n\n[Errno 13] Permission denied: 'data'\n\nGot it\u2014I'll go ahead and submit the checkout payment now.Oops\u2014there was an error when I tried to finalize checkout and authorization failed on the tool side. I can\u2019t complete the payment from here right now. If you\u2019d like, you can retry from the checkout screen manually, or tell me if a specific item or payment issue is blocking you and I can help you narrow it down.\n\nSend\nPreferences & AgentGuard",
+        "href": "https://ondcbuyer.aadharcha.in/checkout",
+        "pathname": "/checkout",
+        "reply": "Got it\u2014I'll go ahead and submit the checkout payment now.Oops\u2014there was an error when I tried to finalize checkout and authorization failed on the tool side. I can\u2019t complete the payment from here right now. If you\u2019d like, you can retry from the checkout screen manually, or tell me if a specific item or payment issue is blocking you and I can help you narrow it down.",
+        "tools": [
+          {
+            "amount_inr": 637,
+            "at": 1783857968908,
+            "callId": "call_YblnwmrIqs5yaifc",
+            "cartAdds": [],
+            "decision": null,
+            "message": "[Errno 13] Permission denied: 'data'",
+            "name": "checkout_commit",
+            "navigateTo": "/checkout",
+            "ok": false,
+            "receiptId": null,
+            "session_id": "session-1769264983827-fzqlgs6"
+          }
+        ]
+      },
+      "shots": [
+        "W-B-CHECKOUT-20260712-173341-0.jpeg"
+      ]
+    },
+    {
+      "id": "W-B-CHECKOUT-PAGE",
+      "state": {
+        "body": "PORTFOLIO\nONDC Buyer\nDiscover commerce under AgentGuard authorization.\nSearch\nCart\nOrders\nConfig\nSign out\nCHECKOUT\nCheckout denied\n\nAgentGuard blocked automatic checkout. Review the decision below.\n\nAGENTGUARD DECISION\nDenied\n\n[Errno 13] Permission denied: 'data'\n\nAmount INR 637\n\nDismiss\nBUYER DETAILS\nBilling information\nFull name *\nEmail *\nPhone *\nGSTIN\n\nOptional, used for business purchases and GST invoices.\n\nDELIVERY\nDelivery address\nStreet address *\nCity *\nState *\nPostal code *\n\nUse a 6-digit PIN code so local quote generation can estimate delivery.\n\nPAYMENT\nPayment method\nUPI\nCard\nNet banking\nWallet\nCash on delivery\nPay using any UPI app like GPay, PhonePe, or Paytm.\nUPI ID\n\nEnter a UPI handle like mobile@upi or username@oksbi.\n\nCART PREVIEW\nCurrent basket\nSharbati Atta 5kg \u00d7 1\nINR 325.00\nRobusta Bananas (12 pcs) \u00d7 4\nINR 312.00\nSubtotal\nINR 637.00\n\nComplete the form to estimate delivery, tax, and the final quote.\n\nBUYER AUTHORITY\nShopping agent limits\nAuto-approve checkout up to (INR)\n\nRoutine checkout up to INR 10000 can proceed without step-up. Higher carts need exact one-time",
+        "errors": [],
+        "events": [
+          "response.output_text.delta",
+          "response.output_text.delta",
+          "response.output_text.delta",
+          "response.output_text.delta",
+          "response.output_text.delta",
+          "response.output_text.delta",
+          "response.output_text.delta",
+          "response.output_text.delta",
+          "response.output_text.delta",
+          "response.output_text.delta",
+          "response.output_text.delta",
+          "response.output_text.delta",
+          "response.output_text.delta",
+          "response.output_text.delta",
+          "response.output_text.delta",
+          "response.output_text.delta",
+          "response.output_text.delta",
+          "response.output_text.delta",
+          "response.output_text.delta",
+          "response.output_text.done",
+          "response.content_part.done",
+          "conversation.item.done",
+          "response.output_item.done",
+          "response.done",
+          "rate_limits.updated"
+        ],
+        "has_approval": false,
+        "has_banana": true,
+        "has_handoff": false,
+        "has_milk": false,
+        "has_organic": false,
+        "has_paid": false,
+        "has_receipt": true,
+        "has_sign_out": true,
+        "hint": "Samantha\n\n[Errno 13] Permission denied: 'data'\n\nGot it\u2014I'll go ahead and submit the checkout payment now.Oops\u2014there was an error when I tried to finalize checkout and authorization failed on the tool side. I can\u2019t complete the payment from here right now. If you\u2019d like, you can retry from the checkout screen manually, or tell me if a specific item or payment issue is blocking you and I can help you narrow it down.\n\nSend\nPreferences & AgentGuard",
+        "href": "https://ondcbuyer.aadharcha.in/checkout",
+        "pathname": "/checkout",
+        "reply": "Got it\u2014I'll go ahead and submit the checkout payment now.Oops\u2014there was an error when I tried to finalize checkout and authorization failed on the tool side. I can\u2019t complete the payment from here right now. If you\u2019d like, you can retry from the checkout screen manually, or tell me if a specific item or payment issue is blocking you and I can help you narrow it down.",
+        "tools": [
+          {
+            "amount_inr": 637,
+            "at": 1783857968908,
+            "callId": "call_YblnwmrIqs5yaifc",
+            "cartAdds": [],
+            "decision": null,
+            "message": "[Errno 13] Permission denied: 'data'",
+            "name": "checkout_commit",
+            "navigateTo": "/checkout",
+            "ok": false,
+            "receiptId": null,
+            "session_id": "session-1769264983827-fzqlgs6"
+          }
+        ]
+      },
+      "shots": [
+        "W-B-CHECKOUT-PAGE-20260712-173341-0.jpeg"
+      ]
+    },
+    {
+      "id": "W-B-ORDERS",
+      "state": {
+        "body": "PORTFOLIO\nONDC Buyer\nDiscover commerce under AgentGuard authorization.\nSearch\nCart\nOrders\nConfig\nSign out\nORDERS\nTrack buyer orders\n\nReview pending, active, and completed orders from the buyer shell without losing trust or delivery context.\n\nall (0)\npending (0)\nactive (0)\ncomplete (0)\nNo orders in this lane\nLocal demo orders will appear here after you move through checkout.\nAgent chat\nHow it works\nS",
+        "errors": [],
+        "events": [],
+        "has_approval": false,
+        "has_banana": false,
+        "has_handoff": false,
+        "has_milk": false,
+        "has_organic": false,
+        "has_paid": false,
+        "has_receipt": false,
+        "has_sign_out": true,
+        "hint": "",
+        "href": "https://ondcbuyer.aadharcha.in/orders",
+        "pathname": "/orders",
+        "reply": "",
+        "tools": []
+      },
+      "shots": [
+        "W-B-ORDERS-20260712-173341-0.jpeg"
+      ]
+    },
+    {
+      "id": "W-B-AG-ENSURE",
+      "state": {
+        "body": "Internal Server Error",
+        "status": 500
+      },
+      "shots": [
+        "W-B-AG-ENSURE-20260712-173341-0.jpeg"
+      ]
+    },
+    {
+      "id": "W-B-RUNTIME",
+      "state": {
+        "body": "PORTFOLIO\nONDC Buyer\nDiscover commerce under AgentGuard authorization.\nSearch\nCart\nOrders\nConfig\nSign out\nBUYER DISCOVERY\nSearch verified commerce\n\nFind offers, then checkout under AgentGuard authorization.\n\nSearch the network\n\nSigned in \u2014 elevated checkout is available via AgentGuard.\n\nCategory\nGrocery\nGrocery\nRestaurant\nFashion\nElectronics\nSearch\nSearch\nAgent chat\nHow it works\n\nSamantha\n\nUnexpected token '<', \"<!DOCTYPE \"... is not valid JSON\n\nger/garlic - Snacks: a small pack of oats or flour (for quick breakfasts) For a breakdown under 2000 rupees, aim to keep staples + oil + basic veggies around 1200\u20131400, then split the rest among protein, dairy, and a small \u201ctreat\u201d like fruit or extra spices. If you want, tell me how many people you\u2019re shopping for, and I\u2019ll refine it into a more precise list with quantities and a tighter budget.\n\nSend\nPreferences & AgentGuard\nS",
+        "errors": [],
+        "events": [
+          "response.function_call_arguments.delta",
+          "response.function_call_arguments.delta",
+          "response.function_call_arguments.delta",
+          "response.function_call_arguments.delta",
+          "response.function_call_arguments.delta",
+          "response.function_call_arguments.delta",
+          "response.function_call_arguments.delta",
+          "response.function_call_arguments.delta",
+          "response.function_call_arguments.delta",
+          "response.function_call_arguments.delta",
+          "response.function_call_arguments.delta",
+          "response.function_call_arguments.delta",
+          "response.function_call_arguments.delta",
+          "response.function_call_arguments.delta",
+          "response.function_call_arguments.delta",
+          "response.function_call_arguments.delta",
+          "response.function_call_arguments.delta",
+          "response.function_call_arguments.delta",
+          "response.function_call_arguments.delta",
+          "response.function_call_arguments.delta",
+          "response.function_call_arguments.delta",
+          "response.function_call_arguments.delta",
+          "response.function_call_arguments.delta",
+          "response.function_call_arguments.delta",
+          "response.function_call_arguments.delta"
+        ],
+        "has_approval": false,
+        "has_banana": false,
+        "has_handoff": false,
+        "has_milk": false,
+        "has_organic": false,
+        "has_paid": false,
+        "has_receipt": false,
+        "has_sign_out": true,
+        "hint": "Samantha\n\nUnexpected token '<', \"<!DOCTYPE \"... is not valid JSON\n\nger/garlic - Snacks: a small pack of oats or flour (for quick breakfasts) For a breakdown under 2000 rupees, aim to keep staples + oil + basic veggies around 1200\u20131400, then split the rest among protein, dairy, and a small \u201ctreat\u201d like fruit or extra spices. If you want, tell me how many people you\u2019re shopping for, and I\u2019ll refine it into a more precise list with quantities and a tighter budget.\n\nSend\nPreferences & AgentGuard",
+        "href": "https://ondcbuyer.aadharcha.in/search",
+        "pathname": "/search",
+        "reply": "ger/garlic - Snacks: a small pack of oats or flour (for quick breakfasts) For a breakdown under 2000 rupees, aim to keep staples + oil + basic veggies around 1200\u20131400, then split the rest among protein, dairy, and a small \u201ctreat\u201d like fruit or extra spices. If you want, tell me how many people you\u2019re shopping for, and I\u2019ll refine it into a more precise list with quantities and a tighter budget.",
+        "tools": [
+          {
+            "amount_inr": null,
+            "at": 1783858040628,
+            "callId": "call_SukFH1yuifdHWO1C",
+            "cartAdds": [],
+            "decision": null,
+            "message": "Unexpected token '<', \"<!DOCTYPE \"... is not valid JSON",
+            "name": "delegate_to_runtime_agent",
+            "navigateTo": null,
+            "ok": false,
+            "receiptId": null,
+            "session_id": null
+          },
+          {
+            "amount_inr": null,
+            "at": 1783858042002,
+            "callId": "call_lFZZYYvOGlQhaHvq",
+            "cartAdds": [],
+            "decision": null,
+            "message": "Unexpected token '<', \"<!DOCTYPE \"... is not valid JSON",
+            "name": "delegate_to_runtime_agent",
+            "navigateTo": null,
+            "ok": false,
+            "receiptId": null,
+            "session_id": null
+          }
+        ]
+      },
+      "shots": [
+        "W-B-RUNTIME-20260712-173341-0.jpeg"
+      ]
+    },
+    {
+      "id": "W-B-RUNTIME-LATE",
+      "state": {
+        "body": "PORTFOLIO\nONDC Buyer\nDiscover commerce under AgentGuard authorization.\nSearch\nCart\nOrders\nConfig\nSign out\nBUYER DISCOVERY\nSearch verified commerce\n\nFind offers, then checkout under AgentGuard authorization.\n\nSearch the network\n\nSigned in \u2014 elevated checkout is available via AgentGuard.\n\nCategory\nGrocery\nGrocery\nRestaurant\nFashion\nElectronics\nSearch\nSearch\nAgent chat\nHow it works\n\nSamantha\n\nUnexpected token '<', \"<!DOCTYPE \"... is not valid JSON\n\nger/garlic - Snacks: a small pack of oats or flour (for quick breakfasts) For a breakdown under 2000 rupees, aim to keep staples + oil + basic veggies around 1200\u20131400, then split the rest among protein, dairy, and a small \u201ctreat\u201d like fruit or extra spices. If you want, tell me how many people you\u2019re shopping for, and I\u2019ll refine it into a more precise list with quantities and a tighter budget.\n\nSend\nPreferences & AgentGuard\nS",
+        "errors": [],
+        "events": [
+          "response.function_call_arguments.delta",
+          "response.function_call_arguments.delta",
+          "response.function_call_arguments.delta",
+          "response.function_call_arguments.delta",
+          "response.function_call_arguments.delta",
+          "response.function_call_arguments.delta",
+          "response.function_call_arguments.delta",
+          "response.function_call_arguments.delta",
+          "response.function_call_arguments.delta",
+          "response.function_call_arguments.delta",
+          "response.function_call_arguments.delta",
+          "response.function_call_arguments.delta",
+          "response.function_call_arguments.delta",
+          "response.function_call_arguments.delta",
+          "response.function_call_arguments.delta",
+          "response.function_call_arguments.delta",
+          "response.function_call_arguments.delta",
+          "response.function_call_arguments.delta",
+          "response.function_call_arguments.delta",
+          "response.function_call_arguments.delta",
+          "response.function_call_arguments.delta",
+          "response.function_call_arguments.delta",
+          "response.function_call_arguments.delta",
+          "response.function_call_arguments.delta",
+          "response.function_call_arguments.delta"
+        ],
+        "has_approval": false,
+        "has_banana": false,
+        "has_handoff": false,
+        "has_milk": false,
+        "has_organic": false,
+        "has_paid": false,
+        "has_receipt": false,
+        "has_sign_out": true,
+        "hint": "Samantha\n\nUnexpected token '<', \"<!DOCTYPE \"... is not valid JSON\n\nger/garlic - Snacks: a small pack of oats or flour (for quick breakfasts) For a breakdown under 2000 rupees, aim to keep staples + oil + basic veggies around 1200\u20131400, then split the rest among protein, dairy, and a small \u201ctreat\u201d like fruit or extra spices. If you want, tell me how many people you\u2019re shopping for, and I\u2019ll refine it into a more precise list with quantities and a tighter budget.\n\nSend\nPreferences & AgentGuard",
+        "href": "https://ondcbuyer.aadharcha.in/search",
+        "pathname": "/search",
+        "reply": "ger/garlic - Snacks: a small pack of oats or flour (for quick breakfasts) For a breakdown under 2000 rupees, aim to keep staples + oil + basic veggies around 1200\u20131400, then split the rest among protein, dairy, and a small \u201ctreat\u201d like fruit or extra spices. If you want, tell me how many people you\u2019re shopping for, and I\u2019ll refine it into a more precise list with quantities and a tighter budget.",
+        "tools": [
+          {
+            "amount_inr": null,
+            "at": 1783858040628,
+            "callId": "call_SukFH1yuifdHWO1C",
+            "cartAdds": [],
+            "decision": null,
+            "message": "Unexpected token '<', \"<!DOCTYPE \"... is not valid JSON",
+            "name": "delegate_to_runtime_agent",
+            "navigateTo": null,
+            "ok": false,
+            "receiptId": null,
+            "session_id": null
+          },
+          {
+            "amount_inr": null,
+            "at": 1783858042002,
+            "callId": "call_lFZZYYvOGlQhaHvq",
+            "cartAdds": [],
+            "decision": null,
+            "message": "Unexpected token '<', \"<!DOCTYPE \"... is not valid JSON",
+            "name": "delegate_to_runtime_agent",
+            "navigateTo": null,
+            "ok": false,
+            "receiptId": null,
+            "session_id": null
+          }
+        ]
+      },
+      "shots": [
+        "W-B-RUNTIME-LATE-20260712-173341-0.jpeg"
+      ]
+    },
+    {
+      "id": "W-B-VOICE",
+      "state": {
+        "hint": "Samantha\n\nUnexpected token '<', \"<!DOCTYPE \"... is not valid JSON\n\nger/garlic - Snacks: a small pack of oats or flour (for quick breakfasts) For a breakdown under 2000 rupees, aim to keep staples + oil + basic veggies around 1200\u20131400, then split the rest among protein, dairy, and a small \u201ctreat\u201d li",
+        "mic": {
+          "error": "NotFoundError",
+          "ok": false
+        }
+      },
+      "shots": [
+        "W-B-VOICE-20260712-173341-0.jpeg"
+      ]
+    }
+  ]
+}

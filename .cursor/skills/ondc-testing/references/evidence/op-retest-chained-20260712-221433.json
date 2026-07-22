@@ -1,0 +1,67 @@
+{
+  "stamp": "20260712-221433",
+  "rows": [
+    {
+      "id": "W-B-FIND-BANANA",
+      "result": "Pass",
+      "shots": [
+        "W-B-RETEST2-BANANA-20260712-221433-0.jpeg"
+      ],
+      "early": {
+        "early": true,
+        "pathname": "/results",
+        "tools": []
+      },
+      "late_path": "/results",
+      "tools": []
+    },
+    {
+      "id": "W-B-CHAINED",
+      "result": "Partial-stall-fixed",
+      "shots": [
+        "W-B-RETEST2-CHAINED-20260712-221433-0.jpeg"
+      ],
+      "send": {
+        "draft": "go to my cart",
+        "ok": true
+      },
+      "path": "/results",
+      "tools": [
+        "navigate_to",
+        "search_catalog"
+      ],
+      "hint": "Samantha\n\nSearching for \u201cbananas\u201d \u2014 watch the results page\u2026\n\nOkay, I\u2019m jumping you over to your cart so you can see what\u2019s in it.All set \u2014 you\u2019re now in your cart. If you\u2019d like, I can help you add bananas next once we get back to the searc",
+      "draft": "",
+      "send_disabled": true
+    },
+    {
+      "id": "W-B-ADD",
+      "result": "Partial-stall-fixed",
+      "shots": [
+        "W-B-RETEST2-ADD-20260712-221433-0.jpeg"
+      ],
+      "send": {
+        "draft": "add the first banana to my cart",
+        "ok": true
+      },
+      "path": "/results",
+      "tools": [
+        "navigate_to",
+        "search_catalog",
+        "search_catalog"
+      ],
+      "hint": "Samantha\n\nSamantha error: Conversation already has an active response in progress: resp_E0rahZJIWDiwepHbpENM0. Wait until the response is finished before creating a new one.\n\nI\u2019m on it \u2014 but the catalog search is still running in the backgr",
+      "draft": ""
+    }
+  ],
+  "boot": {
+    "err": false,
+    "hint": "Samantha\n\nText mode ready (no mic)\n\nSend\nPreferences & AgentGuard",
+    "pathname": "/search",
+    "ready": true,
+    "sign_out": true
+  },
+  "boot_shots": [
+    "W-B-RETEST2-BOOT-20260712-221433-0.jpeg"
+  ]
+}

@@ -176,27 +176,6 @@ def wake_gateway():
         LEDGER["meta"]["realtime"] = st.get("data") or st
     except Exception as exc:
         LEDGER["meta"]["realtime_err"] = str(exc)
-    try:
-        req = urllib.request.Request(
-            f"{GATEWAY}/api/ondc/bpp/ensure-demo-item",
-            data=b"{}",
-            headers={"Content-Type": "application/json"},
-            method="POST",
-        )
-        ensure = json.loads(urllib.request.urlopen(req, timeout=60).read())
-        LEDGER["meta"]["ensure_demo"] = {
-            k: ensure.get(k) for k in ("ok", "success", "published_item_count", "item_id", "error") if k in ensure or True
-        }
-        # keep compact
-        if isinstance(ensure, dict):
-            LEDGER["meta"]["ensure_demo"] = {
-                "keys": list(ensure.keys())[:12],
-                "snip": json.dumps(ensure)[:400],
-            }
-    except Exception as exc:
-        LEDGER["meta"]["ensure_err"] = str(exc)
-
-
 def wait_orb_ready(handler, session: str, rounds: int = 8) -> dict:
     last = {}
     for _ in range(rounds):

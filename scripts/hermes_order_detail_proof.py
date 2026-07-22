@@ -184,18 +184,6 @@ def wake():
             urllib.request.urlopen(f"{GATEWAY}{path}", timeout=90).read()
         except Exception as e:
             print("wake warn", path, e)
-    try:
-        req = urllib.request.Request(
-            f"{GATEWAY}/api/ondc/bpp/ensure-demo-item",
-            method="POST",
-            data=b"{}",
-            headers={"Content-Type": "application/json"},
-        )
-        print("ensure-demo", urllib.request.urlopen(req, timeout=90).read()[:200])
-    except Exception as e:
-        print("ensure-demo warn", e)
-
-
 def goto_orb(handler) -> dict:
     return call(
         handler,

@@ -1,0 +1,1161 @@
+{
+  "stamp": "20260714-174011",
+  "buyer": [
+    {
+      "id": "W-B-SPA-SESSION",
+      "result": "Pass",
+      "shots": [
+        "W-B-BOOT-20260714-174011-0.jpeg",
+        "W-B-BOOT-20260714-174011-1.jpeg"
+      ],
+      "notes": "principal=session-cookie sign_out=True mandate=visible",
+      "state": {
+        "pathname": "/search",
+        "href": "https://ondcbuyer.aadharcha.in/search",
+        "hint": "Samantha\n\nText mode ready (no mic)\n\nSend\nPreferences and AgentGuard",
+        "reply": "",
+        "tools": [],
+        "has_sign_out": true,
+        "has_banana": false,
+        "has_receipt": false,
+        "has_paid": false,
+        "has_approval": false,
+        "has_handoff": false,
+        "has_pause_agent": false,
+        "has_resume_agent": false,
+        "has_protected_activity": false,
+        "has_verify_receipt": false,
+        "has_verified_receipt": false,
+        "durability_disclosed": false,
+        "voice_connected": false,
+        "text_ready": true,
+        "mandate_status": "visible",
+        "principal": "session-cookie"
+      }
+    },
+    {
+      "id": "W-B-MANDATE",
+      "result": "Pass",
+      "shots": [
+        "W-B-BOOT-20260714-174011-0.jpeg",
+        "W-B-BOOT-20260714-174011-1.jpeg"
+      ],
+      "notes": "status=visible id=None msg=None",
+      "state": {
+        "mandate_status": "visible"
+      }
+    },
+    {
+      "id": "W-B-VOICE-MIC",
+      "result": "Blocked",
+      "shots": [
+        "W-B-BOOT-20260714-174011-0.jpeg",
+        "W-B-BOOT-20260714-174011-1.jpeg"
+      ],
+      "notes": "mic_ok=False err=browser did not expose voice-connected state ready={'connecting': False, 'err': False, 'hint': 'Samantha\\n\\nText mode ready (no mic)\\n\\nSend\\nPreferences and AgentGuard', 'ready': True}",
+      "state": {
+        "mic_ok": false
+      }
+    },
+    {
+      "id": "W-B-HI",
+      "result": "Pass",
+      "shots": [
+        "W-B-HI-20260714-174011-0.jpeg"
+      ],
+      "notes": "path=/search tools=[] reply=Hey there! \ud83d\ude0a I\u2019m ready to help\u2014what are we shopping for today?",
+      "state": {
+        "pathname": "/search",
+        "href": "https://ondcbuyer.aadharcha.in/search",
+        "hint": "Samantha\n\nSamantha replied\n\nHey there! \ud83d\ude0a I\u2019m ready to help\u2014what are we shopping for today?\nSend\nPreferences and AgentGuard",
+        "reply": "Hey there! \ud83d\ude0a I\u2019m ready to help\u2014what are we shopping for today?",
+        "tools": [],
+        "has_sign_out": true,
+        "has_banana": false,
+        "has_receipt": false,
+        "has_paid": false,
+        "has_approval": false,
+        "has_handoff": false,
+        "has_pause_agent": false,
+        "has_resume_agent": false,
+        "has_protected_activity": false,
+        "has_verify_receipt": false,
+        "has_verified_receipt": false,
+        "durability_disclosed": false,
+        "voice_connected": false,
+        "text_ready": false
+      }
+    },
+    {
+      "id": "W-B-FIND-ATTA",
+      "result": "Pass",
+      "shots": [
+        "W-B-FIND-ATTA-20260714-174011-0.jpeg"
+      ],
+      "notes": "path=/results atta=True tools=['search_catalog'] hint=Samantha\n\nOpened results for \u201catta\u201d \u2014 watching offers load on the page. When adding, use add_to_cart with the product na",
+      "state": {
+        "pathname": "/results",
+        "href": "https://ondcbuyer.aadharcha.in/results?category=grocery&q=atta&ondc_txn=03c5457a-bbcf-4141-98ab-b2d7432480fa",
+        "hint": "Samantha\n\nOpened results for \u201catta\u201d \u2014 watching offers load on the page. When adding, use add_to_cart with the product name (ids fill as offers paint).\n\nLooking up \u201cAgentGuard PreProd Atta\u201d and I\u2019ll show you the offers that appear. I\u2019ve opened the results page for \u201catta,\u201d and it looks like offers are still loading\u2014there aren\u2019t visible items yet.  \nIf you want, you can try a slightly broader search like \u201catta flour,\u201d and I\u2019ll pull up whatever shows next.\nSend\nPreferences and AgentGuard",
+        "reply": "Looking up \u201cAgentGuard PreProd Atta\u201d and I\u2019ll show you the offers that appear. I\u2019ve opened the results page for \u201catta,\u201d and it looks like offers are still loading\u2014there aren\u2019t visible items yet.  \nIf you want, you can try a slightly broader search like \u201catta flour,\u201d and I\u2019ll pull up whatever shows next.",
+        "tools": [
+          {
+            "amount_inr": null,
+            "at": 1784031076035,
+            "callId": "call_SXOTCkepX14ETFDu",
+            "cartAdds": [],
+            "decision": null,
+            "message": "Opened results for \u201catta\u201d \u2014 watching offers load on the page. When adding, use add_to_cart with the product name (ids fill as offers paint).",
+            "name": "search_catalog",
+            "navSuperseded": false,
+            "navigateTo": "/results?category=grocery&q=atta&ondc_txn=03c5457a-bbcf-4141-98ab-b2d7432480fa",
+            "ok": true,
+            "receiptId": null,
+            "session_id": null
+          }
+        ],
+        "has_sign_out": true,
+        "has_banana": false,
+        "has_receipt": false,
+        "has_paid": false,
+        "has_approval": false,
+        "has_handoff": false,
+        "has_pause_agent": false,
+        "has_resume_agent": false,
+        "has_protected_activity": false,
+        "has_verify_receipt": false,
+        "has_verified_receipt": false,
+        "durability_disclosed": false,
+        "voice_connected": false,
+        "text_ready": false
+      }
+    },
+    {
+      "id": "W-B-ADD-ATTA",
+      "result": "Pass",
+      "shots": [
+        "W-B-ADD-ATTA-20260714-174011-0.jpeg",
+        "W-B-CART-20260714-174011-0.jpeg"
+      ],
+      "notes": "ask_tools=['search_catalog', 'add_to_cart'] cart_item=True empty=False cart_snip=ONDC Buyer\nShop with Samantha under AgentGuard\nAsk Samantha\nSearch\nCart\nOrders\nConfig\nSign out\nShopping cart\n\n1 item ready for trust-aware checkout.\n\nWhole Whea",
+      "state": {
+        "pathname": "/cart",
+        "href": "https://ondcbuyer.aadharcha.in/cart",
+        "hint": "Samantha\n\nAdded Whole Wheat Atta 5 kg \u00d7 1 to cart.\n\nGot it\u2014there are atta options available in your cached results. I\u2019ll add the closest match to your cart now. Done! I added Whole Wheat Atta 5 kg to your cart, and you should see it on your cart page now.\nSend\nPreferences and AgentGuard",
+        "reply": "Got it\u2014there are atta options available in your cached results. I\u2019ll add the closest match to your cart now. Done! I added Whole Wheat Atta 5 kg to your cart, and you should see it on your cart page now.",
+        "tools": [
+          {
+            "amount_inr": null,
+            "at": 1784031076035,
+            "callId": "call_SXOTCkepX14ETFDu",
+            "cartAdds": [],
+            "decision": null,
+            "message": "Opened results for \u201catta\u201d \u2014 watching offers load on the page. When adding, use add_to_cart with the product name (ids fill as offers paint).",
+            "name": "search_catalog",
+            "navSuperseded": false,
+            "navigateTo": "/results?category=grocery&q=atta&ondc_txn=03c5457a-bbcf-4141-98ab-b2d7432480fa",
+            "ok": true,
+            "receiptId": null,
+            "session_id": null
+          },
+          {
+            "amount_inr": null,
+            "at": 1784031119211,
+            "callId": "call_GD7pFoMcsoNdHjEn",
+            "cartAdds": [
+              "bino-whole-wheat-atta-5kg"
+            ],
+            "decision": null,
+            "message": "Added Whole Wheat Atta 5 kg \u00d7 1 to cart.",
+            "name": "add_to_cart",
+            "navSuperseded": false,
+            "navigateTo": "/cart",
+            "ok": true,
+            "receiptId": null,
+            "session_id": null
+          }
+        ],
+        "has_sign_out": true,
+        "has_banana": false,
+        "has_receipt": false,
+        "has_paid": false,
+        "has_approval": false,
+        "has_handoff": false,
+        "has_pause_agent": false,
+        "has_resume_agent": false,
+        "has_protected_activity": false,
+        "has_verify_receipt": false,
+        "has_verified_receipt": false,
+        "durability_disclosed": false,
+        "voice_connected": false,
+        "text_ready": false
+      }
+    },
+    {
+      "id": "W-B-CART",
+      "result": "Pass",
+      "shots": [
+        "W-B-CART-20260714-174011-0.jpeg"
+      ],
+      "notes": "path=/cart cart_item=True empty=False",
+      "state": {
+        "pathname": "/cart",
+        "href": "https://ondcbuyer.aadharcha.in/cart",
+        "hint": "Samantha\n\nAdded Whole Wheat Atta 5 kg \u00d7 1 to cart.\n\nGot it\u2014there are atta options available in your cached results. I\u2019ll add the closest match to your cart now. Done! I added Whole Wheat Atta 5 kg to your cart, and you should see it on your cart page now.\nSend\nPreferences and AgentGuard",
+        "reply": "Got it\u2014there are atta options available in your cached results. I\u2019ll add the closest match to your cart now. Done! I added Whole Wheat Atta 5 kg to your cart, and you should see it on your cart page now.",
+        "tools": [
+          {
+            "amount_inr": null,
+            "at": 1784031076035,
+            "callId": "call_SXOTCkepX14ETFDu",
+            "cartAdds": [],
+            "decision": null,
+            "message": "Opened results for \u201catta\u201d \u2014 watching offers load on the page. When adding, use add_to_cart with the product name (ids fill as offers paint).",
+            "name": "search_catalog",
+            "navSuperseded": false,
+            "navigateTo": "/results?category=grocery&q=atta&ondc_txn=03c5457a-bbcf-4141-98ab-b2d7432480fa",
+            "ok": true,
+            "receiptId": null,
+            "session_id": null
+          },
+          {
+            "amount_inr": null,
+            "at": 1784031119211,
+            "callId": "call_GD7pFoMcsoNdHjEn",
+            "cartAdds": [
+              "bino-whole-wheat-atta-5kg"
+            ],
+            "decision": null,
+            "message": "Added Whole Wheat Atta 5 kg \u00d7 1 to cart.",
+            "name": "add_to_cart",
+            "navSuperseded": false,
+            "navigateTo": "/cart",
+            "ok": true,
+            "receiptId": null,
+            "session_id": null
+          }
+        ],
+        "has_sign_out": true,
+        "has_banana": false,
+        "has_receipt": false,
+        "has_paid": false,
+        "has_approval": false,
+        "has_handoff": false,
+        "has_pause_agent": false,
+        "has_resume_agent": false,
+        "has_protected_activity": false,
+        "has_verify_receipt": false,
+        "has_verified_receipt": false,
+        "durability_disclosed": false,
+        "voice_connected": false,
+        "text_ready": false
+      }
+    },
+    {
+      "id": "W-B-NAV-CHECKOUT",
+      "result": "Pass",
+      "shots": [
+        "W-B-NAV-CHECKOUT-20260714-174011-0.jpeg"
+      ],
+      "notes": "path=/checkout tools=['search_catalog', 'add_to_cart', 'navigate_to']",
+      "state": {
+        "pathname": "/checkout",
+        "href": "https://ondcbuyer.aadharcha.in/checkout",
+        "hint": "Samantha\n\nNavigating to /checkout.\n\nOkay, heading to your checkout now so you can review and finish. You\u2019re at checkout now. If you want, I can help with any final checkout step\u2014just say proceed, or share what you\u2019d like to change.\nSend\nPreferences and AgentGuard",
+        "reply": "Okay, heading to your checkout now so you can review and finish. You\u2019re at checkout now. If you want, I can help with any final checkout step\u2014just say proceed, or share what you\u2019d like to change.",
+        "tools": [
+          {
+            "amount_inr": null,
+            "at": 1784031076035,
+            "callId": "call_SXOTCkepX14ETFDu",
+            "cartAdds": [],
+            "decision": null,
+            "message": "Opened results for \u201catta\u201d \u2014 watching offers load on the page. When adding, use add_to_cart with the product name (ids fill as offers paint).",
+            "name": "search_catalog",
+            "navSuperseded": false,
+            "navigateTo": "/results?category=grocery&q=atta&ondc_txn=03c5457a-bbcf-4141-98ab-b2d7432480fa",
+            "ok": true,
+            "receiptId": null,
+            "session_id": null
+          },
+          {
+            "amount_inr": null,
+            "at": 1784031119211,
+            "callId": "call_GD7pFoMcsoNdHjEn",
+            "cartAdds": [
+              "bino-whole-wheat-atta-5kg"
+            ],
+            "decision": null,
+            "message": "Added Whole Wheat Atta 5 kg \u00d7 1 to cart.",
+            "name": "add_to_cart",
+            "navSuperseded": false,
+            "navigateTo": "/cart",
+            "ok": true,
+            "receiptId": null,
+            "session_id": null
+          },
+          {
+            "amount_inr": null,
+            "at": 1784031176466,
+            "callId": "call_UNP9arQy08L3OcD3",
+            "cartAdds": [],
+            "decision": null,
+            "message": "Navigating to /checkout.",
+            "name": "navigate_to",
+            "navSuperseded": false,
+            "navigateTo": "/checkout",
+            "ok": true,
+            "receiptId": null,
+            "session_id": null
+          }
+        ],
+        "has_sign_out": true,
+        "has_banana": false,
+        "has_receipt": true,
+        "has_paid": false,
+        "has_approval": false,
+        "has_handoff": false,
+        "has_pause_agent": false,
+        "has_resume_agent": false,
+        "has_protected_activity": false,
+        "has_verify_receipt": false,
+        "has_verified_receipt": false,
+        "durability_disclosed": false,
+        "voice_connected": false,
+        "text_ready": false
+      }
+    },
+    {
+      "id": "W-B-MEM-ORG",
+      "result": "Pass",
+      "shots": [
+        "W-B-MEM-ORG-20260714-174011-0.jpeg",
+        "W-B-CONFIG-20260714-174011-0.jpeg"
+      ],
+      "notes": "tools=['search_catalog', 'add_to_cart', 'navigate_to', 'remember_preference'] organic_ui=True",
+      "state": {
+        "pathname": "/checkout",
+        "href": "https://ondcbuyer.aadharcha.in/checkout",
+        "hint": "Samantha\n\nRemembered preference: User prefers organic.\n\nSure, I\u2019ll save that preference for you now. Your preference is saved: you prefer organic.  \nWhenever possible, I\u2019ll keep that in mind for future picks.\nSend\nPreferences and AgentGuard",
+        "reply": "Sure, I\u2019ll save that preference for you now. Your preference is saved: you prefer organic.  \nWhenever possible, I\u2019ll keep that in mind for future picks.",
+        "tools": [
+          {
+            "amount_inr": null,
+            "at": 1784031076035,
+            "callId": "call_SXOTCkepX14ETFDu",
+            "cartAdds": [],
+            "decision": null,
+            "message": "Opened results for \u201catta\u201d \u2014 watching offers load on the page. When adding, use add_to_cart with the product name (ids fill as offers paint).",
+            "name": "search_catalog",
+            "navSuperseded": false,
+            "navigateTo": "/results?category=grocery&q=atta&ondc_txn=03c5457a-bbcf-4141-98ab-b2d7432480fa",
+            "ok": true,
+            "receiptId": null,
+            "session_id": null
+          },
+          {
+            "amount_inr": null,
+            "at": 1784031119211,
+            "callId": "call_GD7pFoMcsoNdHjEn",
+            "cartAdds": [
+              "bino-whole-wheat-atta-5kg"
+            ],
+            "decision": null,
+            "message": "Added Whole Wheat Atta 5 kg \u00d7 1 to cart.",
+            "name": "add_to_cart",
+            "navSuperseded": false,
+            "navigateTo": "/cart",
+            "ok": true,
+            "receiptId": null,
+            "session_id": null
+          },
+          {
+            "amount_inr": null,
+            "at": 1784031176466,
+            "callId": "call_UNP9arQy08L3OcD3",
+            "cartAdds": [],
+            "decision": null,
+            "message": "Navigating to /checkout.",
+            "name": "navigate_to",
+            "navSuperseded": false,
+            "navigateTo": "/checkout",
+            "ok": true,
+            "receiptId": null,
+            "session_id": null
+          },
+          {
+            "amount_inr": null,
+            "at": 1784031215544,
+            "callId": "call_2ti1S8FdIkqLaplP",
+            "cartAdds": [],
+            "decision": null,
+            "message": "Remembered preference: User prefers organic.",
+            "name": "remember_preference",
+            "navSuperseded": false,
+            "navigateTo": null,
+            "ok": true,
+            "receiptId": null,
+            "session_id": null
+          }
+        ],
+        "has_sign_out": true,
+        "has_banana": false,
+        "has_receipt": true,
+        "has_paid": false,
+        "has_approval": false,
+        "has_handoff": false,
+        "has_pause_agent": false,
+        "has_resume_agent": false,
+        "has_protected_activity": false,
+        "has_verify_receipt": false,
+        "has_verified_receipt": false,
+        "durability_disclosed": false,
+        "voice_connected": false,
+        "text_ready": false
+      }
+    },
+    {
+      "id": "W-B-CONFIG",
+      "result": "Pass",
+      "shots": [
+        "W-B-CONFIG-20260714-174011-0.jpeg"
+      ],
+      "notes": "path=/config mandate=True",
+      "state": {
+        "pathname": "/config",
+        "href": "https://ondcbuyer.aadharcha.in/config",
+        "hint": "",
+        "reply": "",
+        "tools": [],
+        "has_sign_out": true,
+        "has_banana": false,
+        "has_receipt": true,
+        "has_paid": false,
+        "has_approval": false,
+        "has_handoff": false,
+        "has_pause_agent": true,
+        "has_resume_agent": false,
+        "has_protected_activity": true,
+        "has_verify_receipt": true,
+        "has_verified_receipt": false,
+        "durability_disclosed": true,
+        "voice_connected": false,
+        "text_ready": false
+      }
+    },
+    {
+      "id": "W-B-CHECKOUT",
+      "result": "Pass",
+      "shots": [
+        "W-B-CHECKOUT-20260714-174011-0.jpeg"
+      ],
+      "notes": "ask_path=/orders/demo-1784031257450-naf5tn tools=['checkout_commit'] paid=True receipt=True approval=False snip=ONDC Buyer\nShop with Samantha under AgentGuard\nAsk Samantha\nSearch\nCart\nOrders\nConfig\nSign out\nBack to orders\nORDER DETAIL\nOrder #demo-1784031257450-naf5tn\n\nCreated on Jul 14, 2026\n\nAccepted\nPaid\nRece",
+      "state": {
+        "pathname": "/orders/demo-1784031257450-naf5tn",
+        "href": "https://ondcbuyer.aadharcha.in/orders/demo-1784031257450-naf5tn",
+        "hint": "Samantha\n\nCheckout committed; receipt rcpt_a85609f43861401b.\n\nGot it\u2014I'll attempt the checkout commit now and then I\u2019ll report what AgentGuard allows or blocks. All set\u2014checkout and payment were allowed, and your order is paid.  \nReceipt: rcpt_a85609f43861401b; transaction: txn_35a1ad83d52142d9.\nSend\nPreferences and AgentGuard",
+        "reply": "Got it\u2014I'll attempt the checkout commit now and then I\u2019ll report what AgentGuard allows or blocks. All set\u2014checkout and payment were allowed, and your order is paid.  \nReceipt: rcpt_a85609f43861401b; transaction: txn_35a1ad83d52142d9.",
+        "tools": [
+          {
+            "amount_inr": 245,
+            "at": 1784031257451,
+            "callId": "call_pXkzf2szNiKur4ek",
+            "cartAdds": [],
+            "decision": "allow",
+            "message": "Checkout committed; receipt rcpt_a85609f43861401b.",
+            "name": "checkout_commit",
+            "navSuperseded": false,
+            "navigateTo": "/orders/demo-1784031257450-naf5tn",
+            "ok": true,
+            "receiptId": "rcpt_a85609f43861401b",
+            "session_id": "session-1784029939688-5odtxjg"
+          }
+        ],
+        "has_sign_out": true,
+        "has_banana": false,
+        "has_receipt": true,
+        "has_paid": true,
+        "has_approval": false,
+        "has_handoff": false,
+        "has_pause_agent": false,
+        "has_resume_agent": false,
+        "has_protected_activity": false,
+        "has_verify_receipt": false,
+        "has_verified_receipt": false,
+        "durability_disclosed": false,
+        "voice_connected": false,
+        "text_ready": false
+      }
+    },
+    {
+      "id": "W-B-AG-PAUSE-RESUME",
+      "result": "Pass",
+      "shots": [
+        "W-B-AG-CONTROLS-20260714-174011-0.jpeg",
+        "W-B-AG-PAUSED-20260714-174011-0.jpeg",
+        "W-B-AG-RESUMED-20260714-174011-0.jpeg"
+      ],
+      "notes": "paused=True resumed=True durability=True",
+      "state": {
+        "pathname": "/config",
+        "href": "https://ondcbuyer.aadharcha.in/config",
+        "hint": "",
+        "reply": "",
+        "tools": [],
+        "has_sign_out": true,
+        "has_banana": false,
+        "has_receipt": true,
+        "has_paid": false,
+        "has_approval": false,
+        "has_handoff": false,
+        "has_pause_agent": true,
+        "has_resume_agent": false,
+        "has_protected_activity": true,
+        "has_verify_receipt": true,
+        "has_verified_receipt": false,
+        "durability_disclosed": true,
+        "voice_connected": false,
+        "text_ready": false
+      }
+    },
+    {
+      "id": "W-B-AG-RECEIPT",
+      "result": "Pass",
+      "shots": [
+        "W-B-AG-RECEIPT-20260714-174011-0.jpeg"
+      ],
+      "notes": "activity=True verified=True",
+      "state": {
+        "pathname": "/config",
+        "href": "https://ondcbuyer.aadharcha.in/config",
+        "hint": "",
+        "reply": "",
+        "tools": [],
+        "has_sign_out": true,
+        "has_banana": false,
+        "has_receipt": true,
+        "has_paid": false,
+        "has_approval": false,
+        "has_handoff": false,
+        "has_pause_agent": true,
+        "has_resume_agent": false,
+        "has_protected_activity": true,
+        "has_verify_receipt": true,
+        "has_verified_receipt": true,
+        "durability_disclosed": true,
+        "voice_connected": false,
+        "text_ready": false
+      }
+    },
+    {
+      "id": "W-B-RUNTIME",
+      "result": "Pass",
+      "shots": [
+        "W-B-RUNTIME-20260714-174011-0.jpeg",
+        "W-B-RUNTIME-LATE-20260714-174011-0.jpeg"
+      ],
+      "notes": "handoff=True path=/search late_path=/search tools=['delegate_to_runtime_agent'] hint=Samantha\n\nBackground task complete\n\nI\u2019m starting a budget-friendly weekly grocery plan in the background. I\u2019ll share a clear shopping list and a breakdown once ",
+      "state": {
+        "pathname": "/search",
+        "href": "https://ondcbuyer.aadharcha.in/search",
+        "hint": "Samantha\n\nBackground task complete\n\nI\u2019m starting a budget-friendly weekly grocery plan in the background. I\u2019ll share a clear shopping list and a breakdown once the plan is ready. Nice plan request! I started it, and once it\u2019s ready the app will show you the list and breakdown. Great news\u2014your weekly plan comes in around \u20b91,900, under \u20b92,000. It\u2019s a practical 7-day mix for simple home meals, and actual totals can vary a bit by city or brand.\nSend\nPreferences and AgentGuard",
+        "reply": "I\u2019m starting a budget-friendly weekly grocery plan in the background. I\u2019ll share a clear shopping list and a breakdown once the plan is ready. Nice plan request! I started it, and once it\u2019s ready the app will show you the list and breakdown. Great news\u2014your weekly plan comes in around \u20b91,900, under \u20b92,000. It\u2019s a practical 7-day mix for simple home meals, and actual totals can vary a bit by city or brand.",
+        "tools": [
+          {
+            "amount_inr": null,
+            "at": 1784031327626,
+            "callId": "call_Ut1ma4I7nCGI0HKM",
+            "cartAdds": [],
+            "decision": null,
+            "message": "I've started that \u2014 I'll let you know when it's done.",
+            "name": "delegate_to_runtime_agent",
+            "navSuperseded": false,
+            "navigateTo": null,
+            "ok": true,
+            "receiptId": null,
+            "session_id": null
+          }
+        ],
+        "has_sign_out": true,
+        "has_banana": false,
+        "has_receipt": false,
+        "has_paid": false,
+        "has_approval": false,
+        "has_handoff": false,
+        "has_pause_agent": false,
+        "has_resume_agent": false,
+        "has_protected_activity": false,
+        "has_verify_receipt": false,
+        "has_verified_receipt": false,
+        "durability_disclosed": false,
+        "voice_connected": false,
+        "text_ready": false
+      }
+    },
+    {
+      "id": "W-B-VOICE",
+      "result": "Blocked",
+      "shots": [
+        "W-B-VOICE-20260714-174011-0.jpeg"
+      ],
+      "notes": "gateway Realtime configured; orb hint text-only (no mic). hint=Samantha\n\nBackground task complete\n\nI\u2019m starting a budget-friendly weekly grocery plan in the background. I\u2019ll share a clear shopping list and a breakdown once ",
+      "state": {
+        "pathname": "/search",
+        "href": "https://ondcbuyer.aadharcha.in/search",
+        "hint": "Samantha\n\nBackground task complete\n\nI\u2019m starting a budget-friendly weekly grocery plan in the background. I\u2019ll share a clear shopping list and a breakdown once the plan is ready. Nice plan request! I started it, and once it\u2019s ready the app will show you the list and breakdown. Great news\u2014your weekly plan comes in around \u20b91,900, under \u20b92,000. It\u2019s a practical 7-day mix for simple home meals, and actual totals can vary a bit by city or brand.\nSend\nPreferences and AgentGuard",
+        "reply": "I\u2019m starting a budget-friendly weekly grocery plan in the background. I\u2019ll share a clear shopping list and a breakdown once the plan is ready. Nice plan request! I started it, and once it\u2019s ready the app will show you the list and breakdown. Great news\u2014your weekly plan comes in around \u20b91,900, under \u20b92,000. It\u2019s a practical 7-day mix for simple home meals, and actual totals can vary a bit by city or brand.",
+        "tools": [
+          {
+            "amount_inr": null,
+            "at": 1784031327626,
+            "callId": "call_Ut1ma4I7nCGI0HKM",
+            "cartAdds": [],
+            "decision": null,
+            "message": "I've started that \u2014 I'll let you know when it's done.",
+            "name": "delegate_to_runtime_agent",
+            "navSuperseded": false,
+            "navigateTo": null,
+            "ok": true,
+            "receiptId": null,
+            "session_id": null
+          }
+        ],
+        "has_sign_out": true,
+        "has_banana": false,
+        "has_receipt": false,
+        "has_paid": false,
+        "has_approval": false,
+        "has_handoff": false,
+        "has_pause_agent": false,
+        "has_resume_agent": false,
+        "has_protected_activity": false,
+        "has_verify_receipt": false,
+        "has_verified_receipt": false,
+        "durability_disclosed": false,
+        "voice_connected": false,
+        "text_ready": false
+      }
+    }
+  ],
+  "seller": [
+    {
+      "id": "W-S-SPA-SESSION",
+      "result": "Pass",
+      "shots": [
+        "W-S-BOOT-20260714-174011-0.jpeg",
+        "W-S-BOOT-20260714-174011-1.jpeg"
+      ],
+      "notes": "principal=session-cookie sign_out=True mandate=visible",
+      "state": {
+        "pathname": "/dashboard",
+        "href": "https://ondcseller.aadharcha.in/dashboard",
+        "hint": "Samantha\n\nText mode ready (no mic)\n\nSend\nAgentGuard and memory",
+        "reply": "",
+        "tools": [],
+        "has_sign_out": true,
+        "has_banana": false,
+        "has_receipt": false,
+        "has_paid": false,
+        "has_approval": false,
+        "has_handoff": false,
+        "has_pause_agent": false,
+        "has_resume_agent": false,
+        "has_protected_activity": false,
+        "has_verify_receipt": false,
+        "has_verified_receipt": true,
+        "durability_disclosed": false,
+        "voice_connected": false,
+        "text_ready": true,
+        "mandate_status": "visible",
+        "principal": "session-cookie"
+      }
+    },
+    {
+      "id": "W-S-HI",
+      "result": "Pass",
+      "shots": [
+        "W-S-HI-20260714-174011-0.jpeg"
+      ],
+      "notes": "path=/dashboard tools=[]",
+      "state": {
+        "pathname": "/dashboard",
+        "href": "https://ondcseller.aadharcha.in/dashboard",
+        "hint": "Samantha\n\nSamantha replied\n\nHi there! \ud83d\ude4b\u200d\u2640\ufe0f What can I help you with today\u2014catalog, orders, or something else?\nSend\nAgentGuard and memory",
+        "reply": "Hi there! \ud83d\ude4b\u200d\u2640\ufe0f What can I help you with today\u2014catalog, orders, or something else?",
+        "tools": [],
+        "has_sign_out": true,
+        "has_banana": false,
+        "has_receipt": false,
+        "has_paid": false,
+        "has_approval": false,
+        "has_handoff": false,
+        "has_pause_agent": false,
+        "has_resume_agent": false,
+        "has_protected_activity": false,
+        "has_verify_receipt": false,
+        "has_verified_receipt": true,
+        "durability_disclosed": false,
+        "voice_connected": false,
+        "text_ready": false
+      }
+    },
+    {
+      "id": "W-S-NAV-CAT",
+      "result": "Pass",
+      "shots": [
+        "W-S-NAV-CAT-20260714-174011-0.jpeg"
+      ],
+      "notes": "path=/catalog tools=['navigate_to']",
+      "state": {
+        "pathname": "/catalog",
+        "href": "https://ondcseller.aadharcha.in/catalog",
+        "hint": "Samantha\n\nNavigating to /catalog.\n\nGot it\u2014I'll open the catalog section for you now. Catalog is open. What do you want to do next\u2014create a new item, edit, or view something specific?\nSend\nAgentGuard and memory",
+        "reply": "Got it\u2014I'll open the catalog section for you now. Catalog is open. What do you want to do next\u2014create a new item, edit, or view something specific?",
+        "tools": [
+          {
+            "at": 1784031448285,
+            "callId": "call_JTq0BnTHXH5Hiaz2",
+            "message": "Navigating to /catalog.",
+            "name": "navigate_to",
+            "navigateTo": "/catalog",
+            "ok": true
+          }
+        ],
+        "has_sign_out": true,
+        "has_banana": false,
+        "has_receipt": false,
+        "has_paid": false,
+        "has_approval": false,
+        "has_handoff": false,
+        "has_pause_agent": false,
+        "has_resume_agent": false,
+        "has_protected_activity": false,
+        "has_verify_receipt": false,
+        "has_verified_receipt": true,
+        "durability_disclosed": false,
+        "voice_connected": false,
+        "text_ready": false
+      }
+    },
+    {
+      "id": "W-S-NAV-ORD",
+      "result": "Pass",
+      "shots": [
+        "W-S-NAV-ORD-20260714-174011-0.jpeg"
+      ],
+      "notes": "path=/orders tools=['navigate_to', 'navigate_to']",
+      "state": {
+        "pathname": "/orders",
+        "href": "https://ondcseller.aadharcha.in/orders",
+        "hint": "Samantha\n\nNavigating to /orders.\n\nOkay, let me pull up your orders section for you. Orders are up. Want to view details for a specific order or take action on one?\nSend\nAgentGuard and memory",
+        "reply": "Okay, let me pull up your orders section for you. Orders are up. Want to view details for a specific order or take action on one?",
+        "tools": [
+          {
+            "at": 1784031448285,
+            "callId": "call_JTq0BnTHXH5Hiaz2",
+            "message": "Navigating to /catalog.",
+            "name": "navigate_to",
+            "navigateTo": "/catalog",
+            "ok": true
+          },
+          {
+            "at": 1784031487373,
+            "callId": "call_01NvlX8zijWCMGnY",
+            "message": "Navigating to /orders.",
+            "name": "navigate_to",
+            "navigateTo": "/orders",
+            "ok": true
+          }
+        ],
+        "has_sign_out": true,
+        "has_banana": false,
+        "has_receipt": false,
+        "has_paid": false,
+        "has_approval": false,
+        "has_handoff": false,
+        "has_pause_agent": false,
+        "has_resume_agent": false,
+        "has_protected_activity": false,
+        "has_verify_receipt": false,
+        "has_verified_receipt": false,
+        "durability_disclosed": false,
+        "voice_connected": false,
+        "text_ready": false
+      }
+    },
+    {
+      "id": "W-S-NAV-AG",
+      "result": "Pass",
+      "shots": [
+        "W-S-NAV-AG-20260714-174011-0.jpeg",
+        "W-S-AG-20260714-174011-0.jpeg"
+      ],
+      "notes": "path=/agentguard ag=/agentguard",
+      "state": {
+        "pathname": "/agentguard",
+        "href": "https://ondcseller.aadharcha.in/agentguard",
+        "hint": "Samantha\n\nNavigating to /agentguard.\n\nGot it, I\u2019ll open AgentGuard for you now. AgentGuard is open. I can help with refund limits or guard settings\u2014what would you like to do?\nSend\nAgentGuard and memory",
+        "reply": "Got it, I\u2019ll open AgentGuard for you now. AgentGuard is open. I can help with refund limits or guard settings\u2014what would you like to do?",
+        "tools": [
+          {
+            "at": 1784031448285,
+            "callId": "call_JTq0BnTHXH5Hiaz2",
+            "message": "Navigating to /catalog.",
+            "name": "navigate_to",
+            "navigateTo": "/catalog",
+            "ok": true
+          },
+          {
+            "at": 1784031487373,
+            "callId": "call_01NvlX8zijWCMGnY",
+            "message": "Navigating to /orders.",
+            "name": "navigate_to",
+            "navigateTo": "/orders",
+            "ok": true
+          },
+          {
+            "at": 1784031526424,
+            "callId": "call_LNHDmExQcwmmJ7F0",
+            "message": "Navigating to /agentguard.",
+            "name": "navigate_to",
+            "navigateTo": "/agentguard",
+            "ok": true
+          }
+        ],
+        "has_sign_out": true,
+        "has_banana": false,
+        "has_receipt": true,
+        "has_paid": false,
+        "has_approval": false,
+        "has_handoff": false,
+        "has_pause_agent": true,
+        "has_resume_agent": false,
+        "has_protected_activity": false,
+        "has_verify_receipt": false,
+        "has_verified_receipt": false,
+        "durability_disclosed": false,
+        "voice_connected": false,
+        "text_ready": false
+      }
+    },
+    {
+      "id": "W-S-PUBLISH",
+      "result": "Pass",
+      "shots": [
+        "W-S-PUBLISH-20260714-174011-0.jpeg",
+        "W-S-CAT-AFTER-20260714-174011-0.jpeg"
+      ],
+      "notes": "tools=['catalog_publish'] snip=ONDC Seller\nCatalog under AgentGuard authority\nAgentGuard\nDashboard\nCatalog\nOrders\nConfig\nSign out\nSeller catalog\nRun a tighter product shelf\nReview the inventory buyers will actually encounter, then ",
+      "state": {
+        "pathname": "/catalog",
+        "href": "https://ondcseller.aadharcha.in/catalog",
+        "hint": "Samantha\n\nPublished Test Atta 1kg (item_0dbed83fbac64b3f) with 10 in stock \u2014 visible on PreProd ONDC when Buyer searches.\n\nI\u2019ll publish that catalog item now. Done! I published Test Atta 1kg at \u20b980 with stock available.\nSend\nAgentGuard and memory",
+        "reply": "I\u2019ll publish that catalog item now. Done! I published Test Atta 1kg at \u20b980 with stock available.",
+        "tools": [
+          {
+            "at": 1784031567658,
+            "callId": "call_KY9jg29GlWPPQCdE",
+            "message": "Published Test Atta 1kg (item_0dbed83fbac64b3f) with 10 in stock \u2014 visible on PreProd ONDC when Buyer searches.",
+            "name": "catalog_publish",
+            "navigateTo": "/catalog",
+            "ok": true
+          }
+        ],
+        "has_sign_out": true,
+        "has_banana": false,
+        "has_receipt": false,
+        "has_paid": false,
+        "has_approval": false,
+        "has_handoff": false,
+        "has_pause_agent": false,
+        "has_resume_agent": false,
+        "has_protected_activity": false,
+        "has_verify_receipt": false,
+        "has_verified_receipt": true,
+        "durability_disclosed": false,
+        "voice_connected": false,
+        "text_ready": false
+      }
+    },
+    {
+      "id": "W-S-REFUND",
+      "result": "Pass",
+      "shots": [
+        "W-S-REFUND-20260714-174011-0.jpeg"
+      ],
+      "notes": "tools=['refund_issue'] hint=Samantha\n\nRefund issued; receipt rcpt_60b9ff74ec324e62.\n\nDone\u2014I've issued a 50 rupee refund for the latest order, and it succeeded. It was allowed by the guard  snip=ONDC Seller\nCatalog under AgentGuard authority\nAgentGuard\nDashboard\nCatalog\nOrders\nConfig\nSign out\nAgentGuard authority\n\nConfigure what the store agent may do. ",
+      "state": {
+        "pathname": "/agentguard",
+        "href": "https://ondcseller.aadharcha.in/agentguard?outcome=allow&receipt=rcpt_60b9ff74ec324e62",
+        "hint": "Samantha\n\nRefund issued; receipt rcpt_60b9ff74ec324e62.\n\nDone\u2014I've issued a 50 rupee refund for the latest order, and it succeeded. It was allowed by the guard and the receipt is rcpt_60b9ff74ec324e62.\nSend\nAgentGuard and memory",
+        "reply": "Done\u2014I've issued a 50 rupee refund for the latest order, and it succeeded. It was allowed by the guard and the receipt is rcpt_60b9ff74ec324e62.",
+        "tools": [
+          {
+            "at": 1784031624565,
+            "callId": "call_1N4fR8E9ZmUJmjws",
+            "message": "Refund issued; receipt rcpt_60b9ff74ec324e62.",
+            "name": "refund_issue",
+            "navigateTo": "/agentguard?outcome=allow&receipt=rcpt_60b9ff74ec324e62",
+            "ok": true
+          }
+        ],
+        "has_sign_out": true,
+        "has_banana": false,
+        "has_receipt": true,
+        "has_paid": false,
+        "has_approval": false,
+        "has_handoff": false,
+        "has_pause_agent": true,
+        "has_resume_agent": false,
+        "has_protected_activity": false,
+        "has_verify_receipt": false,
+        "has_verified_receipt": false,
+        "durability_disclosed": false,
+        "voice_connected": false,
+        "text_ready": false
+      }
+    },
+    {
+      "id": "W-S-REFUND-PAGE",
+      "result": "Pass",
+      "shots": [
+        "W-S-REFUND-PAGE-20260714-174011-0.jpeg"
+      ],
+      "notes": "path=/orders/order_bd98508c15414bca panel=True",
+      "state": {
+        "pathname": "/orders/order_bd98508c15414bca",
+        "href": "https://ondcseller.aadharcha.in/orders/order_bd98508c15414bca",
+        "hint": "",
+        "reply": "",
+        "tools": [],
+        "has_sign_out": true,
+        "has_banana": false,
+        "has_receipt": false,
+        "has_paid": true,
+        "has_approval": false,
+        "has_handoff": false,
+        "has_pause_agent": false,
+        "has_resume_agent": false,
+        "has_protected_activity": false,
+        "has_verify_receipt": false,
+        "has_verified_receipt": false,
+        "durability_disclosed": false,
+        "voice_connected": false,
+        "text_ready": false
+      }
+    },
+    {
+      "id": "W-S-REFUND-ALLOW",
+      "result": "Pass",
+      "shots": [
+        "W-S-REFUND-PAGE-20260714-174011-0.jpeg",
+        "W-S-REFUND-ALLOW-20260714-174011-0.jpeg"
+      ],
+      "notes": "page=/orders/order_bd98508c15414bca receipt=True",
+      "state": {
+        "pathname": "/orders/order_bd98508c15414bca",
+        "href": "https://ondcseller.aadharcha.in/orders/order_bd98508c15414bca",
+        "hint": "",
+        "reply": "",
+        "tools": [],
+        "has_sign_out": true,
+        "has_banana": false,
+        "has_receipt": true,
+        "has_paid": true,
+        "has_approval": false,
+        "has_handoff": false,
+        "has_pause_agent": false,
+        "has_resume_agent": false,
+        "has_protected_activity": false,
+        "has_verify_receipt": false,
+        "has_verified_receipt": true,
+        "durability_disclosed": false,
+        "voice_connected": false,
+        "text_ready": false
+      }
+    },
+    {
+      "id": "W-S-REFUND-APPROVAL",
+      "result": "Pass",
+      "shots": [
+        "W-S-REFUND-APPROVAL-20260714-174011-0.jpeg"
+      ],
+      "notes": "approval=True",
+      "state": {
+        "pathname": "/orders/order_bd98508c15414bca",
+        "href": "https://ondcseller.aadharcha.in/orders/order_bd98508c15414bca",
+        "hint": "",
+        "reply": "",
+        "tools": [],
+        "has_sign_out": true,
+        "has_banana": false,
+        "has_receipt": true,
+        "has_paid": true,
+        "has_approval": true,
+        "has_handoff": false,
+        "has_pause_agent": false,
+        "has_resume_agent": false,
+        "has_protected_activity": false,
+        "has_verify_receipt": false,
+        "has_verified_receipt": false,
+        "durability_disclosed": false,
+        "voice_connected": false,
+        "text_ready": false
+      }
+    },
+    {
+      "id": "W-S-REFUND-REPLAY",
+      "result": "Pass",
+      "shots": [
+        "W-S-REFUND-REPLAY-20260714-174011-0.jpeg"
+      ],
+      "notes": "receipt=True replay_rejected=True",
+      "state": {
+        "pathname": "/orders/order_bd98508c15414bca",
+        "href": "https://ondcseller.aadharcha.in/orders/order_bd98508c15414bca",
+        "hint": "",
+        "reply": "",
+        "tools": [],
+        "has_sign_out": true,
+        "has_banana": false,
+        "has_receipt": true,
+        "has_paid": true,
+        "has_approval": false,
+        "has_handoff": false,
+        "has_pause_agent": false,
+        "has_resume_agent": false,
+        "has_protected_activity": false,
+        "has_verify_receipt": false,
+        "has_verified_receipt": false,
+        "durability_disclosed": false,
+        "voice_connected": false,
+        "text_ready": false
+      }
+    },
+    {
+      "id": "W-S-MEM",
+      "result": "Pass",
+      "shots": [
+        "W-S-MEM-20260714-174011-0.jpeg"
+      ],
+      "notes": "tools=['remember_preference']",
+      "state": {
+        "pathname": "/orders/order_bd98508c15414bca",
+        "href": "https://ondcseller.aadharcha.in/orders/order_bd98508c15414bca",
+        "hint": "Samantha\n\nRemembered preference: User prefers brief confirmations.\n\nGot it, I\u2019ll store that preference for brief confirmations. All set \u2014 I\u2019ll keep confirmations brief from here on.\nSend\nAgentGuard and memory",
+        "reply": "Got it, I\u2019ll store that preference for brief confirmations. All set \u2014 I\u2019ll keep confirmations brief from here on.",
+        "tools": [
+          {
+            "at": 1784031683900,
+            "callId": "call_fOMbOmDS1VUjWOrk",
+            "message": "Remembered preference: User prefers brief confirmations.",
+            "name": "remember_preference",
+            "navigateTo": null,
+            "ok": true
+          }
+        ],
+        "has_sign_out": true,
+        "has_banana": false,
+        "has_receipt": true,
+        "has_paid": true,
+        "has_approval": false,
+        "has_handoff": false,
+        "has_pause_agent": false,
+        "has_resume_agent": false,
+        "has_protected_activity": false,
+        "has_verify_receipt": false,
+        "has_verified_receipt": false,
+        "durability_disclosed": false,
+        "voice_connected": false,
+        "text_ready": false
+      }
+    },
+    {
+      "id": "W-S-RUNTIME",
+      "result": "Pass",
+      "shots": [
+        "W-S-RUNTIME-20260714-174011-0.jpeg"
+      ],
+      "notes": "handoff=True path=/dashboard tools=['delegate_to_runtime_agent'] hint=Samantha\n\nBackground task complete\n\nGot it\u2014I'll kick off a broader triage of today\u2019s pending orders and refunds, then I\u2019ll summarize what needs action. I\u2019ve sta",
+      "state": {
+        "pathname": "/dashboard",
+        "href": "https://ondcseller.aadharcha.in/dashboard",
+        "hint": "Samantha\n\nBackground task complete\n\nGot it\u2014I'll kick off a broader triage of today\u2019s pending orders and refunds, then I\u2019ll summarize what needs action. I\u2019ve started the triage for today\u2019s pending orders and refunds, and I\u2019ll wait for a completion update before summarizing any required actions. Done\u2014triage is complete for today. There are 14 Jul orders in scope: 1 order awaiting seller action, 2 executed refunds totaling \u20b93,050, and one additional pending category. If you want, I can help you choose the next step for the pending order.\nSend\nAgentGuard and memory",
+        "reply": "Got it\u2014I'll kick off a broader triage of today\u2019s pending orders and refunds, then I\u2019ll summarize what needs action. I\u2019ve started the triage for today\u2019s pending orders and refunds, and I\u2019ll wait for a completion update before summarizing any required actions. Done\u2014triage is complete for today. There are 14 Jul orders in scope: 1 order awaiting seller action, 2 executed refunds totaling \u20b93,050, and one additional pending category. If you want, I can help you choose the next step for the pending or",
+        "tools": [
+          {
+            "at": 1784031720781,
+            "callId": "call_5l24qT4CR1QIG1OR",
+            "message": "I've started that \u2014 I'll let you know when it's done.",
+            "name": "delegate_to_runtime_agent",
+            "navigateTo": null,
+            "ok": true
+          }
+        ],
+        "has_sign_out": true,
+        "has_banana": false,
+        "has_receipt": false,
+        "has_paid": false,
+        "has_approval": false,
+        "has_handoff": false,
+        "has_pause_agent": false,
+        "has_resume_agent": false,
+        "has_protected_activity": false,
+        "has_verify_receipt": false,
+        "has_verified_receipt": true,
+        "durability_disclosed": false,
+        "voice_connected": false,
+        "text_ready": false
+      }
+    },
+    {
+      "id": "W-S-VOICE",
+      "result": "Blocked",
+      "shots": [
+        "W-S-VOICE-20260714-174011-0.jpeg"
+      ],
+      "notes": "hint=",
+      "state": {
+        "pathname": "/dashboard",
+        "href": "https://ondcseller.aadharcha.in/dashboard",
+        "hint": "",
+        "reply": "",
+        "tools": [
+          {
+            "at": 1784031720781,
+            "callId": "call_5l24qT4CR1QIG1OR",
+            "message": "I've started that \u2014 I'll let you know when it's done.",
+            "name": "delegate_to_runtime_agent",
+            "navigateTo": null,
+            "ok": true
+          }
+        ],
+        "has_sign_out": true,
+        "has_banana": false,
+        "has_receipt": false,
+        "has_paid": false,
+        "has_approval": false,
+        "has_handoff": false,
+        "has_pause_agent": false,
+        "has_resume_agent": false,
+        "has_protected_activity": false,
+        "has_verify_receipt": false,
+        "has_verified_receipt": true,
+        "durability_disclosed": false,
+        "voice_connected": false,
+        "text_ready": false
+      }
+    }
+  ],
+  "meta": {
+    "realtime": {
+      "configured": true,
+      "model": "gpt-realtime-2.1-mini",
+      "agent_name": "Samantha"
+    },
+    "preflight_ready": true,
+    "sessions_closed": [
+      "fqdn-e2e-20260714-174011"
+    ]
+  }
+}

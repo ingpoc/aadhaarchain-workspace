@@ -1,0 +1,581 @@
+{
+  "stamp": "20260714-024248",
+  "buyer": [
+    {
+      "id": "W-B-SPA-SESSION",
+      "result": "Pass",
+      "shots": [
+        "W-B-BOOT-20260714-024248-0.jpeg",
+        "W-B-BOOT-20260714-024248-1.jpeg"
+      ],
+      "notes": "principal=session-cookie sign_out=True mandate=visible",
+      "state": {
+        "pathname": "/search",
+        "href": "https://ondcbuyer.aadharcha.in/search",
+        "hint": "Samantha\n\nText mode ready (no mic)\n\nSend\nPreferences and AgentGuard",
+        "reply": "",
+        "tools": [],
+        "has_sign_out": true,
+        "has_banana": false,
+        "has_receipt": false,
+        "has_paid": false,
+        "has_approval": false,
+        "has_handoff": false,
+        "has_pause_agent": false,
+        "has_resume_agent": false,
+        "has_protected_activity": false,
+        "has_verify_receipt": false,
+        "has_verified_receipt": false,
+        "durability_disclosed": false,
+        "voice_connected": false,
+        "text_ready": true,
+        "mandate_status": "visible",
+        "principal": "session-cookie"
+      }
+    },
+    {
+      "id": "W-B-MANDATE",
+      "result": "Pass",
+      "shots": [
+        "W-B-BOOT-20260714-024248-0.jpeg",
+        "W-B-BOOT-20260714-024248-1.jpeg"
+      ],
+      "notes": "status=visible id=None msg=None",
+      "state": {
+        "mandate_status": "visible"
+      }
+    },
+    {
+      "id": "W-B-VOICE-MIC",
+      "result": "Blocked",
+      "shots": [
+        "W-B-BOOT-20260714-024248-0.jpeg",
+        "W-B-BOOT-20260714-024248-1.jpeg"
+      ],
+      "notes": "mic_ok=False err=browser did not expose voice-connected state ready={'connecting': False, 'err': False, 'hint': 'Samantha\\n\\nText mode ready (no mic)\\n\\nSend\\nPreferences and AgentGuard', 'ready': True}",
+      "state": {
+        "mic_ok": false
+      }
+    },
+    {
+      "id": "W-B-HI",
+      "result": "Pass",
+      "shots": [
+        "W-B-HI-20260714-024248-0.jpeg"
+      ],
+      "notes": "path=/search tools=[] reply=Hey there! \ud83d\udc4b I\u2019m Samantha, and I\u2019m thrilled to help you shop on ONDC. Tell me wh",
+      "state": {
+        "pathname": "/search",
+        "href": "https://ondcbuyer.aadharcha.in/search",
+        "hint": "Samantha\n\nSamantha replied\n\nHey there! \ud83d\udc4b I\u2019m Samantha, and I\u2019m thrilled to help you shop on ONDC. Tell me what you\u2019re looking for\u2014like \u201crice,\u201d \u201cbananas,\u201d \u201csoap,\u201d or a specific brand\u2014and I\u2019ll pop open the results and we can pick the best option.\n\nSend\nPreferences and AgentGuard",
+        "reply": "Hey there! \ud83d\udc4b I\u2019m Samantha, and I\u2019m thrilled to help you shop on ONDC. Tell me what you\u2019re looking for\u2014like \u201crice,\u201d \u201cbananas,\u201d \u201csoap,\u201d or a specific brand\u2014and I\u2019ll pop open the results and we can pick the best option.",
+        "tools": [],
+        "has_sign_out": true,
+        "has_banana": true,
+        "has_receipt": false,
+        "has_paid": false,
+        "has_approval": false,
+        "has_handoff": false,
+        "has_pause_agent": false,
+        "has_resume_agent": false,
+        "has_protected_activity": false,
+        "has_verify_receipt": false,
+        "has_verified_receipt": false,
+        "durability_disclosed": false,
+        "voice_connected": false,
+        "text_ready": false
+      }
+    },
+    {
+      "id": "W-B-FIND-ATTA",
+      "result": "Fail",
+      "shots": [
+        "W-B-FIND-ATTA-20260714-024248-0.jpeg"
+      ],
+      "notes": "path=/results atta=False tools=['search_catalog'] hint=Samantha\n\nOpened results for \u201cagentguard\u201d \u2014 watching offers load on the page. When adding, use add_to_cart with the prod",
+      "state": {
+        "pathname": "/results",
+        "href": "https://ondcbuyer.aadharcha.in/results?category=grocery&q=agentguard&ondc_txn=855e26a3-f91f-4255-a7cf-64b2383b6df6",
+        "hint": "Samantha\n\nOpened results for \u201cagentguard\u201d \u2014 watching offers load on the page. When adding, use add_to_cart with the product name (ids fill as offers paint).\n\nGot it\u2014let me pull up the results for that Atta so we can see the options together.I\u2019ve opened the results and they\u2019re loading, but it looks like no matching items came back yet. If you\u2019d like, you can tell me a smaller search term like \u201catta\u201d or the brand name as written elsewhere, and I\u2019ll try a broader lookup so we can find something that matches.\n\nSend\nPreferences and AgentGuard",
+        "reply": "Got it\u2014let me pull up the results for that Atta so we can see the options together.I\u2019ve opened the results and they\u2019re loading, but it looks like no matching items came back yet. If you\u2019d like, you can tell me a smaller search term like \u201catta\u201d or the brand name as written elsewhere, and I\u2019ll try a broader lookup so we can find something that matches.",
+        "tools": [
+          {
+            "amount_inr": null,
+            "at": 1783977226184,
+            "callId": "call_NbsL4T0QnJI1eHSN",
+            "cartAdds": [],
+            "decision": null,
+            "message": "Opened results for \u201cagentguard\u201d \u2014 watching offers load on the page. When adding, use add_to_cart with the product name (ids fill as offers paint).",
+            "name": "search_catalog",
+            "navSuperseded": false,
+            "navigateTo": "/results?category=grocery&q=agentguard&ondc_txn=855e26a3-f91f-4255-a7cf-64b2383b6df6",
+            "ok": true,
+            "receiptId": null,
+            "session_id": null
+          }
+        ],
+        "has_sign_out": true,
+        "has_banana": false,
+        "has_receipt": false,
+        "has_paid": false,
+        "has_approval": false,
+        "has_handoff": false,
+        "has_pause_agent": false,
+        "has_resume_agent": false,
+        "has_protected_activity": false,
+        "has_verify_receipt": false,
+        "has_verified_receipt": false,
+        "durability_disclosed": false,
+        "voice_connected": false,
+        "text_ready": false
+      }
+    },
+    {
+      "id": "W-B-ADD-ATTA",
+      "result": "Fail",
+      "shots": [
+        "W-B-ADD-ATTA-20260714-024248-0.jpeg",
+        "W-B-CART-20260714-024248-0.jpeg"
+      ],
+      "notes": "ask_tools=['search_catalog', 'add_to_cart'] cart_item=False empty=True cart_snip=ONDC Buyer\nShop with Samantha under AgentGuard\nAsk Samantha\nSearch\nCart\nOrders\nConfig\nSign out\nYour cart is empty\nAdd some items to get started with the buyer c",
+      "state": {
+        "pathname": "/results",
+        "href": "https://ondcbuyer.aadharcha.in/results?category=grocery&q=agentguard&ondc_txn=855e26a3-f91f-4255-a7cf-64b2383b6df6",
+        "hint": "Samantha\n\nNo cached result for \u201cAgentGuard PreProd Atta\u201d. Wait until offers appear on /results, then add again (do not re-search unless the user asks).\n\nOkay, I\u2019ll try adding it by name from the current results context.Tried to add it, but there aren\u2019t any cached offers for \u201cAgentGuard PreProd Atta\u201d yet, so the cart can\u2019t pick one up. If you\u2019d like, I can help search again\u2014but only if you explicitly ask, since the previous search context didn\u2019t return a result.\n\nSend\nPreferences and AgentGuard",
+        "reply": "Okay, I\u2019ll try adding it by name from the current results context.Tried to add it, but there aren\u2019t any cached offers for \u201cAgentGuard PreProd Atta\u201d yet, so the cart can\u2019t pick one up. If you\u2019d like, I can help search again\u2014but only if you explicitly ask, since the previous search context didn\u2019t return a result.",
+        "tools": [
+          {
+            "amount_inr": null,
+            "at": 1783977226184,
+            "callId": "call_NbsL4T0QnJI1eHSN",
+            "cartAdds": [],
+            "decision": null,
+            "message": "Opened results for \u201cagentguard\u201d \u2014 watching offers load on the page. When adding, use add_to_cart with the product name (ids fill as offers paint).",
+            "name": "search_catalog",
+            "navSuperseded": false,
+            "navigateTo": "/results?category=grocery&q=agentguard&ondc_txn=855e26a3-f91f-4255-a7cf-64b2383b6df6",
+            "ok": true,
+            "receiptId": null,
+            "session_id": null
+          },
+          {
+            "amount_inr": null,
+            "at": 1783977273453,
+            "callId": "call_8v6iP7YoaqOKg3wu",
+            "cartAdds": [],
+            "decision": null,
+            "message": "No cached result for \u201cAgentGuard PreProd Atta\u201d. Wait until offers appear on /results, then add again (do not re-search unless the user asks).",
+            "name": "add_to_cart",
+            "navSuperseded": false,
+            "navigateTo": null,
+            "ok": false,
+            "receiptId": null,
+            "session_id": null
+          }
+        ],
+        "has_sign_out": true,
+        "has_banana": false,
+        "has_receipt": false,
+        "has_paid": false,
+        "has_approval": false,
+        "has_handoff": false,
+        "has_pause_agent": false,
+        "has_resume_agent": false,
+        "has_protected_activity": false,
+        "has_verify_receipt": false,
+        "has_verified_receipt": false,
+        "durability_disclosed": false,
+        "voice_connected": false,
+        "text_ready": false
+      }
+    },
+    {
+      "id": "W-B-CART",
+      "result": "Fail",
+      "shots": [
+        "W-B-CART-20260714-024248-0.jpeg"
+      ],
+      "notes": "path=/cart cart_item=False empty=True",
+      "state": {
+        "pathname": "/cart",
+        "href": "https://ondcbuyer.aadharcha.in/cart",
+        "hint": "",
+        "reply": "",
+        "tools": [],
+        "has_sign_out": true,
+        "has_banana": false,
+        "has_receipt": false,
+        "has_paid": false,
+        "has_approval": false,
+        "has_handoff": false,
+        "has_pause_agent": false,
+        "has_resume_agent": false,
+        "has_protected_activity": false,
+        "has_verify_receipt": false,
+        "has_verified_receipt": false,
+        "durability_disclosed": false,
+        "voice_connected": false,
+        "text_ready": false
+      }
+    },
+    {
+      "id": "W-B-NAV-CHECKOUT",
+      "result": "Fail",
+      "shots": [
+        "W-B-NAV-CHECKOUT-20260714-024248-0.jpeg"
+      ],
+      "notes": "path=/cart tools=['navigate_to']",
+      "state": {
+        "pathname": "/cart",
+        "href": "https://ondcbuyer.aadharcha.in/cart",
+        "hint": "Samantha\n\nNavigating to /checkout.\n\nOkay, I\u2019ll take you straight to your checkout page so you can see what\u2019s in the cart and proceed.You\u2019re now on checkout. If your cart hasn\u2019t filled yet, it should show up and we can review it together before you pay.\n\nSend\nPreferences and AgentGuard",
+        "reply": "Okay, I\u2019ll take you straight to your checkout page so you can see what\u2019s in the cart and proceed.You\u2019re now on checkout. If your cart hasn\u2019t filled yet, it should show up and we can review it together before you pay.",
+        "tools": [
+          {
+            "amount_inr": null,
+            "at": 1783977316608,
+            "callId": "call_Wop6LvBZelOOE7S2",
+            "cartAdds": [],
+            "decision": null,
+            "message": "Navigating to /checkout.",
+            "name": "navigate_to",
+            "navSuperseded": false,
+            "navigateTo": "/checkout",
+            "ok": true,
+            "receiptId": null,
+            "session_id": null
+          }
+        ],
+        "has_sign_out": true,
+        "has_banana": false,
+        "has_receipt": false,
+        "has_paid": false,
+        "has_approval": false,
+        "has_handoff": false,
+        "has_pause_agent": false,
+        "has_resume_agent": false,
+        "has_protected_activity": false,
+        "has_verify_receipt": false,
+        "has_verified_receipt": false,
+        "durability_disclosed": false,
+        "voice_connected": false,
+        "text_ready": false
+      }
+    },
+    {
+      "id": "W-B-MEM-ORG",
+      "result": "Pass",
+      "shots": [
+        "W-B-MEM-ORG-20260714-024248-0.jpeg",
+        "W-B-CONFIG-20260714-024248-0.jpeg"
+      ],
+      "notes": "tools=['navigate_to', 'remember_preference'] organic_ui=True",
+      "state": {
+        "pathname": "/cart",
+        "href": "https://ondcbuyer.aadharcha.in/cart",
+        "hint": "Samantha\n\nRemembered preference: User prefers organic products.\n\nGot it! I\u2019ll remember that you prefer organic products.\n\nSend\nPreferences and AgentGuard",
+        "reply": "Got it! I\u2019ll remember that you prefer organic products.",
+        "tools": [
+          {
+            "amount_inr": null,
+            "at": 1783977316608,
+            "callId": "call_Wop6LvBZelOOE7S2",
+            "cartAdds": [],
+            "decision": null,
+            "message": "Navigating to /checkout.",
+            "name": "navigate_to",
+            "navSuperseded": false,
+            "navigateTo": "/checkout",
+            "ok": true,
+            "receiptId": null,
+            "session_id": null
+          },
+          {
+            "amount_inr": null,
+            "at": 1783977355080,
+            "callId": "call_gB8VpmfWB1mt6TCG",
+            "cartAdds": [],
+            "decision": null,
+            "message": "Remembered preference: User prefers organic products.",
+            "name": "remember_preference",
+            "navSuperseded": false,
+            "navigateTo": null,
+            "ok": true,
+            "receiptId": null,
+            "session_id": null
+          }
+        ],
+        "has_sign_out": true,
+        "has_banana": false,
+        "has_receipt": false,
+        "has_paid": false,
+        "has_approval": false,
+        "has_handoff": false,
+        "has_pause_agent": false,
+        "has_resume_agent": false,
+        "has_protected_activity": false,
+        "has_verify_receipt": false,
+        "has_verified_receipt": false,
+        "durability_disclosed": false,
+        "voice_connected": false,
+        "text_ready": false
+      }
+    },
+    {
+      "id": "W-B-CONFIG",
+      "result": "Pass",
+      "shots": [
+        "W-B-CONFIG-20260714-024248-0.jpeg"
+      ],
+      "notes": "path=/config mandate=True",
+      "state": {
+        "pathname": "/config",
+        "href": "https://ondcbuyer.aadharcha.in/config",
+        "hint": "",
+        "reply": "",
+        "tools": [],
+        "has_sign_out": true,
+        "has_banana": false,
+        "has_receipt": true,
+        "has_paid": false,
+        "has_approval": false,
+        "has_handoff": false,
+        "has_pause_agent": true,
+        "has_resume_agent": false,
+        "has_protected_activity": true,
+        "has_verify_receipt": true,
+        "has_verified_receipt": false,
+        "durability_disclosed": true,
+        "voice_connected": false,
+        "text_ready": false
+      }
+    },
+    {
+      "id": "W-B-CHECKOUT",
+      "result": "Fail",
+      "shots": [
+        "W-B-CHECKOUT-20260714-024248-0.jpeg",
+        "W-B-CHECKOUT-PAGE-20260714-024248-0.jpeg"
+      ],
+      "notes": "ask_path=/cart tools=['navigate_to', 'checkout_commit'] paid=False receipt=False approval=False snip=ONDC Buyer\nShop with Samantha under AgentGuard\nAsk Samantha\nSearch\nCart\nOrders\nConfig\nSign out\nYour cart is empty\nAdd some items to get started with the buyer checkout flow.\nStart shopping\nHow it work",
+      "state": {
+        "pathname": "/cart",
+        "href": "https://ondcbuyer.aadharcha.in/cart",
+        "hint": "Samantha\n\nCart total is empty. Add items before checkout.\n\nOkay, I\u2019m going to jump to your cart so we can proceed to checkout\u2014then we\u2019ll commit the payment step.Opening the checkout flow under the current cart.I tried to check out, but your cart is empty right now\u2014so there\u2019s nothing to pay. If you\u2019d like, tell me what you want (like an item or category), and I can help you browse and add it.\n\nSend\nPreferences and AgentGuard",
+        "reply": "Okay, I\u2019m going to jump to your cart so we can proceed to checkout\u2014then we\u2019ll commit the payment step.Opening the checkout flow under the current cart.I tried to check out, but your cart is empty right now\u2014so there\u2019s nothing to pay. If you\u2019d like, tell me what you want (like an item or category), and I can help you browse and add it.",
+        "tools": [
+          {
+            "amount_inr": null,
+            "at": 1783977396740,
+            "callId": "call_iCQJJLcFv60rgR8j",
+            "cartAdds": [],
+            "decision": null,
+            "message": "Navigating to /cart.",
+            "name": "navigate_to",
+            "navSuperseded": false,
+            "navigateTo": "/cart",
+            "ok": true,
+            "receiptId": null,
+            "session_id": null
+          },
+          {
+            "amount_inr": null,
+            "at": 1783977397794,
+            "callId": "call_6EU6O6vN1ggUGtXa",
+            "cartAdds": [],
+            "decision": null,
+            "message": "Cart total is empty. Add items before checkout.",
+            "name": "checkout_commit",
+            "navSuperseded": false,
+            "navigateTo": "/cart",
+            "ok": false,
+            "receiptId": null,
+            "session_id": "session-1783973848135-o9w1ibl"
+          }
+        ],
+        "has_sign_out": true,
+        "has_banana": false,
+        "has_receipt": false,
+        "has_paid": false,
+        "has_approval": false,
+        "has_handoff": false,
+        "has_pause_agent": false,
+        "has_resume_agent": false,
+        "has_protected_activity": false,
+        "has_verify_receipt": false,
+        "has_verified_receipt": false,
+        "durability_disclosed": false,
+        "voice_connected": false,
+        "text_ready": false
+      }
+    },
+    {
+      "id": "W-B-AG-PAUSE-RESUME",
+      "result": "Pass",
+      "shots": [
+        "W-B-AG-CONTROLS-20260714-024248-0.jpeg",
+        "W-B-AG-PAUSED-20260714-024248-0.jpeg",
+        "W-B-AG-RESUMED-20260714-024248-0.jpeg"
+      ],
+      "notes": "paused=True resumed=True durability=True",
+      "state": {
+        "pathname": "/config",
+        "href": "https://ondcbuyer.aadharcha.in/config",
+        "hint": "",
+        "reply": "",
+        "tools": [],
+        "has_sign_out": true,
+        "has_banana": false,
+        "has_receipt": true,
+        "has_paid": false,
+        "has_approval": false,
+        "has_handoff": false,
+        "has_pause_agent": true,
+        "has_resume_agent": false,
+        "has_protected_activity": true,
+        "has_verify_receipt": true,
+        "has_verified_receipt": false,
+        "durability_disclosed": true,
+        "voice_connected": false,
+        "text_ready": false
+      }
+    },
+    {
+      "id": "W-B-AG-RECEIPT",
+      "result": "Pass",
+      "shots": [
+        "W-B-AG-RECEIPT-20260714-024248-0.jpeg"
+      ],
+      "notes": "activity=True verified=True",
+      "state": {
+        "pathname": "/config",
+        "href": "https://ondcbuyer.aadharcha.in/config",
+        "hint": "",
+        "reply": "",
+        "tools": [],
+        "has_sign_out": true,
+        "has_banana": false,
+        "has_receipt": true,
+        "has_paid": false,
+        "has_approval": false,
+        "has_handoff": false,
+        "has_pause_agent": true,
+        "has_resume_agent": false,
+        "has_protected_activity": true,
+        "has_verify_receipt": true,
+        "has_verified_receipt": true,
+        "durability_disclosed": true,
+        "voice_connected": false,
+        "text_ready": false
+      }
+    },
+    {
+      "id": "W-B-RUNTIME",
+      "result": "Pass",
+      "shots": [
+        "W-B-RUNTIME-20260714-024248-0.jpeg",
+        "W-B-RUNTIME-LATE-20260714-024248-0.jpeg"
+      ],
+      "notes": "handoff=True path=/search late_path=/search tools=['delegate_to_runtime_agent'] hint=Samantha\n\n**Weekly grocery plan \u2014 under \u20b92,000** **Assumptions:** 1\u20132 people, 7 days, mostly home-cooked meals (dal\u2013rice/roti, one sabzi, simple breakfast). No ",
+      "state": {
+        "pathname": "/search",
+        "href": "https://ondcbuyer.aadharcha.in/search",
+        "hint": "Samantha\n\n**Weekly grocery plan \u2014 under \u20b92,000** **Assumptions:** 1\u20132 people, 7 days, mostly home-cooked meals (dal\u2013rice/roti, one sabzi, simple breakfast). No premium brands or snack splurges. Prices vary by seller \u2014 figures below are planning ranges, not checkout totals. --- ### Shopp\n\neggie like cabbage or okra. Budget breakdown (approx, ranges): - Staple base (rice, atta, dal, oil, spices): \u20b91,400\u2013\u20b91,600 - Veg and eggs: \u20b9300\u2013\u20b9500 - Dairy (milk): \u20b9200\u2013\u20b9400 A few tips: pick seasonal veggies, use a simple spice set, and keep snacks minimal\u2014this helps a lot with costs. If you want, I can also tailor it for vegetarian-only, high-protein, or a repeatable \u201cmeal prep\u201d version next.\n\nSend\nPrefere",
+        "reply": "eggie like cabbage or okra. Budget breakdown (approx, ranges): - Staple base (rice, atta, dal, oil, spices): \u20b91,400\u2013\u20b91,600 - Veg and eggs: \u20b9300\u2013\u20b9500 - Dairy (milk): \u20b9200\u2013\u20b9400 A few tips: pick seasonal veggies, use a simple spice set, and keep snacks minimal\u2014this helps a lot with costs. If you want, I can also tailor it for vegetarian-only, high-protein, or a repeatable \u201cmeal prep\u201d version next.",
+        "tools": [
+          {
+            "amount_inr": null,
+            "at": 1783977471030,
+            "callId": "call_dBhfgTDTJEpaZwBq",
+            "cartAdds": [],
+            "decision": null,
+            "message": "I've started that \u2014 I'll let you know when it's done.",
+            "name": "delegate_to_runtime_agent",
+            "navSuperseded": false,
+            "navigateTo": null,
+            "ok": true,
+            "receiptId": null,
+            "session_id": null
+          }
+        ],
+        "has_sign_out": true,
+        "has_banana": false,
+        "has_receipt": false,
+        "has_paid": false,
+        "has_approval": false,
+        "has_handoff": false,
+        "has_pause_agent": false,
+        "has_resume_agent": false,
+        "has_protected_activity": false,
+        "has_verify_receipt": false,
+        "has_verified_receipt": false,
+        "durability_disclosed": false,
+        "voice_connected": false,
+        "text_ready": false
+      }
+    },
+    {
+      "id": "W-B-VOICE",
+      "result": "Blocked",
+      "shots": [
+        "W-B-VOICE-20260714-024248-0.jpeg"
+      ],
+      "notes": "gateway Realtime configured; orb hint text-only (no mic). hint=Samantha\n\n**Weekly grocery plan \u2014 under \u20b92,000** **Assumptions:** 1\u20132 people, 7 days, mostly home-cooked meals (dal\u2013rice/roti, one sabzi, simple breakfast). No ",
+      "state": {
+        "pathname": "/search",
+        "href": "https://ondcbuyer.aadharcha.in/search",
+        "hint": "Samantha\n\n**Weekly grocery plan \u2014 under \u20b92,000** **Assumptions:** 1\u20132 people, 7 days, mostly home-cooked meals (dal\u2013rice/roti, one sabzi, simple breakfast). No premium brands or snack splurges. Prices vary by seller \u2014 figures below are planning ranges, not checkout totals. --- ### Shopp\n\neggie like cabbage or okra. Budget breakdown (approx, ranges): - Staple base (rice, atta, dal, oil, spices): \u20b91,400\u2013\u20b91,600 - Veg and eggs: \u20b9300\u2013\u20b9500 - Dairy (milk): \u20b9200\u2013\u20b9400 A few tips: pick seasonal veggies, use a simple spice set, and keep snacks minimal\u2014this helps a lot with costs. If you want, I can also tailor it for vegetarian-only, high-protein, or a repeatable \u201cmeal prep\u201d version next.\n\nSend\nPrefere",
+        "reply": "eggie like cabbage or okra. Budget breakdown (approx, ranges): - Staple base (rice, atta, dal, oil, spices): \u20b91,400\u2013\u20b91,600 - Veg and eggs: \u20b9300\u2013\u20b9500 - Dairy (milk): \u20b9200\u2013\u20b9400 A few tips: pick seasonal veggies, use a simple spice set, and keep snacks minimal\u2014this helps a lot with costs. If you want, I can also tailor it for vegetarian-only, high-protein, or a repeatable \u201cmeal prep\u201d version next.",
+        "tools": [
+          {
+            "amount_inr": null,
+            "at": 1783977471030,
+            "callId": "call_dBhfgTDTJEpaZwBq",
+            "cartAdds": [],
+            "decision": null,
+            "message": "I've started that \u2014 I'll let you know when it's done.",
+            "name": "delegate_to_runtime_agent",
+            "navSuperseded": false,
+            "navigateTo": null,
+            "ok": true,
+            "receiptId": null,
+            "session_id": null
+          }
+        ],
+        "has_sign_out": true,
+        "has_banana": false,
+        "has_receipt": false,
+        "has_paid": false,
+        "has_approval": false,
+        "has_handoff": false,
+        "has_pause_agent": false,
+        "has_resume_agent": false,
+        "has_protected_activity": false,
+        "has_verify_receipt": false,
+        "has_verified_receipt": false,
+        "durability_disclosed": false,
+        "voice_connected": false,
+        "text_ready": false
+      }
+    }
+  ],
+  "seller": [],
+  "meta": {
+    "realtime": {
+      "configured": true,
+      "model": "gpt-realtime-2.1-mini",
+      "agent_name": "Samantha"
+    },
+    "preflight_ready": true,
+    "sessions_closed": [
+      "fqdn-e2e-20260714-024248"
+    ],
+    "validation_failures": [
+      "W-B-FIND-ATTA",
+      "W-B-ADD-ATTA",
+      "W-B-CART",
+      "W-B-NAV-CHECKOUT",
+      "W-B-CHECKOUT"
+    ]
+  }
+}

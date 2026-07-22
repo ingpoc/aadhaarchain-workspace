@@ -1,0 +1,307 @@
+{
+  "success": true,
+  "id": "1599010d-b163-4505-bb85-3e890306a781",
+  "tab_id": 1951715614,
+  "final_url": "http://127.0.0.1:43102/search",
+  "results": [
+    {
+      "type": "click_selector",
+      "selector": "[data-testid='samantha-orb']",
+      "point": {
+        "onTarget": true,
+        "tag": "BUTTON",
+        "text": "S",
+        "x": 1862,
+        "y": 830
+      }
+    },
+    {
+      "type": "wait",
+      "ms": 1200
+    },
+    {
+      "type": "click_selector",
+      "selector": "[data-testid='samantha-orb-text']",
+      "point": {
+        "onTarget": true,
+        "tag": "INPUT",
+        "text": "",
+        "x": 1736,
+        "y": 754
+      }
+    },
+    {
+      "type": "wait",
+      "ms": 400
+    },
+    {
+      "type": "cursor_type",
+      "text": "Find atta under 200 rupees"
+    },
+    {
+      "type": "wait",
+      "ms": 400
+    },
+    {
+      "type": "click_selector",
+      "selector": "[data-testid='samantha-orb-send']",
+      "point": {
+        "onTarget": true,
+        "tag": "BUTTON",
+        "text": "Send",
+        "x": 1855,
+        "y": 754
+      }
+    },
+    {
+      "type": "wait",
+      "ms": 8000
+    },
+    {
+      "type": "cursor_status",
+      "visible": true,
+      "x": 1855,
+      "y": 754,
+      "phase": "idle",
+      "agent_id": "",
+      "agent_label": "",
+      "session_id": "",
+      "color": "#64d8ff",
+      "pointer_bounds": {
+        "top": 752.1302490234375,
+        "right": 1882.869384765625,
+        "bottom": 780.2777099609375,
+        "left": 1854.721923828125
+      },
+      "label_bounds": {
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      },
+      "label_below_pointer": false,
+      "url": "http://127.0.0.1:43102/search",
+      "title": "ONDC Buyer"
+    },
+    {
+      "type": "screenshot",
+      "format": "jpeg",
+      "screenshot_path": "/Users/gurusharan/.hermes/cache/hermes-chrome/1599010d-b163-4505-bb85-3e890306a781-9.jpeg"
+    },
+    {
+      "type": "page_context",
+      "url": "http://127.0.0.1:43102/search",
+      "title": "ONDC Buyer",
+      "headings": [
+        {
+          "tag": "H1",
+          "text": "Search verified commerce"
+        }
+      ],
+      "nav": [
+        {
+          "text": "Search",
+          "href": "http://127.0.0.1:43102/search"
+        },
+        {
+          "text": "Cart",
+          "href": "http://127.0.0.1:43102/cart"
+        },
+        {
+          "text": "Orders",
+          "href": "http://127.0.0.1:43102/orders"
+        },
+        {
+          "text": "Config",
+          "href": "http://127.0.0.1:43102/config"
+        }
+      ],
+      "buttons": [
+        "Open search",
+        "Open runtime status",
+        "Sign out",
+        "Grocery",
+        "Search",
+        "Send",
+        "Preferences & AgentGuard",
+        "S"
+      ],
+      "inputs": [
+        {
+          "name": "category",
+          "type": "select-one",
+          "value": "grocery"
+        },
+        {
+          "name": "query",
+          "type": "text",
+          "value": ""
+        },
+        {
+          "name": "Type to Samantha\u2026",
+          "type": "text",
+          "value": "Find atta under 200 rupees"
+        }
+      ],
+      "console_error_count": 0,
+      "console_warn_count": 0,
+      "last_console_error": null
+    },
+    {
+      "type": "page_context",
+      "url": "http://127.0.0.1:43102/search",
+      "title": "ONDC Buyer",
+      "headings": [
+        {
+          "tag": "H1",
+          "text": "Search verified commerce"
+        }
+      ],
+      "nav": [
+        {
+          "text": "Search",
+          "href": "http://127.0.0.1:43102/search"
+        },
+        {
+          "text": "Cart",
+          "href": "http://127.0.0.1:43102/cart"
+        },
+        {
+          "text": "Orders",
+          "href": "http://127.0.0.1:43102/orders"
+        },
+        {
+          "text": "Config",
+          "href": "http://127.0.0.1:43102/config"
+        }
+      ],
+      "buttons": [
+        "Open search",
+        "Open runtime status",
+        "Sign out",
+        "Grocery",
+        "Search",
+        "Send",
+        "Preferences & AgentGuard",
+        "S"
+      ],
+      "inputs": [
+        {
+          "name": "category",
+          "type": "select-one",
+          "value": "grocery"
+        },
+        {
+          "name": "query",
+          "type": "text",
+          "value": ""
+        },
+        {
+          "name": "Type to Samantha\u2026",
+          "type": "text",
+          "value": "Find atta under 200 rupees"
+        }
+      ],
+      "console_error_count": 0,
+      "console_warn_count": 0,
+      "last_console_error": null
+    },
+    {
+      "type": "evaluate",
+      "result": {
+        "errors": [
+          "fetch failed https://gateway.aadharcha.in/api/realtime/status Failed to fetch",
+          "fetch failed https://gateway.aadharcha.in/api/realtime/status Failed to fetch",
+          "fetch failed https://gateway.aadharcha.in/api/realtime/status Failed to fetch",
+          "fetch failed https://gateway.aadharcha.in/api/realtime/status Failed to fetch",
+          "fetch failed https://gateway.aadharcha.in/api/realtime/status Failed to fetch",
+          "fetch failed https://gateway.aadharcha.in/api/realtime/status Failed to fetch",
+          "fetch failed https://gateway.aadharcha.in/api/realtime/status Failed to fetch",
+          "fetch failed https://gateway.aadharcha.in/api/realtime/status Failed to fetch"
+        ],
+        "installed": true,
+        "total": 8,
+        "warns": []
+      }
+    }
+  ],
+  "page_diag": {
+    "ok": false,
+    "ui": {
+      "url": "http://127.0.0.1:43102/search",
+      "title": "ONDC Buyer",
+      "headings": [
+        "Search verified commerce"
+      ],
+      "buttons": [
+        "Open search",
+        "Open runtime status",
+        "Sign out",
+        "Grocery",
+        "Search",
+        "Send",
+        "Preferences & AgentGuard",
+        "S"
+      ]
+    },
+    "console": {
+      "installed": true,
+      "total": 8,
+      "errors": [
+        "fetch failed https://gateway.aadharcha.in/api/realtime/status Failed to fetch",
+        "fetch failed https://gateway.aadharcha.in/api/realtime/status Failed to fetch",
+        "fetch failed https://gateway.aadharcha.in/api/realtime/status Failed to fetch",
+        "fetch failed https://gateway.aadharcha.in/api/realtime/status Failed to fetch",
+        "fetch failed https://gateway.aadharcha.in/api/realtime/status Failed to fetch",
+        "fetch failed https://gateway.aadharcha.in/api/realtime/status Failed to fetch",
+        "fetch failed https://gateway.aadharcha.in/api/realtime/status Failed to fetch",
+        "fetch failed https://gateway.aadharcha.in/api/realtime/status Failed to fetch"
+      ],
+      "warns": []
+    },
+    "backend": [],
+    "issues": [
+      {
+        "source": "console",
+        "level": "error",
+        "msg": "fetch failed https://gateway.aadharcha.in/api/realtime/status Failed to fetch"
+      },
+      {
+        "source": "console",
+        "level": "error",
+        "msg": "fetch failed https://gateway.aadharcha.in/api/realtime/status Failed to fetch"
+      },
+      {
+        "source": "console",
+        "level": "error",
+        "msg": "fetch failed https://gateway.aadharcha.in/api/realtime/status Failed to fetch"
+      },
+      {
+        "source": "console",
+        "level": "error",
+        "msg": "fetch failed https://gateway.aadharcha.in/api/realtime/status Failed to fetch"
+      },
+      {
+        "source": "console",
+        "level": "error",
+        "msg": "fetch failed https://gateway.aadharcha.in/api/realtime/status Failed to fetch"
+      },
+      {
+        "source": "console",
+        "level": "error",
+        "msg": "fetch failed https://gateway.aadharcha.in/api/realtime/status Failed to fetch"
+      },
+      {
+        "source": "console",
+        "level": "error",
+        "msg": "fetch failed https://gateway.aadharcha.in/api/realtime/status Failed to fetch"
+      },
+      {
+        "source": "console",
+        "level": "error",
+        "msg": "fetch failed https://gateway.aadharcha.in/api/realtime/status Failed to fetch"
+      }
+    ],
+    "final_url": "http://127.0.0.1:43102/search"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "search_ack": "ACK",
+  "txn": "861cbebc-2efd-4192-8466-01698338c4b5"
+}
+{"attempt": 1, "count": 0, "preferred": false, "bpp_ids": []}
+{"attempt": 2, "count": 136, "preferred": false, "bpp_ids": ["None", "api.kaarobari.com", "beta.mystore.in", "dev.udyamwell.in", "ondc.mancu.cloud", "ondc.preprod.yuukke.com", "ondc1.mydailygoods.com", "sellerondc.dittomart.in"]}
+{"attempt": 3, "count": 137, "preferred": true, "bpp_ids": ["None", "api.kaarobari.com", "beta.mystore.in", "dev.udyamwell.in", "ondc.mancu.cloud", "ondc.preprod.yuukke.com", "ondc1.mydailygoods.com", "ondcseller.aadharcha.in", "sellerondc.dittomart.in"]}
+{
+  "preferred_bpp_found": true,
+  "total_count": 137,
+  "our_count": 1,
+  "our_sample": [
+    {
+      "id": "item_661739a653064a39",
+      "name": "AgentGuard PreProd Atta 1kg",
+      "price_inr": "89.00",
+      "bpp_id": "ondcseller.aadharcha.in",
+      "provider_name": "AadhaarChain AgentGuard Seller"
+    }
+  ]
+}

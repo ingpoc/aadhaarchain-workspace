@@ -1,0 +1,163 @@
+{
+  "success": true,
+  "id": "3f3ca379-4166-4cbe-b7ef-0be80c49010c",
+  "tab_id": 1951715614,
+  "final_url": "http://127.0.0.1:43102/search",
+  "results": [
+    {
+      "type": "goto",
+      "tabId": 1951715614,
+      "url": "http://127.0.0.1:43102/search"
+    },
+    {
+      "type": "evaluate",
+      "result": {
+        "already": true,
+        "count": 5
+      }
+    },
+    {
+      "type": "wait",
+      "ms": 400
+    },
+    {
+      "type": "wait",
+      "ms": 1500
+    },
+    {
+      "type": "page_context",
+      "url": "http://127.0.0.1:43102/search",
+      "title": "ONDC Buyer",
+      "headings": [
+        {
+          "tag": "H1",
+          "text": "Search verified commerce"
+        }
+      ],
+      "nav": [
+        {
+          "text": "Search",
+          "href": "http://127.0.0.1:43102/search"
+        },
+        {
+          "text": "Cart",
+          "href": "http://127.0.0.1:43102/cart"
+        },
+        {
+          "text": "Orders",
+          "href": "http://127.0.0.1:43102/orders"
+        },
+        {
+          "text": "Config",
+          "href": "http://127.0.0.1:43102/config"
+        }
+      ],
+      "buttons": [
+        "Open search",
+        "Open runtime status",
+        "Sign out",
+        "Grocery",
+        "Search",
+        "Send",
+        "Preferences & AgentGuard",
+        "S"
+      ],
+      "inputs": [
+        {
+          "name": "category",
+          "type": "select-one",
+          "value": "grocery"
+        },
+        {
+          "name": "query",
+          "type": "text",
+          "value": ""
+        },
+        {
+          "name": "Type to Samantha\u2026",
+          "type": "text",
+          "value": ""
+        }
+      ],
+      "console_error_count": 0,
+      "console_warn_count": 0,
+      "last_console_error": null
+    },
+    {
+      "type": "evaluate",
+      "result": {
+        "errors": [
+          "fetch failed https://gateway.aadharcha.in/api/realtime/status Failed to fetch",
+          "fetch failed https://gateway.aadharcha.in/api/realtime/status Failed to fetch",
+          "fetch failed https://gateway.aadharcha.in/api/realtime/status Failed to fetch",
+          "fetch failed https://gateway.aadharcha.in/api/realtime/status Failed to fetch",
+          "fetch failed https://gateway.aadharcha.in/api/realtime/status Failed to fetch"
+        ],
+        "installed": true,
+        "total": 5,
+        "warns": []
+      }
+    }
+  ],
+  "page_diag": {
+    "ok": false,
+    "ui": {
+      "url": "http://127.0.0.1:43102/search",
+      "title": "ONDC Buyer",
+      "headings": [
+        "Search verified commerce"
+      ],
+      "buttons": [
+        "Open search",
+        "Open runtime status",
+        "Sign out",
+        "Grocery",
+        "Search",
+        "Send",
+        "Preferences & AgentGuard",
+        "S"
+      ]
+    },
+    "console": {
+      "installed": true,
+      "total": 5,
+      "errors": [
+        "fetch failed https://gateway.aadharcha.in/api/realtime/status Failed to fetch",
+        "fetch failed https://gateway.aadharcha.in/api/realtime/status Failed to fetch",
+        "fetch failed https://gateway.aadharcha.in/api/realtime/status Failed to fetch",
+        "fetch failed https://gateway.aadharcha.in/api/realtime/status Failed to fetch",
+        "fetch failed https://gateway.aadharcha.in/api/realtime/status Failed to fetch"
+      ],
+      "warns": []
+    },
+    "backend": [],
+    "issues": [
+      {
+        "source": "console",
+        "level": "error",
+        "msg": "fetch failed https://gateway.aadharcha.in/api/realtime/status Failed to fetch"
+      },
+      {
+        "source": "console",
+        "level": "error",
+        "msg": "fetch failed https://gateway.aadharcha.in/api/realtime/status Failed to fetch"
+      },
+      {
+        "source": "console",
+        "level": "error",
+        "msg": "fetch failed https://gateway.aadharcha.in/api/realtime/status Failed to fetch"
+      },
+      {
+        "source": "console",
+        "level": "error",
+        "msg": "fetch failed https://gateway.aadharcha.in/api/realtime/status Failed to fetch"
+      },
+      {
+        "source": "console",
+        "level": "error",
+        "msg": "fetch failed https://gateway.aadharcha.in/api/realtime/status Failed to fetch"
+      }
+    ],
+    "final_url": "http://127.0.0.1:43102/search"
+  }
+}

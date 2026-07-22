@@ -101,14 +101,17 @@ def hermes_run(actions: list[dict], *, session: str = "portfolio-browser", timeo
     return data
 
 
-def cmd_preflight(_: list[str]) -> int:
-    return run(["bash", str(SKILL_SCRIPTS / "preflight.sh")])
+def cmd_preflight(args: list[str]) -> int:
+    command = ["bash", str(SKILL_SCRIPTS / "preflight.sh")]
+    if "--agentguard" in args:
+        command.append("--agentguard")
+    return run(command)
 
 
-def maybe_preflight() -> None:
+def maybe_preflight(*, agentguard: bool = False) -> None:
     if os.environ.get("PORTFOLIO_SKIP_PREFLIGHT") == "1":
         return
-    cmd_preflight([])
+    cmd_preflight(["--agentguard"] if agentguard else [])
 
 
 def cmd_closeout(args: list[str]) -> int:
@@ -138,8 +141,8 @@ def cmd_sso(args: list[str]) -> int:
     if not args:
         print("Usage: sso demo|burner|solflare [seller|buyer|all]", file=sys.stderr)
         return 2
-    maybe_preflight()
     wallet = args[0].lower()
+    maybe_preflight(agentguard=wallet == "demo")
     app = (args[1] if len(args) > 1 else "all").lower()
 
     if wallet == "solflare":
@@ -243,7 +246,7 @@ def cmd_agentguard(args: list[str]) -> int:
     if app not in {"seller", "buyer"}:
         print("Usage: agentguard seller|buyer [--fixture]", file=sys.stderr)
         return 2
-    maybe_preflight()
+    maybe_preflight(agentguard=True)
     if os.environ.get("AGENTGUARD_SKIP_SSO") != "1":
         if cmd_sso(["demo", app]) != 0:
             return 1

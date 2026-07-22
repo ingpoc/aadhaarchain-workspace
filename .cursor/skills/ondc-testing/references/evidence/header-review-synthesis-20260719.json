@@ -1,0 +1,12 @@
+{
+  "recorded_at": "2026-07-19T17:13:00Z",
+  "scope": "review-customer-ui-ux artifact review — Seller header disclosure",
+  "overall": "Fail",
+  "ui_verdict": "UI Fail",
+  "ux_verdict": "UX Fail",
+  "ui_agent": "5eddbe93-44e1-4e9c-aa38-eeb4b20eb4fe",
+  "ux_agent": "9f82529b-0a1f-482b-92fe-c8ea9ad88f97",
+  "ui_report": "ui-review-seller-header-20260719.json",
+  "ux_report": "ux-review-seller-header-20260719.json",
+  "note": "Independent customer-gate UX Pass earlier was task-completion smoke only; it does not clear this design gate."
+}

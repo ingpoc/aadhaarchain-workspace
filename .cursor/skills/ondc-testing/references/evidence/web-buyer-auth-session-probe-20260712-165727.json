@@ -1,0 +1,144 @@
+{
+  "stamp": "20260712-165727",
+  "after_start": [
+    {
+      "count": 0,
+      "installed": true
+    },
+    {
+      "page_context": {
+        "url": "https://ondcbuyer.aadharcha.in/search",
+        "title": "ONDC Buyer",
+        "buttons": [
+          "Open search",
+          "Sign in",
+          "Grocery",
+          "Search",
+          "S"
+        ],
+        "headings": [
+          {
+            "tag": "H1",
+            "text": "Search verified commerce"
+          }
+        ]
+      }
+    },
+    {
+      "cookieKeys": [],
+      "cookieLen": 0,
+      "href": "https://ondcbuyer.aadharcha.in/search",
+      "me": {
+        "body": "{\"success\":true,\"message\":\"No authenticated identity session.\",\"data\":null}",
+        "status": 200
+      },
+      "providers": {
+        "body": "{\"success\":true,\"data\":{\"auth0\":true,\"google\":false,\"demo_continue\":false,\"runtime_mode\":\"staging\"}}",
+        "status": 200
+      },
+      "signInVisible": true,
+      "signOutVisible": false,
+      "snippet": "PORTFOLIO ONDC Buyer Discover commerce under AgentGuard authorization. Search Cart Orders Config Sign in BUYER DISCOVERY Search verified commerce Find offers, then checkout under AgentGuard authorization. Trust check: Unsigned Sign in before elevated buyer actions. Search the network Sign in before elevated checkout. Category Grocery Grocery Restaurant Fashion Electronics Search Search Agent chat How it works S"
+    },
+    {
+      "page_context": {
+        "url": "https://ondcbuyer.aadharcha.in/search",
+        "title": "ONDC Buyer",
+        "buttons": [
+          "Open search",
+          "Sign in",
+          "Grocery",
+          "Search",
+          "S"
+        ],
+        "headings": [
+          {
+            "tag": "H1",
+            "text": "Search verified commerce"
+          }
+        ]
+      }
+    },
+    {
+      "errors": [],
+      "installed": true,
+      "total": 0,
+      "warns": []
+    }
+  ],
+  "page_diag": {
+    "ok": true,
+    "ui": {
+      "url": "https://ondcbuyer.aadharcha.in/search",
+      "title": "ONDC Buyer",
+      "headings": [
+        "Search verified commerce"
+      ],
+      "buttons": [
+        "Open search",
+        "Sign in",
+        "Grocery",
+        "Search",
+        "S"
+      ]
+    },
+    "console": {
+      "installed": true,
+      "total": 0,
+      "errors": [],
+      "warns": []
+    },
+    "backend": [],
+    "issues": [],
+    "final_url": "https://ondcbuyer.aadharcha.in/search"
+  },
+  "gateway_me": [
+    {
+      "count": 0,
+      "installed": true
+    },
+    {
+      "page_context": {
+        "url": "https://identity-aadhar-gateway-main.onrender.com/api/auth/me",
+        "title": "",
+        "buttons": [],
+        "headings": []
+      }
+    },
+    {
+      "text": "{\"success\":true,\"message\":\"Authenticated identity session active.\",\"data\":{\"principal_id\":\"principal:auth0:google-oauth2:109432510636331667287\",\"identity_provider\":\"auth0\",\"assurance_level\":\"social\",\"display_name\":\"Gurusharan Gupta Gupta\",\"email\":\"gupta.gurusharan@gmail.com\"}}"
+    },
+    {
+      "page_context": {
+        "url": "https://identity-aadhar-gateway-main.onrender.com/api/auth/me",
+        "title": "",
+        "buttons": [],
+        "headings": []
+      }
+    },
+    {
+      "errors": [],
+      "installed": true,
+      "total": 0,
+      "warns": []
+    }
+  ],
+  "page_diag2": {
+    "ok": true,
+    "ui": {
+      "url": "https://identity-aadhar-gateway-main.onrender.com/api/auth/me",
+      "title": "",
+      "headings": [],
+      "buttons": []
+    },
+    "console": {
+      "installed": true,
+      "total": 0,
+      "errors": [],
+      "warns": []
+    },
+    "backend": [],
+    "issues": [],
+    "final_url": "https://identity-aadhar-gateway-main.onrender.com/api/auth/me"
+  }
+}

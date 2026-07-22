@@ -1,10 +1,17 @@
 # PreProd ONDC network matrix (real data — no mock)
 
+**Currency boundary (2026-07-22):** the latest deployed PreProd evidence in
+this ledger is the 2026-07-16 row. The CF1 PostgreSQL source validated locally
+on 2026-07-22 was not deployed or revalidated through FQDN/Auth0. Do not use
+this matrix to claim current-source production ONDC, live payment, or official
+conformance; current local customer evidence lives in
+[`matrix-status.md`](matrix-status.md).
+
 **Policy:** `ONDC_ENABLED` may be true on gateway. Flip `VITE_COMMERCE_DEMO_MODE` only with [`commerce_demo_mode_gate.py`](../../../../scripts/commerce_demo_mode_gate.py) evidence (unlocked 2026-07-12 evening — see ledger).
 
 **Smoke:**
 ```bash
-python3 scripts/ondc_preprod_smoke.py --base https://gateway.aadharcha.in --search 'AgentGuard PreProd Atta'
+python3 scripts/ondc_preprod_smoke.py --base https://gateway.aadharcha.in --search atta --order
 # Free wake: POST /api/ondc/bpp/ensure-demo-item (also runs on gateway lifespan when ONDC_ENABLED)
 ```
 
@@ -26,8 +33,9 @@ python3 scripts/ondc_preprod_smoke.py --base https://gateway.aadharcha.in --sear
 | 2026-07-12 | **Pass** Seller BPP + Buyer sees us on network | [`evidence/preprod-seller-bpp-20260712.json`](evidence/preprod-seller-bpp-20260712.json) | Fanout variance on some queries (banana) |
 | 2026-07-12 evening | **Pass** demo mode off + select→init→confirm | [`evidence/commerce-demo-mode-gate-20260712.json`](evidence/commerce-demo-mode-gate-20260712.json) + [`evidence/demo-mode-off-select-confirm-20260712.json`](evidence/demo-mode-off-select-confirm-20260712.json) | PreProd only; payment simulated (not live UPI); UI checkout thin vs API proof; network Atta fanout still variable |
 | 2026-07-12 night | **Pass** boot ensure `067ec32` + console harden | [`evidence/console-inventory-before-20260712-200618.json`](evidence/console-inventory-before-20260712-200618.json) → [`evidence/console-inventory-after-20260712-201123.json`](evidence/console-inventory-after-20260712-201123.json); [`evidence/prove-atta-select-confirm-retry-20260712.json`](evidence/prove-atta-select-confirm-retry-20260712.json); [`evidence/seller-catalog-diag-20260712-201242.json`](evidence/seller-catalog-diag-20260712-201242.json) | Buyer results UI may still be loading at 5s (poll ≤20s); Free 503 mid-poll intermittent; no live UPI |
+| 2026-07-16 | **Pass** fail-closed public search + item/provider/quantity/quote-consistent select→init→confirm on gateway `099a93d` | [`evidence/preprod-order-consistency-20260716.json`](evidence/preprod-order-consistency-20260716.json) | PreProd only; payment state simulated, not live UPI |
 
-## Protocol status (2026-07-12 night)
+## Historical deployed protocol status (2026-07-12 night; latest row 2026-07-16)
 
 | Step | Status |
 | --- | --- |

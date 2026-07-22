@@ -1,0 +1,52 @@
+{
+  "stamp": "20260712-170923",
+  "results": [
+    {
+      "type": "evaluate",
+      "result": {
+        "ok": true,
+        "value": "gateway.aadharcha.in"
+      }
+    },
+    {
+      "type": "wait"
+    },
+    {
+      "type": "screenshot",
+      "screenshot_path": "/Users/gurusharan/.hermes/cache/hermes-chrome/c2953b6b-4465-44cb-afd3-c60a70344e3b-2.jpeg"
+    },
+    {
+      "type": "evaluate",
+      "result": {
+        "clicked": true
+      }
+    },
+    {
+      "type": "wait"
+    },
+    {
+      "type": "screenshot",
+      "screenshot_path": "/Users/gurusharan/.hermes/cache/hermes-chrome/c2953b6b-4465-44cb-afd3-c60a70344e3b-5.jpeg"
+    },
+    {
+      "type": "evaluate",
+      "result": {
+        "dialogs": [
+          "    Close this dialog          This website utilizes technologies such as cookies to enable essential site functionality, as well as for analytics, personalization, and targeted advertising. To learn more, view the following link:     Privacy Policy     ",
+          "",
+          "\u200b\nAdd Custom Domain\nVerify a new domain for your service.\nChoose domain name\nAdd DNS records\n\nTo verify your domain name, we need you to add this CNAME record.\n\n1\ngateway.aadharcha.in\nHostname\nTarget value\n\nDNS changes can take 24 hours or longer to propagate.\n\nYou can return to this page at any time to complete the verification process.\n\nRead the docs\nVerify\nClose"
+        ],
+        "dnsHints": [
+          "onrender.com\nSettings\nTable of contents\nGeneral\nBuild\nDeploy\nCustom Domains\nPR Previews\nNetworking\nEdge Caching\nNotifications\nHealth",
+          "onrender.com subdomain in addition to all custom domains. Disable to serve exclusively from custom domains.\n\nEnabled\nYour service is",
+          "onrender.com.\nPR Previews\nPull Request Previews\nSpin up temporary instances to test pull requests opened against the codex/ondc-onbo",
+          "CNAME record.\n\n1\ngateway.aadharcha.in\nHostname\nTarget value\n\nDNS changes can take 24 hours or longer to propagate.\n\nYou can return to this page at any time to complete the verification process.\n\nRead the d"
+        ],
+        "href": "https://dashboard.render.com/web/srv-d7f256f41pts73f68660/settings#custom-domains",
+        "paidInDialog": false,
+        "textHasGateway": true,
+        "textTail": "ervice limits.\nBuild\nSource\nThe build source for your Web Service\nEdit\nBranch\nThe Git branch to build and deploy.\nBranch\nEdit\nRoot DirectoryOptional\nIf set, Render runs commands from this directory instead of the repository root. Additionally, code changes outside of this directory do not trigger an auto-deploy. Most commonly used with a monorepo.\nEdit\nRegistry Credential\nIf your service pulls private Docker images from a registry, specify a credential that can access those images. Manage your credentials in Settings.\nNo credential\nEdit\nDockerfile Path\nThe path to your service's Dockerfile, relative to the repo root. Defaults to ./Dockerfile.\ngateway/\nEdit\nDocker Build Context Directory\nThe path to your service's Docker build context, relative to the repo root. Defaults to the root.\ngateway/\nEdit\nGit Credentials\nUser providing the credentials to pull the repository.\nUse My Credentials\nBuild Filters\nInclude or ignore specific paths in your repo when determining whether to trigger an auto-deploy. Paths are relative to your repo's root directory. Learn more.\nEdit\nIncluded Paths\n\nChanges that match these paths will trigger a new build.\n\nAdd Included Path\nIgnored Paths\n\nChanges that match these paths will not trigger a new build.\n\nAdd Ignored Path\nDeploy\nDocker Command\nOptionally override your Dockerfile's CMD and ENTRYPOINT instructions with a different command to start your service.\nEdit\nPre-Deploy CommandOptional\nRender runs this command before the start command. Useful for database migrations and static asset uploads.\ngateway/ $\nEdit\nAuto-Deploy\nBy default, Render automatically deploys your service whenever you update its code or configuration. Disable to handle deploys manually. Learn more.\nautoDeployTrigger\nOn Commit\nEdit\nDeploy Hook\nYour private URL to trigger a deploy for this server. Remember to keep this a secret.\nRegenerate hook\nCustom Domains\n\nYou can point custom domains you own to this service.\n\nNAME\n1\n\t\nVERIFIED STATUS\n\t\nCERTIFICATE STATUS\n\t\ngateway.aadharcha.in\t\nWaiting for DNS\n\t\nWaiting for Verification\n\t\nMenu\nAdd Custom Domain\nRender Subdomain\n\nIf enabled, your service remains reachable at its onrender.com subdomain in addition to all custom domains. Disable to serve exclusively from custom domains.\n\nEnabled\nYour service is reachable at https://identity-aadhar-gateway-main.onrender.com.\nPR Previews\nPull Request Previews\nSpin up temporary instances to test pull requests opened against the codex/ondc-onboard-fqdn-20260712 branch of ingpoc/aadhaar-chain. Choose Automatic to preview all PRs, or Manual for only PRs with [render preview] in their title. Pull Request Previews create a new instance for just this service. Use Preview Environments to clone a group of services for every PR.\nprPreviewsEnabled\nOff\nEdit\nNetworking\nEdge Caching\nServe static content at the edge to improve performance and reduce service load. Learn more.\nCacheable File Types\nSpecify which file types Render is allowed to cache for your service. You can fine-tune this behavior with Cache-Control headers.\nCache Profile\nNone\nEdit\nPAID\nEdge Caching is only available for paid instances.\nUpgrade\nNotifications\nService Notifications\nSet notifications to receive for your service. This setting will override your workspace's default settings.\nnotificationsToSend\nUse workspace default (Only failure notifications)\nEdit\nPreview Environment Notifications\nConfigure notifications for preview environments and service previews.\npreviewNotificationsEnabled\nUse account default (Disabled)\nEdit\nHealth Checks\nHealth Check Path\nProvide an HTTP endpoint path that Render messages periodically to monitor your service. Learn More.\nEdit\nMaintenance Mode\nMaintenance Mode\n\nTemporarily disable public access to your service. While enabled, Render serves a static maintenance page for all incoming requests. Learn more.\n\nMaintenance Mode Disabled\nCustom Maintenance PageOptional\n\nIf provided, Render uses the specified URL for your maintenance page instead of serving the default page.\n\nPAID\nMaintenance mode is only available for paid instances.\nUpgrade\nDelete Web Service\nSuspend Web Service\n0 services selected:\nMove\n\u200b\nAdd Custom Domain\nVerify a new domain for your service.\nChoose domain name\nAdd DNS records\n\nTo verify your domain name, we need you to add this CNAME record.\n\n1\ngateway.aadharcha.in\nHostname\nTarget value\n\nDNS changes can take 24 hours or longer to propagate.\n\nYou can return to this page at any time to complete the verification process.\n\nRead the docs\nVerify\nClose"
+      }
+    }
+  ]
+}

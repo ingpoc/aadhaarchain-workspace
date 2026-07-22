@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "name": "cursor-agent-runtime-design",
+  "cwd": "../../../..",
+  "source_paths": ["..", "../../HARDENING.md", "../../../../scripts/validate_cursor_skill.py"],
+  "ignore_parts": ["__pycache__"],
+  "steps": [{
+    "name": "validate",
+    "command": ["bash", ".cursor/skills/agent-runtime-design/scripts/validate.sh"],
+    "timeout_seconds": 15,
+    "budget_seconds": 3,
+    "fail_patterns": ["Traceback", "\\bFAILED\\b", "\\bERROR\\b", "stale guidance remains", "skill audit failed"]
+  }],
+  "ledger_path": "~/.cache/elon-algorithm/cursor-agent-runtime-design/ledger.json"
+}

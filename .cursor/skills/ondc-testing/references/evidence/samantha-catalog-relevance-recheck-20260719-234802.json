@@ -1,0 +1,20 @@
+{
+  "stamp": "20260719-234802",
+  "direct": {
+    "body_snip": "Open navigation\nONDC Buyer\nSearch, cart, and orders\nAccount\nBrowse tv\n\nReview this offer, seller, delivery, and return terms before adding it to cart.\n\n1 match\nDefault filters\nCategory\nGrocery\nGrocery\nRestaurant\nFashion\nElectronics\nSearch\nSearch groceries\nREFINE\nSearch filters\n\nTighten the result set before you compare offers.\n\nBase view\nMAX PRICEMIN RATINGSORT BY\nRelevance\nDELIVERY AREA\nFilled from your saved checkout area when available. You can edit it.\nReset filters\nOFFER GRID\nReview the available offer\n\nOnly one verified seller offer is currently available. Review its terms before adding it to cart.\n\nProduct image not supplied\nGrocery\nVision Mart\nCatalog Marker Horizon LED TV 32 2026071",
+    "has_oil": false,
+    "has_tv": true,
+    "href": "http://127.0.0.1:43102/results?q=tv",
+    "matches": "",
+    "q": "tv"
+  },
+  "samantha": {
+    "body_snip": "Open navigation\nONDC Buyer\nSearch, cart, and orders\nAccount\nBrowse tv\n\nReview this offer, seller, delivery, and return terms before adding it to cart.\n\n1 match\nDefault filters\nCategory\nGrocery\nGrocery\nRestaurant\nFashion\nElectronics\nSearch\nSearch groceries\nREFINE\nSearch filters\n\nTighten the result set before you compare offers.\n\nBase view\nMAX PRICEMIN RATINGSORT BY\nRelevance\nDELIVERY AREA\nFilled from your saved checkout area when available. You can edit it.\nReset filters\nOFFER GRID\nReview the available offer\n\nOnly one verified seller offer is currently available. Review its terms before adding it to cart.\n\nProduct image not supplied\nGrocery\nVision Mart\nCatalog Marker Horizon LED TV 32 2026071",
+    "has_oil": false,
+    "has_tv": true,
+    "href": "http://127.0.0.1:43102/results?category=grocery&q=tv&ondc_txn=0234bf76-631a-4839-adf5-efb9bc402f61",
+    "matches": "",
+    "q": "tv"
+  },
+  "pass": true
+}

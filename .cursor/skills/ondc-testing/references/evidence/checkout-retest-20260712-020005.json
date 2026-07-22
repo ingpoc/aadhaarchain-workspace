@@ -1,0 +1,75 @@
+{
+  "success": true,
+  "tool_hit": true,
+  "ag_visible": true,
+  "tools": [
+    "search_catalog",
+    "add_to_cart",
+    "checkout_commit"
+  ],
+  "after_ask": {
+    "pathname": "/checkout",
+    "reply": "I tried to start checkout, but it looks like the tool needs an item ID for the cart operation, which I don\u2019t have from the current cart state. I\u2019m not blocking you, just need that missing ID to run the commit. If you can give me the specifi",
+    "hint": "Samantha\n\n'item_id'\n\nI tried to start checkout, but it looks like the tool needs an item ID for the cart operation, which I don\u2019t have from the current cart state. I\u2019m not blocking you, just need that missing ID to run the commit. If you can give me the specific item ID, or if there\u2019s a full cart it",
+    "tools_detail": [
+      {
+        "amount_inr": null,
+        "at": 1783801830420,
+        "callId": "call_TAJTJWX5euxeXFo8",
+        "cartAdds": [],
+        "decision": null,
+        "message": "Found 1 item(s) for \u201cbanana\u201d.",
+        "name": "search_catalog",
+        "navigateTo": "/results?category=grocery&q=banana",
+        "ok": true,
+        "receiptId": null,
+        "session_id": null
+      },
+      {
+        "amount_inr": null,
+        "at": 1783801830997,
+        "callId": "call_nDGiWOQiMkSlSYbo",
+        "cartAdds": [
+          "banana-robusta-dozen"
+        ],
+        "decision": null,
+        "message": "Added Robusta Bananas (12 pcs) \u00d7 1 to cart.",
+        "name": "add_to_cart",
+        "navigateTo": "/cart",
+        "ok": true,
+        "receiptId": null,
+        "session_id": null
+      },
+      {
+        "amount_inr": 559,
+        "at": 1783801856947,
+        "callId": "call_Hv0GSykeVrZNxvl4",
+        "cartAdds": [],
+        "decision": null,
+        "message": "'item_id'",
+        "name": "checkout_commit",
+        "navigateTo": "/checkout",
+        "ok": false,
+        "receiptId": null,
+        "session_id": "session-1783800693829-8uz9lku"
+      }
+    ]
+  },
+  "checkout_page": {
+    "pathname": "/checkout",
+    "has_receipt": true,
+    "has_approval": true,
+    "body_snip": "PORTFOLIO\nONDC Buyer\nDiscover verified commerce with a faster trust-aware shell.\nSearch\nCart\nOrders\nConfig\nSign out\nCHECKOUT\nTrust-aware checkout\n\nConfirm buyer information, generate a quote, and place the order once AadhaarChain verification allows elevated actions.\n\nAadhaarChain trust check: No identity\n\nCreate an identity anchor in AadhaarChain before elevated buyer actions.\n\nResolve trust in A"
+  },
+  "cart_seed": {
+    "pathname": "/cart",
+    "has_banana": true,
+    "shots": [
+      "/Users/gurusharan/Documents/remote-claude/active/apps/AadhaarChainWorkspace/.cursor/skills/ondc-testing/references/evidence/B-CHECKOUT-RETEST-CART-20260712-020005-5.jpeg"
+    ]
+  },
+  "screenshots": [
+    "/Users/gurusharan/Documents/remote-claude/active/apps/AadhaarChainWorkspace/.cursor/skills/ondc-testing/references/evidence/B-CHECKOUT-RETEST-20260712-020005-5.jpeg",
+    "/Users/gurusharan/Documents/remote-claude/active/apps/AadhaarChainWorkspace/.cursor/skills/ondc-testing/references/evidence/B-CHECKOUT-RETEST-20260712-020005-9.jpeg"
+  ]
+}

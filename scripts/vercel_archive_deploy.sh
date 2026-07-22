@@ -72,7 +72,7 @@ if [[ "$stage_only" == true ]]; then
   exit 0
 fi
 
-deploy_json="$(cd "$stage" && vercel deploy --prod --archive=tgz --yes)"
+deploy_json="$(cd "$stage" && vercel deploy --prod --archive=tgz --yes --format=json)"
 deployment_url="$(printf '%s' "$deploy_json" | jq -r '.deployment.url // empty')"
 ready_state="$(printf '%s' "$deploy_json" | jq -r '.deployment.readyState // empty')"
 test "$ready_state" = "READY"

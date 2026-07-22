@@ -1,0 +1,13 @@
+{
+  "status": 200,
+  "success": true,
+  "permissionDenied": false,
+  "message": "AgentGuard agent ready",
+  "data_keys": [
+    "agent",
+    "policy",
+    "mandate"
+  ],
+  "DATA_DIR": "/tmp/aadharchain-data",
+  "note": "POST /api/agentguard/agents/ensure from ondcbuyer.aadharcha.in with credentials"
+}

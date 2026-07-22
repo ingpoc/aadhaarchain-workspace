@@ -1,0 +1,89 @@
+{
+  "stamp": "20260712-165254",
+  "progclick": [
+    {
+      "type": "evaluate",
+      "value": null
+    },
+    {
+      "type": "evaluate",
+      "value": null
+    },
+    {
+      "type": "page_context",
+      "url": "https://ondcbuyer.aadharcha.in/search",
+      "title": "ONDC Buyer",
+      "headings": [
+        {
+          "tag": "H1",
+          "text": "Search verified commerce"
+        }
+      ],
+      "buttons": [
+        "Open search",
+        "Sign in",
+        "Grocery",
+        "Search",
+        "S"
+      ]
+    },
+    {
+      "type": "screenshot",
+      "path": "/Users/gurusharan/.hermes/cache/hermes-chrome/64cb1650-2d97-4f58-8f72-5161e809eea6-7.jpeg"
+    },
+    {
+      "type": "evaluate",
+      "value": null
+    },
+    {
+      "type": "page_context",
+      "url": "https://ondcbuyer.aadharcha.in/search",
+      "title": "ONDC Buyer",
+      "headings": [
+        {
+          "tag": "H1",
+          "text": "Search verified commerce"
+        }
+      ],
+      "buttons": [
+        "Open search",
+        "Sign in",
+        "Grocery",
+        "Search",
+        "S"
+      ]
+    },
+    {
+      "type": "evaluate",
+      "value": null
+    }
+  ],
+  "page_diag1": {
+    "ok": true,
+    "ui": {
+      "url": "https://ondcbuyer.aadharcha.in/search",
+      "title": "ONDC Buyer",
+      "headings": [
+        "Search verified commerce"
+      ],
+      "buttons": [
+        "Open search",
+        "Sign in",
+        "Grocery",
+        "Search",
+        "S"
+      ]
+    },
+    "console": {
+      "installed": false,
+      "total": 0,
+      "errors": [],
+      "warns": []
+    },
+    "backend": [],
+    "issues": [],
+    "final_url": "https://ondcbuyer.aadharcha.in/search"
+  },
+  "direct": null,
+  "page_diag2": null
+}

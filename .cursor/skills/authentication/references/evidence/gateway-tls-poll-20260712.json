@@ -1,0 +1,24 @@
+[
+  {
+    "attempt": 1,
+    "stamp": "20260712-171129",
+    "ui": {
+      "certOk": false,
+      "pending": true,
+      "slice": "gateway.aadharcha.in\t\nVerified\n\t\nCertificate Pending\n\t\nMenu\nAdd Custom Domain\nRender Subdomain\n\nIf enabled, your service remains reachable at its onrender.com subdomain in addition to all custom domains. Disable to serve exclusively from custom domai"
+    },
+    "http": "000",
+    "err": "curl: (35) LibreSSL/3.3.6: error:1404B410:SSL routines:ST_CONNECT:sslv3 alert handshake failure\n"
+  },
+  {
+    "attempt": 2,
+    "stamp": "20260712-171154",
+    "ui": {
+      "certOk": false,
+      "pending": true,
+      "slice": "gateway.aadharcha.in\t\nVerified\n\t\nCertificate Pending\n\t\nMenu\nAdd Custom Domain\nRender Subdomain\n\nIf enabled, your service remains reachable at its onrender.com subdomain in addition to all custom domains. Disable to serve exclusively from custom domai"
+    },
+    "http": "200",
+    "err": ""
+  }
+]

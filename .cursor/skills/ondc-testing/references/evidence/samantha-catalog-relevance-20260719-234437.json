@@ -1,0 +1,107 @@
+{
+  "stamp": "20260719-234437",
+  "truth": {
+    "tv": [
+      "Catalog Marker Horizon LED TV 32 20260719234027"
+    ],
+    "oil": [
+      "Cold-Pressed Groundnut Oil 1L",
+      "Catalog Marker Groundnut Oil 1L 20260719234027"
+    ],
+    "atta": [
+      "Catalog Marker Atta 1kg 20260719234027"
+    ],
+    "banana": []
+  },
+  "ready": {
+    "err": false,
+    "hint": "Samantha\n\nListening + text ready\n\nClose\nSend\nPreferences and AgentGuard",
+    "ready": true
+  },
+  "samantha": [
+    {
+      "case": "tv",
+      "codes": [
+        "HIT"
+      ],
+      "pass": true,
+      "url_q": "tv",
+      "tool_q": "",
+      "tool_names": [
+        "search_catalog"
+      ],
+      "href": "http://127.0.0.1:43102/results?category=grocery&q=tv&ondc_txn=29f9eb7d-36d4-4fdc-9c3d-943fc36145f5",
+      "has_oil": false,
+      "has_tv": true,
+      "reply": "Okay, opening the search results for TVs so you can see what\u2019s available. I pulled up the TV results, and there\u2019s one option available: the Catalog Marker Horizon LED TV 32. Do you want me to add it to your cart?",
+      "body_snip": "Open navigation\nONDC Buyer\nSearch, cart, and orders\nAccount\nBrowse tv\n\nAdjust the search or filters to find an available offer.\n\n0 matches\nDefault filters\nCategory\nGrocery\nGrocery\nRestaurant\nFashion\nElectronics\nSearch\nSearch groceries\nREFINE\nSearch filters\n\nTighten the result set before you compare offers.\n\nBase view\nMAX PRICEMIN RATINGSORT BY\nRelevance\nDELIVERY AREA\nFilled from your saved checkou"
+    },
+    {
+      "case": "oil",
+      "codes": [
+        "HIT"
+      ],
+      "pass": true,
+      "url_q": "oil",
+      "tool_q": "",
+      "tool_names": [
+        "search_catalog",
+        "search_catalog"
+      ],
+      "href": "http://127.0.0.1:43102/results?category=grocery&q=oil&ondc_txn=b91fa013-081b-43d9-bdff-0770564b178d",
+      "has_oil": true,
+      "has_tv": false,
+      "reply": "Got it, I\u2019m pulling up cooking oil options now. Here are two cooking oil options: Catalog Marker Groundnut Oil 1L and Cold-Pressed Groundnut Oil 1L. Want to add one of these to your cart? Quick question: which one do you want\u2014Cold-Pressed G",
+      "body_snip": "Open navigation\nONDC Buyer\nSearch, cart, and orders\nAccount\nBrowse oil\n\nAdjust the search or filters to find an available offer.\n\n0 matches\nDefault filters\nCategory\nGrocery\nGrocery\nRestaurant\nFashion\nElectronics\nSearch\nSearch groceries\nREFINE\nSearch filters\n\nTighten the result set before you compare offers.\n\nBase view\nMAX PRICEMIN RATINGSORT BY\nRelevance\nDELIVERY AREA\nFilled from your saved checko"
+    },
+    {
+      "case": "atta",
+      "codes": [
+        "HIT"
+      ],
+      "pass": true,
+      "url_q": "",
+      "tool_q": "",
+      "tool_names": [
+        "search_catalog",
+        "search_catalog",
+        "add_to_cart"
+      ],
+      "href": "http://127.0.0.1:43102/cart",
+      "has_oil": false,
+      "has_tv": false,
+      "reply": "Great choice, I\u2019ll grab the whole wheat atta and pop it into your cart. Done, your atta is added\u2014AadhaarChain Whole Wheat Atta 1kg. You\u2019re all set for tonight\u2019s roti.",
+      "body_snip": "Open navigation\nONDC Buyer\nSearch, cart, and orders\nAccount\nShopping cart\n\n1 item ready for trust-aware checkout.\n\nAadhaarChain Whole Wheat Atta 1kg\nINR 89.00 \u00d7 1\n1\nRemove\nOrder summary\nSubtotal\nINR 89.00\nTotal\nINR 89.00\nProceed to checkout\nNeed more items?\nContinue shopping\n\nSamantha\n\nAdded AadhaarChain Whole Wheat Atta 1kg \u00d7 1 to cart.\n\nClose\nGreat choice, I\u2019ll grab the whole wheat atta and pop "
+    },
+    {
+      "case": "banana",
+      "codes": [
+        "GHOST",
+        "JUNK"
+      ],
+      "pass": false,
+      "url_q": "banana",
+      "tool_q": "",
+      "tool_names": [
+        "search_catalog",
+        "search_catalog",
+        "add_to_cart",
+        "search_catalog"
+      ],
+      "href": "http://127.0.0.1:43102/results?category=grocery&q=banana&ondc_txn=66e24e6e-b434-41e9-a4be-7cd5ac5205d3",
+      "has_oil": false,
+      "has_tv": false,
+      "reply": "Looking for bananas now. Banana results are loading or loading again, so you should see offers soon. If you\u2019d like, you can tell me how many you need, or I can help you pick the best option once they\u2019re ready.",
+      "body_snip": "Open navigation\nONDC Buyer\nSearch, cart, and orders\nAccount\nBrowse banana\n\nAdjust the search or filters to find an available offer.\n\n0 matches\nDefault filters\nCategory\nGrocery\nGrocery\nRestaurant\nFashion\nElectronics\nSearch\nSearch groceries\nREFINE\nSearch filters\n\nTighten the result set before you compare offers.\n\nBase view\nMAX PRICEMIN RATINGSORT BY\nRelevance\nDELIVERY AREA\nFilled from your saved che"
+    }
+  ],
+  "direct_tv": {
+    "href": "http://127.0.0.1:43102/results?q=tv",
+    "q": "tv",
+    "has_tv": true,
+    "has_oil": false,
+    "pass": true,
+    "body_snip": "Open navigation\nONDC Buyer\nSearch, cart, and orders\nAccount\nBrowse tv\n\nReview this offer, seller, delivery, and return terms before adding it to cart.\n\n1 match\nDefault filters\nCategory\nGrocery\nGrocery\nRestaurant\nFashion\nElectronics\nSearch\nSearch groceries\nREFINE\nSearch filters\n\nTighten the result set before you compare offers.\n\nBase view\nMAX PRICEMIN RATINGSORT BY\nRelevance\nDELIVERY AREA\nFilled fr"
+  },
+  "overall_pass": true
+}

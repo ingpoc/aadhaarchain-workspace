@@ -1,0 +1,205 @@
+{
+  "page_diag": {
+    "ok": true,
+    "ui": {
+      "url": "https://ondcbuyer.aadharcha.in/search",
+      "title": "ONDC Buyer",
+      "headings": [
+        "Search verified commerce"
+      ],
+      "buttons": [
+        "Open search",
+        "Grocery",
+        "Search",
+        "S"
+      ]
+    },
+    "console": {
+      "installed": true,
+      "total": 0,
+      "errors": [],
+      "warns": []
+    },
+    "backend": [],
+    "issues": [],
+    "final_url": "https://ondcbuyer.aadharcha.in/search"
+  },
+  "shots": [
+    "/Users/gurusharan/Documents/remote-claude/active/apps/AadhaarChainWorkspace/.cursor/skills/ondc-testing/references/evidence/web-buyer-home-20260712-154417-4.jpeg",
+    "/Users/gurusharan/Documents/remote-claude/active/apps/AadhaarChainWorkspace/.cursor/skills/ondc-testing/references/evidence/web-buyer-home-20260712-154417-11.jpeg"
+  ],
+  "probes": [
+    {
+      "already": true,
+      "count": 0
+    },
+    {
+      "banners": [
+        {
+          "cls": "pointer-events-none fixed bottom-5 right-5 z-[60] flex flex-col items-end gap-2",
+          "text": "S"
+        },
+        {
+          "cls": "pointer-events-auto flex h-14 w-14 items-center justify-center rounded-full border text-sm font-semibold shadow-lg transition border-border bg-background/95 text-foreground hover:scale-105",
+          "text": "S"
+        }
+      ],
+      "body": "PORTFOLIO\nONDC Buyer\nDiscover commerce under AgentGuard authorization.\nSearch\nCart\nOrders\nConfig\nBUYER DISCOVERY\nSearch verified commerce\n\nFind offers, then checkout under AgentGuard authorization.\n\nTrust check: Unsigned\n\nSign in before elevated buyer actions. Wallet KYC is optional advanced setup.\n\nSearch the network\n\nSign in (Google or demo) before elevated checkout.\n\nCategory\nGrocery\nGrocery\nRestaurant\nFashion\nElectronics\nSearch\nSearch\nAgent chat\nHow it works\nS",
+      "hasSamantha": true,
+      "localStorageKeys": [
+        "ondc-local-cart-session",
+        "ondc-session-id",
+        "portfolio-agent-session-id:/api/agent/buyer"
+      ],
+      "pathname": "/search",
+      "texts": [
+        {
+          "href": null,
+          "tag": "BUTTON",
+          "text": "Open navigation"
+        },
+        {
+          "href": "https://ondcbuyer.aadharcha.in/search",
+          "tag": "A",
+          "text": "PORTFOLIO\nONDC Buyer\nDiscover commerce under AgentGuard authorization."
+        },
+        {
+          "href": "https://ondcbuyer.aadharcha.in/search",
+          "tag": "A",
+          "text": "Search"
+        },
+        {
+          "href": "https://ondcbuyer.aadharcha.in/cart",
+          "tag": "A",
+          "text": "Cart"
+        },
+        {
+          "href": "https://ondcbuyer.aadharcha.in/orders",
+          "tag": "A",
+          "text": "Orders"
+        },
+        {
+          "href": "https://ondcbuyer.aadharcha.in/config",
+          "tag": "A",
+          "text": "Config"
+        },
+        {
+          "href": null,
+          "tag": "BUTTON",
+          "text": "Grocery"
+        },
+        {
+          "href": null,
+          "tag": "BUTTON",
+          "text": "Search"
+        },
+        {
+          "href": "https://ondcbuyer.aadharcha.in/agent",
+          "tag": "A",
+          "text": "Agent chat"
+        },
+        {
+          "href": "https://ondcbuyer.aadharcha.in/usecase.html#agents",
+          "tag": "A",
+          "text": "How it works"
+        },
+        {
+          "href": null,
+          "tag": "BUTTON",
+          "text": "S"
+        }
+      ],
+      "title": "ONDC Buyer",
+      "url": "https://ondcbuyer.aadharcha.in/search"
+    },
+    {
+      "count": 0,
+      "installed": true
+    },
+    {
+      "banners": [
+        {
+          "cls": "pointer-events-none fixed bottom-5 right-5 z-[60] flex flex-col items-end gap-2",
+          "text": "S"
+        },
+        {
+          "cls": "pointer-events-auto flex h-14 w-14 items-center justify-center rounded-full border text-sm font-semibold shadow-lg transition border-border bg-background/95 text-foreground hover:scale-105",
+          "text": "S"
+        }
+      ],
+      "body": "PORTFOLIO\nONDC Buyer\nDiscover commerce under AgentGuard authorization.\nSearch\nCart\nOrders\nConfig\nBUYER DISCOVERY\nSearch verified commerce\n\nFind offers, then checkout under AgentGuard authorization.\n\nTrust check: Unsigned\n\nSign in before elevated buyer actions. Wallet KYC is optional advanced setup.\n\nSearch the network\n\nSign in (Google or demo) before elevated checkout.\n\nCategory\nGrocery\nGrocery\nRestaurant\nFashion\nElectronics\nSearch\nSearch\nAgent chat\nHow it works\nS",
+      "hasSamantha": true,
+      "localStorageKeys": [
+        "ondc-local-cart-session",
+        "ondc-session-id",
+        "portfolio-agent-session-id:/api/agent/buyer"
+      ],
+      "pathname": "/search",
+      "texts": [
+        {
+          "href": null,
+          "tag": "BUTTON",
+          "text": "Open navigation"
+        },
+        {
+          "href": "https://ondcbuyer.aadharcha.in/search",
+          "tag": "A",
+          "text": "PORTFOLIO\nONDC Buyer\nDiscover commerce under AgentGuard authorization."
+        },
+        {
+          "href": "https://ondcbuyer.aadharcha.in/search",
+          "tag": "A",
+          "text": "Search"
+        },
+        {
+          "href": "https://ondcbuyer.aadharcha.in/cart",
+          "tag": "A",
+          "text": "Cart"
+        },
+        {
+          "href": "https://ondcbuyer.aadharcha.in/orders",
+          "tag": "A",
+          "text": "Orders"
+        },
+        {
+          "href": "https://ondcbuyer.aadharcha.in/config",
+          "tag": "A",
+          "text": "Config"
+        },
+        {
+          "href": null,
+          "tag": "BUTTON",
+          "text": "Grocery"
+        },
+        {
+          "href": null,
+          "tag": "BUTTON",
+          "text": "Search"
+        },
+        {
+          "href": "https://ondcbuyer.aadharcha.in/agent",
+          "tag": "A",
+          "text": "Agent chat"
+        },
+        {
+          "href": "https://ondcbuyer.aadharcha.in/usecase.html#agents",
+          "tag": "A",
+          "text": "How it works"
+        },
+        {
+          "href": null,
+          "tag": "BUTTON",
+          "text": "S"
+        }
+      ],
+      "title": "ONDC Buyer",
+      "url": "https://ondcbuyer.aadharcha.in/search"
+    },
+    {
+      "errors": [],
+      "installed": true,
+      "total": 0,
+      "warns": []
+    }
+  ]
+}

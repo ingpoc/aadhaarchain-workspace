@@ -1,0 +1,3310 @@
+{
+  "success": true,
+  "counts": {
+    "pass": 16,
+    "fail": 0,
+    "skip": 0,
+    "total": 16
+  },
+  "rows": [
+    {
+      "id": "B-HI",
+      "ask": "Hi Samantha, this is my first time here. What can you help me do?",
+      "result": "Pass",
+      "evidence": "path=/search tools=[]; settled=True; turn_errors=0; frontend=origin=http://127.0.0.1:43102 expected=http://127.0.0.1:43102 path=/search; backend=backend owners reachable; realtime_configured=true; order_count=21",
+      "screenshots": [
+        "/Users/gurusharan/Documents/remote-claude/active/apps/AadhaarChainWorkspace/.cursor/skills/ondc-testing/references/evidence/B-HI-20260715-232440-0.jpeg"
+      ],
+      "pathname": "/search",
+      "frontend_origin": "http://127.0.0.1:43102",
+      "frontend_check": {
+        "ok": true,
+        "evidence": "origin=http://127.0.0.1:43102 expected=http://127.0.0.1:43102 path=/search"
+      },
+      "tools": [],
+      "reply": "Welcome! I can help you browse products, open search results, add items to your cart, and manage it\u2014like changing quantities or removing ite",
+      "backend": {
+        "ok": true,
+        "realtime_configured": true,
+        "ondc_enabled": false,
+        "catalog": [
+          {
+            "item_id": "item_c5d8daa0520f476f",
+            "title": "AgentGuard PreProd Atta 1kg",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_8c74c8870fd04099",
+            "title": "Whole Wheat Atta 1kg",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_6964cd65af584386",
+            "title": "Matrix Fresh Atta 223131",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_4be1317e4c234ca0",
+            "title": "Matrix Fresh Atta 224133",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_887bc624dd3b4fec",
+            "title": "Matrix Fresh Atta 224942",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_db6f9d3b5eb3475e",
+            "title": "Matrix Fresh Atta 225642",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_fb171d98340b43b1",
+            "title": "Matrix Fresh Atta 231027",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_6bce0e5cd9c74af4",
+            "title": "Matrix Fresh Atta 231658",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_438068d4c3bf4b7a",
+            "title": "Matrix Fresh Atta 232440",
+            "price_inr": 89,
+            "status": "published"
+          }
+        ],
+        "orders": [
+          {
+            "order_id": "order_38a0b35aa8174c0d",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:01:05.536011+00:00"
+          },
+          {
+            "order_id": "order_2a5cceb8490d4b99",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:05:51.286167+00:00"
+          },
+          {
+            "order_id": "order_4c8ccd3261904d5c",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:05:51.541110+00:00"
+          },
+          {
+            "order_id": "order_bbec57608f4a4c48",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:19:28.714890+00:00"
+          },
+          {
+            "order_id": "order_a4a7ed4cc1854951",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:19:37.784071+00:00"
+          },
+          {
+            "order_id": "order_fcfb79214e4d4143",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:19:39.133987+00:00"
+          },
+          {
+            "order_id": "order_309a2da9b92a4b84",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:37:58.951374+00:00"
+          },
+          {
+            "order_id": "order_228b5a93f76d45f3",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:48:03.544174+00:00"
+          },
+          {
+            "order_id": "order_613fd4bc3a794b6a",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:48:04.019865+00:00"
+          },
+          {
+            "order_id": "order_2118ed40ceab48ba",
+            "status": "paid",
+            "updated_at": "2026-07-11T20:34:21.865247+00:00"
+          },
+          {
+            "order_id": "order_172a6fd98b984039",
+            "status": "paid",
+            "updated_at": "2026-07-11T20:39:52.553549+00:00"
+          },
+          {
+            "order_id": "order_5b13d08f0738454c",
+            "status": "paid",
+            "updated_at": "2026-07-14T08:03:33.683932+00:00"
+          },
+          {
+            "order_id": "order_79cf391c2ae34d93",
+            "status": "paid",
+            "updated_at": "2026-07-14T08:32:25.781472+00:00"
+          },
+          {
+            "order_id": "order_d01fbc8ff4ef4e3c",
+            "status": "paid",
+            "updated_at": "2026-07-14T08:45:35.939785+00:00"
+          },
+          {
+            "order_id": "order_e83643ce544b48e1",
+            "status": "paid",
+            "updated_at": "2026-07-15T14:56:05.132244+00:00"
+          },
+          {
+            "order_id": "order_24a4f6d1e1e64d9d",
+            "status": "paid",
+            "updated_at": "2026-07-15T17:06:07.145626+00:00"
+          },
+          {
+            "order_id": "order_96e1fe533fa74ea2",
+            "status": "paid",
+            "updated_at": "2026-07-15T17:16:09.821902+00:00"
+          },
+          {
+            "order_id": "order_0b49b0e6ba4041df",
+            "status": "paid",
+            "updated_at": "2026-07-15T17:24:43.328682+00:00"
+          },
+          {
+            "order_id": "order_14cece4570d94826",
+            "status": "paid",
+            "updated_at": "2026-07-15T17:31:46.295801+00:00"
+          },
+          {
+            "order_id": "order_449e722d781549b5",
+            "status": "paid",
+            "updated_at": "2026-07-15T17:45:32.146344+00:00"
+          },
+          {
+            "order_id": "order_83a537334ac5417f",
+            "status": "paid",
+            "updated_at": "2026-07-15T17:52:03.757446+00:00"
+          }
+        ],
+        "order_count": 21
+      },
+      "backend_check": {
+        "ok": true,
+        "evidence": "backend owners reachable; realtime_configured=true; order_count=21"
+      },
+      "turn_errors": [],
+      "visual_review": "accepted"
+    },
+    {
+      "id": "B-FIND-ATTA",
+      "ask": "Please show me Matrix Fresh Atta 232440. Do not add anything to my cart yet.",
+      "result": "Pass",
+      "evidence": "path=/results atta=True tools=['search_catalog']; settled=True; turn_errors=0; frontend=origin=http://127.0.0.1:43102 expected=http://127.0.0.1:43102 path=/results; backend=backend owners reachable; realtime_configured=true; order_count=21",
+      "screenshots": [
+        "/Users/gurusharan/Documents/remote-claude/active/apps/AadhaarChainWorkspace/.cursor/skills/ondc-testing/references/evidence/B-FIND-ATTA-20260715-232440-0.jpeg"
+      ],
+      "pathname": "/results",
+      "frontend_origin": "http://127.0.0.1:43102",
+      "frontend_check": {
+        "ok": true,
+        "evidence": "origin=http://127.0.0.1:43102 expected=http://127.0.0.1:43102 path=/results"
+      },
+      "tools": [
+        "search_catalog"
+      ],
+      "reply": "Sure\u2014I'll pull up the results for Matrix Fresh Atta so you can browse, but I won\u2019t add anything. Found some Matrix Fresh Atta options\u2014Matrix",
+      "backend": {
+        "ok": true,
+        "realtime_configured": true,
+        "ondc_enabled": false,
+        "catalog": [
+          {
+            "item_id": "item_c5d8daa0520f476f",
+            "title": "AgentGuard PreProd Atta 1kg",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_8c74c8870fd04099",
+            "title": "Whole Wheat Atta 1kg",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_6964cd65af584386",
+            "title": "Matrix Fresh Atta 223131",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_4be1317e4c234ca0",
+            "title": "Matrix Fresh Atta 224133",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_887bc624dd3b4fec",
+            "title": "Matrix Fresh Atta 224942",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_db6f9d3b5eb3475e",
+            "title": "Matrix Fresh Atta 225642",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_fb171d98340b43b1",
+            "title": "Matrix Fresh Atta 231027",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_6bce0e5cd9c74af4",
+            "title": "Matrix Fresh Atta 231658",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_438068d4c3bf4b7a",
+            "title": "Matrix Fresh Atta 232440",
+            "price_inr": 89,
+            "status": "published"
+          }
+        ],
+        "orders": [
+          {
+            "order_id": "order_38a0b35aa8174c0d",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:01:05.536011+00:00"
+          },
+          {
+            "order_id": "order_2a5cceb8490d4b99",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:05:51.286167+00:00"
+          },
+          {
+            "order_id": "order_4c8ccd3261904d5c",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:05:51.541110+00:00"
+          },
+          {
+            "order_id": "order_bbec57608f4a4c48",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:19:28.714890+00:00"
+          },
+          {
+            "order_id": "order_a4a7ed4cc1854951",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:19:37.784071+00:00"
+          },
+          {
+            "order_id": "order_fcfb79214e4d4143",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:19:39.133987+00:00"
+          },
+          {
+            "order_id": "order_309a2da9b92a4b84",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:37:58.951374+00:00"
+          },
+          {
+            "order_id": "order_228b5a93f76d45f3",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:48:03.544174+00:00"
+          },
+          {
+            "order_id": "order_613fd4bc3a794b6a",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:48:04.019865+00:00"
+          },
+          {
+            "order_id": "order_2118ed40ceab48ba",
+            "status": "paid",
+            "updated_at": "2026-07-11T20:34:21.865247+00:00"
+          },
+          {
+            "order_id": "order_172a6fd98b984039",
+            "status": "paid",
+            "updated_at": "2026-07-11T20:39:52.553549+00:00"
+          },
+          {
+            "order_id": "order_5b13d08f0738454c",
+            "status": "paid",
+            "updated_at": "2026-07-14T08:03:33.683932+00:00"
+          },
+          {
+            "order_id": "order_79cf391c2ae34d93",
+            "status": "paid",
+            "updated_at": "2026-07-14T08:32:25.781472+00:00"
+          },
+          {
+            "order_id": "order_d01fbc8ff4ef4e3c",
+            "status": "paid",
+            "updated_at": "2026-07-14T08:45:35.939785+00:00"
+          },
+          {
+            "order_id": "order_e83643ce544b48e1",
+            "status": "paid",
+            "updated_at": "2026-07-15T14:56:05.132244+00:00"
+          },
+          {
+            "order_id": "order_24a4f6d1e1e64d9d",
+            "status": "paid",
+            "updated_at": "2026-07-15T17:06:07.145626+00:00"
+          },
+          {
+            "order_id": "order_96e1fe533fa74ea2",
+            "status": "paid",
+            "updated_at": "2026-07-15T17:16:09.821902+00:00"
+          },
+          {
+            "order_id": "order_0b49b0e6ba4041df",
+            "status": "paid",
+            "updated_at": "2026-07-15T17:24:43.328682+00:00"
+          },
+          {
+            "order_id": "order_14cece4570d94826",
+            "status": "paid",
+            "updated_at": "2026-07-15T17:31:46.295801+00:00"
+          },
+          {
+            "order_id": "order_449e722d781549b5",
+            "status": "paid",
+            "updated_at": "2026-07-15T17:45:32.146344+00:00"
+          },
+          {
+            "order_id": "order_83a537334ac5417f",
+            "status": "paid",
+            "updated_at": "2026-07-15T17:52:03.757446+00:00"
+          }
+        ],
+        "order_count": 21
+      },
+      "backend_check": {
+        "ok": true,
+        "evidence": "backend owners reachable; realtime_configured=true; order_count=21"
+      },
+      "turn_errors": [],
+      "visual_review": "accepted"
+    },
+    {
+      "id": "B-RESULT-GROUND",
+      "ask": "What atta choices are on this page, and what does the first one cost?",
+      "result": "Pass",
+      "evidence": "path=/results grounded_reply=on this page, the atta options include matrix fresh atta 232440, 231658, 231027, 225642, 224942, 224133, 223131, plus whole wheat atta 1kg\u2014a; settled=True; turn_errors=0; frontend=origin=http://127.0.0.1:43102 expected=http://127.0.0.1:43102 path=/results; backend=backend owners reachable; realtime_configured=true; order_count=21",
+      "screenshots": [
+        "/Users/gurusharan/Documents/remote-claude/active/apps/AadhaarChainWorkspace/.cursor/skills/ondc-testing/references/evidence/B-RESULT-GROUND-20260715-232440-0.jpeg"
+      ],
+      "pathname": "/results",
+      "frontend_origin": "http://127.0.0.1:43102",
+      "frontend_check": {
+        "ok": true,
+        "evidence": "origin=http://127.0.0.1:43102 expected=http://127.0.0.1:43102 path=/results"
+      },
+      "tools": [],
+      "reply": "On this page, the atta options include Matrix Fresh Atta 232440, 231658, 231027, 225642, 224942, 224133, 223131, plus Whole Wheat Atta 1kg\u2014a",
+      "backend": {
+        "ok": true,
+        "realtime_configured": true,
+        "ondc_enabled": false,
+        "catalog": [
+          {
+            "item_id": "item_c5d8daa0520f476f",
+            "title": "AgentGuard PreProd Atta 1kg",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_8c74c8870fd04099",
+            "title": "Whole Wheat Atta 1kg",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_6964cd65af584386",
+            "title": "Matrix Fresh Atta 223131",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_4be1317e4c234ca0",
+            "title": "Matrix Fresh Atta 224133",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_887bc624dd3b4fec",
+            "title": "Matrix Fresh Atta 224942",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_db6f9d3b5eb3475e",
+            "title": "Matrix Fresh Atta 225642",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_fb171d98340b43b1",
+            "title": "Matrix Fresh Atta 231027",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_6bce0e5cd9c74af4",
+            "title": "Matrix Fresh Atta 231658",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_438068d4c3bf4b7a",
+            "title": "Matrix Fresh Atta 232440",
+            "price_inr": 89,
+            "status": "published"
+          }
+        ],
+        "orders": [
+          {
+            "order_id": "order_38a0b35aa8174c0d",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:01:05.536011+00:00"
+          },
+          {
+            "order_id": "order_2a5cceb8490d4b99",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:05:51.286167+00:00"
+          },
+          {
+            "order_id": "order_4c8ccd3261904d5c",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:05:51.541110+00:00"
+          },
+          {
+            "order_id": "order_bbec57608f4a4c48",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:19:28.714890+00:00"
+          },
+          {
+            "order_id": "order_a4a7ed4cc1854951",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:19:37.784071+00:00"
+          },
+          {
+            "order_id": "order_fcfb79214e4d4143",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:19:39.133987+00:00"
+          },
+          {
+            "order_id": "order_309a2da9b92a4b84",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:37:58.951374+00:00"
+          },
+          {
+            "order_id": "order_228b5a93f76d45f3",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:48:03.544174+00:00"
+          },
+          {
+            "order_id": "order_613fd4bc3a794b6a",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:48:04.019865+00:00"
+          },
+          {
+            "order_id": "order_2118ed40ceab48ba",
+            "status": "paid",
+            "updated_at": "2026-07-11T20:34:21.865247+00:00"
+          },
+          {
+            "order_id": "order_172a6fd98b984039",
+            "status": "paid",
+            "updated_at": "2026-07-11T20:39:52.553549+00:00"
+          },
+          {
+            "order_id": "order_5b13d08f0738454c",
+            "status": "paid",
+            "updated_at": "2026-07-14T08:03:33.683932+00:00"
+          },
+          {
+            "order_id": "order_79cf391c2ae34d93",
+            "status": "paid",
+            "updated_at": "2026-07-14T08:32:25.781472+00:00"
+          },
+          {
+            "order_id": "order_d01fbc8ff4ef4e3c",
+            "status": "paid",
+            "updated_at": "2026-07-14T08:45:35.939785+00:00"
+          },
+          {
+            "order_id": "order_e83643ce544b48e1",
+            "status": "paid",
+            "updated_at": "2026-07-15T14:56:05.132244+00:00"
+          },
+          {
+            "order_id": "order_24a4f6d1e1e64d9d",
+            "status": "paid",
+            "updated_at": "2026-07-15T17:06:07.145626+00:00"
+          },
+          {
+            "order_id": "order_96e1fe533fa74ea2",
+            "status": "paid",
+            "updated_at": "2026-07-15T17:16:09.821902+00:00"
+          },
+          {
+            "order_id": "order_0b49b0e6ba4041df",
+            "status": "paid",
+            "updated_at": "2026-07-15T17:24:43.328682+00:00"
+          },
+          {
+            "order_id": "order_14cece4570d94826",
+            "status": "paid",
+            "updated_at": "2026-07-15T17:31:46.295801+00:00"
+          },
+          {
+            "order_id": "order_449e722d781549b5",
+            "status": "paid",
+            "updated_at": "2026-07-15T17:45:32.146344+00:00"
+          },
+          {
+            "order_id": "order_83a537334ac5417f",
+            "status": "paid",
+            "updated_at": "2026-07-15T17:52:03.757446+00:00"
+          }
+        ],
+        "order_count": 21
+      },
+      "backend_check": {
+        "ok": true,
+        "evidence": "backend owners reachable; realtime_configured=true; order_count=21"
+      },
+      "turn_errors": [],
+      "visual_review": "accepted"
+    },
+    {
+      "id": "B-ADD-ATTA",
+      "ask": "Please put one Matrix Fresh Atta 232440 in my cart.",
+      "result": "Pass",
+      "evidence": "path=/cart atta=True tools=['add_to_cart']; settled=True; turn_errors=0; frontend=origin=http://127.0.0.1:43102 expected=http://127.0.0.1:43102 path=/cart; backend=local cart owner verified in frontend; backend catalog item exists; order_count=21 unchanged",
+      "screenshots": [
+        "/Users/gurusharan/Documents/remote-claude/active/apps/AadhaarChainWorkspace/.cursor/skills/ondc-testing/references/evidence/B-ADD-ATTA-20260715-232440-0.jpeg"
+      ],
+      "pathname": "/cart",
+      "frontend_origin": "http://127.0.0.1:43102",
+      "frontend_check": {
+        "ok": true,
+        "evidence": "origin=http://127.0.0.1:43102 expected=http://127.0.0.1:43102 path=/cart"
+      },
+      "tools": [
+        "add_to_cart"
+      ],
+      "reply": "Got it\u2014I'll add that specific Matrix Fresh Atta to your cart and take you to the cart page so you can see the line. Done\u2014Matrix Fresh Atta 2",
+      "backend": {
+        "ok": true,
+        "realtime_configured": true,
+        "ondc_enabled": false,
+        "catalog": [
+          {
+            "item_id": "item_c5d8daa0520f476f",
+            "title": "AgentGuard PreProd Atta 1kg",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_8c74c8870fd04099",
+            "title": "Whole Wheat Atta 1kg",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_6964cd65af584386",
+            "title": "Matrix Fresh Atta 223131",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_4be1317e4c234ca0",
+            "title": "Matrix Fresh Atta 224133",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_887bc624dd3b4fec",
+            "title": "Matrix Fresh Atta 224942",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_db6f9d3b5eb3475e",
+            "title": "Matrix Fresh Atta 225642",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_fb171d98340b43b1",
+            "title": "Matrix Fresh Atta 231027",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_6bce0e5cd9c74af4",
+            "title": "Matrix Fresh Atta 231658",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_438068d4c3bf4b7a",
+            "title": "Matrix Fresh Atta 232440",
+            "price_inr": 89,
+            "status": "published"
+          }
+        ],
+        "orders": [
+          {
+            "order_id": "order_38a0b35aa8174c0d",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:01:05.536011+00:00"
+          },
+          {
+            "order_id": "order_2a5cceb8490d4b99",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:05:51.286167+00:00"
+          },
+          {
+            "order_id": "order_4c8ccd3261904d5c",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:05:51.541110+00:00"
+          },
+          {
+            "order_id": "order_bbec57608f4a4c48",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:19:28.714890+00:00"
+          },
+          {
+            "order_id": "order_a4a7ed4cc1854951",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:19:37.784071+00:00"
+          },
+          {
+            "order_id": "order_fcfb79214e4d4143",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:19:39.133987+00:00"
+          },
+          {
+            "order_id": "order_309a2da9b92a4b84",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:37:58.951374+00:00"
+          },
+          {
+            "order_id": "order_228b5a93f76d45f3",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:48:03.544174+00:00"
+          },
+          {
+            "order_id": "order_613fd4bc3a794b6a",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:48:04.019865+00:00"
+          },
+          {
+            "order_id": "order_2118ed40ceab48ba",
+            "status": "paid",
+            "updated_at": "2026-07-11T20:34:21.865247+00:00"
+          },
+          {
+            "order_id": "order_172a6fd98b984039",
+            "status": "paid",
+            "updated_at": "2026-07-11T20:39:52.553549+00:00"
+          },
+          {
+            "order_id": "order_5b13d08f0738454c",
+            "status": "paid",
+            "updated_at": "2026-07-14T08:03:33.683932+00:00"
+          },
+          {
+            "order_id": "order_79cf391c2ae34d93",
+            "status": "paid",
+            "updated_at": "2026-07-14T08:32:25.781472+00:00"
+          },
+          {
+            "order_id": "order_d01fbc8ff4ef4e3c",
+            "status": "paid",
+            "updated_at": "2026-07-14T08:45:35.939785+00:00"
+          },
+          {
+            "order_id": "order_e83643ce544b48e1",
+            "status": "paid",
+            "updated_at": "2026-07-15T14:56:05.132244+00:00"
+          },
+          {
+            "order_id": "order_24a4f6d1e1e64d9d",
+            "status": "paid",
+            "updated_at": "2026-07-15T17:06:07.145626+00:00"
+          },
+          {
+            "order_id": "order_96e1fe533fa74ea2",
+            "status": "paid",
+            "updated_at": "2026-07-15T17:16:09.821902+00:00"
+          },
+          {
+            "order_id": "order_0b49b0e6ba4041df",
+            "status": "paid",
+            "updated_at": "2026-07-15T17:24:43.328682+00:00"
+          },
+          {
+            "order_id": "order_14cece4570d94826",
+            "status": "paid",
+            "updated_at": "2026-07-15T17:31:46.295801+00:00"
+          },
+          {
+            "order_id": "order_449e722d781549b5",
+            "status": "paid",
+            "updated_at": "2026-07-15T17:45:32.146344+00:00"
+          },
+          {
+            "order_id": "order_83a537334ac5417f",
+            "status": "paid",
+            "updated_at": "2026-07-15T17:52:03.757446+00:00"
+          }
+        ],
+        "order_count": 21
+      },
+      "backend_check": {
+        "ok": true,
+        "evidence": "local cart owner verified in frontend; backend catalog item exists; order_count=21 unchanged"
+      },
+      "turn_errors": [],
+      "visual_review": "accepted"
+    },
+    {
+      "id": "B-CLEAR-CART",
+      "ask": "Please empty my cart so I can start over.",
+      "result": "Pass",
+      "evidence": "tools=['clear_cart'] empty=True; settled=True; turn_errors=0; frontend=origin=http://127.0.0.1:43102 expected=http://127.0.0.1:43102 path=/cart; backend=local cart owner verified in frontend; backend catalog item exists; order_count=21 unchanged",
+      "screenshots": [
+        "/Users/gurusharan/Documents/remote-claude/active/apps/AadhaarChainWorkspace/.cursor/skills/ondc-testing/references/evidence/B-CLEAR-CART-20260715-232440-0.jpeg"
+      ],
+      "pathname": "/cart",
+      "frontend_origin": "http://127.0.0.1:43102",
+      "frontend_check": {
+        "ok": true,
+        "evidence": "origin=http://127.0.0.1:43102 expected=http://127.0.0.1:43102 path=/cart"
+      },
+      "tools": [
+        "clear_cart"
+      ],
+      "reply": "Okay\u2014I'll clear your cart and open it so you see it empty. All set\u2014your cart is now empty.  \nYou\u2019re back on the cart page, ready to start ov",
+      "backend": {
+        "ok": true,
+        "realtime_configured": true,
+        "ondc_enabled": false,
+        "catalog": [
+          {
+            "item_id": "item_c5d8daa0520f476f",
+            "title": "AgentGuard PreProd Atta 1kg",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_8c74c8870fd04099",
+            "title": "Whole Wheat Atta 1kg",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_6964cd65af584386",
+            "title": "Matrix Fresh Atta 223131",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_4be1317e4c234ca0",
+            "title": "Matrix Fresh Atta 224133",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_887bc624dd3b4fec",
+            "title": "Matrix Fresh Atta 224942",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_db6f9d3b5eb3475e",
+            "title": "Matrix Fresh Atta 225642",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_fb171d98340b43b1",
+            "title": "Matrix Fresh Atta 231027",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_6bce0e5cd9c74af4",
+            "title": "Matrix Fresh Atta 231658",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_438068d4c3bf4b7a",
+            "title": "Matrix Fresh Atta 232440",
+            "price_inr": 89,
+            "status": "published"
+          }
+        ],
+        "orders": [
+          {
+            "order_id": "order_38a0b35aa8174c0d",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:01:05.536011+00:00"
+          },
+          {
+            "order_id": "order_2a5cceb8490d4b99",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:05:51.286167+00:00"
+          },
+          {
+            "order_id": "order_4c8ccd3261904d5c",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:05:51.541110+00:00"
+          },
+          {
+            "order_id": "order_bbec57608f4a4c48",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:19:28.714890+00:00"
+          },
+          {
+            "order_id": "order_a4a7ed4cc1854951",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:19:37.784071+00:00"
+          },
+          {
+            "order_id": "order_fcfb79214e4d4143",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:19:39.133987+00:00"
+          },
+          {
+            "order_id": "order_309a2da9b92a4b84",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:37:58.951374+00:00"
+          },
+          {
+            "order_id": "order_228b5a93f76d45f3",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:48:03.544174+00:00"
+          },
+          {
+            "order_id": "order_613fd4bc3a794b6a",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:48:04.019865+00:00"
+          },
+          {
+            "order_id": "order_2118ed40ceab48ba",
+            "status": "paid",
+            "updated_at": "2026-07-11T20:34:21.865247+00:00"
+          },
+          {
+            "order_id": "order_172a6fd98b984039",
+            "status": "paid",
+            "updated_at": "2026-07-11T20:39:52.553549+00:00"
+          },
+          {
+            "order_id": "order_5b13d08f0738454c",
+            "status": "paid",
+            "updated_at": "2026-07-14T08:03:33.683932+00:00"
+          },
+          {
+            "order_id": "order_79cf391c2ae34d93",
+            "status": "paid",
+            "updated_at": "2026-07-14T08:32:25.781472+00:00"
+          },
+          {
+            "order_id": "order_d01fbc8ff4ef4e3c",
+            "status": "paid",
+            "updated_at": "2026-07-14T08:45:35.939785+00:00"
+          },
+          {
+            "order_id": "order_e83643ce544b48e1",
+            "status": "paid",
+            "updated_at": "2026-07-15T14:56:05.132244+00:00"
+          },
+          {
+            "order_id": "order_24a4f6d1e1e64d9d",
+            "status": "paid",
+            "updated_at": "2026-07-15T17:06:07.145626+00:00"
+          },
+          {
+            "order_id": "order_96e1fe533fa74ea2",
+            "status": "paid",
+            "updated_at": "2026-07-15T17:16:09.821902+00:00"
+          },
+          {
+            "order_id": "order_0b49b0e6ba4041df",
+            "status": "paid",
+            "updated_at": "2026-07-15T17:24:43.328682+00:00"
+          },
+          {
+            "order_id": "order_14cece4570d94826",
+            "status": "paid",
+            "updated_at": "2026-07-15T17:31:46.295801+00:00"
+          },
+          {
+            "order_id": "order_449e722d781549b5",
+            "status": "paid",
+            "updated_at": "2026-07-15T17:45:32.146344+00:00"
+          },
+          {
+            "order_id": "order_83a537334ac5417f",
+            "status": "paid",
+            "updated_at": "2026-07-15T17:52:03.757446+00:00"
+          }
+        ],
+        "order_count": 21
+      },
+      "backend_check": {
+        "ok": true,
+        "evidence": "local cart owner verified in frontend; backend catalog item exists; order_count=21 unchanged"
+      },
+      "turn_errors": [],
+      "visual_review": "accepted"
+    },
+    {
+      "id": "B-ADD-RESTORE-CLEAR",
+      "ask": "Please put one Matrix Fresh Atta 232440 back in my cart.",
+      "result": "Pass",
+      "evidence": "path=/cart tools=['add_to_cart']; settled=True; turn_errors=0; frontend=origin=http://127.0.0.1:43102 expected=http://127.0.0.1:43102 path=/cart; backend=local cart owner verified in frontend; backend catalog item exists; order_count=21 unchanged",
+      "screenshots": [
+        "/Users/gurusharan/Documents/remote-claude/active/apps/AadhaarChainWorkspace/.cursor/skills/ondc-testing/references/evidence/B-ADD-RESTORE-CLEAR-20260715-232440-0.jpeg"
+      ],
+      "pathname": "/cart",
+      "frontend_origin": "http://127.0.0.1:43102",
+      "frontend_check": {
+        "ok": true,
+        "evidence": "origin=http://127.0.0.1:43102 expected=http://127.0.0.1:43102 path=/cart"
+      },
+      "tools": [
+        "add_to_cart"
+      ],
+      "reply": "Got it\u2014I'll add one Matrix Fresh Atta 232440 back to your cart now and then bring you to the cart page. Done\u2014one Matrix Fresh Atta 232440 is",
+      "backend": {
+        "ok": true,
+        "realtime_configured": true,
+        "ondc_enabled": false,
+        "catalog": [
+          {
+            "item_id": "item_c5d8daa0520f476f",
+            "title": "AgentGuard PreProd Atta 1kg",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_8c74c8870fd04099",
+            "title": "Whole Wheat Atta 1kg",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_6964cd65af584386",
+            "title": "Matrix Fresh Atta 223131",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_4be1317e4c234ca0",
+            "title": "Matrix Fresh Atta 224133",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_887bc624dd3b4fec",
+            "title": "Matrix Fresh Atta 224942",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_db6f9d3b5eb3475e",
+            "title": "Matrix Fresh Atta 225642",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_fb171d98340b43b1",
+            "title": "Matrix Fresh Atta 231027",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_6bce0e5cd9c74af4",
+            "title": "Matrix Fresh Atta 231658",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_438068d4c3bf4b7a",
+            "title": "Matrix Fresh Atta 232440",
+            "price_inr": 89,
+            "status": "published"
+          }
+        ],
+        "orders": [
+          {
+            "order_id": "order_38a0b35aa8174c0d",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:01:05.536011+00:00"
+          },
+          {
+            "order_id": "order_2a5cceb8490d4b99",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:05:51.286167+00:00"
+          },
+          {
+            "order_id": "order_4c8ccd3261904d5c",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:05:51.541110+00:00"
+          },
+          {
+            "order_id": "order_bbec57608f4a4c48",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:19:28.714890+00:00"
+          },
+          {
+            "order_id": "order_a4a7ed4cc1854951",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:19:37.784071+00:00"
+          },
+          {
+            "order_id": "order_fcfb79214e4d4143",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:19:39.133987+00:00"
+          },
+          {
+            "order_id": "order_309a2da9b92a4b84",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:37:58.951374+00:00"
+          },
+          {
+            "order_id": "order_228b5a93f76d45f3",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:48:03.544174+00:00"
+          },
+          {
+            "order_id": "order_613fd4bc3a794b6a",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:48:04.019865+00:00"
+          },
+          {
+            "order_id": "order_2118ed40ceab48ba",
+            "status": "paid",
+            "updated_at": "2026-07-11T20:34:21.865247+00:00"
+          },
+          {
+            "order_id": "order_172a6fd98b984039",
+            "status": "paid",
+            "updated_at": "2026-07-11T20:39:52.553549+00:00"
+          },
+          {
+            "order_id": "order_5b13d08f0738454c",
+            "status": "paid",
+            "updated_at": "2026-07-14T08:03:33.683932+00:00"
+          },
+          {
+            "order_id": "order_79cf391c2ae34d93",
+            "status": "paid",
+            "updated_at": "2026-07-14T08:32:25.781472+00:00"
+          },
+          {
+            "order_id": "order_d01fbc8ff4ef4e3c",
+            "status": "paid",
+            "updated_at": "2026-07-14T08:45:35.939785+00:00"
+          },
+          {
+            "order_id": "order_e83643ce544b48e1",
+            "status": "paid",
+            "updated_at": "2026-07-15T14:56:05.132244+00:00"
+          },
+          {
+            "order_id": "order_24a4f6d1e1e64d9d",
+            "status": "paid",
+            "updated_at": "2026-07-15T17:06:07.145626+00:00"
+          },
+          {
+            "order_id": "order_96e1fe533fa74ea2",
+            "status": "paid",
+            "updated_at": "2026-07-15T17:16:09.821902+00:00"
+          },
+          {
+            "order_id": "order_0b49b0e6ba4041df",
+            "status": "paid",
+            "updated_at": "2026-07-15T17:24:43.328682+00:00"
+          },
+          {
+            "order_id": "order_14cece4570d94826",
+            "status": "paid",
+            "updated_at": "2026-07-15T17:31:46.295801+00:00"
+          },
+          {
+            "order_id": "order_449e722d781549b5",
+            "status": "paid",
+            "updated_at": "2026-07-15T17:45:32.146344+00:00"
+          },
+          {
+            "order_id": "order_83a537334ac5417f",
+            "status": "paid",
+            "updated_at": "2026-07-15T17:52:03.757446+00:00"
+          }
+        ],
+        "order_count": 21
+      },
+      "backend_check": {
+        "ok": true,
+        "evidence": "local cart owner verified in frontend; backend catalog item exists; order_count=21 unchanged"
+      },
+      "turn_errors": [],
+      "visual_review": "accepted"
+    },
+    {
+      "id": "B-QUANTITY",
+      "ask": "Make that two packs instead.",
+      "result": "Pass",
+      "evidence": "tools=['set_cart_quantity'] quantity_visible=True; settled=True; turn_errors=0; frontend=origin=http://127.0.0.1:43102 expected=http://127.0.0.1:43102 path=/cart; backend=local cart owner verified in frontend; backend catalog item exists; order_count=21 unchanged",
+      "screenshots": [
+        "/Users/gurusharan/Documents/remote-claude/active/apps/AadhaarChainWorkspace/.cursor/skills/ondc-testing/references/evidence/B-QUANTITY-20260715-232440-0.jpeg"
+      ],
+      "pathname": "/cart",
+      "frontend_origin": "http://127.0.0.1:43102",
+      "frontend_check": {
+        "ok": true,
+        "evidence": "origin=http://127.0.0.1:43102 expected=http://127.0.0.1:43102 path=/cart"
+      },
+      "tools": [
+        "set_cart_quantity"
+      ],
+      "reply": "Okay\u2014I'll update the quantity to 2 for that item so you see two packs in your cart. All set\u2014Matrix Fresh Atta 232440 is now two packs in you",
+      "backend": {
+        "ok": true,
+        "realtime_configured": true,
+        "ondc_enabled": false,
+        "catalog": [
+          {
+            "item_id": "item_c5d8daa0520f476f",
+            "title": "AgentGuard PreProd Atta 1kg",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_8c74c8870fd04099",
+            "title": "Whole Wheat Atta 1kg",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_6964cd65af584386",
+            "title": "Matrix Fresh Atta 223131",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_4be1317e4c234ca0",
+            "title": "Matrix Fresh Atta 224133",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_887bc624dd3b4fec",
+            "title": "Matrix Fresh Atta 224942",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_db6f9d3b5eb3475e",
+            "title": "Matrix Fresh Atta 225642",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_fb171d98340b43b1",
+            "title": "Matrix Fresh Atta 231027",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_6bce0e5cd9c74af4",
+            "title": "Matrix Fresh Atta 231658",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_438068d4c3bf4b7a",
+            "title": "Matrix Fresh Atta 232440",
+            "price_inr": 89,
+            "status": "published"
+          }
+        ],
+        "orders": [
+          {
+            "order_id": "order_38a0b35aa8174c0d",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:01:05.536011+00:00"
+          },
+          {
+            "order_id": "order_2a5cceb8490d4b99",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:05:51.286167+00:00"
+          },
+          {
+            "order_id": "order_4c8ccd3261904d5c",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:05:51.541110+00:00"
+          },
+          {
+            "order_id": "order_bbec57608f4a4c48",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:19:28.714890+00:00"
+          },
+          {
+            "order_id": "order_a4a7ed4cc1854951",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:19:37.784071+00:00"
+          },
+          {
+            "order_id": "order_fcfb79214e4d4143",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:19:39.133987+00:00"
+          },
+          {
+            "order_id": "order_309a2da9b92a4b84",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:37:58.951374+00:00"
+          },
+          {
+            "order_id": "order_228b5a93f76d45f3",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:48:03.544174+00:00"
+          },
+          {
+            "order_id": "order_613fd4bc3a794b6a",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:48:04.019865+00:00"
+          },
+          {
+            "order_id": "order_2118ed40ceab48ba",
+            "status": "paid",
+            "updated_at": "2026-07-11T20:34:21.865247+00:00"
+          },
+          {
+            "order_id": "order_172a6fd98b984039",
+            "status": "paid",
+            "updated_at": "2026-07-11T20:39:52.553549+00:00"
+          },
+          {
+            "order_id": "order_5b13d08f0738454c",
+            "status": "paid",
+            "updated_at": "2026-07-14T08:03:33.683932+00:00"
+          },
+          {
+            "order_id": "order_79cf391c2ae34d93",
+            "status": "paid",
+            "updated_at": "2026-07-14T08:32:25.781472+00:00"
+          },
+          {
+            "order_id": "order_d01fbc8ff4ef4e3c",
+            "status": "paid",
+            "updated_at": "2026-07-14T08:45:35.939785+00:00"
+          },
+          {
+            "order_id": "order_e83643ce544b48e1",
+            "status": "paid",
+            "updated_at": "2026-07-15T14:56:05.132244+00:00"
+          },
+          {
+            "order_id": "order_24a4f6d1e1e64d9d",
+            "status": "paid",
+            "updated_at": "2026-07-15T17:06:07.145626+00:00"
+          },
+          {
+            "order_id": "order_96e1fe533fa74ea2",
+            "status": "paid",
+            "updated_at": "2026-07-15T17:16:09.821902+00:00"
+          },
+          {
+            "order_id": "order_0b49b0e6ba4041df",
+            "status": "paid",
+            "updated_at": "2026-07-15T17:24:43.328682+00:00"
+          },
+          {
+            "order_id": "order_14cece4570d94826",
+            "status": "paid",
+            "updated_at": "2026-07-15T17:31:46.295801+00:00"
+          },
+          {
+            "order_id": "order_449e722d781549b5",
+            "status": "paid",
+            "updated_at": "2026-07-15T17:45:32.146344+00:00"
+          },
+          {
+            "order_id": "order_83a537334ac5417f",
+            "status": "paid",
+            "updated_at": "2026-07-15T17:52:03.757446+00:00"
+          }
+        ],
+        "order_count": 21
+      },
+      "backend_check": {
+        "ok": true,
+        "evidence": "local cart owner verified in frontend; backend catalog item exists; order_count=21 unchanged"
+      },
+      "turn_errors": [],
+      "visual_review": "accepted"
+    },
+    {
+      "id": "B-REMOVE",
+      "ask": "Remove that atta from my cart.",
+      "result": "Pass",
+      "evidence": "tools=['remove_from_cart'] empty=True; settled=True; turn_errors=0; frontend=origin=http://127.0.0.1:43102 expected=http://127.0.0.1:43102 path=/cart; backend=local cart owner verified in frontend; backend catalog item exists; order_count=21 unchanged",
+      "screenshots": [
+        "/Users/gurusharan/Documents/remote-claude/active/apps/AadhaarChainWorkspace/.cursor/skills/ondc-testing/references/evidence/B-REMOVE-20260715-232440-0.jpeg"
+      ],
+      "pathname": "/cart",
+      "frontend_origin": "http://127.0.0.1:43102",
+      "frontend_check": {
+        "ok": true,
+        "evidence": "origin=http://127.0.0.1:43102 expected=http://127.0.0.1:43102 path=/cart"
+      },
+      "tools": [
+        "remove_from_cart"
+      ],
+      "reply": "Got it\u2014I'll remove that Matrix Fresh Atta line from your cart and open it so it\u2019s clear it's gone. All done\u2014Matrix Fresh Atta 232440 has bee",
+      "backend": {
+        "ok": true,
+        "realtime_configured": true,
+        "ondc_enabled": false,
+        "catalog": [
+          {
+            "item_id": "item_c5d8daa0520f476f",
+            "title": "AgentGuard PreProd Atta 1kg",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_8c74c8870fd04099",
+            "title": "Whole Wheat Atta 1kg",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_6964cd65af584386",
+            "title": "Matrix Fresh Atta 223131",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_4be1317e4c234ca0",
+            "title": "Matrix Fresh Atta 224133",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_887bc624dd3b4fec",
+            "title": "Matrix Fresh Atta 224942",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_db6f9d3b5eb3475e",
+            "title": "Matrix Fresh Atta 225642",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_fb171d98340b43b1",
+            "title": "Matrix Fresh Atta 231027",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_6bce0e5cd9c74af4",
+            "title": "Matrix Fresh Atta 231658",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_438068d4c3bf4b7a",
+            "title": "Matrix Fresh Atta 232440",
+            "price_inr": 89,
+            "status": "published"
+          }
+        ],
+        "orders": [
+          {
+            "order_id": "order_38a0b35aa8174c0d",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:01:05.536011+00:00"
+          },
+          {
+            "order_id": "order_2a5cceb8490d4b99",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:05:51.286167+00:00"
+          },
+          {
+            "order_id": "order_4c8ccd3261904d5c",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:05:51.541110+00:00"
+          },
+          {
+            "order_id": "order_bbec57608f4a4c48",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:19:28.714890+00:00"
+          },
+          {
+            "order_id": "order_a4a7ed4cc1854951",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:19:37.784071+00:00"
+          },
+          {
+            "order_id": "order_fcfb79214e4d4143",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:19:39.133987+00:00"
+          },
+          {
+            "order_id": "order_309a2da9b92a4b84",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:37:58.951374+00:00"
+          },
+          {
+            "order_id": "order_228b5a93f76d45f3",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:48:03.544174+00:00"
+          },
+          {
+            "order_id": "order_613fd4bc3a794b6a",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:48:04.019865+00:00"
+          },
+          {
+            "order_id": "order_2118ed40ceab48ba",
+            "status": "paid",
+            "updated_at": "2026-07-11T20:34:21.865247+00:00"
+          },
+          {
+            "order_id": "order_172a6fd98b984039",
+            "status": "paid",
+            "updated_at": "2026-07-11T20:39:52.553549+00:00"
+          },
+          {
+            "order_id": "order_5b13d08f0738454c",
+            "status": "paid",
+            "updated_at": "2026-07-14T08:03:33.683932+00:00"
+          },
+          {
+            "order_id": "order_79cf391c2ae34d93",
+            "status": "paid",
+            "updated_at": "2026-07-14T08:32:25.781472+00:00"
+          },
+          {
+            "order_id": "order_d01fbc8ff4ef4e3c",
+            "status": "paid",
+            "updated_at": "2026-07-14T08:45:35.939785+00:00"
+          },
+          {
+            "order_id": "order_e83643ce544b48e1",
+            "status": "paid",
+            "updated_at": "2026-07-15T14:56:05.132244+00:00"
+          },
+          {
+            "order_id": "order_24a4f6d1e1e64d9d",
+            "status": "paid",
+            "updated_at": "2026-07-15T17:06:07.145626+00:00"
+          },
+          {
+            "order_id": "order_96e1fe533fa74ea2",
+            "status": "paid",
+            "updated_at": "2026-07-15T17:16:09.821902+00:00"
+          },
+          {
+            "order_id": "order_0b49b0e6ba4041df",
+            "status": "paid",
+            "updated_at": "2026-07-15T17:24:43.328682+00:00"
+          },
+          {
+            "order_id": "order_14cece4570d94826",
+            "status": "paid",
+            "updated_at": "2026-07-15T17:31:46.295801+00:00"
+          },
+          {
+            "order_id": "order_449e722d781549b5",
+            "status": "paid",
+            "updated_at": "2026-07-15T17:45:32.146344+00:00"
+          },
+          {
+            "order_id": "order_83a537334ac5417f",
+            "status": "paid",
+            "updated_at": "2026-07-15T17:52:03.757446+00:00"
+          }
+        ],
+        "order_count": 21
+      },
+      "backend_check": {
+        "ok": true,
+        "evidence": "local cart owner verified in frontend; backend catalog item exists; order_count=21 unchanged"
+      },
+      "turn_errors": [],
+      "visual_review": "accepted"
+    },
+    {
+      "id": "B-ADD-RESTORE-REMOVE",
+      "ask": "Please put one Matrix Fresh Atta 232440 back in my cart.",
+      "result": "Pass",
+      "evidence": "path=/cart tools=['add_to_cart']; settled=True; turn_errors=0; frontend=origin=http://127.0.0.1:43102 expected=http://127.0.0.1:43102 path=/cart; backend=local cart owner verified in frontend; backend catalog item exists; order_count=21 unchanged",
+      "screenshots": [
+        "/Users/gurusharan/Documents/remote-claude/active/apps/AadhaarChainWorkspace/.cursor/skills/ondc-testing/references/evidence/B-ADD-RESTORE-REMOVE-20260715-232440-0.jpeg"
+      ],
+      "pathname": "/cart",
+      "frontend_origin": "http://127.0.0.1:43102",
+      "frontend_check": {
+        "ok": true,
+        "evidence": "origin=http://127.0.0.1:43102 expected=http://127.0.0.1:43102 path=/cart"
+      },
+      "tools": [
+        "add_to_cart"
+      ],
+      "reply": "Okay\u2014I'll add one Matrix Fresh Atta 232440 back to your cart and then show the cart. Done\u2014one Matrix Fresh Atta 232440 is back in your cart.",
+      "backend": {
+        "ok": true,
+        "realtime_configured": true,
+        "ondc_enabled": false,
+        "catalog": [
+          {
+            "item_id": "item_c5d8daa0520f476f",
+            "title": "AgentGuard PreProd Atta 1kg",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_8c74c8870fd04099",
+            "title": "Whole Wheat Atta 1kg",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_6964cd65af584386",
+            "title": "Matrix Fresh Atta 223131",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_4be1317e4c234ca0",
+            "title": "Matrix Fresh Atta 224133",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_887bc624dd3b4fec",
+            "title": "Matrix Fresh Atta 224942",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_db6f9d3b5eb3475e",
+            "title": "Matrix Fresh Atta 225642",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_fb171d98340b43b1",
+            "title": "Matrix Fresh Atta 231027",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_6bce0e5cd9c74af4",
+            "title": "Matrix Fresh Atta 231658",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_438068d4c3bf4b7a",
+            "title": "Matrix Fresh Atta 232440",
+            "price_inr": 89,
+            "status": "published"
+          }
+        ],
+        "orders": [
+          {
+            "order_id": "order_38a0b35aa8174c0d",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:01:05.536011+00:00"
+          },
+          {
+            "order_id": "order_2a5cceb8490d4b99",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:05:51.286167+00:00"
+          },
+          {
+            "order_id": "order_4c8ccd3261904d5c",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:05:51.541110+00:00"
+          },
+          {
+            "order_id": "order_bbec57608f4a4c48",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:19:28.714890+00:00"
+          },
+          {
+            "order_id": "order_a4a7ed4cc1854951",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:19:37.784071+00:00"
+          },
+          {
+            "order_id": "order_fcfb79214e4d4143",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:19:39.133987+00:00"
+          },
+          {
+            "order_id": "order_309a2da9b92a4b84",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:37:58.951374+00:00"
+          },
+          {
+            "order_id": "order_228b5a93f76d45f3",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:48:03.544174+00:00"
+          },
+          {
+            "order_id": "order_613fd4bc3a794b6a",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:48:04.019865+00:00"
+          },
+          {
+            "order_id": "order_2118ed40ceab48ba",
+            "status": "paid",
+            "updated_at": "2026-07-11T20:34:21.865247+00:00"
+          },
+          {
+            "order_id": "order_172a6fd98b984039",
+            "status": "paid",
+            "updated_at": "2026-07-11T20:39:52.553549+00:00"
+          },
+          {
+            "order_id": "order_5b13d08f0738454c",
+            "status": "paid",
+            "updated_at": "2026-07-14T08:03:33.683932+00:00"
+          },
+          {
+            "order_id": "order_79cf391c2ae34d93",
+            "status": "paid",
+            "updated_at": "2026-07-14T08:32:25.781472+00:00"
+          },
+          {
+            "order_id": "order_d01fbc8ff4ef4e3c",
+            "status": "paid",
+            "updated_at": "2026-07-14T08:45:35.939785+00:00"
+          },
+          {
+            "order_id": "order_e83643ce544b48e1",
+            "status": "paid",
+            "updated_at": "2026-07-15T14:56:05.132244+00:00"
+          },
+          {
+            "order_id": "order_24a4f6d1e1e64d9d",
+            "status": "paid",
+            "updated_at": "2026-07-15T17:06:07.145626+00:00"
+          },
+          {
+            "order_id": "order_96e1fe533fa74ea2",
+            "status": "paid",
+            "updated_at": "2026-07-15T17:16:09.821902+00:00"
+          },
+          {
+            "order_id": "order_0b49b0e6ba4041df",
+            "status": "paid",
+            "updated_at": "2026-07-15T17:24:43.328682+00:00"
+          },
+          {
+            "order_id": "order_14cece4570d94826",
+            "status": "paid",
+            "updated_at": "2026-07-15T17:31:46.295801+00:00"
+          },
+          {
+            "order_id": "order_449e722d781549b5",
+            "status": "paid",
+            "updated_at": "2026-07-15T17:45:32.146344+00:00"
+          },
+          {
+            "order_id": "order_83a537334ac5417f",
+            "status": "paid",
+            "updated_at": "2026-07-15T17:52:03.757446+00:00"
+          }
+        ],
+        "order_count": 21
+      },
+      "backend_check": {
+        "ok": true,
+        "evidence": "local cart owner verified in frontend; backend catalog item exists; order_count=21 unchanged"
+      },
+      "turn_errors": [],
+      "visual_review": "accepted"
+    },
+    {
+      "id": "B-NAV-CART",
+      "ask": "take me to cart",
+      "result": "Pass",
+      "evidence": "path=/cart; settled=True; turn_errors=0; frontend=origin=http://127.0.0.1:43102 expected=http://127.0.0.1:43102 path=/cart; backend=local cart owner verified in frontend; backend catalog item exists; order_count=21 unchanged",
+      "screenshots": [
+        "/Users/gurusharan/Documents/remote-claude/active/apps/AadhaarChainWorkspace/.cursor/skills/ondc-testing/references/evidence/B-NAV-CART-20260715-232440-0.jpeg"
+      ],
+      "pathname": "/cart",
+      "frontend_origin": "http://127.0.0.1:43102",
+      "frontend_check": {
+        "ok": true,
+        "evidence": "origin=http://127.0.0.1:43102 expected=http://127.0.0.1:43102 path=/cart"
+      },
+      "tools": [],
+      "reply": "You\u2019re already in your cart, no need to go anywhere.  \nYou can see the Matrix Fresh Atta 232440 line there.",
+      "backend": {
+        "ok": true,
+        "realtime_configured": true,
+        "ondc_enabled": false,
+        "catalog": [
+          {
+            "item_id": "item_c5d8daa0520f476f",
+            "title": "AgentGuard PreProd Atta 1kg",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_8c74c8870fd04099",
+            "title": "Whole Wheat Atta 1kg",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_6964cd65af584386",
+            "title": "Matrix Fresh Atta 223131",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_4be1317e4c234ca0",
+            "title": "Matrix Fresh Atta 224133",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_887bc624dd3b4fec",
+            "title": "Matrix Fresh Atta 224942",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_db6f9d3b5eb3475e",
+            "title": "Matrix Fresh Atta 225642",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_fb171d98340b43b1",
+            "title": "Matrix Fresh Atta 231027",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_6bce0e5cd9c74af4",
+            "title": "Matrix Fresh Atta 231658",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_438068d4c3bf4b7a",
+            "title": "Matrix Fresh Atta 232440",
+            "price_inr": 89,
+            "status": "published"
+          }
+        ],
+        "orders": [
+          {
+            "order_id": "order_38a0b35aa8174c0d",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:01:05.536011+00:00"
+          },
+          {
+            "order_id": "order_2a5cceb8490d4b99",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:05:51.286167+00:00"
+          },
+          {
+            "order_id": "order_4c8ccd3261904d5c",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:05:51.541110+00:00"
+          },
+          {
+            "order_id": "order_bbec57608f4a4c48",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:19:28.714890+00:00"
+          },
+          {
+            "order_id": "order_a4a7ed4cc1854951",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:19:37.784071+00:00"
+          },
+          {
+            "order_id": "order_fcfb79214e4d4143",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:19:39.133987+00:00"
+          },
+          {
+            "order_id": "order_309a2da9b92a4b84",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:37:58.951374+00:00"
+          },
+          {
+            "order_id": "order_228b5a93f76d45f3",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:48:03.544174+00:00"
+          },
+          {
+            "order_id": "order_613fd4bc3a794b6a",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:48:04.019865+00:00"
+          },
+          {
+            "order_id": "order_2118ed40ceab48ba",
+            "status": "paid",
+            "updated_at": "2026-07-11T20:34:21.865247+00:00"
+          },
+          {
+            "order_id": "order_172a6fd98b984039",
+            "status": "paid",
+            "updated_at": "2026-07-11T20:39:52.553549+00:00"
+          },
+          {
+            "order_id": "order_5b13d08f0738454c",
+            "status": "paid",
+            "updated_at": "2026-07-14T08:03:33.683932+00:00"
+          },
+          {
+            "order_id": "order_79cf391c2ae34d93",
+            "status": "paid",
+            "updated_at": "2026-07-14T08:32:25.781472+00:00"
+          },
+          {
+            "order_id": "order_d01fbc8ff4ef4e3c",
+            "status": "paid",
+            "updated_at": "2026-07-14T08:45:35.939785+00:00"
+          },
+          {
+            "order_id": "order_e83643ce544b48e1",
+            "status": "paid",
+            "updated_at": "2026-07-15T14:56:05.132244+00:00"
+          },
+          {
+            "order_id": "order_24a4f6d1e1e64d9d",
+            "status": "paid",
+            "updated_at": "2026-07-15T17:06:07.145626+00:00"
+          },
+          {
+            "order_id": "order_96e1fe533fa74ea2",
+            "status": "paid",
+            "updated_at": "2026-07-15T17:16:09.821902+00:00"
+          },
+          {
+            "order_id": "order_0b49b0e6ba4041df",
+            "status": "paid",
+            "updated_at": "2026-07-15T17:24:43.328682+00:00"
+          },
+          {
+            "order_id": "order_14cece4570d94826",
+            "status": "paid",
+            "updated_at": "2026-07-15T17:31:46.295801+00:00"
+          },
+          {
+            "order_id": "order_449e722d781549b5",
+            "status": "paid",
+            "updated_at": "2026-07-15T17:45:32.146344+00:00"
+          },
+          {
+            "order_id": "order_83a537334ac5417f",
+            "status": "paid",
+            "updated_at": "2026-07-15T17:52:03.757446+00:00"
+          }
+        ],
+        "order_count": 21
+      },
+      "backend_check": {
+        "ok": true,
+        "evidence": "local cart owner verified in frontend; backend catalog item exists; order_count=21 unchanged"
+      },
+      "turn_errors": [],
+      "visual_review": "accepted"
+    },
+    {
+      "id": "B-NAV-CHECKOUT",
+      "ask": "go to checkout",
+      "result": "Pass",
+      "evidence": "path=/checkout; settled=True; turn_errors=0; frontend=origin=http://127.0.0.1:43102 expected=http://127.0.0.1:43102 path=/checkout; backend=local cart owner verified in frontend; backend catalog item exists; order_count=21 unchanged",
+      "screenshots": [
+        "/Users/gurusharan/Documents/remote-claude/active/apps/AadhaarChainWorkspace/.cursor/skills/ondc-testing/references/evidence/B-NAV-CHECKOUT-20260715-232440-0.jpeg"
+      ],
+      "pathname": "/checkout",
+      "frontend_origin": "http://127.0.0.1:43102",
+      "frontend_check": {
+        "ok": true,
+        "evidence": "origin=http://127.0.0.1:43102 expected=http://127.0.0.1:43102 path=/checkout"
+      },
+      "tools": [
+        "navigate_to"
+      ],
+      "reply": "Sure\u2014I'll take you to the checkout page now. You\u2019re on the checkout page now.  \nIf you\u2019d like, I can help you proceed with checkout.",
+      "backend": {
+        "ok": true,
+        "realtime_configured": true,
+        "ondc_enabled": false,
+        "catalog": [
+          {
+            "item_id": "item_c5d8daa0520f476f",
+            "title": "AgentGuard PreProd Atta 1kg",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_8c74c8870fd04099",
+            "title": "Whole Wheat Atta 1kg",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_6964cd65af584386",
+            "title": "Matrix Fresh Atta 223131",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_4be1317e4c234ca0",
+            "title": "Matrix Fresh Atta 224133",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_887bc624dd3b4fec",
+            "title": "Matrix Fresh Atta 224942",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_db6f9d3b5eb3475e",
+            "title": "Matrix Fresh Atta 225642",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_fb171d98340b43b1",
+            "title": "Matrix Fresh Atta 231027",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_6bce0e5cd9c74af4",
+            "title": "Matrix Fresh Atta 231658",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_438068d4c3bf4b7a",
+            "title": "Matrix Fresh Atta 232440",
+            "price_inr": 89,
+            "status": "published"
+          }
+        ],
+        "orders": [
+          {
+            "order_id": "order_38a0b35aa8174c0d",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:01:05.536011+00:00"
+          },
+          {
+            "order_id": "order_2a5cceb8490d4b99",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:05:51.286167+00:00"
+          },
+          {
+            "order_id": "order_4c8ccd3261904d5c",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:05:51.541110+00:00"
+          },
+          {
+            "order_id": "order_bbec57608f4a4c48",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:19:28.714890+00:00"
+          },
+          {
+            "order_id": "order_a4a7ed4cc1854951",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:19:37.784071+00:00"
+          },
+          {
+            "order_id": "order_fcfb79214e4d4143",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:19:39.133987+00:00"
+          },
+          {
+            "order_id": "order_309a2da9b92a4b84",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:37:58.951374+00:00"
+          },
+          {
+            "order_id": "order_228b5a93f76d45f3",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:48:03.544174+00:00"
+          },
+          {
+            "order_id": "order_613fd4bc3a794b6a",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:48:04.019865+00:00"
+          },
+          {
+            "order_id": "order_2118ed40ceab48ba",
+            "status": "paid",
+            "updated_at": "2026-07-11T20:34:21.865247+00:00"
+          },
+          {
+            "order_id": "order_172a6fd98b984039",
+            "status": "paid",
+            "updated_at": "2026-07-11T20:39:52.553549+00:00"
+          },
+          {
+            "order_id": "order_5b13d08f0738454c",
+            "status": "paid",
+            "updated_at": "2026-07-14T08:03:33.683932+00:00"
+          },
+          {
+            "order_id": "order_79cf391c2ae34d93",
+            "status": "paid",
+            "updated_at": "2026-07-14T08:32:25.781472+00:00"
+          },
+          {
+            "order_id": "order_d01fbc8ff4ef4e3c",
+            "status": "paid",
+            "updated_at": "2026-07-14T08:45:35.939785+00:00"
+          },
+          {
+            "order_id": "order_e83643ce544b48e1",
+            "status": "paid",
+            "updated_at": "2026-07-15T14:56:05.132244+00:00"
+          },
+          {
+            "order_id": "order_24a4f6d1e1e64d9d",
+            "status": "paid",
+            "updated_at": "2026-07-15T17:06:07.145626+00:00"
+          },
+          {
+            "order_id": "order_96e1fe533fa74ea2",
+            "status": "paid",
+            "updated_at": "2026-07-15T17:16:09.821902+00:00"
+          },
+          {
+            "order_id": "order_0b49b0e6ba4041df",
+            "status": "paid",
+            "updated_at": "2026-07-15T17:24:43.328682+00:00"
+          },
+          {
+            "order_id": "order_14cece4570d94826",
+            "status": "paid",
+            "updated_at": "2026-07-15T17:31:46.295801+00:00"
+          },
+          {
+            "order_id": "order_449e722d781549b5",
+            "status": "paid",
+            "updated_at": "2026-07-15T17:45:32.146344+00:00"
+          },
+          {
+            "order_id": "order_83a537334ac5417f",
+            "status": "paid",
+            "updated_at": "2026-07-15T17:52:03.757446+00:00"
+          }
+        ],
+        "order_count": 21
+      },
+      "backend_check": {
+        "ok": true,
+        "evidence": "local cart owner verified in frontend; backend catalog item exists; order_count=21 unchanged"
+      },
+      "turn_errors": [],
+      "visual_review": "accepted"
+    },
+    {
+      "id": "B-MEM-ORG",
+      "ask": "remember organic",
+      "result": "Pass",
+      "evidence": "tools=['remember_preference']; settled=True; turn_errors=0; frontend=origin=http://127.0.0.1:43102 expected=http://127.0.0.1:43102 path=/checkout; backend=backend owners reachable; realtime_configured=true; order_count=21",
+      "screenshots": [
+        "/Users/gurusharan/Documents/remote-claude/active/apps/AadhaarChainWorkspace/.cursor/skills/ondc-testing/references/evidence/B-MEM-ORG-20260715-232440-0.jpeg"
+      ],
+      "pathname": "/checkout",
+      "frontend_origin": "http://127.0.0.1:43102",
+      "frontend_check": {
+        "ok": true,
+        "evidence": "origin=http://127.0.0.1:43102 expected=http://127.0.0.1:43102 path=/checkout"
+      },
+      "tools": [
+        "remember_preference"
+      ],
+      "reply": "I\u2019ll save that preference for you now so I can keep organic options in mind. Done\u2014I\u2019ll keep in mind that you prefer organic produce.  \nIf yo",
+      "backend": {
+        "ok": true,
+        "realtime_configured": true,
+        "ondc_enabled": false,
+        "catalog": [
+          {
+            "item_id": "item_c5d8daa0520f476f",
+            "title": "AgentGuard PreProd Atta 1kg",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_8c74c8870fd04099",
+            "title": "Whole Wheat Atta 1kg",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_6964cd65af584386",
+            "title": "Matrix Fresh Atta 223131",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_4be1317e4c234ca0",
+            "title": "Matrix Fresh Atta 224133",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_887bc624dd3b4fec",
+            "title": "Matrix Fresh Atta 224942",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_db6f9d3b5eb3475e",
+            "title": "Matrix Fresh Atta 225642",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_fb171d98340b43b1",
+            "title": "Matrix Fresh Atta 231027",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_6bce0e5cd9c74af4",
+            "title": "Matrix Fresh Atta 231658",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_438068d4c3bf4b7a",
+            "title": "Matrix Fresh Atta 232440",
+            "price_inr": 89,
+            "status": "published"
+          }
+        ],
+        "orders": [
+          {
+            "order_id": "order_38a0b35aa8174c0d",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:01:05.536011+00:00"
+          },
+          {
+            "order_id": "order_2a5cceb8490d4b99",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:05:51.286167+00:00"
+          },
+          {
+            "order_id": "order_4c8ccd3261904d5c",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:05:51.541110+00:00"
+          },
+          {
+            "order_id": "order_bbec57608f4a4c48",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:19:28.714890+00:00"
+          },
+          {
+            "order_id": "order_a4a7ed4cc1854951",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:19:37.784071+00:00"
+          },
+          {
+            "order_id": "order_fcfb79214e4d4143",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:19:39.133987+00:00"
+          },
+          {
+            "order_id": "order_309a2da9b92a4b84",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:37:58.951374+00:00"
+          },
+          {
+            "order_id": "order_228b5a93f76d45f3",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:48:03.544174+00:00"
+          },
+          {
+            "order_id": "order_613fd4bc3a794b6a",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:48:04.019865+00:00"
+          },
+          {
+            "order_id": "order_2118ed40ceab48ba",
+            "status": "paid",
+            "updated_at": "2026-07-11T20:34:21.865247+00:00"
+          },
+          {
+            "order_id": "order_172a6fd98b984039",
+            "status": "paid",
+            "updated_at": "2026-07-11T20:39:52.553549+00:00"
+          },
+          {
+            "order_id": "order_5b13d08f0738454c",
+            "status": "paid",
+            "updated_at": "2026-07-14T08:03:33.683932+00:00"
+          },
+          {
+            "order_id": "order_79cf391c2ae34d93",
+            "status": "paid",
+            "updated_at": "2026-07-14T08:32:25.781472+00:00"
+          },
+          {
+            "order_id": "order_d01fbc8ff4ef4e3c",
+            "status": "paid",
+            "updated_at": "2026-07-14T08:45:35.939785+00:00"
+          },
+          {
+            "order_id": "order_e83643ce544b48e1",
+            "status": "paid",
+            "updated_at": "2026-07-15T14:56:05.132244+00:00"
+          },
+          {
+            "order_id": "order_24a4f6d1e1e64d9d",
+            "status": "paid",
+            "updated_at": "2026-07-15T17:06:07.145626+00:00"
+          },
+          {
+            "order_id": "order_96e1fe533fa74ea2",
+            "status": "paid",
+            "updated_at": "2026-07-15T17:16:09.821902+00:00"
+          },
+          {
+            "order_id": "order_0b49b0e6ba4041df",
+            "status": "paid",
+            "updated_at": "2026-07-15T17:24:43.328682+00:00"
+          },
+          {
+            "order_id": "order_14cece4570d94826",
+            "status": "paid",
+            "updated_at": "2026-07-15T17:31:46.295801+00:00"
+          },
+          {
+            "order_id": "order_449e722d781549b5",
+            "status": "paid",
+            "updated_at": "2026-07-15T17:45:32.146344+00:00"
+          },
+          {
+            "order_id": "order_83a537334ac5417f",
+            "status": "paid",
+            "updated_at": "2026-07-15T17:52:03.757446+00:00"
+          }
+        ],
+        "order_count": 21
+      },
+      "backend_check": {
+        "ok": true,
+        "evidence": "backend owners reachable; realtime_configured=true; order_count=21"
+      },
+      "turn_errors": [],
+      "visual_review": "accepted"
+    },
+    {
+      "id": "B-NAV-CONFIG",
+      "ask": "open config",
+      "result": "Pass",
+      "evidence": "path=/config organic=True; settled=True; turn_errors=0; frontend=origin=http://127.0.0.1:43102 expected=http://127.0.0.1:43102 path=/config; backend=backend owners reachable; realtime_configured=true; order_count=21",
+      "screenshots": [
+        "/Users/gurusharan/Documents/remote-claude/active/apps/AadhaarChainWorkspace/.cursor/skills/ondc-testing/references/evidence/B-NAV-CONFIG-20260715-232440-0.jpeg"
+      ],
+      "pathname": "/config",
+      "frontend_origin": "http://127.0.0.1:43102",
+      "frontend_check": {
+        "ok": true,
+        "evidence": "origin=http://127.0.0.1:43102 expected=http://127.0.0.1:43102 path=/config"
+      },
+      "tools": [
+        "navigate_to"
+      ],
+      "reply": "Sure\u2014let me open your config so you can check your mandate and preferences. You\u2019re in your config area now, where you can view your mandate ",
+      "backend": {
+        "ok": true,
+        "realtime_configured": true,
+        "ondc_enabled": false,
+        "catalog": [
+          {
+            "item_id": "item_c5d8daa0520f476f",
+            "title": "AgentGuard PreProd Atta 1kg",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_8c74c8870fd04099",
+            "title": "Whole Wheat Atta 1kg",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_6964cd65af584386",
+            "title": "Matrix Fresh Atta 223131",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_4be1317e4c234ca0",
+            "title": "Matrix Fresh Atta 224133",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_887bc624dd3b4fec",
+            "title": "Matrix Fresh Atta 224942",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_db6f9d3b5eb3475e",
+            "title": "Matrix Fresh Atta 225642",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_fb171d98340b43b1",
+            "title": "Matrix Fresh Atta 231027",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_6bce0e5cd9c74af4",
+            "title": "Matrix Fresh Atta 231658",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_438068d4c3bf4b7a",
+            "title": "Matrix Fresh Atta 232440",
+            "price_inr": 89,
+            "status": "published"
+          }
+        ],
+        "orders": [
+          {
+            "order_id": "order_38a0b35aa8174c0d",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:01:05.536011+00:00"
+          },
+          {
+            "order_id": "order_2a5cceb8490d4b99",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:05:51.286167+00:00"
+          },
+          {
+            "order_id": "order_4c8ccd3261904d5c",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:05:51.541110+00:00"
+          },
+          {
+            "order_id": "order_bbec57608f4a4c48",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:19:28.714890+00:00"
+          },
+          {
+            "order_id": "order_a4a7ed4cc1854951",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:19:37.784071+00:00"
+          },
+          {
+            "order_id": "order_fcfb79214e4d4143",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:19:39.133987+00:00"
+          },
+          {
+            "order_id": "order_309a2da9b92a4b84",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:37:58.951374+00:00"
+          },
+          {
+            "order_id": "order_228b5a93f76d45f3",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:48:03.544174+00:00"
+          },
+          {
+            "order_id": "order_613fd4bc3a794b6a",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:48:04.019865+00:00"
+          },
+          {
+            "order_id": "order_2118ed40ceab48ba",
+            "status": "paid",
+            "updated_at": "2026-07-11T20:34:21.865247+00:00"
+          },
+          {
+            "order_id": "order_172a6fd98b984039",
+            "status": "paid",
+            "updated_at": "2026-07-11T20:39:52.553549+00:00"
+          },
+          {
+            "order_id": "order_5b13d08f0738454c",
+            "status": "paid",
+            "updated_at": "2026-07-14T08:03:33.683932+00:00"
+          },
+          {
+            "order_id": "order_79cf391c2ae34d93",
+            "status": "paid",
+            "updated_at": "2026-07-14T08:32:25.781472+00:00"
+          },
+          {
+            "order_id": "order_d01fbc8ff4ef4e3c",
+            "status": "paid",
+            "updated_at": "2026-07-14T08:45:35.939785+00:00"
+          },
+          {
+            "order_id": "order_e83643ce544b48e1",
+            "status": "paid",
+            "updated_at": "2026-07-15T14:56:05.132244+00:00"
+          },
+          {
+            "order_id": "order_24a4f6d1e1e64d9d",
+            "status": "paid",
+            "updated_at": "2026-07-15T17:06:07.145626+00:00"
+          },
+          {
+            "order_id": "order_96e1fe533fa74ea2",
+            "status": "paid",
+            "updated_at": "2026-07-15T17:16:09.821902+00:00"
+          },
+          {
+            "order_id": "order_0b49b0e6ba4041df",
+            "status": "paid",
+            "updated_at": "2026-07-15T17:24:43.328682+00:00"
+          },
+          {
+            "order_id": "order_14cece4570d94826",
+            "status": "paid",
+            "updated_at": "2026-07-15T17:31:46.295801+00:00"
+          },
+          {
+            "order_id": "order_449e722d781549b5",
+            "status": "paid",
+            "updated_at": "2026-07-15T17:45:32.146344+00:00"
+          },
+          {
+            "order_id": "order_83a537334ac5417f",
+            "status": "paid",
+            "updated_at": "2026-07-15T17:52:03.757446+00:00"
+          }
+        ],
+        "order_count": 21
+      },
+      "backend_check": {
+        "ok": true,
+        "evidence": "backend owners reachable; realtime_configured=true; order_count=21"
+      },
+      "turn_errors": [],
+      "visual_review": "accepted"
+    },
+    {
+      "id": "B-CHECKOUT-OVER",
+      "ask": "checkout 25000",
+      "result": "Pass",
+      "evidence": "decision=need_approval decision_visible=True blob=samantha\n\ncheckout requires exact one-time approval.\n\ngot it\u2014i'll try to commit checkout for that amount and see what th; settled=True; turn_errors=0; frontend=origin=http://127.0.0.1:43102 expected=http://127.0.0.1:43102 path=/checkout; backend=decision=need_approval approval_id=appr_9c6b82b2ce874305 tool_ok=True",
+      "screenshots": [
+        "/Users/gurusharan/Documents/remote-claude/active/apps/AadhaarChainWorkspace/.cursor/skills/ondc-testing/references/evidence/B-CHECKOUT-OVER-UI-20260715-232440-0.jpeg"
+      ],
+      "pathname": "/checkout",
+      "frontend_origin": "http://127.0.0.1:43102",
+      "frontend_check": {
+        "ok": true,
+        "evidence": "origin=http://127.0.0.1:43102 expected=http://127.0.0.1:43102 path=/checkout"
+      },
+      "tools": [
+        "checkout_commit"
+      ],
+      "reply": "Got it\u2014I'll try to commit checkout for that amount and see what the system allows. Checkout needs a one-time approval for larger amounts\u201420,",
+      "backend": {
+        "ok": true,
+        "realtime_configured": true,
+        "ondc_enabled": false,
+        "catalog": [
+          {
+            "item_id": "item_c5d8daa0520f476f",
+            "title": "AgentGuard PreProd Atta 1kg",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_8c74c8870fd04099",
+            "title": "Whole Wheat Atta 1kg",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_6964cd65af584386",
+            "title": "Matrix Fresh Atta 223131",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_4be1317e4c234ca0",
+            "title": "Matrix Fresh Atta 224133",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_887bc624dd3b4fec",
+            "title": "Matrix Fresh Atta 224942",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_db6f9d3b5eb3475e",
+            "title": "Matrix Fresh Atta 225642",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_fb171d98340b43b1",
+            "title": "Matrix Fresh Atta 231027",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_6bce0e5cd9c74af4",
+            "title": "Matrix Fresh Atta 231658",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_438068d4c3bf4b7a",
+            "title": "Matrix Fresh Atta 232440",
+            "price_inr": 89,
+            "status": "published"
+          }
+        ],
+        "orders": [
+          {
+            "order_id": "order_38a0b35aa8174c0d",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:01:05.536011+00:00"
+          },
+          {
+            "order_id": "order_2a5cceb8490d4b99",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:05:51.286167+00:00"
+          },
+          {
+            "order_id": "order_4c8ccd3261904d5c",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:05:51.541110+00:00"
+          },
+          {
+            "order_id": "order_bbec57608f4a4c48",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:19:28.714890+00:00"
+          },
+          {
+            "order_id": "order_a4a7ed4cc1854951",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:19:37.784071+00:00"
+          },
+          {
+            "order_id": "order_fcfb79214e4d4143",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:19:39.133987+00:00"
+          },
+          {
+            "order_id": "order_309a2da9b92a4b84",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:37:58.951374+00:00"
+          },
+          {
+            "order_id": "order_228b5a93f76d45f3",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:48:03.544174+00:00"
+          },
+          {
+            "order_id": "order_613fd4bc3a794b6a",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:48:04.019865+00:00"
+          },
+          {
+            "order_id": "order_2118ed40ceab48ba",
+            "status": "paid",
+            "updated_at": "2026-07-11T20:34:21.865247+00:00"
+          },
+          {
+            "order_id": "order_172a6fd98b984039",
+            "status": "paid",
+            "updated_at": "2026-07-11T20:39:52.553549+00:00"
+          },
+          {
+            "order_id": "order_5b13d08f0738454c",
+            "status": "paid",
+            "updated_at": "2026-07-14T08:03:33.683932+00:00"
+          },
+          {
+            "order_id": "order_79cf391c2ae34d93",
+            "status": "paid",
+            "updated_at": "2026-07-14T08:32:25.781472+00:00"
+          },
+          {
+            "order_id": "order_d01fbc8ff4ef4e3c",
+            "status": "paid",
+            "updated_at": "2026-07-14T08:45:35.939785+00:00"
+          },
+          {
+            "order_id": "order_e83643ce544b48e1",
+            "status": "paid",
+            "updated_at": "2026-07-15T14:56:05.132244+00:00"
+          },
+          {
+            "order_id": "order_24a4f6d1e1e64d9d",
+            "status": "paid",
+            "updated_at": "2026-07-15T17:06:07.145626+00:00"
+          },
+          {
+            "order_id": "order_96e1fe533fa74ea2",
+            "status": "paid",
+            "updated_at": "2026-07-15T17:16:09.821902+00:00"
+          },
+          {
+            "order_id": "order_0b49b0e6ba4041df",
+            "status": "paid",
+            "updated_at": "2026-07-15T17:24:43.328682+00:00"
+          },
+          {
+            "order_id": "order_14cece4570d94826",
+            "status": "paid",
+            "updated_at": "2026-07-15T17:31:46.295801+00:00"
+          },
+          {
+            "order_id": "order_449e722d781549b5",
+            "status": "paid",
+            "updated_at": "2026-07-15T17:45:32.146344+00:00"
+          },
+          {
+            "order_id": "order_83a537334ac5417f",
+            "status": "paid",
+            "updated_at": "2026-07-15T17:52:03.757446+00:00"
+          }
+        ],
+        "order_count": 21,
+        "checkout_response": {
+          "agent": {
+            "agent_id": "agent_c773a14101534d38",
+            "created_at": "2026-07-15T17:58:27.461253+00:00",
+            "mandate_id": "mandate_8c44664e61254778",
+            "name": "Shopping Assistant",
+            "policy_id": "policy_b568993add2d410d",
+            "principal_id": "principal:demo:0077c0801a73416c",
+            "role": "buyer",
+            "schema_version": "1",
+            "status": "active",
+            "updated_at": "2026-07-15T17:58:27.461253+00:00",
+            "wallet_address": null
+          },
+          "approval": {
+            "action": "buyer.checkout.commit",
+            "agent_id": "agent_c773a14101534d38",
+            "amount_inr": 25000,
+            "approval_id": "appr_9c6b82b2ce874305",
+            "consumed_at": null,
+            "created_at": "2026-07-15T17:59:17.481060+00:00",
+            "expires_at": "2026-07-15T18:14:17.481032+00:00",
+            "mandate_id": "mandate_8c44664e61254778",
+            "mandate_version": 1,
+            "nonce": "df96c30c099f4f16bb2df30fe7e66346",
+            "policy_version": 1,
+            "principal_id": "principal:demo:0077c0801a73416c",
+            "request_hash": "01d7dbd3a120602a48db10257764bbb6153ac2a84c4ab9d356975714347956d3",
+            "resource_id": "session-1784138081609-jmbjq4z",
+            "status": "issued",
+            "wallet_address": null
+          },
+          "decision": "need_approval",
+          "mandate": {
+            "agent_id": "agent_c773a14101534d38",
+            "allowed_actions": [
+              "buyer.checkout.commit",
+              "buyer.order.cancel",
+              "buyer.return.submit",
+              "buyer.remedy.accept"
+            ],
+            "confirmed_at": "2026-07-15T17:58:27.461253+00:00",
+            "created_at": "2026-07-15T17:58:27.461253+00:00",
+            "expires_at": null,
+            "limits": {
+              "auto_approve_max_inr": {
+                "buyer.checkout.commit": 10000
+              }
+            },
+            "mandate_id": "mandate_8c44664e61254778",
+            "principal_id": "principal:demo:0077c0801a73416c",
+            "role": "buyer",
+            "status": "active",
+            "template": "buyer_shop_v1",
+            "version": 1,
+            "wallet_address": null
+          },
+          "orderId": null,
+          "policy": {
+            "agent_id": "agent_c773a14101534d38",
+            "allowed_actions": [
+              "buyer.checkout.commit",
+              "buyer.order.cancel",
+              "buyer.return.submit",
+              "buyer.remedy.accept"
+            ],
+            "checkout_auto_max_inr": 10000,
+            "created_at": "2026-07-15T17:58:27.461253+00:00",
+            "mandate_id": "mandate_8c44664e61254778",
+            "policy_id": "policy_b568993add2d410d",
+            "principal_id": "principal:demo:0077c0801a73416c",
+            "refund_auto_max_inr": 5000,
+            "status": "active",
+            "template": "buyer_shop_v1",
+            "version": 1,
+            "wallet_address": null
+          },
+          "reason": "Amount INR 25000 exceeds auto limit INR 10000.",
+          "reason_code": "approval_required_amount",
+          "receipt": null,
+          "request_hash": "01d7dbd3a120602a48db10257764bbb6153ac2a84c4ab9d356975714347956d3"
+        }
+      },
+      "backend_check": {
+        "ok": true,
+        "evidence": "decision=need_approval approval_id=appr_9c6b82b2ce874305 tool_ok=True"
+      },
+      "turn_errors": [],
+      "visual_review": "accepted"
+    },
+    {
+      "id": "B-CHECKOUT-OK",
+      "ask": "checkout and pay",
+      "result": "Pass",
+      "evidence": "decision=allow tools=['checkout_commit'] decision_visible=True visible=True; settled=True; turn_errors=0; frontend=origin=http://127.0.0.1:43102 expected=http://127.0.0.1:43102 path=/orders/demo-1784138386001-aqiytd; backend=decision=allow receipt=rcpt_09b3e01762bc4969 backend_receipt_match=True",
+      "screenshots": [
+        "/Users/gurusharan/Documents/remote-claude/active/apps/AadhaarChainWorkspace/.cursor/skills/ondc-testing/references/evidence/B-CHECKOUT-OK-20260715-232440-0.jpeg"
+      ],
+      "pathname": "/orders/demo-1784138386001-aqiytd",
+      "frontend_origin": "http://127.0.0.1:43102",
+      "frontend_check": {
+        "ok": true,
+        "evidence": "origin=http://127.0.0.1:43102 expected=http://127.0.0.1:43102 path=/orders/demo-1784138386001-aqiytd"
+      },
+      "tools": [
+        "checkout_commit"
+      ],
+      "reply": "Sure\u2014I'll try to commit checkout for your current cart now. Done\u2014your checkout went through and payment succeeded for 89 rupees.  \nYour orde",
+      "backend": {
+        "ok": true,
+        "realtime_configured": true,
+        "ondc_enabled": false,
+        "catalog": [
+          {
+            "item_id": "item_c5d8daa0520f476f",
+            "title": "AgentGuard PreProd Atta 1kg",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_8c74c8870fd04099",
+            "title": "Whole Wheat Atta 1kg",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_6964cd65af584386",
+            "title": "Matrix Fresh Atta 223131",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_4be1317e4c234ca0",
+            "title": "Matrix Fresh Atta 224133",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_887bc624dd3b4fec",
+            "title": "Matrix Fresh Atta 224942",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_db6f9d3b5eb3475e",
+            "title": "Matrix Fresh Atta 225642",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_fb171d98340b43b1",
+            "title": "Matrix Fresh Atta 231027",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_6bce0e5cd9c74af4",
+            "title": "Matrix Fresh Atta 231658",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_438068d4c3bf4b7a",
+            "title": "Matrix Fresh Atta 232440",
+            "price_inr": 89,
+            "status": "published"
+          }
+        ],
+        "orders": [
+          {
+            "order_id": "order_38a0b35aa8174c0d",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:01:05.536011+00:00"
+          },
+          {
+            "order_id": "order_2a5cceb8490d4b99",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:05:51.286167+00:00"
+          },
+          {
+            "order_id": "order_4c8ccd3261904d5c",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:05:51.541110+00:00"
+          },
+          {
+            "order_id": "order_bbec57608f4a4c48",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:19:28.714890+00:00"
+          },
+          {
+            "order_id": "order_a4a7ed4cc1854951",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:19:37.784071+00:00"
+          },
+          {
+            "order_id": "order_fcfb79214e4d4143",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:19:39.133987+00:00"
+          },
+          {
+            "order_id": "order_309a2da9b92a4b84",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:37:58.951374+00:00"
+          },
+          {
+            "order_id": "order_228b5a93f76d45f3",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:48:03.544174+00:00"
+          },
+          {
+            "order_id": "order_613fd4bc3a794b6a",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:48:04.019865+00:00"
+          },
+          {
+            "order_id": "order_2118ed40ceab48ba",
+            "status": "paid",
+            "updated_at": "2026-07-11T20:34:21.865247+00:00"
+          },
+          {
+            "order_id": "order_172a6fd98b984039",
+            "status": "paid",
+            "updated_at": "2026-07-11T20:39:52.553549+00:00"
+          },
+          {
+            "order_id": "order_5b13d08f0738454c",
+            "status": "paid",
+            "updated_at": "2026-07-14T08:03:33.683932+00:00"
+          },
+          {
+            "order_id": "order_79cf391c2ae34d93",
+            "status": "paid",
+            "updated_at": "2026-07-14T08:32:25.781472+00:00"
+          },
+          {
+            "order_id": "order_d01fbc8ff4ef4e3c",
+            "status": "paid",
+            "updated_at": "2026-07-14T08:45:35.939785+00:00"
+          },
+          {
+            "order_id": "order_e83643ce544b48e1",
+            "status": "paid",
+            "updated_at": "2026-07-15T14:56:05.132244+00:00"
+          },
+          {
+            "order_id": "order_24a4f6d1e1e64d9d",
+            "status": "paid",
+            "updated_at": "2026-07-15T17:06:07.145626+00:00"
+          },
+          {
+            "order_id": "order_96e1fe533fa74ea2",
+            "status": "paid",
+            "updated_at": "2026-07-15T17:16:09.821902+00:00"
+          },
+          {
+            "order_id": "order_0b49b0e6ba4041df",
+            "status": "paid",
+            "updated_at": "2026-07-15T17:24:43.328682+00:00"
+          },
+          {
+            "order_id": "order_14cece4570d94826",
+            "status": "paid",
+            "updated_at": "2026-07-15T17:31:46.295801+00:00"
+          },
+          {
+            "order_id": "order_449e722d781549b5",
+            "status": "paid",
+            "updated_at": "2026-07-15T17:45:32.146344+00:00"
+          },
+          {
+            "order_id": "order_83a537334ac5417f",
+            "status": "paid",
+            "updated_at": "2026-07-15T17:52:03.757446+00:00"
+          },
+          {
+            "order_id": "order_3410959834c548bf",
+            "status": "paid",
+            "updated_at": "2026-07-15T17:59:45.991762+00:00"
+          }
+        ],
+        "order_count": 22,
+        "checkout_response": {
+          "decision": "allow",
+          "orderId": "demo-1784138386001-aqiytd",
+          "reason": "Executed.",
+          "reason_code": "within_policy",
+          "receipt": {
+            "action": "buyer.checkout.commit",
+            "agent_id": "agent_c773a14101534d38",
+            "amount_inr": 89,
+            "approval_id": null,
+            "created_at": "2026-07-15T17:59:45.994823+00:00",
+            "issuer_key_id": "agentguard-local-dev-v1",
+            "mandate_id": "mandate_8c44664e61254778",
+            "mandate_version": 1,
+            "outcome": "executed",
+            "policy_id": "policy_b568993add2d410d",
+            "principal_id": "principal:demo:0077c0801a73416c",
+            "reason_code": "within_policy",
+            "receipt_id": "rcpt_09b3e01762bc4969",
+            "request_hash": "dd6043c2f4714bd41e337925cd8aa650781176e34cec2572e251639b7d7f2228",
+            "resource_id": "session-1784138081609-jmbjq4z",
+            "result": {
+              "message_id": "msg_9749f3b3a26d45a7",
+              "order": {
+                "amount_inr": 89,
+                "buyer_id": "principal:demo:0077c0801a73416c",
+                "created_at": "2026-07-15T17:59:45.991760+00:00",
+                "item_id": "item_438068d4c3bf4b7a",
+                "item_version": 2,
+                "message_id": "msg_9749f3b3a26d45a7",
+                "order_id": "order_3410959834c548bf",
+                "payment": {
+                  "adapter": "simulated_payment_v1",
+                  "amount_inr": 89,
+                  "created_at": "2026-07-15T17:59:45.991750+00:00",
+                  "payment_id": "pay_buyer-checkout:session-1784138081609-jmbjq4z",
+                  "reference_id": "txn_b4484dc6127f4e5d",
+                  "status": "succeeded"
+                },
+                "quantity": 1,
+                "seller_id": "demo-seller",
+                "status": "paid",
+                "transaction_id": "txn_b4484dc6127f4e5d",
+                "updated_at": "2026-07-15T17:59:45.991762+00:00"
+              },
+              "transaction_id": "txn_b4484dc6127f4e5d"
+            },
+            "schema_version": "1",
+            "signature": "54ed19def0c25a62b447ea5a4fb84958754acc5757c295a92ff7544ad7b5e403",
+            "wallet_address": null
+          },
+          "result": {
+            "message_id": "msg_9749f3b3a26d45a7",
+            "order": {
+              "amount_inr": 89,
+              "buyer_id": "principal:demo:0077c0801a73416c",
+              "created_at": "2026-07-15T17:59:45.991760+00:00",
+              "item_id": "item_438068d4c3bf4b7a",
+              "item_version": 2,
+              "message_id": "msg_9749f3b3a26d45a7",
+              "order_id": "order_3410959834c548bf",
+              "payment": {
+                "adapter": "simulated_payment_v1",
+                "amount_inr": 89,
+                "created_at": "2026-07-15T17:59:45.991750+00:00",
+                "payment_id": "pay_buyer-checkout:session-1784138081609-jmbjq4z",
+                "reference_id": "txn_b4484dc6127f4e5d",
+                "status": "succeeded"
+              },
+              "quantity": 1,
+              "seller_id": "demo-seller",
+              "status": "paid",
+              "transaction_id": "txn_b4484dc6127f4e5d",
+              "updated_at": "2026-07-15T17:59:45.991762+00:00"
+            },
+            "transaction_id": "txn_b4484dc6127f4e5d"
+          }
+        }
+      },
+      "backend_check": {
+        "ok": true,
+        "evidence": "decision=allow receipt=rcpt_09b3e01762bc4969 backend_receipt_match=True"
+      },
+      "turn_errors": [],
+      "visual_review": "accepted"
+    },
+    {
+      "id": "B-LONG-WEEKLY",
+      "ask": "Please plan a practical week of groceries for two people under 2,000 rupees, taking my preferences into account.",
+      "result": "Pass",
+      "evidence": "completed inline path=/orders/demo-1784138386001-aqiytd runtime_statuses=['started', 'completed']; settled=True; turn_errors=0; frontend=origin=http://127.0.0.1:43102 expected=http://127.0.0.1:43102 path=/orders/demo-1784138386001-aqiytd; backend=runtime_available=True model=composer-2.5 handoff_ok=True statuses=['completed', 'started']",
+      "screenshots": [
+        "/Users/gurusharan/Documents/remote-claude/active/apps/AadhaarChainWorkspace/.cursor/skills/ondc-testing/references/evidence/B-LONG-WEEKLY-20260715-232440-0.jpeg"
+      ],
+      "pathname": "/orders/demo-1784138386001-aqiytd",
+      "frontend_origin": "http://127.0.0.1:43102",
+      "frontend_check": {
+        "ok": true,
+        "evidence": "origin=http://127.0.0.1:43102 expected=http://127.0.0.1:43102 path=/orders/demo-1784138386001-aqiytd"
+      },
+      "tools": [
+        "delegate_to_runtime_agent"
+      ],
+      "reply": "I\u2019ll set up a practical weekly plan with a budget-friendly list, keeping your organic preference in mind. I\u2019ve started the weekly grocery pl",
+      "backend": {
+        "ok": true,
+        "realtime_configured": true,
+        "ondc_enabled": false,
+        "catalog": [
+          {
+            "item_id": "item_c5d8daa0520f476f",
+            "title": "AgentGuard PreProd Atta 1kg",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_8c74c8870fd04099",
+            "title": "Whole Wheat Atta 1kg",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_6964cd65af584386",
+            "title": "Matrix Fresh Atta 223131",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_4be1317e4c234ca0",
+            "title": "Matrix Fresh Atta 224133",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_887bc624dd3b4fec",
+            "title": "Matrix Fresh Atta 224942",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_db6f9d3b5eb3475e",
+            "title": "Matrix Fresh Atta 225642",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_fb171d98340b43b1",
+            "title": "Matrix Fresh Atta 231027",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_6bce0e5cd9c74af4",
+            "title": "Matrix Fresh Atta 231658",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_438068d4c3bf4b7a",
+            "title": "Matrix Fresh Atta 232440",
+            "price_inr": 89,
+            "status": "published"
+          }
+        ],
+        "orders": [
+          {
+            "order_id": "order_38a0b35aa8174c0d",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:01:05.536011+00:00"
+          },
+          {
+            "order_id": "order_2a5cceb8490d4b99",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:05:51.286167+00:00"
+          },
+          {
+            "order_id": "order_4c8ccd3261904d5c",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:05:51.541110+00:00"
+          },
+          {
+            "order_id": "order_bbec57608f4a4c48",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:19:28.714890+00:00"
+          },
+          {
+            "order_id": "order_a4a7ed4cc1854951",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:19:37.784071+00:00"
+          },
+          {
+            "order_id": "order_fcfb79214e4d4143",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:19:39.133987+00:00"
+          },
+          {
+            "order_id": "order_309a2da9b92a4b84",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:37:58.951374+00:00"
+          },
+          {
+            "order_id": "order_228b5a93f76d45f3",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:48:03.544174+00:00"
+          },
+          {
+            "order_id": "order_613fd4bc3a794b6a",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:48:04.019865+00:00"
+          },
+          {
+            "order_id": "order_2118ed40ceab48ba",
+            "status": "paid",
+            "updated_at": "2026-07-11T20:34:21.865247+00:00"
+          },
+          {
+            "order_id": "order_172a6fd98b984039",
+            "status": "paid",
+            "updated_at": "2026-07-11T20:39:52.553549+00:00"
+          },
+          {
+            "order_id": "order_5b13d08f0738454c",
+            "status": "paid",
+            "updated_at": "2026-07-14T08:03:33.683932+00:00"
+          },
+          {
+            "order_id": "order_79cf391c2ae34d93",
+            "status": "paid",
+            "updated_at": "2026-07-14T08:32:25.781472+00:00"
+          },
+          {
+            "order_id": "order_d01fbc8ff4ef4e3c",
+            "status": "paid",
+            "updated_at": "2026-07-14T08:45:35.939785+00:00"
+          },
+          {
+            "order_id": "order_e83643ce544b48e1",
+            "status": "paid",
+            "updated_at": "2026-07-15T14:56:05.132244+00:00"
+          },
+          {
+            "order_id": "order_24a4f6d1e1e64d9d",
+            "status": "paid",
+            "updated_at": "2026-07-15T17:06:07.145626+00:00"
+          },
+          {
+            "order_id": "order_96e1fe533fa74ea2",
+            "status": "paid",
+            "updated_at": "2026-07-15T17:16:09.821902+00:00"
+          },
+          {
+            "order_id": "order_0b49b0e6ba4041df",
+            "status": "paid",
+            "updated_at": "2026-07-15T17:24:43.328682+00:00"
+          },
+          {
+            "order_id": "order_14cece4570d94826",
+            "status": "paid",
+            "updated_at": "2026-07-15T17:31:46.295801+00:00"
+          },
+          {
+            "order_id": "order_449e722d781549b5",
+            "status": "paid",
+            "updated_at": "2026-07-15T17:45:32.146344+00:00"
+          },
+          {
+            "order_id": "order_83a537334ac5417f",
+            "status": "paid",
+            "updated_at": "2026-07-15T17:52:03.757446+00:00"
+          },
+          {
+            "order_id": "order_3410959834c548bf",
+            "status": "paid",
+            "updated_at": "2026-07-15T17:59:45.991762+00:00"
+          }
+        ],
+        "order_count": 22,
+        "runtime": {
+          "app_id": "ondc-buyer",
+          "subject_id": "matrix-buyer",
+          "auth_mode": "api_key",
+          "model": "composer-2.5",
+          "runtime_available": true,
+          "agent_access": true,
+          "trust_state": "session",
+          "trust_required_for_write": false,
+          "mode": "read_write",
+          "usage": {
+            "requests_used": 0,
+            "requests_limit": 0,
+            "period_start": "2026-07-15T18:00:35.945998+00:00",
+            "period_end": "2026-07-15T18:00:35.946015+00:00",
+            "estimated_cost_usd": 0.0
+          },
+          "allowed_capabilities": [
+            "search",
+            "product_detail",
+            "cart_state",
+            "order_status",
+            "trust_checkout_guidance"
+          ],
+          "blocked_reason": null,
+          "compatibility_surface": "agent_runtime",
+          "control_plane": "gateway"
+        }
+      },
+      "backend_check": {
+        "ok": true,
+        "evidence": "runtime_available=True model=composer-2.5 handoff_ok=True statuses=['completed', 'started']"
+      },
+      "turn_errors": [],
+      "visual_review": "accepted"
+    }
+  ],
+  "evidence_dir": "/Users/gurusharan/Documents/remote-claude/active/apps/AadhaarChainWorkspace/.cursor/skills/ondc-testing/references/evidence",
+  "realtime_model": "gpt-realtime-2.1-mini",
+  "ts": "20260715-232440"
+}

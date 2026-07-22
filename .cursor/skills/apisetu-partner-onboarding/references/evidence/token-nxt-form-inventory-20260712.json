@@ -1,0 +1,804 @@
+[
+  {
+    "page": 1,
+    "dropdowns": [
+      {
+        "question": "5. Company Size (Employees)",
+        "options": [
+          "1-10",
+          "11-50",
+          "51-200",
+          "201-1000",
+          "1000+"
+        ],
+        "picked": "1-10"
+      },
+      {
+        "question": "6. Funding Stage",
+        "options": [
+          "Bootstrapped",
+          "Seed",
+          "Series A",
+          "Series B+"
+        ],
+        "picked": "Bootstrapped"
+      }
+    ],
+    "extract": {
+      "buttons": [
+        "1-10",
+        "Bootstrapped",
+        "Next",
+        "Microsoft Forms"
+      ],
+      "fullText": "Token Nxt By NPCI\nWhen you submit this form, it will not automatically collect your details like name and email address unless you provide it yourself.\nRequired\nCompany Identity\n1.\nCompany Name\n2.\nCompany Website URL\n3.\nHeadquarters Country\n4.\nYear of Founding\n5.\nCompany Size (Employees)\n1-10\n6.\nFunding Stage\nBootstrapped\n7.\nPrimary Contact Name\n8.\n        Primary   Contact Email      \n9.\nPrimary Contact Designation\n10.\nLinkedIn Company Page URL\nNext\nPage 1 of 7\nNever give out your password.Report abuse\nThis content is created by the owner of the form. The data you submit will be sent to the form owner. Microsoft is not responsible for the privacy or security practices of its customers, including those of this form owner. Never give out your password.\nMicrosoft Forms | AI-Powered surveys, quizzes and pollsCreate my own form\nThe owner of this form has not provided a privacy statement as to how they will use your response data. Do not provide personal or sensitive information. | Consumer Health Privacy | Terms of use",
+      "pageMarker": "Page 1 of 7",
+      "questions": [
+        {
+          "body": "1. Company Name",
+          "checkboxValues": [],
+          "index": 1,
+          "kinds": [
+            "text"
+          ],
+          "placeholders": [
+            "Enter your answer"
+          ],
+          "radioValues": [],
+          "title": "1. Company Name"
+        },
+        {
+          "body": "2. Company Website URL",
+          "checkboxValues": [],
+          "index": 2,
+          "kinds": [
+            "text"
+          ],
+          "placeholders": [
+            "Please enter a URL"
+          ],
+          "radioValues": [],
+          "title": "2. Company Website URL"
+        },
+        {
+          "body": "3. Headquarters Country",
+          "checkboxValues": [],
+          "index": 3,
+          "kinds": [
+            "text"
+          ],
+          "placeholders": [
+            "Enter your answer"
+          ],
+          "radioValues": [],
+          "title": "3. Headquarters Country"
+        },
+        {
+          "body": "4. Year of Founding",
+          "checkboxValues": [],
+          "index": 4,
+          "kinds": [
+            "text"
+          ],
+          "placeholders": [
+            "Please enter a number less than or equal to 2026"
+          ],
+          "radioValues": [],
+          "title": "4. Year of Founding"
+        },
+        {
+          "body": "5. Company Size (Employees) 1-10",
+          "checkboxValues": [],
+          "index": 5,
+          "kinds": [
+            "dropdown"
+          ],
+          "placeholders": [],
+          "radioValues": [],
+          "title": "5. Company Size (Employees)"
+        },
+        {
+          "body": "6. Funding Stage Bootstrapped",
+          "checkboxValues": [],
+          "index": 6,
+          "kinds": [
+            "dropdown"
+          ],
+          "placeholders": [],
+          "radioValues": [],
+          "title": "6. Funding Stage"
+        },
+        {
+          "body": "7. Primary Contact Name",
+          "checkboxValues": [],
+          "index": 7,
+          "kinds": [
+            "text"
+          ],
+          "placeholders": [
+            "Enter your answer"
+          ],
+          "radioValues": [],
+          "title": "7. Primary Contact Name"
+        },
+        {
+          "body": "8. Primary Contact Email",
+          "checkboxValues": [],
+          "index": 8,
+          "kinds": [
+            "text"
+          ],
+          "placeholders": [
+            "Please enter an email"
+          ],
+          "radioValues": [],
+          "title": "8. Primary Contact Email"
+        },
+        {
+          "body": "9. Primary Contact Designation",
+          "checkboxValues": [],
+          "index": 9,
+          "kinds": [
+            "text"
+          ],
+          "placeholders": [
+            "Enter your answer"
+          ],
+          "radioValues": [],
+          "title": "9. Primary Contact Designation"
+        },
+        {
+          "body": "10. LinkedIn Company Page URL",
+          "checkboxValues": [],
+          "index": 10,
+          "kinds": [
+            "text"
+          ],
+          "placeholders": [
+            "Enter your answer"
+          ],
+          "radioValues": [],
+          "title": "10. LinkedIn Company Page URL"
+        }
+      ],
+      "sectionHeadings": [
+        "Token Nxt By NPCI",
+        "Company Identity",
+        "1. Company Name",
+        "2. Company Website URL",
+        "3. Headquarters Country",
+        "4. Year of Founding",
+        "5. Company Size (Employees)",
+        "6. Funding Stage",
+        "7. Primary Contact Name",
+        "8. Primary Contact Email",
+        "9. Primary Contact Designation",
+        "10. LinkedIn Company Page URL"
+      ],
+      "title": "Token Nxt By NPCI (Page 1 of 7)"
+    }
+  },
+  {
+    "page": 2,
+    "dropdowns": [
+      {
+        "question": "13. Primary AI Product Category",
+        "options": [
+          "Foundation Models & LLMs",
+          "Generative AI",
+          "AI Agents & Autonomous Systems",
+          "Robotics & Physical AI",
+          "Computer Vision",
+          "Conversational AI & NLP",
+          "Predictive AI & Machine Learning",
+          "AI Infrastructure & Platforms",
+          "Enterprise AI & Automation",
+          "Responsible AI",
+          "Security & Governance",
+          "Industry-Specific AI Solutions",
+          "AI Research & Innovation",
+          "Quantum Computing",
+          "Cryptography",
+          "Cyber Security"
+        ],
+        "picked": "Foundation Models & LLMs"
+      },
+      {
+        "question": "14. Secondary AI Product Category (if applicable)",
+        "options": [
+          "Foundation Models & LLMs",
+          "Generative AI",
+          "AI Agents & Autonomous Systems",
+          "Robotics & Physical AI",
+          "Computer Vision",
+          "Conversational AI & NLP",
+          "Predictive AI & Machine Learning",
+          "AI Infrastructure & Platforms",
+          "Enterprise AI & Automation",
+          "Responsible AI",
+          "Security & Governance",
+          "Industry-Specific AI Solutions",
+          "AI Research & Innovation",
+          "Quantum Computing",
+          "Cryptography",
+          "Cyber Security"
+        ],
+        "picked": "Foundation Models & LLMs"
+      },
+      {
+        "question": "15. Is this a B2B, B2C, or B2G product?",
+        "options": [
+          "B2B",
+          "B2C",
+          "B2G",
+          "B2B + B2C"
+        ],
+        "picked": "B2B"
+      },
+      {
+        "question": "18. Is your product currently live and commercially available?",
+        "options": [
+          "Yes",
+          "Yes - Limited Beta",
+          "No - Pre-launch",
+          "No - R&D Stage"
+        ],
+        "picked": "Yes"
+      },
+      {
+        "question": "19. Number of active users or enterprise customers (approx.)",
+        "options": [
+          "<100",
+          "100-1000",
+          "1001-10,000",
+          "10,001-100,000",
+          "100,000+"
+        ],
+        "picked": "<100"
+      }
+    ],
+    "extract": {
+      "buttons": [
+        "Foundation Models & LLMs",
+        "Foundation Models & LLMs",
+        "B2B",
+        "Yes",
+        "<100",
+        "Back",
+        "Next",
+        "Microsoft Forms"
+      ],
+      "fullText": "Token Nxt By NPCI\nRequired\nAI Product / Solution Details\n11.\nProduct / Solution Name\n12.\nProduct Website or Landing Page\n13.\nPrimary AI Product Category\nFoundation Models & LLMs\n14.\nSecondary AI Product Category\u00a0(if applicable)\n \nFoundation Models & LLMs\n15.\nIs this a B2B, B2C, or B2G product?\nB2B\n16.\nDescribe your product in 2-3 sentences\n17.\nWhat problem does your product solve?\n18.\nIs your product currently live and commercially available?\nYes\n19.\nNumber of active users or enterprise customers (approx.)\n \n<100\n20.\nKey differentiator from existing solutions\nBack\nNext\nPage 2 of 7\nNever give out your password.Report abuse\nThis content is created by the owner of the form. The data you submit will be sent to the form owner. Microsoft is not responsible for the privacy or security practices of its customers, including those of this form owner. Never give out your password.\nMicrosoft Forms | AI-Powered surveys, quizzes and pollsCreate my own form\nThe owner of this form has not provided a privacy statement as to how they will use your response data. Do not provide personal or sensitive information. | Consumer Health Privacy | Terms of use",
+      "pageMarker": "Page 2 of 7",
+      "questions": [
+        {
+          "body": "11. Product / Solution Name",
+          "checkboxValues": [],
+          "index": 1,
+          "kinds": [
+            "text"
+          ],
+          "placeholders": [
+            "Please enter at most 150 characters"
+          ],
+          "radioValues": [],
+          "title": "11. Product / Solution Name"
+        },
+        {
+          "body": "12. Product Website or Landing Page",
+          "checkboxValues": [],
+          "index": 2,
+          "kinds": [
+            "text"
+          ],
+          "placeholders": [
+            "Please enter a URL"
+          ],
+          "radioValues": [],
+          "title": "12. Product Website or Landing Page"
+        },
+        {
+          "body": "13. Primary AI Product Category Foundation Models & LLMs",
+          "checkboxValues": [],
+          "index": 3,
+          "kinds": [
+            "dropdown"
+          ],
+          "placeholders": [],
+          "radioValues": [],
+          "title": "13. Primary AI Product Category"
+        },
+        {
+          "body": "14. Secondary AI Product Category (if applicable) Foundation Models & LLMs",
+          "checkboxValues": [],
+          "index": 4,
+          "kinds": [
+            "dropdown"
+          ],
+          "placeholders": [],
+          "radioValues": [],
+          "title": "14. Secondary AI Product Category (if applicable)"
+        },
+        {
+          "body": "15. Is this a B2B, B2C, or B2G product? B2B",
+          "checkboxValues": [],
+          "index": 5,
+          "kinds": [
+            "dropdown"
+          ],
+          "placeholders": [],
+          "radioValues": [],
+          "title": "15. Is this a B2B, B2C, or B2G product?"
+        },
+        {
+          "body": "16. Describe your product in 2-3 sentences",
+          "checkboxValues": [],
+          "index": 6,
+          "kinds": [
+            "textarea"
+          ],
+          "placeholders": [
+            "Please enter at most 500 characters"
+          ],
+          "radioValues": [],
+          "title": "16. Describe your product in 2-3 sentences"
+        },
+        {
+          "body": "17. What problem does your product solve?",
+          "checkboxValues": [],
+          "index": 7,
+          "kinds": [
+            "textarea"
+          ],
+          "placeholders": [
+            "Please enter at most 600 characters"
+          ],
+          "radioValues": [],
+          "title": "17. What problem does your product solve?"
+        },
+        {
+          "body": "18. Is your product currently live and commercially available? Yes",
+          "checkboxValues": [],
+          "index": 8,
+          "kinds": [
+            "dropdown"
+          ],
+          "placeholders": [],
+          "radioValues": [],
+          "title": "18. Is your product currently live and commercially available?"
+        },
+        {
+          "body": "19. Number of active users or enterprise customers (approx.) <100",
+          "checkboxValues": [],
+          "index": 9,
+          "kinds": [
+            "dropdown"
+          ],
+          "placeholders": [],
+          "radioValues": [],
+          "title": "19. Number of active users or enterprise customers (approx.)"
+        },
+        {
+          "body": "20. Key differentiator from existing solutions",
+          "checkboxValues": [],
+          "index": 10,
+          "kinds": [
+            "textarea"
+          ],
+          "placeholders": [
+            "Please enter at most 500 characters"
+          ],
+          "radioValues": [],
+          "title": "20. Key differentiator from existing solutions"
+        }
+      ],
+      "sectionHeadings": [
+        "Token Nxt By NPCI",
+        "AI Product / Solution Details",
+        "11. Product / Solution Name",
+        "12. Product Website or Landing Page",
+        "13. Primary AI Product Category",
+        "14. Secondary AI Product Category (if applicable)",
+        "15. Is this a B2B, B2C, or B2G product?",
+        "16. Describe your product in 2-3 sentences",
+        "17. What problem does your product solve?",
+        "18. Is your product currently live and commercially available?",
+        "19. Number of active users or enterprise customers (approx.)",
+        "20. Key differentiator from existing solutions"
+      ],
+      "title": "Token Nxt By NPCI (Page 2 of 7)"
+    }
+  },
+  {
+    "page": 3,
+    "dropdowns": [
+      {
+        "question": "25. Is your model proprietary, open-source, or hybrid?",
+        "options": [
+          "Fully Proprietary",
+          "Partially Open-Source",
+          "Fully Open-Source"
+        ],
+        "picked": "Fully Proprietary"
+      }
+    ],
+    "extract": {
+      "buttons": [
+        "Fully Proprietary",
+        "Back",
+        "Next",
+        "Microsoft Forms"
+      ],
+      "fullText": "Token Nxt By NPCI\nRequired\nTechnology Architecture\n21.\nHow is your product or solution built?\nBuilt on 3rd-party LLM API\nProprietary foundation model\nFine-tuned open-source model\nHybrid architecture\nRAG-based\nAgent-based multi-model\n22.\nWhich AI models or frameworks are at the core?\n23.\nDoes your product incorporate any of the following?\nRetrieval-Augmented Generation (RAG)\nMulti-modal inputs\nReal-time data processing\nFederated Learning\nExplainability\nGuardrails & Safety layers\nCustom fine-tuning\n24.\nDescribe your data handling and privacy approach\n25.\nIs your model proprietary, open-source, or hybrid?\nFully Proprietary\n26.\nWhat measures are in place to reduce hallucination or bias?\nBack\nNext\nPage 3 of 7\nNever give out your password.Report abuse\nThis content is created by the owner of the form. The data you submit will be sent to the form owner. Microsoft is not responsible for the privacy or security practices of its customers, including those of this form owner. Never give out your password.\nMicrosoft Forms | AI-Powered surveys, quizzes and pollsCreate my own form\nThe owner of this form has not provided a privacy statement as to how they will use your response data. Do not provide personal or sensitive information. | Consumer Health Privacy | Terms of use",
+      "pageMarker": "Page 3 of 7",
+      "questions": [
+        {
+          "body": "21. How is your product or solution built? Built on 3rd-party LLM API Proprietary foundation model Fine-tuned open-source model Hybrid architecture RAG-based Agent-based multi-model",
+          "checkboxValues": [
+            "Built on 3rd-party LLM API",
+            "Proprietary foundation model",
+            "Fine-tuned open-source model",
+            "Hybrid architecture",
+            "RAG-based",
+            "Agent-based multi-model"
+          ],
+          "index": 1,
+          "kinds": [
+            "checkbox"
+          ],
+          "placeholders": [],
+          "radioValues": [],
+          "title": "21. How is your product or solution built?"
+        },
+        {
+          "body": "22. Which AI models or frameworks are at the core?",
+          "checkboxValues": [],
+          "index": 2,
+          "kinds": [
+            "textarea"
+          ],
+          "placeholders": [
+            "Please enter at most 200 characters"
+          ],
+          "radioValues": [],
+          "title": "22. Which AI models or frameworks are at the core?"
+        },
+        {
+          "body": "23. Does your product incorporate any of the following? Retrieval-Augmented Generation (RAG) Multi-modal inputs Real-time data processing Federated Learning Explainability Guardrails & Safety layers Custom fine-tuning",
+          "checkboxValues": [
+            "Retrieval-Augmented Generation (RAG)",
+            "Multi-modal inputs",
+            "Real-time data processing",
+            "Federated Learning",
+            "Explainability",
+            "Guardrails & Safety layers",
+            "Custom fine-tuning"
+          ],
+          "index": 3,
+          "kinds": [
+            "text",
+            "checkbox"
+          ],
+          "placeholders": [
+            "Other"
+          ],
+          "radioValues": [],
+          "title": "23. Does your product incorporate any of the following?"
+        },
+        {
+          "body": "24. Describe your data handling and privacy approach",
+          "checkboxValues": [],
+          "index": 4,
+          "kinds": [
+            "text"
+          ],
+          "placeholders": [
+            "Please enter at most 500 characters"
+          ],
+          "radioValues": [],
+          "title": "24. Describe your data handling and privacy approach"
+        },
+        {
+          "body": "25. Is your model proprietary, open-source, or hybrid? Fully Proprietary",
+          "checkboxValues": [],
+          "index": 5,
+          "kinds": [
+            "dropdown"
+          ],
+          "placeholders": [],
+          "radioValues": [],
+          "title": "25. Is your model proprietary, open-source, or hybrid?"
+        },
+        {
+          "body": "26. What measures are in place to reduce hallucination or bias?",
+          "checkboxValues": [],
+          "index": 6,
+          "kinds": [
+            "text"
+          ],
+          "placeholders": [
+            "Please enter at most 400 characters"
+          ],
+          "radioValues": [],
+          "title": "26. What measures are in place to reduce hallucination or bias?"
+        }
+      ],
+      "sectionHeadings": [
+        "Token Nxt By NPCI",
+        "Technology Architecture",
+        "21. How is your product or solution built?",
+        "22. Which AI models or frameworks are at the core?",
+        "23. Does your product incorporate any of the following?",
+        "24. Describe your data handling and privacy approach",
+        "25. Is your model proprietary, open-source, or hybrid?",
+        "26. What measures are in place to reduce hallucination or bias?"
+      ],
+      "title": "Token Nxt By NPCI (Page 3 of 7)"
+    }
+  },
+  {
+    "page": 4,
+    "dropdowns": [],
+    "extract": {
+      "buttons": [
+        "Back",
+        "Next",
+        "Microsoft Forms"
+      ],
+      "fullText": "Token Nxt By NPCI\nRequired\nImpact & Use Cases\n27.\nPrimary domain or industry your solution addresses\nHealthcare\nFinance & Banking\nLegal\nEducation\nRetail & E-commerce\nManufacturing\nAgriculture\nGovernment & Public Sector\nHR & Talent\nMarketing & Media\nDeveloper Tools\nGeneral Productivity\n28.\nDescribe a specific use case and outcome achieved\n29.\nQuantify the impact of your solution (e.g., time saved, revenue generated, cost reduced)\n30.\nDo you have case studies?\n30. Question title Do you have case studies? Clear Selection\nYes\nNo\n31.\nLink to case study?\n32.\nAny awards, certifications, or recognitions received previously?\nBack\nNext\nPage 4 of 7\nNever give out your password.Report abuse\nThis content is created by the owner of the form. The data you submit will be sent to the form owner. Microsoft is not responsible for the privacy or security practices of its customers, including those of this form owner. Never give out your password.\nMicrosoft Forms | AI-Powered surveys, quizzes and pollsCreate my own form\nThe owner of this form has not provided a privacy statement as to how they will use your response data. Do not provide personal or sensitive information. | Consumer Health Privacy | Terms of use",
+      "pageMarker": "Page 4 of 7",
+      "questions": [
+        {
+          "body": "27. Primary domain or industry your solution addresses Healthcare Finance & Banking Legal Education Retail & E-commerce Manufacturing Agriculture Government & Public Sector HR & Talent Marketing & Media Developer Tools General Productivity",
+          "checkboxValues": [
+            "Healthcare",
+            "Finance & Banking",
+            "Legal",
+            "Education",
+            "Retail & E-commerce",
+            "Manufacturing",
+            "Agriculture",
+            "Government & Public Sector",
+            "HR & Talent",
+            "Marketing & Media",
+            "Developer Tools",
+            "General Productivity"
+          ],
+          "index": 1,
+          "kinds": [
+            "text",
+            "checkbox"
+          ],
+          "placeholders": [
+            "Other"
+          ],
+          "radioValues": [],
+          "title": "27. Primary domain or industry your solution addresses"
+        },
+        {
+          "body": "28. Describe a specific use case and outcome achieved",
+          "checkboxValues": [],
+          "index": 2,
+          "kinds": [
+            "text"
+          ],
+          "placeholders": [
+            "Please enter at most 700 characters"
+          ],
+          "radioValues": [],
+          "title": "28. Describe a specific use case and outcome achieved"
+        },
+        {
+          "body": "29. Quantify the impact of your solution (e.g., time saved, revenue generated, cost reduced)",
+          "checkboxValues": [],
+          "index": 3,
+          "kinds": [
+            "text"
+          ],
+          "placeholders": [
+            "Please enter at most 400 characters"
+          ],
+          "radioValues": [],
+          "title": "29. Quantify the impact of your solution (e.g., time saved, revenue generated, cost reduced)"
+        },
+        {
+          "body": "30. Do you have case studies? 30. Question title Do you have case studies? Clear Selection Yes No",
+          "checkboxValues": [],
+          "index": 4,
+          "kinds": [
+            "radio"
+          ],
+          "placeholders": [],
+          "radioValues": [
+            "Yes",
+            "No"
+          ],
+          "title": "30. Do you have case studies? 30. Question title Do you have case studies? Clear Selection"
+        },
+        {
+          "body": "31. Link to case study?",
+          "checkboxValues": [],
+          "index": 5,
+          "kinds": [
+            "text"
+          ],
+          "placeholders": [
+            "Please enter a URL"
+          ],
+          "radioValues": [],
+          "title": "31. Link to case study?"
+        },
+        {
+          "body": "32. Any awards, certifications, or recognitions received previously?",
+          "checkboxValues": [],
+          "index": 6,
+          "kinds": [
+            "textarea"
+          ],
+          "placeholders": [
+            "Please enter at most 300 characters"
+          ],
+          "radioValues": [],
+          "title": "32. Any awards, certifications, or recognitions received previously?"
+        }
+      ],
+      "sectionHeadings": [
+        "Token Nxt By NPCI",
+        "Impact & Use Cases",
+        "27. Primary domain or industry your solution addresses",
+        "28. Describe a specific use case and outcome achieved",
+        "29. Quantify the impact of your solution (e.g., time saved, revenue generated, cost reduced)",
+        "30. Do you have case studies?",
+        "31. Link to case study?",
+        "32. Any awards, certifications, or recognitions received previously?"
+      ],
+      "title": "Token Nxt By NPCI (Page 4 of 7)"
+    }
+  },
+  {
+    "page": 5,
+    "dropdowns": [],
+    "extract": {
+      "buttons": [
+        "Back",
+        "Next",
+        "Microsoft Forms"
+      ],
+      "fullText": "Token Nxt By NPCI\nRequired\nSupporting Materials\n33.\nProduct Demo Video Link (YouTube, Loom, etc.)\n34.\nAny additional links or references\n35.\nHow did you hear about this program?\nLinkedIn\nEmail Invitation\nNPCI Website\nGFF Website\nX (Formerly Twitter)\nWhatsapp\nBack\nNext\nPage 5 of 7\nNever give out your password.Report abuse\nThis content is created by the owner of the form. The data you submit will be sent to the form owner. Microsoft is not responsible for the privacy or security practices of its customers, including those of this form owner. Never give out your password.\nMicrosoft Forms | AI-Powered surveys, quizzes and pollsCreate my own form\nThe owner of this form has not provided a privacy statement as to how they will use your response data. Do not provide personal or sensitive information. | Consumer Health Privacy | Terms of use",
+      "pageMarker": "Page 5 of 7",
+      "questions": [
+        {
+          "body": "33. Product Demo Video Link (YouTube, Loom, etc.)",
+          "checkboxValues": [],
+          "index": 1,
+          "kinds": [
+            "text"
+          ],
+          "placeholders": [
+            "Please enter a URL"
+          ],
+          "radioValues": [],
+          "title": "33. Product Demo Video Link (YouTube, Loom, etc.)"
+        },
+        {
+          "body": "34. Any additional links or references",
+          "checkboxValues": [],
+          "index": 2,
+          "kinds": [
+            "text"
+          ],
+          "placeholders": [
+            "Please enter at most 300 characters"
+          ],
+          "radioValues": [],
+          "title": "34. Any additional links or references"
+        },
+        {
+          "body": "35. How did you hear about this program? LinkedIn Email Invitation NPCI Website GFF Website X (Formerly Twitter) Whatsapp",
+          "checkboxValues": [],
+          "index": 3,
+          "kinds": [
+            "text",
+            "radio"
+          ],
+          "placeholders": [
+            "Other"
+          ],
+          "radioValues": [
+            "LinkedIn",
+            "Email Invitation",
+            "NPCI Website",
+            "GFF Website",
+            "X (Formerly Twitter)",
+            "Whatsapp"
+          ],
+          "title": "35. How did you hear about this program?"
+        }
+      ],
+      "sectionHeadings": [
+        "Token Nxt By NPCI",
+        "Supporting Materials",
+        "33. Product Demo Video Link (YouTube, Loom, etc.)",
+        "34. Any additional links or references",
+        "35. How did you hear about this program?"
+      ],
+      "title": "Token Nxt By NPCI (Page 5 of 7)"
+    }
+  },
+  {
+    "page": 6,
+    "dropdowns": [],
+    "extract": {
+      "buttons": [
+        "Back",
+        "Next",
+        "Microsoft Forms"
+      ],
+      "fullText": "Token Nxt By NPCI\nRequired\nTerms & Conditions*\nThese Terms & Conditions (\u201cTerms\u201d) govern participation in Token Nxt, an initiative by National Payments Corporation of India (NPCI) as part of Global Fintech Fest 2026 (\u201cGFF 2026\u201d).\u00a0By\u00a0submitting\u00a0an application\u00a0and/or\u00a0participating\u00a0in Token Nxt, the applicant (\u201cParticipant\u201d) agrees to be bound by these Terms.\u00a0\n1.Organizer\n\nToken Nxt is organized by National Payments Corporation of India (NPCI).\n\n2. Program Overview\n\n2.1 Token Nxt is a curated showcase platform under Bharat AI Zone at GFF 2026, designed to\u00a0identify and present innovative AI solutions in fintech and banking through live\u00a0demonstrations.2.2 Participation is subject to a multi-stage evaluation and selection process, culminating in a\u00a0final showcase of up to 20 selected companies.\n\n3. Eligibility\u00a0\n3.1 Participation in\u00a0TokenNxt\u00a0is open to:\u00a0\nStartups, enterprises, and research-driven organizations\u00a0operating\u00a0in AI and deep-tech.\u00a0\nIndian and global companies with solutions relevant to the Indian financial ecosystem.\u00a0\n3.2 Additional\u00a0requirements:\u00a0\nSolutions must be fully functional and capable of live\u00a0demonstration.\u00a0\nSelected participants must ensure physical presence of representatives during the event (9\u201311 September 2026, Mumbai).\u00a0\n4. Application &\u00a0Selection\u00a0\n4.1 Applications must be\u00a0submitted\u00a0within the prescribed timelines.\u00a04.2 Selection\u00a0is conducted through a multi-stage evaluation process\u00a0determined\u00a0by NPCI.\u00a0\n4.3\u00a0NPCI reserves full discretion to:\u00a0\u00a0\nApprove or reject applications\u00a0\nRequest\u00a0additional\u00a0information\u00a0\nReclassify categories of applicants\u00a0\n4.4 Maximum\u00a020 finalists will be selected\n\n\n36.\nPlease read the above \"Terms & Condition\" carefully before proceeding & Confirm\u00a0I have read and agree to the above \"Terms & Condition\"\nYes\nBack\nNext\nPage 6 of 7\nNever give out your password.Report abuse\nThis content is created by the owner of the form. The data you submit will be sent to the form owner. Microsoft is not responsible for the privacy or security practices of its customers, including those of this form owner. Never give out your password.\nMicrosoft Forms | AI-Powered surveys, quizzes and pollsCreate my own form\nThe owner of this form has not provided a privacy statement as to how they will use your response data. Do not provide personal or sensitive information. | Consumer Health Privacy | Terms of use",
+      "pageMarker": "Page 6 of 7",
+      "questions": [
+        {
+          "body": "36. Please read the above \"Terms & Condition\" carefully before proceeding & Confirm I have read and agree to the above \"Terms & Condition\" Yes",
+          "checkboxValues": [],
+          "index": 1,
+          "kinds": [
+            "radio"
+          ],
+          "placeholders": [],
+          "radioValues": [
+            "Yes"
+          ],
+          "title": "36. Please read the above \"Terms & Condition\" carefully before proceeding & Confirm I have read and agree to the above \"Terms & Condition\""
+        }
+      ],
+      "sectionHeadings": [
+        "Token Nxt By NPCI",
+        "Terms & Conditions*",
+        "36. Please read the above \"Terms & Condition\" carefully before proceeding & Confirm I have read and agree to the above \"Terms & Condition\""
+      ],
+      "title": "Token Nxt By NPCI (Page 6 of 7)"
+    }
+  },
+  {
+    "page": 7,
+    "dropdowns": [],
+    "extract": {
+      "buttons": [
+        "Back",
+        "Submit",
+        "Microsoft Forms"
+      ],
+      "fullText": "Token Nxt By NPCI\nRequired\nTerms and conditions\n5.\u00a0Evaluation Criteria\u00a0The evaluation criteria for\u00a0TokenNxt\u00a0shall be decided by NPCI\u00a0basis\u00a0its sole discretion.\u00a0\n6. Participation Benefits\u00a06.1 Selected\u00a0Participants will receive:\u00a0\nOne complimentary booth at Bharat AI Zone, GFF 2026\u00a0\nOpportunity to\u00a0demonstrate\u00a0solutions to industry stakeholders, investors, and global audiences\n\n\n7. Benefits are:\u00a0\nNon-transferable\u00a0\nProvided \u201cas is\u201d without\u00a0additional\u00a0guarantees or financial compensation.\u00a0\n7.1 Participant Obligations\u00a0Participants agree to:\u00a0\nShowcase\u00a0genuine, original AI solutions.\u00a0\nEnsure\u00a0accurate\u00a0representation of their product and capabilities.\u00a0\nMaintain professional conduct during the event.\u00a0\nBear all costs not explicitly covered by NPCI with respect to\u00a0participating\u00a0in\u00a0TokenNxt\u00a0(including travel, accommodation,\u00a0logistics\u00a0unless otherwise specified).\u00a0\n8. Intellectual Property\u00a08.1 Participants\u00a0retain\u00a0full ownership of all intellectual property\u00a0submitted\u00a0or demonstrated during\u00a0TokenNxt\u00a0(\u201cParticipant Background IP\u201d).\u00a08.2 By\u00a0participating, the Participant grants NPCI a non-exclusive, royalty-free, worldwide license to use the Participant Background IP for the purpose of promoting Token Nxt across media, marketing, and other event-related communications.\u00a0\n\nFor more details please visit\u00a0https://www.npci.org.in/token-nxt\n37.\nPlease read the above terms carefully before proceeding & Confirm\u00a0I have read and agree to the above \"Terms and conditions\"\nYes\nBack\nSubmit\nPage 7 of 7\nNever give out your password.Report abuse\nThis content is created by the owner of the form. The data you submit will be sent to the form owner. Microsoft is not responsible for the privacy or security practices of its customers, including those of this form owner. Never give out your password.\nMicrosoft Forms | AI-Powered surveys, quizzes and pollsCreate my own form\nThe owner of this form has not provided a privacy statement as to how they will use your response data. Do not provide personal or sensitive information. | Consumer Health Privacy | Terms of use",
+      "pageMarker": "Page 7 of 7",
+      "questions": [
+        {
+          "body": "37. Please read the above terms carefully before proceeding & Confirm I have read and agree to the above \"Terms and conditions\" Yes",
+          "checkboxValues": [],
+          "index": 1,
+          "kinds": [
+            "radio"
+          ],
+          "placeholders": [],
+          "radioValues": [
+            "Yes"
+          ],
+          "title": "37. Please read the above terms carefully before proceeding & Confirm I have read and agree to the above \"Terms and conditions\""
+        }
+      ],
+      "sectionHeadings": [
+        "Token Nxt By NPCI",
+        "Terms and conditions",
+        "37. Please read the above terms carefully before proceeding & Confirm I have read and agree to the above \"Terms and conditions\""
+      ],
+      "title": "Token Nxt By NPCI (Page 7 of 7)"
+    },
+    "final": {
+      "buttons": [
+        "Back",
+        "Submit",
+        "Microsoft Forms"
+      ],
+      "hasSubmit": true
+    }
+  }
+]

@@ -1,0 +1,53 @@
+{
+  "date": "2026-07-19",
+  "lane": "samantha-catalog-validation",
+  "surface": "http://127.0.0.1:43102",
+  "verdict": "App Fail",
+  "actors": [
+    "bb108593-54c2-4d9c-a53c-960a440fbabd",
+    "d4beef4d-ecf9-4cb8-bad0-abc7fb5b027e"
+  ],
+  "ground_truth_before_search_fix": {
+    "demo_commerce_buyer_search_visible": ["Fresh Farm Toor Dal 1kg"],
+    "note": "Published Atta existed in state with seller_name=null and was filtered out of search_items"
+  },
+  "ground_truth_after_search_fix_and_gw_restart": {
+    "atta_count": 17,
+    "dal_count": 8,
+    "pollution": "Many Dispatch Proof / Hermes Fix* titles from prior merchant tests"
+  },
+  "findings": [
+    {
+      "id": "NL-QUERY",
+      "code": "JUNK",
+      "detail": "NL 'atta for roti tonight' early-nav used q=roti (0 matches) while orb claimed Atta loading"
+    },
+    {
+      "id": "AUTO-ADD",
+      "code": "SKIP-UI",
+      "detail": "Find-only ask led to unsolicited add_to_cart and /cart without explicit add request"
+    },
+    {
+      "id": "GHOST-ATTA",
+      "code": "GHOST",
+      "detail": "Before search filter fix, orb/cart showed AadhaarChain Whole Wheat Atta while buyer/search?q=atta returned 0"
+    },
+    {
+      "id": "SEARCH-FILTER",
+      "code": "MISS",
+      "detail": "commerce_demo.search_items required non-empty seller_name — hid published fixture SKUs",
+      "fix": "aadharchain/gateway/app/commerce_demo.py — published+in-stock only"
+    },
+    {
+      "id": "CATALOG-POLLUTION",
+      "code": "JUNK",
+      "detail": "After fix, atta search returns 17 titles including Dispatch Proof* test litter — Samantha relevance validation still needed"
+    }
+  ],
+  "milestones": {
+    "B-HI": "Pass",
+    "B-FIND-NL-ATTA": "Fail",
+    "B-ADD": "Not Tested (unsolicited add)"
+  },
+  "protocol": "references/samantha-catalog-validation.md"
+}

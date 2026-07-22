@@ -1,0 +1,23 @@
+{
+  "state": {
+    "body_snip": "Open navigation\nONDC Buyer\nSearch, cart, and orders\nAccount\nAsk Samantha. Shop on ONDC.\n\nSamantha finds offers and follows the AgentGuard spending limits you choose.\n\nAsk Samantha\nSearch catalog\nCheckout access\nAccount\nReady\nCheckout\nProtected by AgentGuard\nAutomatic checkout limit\nINR 10000\nAbove the limit\nAsk once before checkout\nPayment details\nNot collected here\n\n\u201cAuthorize and place order\u201d creates the order and reserves stock. Checkout shows the exact total and approval decision before completion.\n\nSearch ONDC\n\nSigned in. Checkout shows the order total, spending limit, and any required approval.\n\nCategory\nGrocery\nGrocery\nRestaurant\nFashion\nElectronics\nSearch\nSearch groceries\nSamantha",
+    "cards": [],
+    "errors": [],
+    "event_types": [],
+    "hint": "",
+    "href": "http://127.0.0.1:43102/search",
+    "match_badge": null,
+    "pathname": "/search",
+    "q": "",
+    "reply": "",
+    "titles": [
+      "Ask Samantha. Shop on ONDC.",
+      "Search ONDC"
+    ],
+    "tools": []
+  },
+  "shots": [
+    "/Users/gurusharan/plugins/hermes-chrome-cursor-wip/run/cache/hermes-chrome/a4f41407-6138-42ec-8fa3-4bb4e0552b52-1.jpeg"
+  ],
+  "tool_summary": []
+}

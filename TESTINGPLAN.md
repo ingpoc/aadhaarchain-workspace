@@ -538,38 +538,129 @@ reports, signed message fixtures, callback traces, retry/failure proof, and
 network discovery evidence. `ondcbuyer/src/lib/ondc/protocolClient.ts` remains a
 scaffold until this gate begins.
 
+## Layer 9 — Customer-money journey and financial safety
+
+This layer is separate from demo acceptance. Run it against production-like
+transactional storage, a payment sandbox with signed webhooks, and isolated
+Buyer/Seller tenants.
+
+### Buyer journey
+
+- sign in, set serviceable location, search manually and conversationally;
+- deduplicate and compare total landed cost, delivery, seller reliability,
+  cancellation, return eligibility, sponsorship, and alternatives;
+- persist and restore a multi-seller cart across sessions/devices;
+- revalidate inventory and price before payment, exposing every change;
+- create one payment and one order under retry, timeout, refresh, duplicate
+  callback, and concurrent-submit conditions;
+- track, partially cancel, return/replace, refund, dispute, and inspect the
+  complete customer-visible transaction record.
+
+### Seller journey
+
+- register/configure business, store, staff roles, serviceability, settlement,
+  operating hours, and policies without handling identity documents in the UI;
+- create/import/validate/publish catalog, variants, taxes, price, promotion, and
+  inventory with draft/published states;
+- accept/reject within SLA, pack, dispatch, substitute, partially fulfil, and
+  manage exception/customer communication queues;
+- validate return eligibility, review evidence, issue full/partial refund or
+  replacement, escalate high-value remedies, and reconcile settlement.
+
+### Financial invariants
+
+- provider webhook authentication and replay protection pass;
+- internal ledger balances independently of provider dashboard status;
+- payment/order/refund/settlement idempotency keys survive retries and failover;
+- payment-success/order-unknown and refund-pending states reconcile without
+  blind financial retry;
+- every material transition has one correlation ID, audit event, policy
+  decision, approval when applicable, and final receipt;
+- policy or authorization unavailability stops financial writes safely.
+
+## Layer 10 — iOS, voice, and system integration
+
+Run on supported device/OS combinations and include at least one real device for
+authentication, notification, audio, interruption, backgrounding, and network
+transition proof.
+
+- generated Swift client matches the backend contract and order/approval state
+  fixtures used by TypeScript;
+- Buyer and Seller workspace switching cannot cross resource authorization;
+- Face ID approval produces a short-lived backend token bound to device, user,
+  decision, resource, action, amount, and expiry; replay or substitution fails;
+- sensitive notification actions open review and authentication instead of
+  executing invisibly;
+- deep links, App Intents, App Shortcuts, Spotlight entities, and Live
+  Activities expose only bounded, non-sensitive data;
+- native voice covers interruption, reconnect, transcript recovery, Bluetooth,
+  text fallback, silent mode, and progress states for long tools;
+- the bundle and device logs contain no long-lived model, payment, refund, ONDC,
+  or signing credentials;
+- on-device intelligence unavailable/declined/offline fallbacks work, and local
+  model output never commits authoritative commerce state.
+
+## Layer 11 — Agent evaluations, observability, and operations
+
+Maintain a versioned evaluation set for normal and ambiguous shopping, unsafe
+or blocked categories, limit violations, conflicting preferences, unsupported
+locations, price changes, catalog prompt injection, malicious seller text,
+approval bypass, refund fraud, transcription errors, code-switching, and
+interrupted conversations.
+
+Score intent, tool, parameters, policy outcome, unauthorized-action count,
+verified completion, explanation accuracy, and customer correction. Track
+search/checkout/refund/SLA success, policy and approval outcomes, voice latency
+and cost, crashes, callback failures, and support recovery under one correlation
+ID. Production exercises must prove alerting, runbooks, backup/restore, support
+inspection, feature rollback, and a global pause for autonomous writes.
+
 ## Release decision matrix
 
 | Claim | Minimum required gate |
 | --- | --- |
 | AgentGuard domain logic works | Layers 1–2 pass |
 | Buyer and Seller share commerce state | Layer 3 pass |
-| Buyer/Seller UI is demo-ready | Layers 1–5 pass twice (incl. AG Hermes) |
+| Buyer/Seller UI passes local acceptance | Layers 1–5 pass twice (including AgentGuard browser proof) |
 | Mandate editable + agent tools execute under AG | Milestone 10–11 Layer 5 lanes |
 | Buyer Samantha voice under AG | M12: `/api/realtime/status` + orb + `/config` + voice tools lane |
 | Safe for controlled external pilot | Layers 1–7 plus security review |
-| ONDC integrated | Layer 8 official pre-production proof |
-| NPCI/payment integrated | Regulated provider evidence and reconciliation tests |
-| Production ready | External security, privacy, operational and regulatory gates |
+| ONDC network integrated | Layer 8 official conformance evidence |
+| Customer-money commerce integrated | Layer 9 plus regulated provider evidence and reconciliation tests |
+| Native companion ready | Layer 10 on supported simulators and real devices |
+| Production ready | Layers 1–11 plus external security, privacy, accessibility, operational, and regulatory gates |
 
-## Final demo checklist
+## Current local safety checklist
 
-- [x] Baseline deterministic suites pass (gateway 80; Buyer 151; Seller 158).
+The latest CF1 evidence is the 2026-07-22 PostgreSQL `@Chrome` campaign in
+`.cursor/skills/ondc-testing/references/matrix-status.md`. Its focused frozen
+source fingerprint is
+`9c7fadc8fab66f3f456272f5dd8041e357780830bbabfe7185d4c30199704d66`.
+It records gateway `198 passed`, Seller `210 passed` plus production build/copy
+gate, offline ONDC graders, one complete Buyer customer Pass and one complete
+Seller customer Pass with PostgreSQL readback. The worktree was dirty and the
+campaign did not establish the required unchanged-source two-pass release
+threshold. The older `af98738a` two-pass deterministic artifact remains
+historical evidence only; it is not the current CF1 source fingerprint.
+
+- [x] Focused CF1 deterministic support passes on the recorded fingerprint (gateway 198; Seller 210 plus production build/copy gate; targeted Ruff/diff checks; offline ONDC graders).
 - [x] Buyer and Seller builds pass.
-- [ ] Shared schema golden fixtures pass in Python and TypeScript.
-- [ ] Authenticated ownership and tenant isolation pass.
-- [ ] Exact approval binding, expiry, atomic consume and replay tests pass.
+- [x] Shared schema golden fixtures pass in Python and TypeScript.
+- [x] Authenticated ownership and tenant isolation pass.
+- [x] Exact approval binding, expiry, atomic consume and replay tests pass.
 - [x] Seller SKU reaches Buyer through signed Beckn search/callback and server-owned exchange.
-- [ ] Checkout creates one order and one inventory reservation.
-- [ ] Seller fulfilment reaches Buyer.
-- [ ] Buyer issue and Seller remedy complete.
-- [ ] Simulated payment/refund success and unknown reconciliation pass.
-- [ ] Pause and revoke races fail safely.
-- [ ] Receipts verify and tampering fails.
-- [ ] Prompt-injection and direct-API bypass attempts fail.
-- [x] Buyer AgentGuard browser lane passes twice on final FQDN build.
-- [x] Seller AgentGuard browser lane passes twice through visible UI on final FQDN build.
-- [x] Two-sided discovery/order/refund browser proof passes twice; broader fulfilment/issue lifecycle remains unchecked above.
+- [x] Checkout creates one order and one inventory reservation.
+- [x] Seller fulfilment reaches Buyer.
+- [x] Buyer issue and Seller remedy complete.
+- [x] Simulated payment/refund success and unknown reconciliation pass.
+- [x] Pause and revoke races fail safely.
+- [x] Receipts verify and tampering fails.
+- [x] Prompt-injection and direct-API bypass attempts fail.
+- [ ] Buyer AgentGuard browser lane passes twice on unchanged current source (2026-07-22 current-source Pass 1 complete; Pass 2 not tested).
+- [ ] Seller AgentGuard browser lane passes twice on unchanged current source (2026-07-22 current-source Pass 1 complete after owner fixes and one bounded Chrome recovery; Pass 2 not tested).
+- [ ] Combined two-sided discovery/order/refund and responsive semantic UI/UX-accessibility smoke passes twice on unchanged current source.
+- [ ] Current CF1 source is deployed and revalidated through FQDN/Auth0; the 2026-07-22 campaign was local only.
+- [ ] Controlled physical microphone/WebRTC voice proof passes if voice is claimed; configured or text-ready status is not voice proof.
 - [x] Validation ledger contains commands, run IDs and artifacts.
-- [x] UI labels ONDC PreProd and simulated payment/logistics honestly.
-- [ ] No blockchain, Aadhaar, live ONDC or NPCI dependency is implied.
+- [x] Product UI avoids environment/test labels and describes simulated payment and logistics truthfully.
+- [x] No blockchain, Aadhaar, live ONDC or NPCI dependency is implied by the current local product bundle; boot-independence, prohibited-copy and no-Solana-wallet-dependency assertions pass twice.

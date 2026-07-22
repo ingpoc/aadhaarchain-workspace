@@ -18,6 +18,27 @@ sides of a transaction. AgentGuard is the product; the apps are reference
 integrations. AadhaarChain is not a product dependency, and blockchain is not
 part of the product architecture.
 
+## Customer promise
+
+> Tell the agent what you need. It searches, compares, prepares the work, and
+> acts only inside boundaries you can see and change.
+
+The product must feel like one trusted commerce assistant, not two operational
+dashboards with a chatbot attached. Four customer outcomes govern admission:
+
+1. **Convenience** — reduce discovery, comparison, checkout, fulfilment, and
+   seller-operations effort.
+2. **Control** — let the customer define what the agent may do, what always
+   needs approval, and when autonomy pauses.
+3. **Trust** — explain recommendations and material actions with landed cost,
+   policy, evidence, outcome, and a durable receipt.
+4. **Recovery** — make consequential actions pausable, retry-safe, reversible,
+   disputable, or explicitly escalated.
+
+The agent may propose a plan, prepare a cart, draft a response, or recommend a
+remedy. It must not announce a purchase, refund, catalog change, or fulfilment
+transition as successful until the authoritative backend verifies the result.
+
 ## Customer problem
 
 AI agents can already search, write, classify, and call APIs. The unresolved
@@ -101,7 +122,8 @@ Hermes browser scripts are test automation, not the product agent.
 - Let the operations agent run catalog, inventory, order, and refund tools under
   AgentGuard.
 - Create and update catalog items and inventory with an agent.
-- Publish the item into the local ONDC-shaped demo exchange.
+- Publish the item through the local ONDC-shaped compatibility exchange backed
+  by the process-selected CommerceV1 owner.
 - Receive the Buyer's order and manage acceptance and fulfilment.
 - Let an agent draft customer responses without approval.
 - Guard commitments and remedies: publish, inventory reduction, order rejection,
@@ -174,6 +196,38 @@ Risk, not technical complexity, determines friction. Low-risk routine actions
 should feel automatic; unusual counterparty, amount, device, velocity, or
 content signals trigger explanation and step-up.
 
+Customer-facing language describes outcomes, not infrastructure. Prefer “The
+agent needs your approval,” “This exceeds your purchase limit,” and “No payment
+was made” over tool, executor, principal, runtime, policy-evaluation, or guard
+terminology.
+
+Recommendations must disclose total landed cost, delivery, return constraints,
+sponsorship, alternatives considered, material trade-offs, and the preference
+the customer can change. “AI recommended this” is not an explanation.
+
+## First commercial release
+
+The first commercial scope is deliberately bounded.
+
+**Buyer:** sign in; location-aware search; landed-cost comparison; durable cart;
+checkout; order tracking; cancellation; basic return/refund; mandate editing;
+approval inbox; text and voice agent; Siri/App Intent access to tracking and
+approvals.
+
+**Seller:** sign in; catalog and inventory; order acceptance and fulfilment;
+returns/refunds; mandate editing; approval inbox; basic analytics; Siri/App
+Intent access to orders and SLA risks.
+
+Hold fully autonomous purchasing, autonomous high-value refunds, generic
+computer-use execution, open-ended Siri execution, and opaque deep
+personalization until the bounded product has customer and operational proof.
+
+The iOS application begins as a voice-first command, status, and approval
+companion. It does not duplicate every Buyer and Seller web screen. Buyer and
+seller workspaces remain visibly separate, and native clients consume the same
+backend contracts, policy decisions, order states, approvals, and receipts as
+the web applications.
+
 ## Demonstration narrative
 
 1. A seller edits and confirms a mandate covering catalog, inventory, order,
@@ -203,6 +257,20 @@ and server-enforced.
 - One Seller item completes the Buyer-to-Seller demo loop without data repair.
 - Every protected action has a human-readable, cryptographically verifiable
   receipt with no raw identity, address, cart, or payment evidence.
+
+Commercial scorecards also track:
+
+- **Buyer:** search success and time-to-useful-result, search-to-cart and
+  checkout conversion, repeat purchase, issue rate, refund time, support
+  contact, task completion, and correction rate.
+- **Seller:** acceptance time, fulfilment SLA, stockout, cancellation, return,
+  catalog completeness, settlement exceptions, and time saved.
+- **Trust:** unauthorized and duplicate financial actions (target zero), policy
+  bypass attempts, approval abandonment, complete-receipt coverage, and
+  successful reversal/recovery.
+- **Voice:** first response, interruption and transcription success, correct
+  tool selection, completed conversations, cost per completed task, and
+  fallback to manual operation.
 - Three to five commerce operators validate the problem and one agrees to pilot.
 
 ## Explicit non-goals

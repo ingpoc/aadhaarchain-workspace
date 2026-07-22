@@ -1,0 +1,169 @@
+{
+  "success": true,
+  "id": "0a5c4605-36fe-4542-97fd-3ed024a2a95d",
+  "tab_id": 1951715487,
+  "final_url": "https://ondcbuyer.aadharcha.in/search",
+  "results": [
+    {
+      "type": "goto",
+      "tabId": 1951715487,
+      "url": "https://ondcbuyer.aadharcha.in/search"
+    },
+    {
+      "type": "evaluate",
+      "result": {
+        "count": 0,
+        "installed": true
+      }
+    },
+    {
+      "type": "wait",
+      "ms": 400
+    },
+    {
+      "type": "wait",
+      "ms": 3000
+    },
+    {
+      "type": "evaluate",
+      "result": {
+        "href": "https://ondcbuyer.aadharcha.in/search",
+        "realtime": {
+          "agent_name": "Samantha",
+          "configured": true,
+          "model": "gpt-realtime-2.1-mini"
+        },
+        "runtimeContentType": "text/html; charset=utf-8",
+        "runtimeHead": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"UTF-8\" />\n    <meta",
+        "runtimeJsonOk": false,
+        "runtimeStatus": 200
+      }
+    },
+    {
+      "type": "page_context",
+      "url": "https://ondcbuyer.aadharcha.in/search",
+      "title": "ONDC Buyer",
+      "headings": [
+        {
+          "tag": "H1",
+          "text": "Search verified commerce"
+        }
+      ],
+      "nav": [
+        {
+          "text": "Search",
+          "href": "https://ondcbuyer.aadharcha.in/search"
+        },
+        {
+          "text": "Cart",
+          "href": "https://ondcbuyer.aadharcha.in/cart"
+        },
+        {
+          "text": "Orders",
+          "href": "https://ondcbuyer.aadharcha.in/orders"
+        },
+        {
+          "text": "Config",
+          "href": "https://ondcbuyer.aadharcha.in/config"
+        }
+      ],
+      "buttons": [
+        "Open search",
+        "Open runtime status",
+        "Sign out",
+        "Grocery",
+        "Search",
+        "S"
+      ],
+      "inputs": [
+        {
+          "name": "category",
+          "type": "select-one",
+          "value": "grocery"
+        },
+        {
+          "name": "query",
+          "type": "text",
+          "value": ""
+        }
+      ],
+      "console_error_count": 0,
+      "console_warn_count": 7,
+      "last_console_error": null
+    },
+    {
+      "type": "evaluate",
+      "result": {
+        "errors": [],
+        "installed": true,
+        "total": 0,
+        "warns": []
+      }
+    }
+  ],
+  "page_diag": {
+    "ok": false,
+    "ui": {
+      "url": "https://ondcbuyer.aadharcha.in/search",
+      "title": "ONDC Buyer",
+      "headings": [
+        "Search verified commerce"
+      ],
+      "buttons": [
+        "Open search",
+        "Open runtime status",
+        "Sign out",
+        "Grocery",
+        "Search",
+        "S"
+      ]
+    },
+    "console": {
+      "installed": true,
+      "total": 0,
+      "errors": [],
+      "warns": []
+    },
+    "backend": [
+      {
+        "log": "ondc-buyer.log",
+        "line": "8:10:10 PM [vite] http proxy error: /api/cart?sessionId=session-1783317356538-c691h8p"
+      },
+      {
+        "log": "ondc-buyer.log",
+        "line": "AggregateError [ECONNREFUSED]:"
+      },
+      {
+        "log": "ondc-buyer.log",
+        "line": "8:10:10 PM [vite] http proxy error: /api/cart?sessionId=session-1783317356538-c691h8p"
+      },
+      {
+        "log": "ondc-buyer.log",
+        "line": "AggregateError [ECONNREFUSED]:"
+      }
+    ],
+    "issues": [
+      {
+        "source": "backend",
+        "level": "error",
+        "msg": "ondc-buyer.log: 8:10:10 PM [vite] http proxy error: /api/cart?sessionId=session-1783317356538-c691h8p"
+      },
+      {
+        "source": "backend",
+        "level": "error",
+        "msg": "ondc-buyer.log: AggregateError [ECONNREFUSED]:"
+      },
+      {
+        "source": "backend",
+        "level": "error",
+        "msg": "ondc-buyer.log: 8:10:10 PM [vite] http proxy error: /api/cart?sessionId=session-1783317356538-c691h8p"
+      },
+      {
+        "source": "backend",
+        "level": "error",
+        "msg": "ondc-buyer.log: AggregateError [ECONNREFUSED]:"
+      }
+    ],
+    "final_url": "https://ondcbuyer.aadharcha.in/search"
+  }
+}

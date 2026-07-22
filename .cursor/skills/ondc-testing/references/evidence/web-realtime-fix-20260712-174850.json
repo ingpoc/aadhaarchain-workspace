@@ -1,0 +1,23 @@
+{
+  "stamp": "20260712-174850",
+  "final": {
+    "connecting": false,
+    "hint": "Samantha\n\nText mode ready (no mic)\n\nSend\nPreferences & AgentGuard",
+    "model": "gpt-realtime-2.1-mini",
+    "notConfigured": false,
+    "open": true,
+    "perf": [
+      "https://gateway.aadharcha.in/api/realtime/status",
+      "https://gateway.aadharcha.in/api/realtime/status",
+      "https://gateway.aadharcha.in/api/realtime/client-secret",
+      "https://api.openai.com/v1/realtime/calls",
+      "https://gateway.aadharcha.in/api/realtime/status"
+    ],
+    "statusConfigured": true,
+    "textReady": true,
+    "unreachable": false
+  },
+  "shots": [
+    "W-B-VOICE-RT-FIXED-20260712-174850-0.jpeg"
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "attested_at": "2026-07-12T13:34:52Z",
+  "environment": "preprod",
+  "P-STATUS": {
+    "http": 200,
+    "enabled": true,
+    "configured": true,
+    "uk": "1aee68ad-bc2a-4fc4-b233-7e14c6abba9b"
+  },
+  "P-LOOKUP": {
+    "http": 200,
+    "registry_http": 200,
+    "ack_or_keys": "list"
+  },
+  "P-LOOKUP-S": {
+    "http": 200,
+    "registry_http": 200
+  },
+  "P-SEARCH": {
+    "http": 200,
+    "ack": "ACK",
+    "dispatched": true,
+    "transaction_id": "892e4896-a53b-4c34-ab96-59172a33008c",
+    "gateway_http": 200
+  },
+  "P-ONSEARCH": {
+    "count": 9,
+    "sample": [
+      {
+        "name": "Saffola oil",
+        "bpp_id": "dev.udyamwell.in",
+        "price_inr": "100"
+      },
+      {
+        "name": "Rajma",
+        "bpp_id": "dev.udyamwell.in",
+        "price_inr": "100"
+      },
+      {
+        "name": "Rice",
+        "bpp_id": "dev.udyamwell.in",
+        "price_inr": "40"
+      },
+      {
+        "name": "MDH masala",
+        "bpp_id": "dev.udyamwell.in",
+        "price_inr": "100"
+      },
+      {
+        "name": "Tur Daal",
+        "bpp_id": "dev.udyamwell.in",
+        "price_inr": "150"
+      }
+    ],
+    "source": "ondc-network"
+  },
+  "P-REWRITE": {
+    "http": 200,
+    "body": "{\"message\":{\"ack\":{\"status\":\"ACK\"}}}",
+    "is_json_ack": true
+  },
+  "ondc_conformance": false,
+  "subscriber_id": "ondcbuyer.aadharcha.in",
+  "notes": "PreProd signed lookup+search+on_search catalogs Pass. Demo mode not flipped. Not production."
+}

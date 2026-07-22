@@ -1,0 +1,705 @@
+{
+  "source": "https://www.npci.org.in/token-nxt",
+  "form": "https://forms.office.com/pages/responsepage.aspx?id=ayGpjN8bVkCXdfXkAqSNMhDHh4YmRFVNsFUMu-B6IyJUOTNTSkpOVlBVRkJGWlJCQ01FUTFYWDRKMS4u&route=shorturl",
+  "deadline": "2026-07-15",
+  "event": "GFF 2026, 9-11 Sep 2026, Jio World Centre Mumbai \u2014 Token Nxt booth in Bharat AI Zone (max 20 free sponsored booths)",
+  "inspected": "2026-07-12",
+  "submitted": false,
+  "pages": [
+    {
+      "marker": "Page 1 of 7",
+      "section": "Company Identity",
+      "questions": [
+        {
+          "title": "1. Company Name",
+          "kinds": [
+            "text"
+          ],
+          "placeholders": [
+            "Enter your answer"
+          ],
+          "checkboxOptions": [],
+          "radioOptions": [],
+          "dropdownOptions": null
+        },
+        {
+          "title": "2. Company Website URL",
+          "kinds": [
+            "text"
+          ],
+          "placeholders": [
+            "Please enter a URL"
+          ],
+          "checkboxOptions": [],
+          "radioOptions": [],
+          "dropdownOptions": null
+        },
+        {
+          "title": "3. Headquarters Country",
+          "kinds": [
+            "text"
+          ],
+          "placeholders": [
+            "Enter your answer"
+          ],
+          "checkboxOptions": [],
+          "radioOptions": [],
+          "dropdownOptions": null
+        },
+        {
+          "title": "4. Year of Founding",
+          "kinds": [
+            "text"
+          ],
+          "placeholders": [
+            "Please enter a number less than or equal to 2026"
+          ],
+          "checkboxOptions": [],
+          "radioOptions": [],
+          "dropdownOptions": null
+        },
+        {
+          "title": "5. Company Size (Employees)",
+          "kinds": [
+            "dropdown"
+          ],
+          "placeholders": [],
+          "checkboxOptions": [],
+          "radioOptions": [],
+          "dropdownOptions": [
+            "1-10",
+            "11-50",
+            "51-200",
+            "201-1000",
+            "1000+"
+          ]
+        },
+        {
+          "title": "6. Funding Stage",
+          "kinds": [
+            "dropdown"
+          ],
+          "placeholders": [],
+          "checkboxOptions": [],
+          "radioOptions": [],
+          "dropdownOptions": [
+            "Bootstrapped",
+            "Seed",
+            "Series A",
+            "Series B+"
+          ]
+        },
+        {
+          "title": "7. Primary Contact Name",
+          "kinds": [
+            "text"
+          ],
+          "placeholders": [
+            "Enter your answer"
+          ],
+          "checkboxOptions": [],
+          "radioOptions": [],
+          "dropdownOptions": null
+        },
+        {
+          "title": "8. Primary Contact Email",
+          "kinds": [
+            "text"
+          ],
+          "placeholders": [
+            "Please enter an email"
+          ],
+          "checkboxOptions": [],
+          "radioOptions": [],
+          "dropdownOptions": null
+        },
+        {
+          "title": "9. Primary Contact Designation",
+          "kinds": [
+            "text"
+          ],
+          "placeholders": [
+            "Enter your answer"
+          ],
+          "checkboxOptions": [],
+          "radioOptions": [],
+          "dropdownOptions": null
+        },
+        {
+          "title": "10. LinkedIn Company Page URL",
+          "kinds": [
+            "text"
+          ],
+          "placeholders": [
+            "Enter your answer"
+          ],
+          "checkboxOptions": [],
+          "radioOptions": [],
+          "dropdownOptions": null
+        }
+      ],
+      "dropdowns": [
+        {
+          "question": "5. Company Size (Employees)",
+          "options": [
+            "1-10",
+            "11-50",
+            "51-200",
+            "201-1000",
+            "1000+"
+          ],
+          "picked": "1-10"
+        },
+        {
+          "question": "6. Funding Stage",
+          "options": [
+            "Bootstrapped",
+            "Seed",
+            "Series A",
+            "Series B+"
+          ],
+          "picked": "Bootstrapped"
+        }
+      ]
+    },
+    {
+      "marker": "Page 2 of 7",
+      "section": "AI Product / Solution Details",
+      "questions": [
+        {
+          "title": "11. Product / Solution Name",
+          "kinds": [
+            "text"
+          ],
+          "placeholders": [
+            "Please enter at most 150 characters"
+          ],
+          "checkboxOptions": [],
+          "radioOptions": [],
+          "dropdownOptions": null
+        },
+        {
+          "title": "12. Product Website or Landing Page",
+          "kinds": [
+            "text"
+          ],
+          "placeholders": [
+            "Please enter a URL"
+          ],
+          "checkboxOptions": [],
+          "radioOptions": [],
+          "dropdownOptions": null
+        },
+        {
+          "title": "13. Primary AI Product Category",
+          "kinds": [
+            "dropdown"
+          ],
+          "placeholders": [],
+          "checkboxOptions": [],
+          "radioOptions": [],
+          "dropdownOptions": [
+            "Foundation Models & LLMs",
+            "Generative AI",
+            "AI Agents & Autonomous Systems",
+            "Robotics & Physical AI",
+            "Computer Vision",
+            "Conversational AI & NLP",
+            "Predictive AI & Machine Learning",
+            "AI Infrastructure & Platforms",
+            "Enterprise AI & Automation",
+            "Responsible AI",
+            "Security & Governance",
+            "Industry-Specific AI Solutions",
+            "AI Research & Innovation",
+            "Quantum Computing",
+            "Cryptography",
+            "Cyber Security"
+          ]
+        },
+        {
+          "title": "14. Secondary AI Product Category (if applicable)",
+          "kinds": [
+            "dropdown"
+          ],
+          "placeholders": [],
+          "checkboxOptions": [],
+          "radioOptions": [],
+          "dropdownOptions": [
+            "Foundation Models & LLMs",
+            "Generative AI",
+            "AI Agents & Autonomous Systems",
+            "Robotics & Physical AI",
+            "Computer Vision",
+            "Conversational AI & NLP",
+            "Predictive AI & Machine Learning",
+            "AI Infrastructure & Platforms",
+            "Enterprise AI & Automation",
+            "Responsible AI",
+            "Security & Governance",
+            "Industry-Specific AI Solutions",
+            "AI Research & Innovation",
+            "Quantum Computing",
+            "Cryptography",
+            "Cyber Security"
+          ]
+        },
+        {
+          "title": "15. Is this a B2B, B2C, or B2G product?",
+          "kinds": [
+            "dropdown"
+          ],
+          "placeholders": [],
+          "checkboxOptions": [],
+          "radioOptions": [],
+          "dropdownOptions": [
+            "B2B",
+            "B2C",
+            "B2G",
+            "B2B + B2C"
+          ]
+        },
+        {
+          "title": "16. Describe your product in 2-3 sentences",
+          "kinds": [
+            "textarea"
+          ],
+          "placeholders": [
+            "Please enter at most 500 characters"
+          ],
+          "checkboxOptions": [],
+          "radioOptions": [],
+          "dropdownOptions": null
+        },
+        {
+          "title": "17. What problem does your product solve?",
+          "kinds": [
+            "textarea"
+          ],
+          "placeholders": [
+            "Please enter at most 600 characters"
+          ],
+          "checkboxOptions": [],
+          "radioOptions": [],
+          "dropdownOptions": null
+        },
+        {
+          "title": "18. Is your product currently live and commercially available?",
+          "kinds": [
+            "dropdown"
+          ],
+          "placeholders": [],
+          "checkboxOptions": [],
+          "radioOptions": [],
+          "dropdownOptions": [
+            "Yes",
+            "Yes - Limited Beta",
+            "No - Pre-launch",
+            "No - R&D Stage"
+          ]
+        },
+        {
+          "title": "19. Number of active users or enterprise customers (approx.)",
+          "kinds": [
+            "dropdown"
+          ],
+          "placeholders": [],
+          "checkboxOptions": [],
+          "radioOptions": [],
+          "dropdownOptions": [
+            "<100",
+            "100-1000",
+            "1001-10,000",
+            "10,001-100,000",
+            "100,000+"
+          ]
+        },
+        {
+          "title": "20. Key differentiator from existing solutions",
+          "kinds": [
+            "textarea"
+          ],
+          "placeholders": [
+            "Please enter at most 500 characters"
+          ],
+          "checkboxOptions": [],
+          "radioOptions": [],
+          "dropdownOptions": null
+        }
+      ],
+      "dropdowns": [
+        {
+          "question": "13. Primary AI Product Category",
+          "options": [
+            "Foundation Models & LLMs",
+            "Generative AI",
+            "AI Agents & Autonomous Systems",
+            "Robotics & Physical AI",
+            "Computer Vision",
+            "Conversational AI & NLP",
+            "Predictive AI & Machine Learning",
+            "AI Infrastructure & Platforms",
+            "Enterprise AI & Automation",
+            "Responsible AI",
+            "Security & Governance",
+            "Industry-Specific AI Solutions",
+            "AI Research & Innovation",
+            "Quantum Computing",
+            "Cryptography",
+            "Cyber Security"
+          ],
+          "picked": "Foundation Models & LLMs"
+        },
+        {
+          "question": "14. Secondary AI Product Category (if applicable)",
+          "options": [
+            "Foundation Models & LLMs",
+            "Generative AI",
+            "AI Agents & Autonomous Systems",
+            "Robotics & Physical AI",
+            "Computer Vision",
+            "Conversational AI & NLP",
+            "Predictive AI & Machine Learning",
+            "AI Infrastructure & Platforms",
+            "Enterprise AI & Automation",
+            "Responsible AI",
+            "Security & Governance",
+            "Industry-Specific AI Solutions",
+            "AI Research & Innovation",
+            "Quantum Computing",
+            "Cryptography",
+            "Cyber Security"
+          ],
+          "picked": "Foundation Models & LLMs"
+        },
+        {
+          "question": "15. Is this a B2B, B2C, or B2G product?",
+          "options": [
+            "B2B",
+            "B2C",
+            "B2G",
+            "B2B + B2C"
+          ],
+          "picked": "B2B"
+        },
+        {
+          "question": "18. Is your product currently live and commercially available?",
+          "options": [
+            "Yes",
+            "Yes - Limited Beta",
+            "No - Pre-launch",
+            "No - R&D Stage"
+          ],
+          "picked": "Yes"
+        },
+        {
+          "question": "19. Number of active users or enterprise customers (approx.)",
+          "options": [
+            "<100",
+            "100-1000",
+            "1001-10,000",
+            "10,001-100,000",
+            "100,000+"
+          ],
+          "picked": "<100"
+        }
+      ]
+    },
+    {
+      "marker": "Page 3 of 7",
+      "section": "Technology Architecture",
+      "questions": [
+        {
+          "title": "21. How is your product or solution built?",
+          "kinds": [
+            "checkbox"
+          ],
+          "placeholders": [],
+          "checkboxOptions": [
+            "Built on 3rd-party LLM API",
+            "Proprietary foundation model",
+            "Fine-tuned open-source model",
+            "Hybrid architecture",
+            "RAG-based",
+            "Agent-based multi-model"
+          ],
+          "radioOptions": [],
+          "dropdownOptions": null
+        },
+        {
+          "title": "22. Which AI models or frameworks are at the core?",
+          "kinds": [
+            "textarea"
+          ],
+          "placeholders": [
+            "Please enter at most 200 characters"
+          ],
+          "checkboxOptions": [],
+          "radioOptions": [],
+          "dropdownOptions": null
+        },
+        {
+          "title": "23. Does your product incorporate any of the following?",
+          "kinds": [
+            "text",
+            "checkbox"
+          ],
+          "placeholders": [
+            "Other"
+          ],
+          "checkboxOptions": [
+            "Retrieval-Augmented Generation (RAG)",
+            "Multi-modal inputs",
+            "Real-time data processing",
+            "Federated Learning",
+            "Explainability",
+            "Guardrails & Safety layers",
+            "Custom fine-tuning"
+          ],
+          "radioOptions": [],
+          "dropdownOptions": null
+        },
+        {
+          "title": "24. Describe your data handling and privacy approach",
+          "kinds": [
+            "text"
+          ],
+          "placeholders": [
+            "Please enter at most 500 characters"
+          ],
+          "checkboxOptions": [],
+          "radioOptions": [],
+          "dropdownOptions": null
+        },
+        {
+          "title": "25. Is your model proprietary, open-source, or hybrid?",
+          "kinds": [
+            "dropdown"
+          ],
+          "placeholders": [],
+          "checkboxOptions": [],
+          "radioOptions": [],
+          "dropdownOptions": [
+            "Fully Proprietary",
+            "Partially Open-Source",
+            "Fully Open-Source"
+          ]
+        },
+        {
+          "title": "26. What measures are in place to reduce hallucination or bias?",
+          "kinds": [
+            "text"
+          ],
+          "placeholders": [
+            "Please enter at most 400 characters"
+          ],
+          "checkboxOptions": [],
+          "radioOptions": [],
+          "dropdownOptions": null
+        }
+      ],
+      "dropdowns": [
+        {
+          "question": "25. Is your model proprietary, open-source, or hybrid?",
+          "options": [
+            "Fully Proprietary",
+            "Partially Open-Source",
+            "Fully Open-Source"
+          ],
+          "picked": "Fully Proprietary"
+        }
+      ]
+    },
+    {
+      "marker": "Page 4 of 7",
+      "section": "Impact & Use Cases",
+      "questions": [
+        {
+          "title": "27. Primary domain or industry your solution addresses",
+          "kinds": [
+            "text",
+            "checkbox"
+          ],
+          "placeholders": [
+            "Other"
+          ],
+          "checkboxOptions": [
+            "Healthcare",
+            "Finance & Banking",
+            "Legal",
+            "Education",
+            "Retail & E-commerce",
+            "Manufacturing",
+            "Agriculture",
+            "Government & Public Sector",
+            "HR & Talent",
+            "Marketing & Media",
+            "Developer Tools",
+            "General Productivity"
+          ],
+          "radioOptions": [],
+          "dropdownOptions": null
+        },
+        {
+          "title": "28. Describe a specific use case and outcome achieved",
+          "kinds": [
+            "text"
+          ],
+          "placeholders": [
+            "Please enter at most 700 characters"
+          ],
+          "checkboxOptions": [],
+          "radioOptions": [],
+          "dropdownOptions": null
+        },
+        {
+          "title": "29. Quantify the impact of your solution (e.g., time saved, revenue generated, cost reduced)",
+          "kinds": [
+            "text"
+          ],
+          "placeholders": [
+            "Please enter at most 400 characters"
+          ],
+          "checkboxOptions": [],
+          "radioOptions": [],
+          "dropdownOptions": null
+        },
+        {
+          "title": "30. Do you have case studies?",
+          "kinds": [
+            "radio"
+          ],
+          "placeholders": [],
+          "checkboxOptions": [],
+          "radioOptions": [
+            "Yes",
+            "No"
+          ],
+          "dropdownOptions": null
+        },
+        {
+          "title": "31. Link to case study?",
+          "kinds": [
+            "text"
+          ],
+          "placeholders": [
+            "Please enter a URL"
+          ],
+          "checkboxOptions": [],
+          "radioOptions": [],
+          "dropdownOptions": null
+        },
+        {
+          "title": "32. Any awards, certifications, or recognitions received previously?",
+          "kinds": [
+            "textarea"
+          ],
+          "placeholders": [
+            "Please enter at most 300 characters"
+          ],
+          "checkboxOptions": [],
+          "radioOptions": [],
+          "dropdownOptions": null
+        }
+      ],
+      "dropdowns": []
+    },
+    {
+      "marker": "Page 5 of 7",
+      "section": "Supporting Materials",
+      "questions": [
+        {
+          "title": "33. Product Demo Video Link (YouTube, Loom, etc.)",
+          "kinds": [
+            "text"
+          ],
+          "placeholders": [
+            "Please enter a URL"
+          ],
+          "checkboxOptions": [],
+          "radioOptions": [],
+          "dropdownOptions": null
+        },
+        {
+          "title": "34. Any additional links or references",
+          "kinds": [
+            "text"
+          ],
+          "placeholders": [
+            "Please enter at most 300 characters"
+          ],
+          "checkboxOptions": [],
+          "radioOptions": [],
+          "dropdownOptions": null
+        },
+        {
+          "title": "35. How did you hear about this program?",
+          "kinds": [
+            "text",
+            "radio"
+          ],
+          "placeholders": [
+            "Other"
+          ],
+          "checkboxOptions": [],
+          "radioOptions": [
+            "LinkedIn",
+            "Email Invitation",
+            "NPCI Website",
+            "GFF Website",
+            "X (Formerly Twitter)",
+            "Whatsapp"
+          ],
+          "dropdownOptions": null
+        }
+      ],
+      "dropdowns": []
+    },
+    {
+      "marker": "Page 6 of 7",
+      "section": "Terms & Conditions*",
+      "questions": [
+        {
+          "title": "36. Confirm I have read and agree to the above \"Terms & Condition\"",
+          "kinds": [
+            "radio"
+          ],
+          "placeholders": [],
+          "checkboxOptions": [],
+          "radioOptions": [
+            "Yes"
+          ],
+          "dropdownOptions": null
+        }
+      ],
+      "dropdowns": []
+    },
+    {
+      "marker": "Page 7 of 7",
+      "section": "Terms and conditions",
+      "questions": [
+        {
+          "title": "37. Confirm I have read and agree to the above \"Terms and conditions\"",
+          "kinds": [
+            "radio"
+          ],
+          "placeholders": [],
+          "checkboxOptions": [],
+          "radioOptions": [
+            "Yes"
+          ],
+          "dropdownOptions": null
+        }
+      ],
+      "dropdowns": []
+    }
+  ],
+  "finalButtons": {
+    "buttons": [
+      "Back",
+      "Submit",
+      "Microsoft Forms"
+    ],
+    "hasSubmit": true
+  }
+}

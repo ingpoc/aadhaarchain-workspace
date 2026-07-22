@@ -1,0 +1,110 @@
+{
+  "meta": {
+    "reviewer_role": "Independent UI Design Reviewer",
+    "app": "ONDC Seller",
+    "surface": "merchant-ops product — catalog, orders, assistant permissions",
+    "audience": "signed-in small Seller shopkeeper",
+    "primary_outcome": "fulfill/manage an order while staying oriented in the seller shell",
+    "focus": "top header chrome — equal-weight persistent UI vs quieter/progressive treatment",
+    "screenshot_path": "/Users/gurusharan/.cursor/projects/Users-gurusharan-Documents-remote-claude-active-apps-AadhaarChainWorkspace/assets/image-75dfb02f-3663-4e64-9515-2539206d36ae.png",
+    "screenshot_read_personally": true,
+    "evidence_basis": "frozen screenshot only; no source, logs, APIs, hidden state, or prior reports",
+    "date": "2026-07-19",
+    "budget_note": "~6 minutes; <=700 words"
+  },
+  "verdict": "UI Fail",
+  "design_thesis": "A merchant-ops console should keep destinations loud and status/meta quiet so a shopkeeper can finish an order without the chrome competing for equal attention.",
+  "product_specific_design_philosophy": {
+    "framing": "Merchant ops console, not luxury marketplace",
+    "principles": [
+      "Orientation first: brand + current section must answer 'where am I?' in under one glance",
+      "Destinations over telemetry: nav paths beat readiness chips",
+      "Progressive disclosure for ambient trust: Verified / Ready are confirmations, not peer CTAs",
+      "Dense but calm: grocery shopkeepers scan for Orders and the next fulfill action, not a status dashboard in the header",
+      "Trust through restraint: fewer equal pills = more credible ops tool"
+    ]
+  },
+  "axis_positions": [
+    {
+      "axis": "Visual attraction / hierarchy",
+      "position": "Weak — flattened",
+      "reason": "Active Orders pill, Search pill, Assistant status pill, and Identity status pill share similar capsule weight; the eye cannot rank destination vs ambient state."
+    },
+    {
+      "axis": "Composition (header)",
+      "position": "Overloaded single rail",
+      "reason": "Brand + 5 nav labels + Search + two verbose status capsules + Sign out sit on one horizontal band with little grouping separation."
+    },
+    {
+      "axis": "Typography",
+      "position": "Adequate legibility, weak role contrast",
+      "reason": "Sans is clear; brand bold works; status strings ('Assistant status: Ready', 'Identity status: Verified') read as full labels at nearly nav size rather than secondary meta."
+    },
+    {
+      "axis": "Spacing / density",
+      "position": "Tight / crowded right",
+      "reason": "Right cluster packs Search + two status pills with little breathing room; Sign out is the only quiet escape hatch."
+    },
+    {
+      "axis": "Component craft",
+      "position": "Homogenized pills",
+      "reason": "One capsule language used for active route, utility Search, and two health indicators — craft is consistent but semantically wrong."
+    },
+    {
+      "axis": "Perceived trust",
+      "position": "Present but noisy",
+      "reason": "Verified / Ready should reassure; as equal-weight chrome they feel like perpetual alerts rather than settled trust."
+    }
+  ],
+  "first_impression_header": "The header reads like a status toolbar wearing a nav costume: brand and Orders are fine, but Search + Assistant Ready + Identity Verified all shout at the same volume as the place you are, so orientation fights telemetry before the Dispatch order button even gets a chance.",
+  "findings": [
+    {
+      "id": "F1",
+      "severity": "P0",
+      "title": "Status capsules compete with destinations",
+      "detail": "Assistant status: Ready and Identity status: Verified use the same light-gray pill language (and similar presence) as Search and sit adjacent to the active Orders teal pill. Persistent ambient state is treated as equal-weight chrome to primary navigation."
+    },
+    {
+      "id": "F2",
+      "severity": "P1",
+      "title": "Verbose status copy inflates chrome weight",
+      "detail": "Full phrases 'Assistant status: Ready' and 'Identity status: Verified' occupy header real estate like destinations. For a shopkeeper on an order detail page, these should be quieter icons/short tokens, not peer labels."
+    },
+    {
+      "id": "F3",
+      "severity": "P1",
+      "title": "Single-rail overload blurs brand → nav → meta grouping",
+      "detail": "Brand/tagline, five nav items, Search, two statuses, and Sign out share one band without clear progressive zones. The shell fails the 'stay oriented while fulfilling' outcome at the chrome layer."
+    },
+    {
+      "id": "F4",
+      "severity": "P2",
+      "title": "Search styled as peer pill to statuses",
+      "detail": "Search is a utility control but visually rhymes with status chips; it neither reads as a quiet tool nor as a distinct action, adding to equal-weight noise."
+    },
+    {
+      "id": "F5",
+      "severity": "P3",
+      "title": "Sign out is correctly quiet; contrast proves the rest is too loud",
+      "detail": "Text-only Sign out is appropriately secondary. That correct quietness highlights how over-present the adjacent status pills are."
+    }
+  ],
+  "screenshot_attestation": "I personally Read the screenshot file at the provided path and judged only what is visibly present in that freeze (including browser chrome and Hermes bridge bar as non-product noise, excluded from product findings).",
+  "signature_visual_moves": [
+    {
+      "name": "Two-tier shell: destinations loud, assurance quiet",
+      "direction": "Keep brand + nav (active route only) as the sole filled chrome accent; demote Ready/Verified to a compact identity/assurance cluster (icon + short word, or a single 'Verified · Ready' meta line) with no filled pill competition against Orders."
+    },
+    {
+      "name": "Progressive trust, not perpetual badges",
+      "direction": "Treat Assistant/Identity as settled background trust: muted, right-aligned, expandable on click/hover; reserve capsule energy for the current merchant job (Orders / Dispatch), not for always-green health."
+    }
+  ],
+  "anti_homogenization_notes": [
+    "Do not solve hierarchy by adding another purple/glow/AI-agent aesthetic — this is a grocery ops console; keep teal as the single accent for jobs-in-progress only.",
+    "Avoid turning every header affordance into the same rounded pill; differentiate route (underline/bar/weight), tool (ghost icon button), and status (plain meta text).",
+    "Reject marketplace-hero or dashboard-stat header patterns; shopkeepers need a quiet shell and a loud fulfill action in the page, not a chrome status parade.",
+    "Do not hide Sign out or invent a new status card strip under the header — collapse, don't decorate."
+  ],
+  "word_budget_estimate": 620
+}

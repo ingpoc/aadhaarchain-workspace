@@ -1,0 +1,295 @@
+{
+  "stamp": "20260714-021405",
+  "buyer": [],
+  "seller": [
+    {
+      "id": "W-S-SPA-SESSION",
+      "result": "Pass",
+      "shots": [
+        "W-S-BOOT-20260714-021405-0.jpeg",
+        "W-S-BOOT-20260714-021405-1.jpeg"
+      ],
+      "notes": "principal=session-cookie sign_out=True mandate=visible",
+      "state": {
+        "pathname": "/dashboard",
+        "href": "https://ondcseller.aadharcha.in/dashboard",
+        "hint": "Samantha\n\nText mode ready (no mic)\n\nSend\nAgentGuard and memory",
+        "reply": "",
+        "tools": [],
+        "has_sign_out": true,
+        "has_banana": false,
+        "has_receipt": false,
+        "has_paid": false,
+        "has_approval": false,
+        "has_handoff": false,
+        "has_pause_agent": false,
+        "has_resume_agent": false,
+        "has_protected_activity": false,
+        "has_verify_receipt": false,
+        "has_verified_receipt": true,
+        "durability_disclosed": false,
+        "voice_connected": false,
+        "text_ready": true,
+        "mandate_status": "visible",
+        "principal": "session-cookie"
+      }
+    },
+    {
+      "id": "W-S-HI",
+      "result": "Pass",
+      "shots": [
+        "W-S-HI-20260714-021405-0.jpeg"
+      ],
+      "notes": "path=/dashboard tools=[]",
+      "state": {
+        "pathname": "/dashboard",
+        "href": "https://ondcseller.aadharcha.in/dashboard",
+        "hint": "Samantha\n\nSamantha replied\n\nHey there! Nice to see you\u2014what\u2019s on your mind today?\n\nSend\nAgentGuard and memory",
+        "reply": "Hey there! Nice to see you\u2014what\u2019s on your mind today?",
+        "tools": [],
+        "has_sign_out": true,
+        "has_banana": false,
+        "has_receipt": false,
+        "has_paid": false,
+        "has_approval": false,
+        "has_handoff": false,
+        "has_pause_agent": false,
+        "has_resume_agent": false,
+        "has_protected_activity": false,
+        "has_verify_receipt": false,
+        "has_verified_receipt": true,
+        "durability_disclosed": false,
+        "voice_connected": false,
+        "text_ready": false
+      }
+    },
+    {
+      "id": "W-S-NAV-CAT",
+      "result": "Pass",
+      "shots": [
+        "W-S-NAV-CAT-20260714-021405-0.jpeg"
+      ],
+      "notes": "path=/catalog tools=['navigate_to']",
+      "state": {
+        "pathname": "/catalog",
+        "href": "https://ondcseller.aadharcha.in/catalog",
+        "hint": "Samantha\n\nNavigating to /catalog.\n\nGot it, let me open the catalog for you now.All set! I\u2019ve opened the catalog for you.\n\nSend\nAgentGuard and memory",
+        "reply": "Got it, let me open the catalog for you now.All set! I\u2019ve opened the catalog for you.",
+        "tools": [
+          {
+            "at": 1783975501213,
+            "callId": "call_SAxfV2QaiDMGa8ei",
+            "message": "Navigating to /catalog.",
+            "name": "navigate_to",
+            "navigateTo": "/catalog",
+            "ok": true
+          }
+        ],
+        "has_sign_out": true,
+        "has_banana": false,
+        "has_receipt": false,
+        "has_paid": false,
+        "has_approval": false,
+        "has_handoff": false,
+        "has_pause_agent": false,
+        "has_resume_agent": false,
+        "has_protected_activity": false,
+        "has_verify_receipt": false,
+        "has_verified_receipt": true,
+        "durability_disclosed": false,
+        "voice_connected": false,
+        "text_ready": false
+      }
+    },
+    {
+      "id": "W-S-NAV-ORD",
+      "result": "Pass",
+      "shots": [
+        "W-S-NAV-ORD-20260714-021405-0.jpeg"
+      ],
+      "notes": "path=/orders tools=['navigate_to', 'navigate_to']",
+      "state": {
+        "pathname": "/orders",
+        "href": "https://ondcseller.aadharcha.in/orders",
+        "hint": "Samantha\n\nNavigating to /orders.\n\nSure thing\u2014let me pull up the orders list for you.Done! I\u2019ve pulled up the orders view.\n\nSend\nAgentGuard and memory",
+        "reply": "Sure thing\u2014let me pull up the orders list for you.Done! I\u2019ve pulled up the orders view.",
+        "tools": [
+          {
+            "at": 1783975501213,
+            "callId": "call_SAxfV2QaiDMGa8ei",
+            "message": "Navigating to /catalog.",
+            "name": "navigate_to",
+            "navigateTo": "/catalog",
+            "ok": true
+          },
+          {
+            "at": 1783975540200,
+            "callId": "call_Yqxrawx48Jlt77R8",
+            "message": "Navigating to /orders.",
+            "name": "navigate_to",
+            "navigateTo": "/orders",
+            "ok": true
+          }
+        ],
+        "has_sign_out": true,
+        "has_banana": false,
+        "has_receipt": false,
+        "has_paid": false,
+        "has_approval": false,
+        "has_handoff": false,
+        "has_pause_agent": false,
+        "has_resume_agent": false,
+        "has_protected_activity": false,
+        "has_verify_receipt": false,
+        "has_verified_receipt": false,
+        "durability_disclosed": false,
+        "voice_connected": false,
+        "text_ready": false
+      }
+    },
+    {
+      "id": "W-S-NAV-AG",
+      "result": "Pass",
+      "shots": [
+        "W-S-NAV-AG-20260714-021405-0.jpeg",
+        "W-S-AG-20260714-021405-0.jpeg"
+      ],
+      "notes": "path=/agentguard ag=/agentguard",
+      "state": {
+        "pathname": "/agentguard",
+        "href": "https://ondcseller.aadharcha.in/agentguard",
+        "hint": "Samantha\n\nNavigating to /agentguard.\n\nSure, let me open AgentGuard for you now.AgentGuard is open. What would you like to check or do next?\n\nSend\nAgentGuard and memory",
+        "reply": "Sure, let me open AgentGuard for you now.AgentGuard is open. What would you like to check or do next?",
+        "tools": [
+          {
+            "at": 1783975501213,
+            "callId": "call_SAxfV2QaiDMGa8ei",
+            "message": "Navigating to /catalog.",
+            "name": "navigate_to",
+            "navigateTo": "/catalog",
+            "ok": true
+          },
+          {
+            "at": 1783975540200,
+            "callId": "call_Yqxrawx48Jlt77R8",
+            "message": "Navigating to /orders.",
+            "name": "navigate_to",
+            "navigateTo": "/orders",
+            "ok": true
+          },
+          {
+            "at": 1783975579240,
+            "callId": "call_gaYBlYVD4jjgYIab",
+            "message": "Navigating to /agentguard.",
+            "name": "navigate_to",
+            "navigateTo": "/agentguard",
+            "ok": true
+          }
+        ],
+        "has_sign_out": true,
+        "has_banana": false,
+        "has_receipt": true,
+        "has_paid": false,
+        "has_approval": false,
+        "has_handoff": false,
+        "has_pause_agent": true,
+        "has_resume_agent": false,
+        "has_protected_activity": false,
+        "has_verify_receipt": false,
+        "has_verified_receipt": false,
+        "durability_disclosed": false,
+        "voice_connected": false,
+        "text_ready": false
+      }
+    },
+    {
+      "id": "W-S-PUBLISH",
+      "result": "Pass",
+      "shots": [
+        "W-S-PUBLISH-20260714-021405-0.jpeg",
+        "W-S-CAT-AFTER-20260714-021405-0.jpeg"
+      ],
+      "notes": "tools=['catalog_publish'] snip=ONDC Seller\nCatalog under AgentGuard authority\nAgentGuard\nDashboard\nCatalog\nOrders\nConfig\nSign out\nSeller catalog\nRun a tighter product shelf\nReview the inventory buyers will actually encounter, then ",
+      "state": {
+        "pathname": "/catalog",
+        "href": "https://ondcseller.aadharcha.in/catalog",
+        "hint": "Samantha\n\nPublished Test Atta 1kg (item_c90e59aaf0854349) to shared commerce \u2014 visible on PreProd ONDC when Buyer searches.\n\nOkay, let me quickly set up that catalog item for you.Done! I published the simple grocery item \u201cTest Atta 1kg\u201d priced at 80 rupees. It\u2019s now in the shared demo catalog and should show up when buyers search.\n\nSend\nAgentGuard and memory",
+        "reply": "Okay, let me quickly set up that catalog item for you.Done! I published the simple grocery item \u201cTest Atta 1kg\u201d priced at 80 rupees. It\u2019s now in the shared demo catalog and should show up when buyers search.",
+        "tools": [
+          {
+            "at": 1783975620443,
+            "callId": "call_7wt5v8aYyicwMlTz",
+            "message": "Published Test Atta 1kg (item_c90e59aaf0854349) to shared commerce \u2014 visible on PreProd ONDC when Buyer searches.",
+            "name": "catalog_publish",
+            "navigateTo": "/catalog",
+            "ok": true
+          }
+        ],
+        "has_sign_out": true,
+        "has_banana": false,
+        "has_receipt": false,
+        "has_paid": false,
+        "has_approval": false,
+        "has_handoff": false,
+        "has_pause_agent": false,
+        "has_resume_agent": false,
+        "has_protected_activity": false,
+        "has_verify_receipt": false,
+        "has_verified_receipt": true,
+        "durability_disclosed": false,
+        "voice_connected": false,
+        "text_ready": false
+      }
+    },
+    {
+      "id": "W-S-REFUND",
+      "result": "Pass",
+      "shots": [
+        "W-S-REFUND-20260714-021405-0.jpeg"
+      ],
+      "notes": "tools=['refund_issue'] hint=Samantha\n\nRefund issued; receipt rcpt_6407440331654b6e.\n\nI\u2019ll try to process a 50 rupee refund for the latest order visible\u2014let me check that now.Done\u2014refund fo snip=ONDC Seller\nCatalog under AgentGuard authority\nAgentGuard\nDashboard\nCatalog\nOrders\nConfig\nSign out\nIncoming Orders\nManage and track buyer demand without leaving",
+      "state": {
+        "pathname": "/orders",
+        "href": "https://ondcseller.aadharcha.in/orders",
+        "hint": "Samantha\n\nRefund issued; receipt rcpt_6407440331654b6e.\n\nI\u2019ll try to process a 50 rupee refund for the latest order visible\u2014let me check that now.Done\u2014refund for 50 rupees was issued successfully for the latest order.\n\nSend\nAgentGuard and memory",
+        "reply": "I\u2019ll try to process a 50 rupee refund for the latest order visible\u2014let me check that now.Done\u2014refund for 50 rupees was issued successfully for the latest order.",
+        "tools": [
+          {
+            "at": 1783975677315,
+            "callId": "call_dqumhzNMDEFmBJvk",
+            "message": "Refund issued; receipt rcpt_6407440331654b6e.",
+            "name": "refund_issue",
+            "navigateTo": null,
+            "ok": true
+          }
+        ],
+        "has_sign_out": true,
+        "has_banana": false,
+        "has_receipt": true,
+        "has_paid": false,
+        "has_approval": false,
+        "has_handoff": false,
+        "has_pause_agent": false,
+        "has_resume_agent": false,
+        "has_protected_activity": false,
+        "has_verify_receipt": false,
+        "has_verified_receipt": false,
+        "durability_disclosed": false,
+        "voice_connected": false,
+        "text_ready": false
+      }
+    }
+  ],
+  "meta": {
+    "realtime": {
+      "configured": true,
+      "model": "gpt-realtime-2.1-mini",
+      "agent_name": "Samantha"
+    },
+    "preflight_ready": true,
+    "fatal_error": "No visible element matched selector: [data-testid=\"refund-3000\"]",
+    "sessions_closed": [
+      "fqdn-e2e-20260714-021405"
+    ]
+  }
+}

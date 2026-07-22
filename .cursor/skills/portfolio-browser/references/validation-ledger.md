@@ -446,6 +446,7 @@ deploy; no billing/plan changes were made.
 | Buyer FQDN pass 1 | `web-e2e-thorough-20260714-030751.json` | **Pass** — session/mandate, exact Atta, cart, paid checkout+receipt, pause/resume, activity, verify, runtime; mic Blocked |
 | Seller FQDN pass 1 | `web-e2e-thorough-20260714-023601.json` | **Pass** — publish, latest-order refund, detail, allow receipt, approval, consume, replay rejection, memory/runtime; mic Blocked |
 | Final combined pass 2 | `web-e2e-thorough-20260714-031443.json` | **Pass** — all strict Buyer + Seller assertions repeated; no `Fail`; session closeout clean |
+| Chrome post-deploy full gate | `web-e2e-thorough-20260714-174011.json` | **Pass with explicit boundary** — **26 Pass / 3 Blocked / 0 Fail**; Buyer and Seller functional, AgentGuard, memory, and runtime paths passed; physical mic/voice is the only Blocked surface; WIP owner was Google Chrome profile directory `robo-trader-testing` |
 | Browser lease audit | WIP Hermes `sessions` | **Pass** — empty inventory |
 
 Delivered corrections: semantic ONDC ACK/payment intent, signed configured-BPP
@@ -466,3 +467,118 @@ Open boundaries (not release blockers for the PreProd demo claim):
   each). No unsafe `npm audit fix --force` was run.
 - A removed Voyage key remains in git history and must be revoked/rotated outside
   this repo. Current tracked files no longer contain it.
+
+---
+
+## Local Samantha frozen-source browser gate — 2026-07-16 00:08–00:34 IST
+
+| Gate | Command / evidence | Result |
+| --- | --- | --- |
+| Combined local pass 1 | `matrix-run-20260716-000819.json` | **31/31 Pass** — Buyer 19, Seller 12; 32/32 screenshots visually accepted; zero turn errors; matrix closeout clean |
+| Combined local pass 2 | `matrix-run-20260716-002128.json` | **31/31 Pass** — unchanged source; 32/32 screenshots visually accepted; zero turn errors; matrix closeout clean |
+| Buyer checkout semantics | exact tool/backend evidence + screenshots | **Pass ×2** — real INR 25,089 cart → `need_approval`; expensive item removed; INR 89 cart → `allow`, paid order, matching receipt |
+| Seller lifecycle semantics | exact tool/backend evidence + screenshots | **Pass ×2** — publish visibility; accept→fulfill; reject; refund allow + INR 26,000 approval; runtime handoff |
+| Deterministic gates | tests, typecheck, builds, validators, Ruff/diff | **Pass** — Buyer 155 tests; Seller 163 tests; both production builds; `portfolio-browser` and `ondc-testing` validators |
+
+This is local text/runtime browser proof only. It does not refresh deployed FQDN evidence and does not claim physical microphone/WebRTC completion.
+
+---
+
+## Milestone 8 AgentGuard sole-owner cleanup — 2026-07-16 17:46–18:12 IST
+
+| Gate | Command / evidence | Result |
+| --- | --- | --- |
+| Seller visible authority | `PORTFOLIO_SKIP_PREFLIGHT=1 python3 scripts/portfolio_browser.py agentguard seller --fixture` | **Pass** — INR 3,000 allowed; INR 7,500 required one-time approval; replay rejected; pause visible; next refund denied; receipts visible |
+| Buyer visible authority | `PORTFOLIO_SKIP_PREFLIGHT=1 python3 scripts/portfolio_browser.py agentguard buyer --fixture` | **Pass** — mandate INR 5,000; unique published INR 7,500 SKU found through the real ONDC collect path; approval and receipt visible in Config; pause visible; next checkout denied; agent restored active during closeout |
+| Buyer deterministic | `npm test && npm run typecheck && npm run build` | **Pass** — 25 files / 148 tests; typecheck clean; production build clean apart from existing chunk and browser `node:crypto` warnings |
+| Seller deterministic | `npm test && npm run typecheck && npm run build` | **Pass** — 14 files / 164 tests; typecheck clean; production build clean apart from existing chunk and browser `node:crypto` warnings |
+| Gateway deterministic | `PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 .venv/bin/pytest -q tests/test_agentguard.py tests/test_commerce_demo.py` + Ruff | **Pass** — 15 tests; Ruff clean |
+| Browser owner validation | `.cursor/skills/portfolio-browser/scripts/validate.sh` + Python compile/Ruff | **Pass** — process-local WIP lease preflight/closeout and semantic lanes validate cleanly |
+
+Changed-source conclusion: AgentGuard is the sole authorization owner for the
+consequential Buyer/Seller mutation paths changed in this goal. The remaining
+Seller policy/runtime and Buyer Netlify surfaces are explicitly legacy
+compatibility callers with a deletion date after 2026-08-01; they are not used
+by the current Vercel/Render protected-write path. Replay proof is Seller-owned;
+Buyer proves the complementary approval receipt and paused-checkout outcome.
+
+### Milestone 8 two-sided visible identity repair — 2026-07-16
+
+`scripts/hermes_two_sided_commerce.py` previously exercised only the API despite being the declared visible lane. It now captures Seller catalog, Seller order, and Buyer order through WIP Hermes, authenticates the correct app audience immediately before each capture, retains screenshot paths, and fails unless the same order/transaction plus Buyer issue are visible.
+
+- Diagnostic Fail: `m8-visible-1784208100-a` exposed overwritten Buyer SSO and a stale gateway process; neither was counted as acceptance.
+- Pass A: `m8-visible-1784208200-a` — `order_046194d8c55b46e5` / `txn_7c370c1c44094790`.
+- Pass B: `m8-visible-1784208201-b` — `order_e5539c89c77b4593` / `txn_26866a2a067a46a0`.
+- Retained evidence: `.cursor/skills/ondc-testing/references/evidence/m8-browser-local-authority.md` and six JPEG captures under its sibling `m8-browser-local-authority/` directory.
+- Closeout: `python3 scripts/portfolio_browser.py closeout http://127.0.0.1:43102/search` passed; WIP bridge remained ready.
+
+### Milestone 8 contract and visible-flow consolidation — 2026-07-16
+
+Buyer and Seller now consume the shared AgentGuard action, agent, mandate,
+approval, and intent-receipt types. Both displaced standalone `/agent` routes
+and their navigation entries were deleted; the global Samantha orb remains the
+single visible assistant surface. The judged Buyer, Seller, and two-sided Hermes
+scripts contain no AgentGuard evaluate/consume/pause/mandate API shortcuts.
+
+| Gate | Result |
+| --- | --- |
+| Buyer deterministic | **Pass** — 21 files / 131 tests; typecheck + production build |
+| Seller deterministic | **Pass** — 13 files / 162 tests; typecheck + production build |
+| Gateway deterministic | **Pass** — `./scripts/verify-portfolio.sh --ci`, 86 tests |
+| Final visible run A | **Pass** — `m8-contract-final-1784209300-a`; `order_47aa87015f8f40ec` / `txn_a9607f26c37c4315` / `issue_6ff48b295bd64728` |
+| Final visible run B | **Pass** — `m8-contract-final-1784209301-b`; `order_070f0ce5a9274463` / `txn_8b9c603db3d04b5c` / `issue_46a0ee83c93d45d9` |
+| Visual review | **Pass** — six retained screenshots opened and accepted; no competing standalone agent link; global Samantha orb visible |
+| Closeout | **Pass** — WIP bridge ready; Buyer search leave URL requested |
+
+Retained evidence: `.cursor/skills/ondc-testing/references/evidence/m8-contract-flow-consolidation.md`
+and six JPEGs in its sibling `m8-contract-flow-consolidation/` directory.
+
+## AgentGuard final local safety candidate — 2026-07-17
+
+Source SHA-256: `d940189015a07678ac2704554a80da16874d0c0021b15c9b5d2bb7ec54684a05`.
+
+| Gate | Run IDs | Result |
+| --- | --- | --- |
+| Targeted adversarial | `LOCAL-ADVERSARIAL-20260717-D940-P1`, `LOCAL-ADVERSARIAL-20260717-D940-P2` | **Pass ×2** — 87/87 each |
+| Portfolio verifier | `LOCAL-SAFETY-20260717-D940-P1`, `LOCAL-SAFETY-20260717-D940-P2` | **Pass ×2** — gateway 129/129 each |
+| Buyer deterministic | same run IDs | **Pass ×2** — 151/151, typecheck, build, copy gate |
+| Seller deterministic | same run IDs | **Pass ×2** — 172/172, typecheck, build, copy gate |
+| Seller UI/UX | `SELLER-UX-D940-A1` | **Tooling Blocked** — semantic page and owned screenshot diverged; lease closed and absent |
+| Seller UI/UX bounded retry | `SELLER-UX-D940-A2-BOUNDED-RETRY` | **Tooling Blocked** — owned lease disappeared twice; closeout confirmed owned sessions absent |
+| Buyer/Seller customer passes | — | **Not Tested** on this hash; browser campaign stopped after repeated ownership failure |
+
+Retained evidence: `.cursor/skills/ondc-testing/references/evidence/local-safety-final-20260717-d940.json`.
+Prior Seller customer passes were on an invalidated source hash and are not
+counted. Deterministic evidence does not replace the three open visible rows.
+
+## Final-hash independent Buyer proof blocker — 2026-07-17
+
+Source SHA-256: `af98738a621dfb6109e06d06c2833a20e593cb6e4cf8f08d3edb23dd3781088e`.
+
+| Gate | Result |
+| --- | --- |
+| Buyer blind pass 1 | **Tooling Blocked** — visible search/cart journey reached `/checkout`; semantic input lookup failed and cursor entry persisted only a partial name |
+| One bounded recovery | **Tooling Blocked** — the same checkout input-targeting class repeated; phone entry appeared in postal-code readback; no authorization submitted |
+| Closeout | **Pass** — both owned session ids absent; no order or receipt created |
+| Remaining customer campaign | **Not Tested** — stopped before Seller, two-sided, or combined UI/UX dispatch |
+
+Retained evidence: `.cursor/skills/ondc-testing/references/evidence/local-customer-proof-blocker-20260717-af987.json`.
+Resume only after the WIP Hermes semantic input path is repaired and independently checked; rerun the entire Buyer mission from a fresh principal.
+
+## Final-hash Buyer proof resumed after Hermes repair — 2026-07-18
+
+Source SHA-256: `af98738a621dfb6109e06d06c2833a20e593cb6e4cf8f08d3edb23dd3781088e`.
+
+| Gate | Result |
+| --- | --- |
+| Hermes semantic remount regression | **Pass** — late-mounted/remounted Full name target received text; postal decoy remained empty |
+| Concurrent capture stress | **Pass** — three repeated A/B rounds returned the correct lease-specific pixels with bounded readback recovery and quota pacing |
+| Full isolation admission | **Pass ×3** — two consecutive owner-gate passes plus the checkpoint execute-once pass; every lease closed |
+| Buyer audience setup | **Pass** — fresh demo principal, visibly empty cart, `reviewer_ready`, two byte-identical signed-in screenshots |
+| Fresh blind Buyer mission | **Tooling Blocked** — labeled search fill first failed; after the one allowed recovery it visibly contained `rice`, then the visible Search click failed with `Locator did not resolve for click` |
+| Data hygiene / closeout | **Pass** — 12 item ids, 8 order ids, and inventory unchanged; no cart/order delta; owned session absent and inventory empty |
+
+Retained evidence: `.cursor/skills/ondc-testing/references/evidence/local-customer-proof-blocker-20260718-af987-search-locator.json`.
+The browser campaign stopped before cart mutation. Seller, two-sided, and combined
+UI/UX remain **Not Tested** on this hash; deterministic or fixture evidence does
+not replace the fresh blind rerun after the locator owner is repaired.

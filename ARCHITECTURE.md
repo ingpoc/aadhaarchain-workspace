@@ -8,10 +8,13 @@ AgentGuard demonstration across ONDC Buyer and ONDC Seller. Build order lives in
 `PRODUCTIDEA.md`.
 
 The current deliverable is a local, ONDC-shaped two-sided commerce loop with
-real server-side authorization, approval consumption, pause, and receipts.
-Search, catalog exchange, orders, payment, logistics, and issue resolution are
-simulated unless their implementation is explicitly verified. Live ONDC and
-NPCI participation are target integrations, not current claims.
+real server-side authorization, approval consumption, pause, receipts, and a
+process-selected PostgreSQL CF1 owner for AgentGuard, CommerceV1 and ONDC.
+CommerceV1 durably owns carts, quotes, reservations, orders, simulated payment
+attempts, ledger entries and refunds. Payment-provider execution, logistics,
+settlement and complete issue resolution remain simulated or incomplete. Live
+ONDC production participation and NPCI access are target integrations, not
+current claims.
 
 ## Architectural principles
 
@@ -52,29 +55,59 @@ flowchart TB
   tools -->|"function_call_output"| host
   BP[Buyer principal] --> host
   SP[Seller principal] --> host
-  x -. "demo now; ONDC later" .-> N[ONDC Gateway Registry peers]
+  x -. "signed PreProd partial; production later" .-> N[ONDC Gateway Registry peers]
 ```
 
 ### Components
 
 | Component | Responsibility | Current repository status |
 | --- | --- | --- |
-| AgentGuard policy service | Registration, mandates, evaluation, approval, pause, receipts | Hosted in `aadharchain/gateway`; identity-neutral principals in progress |
-| Mandate editor | User edits allowed actions and auto-approve limits; compile + confirm | Seller Confirm/Pause only; editable limits required |
-| Shared tool runner | Host-agnostic tools: navigate, search, cart, checkout, publish, refund | Missing; chat stages proposals without executing app tools |
+| AgentGuard policy service | Registration, mandates, evaluation, approval, pause, receipts | Hosted in `aadharchain/gateway`; identity-neutral session principals |
+| Mandate editor | User edits allowed actions and auto-approve limits; compile + confirm | Buyer and Seller bounded editors exist; production mandate breadth remains |
+| Shared tool runner | Host-agnostic tools: navigate, search, cart, checkout, publish, refund | Present for Buyer/Seller; production security and outcome verification remain gated |
 | Agent host (text) | Cursor agent runtime for Buyer/Seller `/agent` | Wired via FlatWatch/gateway `CURSOR_API_KEY` |
-| Agent host (voice) | OpenAI Realtime `gpt-realtime-2.1` WebRTC; same tools | Not started; ephemeral client secrets on gateway |
-| Buyer application | Discovery, cart, guarded checkout, orders and issues | Demo commerce + AgentGuard checkout client |
-| Seller application | Catalog, orders, fulfilment, guarded refunds | Demo + AgentGuard refund UI |
-| Commerce exchange adapter | Catalog, search, orders between apps | Local `/api/demo-commerce` |
-| ONDC protocol adapter | Registry, signed Beckn, callbacks | Scaffold; Milestone 9 |
+| Agent host (voice) | Configured Realtime model over WebRTC; same tools | Browser gateway and text-tool path exist; native client and physical-audio proof remain |
+| Buyer application | Discovery, cart, guarded checkout, orders and issues | CommerceV1 compatibility client + AgentGuard checkout; complete production lifecycle remains partial |
+| Seller application | Catalog, orders, fulfilment, guarded refunds | CommerceV1 compatibility client + AgentGuard refund UI; complete production lifecycle remains partial |
+| CommerceV1 | Carts, quotes, inventory reservations, orders, payment attempts, ledger and refunds | PostgreSQL-backed CF1 owner; currently single-seller and simulated-payment |
+| Commerce compatibility adapter | Preserve legacy Buyer/Seller request shapes | `/api/demo-commerce` translates to CommerceV1 when PostgreSQL is selected; it is not a second store |
+| ONDC protocol adapter | Registry, signed Beckn, callbacks | Signed PreProd search partial; durable inbox/outbox and callback recovery implemented; full lifecycle/conformance open |
 | Payment adapter | Payment after Buyer authorization | Simulated |
-| Durable state | Policy, nonce, approvals, commerce, receipts | File/local demo |
+| Durable state | Policy, nonce, approvals, commerce, receipts and ONDC envelopes | PostgreSQL when `DATABASE_URL` selects CF1 persistence; local-file mode is an exclusive development fallback, never a simultaneous owner |
 | Host identity adapter | Principal authentication | Google OAuth + demo-continue; wallet legacy only |
 
 The historical `aadharchain` directory is an implementation source, not an
 architectural trust substrate. AgentGuard interfaces must use neutral principal
 identifiers and replaceable identity adapters.
+
+### Customer-first production boundary
+
+Buyer Web, Seller Web, iOS, Siri, and notifications are clients of one API
+gateway/BFF. They do not implement commerce policy, construct raw ONDC
+envelopes, store provider secrets, or accept model output as transaction truth.
+
+The gateway may remain a modular monolith initially, with explicit modules for:
+
+- identity/session and role/resource authorization;
+- buyer and seller profiles;
+- catalog, normalized search, durable carts, orders, fulfilment, and issues;
+- payment orchestration, refunds, settlement, and an internal financial ledger;
+- agent orchestration and deterministic tool execution;
+- AgentGuard mandates, decisions, approvals, pause/revoke, and receipts;
+- notifications, audit, analytics, and support operations; and
+- the versioned ONDC adapter, including signatures, callbacks, inbox/outbox,
+  correlation, deduplication, and protocol-to-domain normalization.
+
+These are code and data ownership boundaries, not a requirement to deploy many
+small services. Split deployment only when load, security, ownership, or
+reliability evidence justifies it.
+
+The native application is a voice-first command, status, and approval client.
+It uses generated API contracts and deep links, keeps long-lived provider and
+ONDC credentials off-device, and delegates authoritative prices, availability,
+policy, payments, refunds, and order transitions to the backend. On-device
+intelligence may classify, summarize, rewrite, or redact; it never becomes the
+source of transaction truth.
 
 ### Tool runner contract
 
@@ -173,7 +206,9 @@ boundary and are committed by hash where evidence binding is needed.
 Decision {
   decision_id, request_id,
   outcome: allow | approval_required | deny,
-  reason_codes[], policy_version, expires_at
+  policy_id, reason_code, human_reason,
+  required_action, risk_level,
+  policy_version, expires_at
 }
 
 Approval {
@@ -195,6 +230,28 @@ IntentReceipt {
 Evaluation and approval consumption must occur in one transaction or equivalent
 atomic operation. A receipt records the authorization and observed execution
 result; it does not pretend a failed external payment succeeded.
+
+`human_reason` is safe customer copy derived from a stable reason code; it is
+not model-authored authorization logic. `required_action` is typed (for example
+`none`, `review`, `strong_authentication`, or `contact_support`) so Buyer Web,
+Seller Web, iOS, voice, notifications, and App Intents consume one decision
+contract. A short-lived approval token produced after strong authentication is
+bound to the user, device, exact action, amount, resource, decision, and expiry;
+it is never reusable authority for a different action.
+
+### Risk taxonomy
+
+| Tier | Typical actions | Default behavior |
+| --- | --- | --- |
+| Read-only | Search, compare, view order | Execute and trace |
+| Low | Save product, prepare cart, draft response | Execute and record |
+| Medium | Change quantity, inventory, bounded discount | Execute only inside active mandate |
+| High | Place/cancel order, accept remedy, issue refund | Exact approval or an explicit active mandate |
+| Critical | Change bank details or roles, high-value refund | Strong authentication and human confirmation |
+
+Risk tier does not replace role or resource authorization. Every write first
+passes authenticated role and ownership checks, then AgentGuard mandate and
+approval checks, then deterministic execution.
 
 ## Action taxonomy
 
@@ -219,7 +276,8 @@ schema, policy rule, executor, receipt mapping, and negative tests.
 
 1. Seller confirms an operations mandate.
 2. Seller agent drafts a catalog item; protected publication is evaluated.
-3. The local exchange stores a versioned product event visible to Buyer.
+3. The CommerceV1-backed local compatibility exchange stores a versioned
+   product event visible to Buyer.
 4. Buyer agent searches, compares, and prepares a cart.
 5. Buyer `checkout.commit` is evaluated. If allowed or exactly approved, the
    payment adapter simulates payment and the exchange creates one order.
@@ -230,7 +288,8 @@ schema, policy rule, executor, receipt mapping, and negative tests.
 8. Each protected mutation returns a receipt linked to the commerce transaction
    without exposing its private evidence.
 
-The local exchange must exercise asynchronous request/callback behavior,
+The local compatibility exchange and durable ONDC repository must exercise
+asynchronous request/callback behavior,
 duplicate delivery, timeout, and idempotency so the demo does not encode a
 synchronous marketplace architecture that cannot migrate to ONDC.
 
@@ -310,6 +369,25 @@ Preserve and validate ONDC context fields such as domain, action, version,
 location, transaction ID, message ID, timestamp, TTL, BAP/BPP IDs, and callback
 URIs. Map ONDC messages to internal commands and events; do not leak protocol
 payloads directly into UI or AgentGuard policy.
+
+The internal order state machine is the product source of truth and must not be
+a loose copy of participant status strings:
+
+```text
+DRAFT -> SEARCHED -> SELECTED -> INITIALIZED -> PAYMENT_PENDING
+      -> CONFIRMED -> ACCEPTED -> PACKED -> DISPATCHED -> DELIVERED
+
+CANCELLATION_REQUESTED -> CANCELLED
+RETURN_REQUESTED -> RETURN_APPROVED -> RETURN_PICKED
+REFUND_PENDING -> REFUNDED
+DISPUTED
+FAILED
+```
+
+Each transition declares allowed source states, actor and resource ownership,
+required AgentGuard policy, idempotency key, external operation, compensating
+action, notification, audit event, and customer-visible recovery. Protocol
+callbacks propose validated events; they do not bypass the state machine.
 
 ### Reliability and conformance
 

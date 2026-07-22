@@ -253,10 +253,51 @@ OPENAI_REALTIME_MODEL=gpt-realtime-2.1
 
 | # | Item | Status |
 | --- | --- | --- |
-| E1 | Observability | pending |
-| E2 | Backup of identity/trust store | pending (DB) |
-| E3 | Incident / IGM runbooks | pending |
-| E4 | Security review (auth cookies, CORS, PII) | pending |
+| E1 | Correlated logs, metrics, traces, SLOs and alerting | pending |
+| E2 | Transactional database, encrypted backup and restore exercise | pending |
+| E3 | Payment/order/refund reconciliation and internal financial ledger | pending |
+| E4 | Incident, IGM, financial-unknown and participant-timeout runbooks | pending |
+| E5 | Security review (auth, sessions, cookies, CORS, tenancy, secrets, PII) | pending |
+| E6 | Privacy classification, retention, deletion and model-data eligibility | pending |
+| E7 | Support console with customer-safe audit and recovery controls | pending |
+| E8 | Feature flags, phased rollout, rollback and global agent-write pause | pending |
+| E9 | Accessibility, load, resilience and disaster-recovery evidence | pending |
+
+## F. Customer-money launch gates
+
+The local demo, FQDN deployment, signed archive, native sheet, model connection,
+or ONDC search result does not by itself authorize real customer money.
+
+| Gate | Required evidence | Status |
+| --- | --- | --- |
+| F1 Identity and access | Production OIDC/native token flow; role and resource isolation; session/device management; step-up authentication | pending |
+| F2 Durable commerce | Server-side cart and explicit order/return/issue state machines in transactional storage | pending |
+| F3 Financial safety | Provider sandbox/prod certification as applicable; signed webhooks; idempotency; ledger; payment/refund/settlement reconciliation | pending |
+| F4 Agent authority | Complete Buyer/Seller mandates; risk tiers; one approval inbox; exact approval tokens; pause/revoke; durable receipts | pending |
+| F5 ONDC lifecycle | Official role/domain onboarding and conformance across required request/callback, issue, logistics, and settlement flows | pending |
+| F6 Recovery and support | Customer-visible pending/failed states; compensations; dispute/escalation paths; trained support and runbooks | pending |
+| F7 Privacy and security | Data inventory; retention/deletion; model minimization; threat model; penetration test; secret/key rotation | pending |
+| F8 Operations | Monitored SLOs; alerts; backup/restore; load/resilience; feature rollback; global autonomous-write pause | pending |
+| F9 Native distribution | App records/configuration; privacy declarations; real-device Face ID, notification, deep-link and voice evidence; no bundled secrets | pending |
+
+### Data classification owner
+
+Before external pilot, classify public catalog, account, transaction, payment
+metadata, sensitive business, agent conversation, and authentication data. For
+each class record the owner, storage, encryption, access, retention, deletion,
+logging, analytics eligibility, and model-provider eligibility. Send models the
+smallest structured subset needed for the task; raw profiles, complete order
+histories, payment credentials, signing keys, and identity documents are not
+default model context.
+
+### Launch stop conditions
+
+Stop financial writes when identity, role/resource authorization, AgentGuard,
+payment verification, or authoritative order state cannot be established. Do
+not silently retry purchases or refunds after an unknown external outcome.
+Read-only experiences may degrade with explicit freshness and availability
+warnings. Every launch rehearsal must include rollback, global agent pause, and
+reconciliation from immutable identifiers.
 
 ---
 

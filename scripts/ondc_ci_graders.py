@@ -213,7 +213,7 @@ def grade_live(gateway: str, buyer: str, seller: str) -> list[dict[str, Any]]:
                     "@ondc/org/buyer_app_finder_fee_type": "Percent",
                     "@ondc/org/buyer_app_finder_fee_amount": "0",
                 },
-                "item": {"descriptor": {"name": "AgentGuard PreProd Atta"}},
+                "item": {"descriptor": {"name": "Sampoorna Whole Wheat Atta"}},
             }
         },
     }
@@ -260,7 +260,7 @@ def grade_live(gateway: str, buyer: str, seller: str) -> list[dict[str, Any]]:
             for item in items
             if isinstance(item, dict)
             and item.get("bpp_id") == "ondcseller.aadharcha.in"
-            and "AgentGuard PreProd Atta" in str(item.get("name") or "")
+            and "Sampoorna Whole Wheat Atta" in str(item.get("name") or "")
         ]
         if exact_items:
             break
@@ -298,12 +298,12 @@ def grade_live(gateway: str, buyer: str, seller: str) -> list[dict[str, Any]]:
     )
 
     # Vercel rewrites: must not serve SPA HTML
-    for name, url in (
-        ("buyer_api_agent_runtime", f"{by}/api/agent/runtime?app=ondc-buyer"),
-        ("seller_api_agent_runtime", f"{sl}/api/agent/runtime?app=ondc-seller"),
-        ("seller_demo_commerce_orders", f"{sl}/api/demo-commerce/seller/orders"),
-        ("buyer_ondc_path", f"{by}/ondc/status"),
-        ("seller_ondc_path", f"{sl}/ondc/status"),
+    for name, url, expected_codes in (
+        ("buyer_api_agent_runtime", f"{by}/api/agent/runtime?app=ondc-buyer", {200}),
+        ("seller_api_agent_runtime", f"{sl}/api/agent/runtime?app=ondc-seller", {200}),
+        ("seller_commerce_orders_auth_boundary", f"{sl}/api/demo-commerce/seller/orders", {401, 403}),
+        ("buyer_ondc_path", f"{by}/ondc/status", {200}),
+        ("seller_ondc_path", f"{sl}/ondc/status", {200}),
     ):
         hdrs = {"Accept": "application/json"}
         if "agent/runtime" in url:
@@ -314,7 +314,7 @@ def grade_live(gateway: str, buyer: str, seller: str) -> list[dict[str, Any]]:
         rows.append(
             {
                 "id": f"rewrite_{name}",
-                "ok": code == 200 and not spa and isinstance(parsed, dict),
+                "ok": code in expected_codes and not spa and isinstance(parsed, dict),
                 "detail": f"http={code} spa={spa} json={isinstance(parsed, dict)} ctype={ctype[:40]}",
             }
         )
@@ -368,7 +368,7 @@ def grade_live(gateway: str, buyer: str, seller: str) -> list[dict[str, Any]]:
     code, body, ctype = _post_json(
         f"{gw}/api/ondc/search",
         {
-            "query": "AgentGuard PreProd Atta",
+            "query": "Sampoorna Whole Wheat Atta",
             "city": "std:080",
             "domain": "ONDC:RET10",
             "include_configured_bpp": True,

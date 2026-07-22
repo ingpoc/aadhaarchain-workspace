@@ -1,0 +1,21 @@
+{
+  "stamp": "20260712-171328",
+  "evals": [
+    {
+      "after": "https://gateway.aadharcha.in",
+      "beforeLen": 0,
+      "id": "_r_2t_",
+      "ok": true,
+      "tag": "TEXTAREA"
+    },
+    {
+      "saved": true
+    },
+    {
+      "deployHint": true,
+      "hasGatewayFqdn": true,
+      "href": "https://dashboard.render.com/web/srv-d7f256f41pts73f68660/env",
+      "textHead": "M\nMy Workspace\nMy project\nProduction\nidentity-aadhar-gateway-main\nSearch\nCOMMAND\n+\nK\nK\nNew\nUpgrade\nG\nEnvironment\nidentity-aadhar-gateway-main\nEvents\nSettings\nMONITOR\nLogs\nMetrics\nMANAGE\nEnvironment\nShell\nScaling\nPreviews\nDisk\nOne-Off Jobs\nNew plans, zero seat fees\nWe're updating workspace pricing to help teams grow faster. No seat fees, more self-serve features, granular bandwidth billing, and more.\nOpt-in early\nChangelog\nInvite a friend\nContact support\nRender Status\nWEB SERVICE\nidentity-aadhar-gateway-main\nDocker\nFree\nUpgrade your instance\nConnect\nManual Deploy\nService ID:\nsrv-d7f256f41pts73f68660\ningpoc\u00a0/\u00a0aadhaar-chain\ncodex/ondc-onboard-fqdn-20260712\ngateway.aadharcha.in\nEnvironment\nCreate environment group\nEnvironment Variables\nSet environment-specific config and secrets (such as API keys), then read those values from your code. Learn more.\nExport\nEdit\nKEY\tVALUE\nKey\n\t\nValue\n\u2022 \u2022 \u2022 \u2022 \u2022 \u2022 \u2022 \u2022 \u2022 \u2022 \u2022 \u2022\nKey\n\t\nValue\n\u2022 \u2022 \u2022 \u2022 \u2022 \u2022 \u2022 \u2022 \u2022 \u2022 \u2022 \u2022\nKey\n\t\nValue\n\u2022 \u2022 \u2022 \u2022 \u2022 \u2022 \u2022 \u2022 \u2022 \u2022 \u2022 \u2022\nKey\n\t\nValue\n\u2022 \u2022 \u2022 \u2022 \u2022 \u2022 \u2022 \u2022 \u2022 \u2022 \u2022 \u2022\nKey\n\t\nValue\n\u2022 \u2022 \u2022 \u2022 \u2022 \u2022 \u2022 \u2022 \u2022 \u2022 \u2022 \u2022\nKey\n\t\nValue\n\u2022 \u2022 \u2022 \u2022 \u2022 \u2022 \u2022 \u2022 \u2022 \u2022 \u2022 \u2022\nKey\n\t\nValue\n\u2022 \u2022 \u2022 \u2022 \u2022 \u2022 \u2022 \u2022 \u2022 \u2022 \u2022 \u2022\nKey\n\t\nValue\n\u2022 \u2022 \u2022 \u2022 \u2022 \u2022 \u2022 \u2022 \u2022 \u2022 \u2022 \u2022\nKey\n\t\nValue\n\u2022 \u2022 \u2022 \u2022 \u2022 \u2022 \u2022 \u2022 \u2022 \u2022 \u2022 \u2022\nKey\n\t\nValue\n\u2022 \u2022 \u2022 \u2022 \u2022 \u2022 \u2022 \u2022 \u2022 \u2022 \u2022 \u2022\nKey\n\t\nValue\n\u2022 \u2022 \u2022 \u2022 \u2022 \u2022 \u2022 \u2022 \u2022 \u2022 \u2022 \u2022\nKey\n\t\nValue\n\u2022 \u2022 \u2022 \u2022 \u2022 \u2022 \u2022 \u2022 \u2022 \u2022 \u2022 \u2022\nKey\n\t\nValue\n\u2022 \u2022 \u2022 \u2022 \u2022 \u2022 \u2022 \u2022 \u2022 \u2022 \u2022 \u2022\nKey\n\t\nValue\n\u2022 \u2022 \u2022 \u2022 \u2022 \u2022 \u2022 \u2022 \u2022 \u2022 \u2022 \u2022\nKey\n\t\nValue\n\u2022 \u2022 \u2022 \u2022 \u2022 \u2022 \u2022 \u2022 \u2022 \u2022 \u2022 \u2022\nKey\n\t\nValue\n\u2022 \u2022 \u2022 \u2022 \u2022 \u2022 \u2022 \u2022 \u2022 \u2022 \u2022 \u2022\nKey\n\t\nValue\n\u2022 \u2022 \u2022 \u2022 \u2022 \u2022 \u2022 \u2022 \u2022 \u2022 \u2022 \u2022\nKey\n\t\nVal"
+    }
+  ]
+}

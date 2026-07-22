@@ -1,0 +1,52 @@
+{
+  "recorded_at": "2026-07-19T16:35:51+0530",
+  "base_source_hash": "af98738a621dfb6109e06d06c2833a20e593cb6e4cf8f08d3edb23dd3781088e",
+  "ui_repair_fingerprint": "sha256:22235abcd344ace09c4d9b4ba22483174a976fee38040204f2e1dc8c4e133267",
+  "scope": "final-local-visible-customer-acceptance",
+  "status": "buyer_pass_2_on_repaired_ui",
+  "run": "buyer-novice-repair-pass2-durable",
+  "actor": "69325109-b45f-4a2f-892a-e8c7d11952e3",
+  "verdict": "Pass",
+  "lease_ready_at": "2026-07-19T10:57:44Z",
+  "verdict_at": "2026-07-19T11:05:07Z",
+  "session_id": "buyer-novice-repair-pass2-durable",
+  "principal_id": "principal:demo:d79eab20ab904594",
+  "final_url": "http://127.0.0.1:43102/orders/order_4afbd08b1a654f67",
+  "order_id": "order_4afbd08b1a654f67",
+  "order_ref": "4AFBD08B",
+  "auth_ref": "1CA460DB",
+  "item": "Fresh Farm Toor Dal 1kg x 1",
+  "amount_inr": 149,
+  "session_absent_after_closeout": true,
+  "first_friction": "Search for atta returned 0 matches; browse available groceries",
+  "lease_tool": "durable_lease_controller.py",
+  "screenshots": [
+    {
+      "path": "/Users/gurusharan/plugins/hermes-chrome-cursor-wip/run/cache/hermes-chrome/835d86c2-5ce6-4fbd-8654-438e044a7f3e-0.png",
+      "readback": "Order 4AFBD08B auth 1CA460DB Authorized"
+    },
+    {
+      "path": "/Users/gurusharan/plugins/hermes-chrome-cursor-wip/run/cache/hermes-chrome/154acc52-7d83-41c5-a2aa-98ddf063e6f7-0.png",
+      "readback": "Order detail AgentGuard authorized"
+    },
+    {
+      "path": "/Users/gurusharan/plugins/hermes-chrome-cursor-wip/run/cache/hermes-chrome/91dfaa04-4473-46a8-9592-799229393c45-1.png",
+      "readback": "Terminal order page"
+    }
+  ],
+  "main_thread_verified": true,
+  "cleanup": {
+    "orders_removed_by_exact_id": [
+      "order_4afbd08b1a654f67"
+    ],
+    "inventory_restored_units": 1,
+    "fresh_farm_toor_inv": 5,
+    "orders_after": 10,
+    "agentguard_removed": {
+      "receipts": 1,
+      "approvals": 0
+    }
+  },
+  "buyer_audience_complete": true,
+  "next": "Seller SSO + Seller merchant customer pass 1"
+}

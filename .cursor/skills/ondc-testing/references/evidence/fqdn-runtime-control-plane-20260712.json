@@ -1,0 +1,26 @@
+{
+  "ts": "2026-07-12T15:16:00Z",
+  "goal": "pre-prod FQDN Cursor control plane",
+  "gateway_commit": "c4e5e81",
+  "proves": {
+    "gateway_runtime": "runtime_available true control_plane gateway",
+    "buyer_rewrite": "ondcbuyer.aadharcha.in/api/agent/runtime JSON",
+    "seller_rewrite": "ondcseller.aadharcha.in/api/agent/runtime JSON",
+    "buyer_sse": "HTTP 200 result RUNTIME_OK sdk_session_id set",
+    "ensure_demo": "published_item_count 1 Atta",
+    "smoke_search_ack": true,
+    "smoke_catalog_count": 0,
+    "note": "empty catalogs = PreProd fanout variance; not a runtime fail"
+  },
+  "deploys": {
+    "buyer_alias": "ondcbuyer-archive-deploy-ikbw9shw4 → ondcbuyer.aadharcha.in",
+    "seller_alias": "ondcseller-archive-deploy-ea6cdl278 → ondcseller.aadharcha.in",
+    "demo_mode": false
+  },
+  "still_pending_before_prod": [
+    "Browser orb long-ask W-B-RUNTIME retest",
+    "Seller FQDN publish/refund thorough",
+    "M8 cleanup (buyer Hermes UI approve)",
+    "Milestone 9 prod ONDC / live UPI external"
+  ]
+}

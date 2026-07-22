@@ -1,0 +1,1853 @@
+{
+  "success": false,
+  "counts": {
+    "pass": 13,
+    "fail": 3,
+    "skip": 0,
+    "total": 16
+  },
+  "rows": [
+    {
+      "id": "B-HI",
+      "ask": "Hi Samantha, this is my first time here. What can you help me do?",
+      "result": "Pass",
+      "evidence": "path=/search tools=[]; settled=True; frontend=origin=http://127.0.0.1:43102 expected=http://127.0.0.1:43102 path=/search; backend=backend owners reachable; realtime_configured=true; order_count=15",
+      "screenshots": [
+        "/Users/gurusharan/Documents/remote-claude/active/apps/AadhaarChainWorkspace/.cursor/skills/ondc-testing/references/evidence/B-HI-20260715-222007-0.jpeg"
+      ],
+      "pathname": "/search",
+      "frontend_origin": "http://127.0.0.1:43102",
+      "frontend_check": {
+        "ok": true,
+        "evidence": "origin=http://127.0.0.1:43102 expected=http://127.0.0.1:43102 path=/search"
+      },
+      "tools": [],
+      "reply": "Hey, welcome in! I can help you browse and compare products, add items to your cart, change quantities, and check out when you\u2019re ready. I c",
+      "backend": {
+        "ok": true,
+        "realtime_configured": true,
+        "ondc_enabled": false,
+        "catalog": [
+          {
+            "item_id": "item_c5d8daa0520f476f",
+            "title": "AgentGuard PreProd Atta 1kg",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_8c74c8870fd04099",
+            "title": "Whole Wheat Atta 1kg",
+            "price_inr": 89,
+            "status": "published"
+          }
+        ],
+        "orders": [
+          {
+            "order_id": "order_38a0b35aa8174c0d",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:01:05.536011+00:00"
+          },
+          {
+            "order_id": "order_2a5cceb8490d4b99",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:05:51.286167+00:00"
+          },
+          {
+            "order_id": "order_4c8ccd3261904d5c",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:05:51.541110+00:00"
+          },
+          {
+            "order_id": "order_bbec57608f4a4c48",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:19:28.714890+00:00"
+          },
+          {
+            "order_id": "order_a4a7ed4cc1854951",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:19:37.784071+00:00"
+          },
+          {
+            "order_id": "order_fcfb79214e4d4143",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:19:39.133987+00:00"
+          },
+          {
+            "order_id": "order_309a2da9b92a4b84",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:37:58.951374+00:00"
+          },
+          {
+            "order_id": "order_228b5a93f76d45f3",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:48:03.544174+00:00"
+          },
+          {
+            "order_id": "order_613fd4bc3a794b6a",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:48:04.019865+00:00"
+          },
+          {
+            "order_id": "order_2118ed40ceab48ba",
+            "status": "paid",
+            "updated_at": "2026-07-11T20:34:21.865247+00:00"
+          },
+          {
+            "order_id": "order_172a6fd98b984039",
+            "status": "paid",
+            "updated_at": "2026-07-11T20:39:52.553549+00:00"
+          },
+          {
+            "order_id": "order_5b13d08f0738454c",
+            "status": "paid",
+            "updated_at": "2026-07-14T08:03:33.683932+00:00"
+          },
+          {
+            "order_id": "order_79cf391c2ae34d93",
+            "status": "paid",
+            "updated_at": "2026-07-14T08:32:25.781472+00:00"
+          },
+          {
+            "order_id": "order_d01fbc8ff4ef4e3c",
+            "status": "paid",
+            "updated_at": "2026-07-14T08:45:35.939785+00:00"
+          },
+          {
+            "order_id": "order_e83643ce544b48e1",
+            "status": "paid",
+            "updated_at": "2026-07-15T14:56:05.132244+00:00"
+          }
+        ],
+        "order_count": 15
+      },
+      "backend_check": {
+        "ok": true,
+        "evidence": "backend owners reachable; realtime_configured=true; order_count=15"
+      },
+      "visual_review": "required"
+    },
+    {
+      "id": "B-FIND-ATTA",
+      "ask": "I need something simple for breakfast. Can you find atta that I can buy?",
+      "result": "Pass",
+      "evidence": "path=/results atta=True tools=['search_catalog']; settled=True; frontend=origin=http://127.0.0.1:43102 expected=http://127.0.0.1:43102 path=/results; backend=backend owners reachable; realtime_configured=true; order_count=15",
+      "screenshots": [
+        "/Users/gurusharan/Documents/remote-claude/active/apps/AadhaarChainWorkspace/.cursor/skills/ondc-testing/references/evidence/B-FIND-ATTA-20260715-222007-0.jpeg"
+      ],
+      "pathname": "/results",
+      "frontend_origin": "http://127.0.0.1:43102",
+      "frontend_check": {
+        "ok": true,
+        "evidence": "origin=http://127.0.0.1:43102 expected=http://127.0.0.1:43102 path=/results"
+      },
+      "tools": [
+        "search_catalog"
+      ],
+      "reply": "Got it\u2014I'll pull up atta options. I found two atta options: AgentGuard PreProd Atta 1kg and Whole Wheat Atta 1kg, both priced at Rs 89. Whic",
+      "backend": {
+        "ok": true,
+        "realtime_configured": true,
+        "ondc_enabled": false,
+        "catalog": [
+          {
+            "item_id": "item_c5d8daa0520f476f",
+            "title": "AgentGuard PreProd Atta 1kg",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_8c74c8870fd04099",
+            "title": "Whole Wheat Atta 1kg",
+            "price_inr": 89,
+            "status": "published"
+          }
+        ],
+        "orders": [
+          {
+            "order_id": "order_38a0b35aa8174c0d",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:01:05.536011+00:00"
+          },
+          {
+            "order_id": "order_2a5cceb8490d4b99",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:05:51.286167+00:00"
+          },
+          {
+            "order_id": "order_4c8ccd3261904d5c",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:05:51.541110+00:00"
+          },
+          {
+            "order_id": "order_bbec57608f4a4c48",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:19:28.714890+00:00"
+          },
+          {
+            "order_id": "order_a4a7ed4cc1854951",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:19:37.784071+00:00"
+          },
+          {
+            "order_id": "order_fcfb79214e4d4143",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:19:39.133987+00:00"
+          },
+          {
+            "order_id": "order_309a2da9b92a4b84",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:37:58.951374+00:00"
+          },
+          {
+            "order_id": "order_228b5a93f76d45f3",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:48:03.544174+00:00"
+          },
+          {
+            "order_id": "order_613fd4bc3a794b6a",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:48:04.019865+00:00"
+          },
+          {
+            "order_id": "order_2118ed40ceab48ba",
+            "status": "paid",
+            "updated_at": "2026-07-11T20:34:21.865247+00:00"
+          },
+          {
+            "order_id": "order_172a6fd98b984039",
+            "status": "paid",
+            "updated_at": "2026-07-11T20:39:52.553549+00:00"
+          },
+          {
+            "order_id": "order_5b13d08f0738454c",
+            "status": "paid",
+            "updated_at": "2026-07-14T08:03:33.683932+00:00"
+          },
+          {
+            "order_id": "order_79cf391c2ae34d93",
+            "status": "paid",
+            "updated_at": "2026-07-14T08:32:25.781472+00:00"
+          },
+          {
+            "order_id": "order_d01fbc8ff4ef4e3c",
+            "status": "paid",
+            "updated_at": "2026-07-14T08:45:35.939785+00:00"
+          },
+          {
+            "order_id": "order_e83643ce544b48e1",
+            "status": "paid",
+            "updated_at": "2026-07-15T14:56:05.132244+00:00"
+          }
+        ],
+        "order_count": 15
+      },
+      "backend_check": {
+        "ok": true,
+        "evidence": "backend owners reachable; realtime_configured=true; order_count=15"
+      },
+      "visual_review": "required"
+    },
+    {
+      "id": "B-RESULT-GROUND",
+      "ask": "What atta choices are on this page, and what does the first one cost?",
+      "result": "Pass",
+      "evidence": "path=/results grounded_reply=on this page, i see two atta choices: whole wheat atta 1kg and agentguard preprod atta 1kg. the first one costs rs 89.00.; settled=True; frontend=origin=http://127.0.0.1:43102 expected=http://127.0.0.1:43102 path=/results; backend=backend owners reachable; realtime_configured=true; order_count=15",
+      "screenshots": [
+        "/Users/gurusharan/Documents/remote-claude/active/apps/AadhaarChainWorkspace/.cursor/skills/ondc-testing/references/evidence/B-RESULT-GROUND-20260715-222007-0.jpeg"
+      ],
+      "pathname": "/results",
+      "frontend_origin": "http://127.0.0.1:43102",
+      "frontend_check": {
+        "ok": true,
+        "evidence": "origin=http://127.0.0.1:43102 expected=http://127.0.0.1:43102 path=/results"
+      },
+      "tools": [
+        "search_catalog"
+      ],
+      "reply": "On this page, I see two atta choices: Whole Wheat Atta 1kg and AgentGuard PreProd Atta 1kg. The first one costs Rs 89.00.",
+      "backend": {
+        "ok": true,
+        "realtime_configured": true,
+        "ondc_enabled": false,
+        "catalog": [
+          {
+            "item_id": "item_c5d8daa0520f476f",
+            "title": "AgentGuard PreProd Atta 1kg",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_8c74c8870fd04099",
+            "title": "Whole Wheat Atta 1kg",
+            "price_inr": 89,
+            "status": "published"
+          }
+        ],
+        "orders": [
+          {
+            "order_id": "order_38a0b35aa8174c0d",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:01:05.536011+00:00"
+          },
+          {
+            "order_id": "order_2a5cceb8490d4b99",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:05:51.286167+00:00"
+          },
+          {
+            "order_id": "order_4c8ccd3261904d5c",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:05:51.541110+00:00"
+          },
+          {
+            "order_id": "order_bbec57608f4a4c48",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:19:28.714890+00:00"
+          },
+          {
+            "order_id": "order_a4a7ed4cc1854951",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:19:37.784071+00:00"
+          },
+          {
+            "order_id": "order_fcfb79214e4d4143",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:19:39.133987+00:00"
+          },
+          {
+            "order_id": "order_309a2da9b92a4b84",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:37:58.951374+00:00"
+          },
+          {
+            "order_id": "order_228b5a93f76d45f3",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:48:03.544174+00:00"
+          },
+          {
+            "order_id": "order_613fd4bc3a794b6a",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:48:04.019865+00:00"
+          },
+          {
+            "order_id": "order_2118ed40ceab48ba",
+            "status": "paid",
+            "updated_at": "2026-07-11T20:34:21.865247+00:00"
+          },
+          {
+            "order_id": "order_172a6fd98b984039",
+            "status": "paid",
+            "updated_at": "2026-07-11T20:39:52.553549+00:00"
+          },
+          {
+            "order_id": "order_5b13d08f0738454c",
+            "status": "paid",
+            "updated_at": "2026-07-14T08:03:33.683932+00:00"
+          },
+          {
+            "order_id": "order_79cf391c2ae34d93",
+            "status": "paid",
+            "updated_at": "2026-07-14T08:32:25.781472+00:00"
+          },
+          {
+            "order_id": "order_d01fbc8ff4ef4e3c",
+            "status": "paid",
+            "updated_at": "2026-07-14T08:45:35.939785+00:00"
+          },
+          {
+            "order_id": "order_e83643ce544b48e1",
+            "status": "paid",
+            "updated_at": "2026-07-15T14:56:05.132244+00:00"
+          }
+        ],
+        "order_count": 15
+      },
+      "backend_check": {
+        "ok": true,
+        "evidence": "backend owners reachable; realtime_configured=true; order_count=15"
+      },
+      "visual_review": "required"
+    },
+    {
+      "id": "B-ADD-ATTA",
+      "ask": "That first atta looks fine. Please put one in my cart.",
+      "result": "Pass",
+      "evidence": "path=/cart atta=True tools=['search_catalog', 'add_to_cart']; settled=True; frontend=origin=http://127.0.0.1:43102 expected=http://127.0.0.1:43102 path=/cart; backend=local cart owner verified in frontend; backend catalog item exists; order_count=15 unchanged",
+      "screenshots": [
+        "/Users/gurusharan/Documents/remote-claude/active/apps/AadhaarChainWorkspace/.cursor/skills/ondc-testing/references/evidence/B-ADD-ATTA-20260715-222007-0.jpeg"
+      ],
+      "pathname": "/cart",
+      "frontend_origin": "http://127.0.0.1:43102",
+      "frontend_check": {
+        "ok": true,
+        "evidence": "origin=http://127.0.0.1:43102 expected=http://127.0.0.1:43102 path=/cart"
+      },
+      "tools": [
+        "search_catalog",
+        "add_to_cart"
+      ],
+      "reply": "Sure thing\u2014adding the first atta to your cart now. Done\u2014added Whole Wheat Atta 1kg to your cart. You\u2019re in /cart and can see the line.",
+      "backend": {
+        "ok": true,
+        "realtime_configured": true,
+        "ondc_enabled": false,
+        "catalog": [
+          {
+            "item_id": "item_c5d8daa0520f476f",
+            "title": "AgentGuard PreProd Atta 1kg",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_8c74c8870fd04099",
+            "title": "Whole Wheat Atta 1kg",
+            "price_inr": 89,
+            "status": "published"
+          }
+        ],
+        "orders": [
+          {
+            "order_id": "order_38a0b35aa8174c0d",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:01:05.536011+00:00"
+          },
+          {
+            "order_id": "order_2a5cceb8490d4b99",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:05:51.286167+00:00"
+          },
+          {
+            "order_id": "order_4c8ccd3261904d5c",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:05:51.541110+00:00"
+          },
+          {
+            "order_id": "order_bbec57608f4a4c48",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:19:28.714890+00:00"
+          },
+          {
+            "order_id": "order_a4a7ed4cc1854951",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:19:37.784071+00:00"
+          },
+          {
+            "order_id": "order_fcfb79214e4d4143",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:19:39.133987+00:00"
+          },
+          {
+            "order_id": "order_309a2da9b92a4b84",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:37:58.951374+00:00"
+          },
+          {
+            "order_id": "order_228b5a93f76d45f3",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:48:03.544174+00:00"
+          },
+          {
+            "order_id": "order_613fd4bc3a794b6a",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:48:04.019865+00:00"
+          },
+          {
+            "order_id": "order_2118ed40ceab48ba",
+            "status": "paid",
+            "updated_at": "2026-07-11T20:34:21.865247+00:00"
+          },
+          {
+            "order_id": "order_172a6fd98b984039",
+            "status": "paid",
+            "updated_at": "2026-07-11T20:39:52.553549+00:00"
+          },
+          {
+            "order_id": "order_5b13d08f0738454c",
+            "status": "paid",
+            "updated_at": "2026-07-14T08:03:33.683932+00:00"
+          },
+          {
+            "order_id": "order_79cf391c2ae34d93",
+            "status": "paid",
+            "updated_at": "2026-07-14T08:32:25.781472+00:00"
+          },
+          {
+            "order_id": "order_d01fbc8ff4ef4e3c",
+            "status": "paid",
+            "updated_at": "2026-07-14T08:45:35.939785+00:00"
+          },
+          {
+            "order_id": "order_e83643ce544b48e1",
+            "status": "paid",
+            "updated_at": "2026-07-15T14:56:05.132244+00:00"
+          }
+        ],
+        "order_count": 15
+      },
+      "backend_check": {
+        "ok": true,
+        "evidence": "local cart owner verified in frontend; backend catalog item exists; order_count=15 unchanged"
+      },
+      "visual_review": "required"
+    },
+    {
+      "id": "B-CLEAR-CART",
+      "ask": "Please empty my cart so I can start over.",
+      "result": "Pass",
+      "evidence": "tools=['search_catalog', 'add_to_cart', 'clear_cart'] empty=True; settled=True; frontend=origin=http://127.0.0.1:43102 expected=http://127.0.0.1:43102 path=/cart; backend=local cart owner verified in frontend; backend catalog item exists; order_count=15 unchanged",
+      "screenshots": [
+        "/Users/gurusharan/Documents/remote-claude/active/apps/AadhaarChainWorkspace/.cursor/skills/ondc-testing/references/evidence/B-CLEAR-CART-20260715-222007-0.jpeg"
+      ],
+      "pathname": "/cart",
+      "frontend_origin": "http://127.0.0.1:43102",
+      "frontend_check": {
+        "ok": true,
+        "evidence": "origin=http://127.0.0.1:43102 expected=http://127.0.0.1:43102 path=/cart"
+      },
+      "tools": [
+        "search_catalog",
+        "add_to_cart",
+        "clear_cart"
+      ],
+      "reply": "Got it\u2014I'll clear the cart and bring you back to an empty view. All set\u2014your cart is now empty. Ready to start fresh whenever you are.",
+      "backend": {
+        "ok": true,
+        "realtime_configured": true,
+        "ondc_enabled": false,
+        "catalog": [
+          {
+            "item_id": "item_c5d8daa0520f476f",
+            "title": "AgentGuard PreProd Atta 1kg",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_8c74c8870fd04099",
+            "title": "Whole Wheat Atta 1kg",
+            "price_inr": 89,
+            "status": "published"
+          }
+        ],
+        "orders": [
+          {
+            "order_id": "order_38a0b35aa8174c0d",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:01:05.536011+00:00"
+          },
+          {
+            "order_id": "order_2a5cceb8490d4b99",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:05:51.286167+00:00"
+          },
+          {
+            "order_id": "order_4c8ccd3261904d5c",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:05:51.541110+00:00"
+          },
+          {
+            "order_id": "order_bbec57608f4a4c48",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:19:28.714890+00:00"
+          },
+          {
+            "order_id": "order_a4a7ed4cc1854951",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:19:37.784071+00:00"
+          },
+          {
+            "order_id": "order_fcfb79214e4d4143",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:19:39.133987+00:00"
+          },
+          {
+            "order_id": "order_309a2da9b92a4b84",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:37:58.951374+00:00"
+          },
+          {
+            "order_id": "order_228b5a93f76d45f3",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:48:03.544174+00:00"
+          },
+          {
+            "order_id": "order_613fd4bc3a794b6a",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:48:04.019865+00:00"
+          },
+          {
+            "order_id": "order_2118ed40ceab48ba",
+            "status": "paid",
+            "updated_at": "2026-07-11T20:34:21.865247+00:00"
+          },
+          {
+            "order_id": "order_172a6fd98b984039",
+            "status": "paid",
+            "updated_at": "2026-07-11T20:39:52.553549+00:00"
+          },
+          {
+            "order_id": "order_5b13d08f0738454c",
+            "status": "paid",
+            "updated_at": "2026-07-14T08:03:33.683932+00:00"
+          },
+          {
+            "order_id": "order_79cf391c2ae34d93",
+            "status": "paid",
+            "updated_at": "2026-07-14T08:32:25.781472+00:00"
+          },
+          {
+            "order_id": "order_d01fbc8ff4ef4e3c",
+            "status": "paid",
+            "updated_at": "2026-07-14T08:45:35.939785+00:00"
+          },
+          {
+            "order_id": "order_e83643ce544b48e1",
+            "status": "paid",
+            "updated_at": "2026-07-15T14:56:05.132244+00:00"
+          }
+        ],
+        "order_count": 15
+      },
+      "backend_check": {
+        "ok": true,
+        "evidence": "local cart owner verified in frontend; backend catalog item exists; order_count=15 unchanged"
+      },
+      "visual_review": "required"
+    },
+    {
+      "id": "B-ADD-RESTORE-CLEAR",
+      "ask": "Please put one of that atta back in my cart.",
+      "result": "Pass",
+      "evidence": "path=/cart tools=['search_catalog', 'add_to_cart', 'clear_cart', 'add_to_cart']; settled=True; frontend=origin=http://127.0.0.1:43102 expected=http://127.0.0.1:43102 path=/cart; backend=local cart owner verified in frontend; backend catalog item exists; order_count=15 unchanged",
+      "screenshots": [
+        "/Users/gurusharan/Documents/remote-claude/active/apps/AadhaarChainWorkspace/.cursor/skills/ondc-testing/references/evidence/B-ADD-RESTORE-CLEAR-20260715-222007-0.jpeg"
+      ],
+      "pathname": "/cart",
+      "frontend_origin": "http://127.0.0.1:43102",
+      "frontend_check": {
+        "ok": true,
+        "evidence": "origin=http://127.0.0.1:43102 expected=http://127.0.0.1:43102 path=/cart"
+      },
+      "tools": [
+        "search_catalog",
+        "add_to_cart",
+        "clear_cart",
+        "add_to_cart"
+      ],
+      "reply": "Sure\u2014I'll add one \"Whole Wheat Atta 1kg\" back into your cart. Done\u2014one Whole Wheat Atta 1kg is back in your cart. You should now see it in /",
+      "backend": {
+        "ok": true,
+        "realtime_configured": true,
+        "ondc_enabled": false,
+        "catalog": [
+          {
+            "item_id": "item_c5d8daa0520f476f",
+            "title": "AgentGuard PreProd Atta 1kg",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_8c74c8870fd04099",
+            "title": "Whole Wheat Atta 1kg",
+            "price_inr": 89,
+            "status": "published"
+          }
+        ],
+        "orders": [
+          {
+            "order_id": "order_38a0b35aa8174c0d",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:01:05.536011+00:00"
+          },
+          {
+            "order_id": "order_2a5cceb8490d4b99",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:05:51.286167+00:00"
+          },
+          {
+            "order_id": "order_4c8ccd3261904d5c",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:05:51.541110+00:00"
+          },
+          {
+            "order_id": "order_bbec57608f4a4c48",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:19:28.714890+00:00"
+          },
+          {
+            "order_id": "order_a4a7ed4cc1854951",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:19:37.784071+00:00"
+          },
+          {
+            "order_id": "order_fcfb79214e4d4143",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:19:39.133987+00:00"
+          },
+          {
+            "order_id": "order_309a2da9b92a4b84",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:37:58.951374+00:00"
+          },
+          {
+            "order_id": "order_228b5a93f76d45f3",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:48:03.544174+00:00"
+          },
+          {
+            "order_id": "order_613fd4bc3a794b6a",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:48:04.019865+00:00"
+          },
+          {
+            "order_id": "order_2118ed40ceab48ba",
+            "status": "paid",
+            "updated_at": "2026-07-11T20:34:21.865247+00:00"
+          },
+          {
+            "order_id": "order_172a6fd98b984039",
+            "status": "paid",
+            "updated_at": "2026-07-11T20:39:52.553549+00:00"
+          },
+          {
+            "order_id": "order_5b13d08f0738454c",
+            "status": "paid",
+            "updated_at": "2026-07-14T08:03:33.683932+00:00"
+          },
+          {
+            "order_id": "order_79cf391c2ae34d93",
+            "status": "paid",
+            "updated_at": "2026-07-14T08:32:25.781472+00:00"
+          },
+          {
+            "order_id": "order_d01fbc8ff4ef4e3c",
+            "status": "paid",
+            "updated_at": "2026-07-14T08:45:35.939785+00:00"
+          },
+          {
+            "order_id": "order_e83643ce544b48e1",
+            "status": "paid",
+            "updated_at": "2026-07-15T14:56:05.132244+00:00"
+          }
+        ],
+        "order_count": 15
+      },
+      "backend_check": {
+        "ok": true,
+        "evidence": "local cart owner verified in frontend; backend catalog item exists; order_count=15 unchanged"
+      },
+      "visual_review": "required"
+    },
+    {
+      "id": "B-QUANTITY",
+      "ask": "Make that two packs instead.",
+      "result": "Pass",
+      "evidence": "tools=['search_catalog', 'add_to_cart', 'clear_cart', 'add_to_cart', 'set_cart_quantity'] quantity_visible=True; settled=True; frontend=origin=http://127.0.0.1:43102 expected=http://127.0.0.1:43102 path=/cart; backend=local cart owner verified in frontend; backend catalog item exists; order_count=15 unchanged",
+      "screenshots": [
+        "/Users/gurusharan/Documents/remote-claude/active/apps/AadhaarChainWorkspace/.cursor/skills/ondc-testing/references/evidence/B-QUANTITY-20260715-222007-0.jpeg"
+      ],
+      "pathname": "/cart",
+      "frontend_origin": "http://127.0.0.1:43102",
+      "frontend_check": {
+        "ok": true,
+        "evidence": "origin=http://127.0.0.1:43102 expected=http://127.0.0.1:43102 path=/cart"
+      },
+      "tools": [
+        "search_catalog",
+        "add_to_cart",
+        "clear_cart",
+        "add_to_cart",
+        "set_cart_quantity"
+      ],
+      "reply": "Sure thing\u2014I'll set that line to two packs now. Done\u2014your cart now has 2 packs of Whole Wheat Atta 1kg.",
+      "backend": {
+        "ok": true,
+        "realtime_configured": true,
+        "ondc_enabled": false,
+        "catalog": [
+          {
+            "item_id": "item_c5d8daa0520f476f",
+            "title": "AgentGuard PreProd Atta 1kg",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_8c74c8870fd04099",
+            "title": "Whole Wheat Atta 1kg",
+            "price_inr": 89,
+            "status": "published"
+          }
+        ],
+        "orders": [
+          {
+            "order_id": "order_38a0b35aa8174c0d",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:01:05.536011+00:00"
+          },
+          {
+            "order_id": "order_2a5cceb8490d4b99",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:05:51.286167+00:00"
+          },
+          {
+            "order_id": "order_4c8ccd3261904d5c",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:05:51.541110+00:00"
+          },
+          {
+            "order_id": "order_bbec57608f4a4c48",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:19:28.714890+00:00"
+          },
+          {
+            "order_id": "order_a4a7ed4cc1854951",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:19:37.784071+00:00"
+          },
+          {
+            "order_id": "order_fcfb79214e4d4143",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:19:39.133987+00:00"
+          },
+          {
+            "order_id": "order_309a2da9b92a4b84",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:37:58.951374+00:00"
+          },
+          {
+            "order_id": "order_228b5a93f76d45f3",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:48:03.544174+00:00"
+          },
+          {
+            "order_id": "order_613fd4bc3a794b6a",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:48:04.019865+00:00"
+          },
+          {
+            "order_id": "order_2118ed40ceab48ba",
+            "status": "paid",
+            "updated_at": "2026-07-11T20:34:21.865247+00:00"
+          },
+          {
+            "order_id": "order_172a6fd98b984039",
+            "status": "paid",
+            "updated_at": "2026-07-11T20:39:52.553549+00:00"
+          },
+          {
+            "order_id": "order_5b13d08f0738454c",
+            "status": "paid",
+            "updated_at": "2026-07-14T08:03:33.683932+00:00"
+          },
+          {
+            "order_id": "order_79cf391c2ae34d93",
+            "status": "paid",
+            "updated_at": "2026-07-14T08:32:25.781472+00:00"
+          },
+          {
+            "order_id": "order_d01fbc8ff4ef4e3c",
+            "status": "paid",
+            "updated_at": "2026-07-14T08:45:35.939785+00:00"
+          },
+          {
+            "order_id": "order_e83643ce544b48e1",
+            "status": "paid",
+            "updated_at": "2026-07-15T14:56:05.132244+00:00"
+          }
+        ],
+        "order_count": 15
+      },
+      "backend_check": {
+        "ok": true,
+        "evidence": "local cart owner verified in frontend; backend catalog item exists; order_count=15 unchanged"
+      },
+      "visual_review": "required"
+    },
+    {
+      "id": "B-REMOVE",
+      "ask": "Remove that atta from my cart.",
+      "result": "Pass",
+      "evidence": "tools=['search_catalog', 'add_to_cart', 'clear_cart', 'add_to_cart', 'set_cart_quantity', 'remove_from_cart'] empty=True; settled=True; frontend=origin=http://127.0.0.1:43102 expected=http://127.0.0.1:43102 path=/cart; backend=local cart owner verified in frontend; backend catalog item exists; order_count=15 unchanged",
+      "screenshots": [
+        "/Users/gurusharan/Documents/remote-claude/active/apps/AadhaarChainWorkspace/.cursor/skills/ondc-testing/references/evidence/B-REMOVE-20260715-222007-0.jpeg"
+      ],
+      "pathname": "/cart",
+      "frontend_origin": "http://127.0.0.1:43102",
+      "frontend_check": {
+        "ok": true,
+        "evidence": "origin=http://127.0.0.1:43102 expected=http://127.0.0.1:43102 path=/cart"
+      },
+      "tools": [
+        "search_catalog",
+        "add_to_cart",
+        "clear_cart",
+        "add_to_cart",
+        "set_cart_quantity",
+        "remove_from_cart"
+      ],
+      "reply": "Okay\u2014let me remove that atta from your cart. Done\u2014Whole Wheat Atta 1kg is removed from your cart.",
+      "backend": {
+        "ok": true,
+        "realtime_configured": true,
+        "ondc_enabled": false,
+        "catalog": [
+          {
+            "item_id": "item_c5d8daa0520f476f",
+            "title": "AgentGuard PreProd Atta 1kg",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_8c74c8870fd04099",
+            "title": "Whole Wheat Atta 1kg",
+            "price_inr": 89,
+            "status": "published"
+          }
+        ],
+        "orders": [
+          {
+            "order_id": "order_38a0b35aa8174c0d",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:01:05.536011+00:00"
+          },
+          {
+            "order_id": "order_2a5cceb8490d4b99",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:05:51.286167+00:00"
+          },
+          {
+            "order_id": "order_4c8ccd3261904d5c",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:05:51.541110+00:00"
+          },
+          {
+            "order_id": "order_bbec57608f4a4c48",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:19:28.714890+00:00"
+          },
+          {
+            "order_id": "order_a4a7ed4cc1854951",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:19:37.784071+00:00"
+          },
+          {
+            "order_id": "order_fcfb79214e4d4143",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:19:39.133987+00:00"
+          },
+          {
+            "order_id": "order_309a2da9b92a4b84",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:37:58.951374+00:00"
+          },
+          {
+            "order_id": "order_228b5a93f76d45f3",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:48:03.544174+00:00"
+          },
+          {
+            "order_id": "order_613fd4bc3a794b6a",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:48:04.019865+00:00"
+          },
+          {
+            "order_id": "order_2118ed40ceab48ba",
+            "status": "paid",
+            "updated_at": "2026-07-11T20:34:21.865247+00:00"
+          },
+          {
+            "order_id": "order_172a6fd98b984039",
+            "status": "paid",
+            "updated_at": "2026-07-11T20:39:52.553549+00:00"
+          },
+          {
+            "order_id": "order_5b13d08f0738454c",
+            "status": "paid",
+            "updated_at": "2026-07-14T08:03:33.683932+00:00"
+          },
+          {
+            "order_id": "order_79cf391c2ae34d93",
+            "status": "paid",
+            "updated_at": "2026-07-14T08:32:25.781472+00:00"
+          },
+          {
+            "order_id": "order_d01fbc8ff4ef4e3c",
+            "status": "paid",
+            "updated_at": "2026-07-14T08:45:35.939785+00:00"
+          },
+          {
+            "order_id": "order_e83643ce544b48e1",
+            "status": "paid",
+            "updated_at": "2026-07-15T14:56:05.132244+00:00"
+          }
+        ],
+        "order_count": 15
+      },
+      "backend_check": {
+        "ok": true,
+        "evidence": "local cart owner verified in frontend; backend catalog item exists; order_count=15 unchanged"
+      },
+      "visual_review": "required"
+    },
+    {
+      "id": "B-ADD-RESTORE-REMOVE",
+      "ask": "Please put one of that atta back in my cart.",
+      "result": "Pass",
+      "evidence": "path=/cart tools=['search_catalog', 'add_to_cart', 'clear_cart', 'add_to_cart', 'set_cart_quantity', 'remove_from_cart', 'add_to_cart']; settled=True; frontend=origin=http://127.0.0.1:43102 expected=http://127.0.0.1:43102 path=/cart; backend=local cart owner verified in frontend; backend catalog item exists; order_count=15 unchanged",
+      "screenshots": [
+        "/Users/gurusharan/Documents/remote-claude/active/apps/AadhaarChainWorkspace/.cursor/skills/ondc-testing/references/evidence/B-ADD-RESTORE-REMOVE-20260715-222007-0.jpeg"
+      ],
+      "pathname": "/cart",
+      "frontend_origin": "http://127.0.0.1:43102",
+      "frontend_check": {
+        "ok": true,
+        "evidence": "origin=http://127.0.0.1:43102 expected=http://127.0.0.1:43102 path=/cart"
+      },
+      "tools": [
+        "search_catalog",
+        "add_to_cart",
+        "clear_cart",
+        "add_to_cart",
+        "set_cart_quantity",
+        "remove_from_cart",
+        "add_to_cart"
+      ],
+      "reply": "Sure\u2014I'll add one Whole Wheat Atta 1kg back into your cart. Done\u2014one Whole Wheat Atta 1kg is back in your cart.",
+      "backend": {
+        "ok": true,
+        "realtime_configured": true,
+        "ondc_enabled": false,
+        "catalog": [
+          {
+            "item_id": "item_c5d8daa0520f476f",
+            "title": "AgentGuard PreProd Atta 1kg",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_8c74c8870fd04099",
+            "title": "Whole Wheat Atta 1kg",
+            "price_inr": 89,
+            "status": "published"
+          }
+        ],
+        "orders": [
+          {
+            "order_id": "order_38a0b35aa8174c0d",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:01:05.536011+00:00"
+          },
+          {
+            "order_id": "order_2a5cceb8490d4b99",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:05:51.286167+00:00"
+          },
+          {
+            "order_id": "order_4c8ccd3261904d5c",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:05:51.541110+00:00"
+          },
+          {
+            "order_id": "order_bbec57608f4a4c48",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:19:28.714890+00:00"
+          },
+          {
+            "order_id": "order_a4a7ed4cc1854951",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:19:37.784071+00:00"
+          },
+          {
+            "order_id": "order_fcfb79214e4d4143",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:19:39.133987+00:00"
+          },
+          {
+            "order_id": "order_309a2da9b92a4b84",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:37:58.951374+00:00"
+          },
+          {
+            "order_id": "order_228b5a93f76d45f3",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:48:03.544174+00:00"
+          },
+          {
+            "order_id": "order_613fd4bc3a794b6a",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:48:04.019865+00:00"
+          },
+          {
+            "order_id": "order_2118ed40ceab48ba",
+            "status": "paid",
+            "updated_at": "2026-07-11T20:34:21.865247+00:00"
+          },
+          {
+            "order_id": "order_172a6fd98b984039",
+            "status": "paid",
+            "updated_at": "2026-07-11T20:39:52.553549+00:00"
+          },
+          {
+            "order_id": "order_5b13d08f0738454c",
+            "status": "paid",
+            "updated_at": "2026-07-14T08:03:33.683932+00:00"
+          },
+          {
+            "order_id": "order_79cf391c2ae34d93",
+            "status": "paid",
+            "updated_at": "2026-07-14T08:32:25.781472+00:00"
+          },
+          {
+            "order_id": "order_d01fbc8ff4ef4e3c",
+            "status": "paid",
+            "updated_at": "2026-07-14T08:45:35.939785+00:00"
+          },
+          {
+            "order_id": "order_e83643ce544b48e1",
+            "status": "paid",
+            "updated_at": "2026-07-15T14:56:05.132244+00:00"
+          }
+        ],
+        "order_count": 15
+      },
+      "backend_check": {
+        "ok": true,
+        "evidence": "local cart owner verified in frontend; backend catalog item exists; order_count=15 unchanged"
+      },
+      "visual_review": "required"
+    },
+    {
+      "id": "B-NAV-CART",
+      "ask": "take me to cart",
+      "result": "Pass",
+      "evidence": "path=/cart; settled=True; frontend=origin=http://127.0.0.1:43102 expected=http://127.0.0.1:43102 path=/cart; backend=local cart owner verified in frontend; backend catalog item exists; order_count=15 unchanged",
+      "screenshots": [
+        "/Users/gurusharan/Documents/remote-claude/active/apps/AadhaarChainWorkspace/.cursor/skills/ondc-testing/references/evidence/B-NAV-CART-20260715-222007-0.jpeg"
+      ],
+      "pathname": "/cart",
+      "frontend_origin": "http://127.0.0.1:43102",
+      "frontend_check": {
+        "ok": true,
+        "evidence": "origin=http://127.0.0.1:43102 expected=http://127.0.0.1:43102 path=/cart"
+      },
+      "tools": [
+        "search_catalog",
+        "add_to_cart",
+        "clear_cart",
+        "add_to_cart",
+        "set_cart_quantity",
+        "remove_from_cart",
+        "add_to_cart",
+        "navigate_to"
+      ],
+      "reply": "Sure\u2014I'll take you to your cart screen now. You're in /cart. Your current item is Whole Wheat Atta 1kg.",
+      "backend": {
+        "ok": true,
+        "realtime_configured": true,
+        "ondc_enabled": false,
+        "catalog": [
+          {
+            "item_id": "item_c5d8daa0520f476f",
+            "title": "AgentGuard PreProd Atta 1kg",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_8c74c8870fd04099",
+            "title": "Whole Wheat Atta 1kg",
+            "price_inr": 89,
+            "status": "published"
+          }
+        ],
+        "orders": [
+          {
+            "order_id": "order_38a0b35aa8174c0d",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:01:05.536011+00:00"
+          },
+          {
+            "order_id": "order_2a5cceb8490d4b99",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:05:51.286167+00:00"
+          },
+          {
+            "order_id": "order_4c8ccd3261904d5c",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:05:51.541110+00:00"
+          },
+          {
+            "order_id": "order_bbec57608f4a4c48",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:19:28.714890+00:00"
+          },
+          {
+            "order_id": "order_a4a7ed4cc1854951",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:19:37.784071+00:00"
+          },
+          {
+            "order_id": "order_fcfb79214e4d4143",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:19:39.133987+00:00"
+          },
+          {
+            "order_id": "order_309a2da9b92a4b84",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:37:58.951374+00:00"
+          },
+          {
+            "order_id": "order_228b5a93f76d45f3",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:48:03.544174+00:00"
+          },
+          {
+            "order_id": "order_613fd4bc3a794b6a",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:48:04.019865+00:00"
+          },
+          {
+            "order_id": "order_2118ed40ceab48ba",
+            "status": "paid",
+            "updated_at": "2026-07-11T20:34:21.865247+00:00"
+          },
+          {
+            "order_id": "order_172a6fd98b984039",
+            "status": "paid",
+            "updated_at": "2026-07-11T20:39:52.553549+00:00"
+          },
+          {
+            "order_id": "order_5b13d08f0738454c",
+            "status": "paid",
+            "updated_at": "2026-07-14T08:03:33.683932+00:00"
+          },
+          {
+            "order_id": "order_79cf391c2ae34d93",
+            "status": "paid",
+            "updated_at": "2026-07-14T08:32:25.781472+00:00"
+          },
+          {
+            "order_id": "order_d01fbc8ff4ef4e3c",
+            "status": "paid",
+            "updated_at": "2026-07-14T08:45:35.939785+00:00"
+          },
+          {
+            "order_id": "order_e83643ce544b48e1",
+            "status": "paid",
+            "updated_at": "2026-07-15T14:56:05.132244+00:00"
+          }
+        ],
+        "order_count": 15
+      },
+      "backend_check": {
+        "ok": true,
+        "evidence": "local cart owner verified in frontend; backend catalog item exists; order_count=15 unchanged"
+      },
+      "visual_review": "required"
+    },
+    {
+      "id": "B-NAV-CHECKOUT",
+      "ask": "go to checkout",
+      "result": "Pass",
+      "evidence": "path=/checkout; settled=True; frontend=origin=http://127.0.0.1:43102 expected=http://127.0.0.1:43102 path=/checkout; backend=local cart owner verified in frontend; backend catalog item exists; order_count=15 unchanged",
+      "screenshots": [
+        "/Users/gurusharan/Documents/remote-claude/active/apps/AadhaarChainWorkspace/.cursor/skills/ondc-testing/references/evidence/B-NAV-CHECKOUT-20260715-222007-0.jpeg"
+      ],
+      "pathname": "/checkout",
+      "frontend_origin": "http://127.0.0.1:43102",
+      "frontend_check": {
+        "ok": true,
+        "evidence": "origin=http://127.0.0.1:43102 expected=http://127.0.0.1:43102 path=/checkout"
+      },
+      "tools": [
+        "search_catalog",
+        "add_to_cart",
+        "clear_cart",
+        "add_to_cart",
+        "set_cart_quantity",
+        "remove_from_cart",
+        "add_to_cart",
+        "navigate_to",
+        "navigate_to"
+      ],
+      "reply": "Okay\u2014I'll move you to checkout now. You\u2019re now on the checkout page. If you\u2019d like, I can help you proceed with finishing it through checkou",
+      "backend": {
+        "ok": true,
+        "realtime_configured": true,
+        "ondc_enabled": false,
+        "catalog": [
+          {
+            "item_id": "item_c5d8daa0520f476f",
+            "title": "AgentGuard PreProd Atta 1kg",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_8c74c8870fd04099",
+            "title": "Whole Wheat Atta 1kg",
+            "price_inr": 89,
+            "status": "published"
+          }
+        ],
+        "orders": [
+          {
+            "order_id": "order_38a0b35aa8174c0d",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:01:05.536011+00:00"
+          },
+          {
+            "order_id": "order_2a5cceb8490d4b99",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:05:51.286167+00:00"
+          },
+          {
+            "order_id": "order_4c8ccd3261904d5c",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:05:51.541110+00:00"
+          },
+          {
+            "order_id": "order_bbec57608f4a4c48",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:19:28.714890+00:00"
+          },
+          {
+            "order_id": "order_a4a7ed4cc1854951",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:19:37.784071+00:00"
+          },
+          {
+            "order_id": "order_fcfb79214e4d4143",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:19:39.133987+00:00"
+          },
+          {
+            "order_id": "order_309a2da9b92a4b84",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:37:58.951374+00:00"
+          },
+          {
+            "order_id": "order_228b5a93f76d45f3",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:48:03.544174+00:00"
+          },
+          {
+            "order_id": "order_613fd4bc3a794b6a",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:48:04.019865+00:00"
+          },
+          {
+            "order_id": "order_2118ed40ceab48ba",
+            "status": "paid",
+            "updated_at": "2026-07-11T20:34:21.865247+00:00"
+          },
+          {
+            "order_id": "order_172a6fd98b984039",
+            "status": "paid",
+            "updated_at": "2026-07-11T20:39:52.553549+00:00"
+          },
+          {
+            "order_id": "order_5b13d08f0738454c",
+            "status": "paid",
+            "updated_at": "2026-07-14T08:03:33.683932+00:00"
+          },
+          {
+            "order_id": "order_79cf391c2ae34d93",
+            "status": "paid",
+            "updated_at": "2026-07-14T08:32:25.781472+00:00"
+          },
+          {
+            "order_id": "order_d01fbc8ff4ef4e3c",
+            "status": "paid",
+            "updated_at": "2026-07-14T08:45:35.939785+00:00"
+          },
+          {
+            "order_id": "order_e83643ce544b48e1",
+            "status": "paid",
+            "updated_at": "2026-07-15T14:56:05.132244+00:00"
+          }
+        ],
+        "order_count": 15
+      },
+      "backend_check": {
+        "ok": true,
+        "evidence": "local cart owner verified in frontend; backend catalog item exists; order_count=15 unchanged"
+      },
+      "visual_review": "required"
+    },
+    {
+      "id": "B-MEM-ORG",
+      "ask": "remember organic",
+      "result": "Pass",
+      "evidence": "tools=['search_catalog', 'add_to_cart', 'clear_cart', 'add_to_cart', 'set_cart_quantity', 'remove_from_cart', 'add_to_cart', 'navigate_to', 'navigate_to', 'remember_preference']; settled=True; frontend=origin=http://127.0.0.1:43102 expected=http://127.0.0.1:43102 path=/checkout; backend=backend owners reachable; realtime_configured=true; order_count=15",
+      "screenshots": [
+        "/Users/gurusharan/Documents/remote-claude/active/apps/AadhaarChainWorkspace/.cursor/skills/ondc-testing/references/evidence/B-MEM-ORG-20260715-222007-0.jpeg"
+      ],
+      "pathname": "/checkout",
+      "frontend_origin": "http://127.0.0.1:43102",
+      "frontend_check": {
+        "ok": true,
+        "evidence": "origin=http://127.0.0.1:43102 expected=http://127.0.0.1:43102 path=/checkout"
+      },
+      "tools": [
+        "search_catalog",
+        "add_to_cart",
+        "clear_cart",
+        "add_to_cart",
+        "set_cart_quantity",
+        "remove_from_cart",
+        "add_to_cart",
+        "navigate_to",
+        "navigate_to",
+        "remember_preference"
+      ],
+      "reply": "Got it\u2014I'll save that preference for you. Saved\u2014I\u2019ll keep that preference in mind. Organic-forward choices will be a good fit when available",
+      "backend": {
+        "ok": true,
+        "realtime_configured": true,
+        "ondc_enabled": false,
+        "catalog": [
+          {
+            "item_id": "item_c5d8daa0520f476f",
+            "title": "AgentGuard PreProd Atta 1kg",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_8c74c8870fd04099",
+            "title": "Whole Wheat Atta 1kg",
+            "price_inr": 89,
+            "status": "published"
+          }
+        ],
+        "orders": [
+          {
+            "order_id": "order_38a0b35aa8174c0d",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:01:05.536011+00:00"
+          },
+          {
+            "order_id": "order_2a5cceb8490d4b99",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:05:51.286167+00:00"
+          },
+          {
+            "order_id": "order_4c8ccd3261904d5c",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:05:51.541110+00:00"
+          },
+          {
+            "order_id": "order_bbec57608f4a4c48",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:19:28.714890+00:00"
+          },
+          {
+            "order_id": "order_a4a7ed4cc1854951",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:19:37.784071+00:00"
+          },
+          {
+            "order_id": "order_fcfb79214e4d4143",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:19:39.133987+00:00"
+          },
+          {
+            "order_id": "order_309a2da9b92a4b84",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:37:58.951374+00:00"
+          },
+          {
+            "order_id": "order_228b5a93f76d45f3",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:48:03.544174+00:00"
+          },
+          {
+            "order_id": "order_613fd4bc3a794b6a",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:48:04.019865+00:00"
+          },
+          {
+            "order_id": "order_2118ed40ceab48ba",
+            "status": "paid",
+            "updated_at": "2026-07-11T20:34:21.865247+00:00"
+          },
+          {
+            "order_id": "order_172a6fd98b984039",
+            "status": "paid",
+            "updated_at": "2026-07-11T20:39:52.553549+00:00"
+          },
+          {
+            "order_id": "order_5b13d08f0738454c",
+            "status": "paid",
+            "updated_at": "2026-07-14T08:03:33.683932+00:00"
+          },
+          {
+            "order_id": "order_79cf391c2ae34d93",
+            "status": "paid",
+            "updated_at": "2026-07-14T08:32:25.781472+00:00"
+          },
+          {
+            "order_id": "order_d01fbc8ff4ef4e3c",
+            "status": "paid",
+            "updated_at": "2026-07-14T08:45:35.939785+00:00"
+          },
+          {
+            "order_id": "order_e83643ce544b48e1",
+            "status": "paid",
+            "updated_at": "2026-07-15T14:56:05.132244+00:00"
+          }
+        ],
+        "order_count": 15
+      },
+      "backend_check": {
+        "ok": true,
+        "evidence": "backend owners reachable; realtime_configured=true; order_count=15"
+      },
+      "visual_review": "required"
+    },
+    {
+      "id": "B-NAV-CONFIG",
+      "ask": "open config",
+      "result": "Pass",
+      "evidence": "path=/config organic=True; settled=True; frontend=origin=http://127.0.0.1:43102 expected=http://127.0.0.1:43102 path=/config; backend=backend owners reachable; realtime_configured=true; order_count=15",
+      "screenshots": [
+        "/Users/gurusharan/Documents/remote-claude/active/apps/AadhaarChainWorkspace/.cursor/skills/ondc-testing/references/evidence/B-NAV-CONFIG-20260715-222007-0.jpeg"
+      ],
+      "pathname": "/config",
+      "frontend_origin": "http://127.0.0.1:43102",
+      "frontend_check": {
+        "ok": true,
+        "evidence": "origin=http://127.0.0.1:43102 expected=http://127.0.0.1:43102 path=/config"
+      },
+      "tools": [
+        "search_catalog",
+        "add_to_cart",
+        "clear_cart",
+        "add_to_cart",
+        "set_cart_quantity",
+        "remove_from_cart",
+        "add_to_cart",
+        "navigate_to",
+        "navigate_to",
+        "remember_preference",
+        "navigate_to"
+      ],
+      "reply": "Sure\u2014opening config so you can view mandates and preferences. I\u2019ve opened /config so you can see your mandate and preferences. Want me to he",
+      "backend": {
+        "ok": true,
+        "realtime_configured": true,
+        "ondc_enabled": false,
+        "catalog": [
+          {
+            "item_id": "item_c5d8daa0520f476f",
+            "title": "AgentGuard PreProd Atta 1kg",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_8c74c8870fd04099",
+            "title": "Whole Wheat Atta 1kg",
+            "price_inr": 89,
+            "status": "published"
+          }
+        ],
+        "orders": [
+          {
+            "order_id": "order_38a0b35aa8174c0d",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:01:05.536011+00:00"
+          },
+          {
+            "order_id": "order_2a5cceb8490d4b99",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:05:51.286167+00:00"
+          },
+          {
+            "order_id": "order_4c8ccd3261904d5c",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:05:51.541110+00:00"
+          },
+          {
+            "order_id": "order_bbec57608f4a4c48",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:19:28.714890+00:00"
+          },
+          {
+            "order_id": "order_a4a7ed4cc1854951",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:19:37.784071+00:00"
+          },
+          {
+            "order_id": "order_fcfb79214e4d4143",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:19:39.133987+00:00"
+          },
+          {
+            "order_id": "order_309a2da9b92a4b84",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:37:58.951374+00:00"
+          },
+          {
+            "order_id": "order_228b5a93f76d45f3",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:48:03.544174+00:00"
+          },
+          {
+            "order_id": "order_613fd4bc3a794b6a",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:48:04.019865+00:00"
+          },
+          {
+            "order_id": "order_2118ed40ceab48ba",
+            "status": "paid",
+            "updated_at": "2026-07-11T20:34:21.865247+00:00"
+          },
+          {
+            "order_id": "order_172a6fd98b984039",
+            "status": "paid",
+            "updated_at": "2026-07-11T20:39:52.553549+00:00"
+          },
+          {
+            "order_id": "order_5b13d08f0738454c",
+            "status": "paid",
+            "updated_at": "2026-07-14T08:03:33.683932+00:00"
+          },
+          {
+            "order_id": "order_79cf391c2ae34d93",
+            "status": "paid",
+            "updated_at": "2026-07-14T08:32:25.781472+00:00"
+          },
+          {
+            "order_id": "order_d01fbc8ff4ef4e3c",
+            "status": "paid",
+            "updated_at": "2026-07-14T08:45:35.939785+00:00"
+          },
+          {
+            "order_id": "order_e83643ce544b48e1",
+            "status": "paid",
+            "updated_at": "2026-07-15T14:56:05.132244+00:00"
+          }
+        ],
+        "order_count": 15
+      },
+      "backend_check": {
+        "ok": true,
+        "evidence": "backend owners reachable; realtime_configured=true; order_count=15"
+      },
+      "visual_review": "required"
+    },
+    {
+      "id": "B-CHECKOUT-OK",
+      "ask": "checkout and pay",
+      "result": "Fail",
+      "evidence": "decision= tools=['add_to_cart', 'clear_cart', 'add_to_cart', 'set_cart_quantity', 'remove_from_cart', 'add_to_cart', 'navigate_to', 'navigate_to', 'remember_preference', 'navigate_to', 'checkout_commit', 'navigate_to'] decision_visible=False visible=True; settled=True; frontend=origin=http://127.0.0.1:43102 expected=http://127.0.0.1:43102 path=/checkout; backend=backend snapshot failed: EvalError: Possible side-effect in debug-evaluate",
+      "screenshots": [
+        "/Users/gurusharan/Documents/remote-claude/active/apps/AadhaarChainWorkspace/.cursor/skills/ondc-testing/references/evidence/B-CHECKOUT-OK-20260715-222007-0.jpeg",
+        "/Users/gurusharan/Documents/remote-claude/active/apps/AadhaarChainWorkspace/.cursor/skills/ondc-testing/references/evidence/B-CHECKOUT-UI-20260715-222007-0.jpeg"
+      ],
+      "pathname": "/checkout",
+      "frontend_origin": "http://127.0.0.1:43102",
+      "frontend_check": {
+        "ok": true,
+        "evidence": "origin=http://127.0.0.1:43102 expected=http://127.0.0.1:43102 path=/checkout"
+      },
+      "tools": [
+        "add_to_cart",
+        "clear_cart",
+        "add_to_cart",
+        "set_cart_quantity",
+        "remove_from_cart",
+        "add_to_cart",
+        "navigate_to",
+        "navigate_to",
+        "remember_preference",
+        "navigate_to",
+        "checkout_commit",
+        "navigate_to"
+      ],
+      "reply": "Alright\u2014I'll try to initiate checkout and payment for your cart now. I\u2019m trying to submit checkout, but it didn\u2019t go through. I\u2019ll tell you ",
+      "backend": {
+        "ok": false,
+        "error": "EvalError: Possible side-effect in debug-evaluate"
+      },
+      "backend_check": {
+        "ok": false,
+        "evidence": "backend snapshot failed: EvalError: Possible side-effect in debug-evaluate"
+      },
+      "visual_review": "required"
+    },
+    {
+      "id": "B-CHECKOUT-OVER",
+      "ask": "checkout 25000",
+      "result": "Fail",
+      "evidence": "decision=need_approval decision_visible=True blob=samantha\n\ncheckout requires exact one-time approval.\n\ngot it\u2014i'll try to submit checkout with a rs 25,000 amount. i can\u2019; settled=True; frontend=origin=http://127.0.0.1:43102 expected=http://127.0.0.1:43102 path=/checkout; backend=backend snapshot failed: EvalError: Possible side-effect in debug-evaluate",
+      "screenshots": [
+        "/Users/gurusharan/Documents/remote-claude/active/apps/AadhaarChainWorkspace/.cursor/skills/ondc-testing/references/evidence/B-CHECKOUT-OVER-20260715-222007-0.jpeg"
+      ],
+      "pathname": "/checkout",
+      "frontend_origin": "http://127.0.0.1:43102",
+      "frontend_check": {
+        "ok": true,
+        "evidence": "origin=http://127.0.0.1:43102 expected=http://127.0.0.1:43102 path=/checkout"
+      },
+      "tools": [
+        "clear_cart",
+        "add_to_cart",
+        "set_cart_quantity",
+        "remove_from_cart",
+        "add_to_cart",
+        "navigate_to",
+        "navigate_to",
+        "remember_preference",
+        "navigate_to",
+        "checkout_commit",
+        "navigate_to",
+        "checkout_commit"
+      ],
+      "reply": "Got it\u2014I'll try to submit checkout with a Rs 25,000 amount. I can\u2019t complete that checkout because the Rs 25,000 amount needs a one-time app",
+      "backend": {
+        "ok": false,
+        "error": "EvalError: Possible side-effect in debug-evaluate"
+      },
+      "backend_check": {
+        "ok": false,
+        "evidence": "backend snapshot failed: EvalError: Possible side-effect in debug-evaluate"
+      },
+      "visual_review": "required"
+    },
+    {
+      "id": "B-LONG-WEEKLY",
+      "ask": "Please plan a practical week of groceries for two people under 2,000 rupees, taking my preferences into account.",
+      "result": "Fail",
+      "evidence": "handoff path=/checkout runtime_statuses=['started', 'started']; settled=True; frontend=origin=http://127.0.0.1:43102 expected=http://127.0.0.1:43102 path=/checkout; backend=backend owners reachable; realtime_configured=true; order_count=15",
+      "screenshots": [
+        "/Users/gurusharan/Documents/remote-claude/active/apps/AadhaarChainWorkspace/.cursor/skills/ondc-testing/references/evidence/B-LONG-WEEKLY-20260715-222007-0.jpeg",
+        "/Users/gurusharan/Documents/remote-claude/active/apps/AadhaarChainWorkspace/.cursor/skills/ondc-testing/references/evidence/B-LONG-WEEKLY-DONE-20260715-222007-0.jpeg",
+        "/Users/gurusharan/Documents/remote-claude/active/apps/AadhaarChainWorkspace/.cursor/skills/ondc-testing/references/evidence/B-LONG-WEEKLY-DONE-R2-20260715-222007-0.jpeg"
+      ],
+      "pathname": "/checkout",
+      "frontend_origin": "http://127.0.0.1:43102",
+      "frontend_check": {
+        "ok": true,
+        "evidence": "origin=http://127.0.0.1:43102 expected=http://127.0.0.1:43102 path=/checkout"
+      },
+      "tools": [
+        "add_to_cart",
+        "set_cart_quantity",
+        "remove_from_cart",
+        "add_to_cart",
+        "navigate_to",
+        "navigate_to",
+        "remember_preference",
+        "navigate_to",
+        "checkout_commit",
+        "navigate_to",
+        "checkout_commit",
+        "delegate_to_runtime_agent"
+      ],
+      "reply": "Sure\u2014I'll start a practical weekly plan with your organic preference in mind. I\u2019ve started planning a practical, budget-friendly week for tw",
+      "backend": {
+        "ok": true,
+        "realtime_configured": true,
+        "ondc_enabled": false,
+        "catalog": [
+          {
+            "item_id": "item_c5d8daa0520f476f",
+            "title": "AgentGuard PreProd Atta 1kg",
+            "price_inr": 89,
+            "status": "published"
+          },
+          {
+            "item_id": "item_8c74c8870fd04099",
+            "title": "Whole Wheat Atta 1kg",
+            "price_inr": 89,
+            "status": "published"
+          }
+        ],
+        "orders": [
+          {
+            "order_id": "order_38a0b35aa8174c0d",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:01:05.536011+00:00"
+          },
+          {
+            "order_id": "order_2a5cceb8490d4b99",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:05:51.286167+00:00"
+          },
+          {
+            "order_id": "order_4c8ccd3261904d5c",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:05:51.541110+00:00"
+          },
+          {
+            "order_id": "order_bbec57608f4a4c48",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:19:28.714890+00:00"
+          },
+          {
+            "order_id": "order_a4a7ed4cc1854951",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:19:37.784071+00:00"
+          },
+          {
+            "order_id": "order_fcfb79214e4d4143",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:19:39.133987+00:00"
+          },
+          {
+            "order_id": "order_309a2da9b92a4b84",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:37:58.951374+00:00"
+          },
+          {
+            "order_id": "order_228b5a93f76d45f3",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:48:03.544174+00:00"
+          },
+          {
+            "order_id": "order_613fd4bc3a794b6a",
+            "status": "accepted",
+            "updated_at": "2026-07-11T14:48:04.019865+00:00"
+          },
+          {
+            "order_id": "order_2118ed40ceab48ba",
+            "status": "paid",
+            "updated_at": "2026-07-11T20:34:21.865247+00:00"
+          },
+          {
+            "order_id": "order_172a6fd98b984039",
+            "status": "paid",
+            "updated_at": "2026-07-11T20:39:52.553549+00:00"
+          },
+          {
+            "order_id": "order_5b13d08f0738454c",
+            "status": "paid",
+            "updated_at": "2026-07-14T08:03:33.683932+00:00"
+          },
+          {
+            "order_id": "order_79cf391c2ae34d93",
+            "status": "paid",
+            "updated_at": "2026-07-14T08:32:25.781472+00:00"
+          },
+          {
+            "order_id": "order_d01fbc8ff4ef4e3c",
+            "status": "paid",
+            "updated_at": "2026-07-14T08:45:35.939785+00:00"
+          },
+          {
+            "order_id": "order_e83643ce544b48e1",
+            "status": "paid",
+            "updated_at": "2026-07-15T14:56:05.132244+00:00"
+          }
+        ],
+        "order_count": 15
+      },
+      "backend_check": {
+        "ok": true,
+        "evidence": "backend owners reachable; realtime_configured=true; order_count=15"
+      },
+      "visual_review": "required"
+    }
+  ],
+  "evidence_dir": "/Users/gurusharan/Documents/remote-claude/active/apps/AadhaarChainWorkspace/.cursor/skills/ondc-testing/references/evidence",
+  "realtime_model": "gpt-realtime-2.1-mini",
+  "ts": "20260715-222007"
+}

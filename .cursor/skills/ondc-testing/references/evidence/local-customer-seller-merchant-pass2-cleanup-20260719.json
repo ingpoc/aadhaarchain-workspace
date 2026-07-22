@@ -1,0 +1,30 @@
+{
+  "cleanup_at": "2026-07-19T17:07:05Z",
+  "backup": "aadharchain/gateway/data/commerce-demo-state.json.bak-pass2-cleanup-1784480825",
+  "removed": {
+    "items": [
+      {
+        "id": "item_475770d5151740a6",
+        "title": "Tata Sampann Toor Dal 1kg"
+      },
+      {
+        "id": "item_ff1ada60cede45e5",
+        "title": "Kitchen Moong Dal 480423"
+      }
+    ],
+    "orders": [
+      {
+        "id": "order_34413f79f22a40f7",
+        "status": "fulfilled",
+        "title": "Kitchen Moong Dal 480423"
+      }
+    ],
+    "reservations": [
+      "rsv_9ea38e58020b410c"
+    ]
+  },
+  "items_match_baseline": true,
+  "orders_match_baseline": true,
+  "after_items": 33,
+  "after_orders": 31
+}

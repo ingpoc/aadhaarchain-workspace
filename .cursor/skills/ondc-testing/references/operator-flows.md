@@ -2,9 +2,9 @@
 
 **Owner:** this file. IDs are stable. Ledger rows use the same IDs in [`matrix-status.md`](matrix-status.md).  
 **Thin ask index:** [`query-matrix.md`](query-matrix.md) — do not duplicate journey detail there.  
-**Doctrine:** claim → screenshot (agent **Read**) → Pass. Orb text alone ≠ Pass. Evidence: `__samanthaTools` + visible route/UI.
+**Doctrine:** after every query, Pass requires screenshot (agent **Read**) + frontend route/DOM/tool state + backend owner state to agree. Orb text alone ≠ Pass. Frontend-owned local cart claims must also prove no premature backend order side effect.
 
-Surfaces: local `:43102`/`:43103` or FQDN `ondcbuyer` / `ondcseller.aadharcha.in`. Bridge: Hermes WIP only.
+Surfaces: local `:43102`/`:43103` or FQDN `ondcbuyer` / `ondcseller.aadharcha.in`. Browser owner: bundled `@chrome`; native Mac owner: bundled `@Computer`. Hermes WIP is legacy diagnostics only.
 
 ---
 
@@ -12,11 +12,11 @@ Surfaces: local `:43102`/`:43103` or FQDN `ondcbuyer` / `ondcseller.aadharcha.in
 
 | Change class | Must re-run |
 | --- | --- |
-| Realtime / orb UX / instructions | `B-HI`, `B-FIND-*`, `B-CHAINED`, `B-VOICE-*`, `S-HI`, `S-VOICE-*` |
+| Realtime / orb UX / instructions | `B-HI`, `B-FIND-*`, `B-RESULT-GROUND`, `B-CHAINED`, `B-VOICE-*`, `S-HI`, `S-ORDER-*`, `S-VOICE-*` |
 | `search_catalog` / early `/results` nav | `B-FIND-*`, `B-ADD-*`, `B-CHAINED` |
-| `buyerCatalogCache` / network→cart | `B-FIND-*`, `B-ADD-*`, `B-CHECKOUT-*` |
-| Cart / checkout UI | `B-NAV-CART`, `B-NAV-CHECKOUT`, `B-CHECKOUT-*` |
-| AgentGuard / mandate / DATA_DIR | `B-CHECKOUT-*`, `B-AG-CONFIRM`, `S-REFUND-*`, `S-AG-PAUSE`, `*-AG-*` |
+| `buyerCatalogCache` / network→cart | `B-FIND-*`, `B-RESULT-GROUND`, `B-ADD-*`, `B-CHECKOUT-*` |
+| Cart / checkout UI | `B-CLEAR-CART`, `B-REMOVE`, `B-QUANTITY`, `B-NAV-CART`, `B-NAV-CHECKOUT`, `B-CHECKOUT-*` |
+| AgentGuard / mandate / DATA_DIR | `B-CHECKOUT-*`, `B-AG-CONFIRM`, `S-ORDER-*`, `S-REFUND-*`, `S-AG-PAUSE`, `*-AG-*` |
 | Seller publish / demo-commerce | `S-PUBLISH`, `B-FIND-*` (Atta/marker), `B-FIND-NL-ATTA` |
 | Runtime / Cursor control plane | `B-RUNTIME`, `S-RUNTIME` |
 | Auth0 / session cookie | `W-*-SPA-SESSION`, then commerce subset |
@@ -76,7 +76,7 @@ Surfaces: local `:43102`/`:43103` or FQDN `ondcbuyer` / `ondcseller.aadharcha.in
 | **UI journey** | Same early `/results` as B-FIND-BANANA |
 | **Tools** | `search_catalog` |
 | **Pass signals** | Early `/results`; preferably Atta / demo marker in list when `ensure-demo-item` ran |
-| **Settle** | Same as FIND-BANANA; prefer **AgentGuard PreProd Atta** / flour offers in grid |
+| **Settle** | Same as FIND-BANANA; prefer **AadhaarChain Whole Wheat Atta** / flour offers in grid |
 | **Code** | Same as B-FIND-BANANA; gateway `POST /api/ondc/bpp/ensure-demo-item` |
 | **Change map** | publish; search_catalog; PreProd |
 
@@ -119,6 +119,32 @@ Surfaces: local `:43102`/`:43103` or FQDN `ondcbuyer` / `ondcseller.aadharcha.in
 | **Code** | `resolveBuyerCartItem` / `buyerCatalogCache`; `SamanthaOrb` cartAdds → `addToCart` |
 | **Change map** | catalog cache; cart; search_catalog |
 | **Gap watch** | Network ids not in cache → empty cart (historical Fail); host 12s search race before ids → add Fail |
+
+### B-RESULT-GROUND — Explain what is visibly available
+
+| | |
+| --- | --- |
+| **Intent / prompts** | “what choices are on this page?”, “what does the first one cost?” after search |
+| **Side** | Buyer |
+| **UI journey** | Stay on `/results`; answer from rendered/cache-backed Host context |
+| **Tools** | None required; do not search again when visible results are already supplied |
+| **Pass signals** | Reply names a visible product and price; screenshot shows the same offer on `/results` |
+| **Settle** | Reply and rendered offer agree; no false empty claim |
+| **Code** | `buildOutboundUserText`; `waitForBuyerCatalogItems`; `buyerCatalogCache` |
+| **Change map** | Realtime UX; results grounding |
+
+### B-CLEAR-CART / B-REMOVE / B-QUANTITY — Change the live cart
+
+| | |
+| --- | --- |
+| **Intent / prompts** | “empty my cart”; “remove that atta”; “make that two packs” |
+| **Side** | Buyer |
+| **UI journey** | Open `/cart` after the mutation so empty state or updated quantity is visible |
+| **Tools** | `clear_cart`; `remove_from_cart`; `set_cart_quantity` |
+| **Pass signals** | Matching tool succeeds and `/cart` visibly shows empty state or requested quantity |
+| **Settle** | Host cart mutation completed; refreshed cart matches tool evidence |
+| **Code** | `runBuyerTool`; Buyer `SamanthaOrb`; cart context/mutations |
+| **Change map** | cart UI; Realtime UX |
 
 ### B-NAV-CART / B-NAV-CHECKOUT / B-NAV-CONFIG / B-NAV-ORDERS
 
@@ -267,6 +293,19 @@ Same commerce intents via Realtime mic. Pass: connected session + **visible** to
 | **Settle** | `catalog_publish` ok; optional item visible on `/catalog` |
 | **Change map** | publish; demo-commerce |
 
+### S-ORDER-ACCEPT / S-ORDER-REJECT / S-ORDER-FULFIL — Order lifecycle
+
+| | |
+| --- | --- |
+| **Intent / prompts** | “accept the newest paid order”; “reject the newest remaining paid order”; “mark that accepted order fulfilled” |
+| **Side** | Seller |
+| **UI journey** | Samantha executes under AgentGuard → `/orders/{id}` with Accepted, Cancelled, or Delivered visible |
+| **Tools** | `accept_order`; `reject_order`; `mark_order_fulfilled` |
+| **Pass signals** | Matching tool ok; canonical AgentGuard action/receipt in tool evidence; order page shows the resulting status |
+| **Settle** | Tool decision is honest and rendered status matches the executed transition |
+| **Code** | Seller `agentTools`; `executeProtectedAction`; demo-commerce transition executor |
+| **Change map** | AG; orders; demo-commerce |
+
 ### S-RUNTIME — Long handoff
 
 | | |
@@ -278,11 +317,6 @@ Same commerce intents via Realtime mic. Pass: connected session + **visible** to
 | **Pass signals** | Handoff hint; path ≠ `/agent` |
 | **Settle** | `delegate_to_runtime_agent` ok; not `/agent` |
 | **Change map** | runtime |
-
-| **Tools** | `catalog_publish` |
-| **Pass signals** | Tool ok; catalog list shows item (screenshot) |
-| **Code** | `createAndPublishSellerItem`; demo-commerce |
-| **Change map** | publish; AG catalog action |
 
 ### S-REFUND-OK / S-REFUND-OVER
 
@@ -329,6 +363,8 @@ Prefix **`W-`** (e.g. `W-B-FIND-BANANA`, `W-S-NAV-CAT`). Same Pass bar on `https
 ---
 
 ## Session minimum (operator text-mode)
+
+Acceptance is performed first by the experiment-refined pair in [`../SKILL.md`](../SKILL.md): one task-focused novice customer/operator and one combined UX/accessibility reviewer. They use visible UI and natural language only, cap reports, and distinguish App Fail from Tooling Blocked. The implementation agent and fixture-aware scripts may replay these flows for diagnosis, but their results are supporting evidence rather than novice-customer acceptance. Buyer and Seller authenticated runs are sequential because the shared WIP Chrome profile has one gateway session cookie.
 
 **Buyer:** `B-HI` → `B-FIND-NL-ATTA` or `B-FIND-ATTA` (prove **early `/results`**) → `B-ADD-*` if cache allows → `B-AG-CONFIRM` when signed-in → nav cart/checkout → checkout if cart non-empty → `B-RUNTIME`.  
 **Seller:** `S-HI` → nav catalog/orders/AG → `S-AG-PAUSE` when signed-in → `S-PUBLISH` or `S-REFUND-*` → `S-RUNTIME` as feasible.  

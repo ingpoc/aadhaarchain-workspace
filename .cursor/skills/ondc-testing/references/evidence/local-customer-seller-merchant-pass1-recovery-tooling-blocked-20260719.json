@@ -1,0 +1,18 @@
+{
+  "recorded_at": "2026-07-19T17:05:37+0530",
+  "scope": "final-local-visible-customer-acceptance",
+  "status": "seller_merchant_pass1_recovery_tooling_blocked",
+  "run": "seller-merchant-repair-pass1-recovery",
+  "actor": "f6e02a0a-dfa4-4676-a90e-bcd79077bca9",
+  "verdict": "Tooling Blocked",
+  "lease_ready_at": "2026-07-19T11:30:19Z",
+  "verdict_at": "2026-07-19T11:33:24Z",
+  "session_id": "seller-merchant-repair-pass1-recovery",
+  "session_absent_after_closeout": true,
+  "final_url": "http://127.0.0.1:43103/catalog/new",
+  "first_friction": "durable_lease_controller response one-behind desync on Add Product fills",
+  "owner_root_cause": "cmd_send deleted response.json before controller wrote prior result; next send consumed stale response",
+  "owner_fix": "seq-matched request/response envelope + send.lock serialization in durable_lease_controller.py",
+  "owner_proof": "durable-seq-smoke rapid sequential page_context/sessions/closeout matched",
+  "campaign_rule": "bounded recovery already used; owner fixed+proven before next Seller merchant journey"
+}

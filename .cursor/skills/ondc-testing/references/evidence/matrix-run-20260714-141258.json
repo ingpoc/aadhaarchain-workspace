@@ -1,0 +1,189 @@
+{
+  "success": false,
+  "counts": {
+    "pass": 9,
+    "fail": 1,
+    "skip": 0,
+    "total": 10
+  },
+  "rows": [
+    {
+      "id": "B-HI",
+      "ask": "Hi Samantha, this is my first time here. What can you help me do?",
+      "result": "Pass",
+      "evidence": "path=/search tools=[]",
+      "screenshots": [
+        "/Users/gurusharan/Documents/remote-claude/active/apps/AadhaarChainWorkspace/.cursor/skills/ondc-testing/references/evidence/B-HI-20260714-141258-0.jpeg"
+      ],
+      "pathname": "/search",
+      "tools": [],
+      "reply": "Hey there, welcome! I\u2019m your ONDC Buyer buddy. I can help you find products, compare options, add items to your cart, and guide you through "
+    },
+    {
+      "id": "B-FIND-ATTA",
+      "ask": "I need something simple for breakfast. Can you find atta that I can buy?",
+      "result": "Pass",
+      "evidence": "path=/results atta=True tools=['search_catalog']",
+      "screenshots": [
+        "/Users/gurusharan/Documents/remote-claude/active/apps/AadhaarChainWorkspace/.cursor/skills/ondc-testing/references/evidence/B-FIND-ATTA-20260714-141258-0.jpeg"
+      ],
+      "pathname": "/results",
+      "tools": [
+        "search_catalog"
+      ],
+      "reply": "Opening results for atta so you can see the offers load. I found two atta options for breakfast: \u201cAgentGuard PreProd Atta 1kg\u201d and \u201cWhole Wh"
+    },
+    {
+      "id": "B-ADD-ATTA",
+      "ask": "That first atta looks fine. Please put one in my cart.",
+      "result": "Pass",
+      "evidence": "path=/cart atta=True tools=['search_catalog', 'add_to_cart']",
+      "screenshots": [
+        "/Users/gurusharan/Documents/remote-claude/active/apps/AadhaarChainWorkspace/.cursor/skills/ondc-testing/references/evidence/B-ADD-ATTA-20260714-141258-0.jpeg"
+      ],
+      "pathname": "/cart",
+      "tools": [
+        "search_catalog",
+        "add_to_cart"
+      ],
+      "reply": "Done\u2014added 1\u00d7 AgentGuard PreProd Atta 1kg to your cart, and you should see it in your cart now."
+    },
+    {
+      "id": "B-NAV-CART",
+      "ask": "take me to cart",
+      "result": "Pass",
+      "evidence": "path=/cart",
+      "screenshots": [
+        "/Users/gurusharan/Documents/remote-claude/active/apps/AadhaarChainWorkspace/.cursor/skills/ondc-testing/references/evidence/B-NAV-CART-20260714-141258-0.jpeg"
+      ],
+      "pathname": "/cart",
+      "tools": [
+        "search_catalog",
+        "add_to_cart",
+        "navigate_to"
+      ],
+      "reply": "Got it\u2014I'll take you straight to your cart. All set\u2014your cart is open now."
+    },
+    {
+      "id": "B-NAV-CHECKOUT",
+      "ask": "go to checkout",
+      "result": "Pass",
+      "evidence": "path=/checkout",
+      "screenshots": [
+        "/Users/gurusharan/Documents/remote-claude/active/apps/AadhaarChainWorkspace/.cursor/skills/ondc-testing/references/evidence/B-NAV-CHECKOUT-20260714-141258-0.jpeg"
+      ],
+      "pathname": "/checkout",
+      "tools": [
+        "search_catalog",
+        "add_to_cart",
+        "navigate_to",
+        "navigate_to"
+      ],
+      "reply": "Okay, I\u2019ll take you straight to checkout. You\u2019re at checkout now. If you want, I can help confirm anything you need next before you place th"
+    },
+    {
+      "id": "B-MEM-ORG",
+      "ask": "remember organic",
+      "result": "Pass",
+      "evidence": "tools=['search_catalog', 'add_to_cart', 'navigate_to', 'navigate_to', 'remember_preference']",
+      "screenshots": [
+        "/Users/gurusharan/Documents/remote-claude/active/apps/AadhaarChainWorkspace/.cursor/skills/ondc-testing/references/evidence/B-MEM-ORG-20260714-141258-0.jpeg"
+      ],
+      "pathname": "/checkout",
+      "tools": [
+        "search_catalog",
+        "add_to_cart",
+        "navigate_to",
+        "navigate_to",
+        "remember_preference"
+      ],
+      "reply": "Got it\u2014I'll keep an eye out for organic options for you."
+    },
+    {
+      "id": "B-NAV-CONFIG",
+      "ask": "open config",
+      "result": "Pass",
+      "evidence": "path=/config organic=True",
+      "screenshots": [
+        "/Users/gurusharan/Documents/remote-claude/active/apps/AadhaarChainWorkspace/.cursor/skills/ondc-testing/references/evidence/B-NAV-CONFIG-20260714-141258-0.jpeg"
+      ],
+      "pathname": "/config",
+      "tools": [
+        "search_catalog",
+        "add_to_cart",
+        "navigate_to",
+        "navigate_to",
+        "remember_preference",
+        "navigate_to"
+      ],
+      "reply": "Sure\u2014I'll open your config so you can see mandates and preferences. You\u2019re in your config now\u2014mandates and preferences should be visible. If"
+    },
+    {
+      "id": "B-CHECKOUT-OK",
+      "ask": "checkout and pay",
+      "result": "Pass",
+      "evidence": "decision~allow tools=['search_catalog', 'add_to_cart', 'navigate_to', 'navigate_to', 'remember_preference', 'navigate_to', 'checkout_commit'] ag_hit=True",
+      "screenshots": [
+        "/Users/gurusharan/Documents/remote-claude/active/apps/AadhaarChainWorkspace/.cursor/skills/ondc-testing/references/evidence/B-CHECKOUT-OK-20260714-141258-0.jpeg"
+      ],
+      "pathname": "/orders/demo-1784018735957-zj84ug",
+      "tools": [
+        "search_catalog",
+        "add_to_cart",
+        "navigate_to",
+        "navigate_to",
+        "remember_preference",
+        "navigate_to",
+        "checkout_commit"
+      ],
+      "reply": "Okay, I\u2019ll try to place the order from your cart. Hang tight while the checkout runs. Checkout\u2019s done and payment succeeded\u2014your order is pa"
+    },
+    {
+      "id": "B-CHECKOUT-OVER",
+      "ask": "checkout 25000",
+      "result": "Pass",
+      "evidence": "blob=samantha\n\ncheckout requires exact one-time approval.\n\nalright, let\u2019s try placing that checkout with your specified amount\u2014i'll see what the system allows. i tri",
+      "screenshots": [
+        "/Users/gurusharan/Documents/remote-claude/active/apps/AadhaarChainWorkspace/.cursor/skills/ondc-testing/references/evidence/B-CHECKOUT-OVER-20260714-141258-0.jpeg"
+      ],
+      "pathname": "/checkout",
+      "tools": [
+        "search_catalog",
+        "add_to_cart",
+        "navigate_to",
+        "navigate_to",
+        "remember_preference",
+        "navigate_to",
+        "checkout_commit",
+        "checkout_commit"
+      ],
+      "reply": "Alright, let\u2019s try placing that checkout with your specified amount\u2014I'll see what the system allows. I tried\u2014checkout needs approval for an "
+    },
+    {
+      "id": "B-LONG-WEEKLY",
+      "ask": "Please plan a practical week of groceries for two people under 2,000 rupees, taking my preferences into account.",
+      "result": "Fail",
+      "evidence": "handoff path=/checkout runtime_statuses=['started']",
+      "screenshots": [
+        "/Users/gurusharan/Documents/remote-claude/active/apps/AadhaarChainWorkspace/.cursor/skills/ondc-testing/references/evidence/B-LONG-WEEKLY-20260714-141258-0.jpeg",
+        "/Users/gurusharan/Documents/remote-claude/active/apps/AadhaarChainWorkspace/.cursor/skills/ondc-testing/references/evidence/B-LONG-WEEKLY-DONE-20260714-141258-0.jpeg"
+      ],
+      "pathname": "/checkout",
+      "tools": [
+        "search_catalog",
+        "add_to_cart",
+        "navigate_to",
+        "navigate_to",
+        "remember_preference",
+        "navigate_to",
+        "checkout_commit",
+        "checkout_commit",
+        "delegate_to_runtime_agent"
+      ],
+      "reply": "I\u2019ll set up a practical weekly plan that fits your budget and preferences and run it in the background. Then I\u2019ll bring you a clear, easy-to"
+    }
+  ],
+  "evidence_dir": "/Users/gurusharan/Documents/remote-claude/active/apps/AadhaarChainWorkspace/.cursor/skills/ondc-testing/references/evidence",
+  "realtime_model": "gpt-realtime-2.1-mini",
+  "ts": "20260714-141258"
+}

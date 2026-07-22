@@ -1,0 +1,92 @@
+{
+  "id": "W-B-FIND-ATTA-DOCTRINE",
+  "result": "Pass",
+  "shots": [
+    "W-B-DOCTRINE-ATTA-20260712-225441-0.jpeg"
+  ],
+  "before": {
+    "settle_ms": 93000,
+    "tool_ms": "collect<=12s",
+    "search_posts": 2
+  },
+  "after": {
+    "early_ms": 1012,
+    "tool_ms": 4068,
+    "paint_ms": 18935,
+    "search_posts": 1,
+    "matches": "13",
+    "has_txn": true,
+    "failed": false,
+    "fetches": [
+      {
+        "at": 1275,
+        "ms": 368,
+        "p": "/api/health",
+        "st": 200
+      },
+      {
+        "at": 1517,
+        "ms": 602,
+        "p": "/api/health",
+        "st": 200
+      },
+      {
+        "at": 1939,
+        "ms": 664,
+        "p": "/api/ondc/status",
+        "st": 200
+      },
+      {
+        "at": 1943,
+        "ms": 1027,
+        "p": "/api/health",
+        "st": 200
+      },
+      {
+        "at": 2527,
+        "ms": 1010,
+        "p": "/api/ondc/status",
+        "st": 200
+      },
+      {
+        "at": 3235,
+        "ms": 1292,
+        "p": "/api/ondc/status",
+        "st": 200
+      },
+      {
+        "at": 3679,
+        "ms": 1739,
+        "p": "/api/ondc/search",
+        "st": 200
+      },
+      {
+        "at": 4629,
+        "ms": 943,
+        "p": "/api/ondc/catalogs?transaction_id=92d5d46a-f3bf-47bd-8b1b-c37c5ef3847c",
+        "st": 200
+      },
+      {
+        "at": 13633,
+        "err": "signal is aborted without reason",
+        "ms": 8002,
+        "p": "/api/ondc/catalogs?transaction_id=92d5d46a-f3bf-47bd-8b1b-c37c5ef3847c"
+      },
+      {
+        "at": 18436,
+        "ms": 3799,
+        "p": "/api/ondc/catalogs?transaction_id=92d5d46a-f3bf-47bd-8b1b-c37c5ef3847c",
+        "st": 200
+      }
+    ],
+    "tools": [
+      {
+        "name": "search_catalog",
+        "navigateTo": "/results?category=grocery&q=atta&ondc_txn=92d5d46a-f3bf-47bd-8b1b-c37c5ef3847c",
+        "ok": true
+      }
+    ]
+  },
+  "stamp": "20260712-225441",
+  "deploy": "ondcbuyer-6xlyphqq6"
+}

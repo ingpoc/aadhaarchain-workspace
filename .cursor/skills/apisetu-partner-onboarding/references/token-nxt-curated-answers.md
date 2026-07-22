@@ -4,6 +4,8 @@ Prepared 2026-07-12 for [Token Nxt By NPCI](https://www.npci.org.in/token-nxt).
 **Do not submit until operator fills `[OPERATOR]` fields and adds demo video (Q33).**  
 Honesty rule: no live UPI, no prod ONDC orders, no NPCI partnership claim.
 
+**Submitted:** operator submitted Microsoft Form **2026-07-20** (Q33 Loom URL included).
+
 Form inventory: [`token-nxt-application-form.md`](token-nxt-application-form.md).
 
 ---
@@ -15,13 +17,13 @@ Form inventory: [`token-nxt-application-form.md`](token-nxt-application-form.md)
 | 1 | Company Name | `GURUSHARAN GUPTA HUF` |
 | 2 | Company Website URL | `https://aadharcha.in` |
 | 3 | Headquarters Country | `India` |
-| 4 | Year of Founding | `[OPERATOR]` — confirm HUF / venture year (≤2026) |
+| 4 | Year of Founding | `2026` *(operator-filled 2026-07-20)* |
 | 5 | Company Size (Employees) | `1-10` |
 | 6 | Funding Stage | `Bootstrapped` |
 | 7 | Primary Contact Name | `Gurusharan Gupta` |
-| 8 | Primary Contact Email | `[OPERATOR]` — real inbox you monitor |
+| 8 | Primary Contact Email | `gupta.huf.gurusharan@gmail.com` *(operator-filled 2026-07-20)* |
 | 9 | Primary Contact Designation | `Founder` |
-| 10 | LinkedIn Company Page URL | `[OPERATOR]` — personal or company LinkedIn URL, or leave blank if optional |
+| 10 | LinkedIn Company Page URL | `https://www.linkedin.com/in/gurusharangupta/` *(operator-filled 2026-07-20)* |
 
 ---
 
@@ -30,7 +32,7 @@ Form inventory: [`token-nxt-application-form.md`](token-nxt-application-form.md)
 | # | Field | Answer |
 | --- | --- | --- |
 | 11 | Product / Solution Name | `AgentGuard — realtime voice + runtime agents for ONDC commerce, with mandate-based authority control` *(100/150)* |
-| 12 | Product Website or Landing Page | `https://ondcbuyer.aadharcha.in` |
+| 12 | Product Website or Landing Page | `https://aadharcha.in` *(intentional 2026-07-20: hub explains Buyer+Seller AgentGuard use case and links to both `ondcbuyer.aadharcha.in` and `ondcseller.aadharcha.in`; do not replace with a single NP FQDN)* |
 | 13 | Primary AI Product Category | `AI Agents & Autonomous Systems` |
 | 14 | Secondary AI Product Category | `Security & Governance` |
 | 15 | B2B / B2C / B2G | `B2B + B2C` |
@@ -67,11 +69,13 @@ USP is realtime voice + runtime agent under one AgentGuard control plane on both
 
 *(Optional add if you want richer stack story: RAG-based — only if you claim memory/retrieval in the PreProd demo.)*
 
-### 22. Which AI models or frameworks are at the core? *(166/200)*
+### 22. Which AI models or frameworks are at the core? *(196/200)*
 
 ```
-OpenAI Realtime (gpt-realtime) for Buyer voice; Cursor agent runtime for longer plans; shared tool runner; AgentGuard APIs on our gateway. No custom foundation model.
+OpenAI Realtime (gpt-realtime-2.1-mini) voice on Buyer+Seller Samantha; Cursor agent runtime (composer-2.5) for longer plans; shared tool runner; AgentGuard on gateway. No custom foundation model.
 ```
+
+*(Code-backed 2026-07-20: `ondcbuyer` + `ondcseller` both mount `SamanthaOrb` WebRTC Realtime with `role: buyer|seller`; gateway `realtime_routes.py` mints secrets for both; default model `gpt-realtime-2.1-mini`; Cursor runtime default `composer-2.5`.)*
 
 ### 23. Does your product incorporate any of the following? *(multi-select)*
 
@@ -106,23 +110,23 @@ Consequential actions never rely on model judgment alone: AgentGuard evaluates e
 - [x] Finance & Banking  
 - [x] Retail & E-commerce  
 
-### 28. Describe a specific use case and outcome achieved *(581/700)*
+### 28. Describe a specific use case and outcome achieved *(598/700)*
 
 ```
-Buyer speaks a grocery need (or a budget brief). Realtime voice issues real tool calls—search ONDC PreProd, compare, add to cart—while AgentGuard caps auto-approve amount and allowed actions (e.g. block checkout until mandate allows it). Seller side shows the same contract for refunds/ops. Outcome: a PreProd-ready POC where the user barely touches the UI, yet cannot be overcharged or over-authorized by the agent. Roadmap: when UPI Circle agent onboarding is available beyond CUG, the same agent completes payment under the same limits, applying offers and remembered preferences.
+On ondcbuyer.aadharcha.in, the Buyer speaks a grocery need (or budget brief). Realtime voice issues real tool calls—search ONDC PreProd, compare, add to cart—while AgentGuard caps auto-approve amount and allowed actions (e.g. block checkout until mandate allows it). On ondcseller.aadharcha.in, the same AgentGuard contract governs seller refunds/ops (pause/approve/deny). Outcome: a PreProd Buyer+Seller POC where the user barely touches the UI, yet cannot be over-authorized. Roadmap: when UPI Circle agent onboarding opens beyond CUG, the same guarded agent completes payment under those limits.
 ```
 
-### 29. Quantify the impact of your solution *(371/400)*
+### 29. Quantify the impact of your solution *(316/400)*
 
 ```
-POC metrics (lab/PreProd, not revenue): protected actions always hit server evaluate before mutate; Hermes-validated AgentGuard approve/replay/pause/deny paths; FQDN Buyer+Seller+gateway live; ONDC PreProd BAP+BPP search and order ACKs. Goal for end users: hands-free find-and-cart, and safer agent spend once payment rails accept guarded agents. No production GMV claimed.
+POC metrics (lab/PreProd, not revenue): protected actions always hit server evaluate before mutate; Hermes-validated AgentGuard approve/replay/pause/deny on Buyer and Seller; FQDNs ondcbuyer.aadharcha.in + ondcseller.aadharcha.in + gateway live; ONDC PreProd BAP+BPP search and order ACKs. No production GMV claimed.
 ```
 
 | # | Field | Answer |
 | --- | --- | --- |
 | 30 | Do you have case studies? | `No` |
 | 31 | Link to case study? | Leave blank (or skip if hidden when No) |
-| 32 | Awards / certifications / recognitions *(102/300)* | `None yet. Selected for self-built ONDC PreProd Buyer+Seller participation and public FQDN demo (2026).` |
+| 32 | Awards / certifications / recognitions *(153/300)* | `None yet. Selected for self-built ONDC PreProd Buyer+Seller participation (ondcbuyer.aadharcha.in / ondcseller.aadharcha.in) and public FQDN demo (2026).` |
 
 ---
 
@@ -130,7 +134,7 @@ POC metrics (lab/PreProd, not revenue): protected actions always hit server eval
 
 | # | Field | Answer |
 | --- | --- | --- |
-| 33 | Product Demo Video Link | `[OPERATOR]` — **required for strength.** Record 2–3 min Loom: voice → tools → cart → AgentGuard restrict/approve on `ondcbuyer.aadharcha.in` (+ optional Seller refund). |
+| 33 | Product Demo Video Link | `https://www.loom.com/share/5341e1c3eb5f43bd9cf0bfcf8af73c0c` *(operator Loom 2026-07-20)* |
 | 34 | Additional links or references *(169/300)* | see below |
 | 35 | How did you hear about this program? | `NPCI Website` *(or LinkedIn if that is accurate)* |
 

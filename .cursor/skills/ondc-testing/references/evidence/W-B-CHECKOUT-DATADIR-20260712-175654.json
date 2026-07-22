@@ -1,0 +1,47 @@
+{
+  "success": true,
+  "permission_denied": false,
+  "tool_hit": true,
+  "tool_ok": true,
+  "ag_visible": true,
+  "checkout_tool": {
+    "amount_inr": 715,
+    "at": 1783859251514,
+    "callId": "call_qW1370oUkDpHeyfT",
+    "cartAdds": [],
+    "decision": "allow",
+    "message": "Checkout committed; receipt rcpt_90c6dec41ab8400f.",
+    "name": "checkout_commit",
+    "navigateTo": "/orders/demo-1783859251508-w7m0e0",
+    "ok": true,
+    "receiptId": "rcpt_90c6dec41ab8400f",
+    "session_id": "session-1769264983827-fzqlgs6"
+  },
+  "tools": [
+    "search_catalog",
+    "add_to_cart",
+    "checkout_commit"
+  ],
+  "after_ask": {
+    "pathname": "/orders/demo-1783859251508-w7m0e0",
+    "reply": "Alright\u2014I'll submit checkout for your cart now and let the host handle the payment flow.All set! Your cart has been checked out and paid successfully\u2014order status: paid for amount 715 INR. Your receipt ID starts with r and ends with 0 0 f.",
+    "hint": "Samantha\n\nCheckout committed; receipt rcpt_90c6dec41ab8400f.\n\nAlright\u2014I'll submit checkout for your cart now and let the host handle the payment flow.All set! Your cart has been checked out and paid successfully\u2014order status: paid for amount 715 INR. Your receipt ID starts with r and ends with 0 0 f.\n\nSend\nPreferences & AgentGuard",
+    "permission_denied": false
+  },
+  "checkout_page": {
+    "pathname": "/orders/demo-1783859251508-w7m0e0",
+    "has_receipt": true,
+    "has_approval": false,
+    "has_committed": true,
+    "body_snip": "PORTFOLIO\nONDC Buyer\nDiscover commerce under AgentGuard authorization.\nSearch\nCart\nOrders\nConfig\nSign out\nBack to orders\nORDER DETAIL\nOrder #demo-1783859251508-w7m0e0\n\nCreated on Jul 12, 2026\n\nAccepted\nPaid\nReceipt rcpt_90c6dec41ab8400f\nCancel order\nTrust check: Unsigned\n\nSign in before elevated buyer actions.\n\nItems\nSharbati Atta 5kg\nQuantity: 1\nINR 325.00\nRobusta Bananas (12 pcs)\nQuantity: 5\nINR 390.00\nPricing\nItems\nINR 715.00\nDelivery\nINR 49.00\nTax\nINR 35.75\nTotal\nINR 715.00\nSupport & grievan",
+    "permission_denied": false
+  },
+  "cart_shots": [
+    ".cursor/skills/ondc-testing/references/evidence/W-B-CART-DATADIR-20260712-175654-5.jpeg"
+  ],
+  "screenshots": [
+    ".cursor/skills/ondc-testing/references/evidence/W-B-CHECKOUT-DATADIR-20260712-175654-5.jpeg",
+    ".cursor/skills/ondc-testing/references/evidence/W-B-CHECKOUT-DATADIR-20260712-175654-8.jpeg"
+  ],
+  "DATA_DIR": "/tmp/aadharchain-data"
+}

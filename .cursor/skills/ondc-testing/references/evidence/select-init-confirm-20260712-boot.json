@@ -1,0 +1,62 @@
+{
+  "select": {
+    "http": 200,
+    "ack": "ACK",
+    "transaction_id": "0b7a73ed-4875-446f-8aa8-59a01a5af197",
+    "success": true,
+    "keys": [
+      "ack",
+      "bpp_id",
+      "bpp_response",
+      "bpp_uri",
+      "dispatched",
+      "http_status",
+      "message_id",
+      "note",
+      "outbox_id",
+      "queued",
+      "target",
+      "transaction_id"
+    ]
+  },
+  "init": {
+    "http": 200,
+    "ack": "ACK",
+    "transaction_id": "0b7a73ed-4875-446f-8aa8-59a01a5af197",
+    "success": true,
+    "keys": [
+      "ack",
+      "bpp_id",
+      "bpp_response",
+      "bpp_uri",
+      "dispatched",
+      "http_status",
+      "message_id",
+      "note",
+      "outbox_id",
+      "queued",
+      "target",
+      "transaction_id"
+    ]
+  },
+  "confirm": {
+    "http": 200,
+    "ack": "ACK",
+    "transaction_id": "0b7a73ed-4875-446f-8aa8-59a01a5af197",
+    "success": true,
+    "keys": [
+      "ack",
+      "bpp_id",
+      "bpp_response",
+      "bpp_uri",
+      "dispatched",
+      "http_status",
+      "message_id",
+      "note",
+      "outbox_id",
+      "queued",
+      "target",
+      "transaction_id"
+    ]
+  }
+}

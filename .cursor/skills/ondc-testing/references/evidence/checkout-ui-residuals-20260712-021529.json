@@ -1,0 +1,73 @@
+{
+  "success": false,
+  "ts": "20260712-021529",
+  "rows": [
+    {
+      "id": "B-CHECKOUT-OK",
+      "result": "Pass",
+      "screenshots": [
+        "evidence/B-CHECKOUT-OK-20260712-021529-5.jpeg",
+        "evidence/B-CHECKOUT-OK-20260712-021529-8.jpeg"
+      ],
+      "pathname": "/orders/demo-1783802784010-d09ftp",
+      "tool": {
+        "amount_inr": 715,
+        "at": 1783802784010,
+        "callId": "call_YUio81xQ12mWZjuK",
+        "cartAdds": [],
+        "decision": "allow",
+        "message": "Checkout committed; receipt rcpt_3f50a424cc354a10.",
+        "name": "checkout_commit",
+        "navigateTo": "/orders/demo-1783802784010-d09ftp",
+        "ok": true,
+        "receiptId": "rcpt_3f50a424cc354a10",
+        "session_id": "session-1783800693829-8uz9lku"
+      },
+      "page_paid": true,
+      "page_receipt": true,
+      "body_snip": "PORTFOLIO\nONDC Buyer\nDiscover verified commerce with a faster trust-aware shell.\nSearch\nCart\nOrders\nConfig\nSign out\nBack to orders\nORDER DETAIL\nOrder #demo-1783802784010-d09ftp\n\nCreated on Jul 12, 2026\n\nAccepted\nPaid\nReceipt rcpt_3f50a424cc354a10\nCancel order\nAadhaarChain trust check: No identity\n\nCreate an identity anchor in AadhaarChain before elevated buyer actions.\n\nResolve trust in AadhaarCha",
+      "cart_seed": {
+        "pathname": "/cart",
+        "has_banana": true,
+        "shots": [
+          "evidence/B-CHECKOUT-OK-CART-20260712-021529-5.jpeg"
+        ]
+      }
+    },
+    {
+      "id": "B-CHECKOUT-OVER",
+      "result": "Pass",
+      "screenshots": [
+        "evidence/B-CHECKOUT-OVER-20260712-021529-5.jpeg",
+        "evidence/B-CHECKOUT-OVER-20260712-021529-9.jpeg"
+      ],
+      "pathname": "/checkout",
+      "tool": {
+        "amount_inr": 25000,
+        "at": 1783802846884,
+        "callId": "call_3e7UEr5e4Uhurc8T",
+        "cartAdds": [],
+        "decision": "need_approval",
+        "message": "Checkout requires exact one-time approval.",
+        "name": "checkout_commit",
+        "navigateTo": "/checkout",
+        "ok": true,
+        "receiptId": null,
+        "session_id": "session-1783800693829-8uz9lku"
+      },
+      "outcome_visible": true,
+      "body_snip": "PORTFOLIO\nONDC Buyer\nDiscover verified commerce with a faster trust-aware shell.\nSearch\nCart\nOrders\nConfig\nSign out\nCHECKOUT\nCheckout needs approval\n\nAgentGuard blocked automatic checkout. Review the decision below.\n\nAGENTGUARD DECISION\nNeed approval\n\nCheckout requires exact one-time approval.\n\nAmount INR 25000\n\nApproval appr_315b30924b5b4d28\n\nDismiss\nAadhaarChain trust check: No identity\n\nCreate "
+    },
+    {
+      "id": "B-LONG-WEEKLY",
+      "result": "Fail",
+      "screenshots": [
+        "evidence/B-LONG-WEEKLY-20260712-021529-7.jpeg"
+      ],
+      "pathname": "/search",
+      "note": "no handoff path=/search blob=samantha\n\nlistening + text ready\n\nsend\npreferences & agentguard ",
+      "hint": "Samantha\n\nListening + text ready\n\nSend\nPreferences & AgentGuard",
+      "tools": []
+    }
+  ]
+}

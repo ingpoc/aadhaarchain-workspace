@@ -1,0 +1,103 @@
+{
+  "status_http": 200,
+  "status": {
+    "success": true,
+    "data": {
+      "enabled": true,
+      "configured": true,
+      "subscriber_id": "ondcbuyer.aadharcha.in",
+      "bap_id": "ondcbuyer.aadharcha.in",
+      "bap_uri": "https://ondcbuyer.aadharcha.in/ondc",
+      "gateway_url": "https://preprod.gateway.ondc.org/search",
+      "registry_url": "https://preprod.registry.ondc.org/v2.0/lookup",
+      "signing_key_present": true,
+      "unique_key_id": "1aee68ad-bc2a-4fc4-b233-7e14c6abba9b",
+      "registry_env": "preprod",
+      "outbox_depth": 0,
+      "inbox_depth": 0,
+      "note": "PreProd: signed lookup + search + select/init/confirm when enabled+configured. Do not flip VITE_COMMERCE_DEMO_MODE without commerce_demo_mode_gate evidence."
+    }
+  }
+}
+{
+  "lookup_http": 200,
+  "lookup": {
+    "success": true,
+    "data": {
+      "http_status": 200,
+      "registry_url": "https://preprod.registry.ondc.org/v2.0/lookup",
+      "request": {
+        "subscriber_id": "ondcbuyer.aadharcha.in",
+        "domain": "ONDC:RET10",
+        "country": "IND",
+        "type": "BAP",
+        "ukId": "1aee68ad-bc2a-4fc4-b233-7e14c6abba9b"
+      },
+      "response": [
+        {
+          "subscriber_id": "ondcbuyer.aadharcha.in",
+          "status": "SUBSCRIBED",
+          "ukId": "1aee68ad-bc2a-4fc4-b233-7e14c6abba9b",
+          "subscriber_url": "https://ondcbuyer.aadharcha.in/ondc",
+          "country": "IND",
+          "domain": "ONDC:RET10",
+          "valid_from": "2026-07-12T08:36:49.232Z",
+          "valid_until": "2027-07-12T08:36:49.232Z",
+          "type": "BAP",
+          "signing_public_key": "ZRhviWsJWmC6ZxfQLVFnshJlrmSGPMArhZXSkxRXkKw=",
+          "encr_public_key": "MCowBQYDK2VuAyEAK9alCEqSh+aAX6TSmLrBwJhrZBhcyDaVWEkFE5swxBo=",
+          "created": "2026-07-12T08:39:17.346Z",
+          "updated": "2026-07-12T08:39:17.346Z",
+          "br_id": "1aee68ad-bc2a-4fc4-b233-7e14c6abba9b",
+          "city": "*"
+        }
+      ]
+    }
+  }
+}
+{
+  "search_http": 200,
+  "search": {
+    "success": true,
+    "data": {
+      "queued": false,
+      "dispatched": true,
+      "outbox_id": "out_4f72d261fe30",
+      "message_id": "618dec86-149e-4c1b-86ac-5f966b0c2e18",
+      "transaction_id": "fb264e89-0568-42e4-a3c3-19baa5a6bf75",
+      "http_status": 200,
+      "ack": "ACK",
+      "gateway_url": "https://preprod.gateway.ondc.org/search",
+      "gateway_response": {
+        "context": {
+          "domain": "ONDC:RET10",
+          "action": "search",
+          "bap_id": "ondcbuyer.aadharcha.in",
+          "bap_uri": "https://ondcbuyer.aadharcha.in/ondc",
+          "transaction_id": "fb264e89-0568-42e4-a3c3-19baa5a6bf75",
+          "message_id": "618dec86-149e-4c1b-86ac-5f966b0c2e18",
+          "timestamp": "2026-07-12T14:32:48.344Z",
+          "ttl": "PT30S"
+        },
+        "message": {
+          "ack": {
+            "status": "ACK"
+          }
+        }
+      },
+      "note": "Poll GET /api/ondc/catalogs?transaction_id=\u2026 for on_search results."
+    }
+  }
+}
+{
+  "catalogs_http": 200,
+  "catalogs": {
+    "success": true,
+    "data": {
+      "transaction_id": "fb264e89-0568-42e4-a3c3-19baa5a6bf75",
+      "items": [],
+      "count": 0,
+      "source": "ondc-network"
+    }
+  }
+}

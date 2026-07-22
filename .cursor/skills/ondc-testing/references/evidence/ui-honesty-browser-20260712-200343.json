@@ -1,0 +1,47 @@
+{
+  "stamp": "20260712-200343",
+  "buyer": [
+    {
+      "hasDemoMode": false,
+      "hasOndcNetwork": false,
+      "hasSimulatedExchange": false,
+      "href": "https://ondcbuyer.aadharcha.in/search",
+      "slice": "PORTFOLIO\nONDC Buyer\nDiscover commerce under AgentGuard authorization.\nSearch\nCart\nOrders\nConfig\nSign out\nBUYER DISCOVERY\nSearch verified commerce\n\nFind offers, then checkout under AgentGuard authorization.\n\nSearch the network\n\nSigned in \u2014 elevated checkout is available via AgentGuard.\n\nCategory\nGrocery\nGrocery\nRestaurant\nFashion\nElectronics\nSearch\nSearch\nAgent chat\nHow it works\nS"
+    },
+    {
+      "filled": true,
+      "placeholder": "Rice, meals, staples\u2026",
+      "value": "AgentGuard PreProd Atta"
+    },
+    {
+      "clicked": true,
+      "text": "Search"
+    },
+    {
+      "hasAtta": false,
+      "hasBananaMock": false,
+      "hasOndcNetwork": false,
+      "hasSimulatedExchange": false,
+      "href": "https://ondcbuyer.aadharcha.in/search",
+      "slice": "PORTFOLIO\nONDC Buyer\nDiscover commerce under AgentGuard authorization.\nSearch\nCart\nOrders\nConfig\nSign out\nBUYER DISCOVERY\nSearch verified commerce\n\nFind offers, then checkout under AgentGuard authorization.\n\nSearch the network\n\nSigned in \u2014 elevated checkout is available via AgentGuard.\n\nCategory\nGrocery\nGrocery\nRestaurant\nFashion\nElectronics\nSearch\nSearch\nAgent chat\nHow it works\nS"
+    }
+  ],
+  "seller": [
+    {
+      "hasAtta": false,
+      "hasOldPhrase": false,
+      "hasOndcNetwork": false,
+      "hasSimulatedExchangeLabel": false,
+      "href": "https://ondcseller.aadharcha.in/catalog",
+      "slice": "SELLER\nONDC Seller\nOperate a trust-aware catalog and fulfillment surface.\nDashboard\nCatalog\nOrders\nConfig\nSign out\nSELLER CATALOG\nRun a tighter product shelf\nReview the inventory buyers will actually encounter, then edit the exact SKU that needs cleanup.\nRefresh catalog\nAdd product\nVISIBLE PRODUCTS\nLive\n0\nActive SKUs in the current view\nCATEGORIES COVERED\nInfo\n0\nBroader spread helps discovery across buyer intents\nIMAGE COVERAGE\nWatch\n0\nListings with imagery read better in buyer result cards\nTRUST CONTROL\nReady\nOpen\nCatalog edits stay gated until sign-in or trust is verified\nUnable to load the catalog\nPublished catalog unavailable\nRetry\nAgentGuard authority\nAgent chat\nHow it works\nS"
+    },
+    {
+      "hasOldPhrase": false,
+      "hasOndcNetwork": true,
+      "hasPaymentSim": true,
+      "href": "https://ondcseller.aadharcha.in/agentguard",
+      "slice": "SELLER\nONDC Seller\nOperate a trust-aware catalog and fulfillment surface.\nDashboard\nCatalog\nOrders\nConfig\nSign out\nAGENTGUARD\nStore Operations Assistant\n\nConfigure what the agent may do. AgentGuard enforces limits \u2014 not the model.\n\nTrust check: Unsigned\n\nSign in before elevated seller actions.\n\nFailed to fetch\n\nEdit mandate\nAuto-approve refunds up to (INR)\nAllowed actions\nPublish catalog\nChange price\nCommit inventory\nAccept orders\nReject orders\nFulfilment\nPromise remedy\nIssue refund\n\nRefunds up to INR 5000 auto-approve. Allowed: Publish catalog, Change price, Commit inventory, Accept orders, Reject orders, Fulfilment, Promise remedy, Issue refund.\n\nRoutine refunds up to INR 5000 may execute automatically. Larger refunds require one-time approval.\n\nAgent: \u2014 \u00b7 Status: \u2014\n\nMandate: template ready \u00b7 ONDC network; payment rails simulated (not live UPI)\n\nConfirm mandate\nPause agent\nRefresh\nTry refunds on demo order\nSamantha memory\n\nLikes\n\n\u2014\n\nDislikes\n\n\u2014\n\nPreferences\n\n\u2014\n\nNotes\n\n\u2014\n\nClear memory\nReceipts (PII-free)\n\nNo receipts yet.\n\nAgentGuard authority\nAgent chat\nHow it works\nS"
+    }
+  ],
+  "shots": []
+}

@@ -1,0 +1,55 @@
+{
+  "attested_at": "2026-07-12T14:21:17Z",
+  "environment": "preprod",
+  "ondc_conformance": true,
+  "subscriber_id": "ondcbuyer.aadharcha.in",
+  "not_production": true,
+  "demo_mode": {
+    "VITE_COMMERCE_DEMO_MODE": false,
+    "gate_evidence": ".cursor/skills/ondc-testing/references/evidence/commerce-demo-mode-gate-20260712.json",
+    "buyer_deploy": "dpl_6ynH5M49mjF7jhU5aX75rLqrXpu5",
+    "seller_deploy": "dpl_J5rZDKoHtRABWASBYgumxFcU8i5a",
+    "buyer_alias": "ondcbuyer.aadharcha.in",
+    "seller_alias": "ondcseller.aadharcha.in",
+    "bundle_label": "ONDC network (Simulated exchange string still present as ternary dead branch)"
+  },
+  "gateway": {
+    "commit": "1ba0a0c",
+    "branch": "codex/ondc-onboard-fqdn-20260712",
+    "status_note": "PreProd: signed lookup + search + select/init/confirm when enabled+configured. Do not flip VITE_COMMERCE_DEMO_MODE without commerce_demo_mode_gate evidence.",
+    "configured": true,
+    "bpp_ready": true
+  },
+  "select_init_confirm": {
+    "transaction_id": "proof-20260712142108",
+    "acks": {
+      "select": {
+        "http": 200,
+        "ack": "ACK",
+        "success": true
+      },
+      "init": {
+        "http": 200,
+        "ack": "ACK",
+        "success": true
+      },
+      "confirm": {
+        "http": 200,
+        "ack": "ACK",
+        "success": true
+      }
+    },
+    "orders": 1,
+    "callbacks": [
+      "on_confirm",
+      "on_init",
+      "on_select"
+    ]
+  },
+  "tier": {
+    "render": "Free",
+    "vercel": "Hobby",
+    "policy": "$0"
+  },
+  "notes": "Pass: demo mode off on Hobby; select\u2192init\u2192confirm ACK+on_*+order stub. PreProd only. Payment simulated not live UPI. Fanout variance for network Atta still possible."
+}

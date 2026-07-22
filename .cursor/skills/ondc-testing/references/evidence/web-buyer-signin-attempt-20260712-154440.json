@@ -1,0 +1,69 @@
+{
+  "shots": [
+    "/Users/gurusharan/Documents/remote-claude/active/apps/AadhaarChainWorkspace/.cursor/skills/ondc-testing/references/evidence/web-buyer-signin-attempt-20260712-154440-5.jpeg",
+    "/Users/gurusharan/Documents/remote-claude/active/apps/AadhaarChainWorkspace/.cursor/skills/ondc-testing/references/evidence/web-buyer-signin-attempt-20260712-154440-8.jpeg"
+  ],
+  "page_diag": {
+    "ok": true,
+    "ui": {
+      "url": "https://ondcbuyer.aadharcha.in/search",
+      "title": "ONDC Buyer",
+      "headings": [
+        "Search verified commerce"
+      ],
+      "buttons": [
+        "Open search",
+        "Grocery",
+        "Search",
+        "S"
+      ]
+    },
+    "console": {
+      "installed": true,
+      "total": 0,
+      "errors": [],
+      "warns": []
+    },
+    "backend": [],
+    "issues": [],
+    "final_url": "https://ondcbuyer.aadharcha.in/search"
+  },
+  "final_url": "https://ondcbuyer.aadharcha.in/search",
+  "evals": [
+    {
+      "already": true,
+      "count": 0
+    },
+    {
+      "allButtons": [
+        "Open navigation",
+        "PORTFOLIO\nONDC Buyer\nDiscover commerce under AgentGuard auth",
+        "Search",
+        "Cart",
+        "Orders",
+        "Config",
+        "Grocery",
+        "Search",
+        "Agent chat",
+        "How it works",
+        "S"
+      ],
+      "hits": []
+    },
+    {
+      "clicked": false,
+      "reason": "no Sign in"
+    },
+    {
+      "body": "PORTFOLIO\nONDC Buyer\nDiscover commerce under AgentGuard authorization.\nSearch\nCart\nOrders\nConfig\nBUYER DISCOVERY\nSearch verified commerce\n\nFind offers, then checkout under AgentGuard authorization.\n\nTrust check: Unsigned\n\nSign in before elevated buyer actions. Wallet KYC is optional advanced setup.\n\nSearch the network\n\nSign in (Google or demo) before elevated checkout.\n\nCategory\nGrocery\nGrocery\nRestaurant\nFashion\nElectronics\nSearch\nSearch\nAgent chat\nHow it works\nS",
+      "title": "ONDC Buyer",
+      "url": "https://ondcbuyer.aadharcha.in/search"
+    },
+    {
+      "errors": [],
+      "installed": true,
+      "total": 0,
+      "warns": []
+    }
+  ]
+}

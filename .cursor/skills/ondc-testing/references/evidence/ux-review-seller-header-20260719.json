@@ -1,0 +1,114 @@
+{
+  "review_id": "ux-review-seller-header-20260719",
+  "date": "2026-07-19",
+  "app": "ONDC Seller merchant ops",
+  "audience": "small shopkeeper",
+  "screen": "signed-in order detail (paid order)",
+  "screenshot_path": "/Users/gurusharan/.cursor/projects/Users-gurusharan-Documents-remote-claude-active-apps-AadhaarChainWorkspace/assets/image-75dfb02f-3663-4e64-9515-2539206d36ae.png",
+  "screenshot_read_personally": true,
+  "method": "Visible screenshot only; ordinary merchant language; no source, logs, APIs, hidden state, or implementation history.",
+  "verdict": "UX Fail",
+  "screen_journey_job": "Help the seller understand and act on this paid order now—dispatch, fulfill, or refund as offered.",
+  "first_friction": "Before the seller can focus on “Dispatch order,” the top bar already asks them to parse assistant permissions, a green “Assistant status: Ready,” and a green “Identity status: Verified”—healthy setup noise that does not change what to do with this order.",
+  "findings_prioritized": [
+    {
+      "priority": 1,
+      "title": "Healthy status pills crowd the order workspace",
+      "detail": "“Assistant status: Ready” and “Identity status: Verified” sit in the persistent header on an order that already shows Payment: Paid and a clear Dispatch action. For a shopkeeper, green “all good” badges are not a reason to look up; they compete with the job. Keep them out of the bar unless something is blocked or needs approval, and then put that warning beside the affected action."
+    },
+    {
+      "priority": 2,
+      "title": "Assistant permissions is treated like a main shop task",
+      "detail": "“Assistant permissions” appears as a first-class nav item next to Dashboard, Catalog, and Orders, and the brand subtitle even advertises it. Permissions are account/setup, not a daily order path. A merchant opening a paid order should not be offered permissions as if it were peer to Orders."
+    },
+    {
+      "priority": 3,
+      "title": "Header mixes shop navigation with account chrome",
+      "detail": "Brand, primary nav, Search, two status pills, and Sign out all share one strip. Cross-page shop moves (Dashboard / Catalog / Orders / Settings) belong in persistent nav; identity detail, assistant health, and sign-out belong under an account or Settings grouping so the order page stays about the order."
+    },
+    {
+      "priority": 4,
+      "title": "Brand line sells setup, not the store",
+      "detail": "Subtitle “Catalog, orders, and assistant permissions” reads like a product tour, not a store name. On order detail it reinforces assistant/setup over “what do I do with this paid order?”"
+    },
+    {
+      "priority": 5,
+      "title": "Body job is clearer than the chrome",
+      "detail": "Buyer/delivery, Payment: Paid, Dispatch order, Review full refund, and line items are understandable. Samantha as a corner FAB is a reasonable on-demand help entry. The fail is admission at the top, not the order cards themselves."
+    }
+  ],
+  "disclosure_map": {
+    "brand": {
+      "classification": "Persistent",
+      "note": "Keep product/store identity in the header. Drop or shorten the setup-flavored subtitle on operational pages."
+    },
+    "primary_nav_dashboard_catalog_orders_settings": {
+      "classification": "Persistent",
+      "note": "Frequent cross-page shop tasks; Orders correctly marked active. Settings is the right home for account/setup items moved out of the bar."
+    },
+    "assistant_permissions": {
+      "classification": "On demand",
+      "note": "Not a daily order task. Move into Settings or account grouping; do not keep as peer primary nav."
+    },
+    "search": {
+      "classification": "Contextual",
+      "note": "Useful across lists; on a single order detail it is secondary. Acceptable as a compact global control if used often to jump orders/catalog; otherwise surface from Orders/Catalog lists."
+    },
+    "assistant_status_ready": {
+      "classification": "Remove",
+      "note": "Healthy “Ready” is not consequential changing state for this screen. Prefer On demand inside account/assistant area; if degraded/blocked, show Interruptive or Contextual beside the assistant or the blocked action—not a permanent green pill."
+    },
+    "identity_status_verified": {
+      "classification": "Remove",
+      "note": "Healthy “Verified” belongs under account/identity, not persistent header. Surface only when unverified, expired, or blocking a seller action—beside that action."
+    },
+    "sign_out": {
+      "classification": "On demand",
+      "note": "Conventional logged-in control, but not needed as a always-visible text link next to status pills. Place under account menu; keep one-click reachable."
+    },
+    "samantha_fab": {
+      "classification": "On demand",
+      "note": "Appropriate progressive disclosure for help/assistant without owning the order decision. Keep out of the persistent header strip."
+    },
+    "recommended_logged_out_header": {
+      "set": [
+        "Brand (store/product name)",
+        "Limited primary nav if public (e.g. marketing or read-only home)—or none",
+        "Sign in (primary account control)"
+      ],
+      "exclude": [
+        "Sign out",
+        "Identity status Verified",
+        "Assistant status Ready",
+        "Assistant permissions",
+        "Account menu contents that assume a session"
+      ],
+      "convention_note": "For this product class, logged-out chrome admits brand + entry to sign in. Logged-in chrome admits brand + shop nav + account entry; identity/assistant health live inside account unless a degraded state blocks work."
+    },
+    "recommended_logged_in_header": {
+      "persistent": [
+        "Brand",
+        "Dashboard",
+        "Catalog",
+        "Orders",
+        "Settings (or Account)"
+      ],
+      "account_or_settings_group": [
+        "Identity detail / verification",
+        "Assistant permissions",
+        "Assistant connection/status when healthy",
+        "Sign out"
+      ],
+      "beside_task_when_needed": [
+        "Degraded assistant or identity that blocks dispatch/refund",
+        "Approval or payment blockers next to the affected button"
+      ]
+    }
+  },
+  "header_admission_summary": "Keep in persistent header only frequent cross-page shop tasks, changing consequential state, or conventional global controls. Move healthy status, identity detail, permissions, and connection config into account/Settings. Surface blocked/approval states beside the affected order action.",
+  "unfinished_items": [
+    "Logged-out header not shown in this screenshot—recommendation is by product-class convention only.",
+    "Did not exercise Search, Assistant permissions, Samantha, Sign out, or Dispatch—judgment is visual/admission only."
+  ],
+  "word_budget_note": "Report kept concise for ~6 minute review; parent summary separate."
+}

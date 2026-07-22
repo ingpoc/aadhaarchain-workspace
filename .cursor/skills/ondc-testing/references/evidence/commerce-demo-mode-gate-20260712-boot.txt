@@ -1,0 +1,5 @@
+{
+  "ok": true,
+  "commerce_demo_mode_required": true,
+  "message": "Do not set VITE_COMMERCE_DEMO_MODE=false until ONDC portal A5\u2013A8, staging conformance, and evidence JSON pass --allow-with-evidence."
+}

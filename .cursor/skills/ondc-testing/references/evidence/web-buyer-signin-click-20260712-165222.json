@@ -1,0 +1,157 @@
+{
+  "stamp": "20260712-165222",
+  "shots": [
+    ".cursor/skills/ondc-testing/references/evidence/449f22e7-7786-4c32-a665-763291cf3185-5.jpeg",
+    ".cursor/skills/ondc-testing/references/evidence/449f22e7-7786-4c32-a665-763291cf3185-9.jpeg"
+  ],
+  "page_diag": {
+    "ok": true,
+    "ui": {
+      "url": "https://ondcbuyer.aadharcha.in/search",
+      "title": "ONDC Buyer",
+      "headings": [
+        "Search verified commerce"
+      ],
+      "buttons": [
+        "Open search",
+        "Sign in",
+        "Grocery",
+        "Search",
+        "S"
+      ]
+    },
+    "console": {
+      "installed": false,
+      "total": 0,
+      "errors": [],
+      "warns": []
+    },
+    "backend": [],
+    "issues": [],
+    "final_url": "https://ondcbuyer.aadharcha.in/search"
+  },
+  "final_url": "https://ondcbuyer.aadharcha.in/search",
+  "results_slim": [
+    {
+      "type": "goto",
+      "url": "https://ondcbuyer.aadharcha.in/search"
+    },
+    {
+      "type": "evaluate",
+      "value": {
+        "count": 0,
+        "installed": true
+      }
+    },
+    {
+      "type": "evaluate",
+      "value": {
+        "bodyHas127": false,
+        "host": "ondcbuyer.aadharcha.in",
+        "href": "https://ondcbuyer.aadharcha.in/search",
+        "scripts": [
+          "https://ondcbuyer.aadharcha.in/assets/index-DBy88kFf.js"
+        ],
+        "signIn": [
+          {
+            "href": null,
+            "tag": "BUTTON",
+            "text": "Sign in"
+          }
+        ],
+        "walletCopy": false
+      }
+    },
+    {
+      "type": "screenshot",
+      "screenshot_path": "/Users/gurusharan/.hermes/cache/hermes-chrome/449f22e7-7786-4c32-a665-763291cf3185-5.jpeg"
+    },
+    {
+      "type": "click_text",
+      "text": "Sign in"
+    },
+    {
+      "type": "page_context",
+      "url": "https://ondcbuyer.aadharcha.in/search",
+      "title": "ONDC Buyer",
+      "headings": [
+        {
+          "tag": "H1",
+          "text": "Search verified commerce"
+        }
+      ],
+      "buttons": [
+        "Open search",
+        "Sign in",
+        "Grocery",
+        "Search",
+        "S"
+      ]
+    },
+    {
+      "type": "screenshot",
+      "screenshot_path": "/Users/gurusharan/.hermes/cache/hermes-chrome/449f22e7-7786-4c32-a665-763291cf3185-9.jpeg"
+    },
+    {
+      "type": "evaluate",
+      "value": {
+        "buttons": [
+          "Open navigation",
+          "PortfolioONDC BuyerDiscover commerce under AgentGuard authorization.",
+          "Search",
+          "Cart",
+          "Orders",
+          "Config",
+          "Sign in",
+          "Grocery",
+          "Search",
+          "Agent chat",
+          "How it works",
+          "S"
+        ],
+        "headings": [
+          "Search verified commerce"
+        ],
+        "inputs": [
+          {
+            "id": "search-query",
+            "name": "query",
+            "placeholder": "Rice, meals, staples\u2026",
+            "type": "text"
+          }
+        ],
+        "oops": false,
+        "snippet": "PORTFOLIO ONDC Buyer Discover commerce under AgentGuard authorization. Search Cart Orders Config Sign in BUYER DISCOVERY Search verified commerce Find offers, then checkout under AgentGuard authorization. Trust check: Unsigned Sign in before elevated buyer actions. Search the network Sign in before elevated checkout. Category Grocery Grocery Restaurant Fashion Electronics Search Search Agent chat How it works S",
+        "title": "ONDC Buyer",
+        "url": "https://ondcbuyer.aadharcha.in/search"
+      }
+    },
+    {
+      "type": "page_context",
+      "url": "https://ondcbuyer.aadharcha.in/search",
+      "title": "ONDC Buyer",
+      "headings": [
+        {
+          "tag": "H1",
+          "text": "Search verified commerce"
+        }
+      ],
+      "buttons": [
+        "Open search",
+        "Sign in",
+        "Grocery",
+        "Search",
+        "S"
+      ]
+    },
+    {
+      "type": "evaluate",
+      "value": {
+        "errors": [],
+        "installed": false,
+        "total": 0,
+        "warns": []
+      }
+    }
+  ]
+}

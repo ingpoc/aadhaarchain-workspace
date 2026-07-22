@@ -1,0 +1,117 @@
+{
+  "shots": [
+    "/Users/gurusharan/Documents/remote-claude/active/apps/AadhaarChainWorkspace/.cursor/skills/ondc-testing/references/evidence/web-buyer-routes-20260712-154515-6.jpeg",
+    "/Users/gurusharan/Documents/remote-claude/active/apps/AadhaarChainWorkspace/.cursor/skills/ondc-testing/references/evidence/web-buyer-routes-20260712-154515-13.jpeg",
+    "/Users/gurusharan/Documents/remote-claude/active/apps/AadhaarChainWorkspace/.cursor/skills/ondc-testing/references/evidence/web-buyer-routes-20260712-154515-19.jpeg"
+  ],
+  "page_diag": {
+    "ok": true,
+    "ui": {},
+    "console": {
+      "installed": false,
+      "total": 0,
+      "errors": [],
+      "warns": []
+    },
+    "backend": [],
+    "issues": [],
+    "final_url": "https://ondcbuyer.aadharcha.in/cart"
+  },
+  "evals": [
+    {
+      "already": true,
+      "count": 0
+    },
+    {
+      "label": "Open navigation",
+      "opened": true
+    },
+    {
+      "body": "PORTFOLIO\nONDC Buyer\nDiscover commerce under AgentGuard authorization.\nSearch\nCart\nOrders\nConfig\nBUYER DISCOVERY\nSearch verified commerce\n\nFind offers, then checkout under AgentGuard authorization.\n\nTrust check: Unsigned\n\nSign in before elevated buyer actions. Wallet KYC is optional advanced setup.\n\nSearch the network\n\nSign in (Google or demo) before elevated checkout.\n\nCategory\nGrocery\nGrocery\nRestaurant\nFashion\nElectronics\nSearch\nSearch\nAgent chat\nHow it works\nS\nONDC Buyer\n\nAgentGuard-backed buyer shell (Simulated exchange).\n\nSearch the network\nSearch\nSearch\nCart\nOrders\nConfig\nAgent chat\nHow it works\nClose",
+      "buttons": [
+        "Open navigation",
+        "PORTFOLIO\nONDC Buyer\nDiscover commerce under AgentGuard authorization.",
+        "Search",
+        "Cart",
+        "Orders",
+        "Config",
+        "Grocery",
+        "Search",
+        "Agent chat",
+        "How it works",
+        "S",
+        "Search",
+        "Search",
+        "Cart",
+        "Orders",
+        "Config",
+        "Agent chat",
+        "How it works",
+        "Close"
+      ],
+      "pathname": "/search",
+      "title": "ONDC Buyer",
+      "url": "https://ondcbuyer.aadharcha.in/search"
+    },
+    {
+      "auth0InHtml": false,
+      "demoInHtml": false,
+      "envHints": {
+        "identityUrl": null,
+        "viteIdentity": null
+      },
+      "fetches": {
+        "https://identity-aadhar-gateway-main.onrender.com/me": {
+          "body": {
+            "data": null,
+            "message": "No authenticated identity session.",
+            "success": true
+          },
+          "status": 200
+        },
+        "https://identity-aadhar-gateway-main.onrender.com/providers": {
+          "body": {
+            "data": {
+              "auth0": true,
+              "demo_continue": false,
+              "google": false,
+              "runtime_mode": "staging"
+            },
+            "success": true
+          },
+          "status": 200
+        }
+      },
+      "googleInHtml": true,
+      "signInInHtml": true
+    },
+    {
+      "count": 0,
+      "installed": true
+    },
+    {
+      "body": "PORTFOLIO\nONDC Buyer\nDiscover commerce under AgentGuard authorization.\nSearch\nCart\nOrders\nConfig\nCONFIG\nAgentGuard & Samantha\n\nAuthorize what the shopping agent may do. Samantha remembers compact likes and preferences while you talk.\n\nSign in (Google or demo) to bind AgentGuard and Samantha memory to your principal.\nAgentGuard mandate\nAuto-approve checkout up to (INR)\nAllowed actions\nCheckout\nCancel order\nReturn\nAccept remedy\nConfirm mandate\nnot confirmed\nCheckout\nSamantha memory\n\nLikes\n\n\u2014\n\nDislikes\n\n\u2014\n\nPreferences\n\n\u2014\n\nNotes\n\n\u2014\n\nClear memory\n\nUpdated 7/12/2026, 3:45:21 PM\n\nAgent chat\nHow it works\nS",
+      "buttons": [
+        "Open navigation",
+        "PORTFOLIO\nONDC Buyer\nDiscover commerce under AgentGuard authorization.",
+        "Search",
+        "Cart",
+        "Orders",
+        "Config",
+        "Confirm mandate",
+        "Checkout",
+        "Clear memory",
+        "Agent chat",
+        "How it works",
+        "S"
+      ],
+      "pathname": "/config",
+      "title": "ONDC Buyer",
+      "url": "https://ondcbuyer.aadharcha.in/config"
+    },
+    {
+      "count": 0,
+      "installed": true
+    }
+  ]
+}

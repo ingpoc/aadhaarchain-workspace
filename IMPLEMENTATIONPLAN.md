@@ -56,13 +56,14 @@ enforcement, and receipt integrity must be real.
 
 | Surface | Current owner | What is reusable |
 | --- | --- | --- |
-| AgentGuard domain | `aadharchain/gateway/app/agentguard.py` | Allow/approval/deny flow, one-time consume, pause, receipt persistence |
+| AgentGuard domain | `aadharchain/gateway/app/agentguard.py` plus `aadharchain/gateway/app/persistence/agentguard_repository.py` | PostgreSQL-backed mandates, decisions, exact one-time approvals, pause/revoke and receipts when `DATABASE_URL` selects CF1 PostgreSQL |
 | AgentGuard HTTP | `aadharchain/gateway/app/agentguard_routes.py` | Ensure/status/evaluate/consume/pause/receipt route skeleton |
 | Gateway tests | `aadharchain/gateway/tests/test_agentguard.py` | Refund and checkout allow, approval, replay and pause proof |
-| Buyer guard client | `ondcbuyer/src/lib/agentGuardCheckout.ts` | Checkout integration starting point |
-| Seller guard client | `ondcseller/src/lib/agentGuardClient.ts` | Status/evaluate/consume/pause client starting point |
-| Buyer commerce | `ondcbuyer/src/lib/localCart.ts`, `localOrders.ts`, `localSupportCases.ts` | UI behavior and data shapes; not cross-app state |
-| Seller commerce | `ondcseller/src/lib/localSellerOrders.ts`, `mockCatalog.ts` | UI behavior and data shapes; not cross-app state |
+| Buyer guard client | `ondcbuyer/src/lib/agentGuardCheckout.ts` | Exact checkout evaluation, approval, protected execution and receipt client |
+| Seller guard client | `ondcseller/src/lib/agentGuardClient.ts` | Status/evaluate/execute/pause and receipt client |
+| CommerceV1 | `aadharchain/gateway/app/commerce_v1.py` | Durable single-seller carts, quotes, inventory reservations, orders, payment attempts, ledger entries and refunds |
+| Commerce compatibility | `aadharchain/gateway/app/commerce_compat.py` | `/api/demo-commerce` request/response compatibility over the process-selected commerce owner; not an independent store |
+| ONDC messaging | `aadharchain/gateway/app/persistence/ondc_repository.py` | Durable inbox/outbox, persist-before-ACK, deduplication, correlation, leases, retries and dead-letter recovery |
 | Agent proposal parsers | `ondcbuyer/src/lib/agentBuyerState.ts`, `ondcseller/src/lib/agentSellerState.ts` | Typed proposal normalization and staging patterns |
 | Existing write guards | Buyer/Seller action-policy and backend-enforcement modules | Fail-closed patterns; must converge on AgentGuard |
 | Browser framework | `scripts/portfolio_browser.py` and Hermes scripts | Preflight, SSO, fixture and evidence foundation |
@@ -70,14 +71,26 @@ enforcement, and receipt integrity must be real.
 
 ### Known gaps
 
-- Mandate limits and allowed actions are mostly hardcoded; no mandate editor UI.
-- Runtime agents are chat-oriented; shared tool runner (search/navigate/cart/
-  execute) is missing — Hermes is automation, not the product agent.
-- Buyer Realtime voice (`gpt-realtime-2.1`) not started.
-- Some browser-local commerce fixtures remain as fallbacks beside demo-commerce.
-- Parallel trust-policy headers still exist on some non-demo write paths.
-- Buyer Hermes lane still API-gates approve/pause (UI path incomplete).
-- ONDC protocol code is a scaffold; network onboarding and keys do not exist.
+- The shared decision contract lacks the customer-facing policy, risk,
+  required-action, expiry, and decision identifiers needed by every client.
+- Mandate editors cover the demo actions and limits, not the complete Buyer and
+  Seller production mandate.
+- The CF1 commerce foundation is durable in PostgreSQL when `DATABASE_URL`
+  selects that process backend. CommerceV1 owns carts, quotes, inventory,
+  orders, simulated payment attempts, ledger entries and refunds;
+  `/api/demo-commerce` is a compatibility adapter, not a second state owner.
+  Multi-seller checkout, fulfilment, returns, settlement and regulated payment
+  remain production gaps.
+- Buyer and Seller prove bounded demo journeys, not the complete search-to-
+  remedy and onboarding-to-settlement customer lifecycles.
+- ONDC search is PreProd partial; official onboarding, conformance, and the full
+  asynchronous transaction lifecycle remain incomplete.
+- Browser Realtime and text tools exist, but native voice, physical-audio proof,
+  reconnect, latency/cost telemetry, and voice evaluations remain open.
+- No iOS application, Face ID approval flow, App Intents, Live Activities, or
+  on-device intelligence router exists in this workspace.
+- Production privacy classification, observability, support, reconciliation,
+  incident response, and global autonomous-action pause remain launch gates.
 
 ## Target repository shape
 
@@ -89,17 +102,19 @@ shared/
 aadharchain/gateway/app/
   agentguard.py              Domain service during migration
   agentguard_routes.py       Identity-neutral authenticated API
-  commerce_demo.py           Local exchange domain service
-  commerce_routes.py         Buyer/Seller demo API
+  commerce_v1.py             Durable cart/order/payment-ledger owner
+  commerce_v1_routes.py      Versioned Buyer/Seller commerce API
+  commerce_compat.py         Legacy request/response adapter only
+  persistence/               PostgreSQL repositories and migrations
   receipt_signing.py         Keyed receipt issue and verify
   realtime_session.py        Ephemeral OpenAI Realtime client secrets (M12)
 ondcbuyer/src/
   lib/agentGuardClient.ts    Shared-contract client
-  lib/commerceClient.ts      Shared demo exchange client
+  lib/commerceClient.ts      Compatibility client over CommerceV1
   lib/agentTools.ts          Tool runner (search, navigate, cart, checkout)
 ondcseller/src/
   lib/agentGuardClient.ts    Shared-contract client
-  lib/commerceClient.ts      Shared demo exchange client
+  lib/commerceClient.ts      Compatibility client over CommerceV1
   lib/agentTools.ts          Tool runner (publish, refund, order tools)
 scripts/
   hermes_agentguard_buyer.py
@@ -107,9 +122,9 @@ scripts/
   hermes_two_sided_commerce.py
 ```
 
-Do not create a new service merely to match this diagram. The gateway may host
-the local exchange for the demo. Separate deployment becomes justified only by
-independent scaling, ownership, or security boundaries.
+Do not create a new service merely to match this diagram. The gateway currently
+hosts CommerceV1 and its compatibility adapter. Separate deployment becomes
+justified only by independent scaling, ownership, or security boundaries.
 
 ## Canonical domain contract
 
@@ -207,27 +222,28 @@ server-side executor, persist the result, and issue a receipt. Until all writes
 use it, existing route handlers must call the same domain function immediately
 before mutation. A client-provided prior `allow` decision is never sufficient.
 
-### Local commerce exchange
+### Shared commerce exchange
 
-Expose role-authorized endpoints behind the gateway:
+All commerce writes use the AgentGuard action boundary above. The exchange
+exposes public catalog reads and session-principal-scoped order/support reads:
 
 ```text
-POST  /api/demo-commerce/seller/items
-PATCH /api/demo-commerce/seller/items/{item_id}
-POST  /api/demo-commerce/seller/items/{item_id}/publish
 GET   /api/demo-commerce/buyer/search
 GET   /api/demo-commerce/buyer/items/{item_id}
-POST  /api/demo-commerce/buyer/orders
+GET   /api/demo-commerce/buyer/orders
 GET   /api/demo-commerce/buyer/orders/{order_id}
 GET   /api/demo-commerce/seller/orders
-POST  /api/demo-commerce/seller/orders/{order_id}/transition
-POST  /api/demo-commerce/buyer/orders/{order_id}/issues
+GET   /api/demo-commerce/seller/orders/{order_id}
+GET   /api/demo-commerce/buyer/issues
 GET   /api/demo-commerce/seller/issues
-POST  /api/demo-commerce/seller/issues/{issue_id}/respond
-POST  /api/demo-commerce/seller/issues/{issue_id}/remedy
 ```
 
-Use idempotency keys for every POST that creates or commits state. Return stable
+The Buyer/Seller order and issue routes derive ownership from the signed session;
+query or body identifiers cannot select another principal. Demo-runtime-only
+setup mutations live under `/api/demo-commerce/test-fixtures/*`, return 404 in
+staging/production/unknown runtime modes, and are never product APIs.
+
+Use idempotency keys for every AgentGuard action that creates or commits state. Return stable
 `transaction_id`, `message_id`, resource version, and current state. Model
 publication, order, fulfilment, and issue lifecycles as explicit state machines.
 
@@ -309,11 +325,16 @@ Contract package + principal session adapter **landed**. Google env-gated;
   an approval.
 - Expired, replayed, concurrent, paused, and revoked actions fail deterministically.
 
-## Milestone 3 — Shared local commerce exchange
+## Milestone 3 — Shared commerce exchange (historical demo milestone)
+
+This milestone introduced the server-owned exchange. CF1 subsequently moved
+its authoritative cart/order/payment-ledger path to CommerceV1 PostgreSQL;
+`/api/demo-commerce` now preserves compatibility and must not regain an
+independent file-backed state owner.
 
 ### Work
 
-1. Add gateway-owned demo commerce state with transactional persistence. Do not
+1. Add gateway-owned commerce state with transactional persistence. Do not
    use browser localStorage as the cross-app source of truth.
 2. Define versioned `Item`, `Inventory`, `Order`, `Fulfilment`, `Issue`, and
    `Remedy` records plus transition rules.
@@ -549,6 +570,54 @@ microphone, so the mic exit criterion below remains open rather than inferred.
 - Protected checkout still hits AgentGuard; pause still denies.
 - Browser never holds long-lived OpenAI keys.
 
+## Customer-first production program (CF0–CF8)
+
+Milestones 0–12 establish the demo and agent-executor foundation. They do not
+authorize a production or real-customer-money claim. The commercial product is
+delivered through the following program. Existing ONDC P0–P5 labels remain the
+network-enablement subtrack inside CF1–CF3; they are not substitutes for the
+customer journey or financial-safety gates.
+
+| Phase | Scope | Exit criteria |
+| --- | --- | --- |
+| CF0. Product and contract alignment | Buyer/Seller journey maps; domain model; order, payment, return, issue, and approval states; risk taxonomy; tool inventory; mandate/decision/approval/receipt schemas; KPI baseline | Every journey has an owner and backend source of truth; every write has a risk tier; every sensitive action maps to AgentGuard |
+| CF1. Production commerce foundation | Transactional storage; durable cart and order modules; ONDC inbox/outbox and correlation; payment sandbox; financial ledger; idempotency; audit events; authorization and recovery framework | One sandbox purchase completes; duplicate calls cannot duplicate payment/order; events reconstruct the transaction |
+| CF2. Complete Buyer | Location-aware discovery; landed-cost comparison; persistent multi-seller cart; checkout; tracking; cancellation; return/refund; issue flow; approvals; receipts; support entry | Search-to-order-to-remedy works without developer repair; final landed cost precedes approval; mandate cannot be exceeded |
+| CF3. Complete Seller | Business/store setup; catalog/import; inventory; order SLA operations; fulfilment; returns/refunds; settlement; analytics; agent approvals | Seller operates the full lifecycle; protected writes use AgentGuard; high-value remedies require step-up |
+| CF4. iOS companion | SwiftUI shell; native authentication; Today, Orders, Approvals, Agent, Account; role/workspace switching; push; deep links; secure generated client; Face ID-bound approval | User tracks orders and approves exact requests; no production secret ships in the bundle; Buyer/Seller modes remain distinct |
+| CF5. Native Realtime voice | Backend session broker; native interactive audio; transcript and tool cards; interruption, reconnect, recovery; multilingual evaluations; latency/cost telemetry | Read tasks are reliable; writes always traverse AgentGuard; verified backend outcome precedes success speech |
+| CF6. Siri and App Intents | Typed product/order/store/approval/refund entities; bounded read and navigation intents; App Shortcuts; Spotlight; review-and-authenticate handoff | Siri retrieves status; high-risk requests open exact review; no intent bypasses backend authorization |
+| CF7. On-device intelligence | Availability-aware router; local classification, summarization, rewriting, redaction, and offline help; prompt/OS regression suite | App works without the local model; local output is never authoritative transaction data |
+| CF8. Production hardening and launch | Threat/privacy/accessibility review; load and resilience tests; SLOs; support console; runbooks; feature flags; phased rollout; rollback; reconciliation and global pause | Financial reconciliation passes; critical flows have monitored SLOs/runbooks; support can recover; autonomous writes can be stopped globally |
+
+### Build order and release priority
+
+1. Complete CF0 before changing production contracts.
+2. Build CF1 as modules in the existing gateway unless evidence requires a
+   deployment split. Start with decision-contract v2, durable cart/order state,
+   idempotency, audit events, and the financial ledger.
+3. Build CF2 and CF3 against the same frozen contracts and state machines.
+4. Start CF4 only after generated API contracts, deep links, native token
+   exchange, approval semantics, and notification payloads are stable.
+5. Add CF5 and CF6 on top of the native core; keep all write authority in the
+   backend. CF7 is an enhancement, never a launch dependency.
+6. Run CF8 gates throughout; its final external evidence blocks release.
+
+**P0 — before real customer money:** server authorization, durable cart/order,
+ONDC state/callback handling, payment reconciliation, idempotency, mandate,
+approvals, audit/receipts, refund lifecycle, hardened authentication,
+monitoring, support, and recovery.
+
+**P1 — strong launch:** landed-cost comparison, complete Seller catalog and
+inventory, push, Face ID approval, native voice, bounded App Intents,
+explainable recommendations, Live Activities, and operational analytics.
+
+**P2 — differentiators:** on-device intelligence, predictive replenishment,
+household profiles, demand forecasting, multilingual voice, richer system
+entities, proactive suggestions, continuity, and watch-based approvals.
+
+P2 must never delay or weaken a P0 control.
+
 ## Work-package rules for agents
 
 Each implementation agent receives exactly one bounded work package with:
@@ -571,24 +640,34 @@ builds; its specified behavior and negative cases must pass.
 
 ## Progress table
 
-Update this table only with linked evidence. `Not started` is the truthful
-initial status even where fragments already exist.
+Update this table only with linked evidence. Status describes implemented and
+verified repository reality, not the intended production claim; incomplete
+release or external gates stay explicit in the evidence column.
 
 | Milestone | Status | Evidence |
 | --- | --- | --- |
 | 0. Baseline | **Done** (2026-07-11) | `verify-portfolio` + gateway pytest; Buyer/Seller npm test+build; `agentguard seller --fixture` success. Ledger M0 |
 | 1. Shared contract | **Done** | `shared/agentguard-contract` + gateway `agentguard_contract.py`; PrincipalRef session resolution; Buyer/Seller clients import contract; 56 gateway tests |
 | 2. Mandates and approval | **Done** | compile/confirm/pause/revoke routes; exact approval consume+replay 409; Seller Confirm mandate UI |
-| 3. Shared local exchange | **Done** | `commerce_demo.py` + `/api/demo-commerce`; Buyer/Seller `commerceClient.ts`; two-sided API proof |
+| 3. Shared commerce exchange | **Done; superseded by CF1 storage owner** | Historical `commerce_demo.py` + `/api/demo-commerce` proof established the two-sided API. CommerceV1 PostgreSQL now owns authoritative CF1 state and `/api/demo-commerce` is compatibility-only. |
 | 4. Protected-action coverage | **Done** | Executors registered for taxonomy; `actions/execute`; Seller refund + Buyer checkout call execute/verify |
 | 5. Adapters and receipts | **Done** | `payment_adapter.py` + `receipt_signing.py` + `/receipts/verify`; UI verify hooks |
 | 6. Buyer/Seller UX | **Done** | Seller mandate/Pause; Buyer authority card; simulated labels; builds OK |
 | 7. Browser proof | **Done** | Hermes `agentguard seller --fixture` + `agentguard buyer --fixture` success 2026-07-11 evening; two-sided unique runs `ag-hermes-1783779577-a` / `ag-hermes-1783779578-b`; WIP bridge repaired via `ensure-wip-native-host.sh` |
-| 8. Cleanup | **In progress** (2026-07-11) | Deleted dead `agentCommerceState` + unwired `sellerBackendEnforcement`; seller Hermes approve/replay/pause/deny via UI; unique two-sided `run_id`; LEGACY aliases dated 2026-08-01. Remaining: buyer Hermes still API-gated; migrate local* commerce authority; collapse trust-policy headers |
-| 9. ONDC integration | Blocked by external onboarding | — |
+| 8. Cleanup | **Done** (2026-07-16) | Consequential Buyer/Seller order, return, fulfilment, catalog publish/archive, checkout, and support writes use AgentGuard plus the shared server exchange. Browser-local catalog/order/support stores and displaced trust-policy callers are deleted. Buyer/Seller clients use shared action, agent, mandate, approval, and intent-receipt types; the standalone `/agent` pages/navigation are deleted in favor of each app's global Samantha orb. Dated Seller/Netlify compatibility callers remain only until their documented post-2026-08-01 deletion gate. Final visible runs `m8-contract-final-1784209300-a` and `m8-contract-final-1784209301-b` preserve unique order/transaction/issue identity across Seller and Buyer. |
+| 9. ONDC integration | **Partial; external conformance blocked** | Signed PreProd search/on_search and configured-Seller discovery are proven; PostgreSQL inbox/outbox, persist-before-ACK, deduplication, correlation, leases, retries and dead-letter recovery are implemented. Full lifecycle semantics, portal onboarding and official conformance remain open. See `.cursor/skills/ondc-testing/references/preprod-network-matrix.md` and `matrix-status.md`. |
 | 10. Mandate editor | **Done** (2026-07-11) | Seller `/agentguard` edit refund max + allowed actions; Buyer checkout authority card checkout max; gateway `allowed_actions` + limit normalize |
 | 11. Agent tool runner (Cursor) | **Done** (2026-07-11) | `ondcbuyer`/`ondcseller` `agentTools.ts`; Cursor agent context includes tool defs; chat path invokes runner |
-| 12. Buyer Realtime voice | **Done** (2026-07-11) | Gateway `/api/realtime/status` configured + `gpt-realtime-2.1-mini`; Buyer `SamanthaOrb` global + `/config` mandate/memory; `remember_preference` tool; deleted bulky `VoiceShoppingPanel`. Samantha = short chainable tools; long plans → `delegate_to_runtime_agent` → `/agent` Cursor runtime. |
+| 12. Buyer Realtime voice | **Partial** (2026-07-14) | Gateway session path, Buyer `SamanthaOrb`, text tools, and mandate/memory integration pass; physical microphone journey remains unproved |
+| CF0. Product/contract alignment | **In progress** | Customer promise, production phases, architecture boundary, risk taxonomy, test gates, and launch gates are owner-documented; journey/domain artifacts and contract v2 remain |
+| CF1. Production foundation | **Implemented; release validation incomplete** (2026-07-22) | Process-selected PostgreSQL ownership covers AgentGuard, CommerceV1 and ONDC; compatibility routes do not create a second store. Tests cover exact approval, mutation rejection, pause/revoke, payment failure/unknown/reconciliation, one-effect replay, restart recovery, receipts, inbox/outbox and dead-letter recovery. Current `@Chrome` evidence is one Buyer Pass and one Seller Pass; Pass 2 and combined UI/UX-accessibility smoke remain open. Payment is simulated and this is not a production-money claim. See `.cursor/skills/ondc-testing/references/matrix-status.md`. |
+| CF2. Complete Buyer | **Partial** | Search, cart, exact landed-cost checkout, AgentGuard approval, orders, receipts and bounded remedy UI exist. Location-aware normalized multi-seller comparison, full tracking/cancellation/return/replacement/grievance/support lifecycle and current-source release proof remain. |
+| CF3. Complete Seller | **Partial** | Catalog publish/archive, inventory, order actions, protected refunds, mandates, Pause and receipts exist. Onboarding, roles/import, complete SLA fulfilment, settlement, analytics and current-source release proof remain. |
+| CF4. iOS companion | Not started | No native project in workspace |
+| CF5. Native Realtime voice | Not started | Browser/text evidence does not prove native physical audio |
+| CF6. Siri/App Intents | Not started | No native intent target in workspace |
+| CF7. On-device intelligence | Not started | Optional after native core |
+| CF8. Hardening/launch | Not started | External security, privacy, operational, and financial evidence required |
 
 ## Definition of demo complete
 

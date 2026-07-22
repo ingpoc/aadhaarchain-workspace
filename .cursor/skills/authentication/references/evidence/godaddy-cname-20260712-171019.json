@@ -1,0 +1,25 @@
+{
+  "stamp": "20260712-171019",
+  "steps": [
+    {
+      "ok": true,
+      "value": "cname"
+    },
+    {
+      "name": "gateway",
+      "ok": true,
+      "type": "cname",
+      "value": "identity-aadhar-gateway-main.onrender.com"
+    },
+    {
+      "saved": true
+    },
+    {
+      "gatewayLines": [],
+      "hasGateway": false,
+      "href": "https://dcc.godaddy.com/control/portfolio/aadharcha.in/settings?ventureId=5f74c5ac-83e6-433b-a6ee-7b497c3a65f3&tab=dns",
+      "textHead": "Skip to main content\nAadhar Chain\nDashboard\nDomain\nWebsite\nOverview\nSite Optimizer\nEmail\nStore\nOverview\nProducts\nCategories\nOrders\nSettings\nAppointments\nOverview\nCalendar\nServices\nCategories\nCustomers\nCoupons\nNEW\nStaff\nAdd-ons\nSettings\nMarketing\nOverview\nSocial\nSEO\nAI Visibility\nCalendar\nEmail Marketing\nBlog\nContent Creator\nCoupons\nConversations\nOverview\nInbox\nContent\nSettings\nCustomers\nAll\nAutomations\nSignup Forms\nSettings\nDeals\nHelp Center\nGG\nDomain\naadharcha.in\nConnect Domain\nYour Domain is Hot\naadharcha.in is attracting significant interest from other GoDaddy customers! Consider enabling auto-renew to maintain ownership.\nTurn Auto-renew On\nOverview\nDNS\nRegistration Settings\nProducts\nActivity Log\nDNS Records\nForwarding\nNameservers\nHostnames\nDNSSEC\nPOWERED BY AIRO\nConnect Your Domain in Minutes\n\nSet up your domain with your website, email, or social media profile faster than ever with GoDaddy Airo.\n\nConnect Domain\nEasily verify domain ownership\n\nNeed to verify ownership of your domain to connect to an external service? We've made it easier than ever.\n\nVerify Domain Ownership\nCreate MX records\n\nQuickly create MX records to connect your domain with email services.\n\nCreate Now\nAdd New Record\nFilters\nActions\n1-10 of 22 records\n\t\nType\n\t\nName\n\t\nData\n\t\nTTL\n\t\nCopy\n\t\nDelete\n\t\nEdit\n\n\n\t\nA\n\t\n@\n\t\n76.76.21.21\n\t\n600 seconds\n\t\n\t\n\t\n\n\n\t\nA\n\t\nflatwatch\n\t\n76.76.21.21\n\t\n1/2 Hour\n\t\n\t\n\t\n\n\n\t\nA\n\t\nondcbuyer\n\t\n76.76.21.21\n\t\n1/2 Hour\n\t\n\t\n\t\n\n\n\t\nA\n\t\nondcseller\n\t\n76.76.21.21\n\t\n1/2 Hour\n\t\n\t\n\t\n\n\n\t\nA\n\t\nwww\n\t\n76.76.21.21\n\t\n1/2 Hour\n\t\n\t\n\t\n\n\n\t\nNS\n\t\n@\n\t\ndns1.p06.nsone.net.\n\t\n1 Hour\n\t\n\t\n\t\n\n\n\t\nNS\n\t\n@\n\t\ndns2.p06.nsone.net.\n\t\n1 Hour\n\t\n\t\n\t\n\n\n\t\nNS\n\t\n@\n\t\ndns3.p06.nsone.net.\n\t\n1 Hour\n\t\n\t\n\t\n\n\n\t\nNS\n\t\n@\n\t\ndns4.p06.nsone.net.\n\t\n1 Hour\n\t\n\t\n\t\n\n\n\t\nNS\n\t\n@\n\t\nns73.domaincontrol.com.\n\t\n1 Hour\n\t\n\t\n\t\n1\n2\n3\n10\nSet up your free social media subdomain!\nYour domain comes with free, customizable subdomains  such as facebook.aadharcha.in to link to your social media page.\nImproved SEO\nSocial subdomains can help your website rank higher in search engines.\nPromote your social page\nAnybody visiting your social subdomain such as facebook.aadharcha.in will see your social media page.\nAdd to your main domain\nCreating a social subdomain won't affect anything currently connected to aadharcha.in.\nChoose a platform to start:\nInstagram\nFacebook\nYelp\nGoogle\nOther\n\nSuccess\nYour DNS record has been updated successfully. Most DNS updates take effect within an hour, but could take up to 48 hours to update globally.",
+      "toast": true
+    }
+  ]
+}

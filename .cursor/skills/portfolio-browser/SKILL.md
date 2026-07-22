@@ -1,22 +1,30 @@
 ---
 name: portfolio-browser
 description: >-
-  Browser-test AadhaarChain portfolio (43100–43103) via Hermes Chrome WIP only
-  (never ~/.codex or ~/.hermes live). Scripts: portfolio_browser.py,
+  Legacy deterministic AadhaarChain browser harness via Hermes Chrome WIP.
+  Use only when explicitly requested or after approved fallback from the
+  bundled Chrome plugin. Scripts: portfolio_browser.py,
   parallel_smoke_wip.py. Parallel smoke = 0-token scout then mini fixer. SSO mutex. AgentGuard acceptance uses `sso demo` (no wallet); burner/Solflare are hangar-only.
   Triggers: portfolio browser, Hermes WIP, SSO, Solflare, smoke, parallel smoke,
-  multi-app, fixer_packets, preflight, closeout, page diag, console errors.
+  multi-app, fixer_packets, preflight, reviewer-ready, durable lease, closeout,
+  page diag, console errors.
   Not for partner onboarding workflow ownership (ONDC portal / Setu.co / MeitY) —
   that skill owns the rails; this skill is the Hermes browser driver only.
 ---
 
 # Portfolio browser
 
+> **Legacy harness.** Bundled `@chrome` is the default browser owner and bundled
+> `@Computer` is the default native Mac owner. This skill preserves deterministic
+> WIP Hermes replay, diagnostics, and old evidence reproduction only.
+
 > **Self-validate after edits.** Run `./scripts/validate.sh` from this skill directory.
 
 **Standing rule:** append durable browser/WIP findings to this skill + [`references/troubleshooting.md`](references/troubleshooting.md) / validation ledger; **no secrets** in markdown.
 
-**Partner onboarding:** ONDC Participant Portal / Setu.co / MeitY DigiLocker → workflow owned by [`.cursor/skills/apisetu-partner-onboarding/`](../apisetu-partner-onboarding/SKILL.md) + `PRODUCTION-READINESS.md`. This skill drives the browser (Hermes WIP); do not invent parallel partner checklists here. MeitY rail remains **paused** inside that skill.
+**Legacy window policy (mandatory when this harness is selected):** one working agent → **one** Hermes WIP Chrome window. Two concurrent agents → two windows via distinct `HERMES_AGENT_ID` values. Never invent a new `task_id` / `session_name` per script step — that opens orphan windows. Default lease id is `portfolio-browser` (see `scripts/wip_hermes.py`). End work with `portfolio_browser.py closeout` which now closes **all** active agent leases, not a fixed tab-name list.
+
+**Partner onboarding:** ONDC Participant Portal / Setu.co / MeitY DigiLocker → workflow owned by [`.cursor/skills/apisetu-partner-onboarding/`](../apisetu-partner-onboarding/SKILL.md) + `PRODUCTION-READINESS.md`. Bundled `@chrome` drives current browser work; this skill is only the legacy replay driver. MeitY rail remains **paused** inside that skill.
 
 **Related:** Samantha/UX matrix → [`ondc-testing`](../ondc-testing/SKILL.md). Auth0 → [`authentication`](../authentication/SKILL.md). FQDN/CI deploy → [`portfolio-deploy`](../portfolio-deploy/SKILL.md). PreProd demo video (Hermes cursor dry-run → record) → [`demo-video-recording`](../demo-video-recording/SKILL.md).
 ## Agent context rule (always)
@@ -28,11 +36,21 @@ Do not conclude pass/fail from UI alone.
 `HERMES_CHROME_BRIDGE_SOCKET=…/hermes-chrome-cursor-wip/run/chrome-bridge.sock`.  
 Load unpacked: `…/hermes-chrome-cursor-wip/deploy/extension`. Do **not** use Codex live Hermes.
 
-**SOCKET_DOWN:** evidence first (`ls`/`lsof` WIP sock + Comet/Chrome manifest `path` + extension **service worker Active vs Inactive**) before repairing. Two distinct causes: (1) SW Inactive → native host died (2026-07-12 Auth0/portal afternoon — manifests already `native_host_wip.sh`); (2) classic path trap (`path` → `native_host.py` → binds `~/.hermes/run`). Do **not** `launch-wip-chrome` to fix Comet, rewrite manifests to `.py`, or switch to live `~/.hermes`. Details: [`references/troubleshooting.md`](references/troubleshooting.md) § WIP socket trap.
+**WIP host ownership:** the canonical runtime owner is the
+[`hermes-chrome` skill](/Users/gurusharan/plugins/hermes-chrome-cursor-wip/skill/SKILL.md).
+Before recovery, run
+`/Users/gurusharan/plugins/hermes-chrome-cursor-wip/scripts/ensure-wip-native-host.sh`
+and use its exact Chrome profile. Do not hard-code a profile in this project
+skill, open a different browser's extension page, or duplicate-install the WIP
+extension.
+
+**SOCKET_DOWN:** evidence first (`ls`/`lsof` WIP sock + discovered host/profile + manifest `path` + extension **service worker Active vs Inactive**) before repairing. Two distinct causes: (1) SW Inactive → native host died (manifests already `native_host_wip.sh`); (2) classic path trap (`path` → `native_host.py` → binds `~/.hermes/run`). Recover only in the profile returned by `ensure-wip-native-host.sh`: open `chrome://extensions` and reload **Hermes Chrome Bridge (Cursor WIP)**. Do **not** route to another browser/profile, install a second copy, rewrite manifests to `.py`, or switch to live `~/.hermes`. Details: [`references/troubleshooting.md`](references/troubleshooting.md) § WIP socket trap.
 
 **Local stack (2026-07-13):** FQDN `VITE_*` process bake, Vite dying after Shell teardown, SSO on `chrome://` error tabs, orb toggle, `/api`→`:3001` — see troubleshooting table + § Local VITE bake. PreProd UX bar: [`ondc-testing`](../ondc-testing/SKILL.md). Demo video record gate: [`demo-video-recording`](../demo-video-recording/SKILL.md).
 
 **Cursor / wrong-app traps:** Hermes WIP pointer starts at `opacity: 0` until first move/click; “no cursor” usually = wrong host app (Comet vs Chrome) or window behind IDE — see troubleshooting § Cursor visibility.
+
+**Seller Dispatch tracking prompt:** `window.prompt` — Hermes owns it. Batch `click_text` + `dialog_handle` + `promptText`. Do not reload while open; frozen CS reply ≠ missing script. OS-native / Chrome-shell jobs → `$macos-cua` per hermes-chrome `multi-agent.md` ownership table.
 
 | Signal | Source | How |
 | --- | --- | --- |
@@ -80,17 +98,23 @@ Validated lane (2× manual pass, 2026-07-06) — see [`references/validation-led
 
 ```
 lane  →  preflight → smoke → sso → closeout   (one preflight; auto-starts stack)
+review → preflight → sso → reviewer-ready → actor → closeout
 ```
 
 | Step | Required | Pass |
 | --- | --- | --- |
 | **lane** | Full browser validation | exit 0; smoke JSON + SSO + closeout |
 | **preflight** | Before ad-hoc browser work | exit 0, `tier: hermes`, HTTP 2xx |
+| **reviewer-ready** | After audience login, before a blind reviewer | same session/window/tab across two visual reads separated by idle; signed-in marker; clean closeout |
 | **test** | `smoke` and/or `sso` | JSON pass signals below |
 | **closeout** | After browser work | exit 0, `bridge ready=True` |
 | **diag** | When debugging / after any failed step | compact JSON; `ok: true` or actionable `issues` |
 
 Preflight auto-starts `./scripts/start-dev.sh` when the stack is down. Burner SSO: preflight runs `ensure-validator.sh` (JSON-RPC `getHealth` on `:8899`). FlatWatch `.env` (incl. `CURSOR_API_KEY`) must be loaded into the process via `start-dev.sh` — file present ≠ loaded.
+
+Hermes session leases are process-local. Python child runners must use
+`scripts/wip_hermes.py::run_with_session_preflight` immediately before guarded
+`run`; a successful shell preflight does not supply the child process lease.
 
 ## Commands
 
@@ -107,6 +131,10 @@ python3 scripts/portfolio_browser.py smoke
 python3 scripts/portfolio_browser.py sso burner [seller|buyer|all]
 python3 scripts/portfolio_browser.py sso solflare [seller|buyer]
 python3 scripts/portfolio_browser.py commerce seller|buyer [--fixture]
+
+# After the correct audience SSO and before dispatching a blind reviewer
+python3 .cursor/skills/portfolio-browser/scripts/reviewer_ready.py \
+  --url http://127.0.0.1:43103/dashboard --expected-marker "Sign out"
 
 # AgentGuard (Token Nxt) — Hermes judged lanes validated 2026-07-11 evening
 python3 scripts/portfolio_browser.py agentguard seller [--fixture]
@@ -131,6 +159,7 @@ python3 scripts/portfolio_browser.py diag [--url URL]
 | Command | Pass |
 | --- | --- |
 | `smoke` | JSON `"success": true`, titles include **ONDC Buyer** + **ONDC Seller** |
+| `reviewer_ready.py` | `status: "reviewer_ready"`; identical session/window/tab across both reads; two non-empty screenshots; expected URL and signed-in marker; owned session absent after closeout |
 | `sso solflare` | `"signed_in": true`, buttons include **Sign out** |
 | `sso burner` | exit 0, Hermes lands on app with **Sign out** |
 | `agentguard seller --fixture` | JSON `"success": true`; checks policy/allow/need/replay/pause/deny |
@@ -140,7 +169,7 @@ python3 scripts/portfolio_browser.py diag [--url URL]
 | Multi-agent isolation (optional gate) | `HERMES_CHROME_BRIDGE_SOCKET=…/run/chrome-bridge.sock python3 …/hermes-chrome-cursor-wip/plugin/hermes_chrome/tests/test_multi_agent_isolation.py` exit 0 |
 ## Progressive disclosure
 
-- Preflight/closeout checks: [`references/lifecycle.md`](references/lifecycle.md)
+- Preflight/reviewer-ready/closeout checks: [`references/lifecycle.md`](references/lifecycle.md)
 - Failures: [`references/troubleshooting.md`](references/troubleshooting.md)
 - Parallel multi-app (0-token scout): this file § Multi-app orchestration + `scripts/parallel_smoke_wip.py`
 

@@ -1,0 +1,92 @@
+{
+  "recorded_at": "2026-07-19T17:00:09Z",
+  "scope": "combined_ui_ux_accessibility_smoke",
+  "verdict": "Pass",
+  "unresolved_p0_p1": [],
+  "buyer_half": {
+    "recorded_at": "2026-07-19T15:53:34+0530",
+    "base_source_hash": "af98738a621dfb6109e06d06c2833a20e593cb6e4cf8f08d3edb23dd3781088e",
+    "ui_repair_fingerprint": "sha256:22235abcd344ace09c4d9b4ba22483174a976fee38040204f2e1dc8c4e133267",
+    "scope": "final-local-visible-customer-acceptance",
+    "status": "buyer_ux_pass",
+    "run": "buyer-ux-af987-retest",
+    "actor": "240ebd28-af2d-49b0-808b-50373a459f47",
+    "verdict": "Pass",
+    "lease_ready_at": "2026-07-19T10:21:53Z",
+    "verdict_at": "2026-07-19T10:22:47Z",
+    "session_absent_after_closeout": true,
+    "unresolved_p0_p1": [],
+    "confirmed": [
+      "Ask Samantha opens Ask/Send panel",
+      "No api_key in shopper header",
+      "FAB does not block open panel"
+    ],
+    "screenshots": [
+      "/Users/gurusharan/plugins/hermes-chrome-cursor-wip/run/cache/hermes-chrome/dd5b569b-5085-40e6-8023-57e6bbabae92-1.png",
+      "/Users/gurusharan/plugins/hermes-chrome-cursor-wip/run/cache/hermes-chrome/8bca5958-9da8-48bf-b87e-f832ca1734d2-4.png"
+    ],
+    "next": "Buyer customer journey on repaired UI source (post-UX; counts toward two Passes)"
+  },
+  "seller_half": {
+    "verdict": "Pass",
+    "lease_ready_at": "2026-07-19T16:54:53Z",
+    "verdict_at": "2026-07-19T16:59:27Z",
+    "session_id": "seller-ux-half-rerun-1784480086",
+    "session_absent_after_closeout": true,
+    "final_url": "http://127.0.0.1:43103/catalog",
+    "unresolved_p0_p1": [],
+    "findings": [
+      {
+        "id": "S1",
+        "severity": "P2",
+        "area": "search_focus_management",
+        "summary": "Opening header Search leaves document.activeElement on BODY until Tab; Search catalog input is reachable and typeable by keyboard, but focus is not moved into the field on activate. Console reports HeaderSearch/InputGroupInput missing React.forwardRef (ref warning logged as error).",
+        "evidence": "evaluate after Search: BODY; after Tab+type: INPUT aria=Search catalog val=atta; last_console_error HeaderSearch forwardRef at App.tsx HeaderSearch / input-group.tsx"
+      },
+      {
+        "id": "S2",
+        "severity": "P2",
+        "area": "status_affordance",
+        "summary": "Assistant status: Ready and Identity status: Verified appear in the same button inventory as Search and Sign out, without a clear non-action/status-only cue; Dashboard body copy correctly separates identity vs store connection vs authority.",
+        "evidence": "page_context buttons on Dashboard/Catalog/AgentGuard/Settings; screenshot 01 status chips beside Sign out"
+      },
+      {
+        "id": "S3",
+        "severity": "P3",
+        "area": "catalog_empty_hierarchy",
+        "summary": "Empty Catalog still exposes H2s Review published listings and Update products in one table plus Add first product\u2014understandable empty states, but headings imply listings/table edits when counts are zero.",
+        "evidence": "Catalog page_context headings; screenshot 03 empty shelf + Update products in one table section in prior scroll shot"
+      },
+      {
+        "id": "S4",
+        "severity": "P3",
+        "area": "samantha_connecting_state",
+        "summary": "Samantha panel purpose/authority cues are clear (AgentGuard checks protected actions; link to Assistant permissions and memory), but panel showed Connecting Samantha\u2026 during open\u2014transient; Ask Samantha field present; harmless phrase typed into search earlier, not sent as commerce.",
+        "evidence": "screenshot 03 Samantha panel H2 + Connecting + Ask Samantha/Send/Close; page_context inputs Ask Samantha; Sign out still visible"
+      }
+    ],
+    "screenshots": [
+      {
+        "path": ".cursor/skills/ondc-testing/references/evidence/local-customer-seller-ux-half-rerun-20260719-01-dashboard.png",
+        "readback": "Signed-in Dashboard: ONDC Seller brand; nav Assistant permissions/Dashboard(active)/Catalog/Orders/Settings; Search + Assistant status Ready + Identity status Verified + Sign out; H1 Seller dashboard; products/categories 0; Verified identity with identity\u2260store\u2260authority note; empty Inventory snapshot + Add first product; Samantha FAB."
+      },
+      {
+        "path": ".cursor/skills/ondc-testing/references/evidence/local-customer-seller-ux-half-rerun-20260719-02-assistant-permissions.png",
+        "readback": "Assistant permissions: H1 + intro that Samantha is Seller ops assistant and AgentGuard checks actions; Current authority card with refund limit 5000 INR and allowed-action checkboxes; Save/Pause/Refresh; Sign out visible; Samantha FAB."
+      },
+      {
+        "path": ".cursor/skills/ondc-testing/references/evidence/local-customer-seller-ux-half-rerun-20260719-03-catalog-samantha.png",
+        "readback": "Catalog with Sign out still visible; Product catalog H1; metrics 0/Ready; empty published listings + Add first product; Samantha panel open with AgentGuard purpose text, Connecting Samantha\u2026, Ask Samantha + Send, Assistant permissions and memory link."
+      }
+    ],
+    "confirmed": [
+      "Started signed-in at /dashboard with Sign out visible; Sign out never activated",
+      "Mouse-nav reviewed Dashboard, Catalog, Orders, Assistant permissions, Settings without mutating catalog/orders/authority",
+      "Headings/names generally clear; Settings shows Connection details incomplete honestly",
+      "Keyboard: Tab reached Search catalog input; typed atta (non-destructive); Refresh catalog mouse-activated",
+      "Samantha opened; purpose/authority cues present; stayed signed in through Catalog+Samantha",
+      "Hermes closeout_done; probe active_agent_sessions=0 (seller-ux-half-rerun-1784480086 absent)"
+    ]
+  },
+  "note": "Buyer half from earlier repaired-UI Pass; Seller half rerun Pass after Not Tested Sign-out abort"
+}

@@ -1,0 +1,224 @@
+{
+  "success": true,
+  "id": "5d5a22e3-6b42-4dea-a6be-88ccff371125",
+  "tab_id": 1951715614,
+  "final_url": "http://127.0.0.1:43102/config",
+  "results": [
+    {
+      "type": "click_text",
+      "text": "Config",
+      "point": {
+        "onTarget": true,
+        "tag": "A",
+        "text": "Config",
+        "x": 1148,
+        "y": 50
+      }
+    },
+    {
+      "type": "wait",
+      "ms": 3000
+    },
+    {
+      "type": "cursor_status",
+      "visible": true,
+      "x": 1148,
+      "y": 50,
+      "phase": "idle",
+      "agent_id": "",
+      "agent_label": "",
+      "session_id": "",
+      "color": "#64d8ff",
+      "pointer_bounds": {
+        "top": 48.444217681884766,
+        "right": 1175.5556640625,
+        "bottom": 76.53854370117188,
+        "left": 1147.4613037109375
+      },
+      "label_bounds": {
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      },
+      "label_below_pointer": false,
+      "url": "http://127.0.0.1:43102/config",
+      "title": "ONDC Buyer"
+    },
+    {
+      "type": "screenshot",
+      "format": "jpeg",
+      "screenshot_path": "/Users/gurusharan/.hermes/cache/hermes-chrome/5d5a22e3-6b42-4dea-a6be-88ccff371125-3.jpeg"
+    },
+    {
+      "type": "page_context",
+      "url": "http://127.0.0.1:43102/config",
+      "title": "ONDC Buyer",
+      "headings": [
+        {
+          "tag": "H1",
+          "text": "AgentGuard & Samantha"
+        }
+      ],
+      "nav": [
+        {
+          "text": "Search",
+          "href": "http://127.0.0.1:43102/search"
+        },
+        {
+          "text": "Cart",
+          "href": "http://127.0.0.1:43102/cart"
+        },
+        {
+          "text": "Orders",
+          "href": "http://127.0.0.1:43102/orders"
+        },
+        {
+          "text": "Config",
+          "href": "http://127.0.0.1:43102/config"
+        }
+      ],
+      "buttons": [
+        "Open search",
+        "Open runtime status",
+        "Sign out",
+        "Confirm mandate",
+        "organic \u00d7",
+        "organic produce \u00d7",
+        "bright colors \u00d7",
+        "noise-cancelling \u00d7",
+        "User prefers organic produce. \u00d7",
+        "Clear memory",
+        "S"
+      ],
+      "inputs": [],
+      "console_error_count": 0,
+      "console_warn_count": 0,
+      "last_console_error": null
+    },
+    {
+      "type": "page_context",
+      "url": "http://127.0.0.1:43102/config",
+      "title": "ONDC Buyer",
+      "headings": [
+        {
+          "tag": "H1",
+          "text": "AgentGuard & Samantha"
+        }
+      ],
+      "nav": [
+        {
+          "text": "Search",
+          "href": "http://127.0.0.1:43102/search"
+        },
+        {
+          "text": "Cart",
+          "href": "http://127.0.0.1:43102/cart"
+        },
+        {
+          "text": "Orders",
+          "href": "http://127.0.0.1:43102/orders"
+        },
+        {
+          "text": "Config",
+          "href": "http://127.0.0.1:43102/config"
+        }
+      ],
+      "buttons": [
+        "Open search",
+        "Open runtime status",
+        "Sign out",
+        "Confirm mandate",
+        "organic \u00d7",
+        "organic produce \u00d7",
+        "bright colors \u00d7",
+        "noise-cancelling \u00d7",
+        "User prefers organic produce. \u00d7",
+        "Clear memory",
+        "S"
+      ],
+      "inputs": [],
+      "console_error_count": 0,
+      "console_warn_count": 0,
+      "last_console_error": null
+    },
+    {
+      "type": "evaluate",
+      "result": {
+        "errors": [
+          "fetch failed https://gateway.aadharcha.in/api/realtime/status Failed to fetch",
+          "fetch failed https://gateway.aadharcha.in/api/realtime/status Failed to fetch",
+          "fetch failed https://gateway.aadharcha.in/api/realtime/status Failed to fetch",
+          "fetch failed https://gateway.aadharcha.in/api/agentguard/agents/ensure Failed to fetch",
+          "fetch failed https://gateway.aadharcha.in/api/agentguard/agents/ensure Failed to fetch"
+        ],
+        "installed": true,
+        "total": 5,
+        "warns": []
+      }
+    }
+  ],
+  "page_diag": {
+    "ok": false,
+    "ui": {
+      "url": "http://127.0.0.1:43102/config",
+      "title": "ONDC Buyer",
+      "headings": [
+        "AgentGuard & Samantha"
+      ],
+      "buttons": [
+        "Open search",
+        "Open runtime status",
+        "Sign out",
+        "Confirm mandate",
+        "organic \u00d7",
+        "organic produce \u00d7",
+        "bright colors \u00d7",
+        "noise-cancelling \u00d7",
+        "User prefers organic produce. \u00d7",
+        "Clear memory"
+      ]
+    },
+    "console": {
+      "installed": true,
+      "total": 5,
+      "errors": [
+        "fetch failed https://gateway.aadharcha.in/api/realtime/status Failed to fetch",
+        "fetch failed https://gateway.aadharcha.in/api/realtime/status Failed to fetch",
+        "fetch failed https://gateway.aadharcha.in/api/realtime/status Failed to fetch",
+        "fetch failed https://gateway.aadharcha.in/api/agentguard/agents/ensure Failed to fetch",
+        "fetch failed https://gateway.aadharcha.in/api/agentguard/agents/ensure Failed to fetch"
+      ],
+      "warns": []
+    },
+    "backend": [],
+    "issues": [
+      {
+        "source": "console",
+        "level": "error",
+        "msg": "fetch failed https://gateway.aadharcha.in/api/realtime/status Failed to fetch"
+      },
+      {
+        "source": "console",
+        "level": "error",
+        "msg": "fetch failed https://gateway.aadharcha.in/api/realtime/status Failed to fetch"
+      },
+      {
+        "source": "console",
+        "level": "error",
+        "msg": "fetch failed https://gateway.aadharcha.in/api/realtime/status Failed to fetch"
+      },
+      {
+        "source": "console",
+        "level": "error",
+        "msg": "fetch failed https://gateway.aadharcha.in/api/agentguard/agents/ensure Failed to fetch"
+      },
+      {
+        "source": "console",
+        "level": "error",
+        "msg": "fetch failed https://gateway.aadharcha.in/api/agentguard/agents/ensure Failed to fetch"
+      }
+    ],
+    "final_url": "http://127.0.0.1:43102/config"
+  }
+}

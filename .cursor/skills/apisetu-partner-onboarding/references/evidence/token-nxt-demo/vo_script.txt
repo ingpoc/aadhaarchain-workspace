@@ -1,0 +1,23 @@
+[[slnc 800]]
+Safe agentic commerce. Agents that work, with limits you control.
+[[slnc 1200]]
+This is AgentGuard on our ONDC Buyer. Realtime voice and a runtime agent share one tool runner.
+[[slnc 1500]]
+You speak what you need. Tools search the network, compare, and add to cart. No hunting through menus.
+[[slnc 2000]]
+For bigger jobs, like a two thousand rupee grocery brief, the runtime agent plans carefully using preferences and past context.
+[[slnc 1500]]
+AgentGuard restricts what the agent may do. You set allowed actions and auto-approve amounts.
+[[slnc 1500]]
+Every protected tool call is evaluated on the server. Allow. Ask once for an exception. Or block.
+[[slnc 1200]]
+Pause or revoke anytime. The model never gets your PIN or OTP.
+[[slnc 1500]]
+We run Buyer and Seller under the same contract. One authority layer across both sides.
+[[slnc 1500]]
+When N P C I opens broader UPI Circle agent onboarding, the same guarded agent can complete checkout and payment.
+[[slnc 1200]]
+Until then, this proof of concept shows what is possible: natural conversation, real tools, and human intent in control.
+[[slnc 800]]
+AgentGuard. Token Next at Global Fintech Fest two thousand twenty six.
+[[slnc 1000]]

@@ -1,0 +1,61 @@
+{
+  "success": false,
+  "ts": "20260712-022835",
+  "tool_ok": false,
+  "tool": {
+    "amount_inr": null,
+    "at": 1783803573364,
+    "callId": "call_6dkHJ6N6FfaMVdK0",
+    "cartAdds": [],
+    "decision": null,
+    "message": "Cart total is empty. Add items before checkout.",
+    "name": "checkout_commit",
+    "navigateTo": "/cart",
+    "ok": false,
+    "receiptId": null,
+    "session_id": "session-1783800693829-8uz9lku"
+  },
+  "page_paid": false,
+  "page_receipt": false,
+  "on_order": false,
+  "pathname": "/cart",
+  "stale_hits": [],
+  "no_stale": true,
+  "cart_seed": {
+    "pathname": "/cart",
+    "has_banana": true,
+    "shots": [
+      "/Users/gurusharan/Documents/remote-claude/active/apps/AadhaarChainWorkspace/.cursor/skills/ondc-testing/references/evidence/UI-AUDIT-checkout-cart-20260712-022835-7.jpeg"
+    ]
+  },
+  "after_ask": {
+    "pathname": "/cart",
+    "reply": "total was empty, so the system wouldn\u2019t let me check out yet. You\u2019ll need to add more items first. If you want, I can help you find something to pair with those bananas, like milk, oats, or bread. Just tell me what you\u2019d like.Hiya! Nice to ",
+    "body_snip": "PORTFOLIO\nONDC Buyer\nDiscover commerce under AgentGuard authorization.\nSearch\nCart\nOrders\nConfig\nSign out\nCART\nShopping cart\n\n1 item ready for trust-aware checkout.\n\nRobusta Bananas (12 pcs)\nINR 78.00 \u00d7 1\n1\nRemove\nOrder summary\nSubtotal\nINR 78.00\nTotal\nINR 78.00\nProceed to checkout\nNeed more items?\nContinue shopping\nAgent chat\nHow it works\n\nSamantha\n\nCart total is empty. Add items before checkout."
+  },
+  "order_page": {
+    "pathname": null,
+    "has_paid": null,
+    "has_receipt": null,
+    "stale_hits": null,
+    "body_snip": ""
+  },
+  "checkout_visit": {
+    "pathname": "/checkout",
+    "stale_hits": [],
+    "body_snip": "PORTFOLIO\nONDC Buyer\nDiscover commerce under AgentGuard authorization.\nSearch\nCart\nOrders\nConfig\nSign out\nCHECKOUT\nCheckout\n\nConfirm buyer information, generate a quote, and place the order. AgentGuard authorizes protected checkout.\n\nBUYER DETAILS\nBilling information\nFull name *\nEmail *\nPhone *\nGSTIN\n\nOptional, used for business purchases and GST invoices.\n\nDELIVERY\nDelivery address\nStreet address"
+  },
+  "screenshots": {
+    "cart": [
+      "/Users/gurusharan/Documents/remote-claude/active/apps/AadhaarChainWorkspace/.cursor/skills/ondc-testing/references/evidence/UI-AUDIT-checkout-cart-20260712-022835-7.jpeg"
+    ],
+    "checkout_paid": [
+      "/Users/gurusharan/Documents/remote-claude/active/apps/AadhaarChainWorkspace/.cursor/skills/ondc-testing/references/evidence/UI-AUDIT-checkout-paid-20260712-022835-7.jpeg",
+      "/Users/gurusharan/Documents/remote-claude/active/apps/AadhaarChainWorkspace/.cursor/skills/ondc-testing/references/evidence/UI-AUDIT-checkout-paid-20260712-022835-10.jpeg"
+    ],
+    "orders_id": [],
+    "checkout_visit": [
+      "/Users/gurusharan/Documents/remote-claude/active/apps/AadhaarChainWorkspace/.cursor/skills/ondc-testing/references/evidence/UI-AUDIT-checkout-visit-20260712-022835-3.jpeg"
+    ]
+  }
+}

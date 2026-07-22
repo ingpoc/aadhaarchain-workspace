@@ -1,0 +1,142 @@
+{
+  "stamp": "20260712-201123",
+  "pages": [
+    {
+      "side": "buyer",
+      "page": "search",
+      "url": "https://ondcbuyer.aadharcha.in/search",
+      "dump": {
+        "errorCount": 0,
+        "hasAtta": false,
+        "hasCartError": false,
+        "hasCatalogUnavailable": false,
+        "hasLocalhostFetch": false,
+        "hasOndcNetwork": false,
+        "href": "https://ondcbuyer.aadharcha.in/search",
+        "logs": [],
+        "textHead": "PORTFOLIO\nONDC Buyer\nDiscover commerce under AgentGuard authorization.\nSearch\nCart\nOrders\nConfig\nSign out\nBUYER DISCOVERY\nSearch verified commerce\n\nFind offers, then checkout under AgentGuard authorization.\n\nSearch the network\n\nSigned in \u2014 elevated checkout is available via AgentGuard.\n\nCategory\nGrocery\nGrocery\nRestaurant\nFashion\nElectronics\nSearch\nSearch\nAgent chat\nHow it works\nS",
+        "warnCount": 0
+      }
+    },
+    {
+      "side": "buyer",
+      "page": "results",
+      "url": "https://ondcbuyer.aadharcha.in/results?category=grocery&q=AgentGuard%20PreProd%20Atta",
+      "dump": {
+        "errorCount": 0,
+        "hasAtta": false,
+        "hasCartError": false,
+        "hasCatalogUnavailable": false,
+        "hasLocalhostFetch": false,
+        "hasOndcNetwork": false,
+        "href": "https://ondcbuyer.aadharcha.in/results?category=grocery&q=AgentGuard%20PreProd%20Atta",
+        "logs": [],
+        "textHead": "PORTFOLIO\nONDC Buyer\nDiscover commerce under AgentGuard authorization.\nSearch\nCart\nOrders\nConfig\nPulling the latest offers for your selected category.\nAgent chat\nHow it works\nS",
+        "warnCount": 0
+      }
+    },
+    {
+      "side": "buyer",
+      "page": "cart",
+      "url": "https://ondcbuyer.aadharcha.in/cart",
+      "dump": {
+        "errorCount": 0,
+        "hasAtta": false,
+        "hasCartError": false,
+        "hasCatalogUnavailable": false,
+        "hasLocalhostFetch": false,
+        "hasOndcNetwork": false,
+        "href": "https://ondcbuyer.aadharcha.in/cart",
+        "logs": [],
+        "textHead": "PORTFOLIO\nONDC Buyer\nDiscover commerce under AgentGuard authorization.\nSearch\nCart\nOrders\nConfig\nYour cart is empty\nAdd some items to get started with the buyer checkout flow.\nStart shopping\nAgent chat\nHow it works\nS",
+        "warnCount": 0
+      }
+    },
+    {
+      "side": "buyer",
+      "page": "checkout",
+      "url": "https://ondcbuyer.aadharcha.in/checkout",
+      "dump": {
+        "errorCount": 0,
+        "hasAtta": false,
+        "hasCartError": false,
+        "hasCatalogUnavailable": false,
+        "hasLocalhostFetch": false,
+        "hasOndcNetwork": false,
+        "href": "https://ondcbuyer.aadharcha.in/cart",
+        "logs": [],
+        "textHead": "PORTFOLIO\nONDC Buyer\nDiscover commerce under AgentGuard authorization.\nSearch\nCart\nOrders\nConfig\nSign out\nYour cart is empty\nAdd some items to get started with the buyer checkout flow.\nStart shopping\nAgent chat\nHow it works\nS",
+        "warnCount": 0
+      }
+    },
+    {
+      "side": "buyer",
+      "page": "orders",
+      "url": "https://ondcbuyer.aadharcha.in/orders",
+      "dump": {
+        "errorCount": 0,
+        "hasAtta": false,
+        "hasCartError": false,
+        "hasCatalogUnavailable": false,
+        "hasLocalhostFetch": false,
+        "hasOndcNetwork": false,
+        "href": "https://ondcbuyer.aadharcha.in/orders",
+        "logs": [],
+        "textHead": "PORTFOLIO\nONDC Buyer\nDiscover commerce under AgentGuard authorization.\nSearch\nCart\nOrders\nConfig\nORDERS\nTrack buyer orders\n\nReview pending, active, and completed orders from the buyer shell without losing trust or delivery context.\n\nall (1)\npending (1)\nactive (0)\ncomplete (0)\nORDER #DEMO-1783859251508-W7M0E0\nJul 12, 2026\nAccepted\n1\u00d7 Sharbati Atta 5kg\nINR 325.00\n5\u00d7 Robusta Bananas (12 pcs)\nINR 78.00\nLocal catalog seller\nINR 715.00\nAgent chat\nHow it works\nS",
+        "warnCount": 0
+      }
+    },
+    {
+      "side": "seller",
+      "page": "dashboard",
+      "url": "https://ondcseller.aadharcha.in/dashboard",
+      "dump": {
+        "errorCount": 0,
+        "hasAtta": true,
+        "hasCartError": false,
+        "hasCatalogUnavailable": false,
+        "hasLocalhostFetch": false,
+        "hasOndcNetwork": false,
+        "href": "https://ondcseller.aadharcha.in/dashboard",
+        "logs": [],
+        "textHead": "SELLER\nONDC Seller\nOperate a trust-aware catalog and fulfillment surface.\nDashboard\nCatalog\nOrders\nConfig\nSELLER\nCatalog and trust\nPublish listings when verified. Open catalog to manage the full shelf.\nAdd product\nOpen catalog\nTrust check: Unsigned\n\nSign in before elevated seller actions.\n\nPRODUCTS\nLive\n1\nLive listings in the demo catalog\nCATEGORIES\nInfo\n1\nSingle category so far\nTRUST\nWatch\nNeeds action\nRequired for elevated publish actions\nRECENT PRODUCTS\nInventory snapshot\nAgentGuard PreProd Atta 1kg\nNetwork-visible Seller catalog item for PreProd Buyer discovery\ndemo-commerce\nAgentGuard authority\nAgent chat\nHow it works\nS",
+        "warnCount": 0
+      }
+    },
+    {
+      "side": "seller",
+      "page": "catalog",
+      "url": "https://ondcseller.aadharcha.in/catalog",
+      "dump": {
+        "errorCount": 0,
+        "hasAtta": false,
+        "hasCartError": false,
+        "hasCatalogUnavailable": true,
+        "hasLocalhostFetch": false,
+        "hasOndcNetwork": false,
+        "href": "https://ondcseller.aadharcha.in/catalog",
+        "logs": [],
+        "textHead": "SELLER\nONDC Seller\nOperate a trust-aware catalog and fulfillment surface.\nDashboard\nCatalog\nOrders\nConfig\nSign in\nSELLER CATALOG\nRun a tighter product shelf\nReview the inventory buyers will actually encounter, then edit the exact SKU that needs cleanup.\nRefresh catalog\nAdd product\nTrust check: Unsigned\n\nSign in before elevated seller actions.\n\nVISIBLE PRODUCTS\nLive\n0\nActive SKUs in the current view\nCATEGORIES COVERED\nInfo\n0\nBroader spread helps discovery across buyer intents\nIMAGE COVERAGE\nWatch\n0\nListings with imagery read better in buyer result cards\nTRUST CONTROL\nWatch\nRestricted\nCatalog edits stay gated until sign-in or trust is verified\nUnable to load the catalog\nPublished catalog unavailable\nRetry\nAgentGuard authority\nAgent chat\nHow it works\nS",
+        "warnCount": 0
+      }
+    },
+    {
+      "side": "seller",
+      "page": "agentguard",
+      "url": "https://ondcseller.aadharcha.in/agentguard",
+      "dump": {
+        "errorCount": 0,
+        "hasAtta": false,
+        "hasCartError": false,
+        "hasCatalogUnavailable": false,
+        "hasLocalhostFetch": false,
+        "hasOndcNetwork": true,
+        "href": "https://ondcseller.aadharcha.in/agentguard",
+        "logs": [],
+        "textHead": "SELLER\nONDC Seller\nOperate a trust-aware catalog and fulfillment surface.\nDashboard\nCatalog\nOrders\nConfig\nSign out\nAGENTGUARD\nStore Operations Assistant\n\nConfigure what the agent may do. AgentGuard enforces limits \u2014 not the model.\n\nTrust check: Unsigned\n\nSign in before elevated seller actions.\n\nEdit mandate\nAuto-approve refunds up to (INR)\nAllowed actions\nPublish catalog\nChange price\nCommit inventory\nAccept orders\nReject orders\nFulfilment\nPromise remedy\nIssue refund\n\nRefunds up to INR 5000 auto-approve. Allowed: Publish catalog, Change price, Commit inventory, Accept orders, Reject orders, Promise remedy, Issue refund.\n\nRoutine refunds up to INR 5000 may execute automatically. Larger refunds require one-time approval.\n\nAgent: Store Operations Assistant \u00b7 Status: active\n\nMandate: active \u00b7 ONDC network; payment rails simulated (not live UPI)\n\nConfirm mandate\nPause agent\nRefresh\nTry refunds on demo order\nSamantha memory\n\nLikes\n\n\u2014\n\nDislikes\n\n\u2014\n\nPreferences\n\n\u2014\n\nNotes\n\n\u2014\n\nClear memory\nReceipts (PII-free)\n\nNo receipts yet.\n\nAgentGuard authority\nAgent chat\nHow it works\nS",
+        "warnCount": 0
+      }
+    }
+  ],
+  "unique_errors": []
+}

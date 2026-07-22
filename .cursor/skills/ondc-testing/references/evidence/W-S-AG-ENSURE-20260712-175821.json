@@ -1,0 +1,20 @@
+{
+  "result": {
+    "bodyHint": "SELLER\nONDC Seller\nOperate a trust-aware catalog and fulfillment surface.\nDashboard\nCatalog\nOrders\nConfig\nSign out\nAGENTGUARD\nStore Operations Assistant\n\nConfigure what the agent may do. AgentGuard enforces limits \u2014 not the model.\n\nTrust check: Unsigned\n\nSign in before elevated seller actions.\n\nFailed to fetch\n\nEdit mandate\nAuto-approve refunds up to (INR)\nAllowed actions\nPublish catalog\nChange pr",
+    "ensure_ok": true,
+    "ensure_status": 200,
+    "me": {
+      "authenticated": true,
+      "provider": "auth0",
+      "status": 200
+    },
+    "message": "AgentGuard agent ready",
+    "permission_denied": false,
+    "signIn": true,
+    "url": "https://ondcseller.aadharcha.in/agentguard"
+  },
+  "screenshots": [
+    ".cursor/skills/ondc-testing/references/evidence/W-S-AG-ENSURE-20260712-175821-2.jpeg"
+  ],
+  "DATA_DIR": "/tmp/aadharchain-data"
+}

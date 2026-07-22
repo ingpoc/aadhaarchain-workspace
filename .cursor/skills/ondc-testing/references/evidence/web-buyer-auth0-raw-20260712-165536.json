@@ -1,0 +1,66 @@
+{
+  "stamp": "20260712-165536",
+  "authorize": "https://dev-ejqlkc0qt84udk7i.us.auth0.com/authorize?client_id=kzV7kK7YlqRHtWj8NIxtJ3R95nmEJaBn&redirect_uri=https%3A%2F%2Fidentity-aadhar-gateway-main.onrender.com%2Fapi%2Fauth%2Fauth0%2Fcallback&response_type=code&scope=openid+profile+email&state=eyJhdWQiOiJidXllciIsImV4cCI6MTc4Mzg1NjEzNiwicmV0dXJuX3VybCI6Imh0dHBzOi8vb25kY2J1eWVyLmFhZGhhcmNoYS5pbi9zZWFyY2gifQ.331c4c9c29dae018d5c98a7fde6056cdc1d99157b63f0feb741c3d7de4aac8c8",
+  "start": [
+    {
+      "type": "goto",
+      "url": "https://ondcbuyer.aadharcha.in/search"
+    },
+    {
+      "type": "page_context",
+      "url": "https://ondcbuyer.aadharcha.in/search",
+      "title": "ONDC Buyer",
+      "headings": [
+        {
+          "tag": "H1",
+          "text": "Search verified commerce"
+        }
+      ],
+      "buttons": [
+        "Open search",
+        "Sign in",
+        "Grocery",
+        "Search",
+        "S"
+      ]
+    },
+    {
+      "type": "screenshot",
+      "screenshot_path": "/Users/gurusharan/.hermes/cache/hermes-chrome/f6bc62ea-1085-4d2d-9188-3493a973202c-3.jpeg"
+    },
+    {
+      "type": "evaluate"
+    }
+  ],
+  "authorize_nav": [
+    {
+      "type": "goto",
+      "url": "https://ondcbuyer.aadharcha.in/search"
+    },
+    {
+      "type": "page_context",
+      "url": "https://ondcbuyer.aadharcha.in/search",
+      "title": "ONDC Buyer",
+      "headings": [
+        {
+          "tag": "H1",
+          "text": "Search verified commerce"
+        }
+      ],
+      "buttons": [
+        "Open search",
+        "Sign in",
+        "Grocery",
+        "Search",
+        "S"
+      ]
+    },
+    {
+      "type": "screenshot",
+      "screenshot_path": "/Users/gurusharan/.hermes/cache/hermes-chrome/83334ea0-af0a-4a0e-866e-c09b52ea5bb1-3.jpeg"
+    },
+    {
+      "type": "evaluate"
+    }
+  ]
+}

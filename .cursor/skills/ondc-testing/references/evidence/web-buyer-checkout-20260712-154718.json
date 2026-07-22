@@ -1,0 +1,63 @@
+{
+  "shots": [
+    "/Users/gurusharan/Documents/remote-claude/active/apps/AadhaarChainWorkspace/.cursor/skills/ondc-testing/references/evidence/web-buyer-checkout-20260712-154718-10.jpeg",
+    "/Users/gurusharan/Documents/remote-claude/active/apps/AadhaarChainWorkspace/.cursor/skills/ondc-testing/references/evidence/web-buyer-checkout-20260712-154718-16.jpeg"
+  ],
+  "page_diag": {
+    "ok": true,
+    "ui": {},
+    "console": {
+      "installed": false,
+      "total": 0,
+      "errors": [],
+      "warns": []
+    },
+    "backend": [],
+    "issues": [],
+    "final_url": "https://ondcbuyer.aadharcha.in/checkout"
+  },
+  "routes": [
+    {
+      "pathname": "/cart",
+      "body": "PORTFOLIO\nONDC Buyer\nDiscover commerce under AgentGuard authorization.\nSearch\nCart\nOrders\nConfig\nCART\nShopping cart\n\n2 items ready for trust-aware checkout.\n\nTrust check: Unsigned\n\nSign in before elevated buyer actions. Wallet KYC is optional advanced setup.\n\nSharbati Atta 5kg\nINR 325.00 \u00d7 1\n1\nRemove\nRobusta Bananas (12 pcs)\nINR 78.00 \u00d7 2\n2\nRemove\nOrder summary\nSubtotal\nINR 481.00\nTotal\nINR 481.00\nProceed to checkout\nNeed more items?\nContinue shopping\nAgent chat\nHow it works\nS",
+      "buttons": [
+        "Open navigation",
+        "PORTFOLIO\nONDC Buyer\nDiscover commerce under AgentGuard authorization.",
+        "Search",
+        "Cart",
+        "Orders",
+        "Config",
+        "Remove",
+        "Remove",
+        "Proceed to checkout",
+        "Continue shopping",
+        "Agent chat",
+        "How it works",
+        "S"
+      ]
+    },
+    {
+      "pathname": "/checkout",
+      "body": "PORTFOLIO\nONDC Buyer\nDiscover commerce under AgentGuard authorization.\nSearch\nCart\nOrders\nConfig\nCHECKOUT\nCheckout\n\nConfirm buyer information, generate a quote, and place the order. AgentGuard authorizes protected checkout.\n\nTrust check: Unsigned\n\nSign in before elevated buyer actions. Wallet KYC is optional advanced setup.\n\nBUYER DETAILS\nBilling information\nFull name *\nEmail *\nPhone *\nGSTIN\n\nOptional, used for business purchases and GST invoices.\n\nDELIVERY\nDelivery address\nStreet address *\nCity *\nState *\nPostal code *\n\nUse a 6-digit PIN code so local quote generation can estimate delivery.\n\nPAYMENT\nPayment method\nUPI\nCard\nNet banking\nWallet\nCash on delivery\nPay using any UPI app like GPay, PhonePe, or Paytm.\nUPI ID\n\nEnter a UPI handle like mobile@upi or username@oksbi.\n\nCART PREVIEW\nCurrent basket\nSharbati Atta 5kg \u00d7 1\nINR 325.00\nRobusta Bananas (12 pcs) \u00d7 2\nINR 156.00\nSubtotal\nINR 481.00\n\nComplete the form to estimate delivery, tax, and the final quote.\n\nBUYER AUTHORITY\nShopping agent limits\nAuto-approve checkout up to (INR)\n\nRoutine checkout up to INR 10000 can proceed without step-up. Higher carts need exact one-time approval; replay is rejected.\n\nPayment, ONDC exchange, logistics, and settlement are simulated; AgentGuard authorization and receipt creation are real local gateway checks.\n\nConfirm mandate\nnot confirmed\nPause blocks the next protected checkout\nTrust verification required\nValidation\n\nSign in (Google or demo) to continue.\n\nBack to cart\nAgent chat\nHow it works\nS",
+      "buttons": [
+        "Open navigation",
+        "PORTFOLIO\nONDC Buyer\nDiscover commerce under AgentGuard authorization.",
+        "Search",
+        "Cart",
+        "Orders",
+        "Config",
+        "UPI",
+        "Card",
+        "Net banking",
+        "Wallet",
+        "Cash on delivery",
+        "Confirm mandate",
+        "Trust verification required",
+        "Back to cart",
+        "Agent chat",
+        "How it works",
+        "S"
+      ]
+    }
+  ]
+}

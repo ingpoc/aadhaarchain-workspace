@@ -1,0 +1,82 @@
+{
+  "recorded_at": "2026-07-18T00:30:30+05:30",
+  "executable_source_hash": "af98738a621dfb6109e06d06c2833a20e593cb6e4cf8f08d3edb23dd3781088e",
+  "scope": "final-local-visible-customer-acceptance",
+  "status": "tooling_blocked",
+  "owner": "portfolio-browser WIP Hermes isolation target-safety path",
+  "initial_attempt": {
+    "session": "buyer-novice-pass1-terra",
+    "result": "tooling_blocked",
+    "reason": "The checkout form was visible and accepted one cursor-entered character, but semantic selector entry found no visible input and cursor entry could not complete the intended field.",
+    "final_url": "http://127.0.0.1:43102/checkout",
+    "screenshots": [
+      "/Users/gurusharan/plugins/hermes-chrome-cursor-wip/run/cache/hermes-chrome/ff68e997-0a85-4e66-b43d-e5abbe6bdc45-1.png",
+      "/Users/gurusharan/plugins/hermes-chrome-cursor-wip/run/cache/hermes-chrome/35abb7c5-1883-41fc-ae79-0126d1b46a80-2.png",
+      "/Users/gurusharan/plugins/hermes-chrome-cursor-wip/run/cache/hermes-chrome/05ba6434-4871-4956-97dc-23686acd3693-0.png"
+    ],
+    "lease_closed": true
+  },
+  "bounded_recovery": {
+    "session": "buyer-novice-34066b1d-d72d-43fb-9c98-c4824d88ab43",
+    "result": "tooling_blocked",
+    "reason": "The visible full-name locator again reported no matching element; cursor entry then diverged so phone text appeared in postal-code readback. No authorization was submitted.",
+    "final_url": "http://127.0.0.1:43102/checkout",
+    "screenshots": [
+      "/Users/gurusharan/plugins/hermes-chrome-cursor-wip/run/cache/hermes-chrome/df0b8d51-9400-46fd-b48a-f3f1f1ecf605-1.png",
+      "/Users/gurusharan/plugins/hermes-chrome-cursor-wip/run/cache/hermes-chrome/b47aa9c6-f719-4b60-a631-9b72f7726842-0.png",
+      "/Users/gurusharan/plugins/hermes-chrome-cursor-wip/run/cache/hermes-chrome/b6475705-2f3c-4ade-a772-49345196b4ad-0.png"
+    ],
+    "lease_closed": true,
+    "session_absent_after_closeout": true
+  },
+  "owner_repair": {
+    "status": "implemented_and_live_proven",
+    "repository": "/Users/gurusharan/plugins/hermes-chrome-cursor-wip",
+    "changes": [
+      "interactive semantic locators now auto-wait for late-mounted targets",
+      "interactive semantic locators re-resolve after the visible cursor glide",
+      "type uses the refreshed target instead of a stale coordinate"
+    ],
+    "focused_live_proof": "test_chrome_parity_capabilities.py passed the late-mounted remounting Full name label case and proved the postal-code decoy stayed empty",
+    "skill_validation": "hard=0; one pre-existing soft directory-name warning",
+    "proof_environment_fingerprint": "sha256:d741c72b05d7723e4c0c2f93591389947a960127035d1afa9b0710784007601e"
+  },
+  "capture_repair": {
+    "status": "implemented_and_stress_proven",
+    "changes": [
+      "globally serialized viewport captures refocus and reactivate the lease-owned window and tab inside the capture critical section",
+      "the specific Chrome image-readback transient receives one bounded retry after two animation frames",
+      "capture starts are spaced to remain below Chrome's two-calls-per-second quota"
+    ],
+    "live_proof": "Three consecutive concurrent A/B screenshot rounds returned non-empty images with the correct lease-specific pixels and no image-readback or quota failure."
+  },
+  "validation_blocker": {
+    "status": "repeated_tooling_failure",
+    "command": "HERMES_CHROME_BRIDGE_SOCKET=/Users/gurusharan/plugins/hermes-chrome-cursor-wip/run/chrome-bridge.sock python3 /Users/gurusharan/plugins/hermes-chrome-cursor-wip/plugin/hermes_chrome/tests/test_multi_agent_isolation.py",
+    "reason": "After capture stability passed, the full isolation suite and its single bounded recovery both failed at moved text target is re-resolved once. A separate one-case readback passed with retried=true, moved=true, targetClicks=1, and decoyClicks=0, so the remaining defect is sequence-dependent in the complete target-safety gate and is not accepted as green.",
+    "lease_state_after_stop": "empty",
+    "product_proof_resumed": false
+  },
+  "product_observation": {
+    "passed_before_blocker": [
+      "generic search and visible no-match recovery",
+      "one available grocery offer",
+      "cart add",
+      "quantity increase",
+      "remove and clear",
+      "re-add and reach checkout"
+    ],
+    "not_proven": [
+      "checkout authorization",
+      "paid order or receipt",
+      "Buyer pass 1",
+      "Buyer pass 2",
+      "Seller passes",
+      "two-sided passes",
+      "combined UI and accessibility smoke"
+    ],
+    "created_order": false,
+    "created_receipt": false
+  },
+  "next_action": "Diagnose and repair the sequence-dependent moved-text target-safety failure in the complete WIP Hermes isolation suite, then obtain two consecutive full-suite passes before resuming the same goal and rerunning the entire Buyer mission from a fresh principal."
+}

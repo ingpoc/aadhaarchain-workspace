@@ -1,0 +1,59 @@
+{
+  "recorded_at": "2026-07-18T00:50:59+05:30",
+  "executable_source_hash": "af98738a621dfb6109e06d06c2833a20e593cb6e4cf8f08d3edb23dd3781088e",
+  "proof_environment_fingerprint": "sha256:d741c72b05d7723e4c0c2f93591389947a960127035d1afa9b0710784007601e",
+  "scope": "final-local-visible-customer-acceptance",
+  "status": "tooling_blocked",
+  "owner": "WIP Hermes semantic locator readiness on the live Buyer search surface",
+  "proof_owner_admission": {
+    "semantic_remount_regression": "pass",
+    "concurrent_capture_stress": "pass",
+    "multi_agent_isolation_consecutive_passes": 2,
+    "checkpoint_execute_once_isolation_pass": "pass",
+    "buyer_reviewer_ready": "pass",
+    "buyer_reviewer_ready_screenshots_byte_identical": true
+  },
+  "buyer_setup": {
+    "principal_id": "principal:demo:3a1207ef15184fad",
+    "starting_url": "http://127.0.0.1:43102/search",
+    "cart_state": "visibly empty",
+    "signed_in_marker": "Sign out",
+    "reviewer_ready_task_id": "buyer-reviewer-ready-af987-resumed"
+  },
+  "blind_mission": {
+    "session_id": "buyer-novice-af987-pass1-resumed",
+    "verdict": "Tooling Blocked",
+    "lease_ready": "2026-07-18T00:47:28+05:30",
+    "verdict_and_closeout": "2026-07-18T00:50:06+05:30",
+    "final_url": "http://127.0.0.1:43102/search",
+    "first_failure": "Locator did not resolve for fill on the visibly labeled search field.",
+    "bounded_recovery": "After one permitted recovery snapshot, label-based fill succeeded and rice was visibly entered.",
+    "repeated_failure": "The visible Search button interaction then returned Locator did not resolve for click.",
+    "final_visible_state": "Search ONDC with rice entered",
+    "created_order": false,
+    "created_receipt": false,
+    "screenshots": [
+      "/Users/gurusharan/plugins/hermes-chrome-cursor-wip/run/cache/hermes-chrome/382087cd-05a7-4a91-9534-fd5da087f7bd-1.png",
+      "/Users/gurusharan/plugins/hermes-chrome-cursor-wip/run/cache/hermes-chrome/6095c5bc-ca95-482c-99b4-e8b3252e3c24-1.png"
+    ],
+    "screenshots_personally_read": true,
+    "lease_closed": true,
+    "session_absent_after_closeout": true
+  },
+  "data_hygiene": {
+    "item_count_before_and_after": 12,
+    "order_count_before_and_after": 8,
+    "inventory_unchanged": true,
+    "created_delta": 0,
+    "sessions_after_closeout": []
+  },
+  "not_proven": [
+    "Buyer customer pass 1",
+    "Buyer UI and accessibility smoke",
+    "Buyer customer pass 2",
+    "Seller customer passes",
+    "two-sided visible passes",
+    "combined UI and accessibility verdict"
+  ],
+  "next_action": "Add a focused WIP Hermes regression for the live-style labeled Buyer search input and Search button across page readiness/remount, repair the proven owner, then rerun parity plus two consecutive isolation passes before authenticating another fresh Buyer principal and repeating the entire blind mission."
+}

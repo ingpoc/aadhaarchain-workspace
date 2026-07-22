@@ -1,0 +1,27 @@
+{
+  "id": "W-B-FIND-ATTA-DOCTRINE",
+  "result": "Fail",
+  "shots": [
+    "W-B-DOCTRINE-ATTA-20260712-225120-0.jpeg"
+  ],
+  "before": {
+    "settle_ms": 93000,
+    "tool_block": "collect up to 12s",
+    "search_posts": 2,
+    "note": "pre-doctrine double collect"
+  },
+  "after": {
+    "early_results_ms": null,
+    "tool_done_ms": null,
+    "grid_paint_ms": null,
+    "unique_search_posts": 0,
+    "unique_catalog_gets": 0,
+    "has_txn": false,
+    "failed": false,
+    "matches": null,
+    "fetch_ondc": [],
+    "tools": []
+  },
+  "stamp": "20260712-225120",
+  "deploy": "doctrine-archive"
+}

@@ -1,0 +1,60 @@
+{
+  "after_load": {
+    "body_snip": "PORTFOLIO\nONDC Buyer\nDiscover commerce under AgentGuard authorization.\nSearch\nCart\nOrders\nConfig\nRESULTS\nUnable to load results\n\nONDC gateway dispatch failed:\n\nBack to search\nRetry\nAgent chat\nHow it works\nS",
+    "error_ui": true,
+    "failed_fetch": false,
+    "fetchLog": [],
+    "has_atta": false,
+    "href": "https://ondcbuyer.aadharcha.in/results?category=grocery&q=atta",
+    "matches": null,
+    "pulling": false
+  },
+  "after_retry": {
+    "body_snip": "PORTFOLIO\nONDC Buyer\nDiscover commerce under AgentGuard authorization.\nSearch\nCart\nOrders\nConfig\nRESULTS\nUnable to load results\n\nFailed to fetch\n\nBack to search\nRetry\nAgent chat\nHow it works\nS",
+    "error_ui": true,
+    "failed_fetch": true,
+    "fetchLog": [
+      {
+        "ms": 445,
+        "ok": true,
+        "status": 200,
+        "url": "https://gateway.aadharcha.in/api/ondc/status"
+      },
+      {
+        "ms": 563,
+        "ok": true,
+        "status": 200,
+        "url": "https://gateway.aadharcha.in/api/ondc/search"
+      },
+      {
+        "ms": 535,
+        "ok": true,
+        "status": 200,
+        "url": "https://gateway.aadharcha.in/api/ondc/catalogs?transaction_id=15c0facd-19ea-4f03-8b85-19342091b16a"
+      },
+      {
+        "ms": 631,
+        "ok": true,
+        "status": 200,
+        "url": "https://gateway.aadharcha.in/api/ondc/catalogs?transaction_id=a96bce81-644a-40cc-9ed2-a44afea9948d"
+      },
+      {
+        "ms": 32981,
+        "ok": true,
+        "status": 200,
+        "url": "https://gateway.aadharcha.in/api/ondc/catalogs?transaction_id=15c0facd-19ea-4f03-8b85-19342091b16a"
+      },
+      {
+        "error": "Failed to fetch",
+        "ms": 233,
+        "ok": false,
+        "url": "https://gateway.aadharcha.in/api/ondc/catalogs?transaction_id=15c0facd-19ea-4f03-8b85-19342091b16a"
+      }
+    ],
+    "has_atta": false,
+    "href": "https://ondcbuyer.aadharcha.in/results?category=grocery&q=atta",
+    "matches": null,
+    "pulling": false
+  },
+  "stamp": "20260712-223723"
+}

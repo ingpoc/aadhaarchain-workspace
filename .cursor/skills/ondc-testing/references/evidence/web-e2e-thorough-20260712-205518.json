@@ -1,0 +1,819 @@
+{
+  "stamp": "20260712-205518",
+  "buyer": [
+    {
+      "id": "W-B-SPA-SESSION",
+      "result": "Pass",
+      "shots": [
+        "W-B-BOOT-20260712-205518-0.jpeg",
+        "W-B-BOOT-20260712-205518-1.jpeg"
+      ],
+      "notes": "principal=principal:auth0:google-oauth2:109432510636331667287 sign_out=True mandate=active",
+      "state": {
+        "pathname": "/search",
+        "href": "https://ondcbuyer.aadharcha.in/search",
+        "hint": "Samantha\n\nListening + text ready\n\nSend\nPreferences & AgentGuard",
+        "reply": "",
+        "tools": [],
+        "has_sign_out": true,
+        "has_banana": false,
+        "has_receipt": false,
+        "has_paid": false,
+        "has_approval": false,
+        "has_handoff": false,
+        "voice_connected": true,
+        "text_ready": false,
+        "mandate_id": "mandate_8a012dda770949b1",
+        "mandate_status": "active",
+        "principal": "principal:auth0:google-oauth2:109432510636331667287"
+      }
+    },
+    {
+      "id": "W-B-MANDATE",
+      "result": "Pass",
+      "shots": [
+        "W-B-BOOT-20260712-205518-0.jpeg",
+        "W-B-BOOT-20260712-205518-1.jpeg"
+      ],
+      "notes": "status=active id=mandate_8a012dda770949b1 msg=Mandate compiled",
+      "state": {
+        "mandate_id": "mandate_8a012dda770949b1",
+        "mandate_status": "active"
+      }
+    },
+    {
+      "id": "W-B-VOICE-MIC",
+      "result": "Pass",
+      "shots": [
+        "W-B-BOOT-20260712-205518-0.jpeg",
+        "W-B-BOOT-20260712-205518-1.jpeg"
+      ],
+      "notes": "mic_ok=True err=None ready={'connecting': False, 'err': False, 'hint': 'Samantha\\n\\nListening + text ready\\n\\nSend\\nPreferences & AgentGuard', 'ready': True}",
+      "state": {
+        "mic_ok": true
+      }
+    },
+    {
+      "id": "W-B-HI",
+      "result": "Fail",
+      "shots": [
+        "W-B-HI-20260712-205518-0.jpeg"
+      ],
+      "notes": "path=/results tools=['search_catalog'] reply=Hey there! Nice to hear you. What can I help you shop for today?",
+      "state": {
+        "pathname": "/results",
+        "href": "https://ondcbuyer.aadharcha.in/results?category=grocery&q=available%20to%20buy&ondc_txn=3d62fd5e-dc59-42e7-b557-963429044d16",
+        "hint": "Samantha\n\nSamantha is thinking\u2026\n\nHey there! Nice to hear you. What can I help you shop for today?\n\nSend\nPreferences & AgentGuard",
+        "reply": "Hey there! Nice to hear you. What can I help you shop for today?",
+        "tools": [
+          {
+            "amount_inr": null,
+            "at": 1783869966347,
+            "callId": "call_VIbRWZ7MerCs4GXE",
+            "cartAdds": [],
+            "decision": null,
+            "message": "Found 140 ONDC network item(s) for \u201cavailable to buy\u201d.",
+            "name": "search_catalog",
+            "navigateTo": "/results?category=grocery&q=available%20to%20buy&ondc_txn=3d62fd5e-dc59-42e7-b557-963429044d16",
+            "ok": true,
+            "receiptId": null,
+            "session_id": null
+          }
+        ],
+        "has_sign_out": true,
+        "has_banana": false,
+        "has_receipt": false,
+        "has_paid": false,
+        "has_approval": false,
+        "has_handoff": false,
+        "voice_connected": false,
+        "text_ready": false
+      }
+    },
+    {
+      "id": "W-B-FIND-BANANA",
+      "result": "Pass",
+      "shots": [
+        "W-B-FIND-BANANA-20260712-205518-0.jpeg"
+      ],
+      "notes": "path=/results banana=True tools=['search_catalog', 'search_catalog', 'search_catalog'] hint=Samantha\n\nFound 141 ONDC network item(s) for \u201cbananas\u201d.\n\nain for \u201crefrigerator\u201d or a brand name, and we can see what\u2019s a",
+      "state": {
+        "pathname": "/results",
+        "href": "https://ondcbuyer.aadharcha.in/results?category=grocery&q=bananas&ondc_txn=ad1d4b48-916a-49a8-8ff5-70c7aad02076",
+        "hint": "Samantha\n\nFound 141 ONDC network item(s) for \u201cbananas\u201d.\n\nain for \u201crefrigerator\u201d or a brand name, and we can see what\u2019s available.I pulled up the bananas results, and it looks like most of the items returned are not bananas\u2014they\u2019re things like crafts, decorative sets, and some items with a strange name. If you want actual bananas, try searching for \u201cbanana\u201d or \u201cfresh fruits.\u201d I can help refine the search if you have a preferred brand or freshness level.\n\nSend\nPreferences & AgentGuard",
+        "reply": "ain for \u201crefrigerator\u201d or a brand name, and we can see what\u2019s available.I pulled up the bananas results, and it looks like most of the items returned are not bananas\u2014they\u2019re things like crafts, decorative sets, and some items with a strange name. If you want actual bananas, try searching for \u201cbanana\u201d or \u201cfresh fruits.\u201d I can help refine the search if you have a preferred brand or freshness level.",
+        "tools": [
+          {
+            "amount_inr": null,
+            "at": 1783869966347,
+            "callId": "call_VIbRWZ7MerCs4GXE",
+            "cartAdds": [],
+            "decision": null,
+            "message": "Found 140 ONDC network item(s) for \u201cavailable to buy\u201d.",
+            "name": "search_catalog",
+            "navigateTo": "/results?category=grocery&q=available%20to%20buy&ondc_txn=3d62fd5e-dc59-42e7-b557-963429044d16",
+            "ok": true,
+            "receiptId": null,
+            "session_id": null
+          },
+          {
+            "amount_inr": null,
+            "at": 1783870029439,
+            "callId": "call_gLgv4VjGz9XbE6DZ",
+            "cartAdds": [],
+            "decision": null,
+            "message": "Failed to fetch",
+            "name": "search_catalog",
+            "navigateTo": null,
+            "ok": false,
+            "receiptId": null,
+            "session_id": null
+          },
+          {
+            "amount_inr": null,
+            "at": 1783870031446,
+            "callId": "call_AeBfwFy3rz2KIHqw",
+            "cartAdds": [],
+            "decision": null,
+            "message": "Found 141 ONDC network item(s) for \u201cbananas\u201d.",
+            "name": "search_catalog",
+            "navigateTo": "/results?category=grocery&q=bananas&ondc_txn=ad1d4b48-916a-49a8-8ff5-70c7aad02076",
+            "ok": true,
+            "receiptId": null,
+            "session_id": null
+          }
+        ],
+        "has_sign_out": true,
+        "has_banana": true,
+        "has_receipt": false,
+        "has_paid": false,
+        "has_approval": false,
+        "has_handoff": false,
+        "voice_connected": false,
+        "text_ready": false
+      }
+    },
+    {
+      "id": "W-B-ADD-BANANA",
+      "result": "Fail",
+      "shots": [
+        "W-B-ADD-BANANA-20260712-205518-0.jpeg",
+        "W-B-CART-20260712-205518-0.jpeg"
+      ],
+      "notes": "ask_tools=['search_catalog', 'search_catalog', 'search_catalog', 'search_catalog'] cart_banana=False cart_snip=PORTFOLIO\nONDC Buyer\nDiscover commerce under AgentGuard authorization.\nSearch\nCart\nOrders\nConfig\nYour cart is empty\nAdd some items to get started with the buyer",
+      "state": {
+        "pathname": "/results",
+        "href": "https://ondcbuyer.aadharcha.in/results?category=grocery&q=bananas&ondc_txn=ad1d4b48-916a-49a8-8ff5-70c7aad02076",
+        "hint": "Samantha\n\nFailed to fetch\n\nI can\u2019t add bananas to your cart yet because the search for a fridge is still running on my side. I need the results to come back first so I can pick an exact item. If you\u2019d like, try \u201cbanana\u201d or \u201cfresh fruit\u201d instead, and we can try adding that instead.Got it, the system seems to be having trouble fetching results. Let me think through how to help next.\n\nSend\nPreferences & AgentGuard",
+        "reply": "I can\u2019t add bananas to your cart yet because the search for a fridge is still running on my side. I need the results to come back first so I can pick an exact item. If you\u2019d like, try \u201cbanana\u201d or \u201cfresh fruit\u201d instead, and we can try adding that instead.Got it, the system seems to be having trouble fetching results. Let me think through how to help next.",
+        "tools": [
+          {
+            "amount_inr": null,
+            "at": 1783869966347,
+            "callId": "call_VIbRWZ7MerCs4GXE",
+            "cartAdds": [],
+            "decision": null,
+            "message": "Found 140 ONDC network item(s) for \u201cavailable to buy\u201d.",
+            "name": "search_catalog",
+            "navigateTo": "/results?category=grocery&q=available%20to%20buy&ondc_txn=3d62fd5e-dc59-42e7-b557-963429044d16",
+            "ok": true,
+            "receiptId": null,
+            "session_id": null
+          },
+          {
+            "amount_inr": null,
+            "at": 1783870029439,
+            "callId": "call_gLgv4VjGz9XbE6DZ",
+            "cartAdds": [],
+            "decision": null,
+            "message": "Failed to fetch",
+            "name": "search_catalog",
+            "navigateTo": null,
+            "ok": false,
+            "receiptId": null,
+            "session_id": null
+          },
+          {
+            "amount_inr": null,
+            "at": 1783870031446,
+            "callId": "call_AeBfwFy3rz2KIHqw",
+            "cartAdds": [],
+            "decision": null,
+            "message": "Found 141 ONDC network item(s) for \u201cbananas\u201d.",
+            "name": "search_catalog",
+            "navigateTo": "/results?category=grocery&q=bananas&ondc_txn=ad1d4b48-916a-49a8-8ff5-70c7aad02076",
+            "ok": true,
+            "receiptId": null,
+            "session_id": null
+          },
+          {
+            "amount_inr": null,
+            "at": 1783870089266,
+            "callId": "call_d0NIMr49tC0v1AjY",
+            "cartAdds": [],
+            "decision": null,
+            "message": "Failed to fetch",
+            "name": "search_catalog",
+            "navigateTo": null,
+            "ok": false,
+            "receiptId": null,
+            "session_id": null
+          }
+        ],
+        "has_sign_out": true,
+        "has_banana": true,
+        "has_receipt": false,
+        "has_paid": false,
+        "has_approval": false,
+        "has_handoff": false,
+        "voice_connected": false,
+        "text_ready": false
+      }
+    },
+    {
+      "id": "W-B-CART",
+      "result": "Pass",
+      "shots": [
+        "W-B-CART-20260712-205518-0.jpeg"
+      ],
+      "notes": "path=/cart banana=False",
+      "state": {
+        "pathname": "/cart",
+        "href": "https://ondcbuyer.aadharcha.in/cart",
+        "hint": "",
+        "reply": "",
+        "tools": [],
+        "has_sign_out": false,
+        "has_banana": false,
+        "has_receipt": false,
+        "has_paid": false,
+        "has_approval": false,
+        "has_handoff": false,
+        "voice_connected": false,
+        "text_ready": false
+      }
+    },
+    {
+      "id": "W-B-NAV-CHECKOUT",
+      "result": "Fail",
+      "shots": [
+        "W-B-NAV-CHECKOUT-20260712-205518-0.jpeg"
+      ],
+      "notes": "path=/cart tools=[]",
+      "state": {
+        "pathname": "/cart",
+        "href": "https://ondcbuyer.aadharcha.in/cart",
+        "hint": "Samantha\n\nRealtime not configured on gateway\n\nSend\nPreferences & AgentGuard",
+        "reply": "",
+        "tools": [],
+        "has_sign_out": true,
+        "has_banana": false,
+        "has_receipt": false,
+        "has_paid": false,
+        "has_approval": false,
+        "has_handoff": false,
+        "voice_connected": false,
+        "text_ready": false
+      }
+    },
+    {
+      "id": "W-B-MEM-ORG",
+      "result": "Pass",
+      "shots": [
+        "W-B-MEM-ORG-20260712-205518-0.jpeg",
+        "W-B-CONFIG-20260712-205518-0.jpeg"
+      ],
+      "notes": "tools=[] organic_ui=True",
+      "state": {
+        "pathname": "/cart",
+        "href": "https://ondcbuyer.aadharcha.in/cart",
+        "hint": "Samantha\n\nRealtime not configured on gateway\n\nSend\nPreferences & AgentGuard",
+        "reply": "",
+        "tools": [],
+        "has_sign_out": true,
+        "has_banana": false,
+        "has_receipt": false,
+        "has_paid": false,
+        "has_approval": false,
+        "has_handoff": false,
+        "voice_connected": false,
+        "text_ready": false
+      }
+    },
+    {
+      "id": "W-B-CONFIG",
+      "result": "Pass",
+      "shots": [
+        "W-B-CONFIG-20260712-205518-0.jpeg"
+      ],
+      "notes": "path=/config mandate=True",
+      "state": {
+        "pathname": "/config",
+        "href": "https://ondcbuyer.aadharcha.in/config",
+        "hint": "",
+        "reply": "",
+        "tools": [],
+        "has_sign_out": true,
+        "has_banana": false,
+        "has_receipt": false,
+        "has_paid": false,
+        "has_approval": false,
+        "has_handoff": false,
+        "voice_connected": false,
+        "text_ready": false
+      }
+    },
+    {
+      "id": "W-B-CHECKOUT",
+      "result": "Pass",
+      "shots": [
+        "W-B-CHECKOUT-20260712-205518-0.jpeg",
+        "W-B-CHECKOUT-PAGE-20260712-205518-0.jpeg"
+      ],
+      "notes": "ask_path=/cart tools=['checkout_commit', 'navigate_to'] paid=False receipt=False approval=False snip=PORTFOLIO\nONDC Buyer\nDiscover commerce under AgentGuard authorization.\nSearch\nCart\nOrders\nConfig\nSign out\nYour cart is empty\nAdd some items to get started with the buyer checkout flow.\nStart shopping\n",
+      "state": {
+        "pathname": "/cart",
+        "href": "https://ondcbuyer.aadharcha.in/cart",
+        "hint": "Samantha\n\nNavigating to /cart.\n\nGot it, but I can\u2019t checkout yet\u2014your cart is empty. Add some items first, and then I\u2019ll help you check out and pay.Got it, let me take you to your cart so we can get this sorted.Okay, we\u2019re in your cart. Now let\u2019s check whether your cart has items. If it\u2019s empty or already empty, you\u2019ll need to add something first. If you\u2019d like, tell me what you\u2019re shopping for and I\u2019ll help you find it.\n\nSend\nPreferences & AgentGuard",
+        "reply": "Got it, but I can\u2019t checkout yet\u2014your cart is empty. Add some items first, and then I\u2019ll help you check out and pay.Got it, let me take you to your cart so we can get this sorted.Okay, we\u2019re in your cart. Now let\u2019s check whether your cart has items. If it\u2019s empty or already empty, you\u2019ll need to add something first. If you\u2019d like, tell me what you\u2019re shopping for and I\u2019ll help you find it.",
+        "tools": [
+          {
+            "amount_inr": null,
+            "at": 1783870167056,
+            "callId": "call_fKoXDrxWTV7PUVu9",
+            "cartAdds": [],
+            "decision": null,
+            "message": "Cart total is empty. Add items before checkout.",
+            "name": "checkout_commit",
+            "navigateTo": "/cart",
+            "ok": false,
+            "receiptId": null,
+            "session_id": "session-1769264983827-fzqlgs6"
+          },
+          {
+            "amount_inr": null,
+            "at": 1783870172283,
+            "callId": "call_0jFEAsHYnw6sTsB6",
+            "cartAdds": [],
+            "decision": null,
+            "message": "Navigating to /cart.",
+            "name": "navigate_to",
+            "navigateTo": "/cart",
+            "ok": true,
+            "receiptId": null,
+            "session_id": null
+          }
+        ],
+        "has_sign_out": true,
+        "has_banana": false,
+        "has_receipt": false,
+        "has_paid": false,
+        "has_approval": false,
+        "has_handoff": false,
+        "voice_connected": false,
+        "text_ready": false
+      }
+    },
+    {
+      "id": "W-B-RUNTIME",
+      "result": "Pass",
+      "shots": [
+        "W-B-RUNTIME-20260712-205518-0.jpeg",
+        "W-B-RUNTIME-LATE-20260712-205518-0.jpeg"
+      ],
+      "notes": "handoff=True path=/search late_path=/search tools=['delegate_to_runtime_agent'] hint=Samantha\n\n**Weekly grocery plan \u2014 \u20b91,822 / \u20b92,000 budget** *(demo catalog; simulated pricing)* --- ### Summary Balanced 7-day list for a typical 2\u20134 person hous",
+      "state": {
+        "pathname": "/search",
+        "href": "https://ondcbuyer.aadharcha.in/search",
+        "hint": "Samantha\n\n**Weekly grocery plan \u2014 \u20b91,822 / \u20b92,000 budget** *(demo catalog; simulated pricing)* --- ### Summary Balanced 7-day list for a typical 2\u20134 person household: staples, fresh produce, dairy, and cooking essentials. **\u20b9178 buffer** left for swaps or one small add-on. --- ### Budg\n\nOkay, I\u2019ll start setting up a budget-friendly weekly grocery plan and organize your list and breakdown.I\u2019ve started putting that weekly plan together, with a shopping list and breakdown under 2000 rupees. I\u2019ll wait until the system finishes, then I\u2019ll share the final list and budget.Your weekly grocery plan\n\nSend\nPreferences & AgentGuard",
+        "reply": "Okay, I\u2019ll start setting up a budget-friendly weekly grocery plan and organize your list and breakdown.I\u2019ve started putting that weekly plan together, with a shopping list and breakdown under 2000 rupees. I\u2019ll wait until the system finishes, then I\u2019ll share the final list and budget.Your weekly grocery plan",
+        "tools": [
+          {
+            "amount_inr": null,
+            "at": 1783870234912,
+            "callId": "call_qK5Wzxb9COc73Wv6",
+            "cartAdds": [],
+            "decision": null,
+            "message": "I've started that \u2014 I'll let you know when it's done.",
+            "name": "delegate_to_runtime_agent",
+            "navigateTo": null,
+            "ok": true,
+            "receiptId": null,
+            "session_id": null
+          }
+        ],
+        "has_sign_out": true,
+        "has_banana": false,
+        "has_receipt": false,
+        "has_paid": false,
+        "has_approval": false,
+        "has_handoff": false,
+        "voice_connected": false,
+        "text_ready": false
+      }
+    },
+    {
+      "id": "W-B-VOICE",
+      "result": "Blocked",
+      "shots": [
+        "W-B-VOICE-20260712-205518-0.jpeg"
+      ],
+      "notes": "gateway Realtime configured; orb hint text-only (no mic). hint=Samantha\n\n**Weekly grocery plan \u2014 \u20b91,822 / \u20b92,000 budget** *(demo catalog; simulated pricing)* --- ### Summary Balanced 7-day list for a typical 2\u20134 person hous",
+      "state": {
+        "pathname": "/search",
+        "href": "https://ondcbuyer.aadharcha.in/search",
+        "hint": "Samantha\n\n**Weekly grocery plan \u2014 \u20b91,822 / \u20b92,000 budget** *(demo catalog; simulated pricing)* --- ### Summary Balanced 7-day list for a typical 2\u20134 person household: staples, fresh produce, dairy, and cooking essentials. **\u20b9178 buffer** left for swaps or one small add-on. --- ### Budg\n\ning that weekly plan together, with a shopping list and breakdown under 2000 rupees. I\u2019ll wait until the system finishes, then I\u2019ll share the final list and budget.Your weekly grocery plan comes to 1,822 rupees out of a 2,000 rupee budget. The list is balanced for a typical household, including staples, produce, dairy, and essentials, with 178 rupees left as a buffer for swaps or one small add-on.\n\nSend\nPrefe",
+        "reply": "ing that weekly plan together, with a shopping list and breakdown under 2000 rupees. I\u2019ll wait until the system finishes, then I\u2019ll share the final list and budget.Your weekly grocery plan comes to 1,822 rupees out of a 2,000 rupee budget. The list is balanced for a typical household, including staples, produce, dairy, and essentials, with 178 rupees left as a buffer for swaps or one small add-on.",
+        "tools": [
+          {
+            "amount_inr": null,
+            "at": 1783870234912,
+            "callId": "call_qK5Wzxb9COc73Wv6",
+            "cartAdds": [],
+            "decision": null,
+            "message": "I've started that \u2014 I'll let you know when it's done.",
+            "name": "delegate_to_runtime_agent",
+            "navigateTo": null,
+            "ok": true,
+            "receiptId": null,
+            "session_id": null
+          }
+        ],
+        "has_sign_out": true,
+        "has_banana": false,
+        "has_receipt": false,
+        "has_paid": false,
+        "has_approval": false,
+        "has_handoff": false,
+        "voice_connected": false,
+        "text_ready": false
+      }
+    }
+  ],
+  "seller": [
+    {
+      "id": "W-S-SPA-SESSION",
+      "result": "Pass",
+      "shots": [
+        "W-S-BOOT-20260712-205518-0.jpeg",
+        "W-S-BOOT-20260712-205518-1.jpeg"
+      ],
+      "notes": "principal=principal:auth0:google-oauth2:109432510636331667287 sign_out=True mandate=active",
+      "state": {
+        "pathname": "/dashboard",
+        "href": "https://ondcseller.aadharcha.in/dashboard",
+        "hint": "Samantha\n\nSamantha replied\n\nI can\u2019t hear anything distinct over that noise. If you have a question or something you\u2019d like help with, give it another go\u2014I'm ready to jump in!\n\nSend\nAgentGuard & memory",
+        "reply": "I can\u2019t hear anything distinct over that noise. If you have a question or something you\u2019d like help with, give it another go\u2014I'm ready to jump in!",
+        "tools": [],
+        "has_sign_out": true,
+        "has_banana": false,
+        "has_receipt": false,
+        "has_paid": false,
+        "has_approval": false,
+        "has_handoff": false,
+        "voice_connected": false,
+        "text_ready": false,
+        "mandate_id": "mandate_354bc9b9b7774b2e",
+        "mandate_status": "active",
+        "principal": "principal:auth0:google-oauth2:109432510636331667287"
+      }
+    },
+    {
+      "id": "W-S-HI",
+      "result": "Pass",
+      "shots": [
+        "W-S-HI-20260712-205518-0.jpeg"
+      ],
+      "notes": "path=/dashboard tools=[]",
+      "state": {
+        "pathname": "/dashboard",
+        "href": "https://ondcseller.aadharcha.in/dashboard",
+        "hint": "Samantha\n\nSamantha replied\n\nHi there! Great to hear you. What can I help with today? Maybe a quick seller question, a listing idea, or just figuring out where to start?\n\nSend\nAgentGuard & memory",
+        "reply": "Hi there! Great to hear you. What can I help with today? Maybe a quick seller question, a listing idea, or just figuring out where to start?",
+        "tools": [],
+        "has_sign_out": true,
+        "has_banana": false,
+        "has_receipt": false,
+        "has_paid": false,
+        "has_approval": false,
+        "has_handoff": false,
+        "voice_connected": false,
+        "text_ready": false
+      }
+    },
+    {
+      "id": "W-S-NAV-CAT",
+      "result": "Pass",
+      "shots": [
+        "W-S-NAV-CAT-20260712-205518-0.jpeg"
+      ],
+      "notes": "path=/catalog tools=['navigate_to']",
+      "state": {
+        "pathname": "/catalog",
+        "href": "https://ondcseller.aadharcha.in/catalog",
+        "hint": "Samantha\n\nNavigating to /catalog.\n\nSure, let me open up your catalog area now.All set, your catalog is open. What would you like to do next\u2014add a new product, edit an existing one, or review your catalog settings?\n\nSend\nAgentGuard & memory",
+        "reply": "Sure, let me open up your catalog area now.All set, your catalog is open. What would you like to do next\u2014add a new product, edit an existing one, or review your catalog settings?",
+        "tools": [
+          {
+            "at": 1783870383355,
+            "callId": "call_Fu0AyVRjOM8j1B69",
+            "message": "Navigating to /catalog.",
+            "name": "navigate_to",
+            "navigateTo": "/catalog",
+            "ok": true
+          }
+        ],
+        "has_sign_out": true,
+        "has_banana": false,
+        "has_receipt": false,
+        "has_paid": false,
+        "has_approval": false,
+        "has_handoff": false,
+        "voice_connected": false,
+        "text_ready": false
+      }
+    },
+    {
+      "id": "W-S-NAV-ORD",
+      "result": "Pass",
+      "shots": [
+        "W-S-NAV-ORD-20260712-205518-0.jpeg"
+      ],
+      "notes": "path=/orders tools=['navigate_to', 'navigate_to']",
+      "state": {
+        "pathname": "/orders",
+        "href": "https://ondcseller.aadharcha.in/orders",
+        "hint": "Samantha\n\nNavigating to /orders.\n\nOrders page is up! Want me to fetch details for a specific order or help with a refund?\n\nSend\nAgentGuard & memory",
+        "reply": "Orders page is up! Want me to fetch details for a specific order or help with a refund?",
+        "tools": [
+          {
+            "at": 1783870383355,
+            "callId": "call_Fu0AyVRjOM8j1B69",
+            "message": "Navigating to /catalog.",
+            "name": "navigate_to",
+            "navigateTo": "/catalog",
+            "ok": true
+          },
+          {
+            "at": 1783870422651,
+            "callId": "call_NSK6MdJKlZlceunz",
+            "message": "Navigating to /orders.",
+            "name": "navigate_to",
+            "navigateTo": "/orders",
+            "ok": true
+          }
+        ],
+        "has_sign_out": true,
+        "has_banana": false,
+        "has_receipt": false,
+        "has_paid": false,
+        "has_approval": false,
+        "has_handoff": false,
+        "voice_connected": false,
+        "text_ready": false
+      }
+    },
+    {
+      "id": "W-S-NAV-AG",
+      "result": "Pass",
+      "shots": [
+        "W-S-NAV-AG-20260712-205518-0.jpeg",
+        "W-S-AG-20260712-205518-0.jpeg"
+      ],
+      "notes": "path=/agentguard ag=/agentguard",
+      "state": {
+        "pathname": "/agentguard",
+        "href": "https://ondcseller.aadharcha.in/agentguard",
+        "hint": "Samantha\n\nNavigating to /agentguard.\n\nOkay, let me take you to AgentGuard now.All set, your AgentGuard area is open. Do you want to review refund permissions, process a refund, or check something else? Just let me know what you\u2019re up to.\n\nSend\nAgentGuard & memory",
+        "reply": "Okay, let me take you to AgentGuard now.All set, your AgentGuard area is open. Do you want to review refund permissions, process a refund, or check something else? Just let me know what you\u2019re up to.",
+        "tools": [
+          {
+            "at": 1783870383355,
+            "callId": "call_Fu0AyVRjOM8j1B69",
+            "message": "Navigating to /catalog.",
+            "name": "navigate_to",
+            "navigateTo": "/catalog",
+            "ok": true
+          },
+          {
+            "at": 1783870422651,
+            "callId": "call_NSK6MdJKlZlceunz",
+            "message": "Navigating to /orders.",
+            "name": "navigate_to",
+            "navigateTo": "/orders",
+            "ok": true
+          },
+          {
+            "at": 1783870464383,
+            "callId": "call_FzvCZBKUzCABMINg",
+            "message": "Navigating to /agentguard.",
+            "name": "navigate_to",
+            "navigateTo": "/agentguard",
+            "ok": true
+          }
+        ],
+        "has_sign_out": true,
+        "has_banana": false,
+        "has_receipt": true,
+        "has_paid": false,
+        "has_approval": false,
+        "has_handoff": false,
+        "voice_connected": false,
+        "text_ready": false
+      }
+    },
+    {
+      "id": "W-S-PUBLISH",
+      "result": "Pass",
+      "shots": [
+        "W-S-PUBLISH-20260712-205518-0.jpeg",
+        "W-S-CAT-AFTER-20260712-205518-0.jpeg"
+      ],
+      "notes": "tools=['catalog_publish'] snip=SELLER\nONDC Seller\nOperate a trust-aware catalog and fulfillment surface.\nDashboard\nCatalog\nOrders\nConfig\nSign out\nSELLER CATALOG\nRun a tighter product shelf\nReview the inventory buyers will actually ",
+      "state": {
+        "pathname": "/catalog",
+        "href": "https://ondcseller.aadharcha.in/catalog",
+        "hint": "Samantha\n\nPublished Test Atta 1kg (item_7e152513af794ce0) to shared commerce \u2014 visible on PreProd ONDC when Buyer searches.\n\nDone! I published \u201cTest Atta 1kg\u201d at 80 rupees. You can find it in the catalog.\n\nSend\nAgentGuard & memory",
+        "reply": "Done! I published \u201cTest Atta 1kg\u201d at 80 rupees. You can find it in the catalog.",
+        "tools": [
+          {
+            "at": 1783870509104,
+            "callId": "call_9tGzgJvfzCNiNI9g",
+            "message": "Published Test Atta 1kg (item_7e152513af794ce0) to shared commerce \u2014 visible on PreProd ONDC when Buyer searches.",
+            "name": "catalog_publish",
+            "navigateTo": "/catalog",
+            "ok": true
+          }
+        ],
+        "has_sign_out": true,
+        "has_banana": false,
+        "has_receipt": false,
+        "has_paid": false,
+        "has_approval": false,
+        "has_handoff": false,
+        "voice_connected": false,
+        "text_ready": false
+      }
+    },
+    {
+      "id": "W-S-REFUND",
+      "result": "Pass",
+      "shots": [
+        "W-S-REFUND-20260712-205518-0.jpeg"
+      ],
+      "notes": "tools=['navigate_to', 'delegate_to_runtime_agent'] hint=Samantha\n\nI've started that \u2014 I'll let you know when it's done.\n\nt one that needs a refund.Got it. I started the background check for the latest order. If there snip=SELLER\nONDC Seller\nOperate a trust-aware catalog and fulfillment surface.\nDashboard\nCatalog\nOrders\nConfig\nSign out\nIncoming Orders\nManage and track buyer demand",
+      "state": {
+        "pathname": "/orders",
+        "href": "https://ondcseller.aadharcha.in/orders",
+        "hint": "Samantha\n\nI've started that \u2014 I'll let you know when it's done.\n\nt one that needs a refund.Got it. I started the background check for the latest order. If there is one, your 50 rupee refund request will be placed. If not, I\u2019ll let you know.Not yet. The request is still in progress, and I can\u2019t say it\u2019s done. When the background update comes back, I\u2019llNot quite yet. It\u2019s still being processed in the background. As soon as it finishes, I\u2019ll update you right away.\n\nSend\nAgentGuard & memory",
+        "reply": "t one that needs a refund.Got it. I started the background check for the latest order. If there is one, your 50 rupee refund request will be placed. If not, I\u2019ll let you know.Not yet. The request is still in progress, and I can\u2019t say it\u2019s done. When the background update comes back, I\u2019llNot quite yet. It\u2019s still being processed in the background. As soon as it finishes, I\u2019ll update you right away.",
+        "tools": [
+          {
+            "at": 1783870568015,
+            "callId": "call_0FNHEZ3QAY9w18N0",
+            "message": "Navigating to /orders.",
+            "name": "navigate_to",
+            "navigateTo": "/orders",
+            "ok": true
+          },
+          {
+            "at": 1783870569397,
+            "callId": "call_7iSb5M2NzOrxecbK",
+            "message": "I've started that \u2014 I'll let you know when it's done.",
+            "name": "delegate_to_runtime_agent",
+            "navigateTo": null,
+            "ok": true
+          }
+        ],
+        "has_sign_out": true,
+        "has_banana": false,
+        "has_receipt": false,
+        "has_paid": false,
+        "has_approval": false,
+        "has_handoff": true,
+        "voice_connected": false,
+        "text_ready": false
+      }
+    },
+    {
+      "id": "W-S-MEM",
+      "result": "Pass",
+      "shots": [
+        "W-S-MEM-20260712-205518-0.jpeg"
+      ],
+      "notes": "tools=['navigate_to', 'delegate_to_runtime_agent', 'remember_preference']",
+      "state": {
+        "pathname": "/orders",
+        "href": "https://ondcseller.aadharcha.in/orders",
+        "hint": "Samantha\n\nRemembered preference: User prefers brief confirmations.\n\nGot it, thanks for the note. I\u2019ll keep responses brief and confirmation-focused.\n\nSend\nAgentGuard & memory",
+        "reply": "Got it, thanks for the note. I\u2019ll keep responses brief and confirmation-focused.",
+        "tools": [
+          {
+            "at": 1783870568015,
+            "callId": "call_0FNHEZ3QAY9w18N0",
+            "message": "Navigating to /orders.",
+            "name": "navigate_to",
+            "navigateTo": "/orders",
+            "ok": true
+          },
+          {
+            "at": 1783870569397,
+            "callId": "call_7iSb5M2NzOrxecbK",
+            "message": "I've started that \u2014 I'll let you know when it's done.",
+            "name": "delegate_to_runtime_agent",
+            "navigateTo": null,
+            "ok": true
+          },
+          {
+            "at": 1783870620951,
+            "callId": "call_fERFMD8rjJVTbtQo",
+            "message": "Remembered preference: User prefers brief confirmations.",
+            "name": "remember_preference",
+            "navigateTo": null,
+            "ok": true
+          }
+        ],
+        "has_sign_out": true,
+        "has_banana": false,
+        "has_receipt": false,
+        "has_paid": false,
+        "has_approval": false,
+        "has_handoff": false,
+        "voice_connected": false,
+        "text_ready": false
+      }
+    },
+    {
+      "id": "W-S-RUNTIME",
+      "result": "Pass",
+      "shots": [
+        "W-S-RUNTIME-20260712-205518-0.jpeg"
+      ],
+      "notes": "handoff=True path=/dashboard tools=['delegate_to_runtime_agent'] hint=Samantha\n\n**Today\u2019s seller ops triage \u2014 12 Jul 2026** **Scope:** Pending orders + refund requests in the demo exchange for `principal:auth0:google-oauth2:109432",
+      "state": {
+        "pathname": "/dashboard",
+        "href": "https://ondcseller.aadharcha.in/dashboard",
+        "hint": "Samantha\n\n**Today\u2019s seller ops triage \u2014 12 Jul 2026** **Scope:** Pending orders + refund requests in the demo exchange for `principal:auth0:google-oauth2:109432510636331667287` --- ### Orders (0 pending) | Metric | Count | |--------|-------| | Demo commerce orders (today) | 0 | | ONDC\n\naction summary.I started the triage process. Once it\u2019s finished, I\u2019ll give you a clear summary of what\u2019s pending, what needs refunds or approval, and any action steps you should take.Today\u2019s seller ops triage for July 12, 2026 is done. There are zero pending demo commerce orders today. No refund requests are in queue, and no action is needed right now. If anything pops up later, just let me know!\n\nSend\nAgentGu",
+        "reply": "action summary.I started the triage process. Once it\u2019s finished, I\u2019ll give you a clear summary of what\u2019s pending, what needs refunds or approval, and any action steps you should take.Today\u2019s seller ops triage for July 12, 2026 is done. There are zero pending demo commerce orders today. No refund requests are in queue, and no action is needed right now. If anything pops up later, just let me know!",
+        "tools": [
+          {
+            "at": 1783870678103,
+            "callId": "call_n9WypAx5ttLV1ehQ",
+            "message": "I've started that \u2014 I'll let you know when it's done.",
+            "name": "delegate_to_runtime_agent",
+            "navigateTo": null,
+            "ok": true
+          }
+        ],
+        "has_sign_out": true,
+        "has_banana": false,
+        "has_receipt": false,
+        "has_paid": false,
+        "has_approval": false,
+        "has_handoff": false,
+        "voice_connected": false,
+        "text_ready": false
+      }
+    },
+    {
+      "id": "W-S-VOICE",
+      "result": "Blocked",
+      "shots": [
+        "W-S-VOICE-20260712-205518-0.jpeg"
+      ],
+      "notes": "hint=",
+      "state": {
+        "pathname": "/dashboard",
+        "href": "https://ondcseller.aadharcha.in/dashboard",
+        "hint": "",
+        "reply": "",
+        "tools": [
+          {
+            "at": 1783870678103,
+            "callId": "call_n9WypAx5ttLV1ehQ",
+            "message": "I've started that \u2014 I'll let you know when it's done.",
+            "name": "delegate_to_runtime_agent",
+            "navigateTo": null,
+            "ok": true
+          }
+        ],
+        "has_sign_out": true,
+        "has_banana": false,
+        "has_receipt": false,
+        "has_paid": false,
+        "has_approval": false,
+        "has_handoff": false,
+        "voice_connected": false,
+        "text_ready": false
+      }
+    }
+  ],
+  "meta": {
+    "realtime": {
+      "configured": true,
+      "model": "gpt-realtime-2.1-mini",
+      "agent_name": "Samantha"
+    },
+    "preflight_ready": true
+  }
+}

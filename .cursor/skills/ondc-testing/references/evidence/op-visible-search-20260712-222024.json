@@ -1,0 +1,364 @@
+{
+  "stamp": "20260712-222024",
+  "buyer": [
+    {
+      "id": "W-B-SPA-SESSION",
+      "result": "Pass",
+      "shots": [
+        "W-B-OP-BOOT-20260712-222024-0.jpeg"
+      ],
+      "notes": "sign_out=True ready=True hint=Samantha\n\nText mode ready (no mic)\n\nSend\nPreferences & AgentGuard",
+      "state": {
+        "body_snip": "PORTFOLIO\nONDC Buyer\nDiscover commerce under AgentGuard authorization.\nSearch\nCart\nOrders\nConfig\nSign out\nBUYER DISCOVERY\nSearch verified commerce\n\nFind offers, then checkout under AgentGuard authorization.\n\nSearch the network\n\nSigned in \u2014 elevated checkout is available via AgentGuard.\n\nCategory\nGrocery\nGrocery\nRestaurant\nFashion\nElectronics\nSearch\nSearch\nAgent chat\nHow it works\n\nSamantha\n\nText mode ready (no mic)\n\nSend\nPreferences & AgentGuard\nS",
+        "cart_empty": false,
+        "cart_line": false,
+        "has_atta": false,
+        "has_banana": false,
+        "has_pulling": true,
+        "has_sign_out": true,
+        "headings": [
+          "Search verified commerce"
+        ],
+        "hint": "Samantha\n\nText mode ready (no mic)\n\nSend\nPreferences & AgentGuard",
+        "href": "https://ondcbuyer.aadharcha.in/search",
+        "navSupersededAny": false,
+        "pathname": "/search",
+        "reply": "",
+        "search": "",
+        "tools": [],
+        "ready": {
+          "connecting": false,
+          "err": false,
+          "hint": "Samantha\n\nText mode ready (no mic)\n\nSend\nPreferences & AgentGuard",
+          "ready": true
+        }
+      }
+    },
+    {
+      "id": "W-B-HI",
+      "result": "Pass",
+      "shots": [
+        "W-B-HI-20260712-222024-0.jpeg"
+      ],
+      "notes": "path=/search tools=[] reply=Hi there! \ud83d\udc4b What are we shopping for today? I can help you browse, compare, or add something to your",
+      "state": {
+        "body_snip": "PORTFOLIO\nONDC Buyer\nDiscover commerce under AgentGuard authorization.\nSearch\nCart\nOrders\nConfig\nSign out\nBUYER DISCOVERY\nSearch verified commerce\n\nFind offers, then checkout under AgentGuard authorization.\n\nSearch the network\n\nSigned in \u2014 elevated checkout is available via AgentGuard.\n\nCategory\nGrocery\nGrocery\nRestaurant\nFashion\nElectronics\nSearch\nSearch\nAgent chat\nHow it works\n\nSamantha\n\nSamantha replied\n\nHi there! \ud83d\udc4b What are we shopping for today? I can help you browse, compare, or add something to your cart.\n\nSend\nPreferences & AgentGuard\nS",
+        "cart_empty": false,
+        "cart_line": true,
+        "has_atta": false,
+        "has_banana": false,
+        "has_pulling": true,
+        "has_sign_out": true,
+        "headings": [
+          "Search verified commerce"
+        ],
+        "hint": "Samantha\n\nSamantha replied\n\nHi there! \ud83d\udc4b What are we shopping for today? I can help you browse, compare, or add something to your cart.\n\nSend\nPreferences & AgentGuard",
+        "href": "https://ondcbuyer.aadharcha.in/search",
+        "navSupersededAny": false,
+        "pathname": "/search",
+        "reply": "Hi there! \ud83d\udc4b What are we shopping for today? I can help you browse, compare, or add something to your cart.",
+        "search": "",
+        "tools": []
+      }
+    },
+    {
+      "id": "W-B-FIND-ATTA",
+      "result": "Pass",
+      "shots": [
+        "W-B-FIND-ATTA-20260712-222024-0.jpeg"
+      ],
+      "notes": "early_path=/results late_path=/results early=True tools=[] atta=True",
+      "state": {
+        "early": {
+          "early_results": true,
+          "hint": "Samantha\n\nSearching for \u201catta\u201d \u2014 watch the results page\u2026\n\nSearching for atta in the catalog\u2014opening results so you can see offers load.\n\nSend\nPreferences & AgentGuard",
+          "href": "https://ondcbuyer.aadharcha.in/results?category=grocery&q=atta",
+          "pathname": "/results",
+          "search": "?category=grocery&q=atta",
+          "tools": []
+        },
+        "late": {
+          "body_snip": "PORTFOLIO\nONDC Buyer\nDiscover commerce under AgentGuard authorization.\nSearch\nCart\nOrders\nConfig\nSign out\nPulling the latest offers for your selected category.\nAgent chat\nHow it works\n\nSamantha\n\nSearching for \u201catta\u201d \u2014 watch the results page\u2026\n\nSearching for atta in the catalog\u2014opening results so you can see offers load.\n\nSend\nPreferences & AgentGuard\nS",
+          "cart_empty": false,
+          "cart_line": true,
+          "has_atta": true,
+          "has_banana": false,
+          "has_pulling": true,
+          "has_sign_out": true,
+          "headings": [],
+          "hint": "Samantha\n\nSearching for \u201catta\u201d \u2014 watch the results page\u2026\n\nSearching for atta in the catalog\u2014opening results so you can see offers load.\n\nSend\nPreferences & AgentGuard",
+          "href": "https://ondcbuyer.aadharcha.in/results?category=grocery&q=atta",
+          "navSupersededAny": false,
+          "pathname": "/results",
+          "reply": "Searching for atta in the catalog\u2014opening results so you can see offers load.",
+          "search": "?category=grocery&q=atta",
+          "tools": []
+        }
+      }
+    },
+    {
+      "id": "W-B-CHAINED",
+      "result": "Fail",
+      "shots": [
+        "W-B-CHAINED-20260712-222024-0.jpeg"
+      ],
+      "notes": "send_ok=True send={'draft': 'go to my cart', 'ok': True} path=/results tools=['navigate_to', 'search_catalog'] navSuperseded=True",
+      "state": {
+        "send": {
+          "draft": "go to my cart",
+          "ok": true
+        },
+        "late": {
+          "body_snip": "PORTFOLIO\nONDC Buyer\nDiscover commerce under AgentGuard authorization.\nSearch\nCart\nOrders\nConfig\nSign out\nPulling the latest offers for your selected category.\nAgent chat\nHow it works\n\nSamantha\n\nSearching for \u201catta\u201d \u2014 watch the results page\u2026\n\nSure\u2014I'll open your cart so you can see what\u2019s in it.All set \u2014 I\u2019ve taken you to your cart. If the cart content isn\u2019t showing yet on your side, just refresh a moment and you should see the items listed right away.It looks like the catalog search timed out. I\u2019ll try the search again so you can see the atta offers load.\n\nSend\nPreferences & AgentGuard\nS",
+          "cart_empty": false,
+          "cart_line": true,
+          "has_atta": true,
+          "has_banana": false,
+          "has_pulling": true,
+          "has_sign_out": true,
+          "headings": [],
+          "hint": "Samantha\n\nSearching for \u201catta\u201d \u2014 watch the results page\u2026\n\nSure\u2014I'll open your cart so you can see what\u2019s in it.All set \u2014 I\u2019ve taken you to your cart. If the cart content isn\u2019t showing yet on your side, just refresh a moment and you should see the items listed right away.It looks like the catalog search timed out. I\u2019ll try the search again so you can see the atta offers load.\n\nSend\nPreferences & AgentGuard",
+          "href": "https://ondcbuyer.aadharcha.in/results?category=grocery&q=atta",
+          "navSupersededAny": true,
+          "pathname": "/results",
+          "reply": "Sure\u2014I'll open your cart so you can see what\u2019s in it.All set \u2014 I\u2019ve taken you to your cart. If the cart content isn\u2019t showing yet on your side, just refresh a moment and you should see the items listed right away.It looks like the catalog search timed out. I\u2019ll try the search again so you can see the atta offers load.",
+          "search": "?category=grocery&q=atta",
+          "tools": [
+            {
+              "name": "navigate_to",
+              "navSuperseded": false,
+              "ok": true
+            },
+            {
+              "name": "search_catalog",
+              "navSuperseded": true,
+              "ok": false
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "W-B-FIND-BANANA",
+      "result": "Fail",
+      "shots": [
+        "W-B-FIND-BANANA-20260712-222024-0.jpeg"
+      ],
+      "notes": "early_path=/search late=/search banana=False tools=[]",
+      "state": {
+        "early": {
+          "early_results": false,
+          "hint": "Samantha\n\nRealtime not configured on gateway\n\nSend\nPreferences & AgentGuard",
+          "href": "https://ondcbuyer.aadharcha.in/search",
+          "pathname": "/search",
+          "search": "",
+          "tools": []
+        },
+        "late": {
+          "body_snip": "PORTFOLIO\nONDC Buyer\nDiscover commerce under AgentGuard authorization.\nSearch\nCart\nOrders\nConfig\nBUYER DISCOVERY\nSearch verified commerce\n\nFind offers, then checkout under AgentGuard authorization.\n\nTrust check: Unsigned\n\nSign in before elevated buyer actions.\n\nSearch the network\n\nSign in before elevated checkout.\n\nCategory\nGrocery\nGrocery\nRestaurant\nFashion\nElectronics\nSearch\nSearch\nAgent chat\nHow it works\n\nSamantha\n\nRealtime not configured on gateway\n\nSend\nPreferences & AgentGuard\nS",
+          "cart_empty": false,
+          "cart_line": false,
+          "has_atta": false,
+          "has_banana": false,
+          "has_pulling": true,
+          "has_sign_out": false,
+          "headings": [
+            "Search verified commerce"
+          ],
+          "hint": "Samantha\n\nRealtime not configured on gateway\n\nSend\nPreferences & AgentGuard",
+          "href": "https://ondcbuyer.aadharcha.in/search",
+          "navSupersededAny": false,
+          "pathname": "/search",
+          "reply": "",
+          "search": "",
+          "tools": []
+        }
+      }
+    },
+    {
+      "id": "W-B-ADD",
+      "result": "Fail",
+      "shots": [
+        "W-B-ADD-20260712-222024-0.jpeg"
+      ],
+      "notes": "path=/results tools=[] cart_line=True",
+      "state": {
+        "body_snip": "PORTFOLIO\nONDC Buyer\nDiscover commerce under AgentGuard authorization.\nSearch\nCart\nOrders\nConfig\nPulling the latest offers for your selected category.\nAgent chat\nHow it works\n\nSamantha\n\nSearching for \u201cbanana atta mix\u201d \u2014 watch the results page\u2026\n\nSure thing\u2014I'll search for bananas and atta so you can see the offers, then I\u2019ll grab the first option and add it to your cart.\n\nSend\nPreferences & AgentGuard\nS",
+        "cart_empty": false,
+        "cart_line": true,
+        "has_atta": true,
+        "has_banana": true,
+        "has_pulling": true,
+        "has_sign_out": false,
+        "headings": [],
+        "hint": "Samantha\n\nSearching for \u201cbanana atta mix\u201d \u2014 watch the results page\u2026\n\nSure thing\u2014I'll search for bananas and atta so you can see the offers, then I\u2019ll grab the first option and add it to your cart.\n\nSend\nPreferences & AgentGuard",
+        "href": "https://ondcbuyer.aadharcha.in/results?category=grocery&q=banana%20atta%20mix",
+        "navSupersededAny": false,
+        "pathname": "/results",
+        "reply": "Sure thing\u2014I'll search for bananas and atta so you can see the offers, then I\u2019ll grab the first option and add it to your cart.",
+        "search": "?category=grocery&q=banana%20atta%20mix",
+        "tools": []
+      }
+    },
+    {
+      "id": "W-B-NAV-CART",
+      "result": "Pass",
+      "shots": [
+        "W-B-NAV-CART-20260712-222024-0.jpeg"
+      ],
+      "notes": "path=/cart tools=['search_catalog', 'navigate_to']",
+      "state": {
+        "body_snip": "PORTFOLIO\nONDC Buyer\nDiscover commerce under AgentGuard authorization.\nSearch\nCart\nOrders\nConfig\nYour cart is empty\nAdd some items to get started with the buyer checkout flow.\nStart shopping\nAgent chat\nHow it works\n\nSamantha\n\nNavigating to /cart.\n\nOkay, I\u2019ll open your cart so you can see what\u2019s there while we continue.All set\u2014I\u2019m in your cart. I did try to search for banana/atta, but it looks like the search didn\u2019t return cleanly on my side. If you want, you can tell me which result you see from the search page, and I\u2019ll add that exact one\u2014or I can try again with a more specific phrase like \u201catta flour\u201d or \u201cbananas\u201d.\n\nSend\nPreferences & AgentGuard\nS",
+        "cart_empty": true,
+        "cart_line": true,
+        "has_atta": true,
+        "has_banana": true,
+        "has_pulling": false,
+        "has_sign_out": false,
+        "headings": [],
+        "hint": "Samantha\n\nNavigating to /cart.\n\nOkay, I\u2019ll open your cart so you can see what\u2019s there while we continue.All set\u2014I\u2019m in your cart. I did try to search for banana/atta, but it looks like the search didn\u2019t return cleanly on my side. If you want, you can tell me which result you see from the search page, and I\u2019ll add that exact one\u2014or I can try again with a more specific phrase like \u201catta flour\u201d or \u201cbananas\u201d.\n\nSend\nPreferences & AgentGuard",
+        "href": "https://ondcbuyer.aadharcha.in/cart",
+        "navSupersededAny": false,
+        "pathname": "/cart",
+        "reply": "Okay, I\u2019ll open your cart so you can see what\u2019s there while we continue.All set\u2014I\u2019m in your cart. I did try to search for banana/atta, but it looks like the search didn\u2019t return cleanly on my side. If you want, you can tell me which result you see from the search page, and I\u2019ll add that exact one\u2014or I can try again with a more specific phrase like \u201catta flour\u201d or \u201cbananas\u201d.",
+        "search": "",
+        "tools": [
+          {
+            "name": "search_catalog",
+            "navSuperseded": false,
+            "ok": false
+          },
+          {
+            "name": "navigate_to",
+            "navSuperseded": false,
+            "ok": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "W-B-NAV-CONFIG",
+      "result": "Fail",
+      "shots": [
+        "W-B-NAV-CONFIG-20260712-222024-0.jpeg"
+      ],
+      "notes": "path=/cart tools=['search_catalog', 'navigate_to']",
+      "state": {
+        "body_snip": "PORTFOLIO\nONDC Buyer\nDiscover commerce under AgentGuard authorization.\nSearch\nCart\nOrders\nConfig\nYour cart is empty\nAdd some items to get started with the buyer checkout flow.\nStart shopping\nAgent chat\nHow it works\n\nSamantha\n\nConnecting Samantha\u2026\n\nSend\nPreferences & AgentGuard\nS",
+        "cart_empty": true,
+        "cart_line": true,
+        "has_atta": false,
+        "has_banana": false,
+        "has_pulling": false,
+        "has_sign_out": false,
+        "headings": [],
+        "hint": "Samantha\n\nConnecting Samantha\u2026\n\nSend\nPreferences & AgentGuard",
+        "href": "https://ondcbuyer.aadharcha.in/cart",
+        "navSupersededAny": false,
+        "pathname": "/cart",
+        "reply": "",
+        "search": "",
+        "tools": [
+          {
+            "name": "search_catalog",
+            "navSuperseded": false,
+            "ok": false
+          },
+          {
+            "name": "navigate_to",
+            "navSuperseded": false,
+            "ok": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "W-B-RUNTIME",
+      "result": "Fail",
+      "shots": [
+        "W-B-RUNTIME-20260712-222024-0.jpeg"
+      ],
+      "notes": "handoff=False path=/cart tools=['search_catalog', 'navigate_to'] hint=Samantha\n\nConnecting Samantha\u2026\n\nSend\nPreferences & AgentGuard",
+      "state": {
+        "body_snip": "PORTFOLIO\nONDC Buyer\nDiscover commerce under AgentGuard authorization.\nSearch\nCart\nOrders\nConfig\nYour cart is empty\nAdd some items to get started with the buyer checkout flow.\nStart shopping\nAgent chat\nHow it works\n\nSamantha\n\nConnecting Samantha\u2026\n\nSend\nPreferences & AgentGuard\nS",
+        "cart_empty": true,
+        "cart_line": true,
+        "has_atta": false,
+        "has_banana": false,
+        "has_pulling": false,
+        "has_sign_out": false,
+        "headings": [],
+        "hint": "Samantha\n\nConnecting Samantha\u2026\n\nSend\nPreferences & AgentGuard",
+        "href": "https://ondcbuyer.aadharcha.in/cart",
+        "navSupersededAny": false,
+        "pathname": "/cart",
+        "reply": "",
+        "search": "",
+        "tools": [
+          {
+            "name": "search_catalog",
+            "navSuperseded": false,
+            "ok": false
+          },
+          {
+            "name": "navigate_to",
+            "navSuperseded": false,
+            "ok": true
+          }
+        ]
+      }
+    }
+  ],
+  "seller": [
+    {
+      "id": "W-S-SPA-SESSION",
+      "result": "Blocked",
+      "shots": [
+        "W-S-OP-BOOT-20260712-222024-0.jpeg"
+      ],
+      "notes": "sign_out=False ready=True",
+      "state": {
+        "body_snip": "SELLER\nONDC Seller\nOperate a trust-aware catalog and fulfillment surface.\nDashboard\nCatalog\nOrders\nConfig\nSELLER\nCatalog and trust\nPublish listings when verified. Open catalog to manage the full shelf.\nAdd product\nOpen catalog\nTrust check: Unsigned\n\nSign in before elevated seller actions.\n\nPRODUCTS\nLive\n0\nLive listings in the demo catalog\nCATEGORIES\nInfo\n0\nSingle category so far\nTRUST\nWatch\nNeeds action\nRequired for elevated publish actions\nRECENT PRODUCTS\nInventory snapshot\nLoading catalog\nPulling the latest seller inventory.\nAgentGuard authority\nAgent chat\nHow it works\n\nSamantha\n\nConnecting Samantha\u2026\n\nSend\nAgentGuard & memory\nS",
+        "cart_empty": false,
+        "cart_line": false,
+        "has_atta": false,
+        "has_banana": false,
+        "has_pulling": true,
+        "has_sign_out": false,
+        "headings": [
+          "Catalog and trust",
+          "Inventory snapshot"
+        ],
+        "hint": "Samantha\n\nConnecting Samantha\u2026\n\nSend\nAgentGuard & memory",
+        "href": "https://ondcseller.aadharcha.in/dashboard",
+        "navSupersededAny": false,
+        "pathname": "/dashboard",
+        "reply": "",
+        "search": "",
+        "tools": []
+      }
+    },
+    {
+      "id": "W-S-NAV-CAT",
+      "result": "Blocked",
+      "shots": [],
+      "notes": "no Auth0 session",
+      "state": {}
+    }
+  ],
+  "meta": {
+    "realtime": {
+      "configured": true,
+      "model": "gpt-realtime-2.1-mini",
+      "agent_name": "Samantha"
+    },
+    "ensure_demo": {
+      "keys": [
+        "success",
+        "data"
+      ],
+      "snip": "{\"success\": true, \"data\": {\"item\": {\"item_id\": \"item_b33a6d05dc2d427c\", \"version\": 2, \"status\": \"published\", \"seller_id\": \"ondcseller.aadharcha.in\", \"title\": \"AgentGuard PreProd Atta 1kg\", \"description\": \"Network-visible Seller catalog item for PreProd Buyer discovery\", \"price_inr\": 89, \"created_at\": \"2026-07-12T15:13:56.846571+00:00\", \"updated_at\": \"2026-07-12T15:13:56.847105+00:00\"}, \"created\": "
+    },
+    "preflight_ready": true
+  }
+}

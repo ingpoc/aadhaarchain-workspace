@@ -1,0 +1,569 @@
+{
+  "stamp": "20260714-023601",
+  "buyer": [],
+  "seller": [
+    {
+      "id": "W-S-SPA-SESSION",
+      "result": "Pass",
+      "shots": [
+        "W-S-BOOT-20260714-023601-0.jpeg",
+        "W-S-BOOT-20260714-023601-1.jpeg"
+      ],
+      "notes": "principal=session-cookie sign_out=True mandate=visible",
+      "state": {
+        "pathname": "/dashboard",
+        "href": "https://ondcseller.aadharcha.in/dashboard",
+        "hint": "Samantha\n\nText mode ready (no mic)\n\nSend\nAgentGuard and memory",
+        "reply": "",
+        "tools": [],
+        "has_sign_out": true,
+        "has_banana": false,
+        "has_receipt": false,
+        "has_paid": false,
+        "has_approval": false,
+        "has_handoff": false,
+        "has_pause_agent": false,
+        "has_resume_agent": false,
+        "has_protected_activity": false,
+        "has_verify_receipt": false,
+        "has_verified_receipt": true,
+        "durability_disclosed": false,
+        "voice_connected": false,
+        "text_ready": true,
+        "mandate_status": "visible",
+        "principal": "session-cookie"
+      }
+    },
+    {
+      "id": "W-S-HI",
+      "result": "Pass",
+      "shots": [
+        "W-S-HI-20260714-023601-0.jpeg"
+      ],
+      "notes": "path=/dashboard tools=[]",
+      "state": {
+        "pathname": "/dashboard",
+        "href": "https://ondcseller.aadharcha.in/dashboard",
+        "hint": "Samantha\n\nSamantha replied\n\nHey there! Quick hello\u2014how can I help you today with your ONDC seller operations?\n\nSend\nAgentGuard and memory",
+        "reply": "Hey there! Quick hello\u2014how can I help you today with your ONDC seller operations?",
+        "tools": [],
+        "has_sign_out": true,
+        "has_banana": false,
+        "has_receipt": false,
+        "has_paid": false,
+        "has_approval": false,
+        "has_handoff": false,
+        "has_pause_agent": false,
+        "has_resume_agent": false,
+        "has_protected_activity": false,
+        "has_verify_receipt": false,
+        "has_verified_receipt": true,
+        "durability_disclosed": false,
+        "voice_connected": false,
+        "text_ready": false
+      }
+    },
+    {
+      "id": "W-S-NAV-CAT",
+      "result": "Pass",
+      "shots": [
+        "W-S-NAV-CAT-20260714-023601-0.jpeg"
+      ],
+      "notes": "path=/catalog tools=['navigate_to']",
+      "state": {
+        "pathname": "/catalog",
+        "href": "https://ondcseller.aadharcha.in/catalog",
+        "hint": "Samantha\n\nNavigating to /catalog.\n\nSure\u2014I'll open the catalog for you now.You\u2019re in the catalog now. If you want, I can help you add a new item, publish one, or review what\u2019s already there.\n\nSend\nAgentGuard and memory",
+        "reply": "Sure\u2014I'll open the catalog for you now.You\u2019re in the catalog now. If you want, I can help you add a new item, publish one, or review what\u2019s already there.",
+        "tools": [
+          {
+            "at": 1783976816906,
+            "callId": "call_lslIIvt4wVYeDBrf",
+            "message": "Navigating to /catalog.",
+            "name": "navigate_to",
+            "navigateTo": "/catalog",
+            "ok": true
+          }
+        ],
+        "has_sign_out": true,
+        "has_banana": false,
+        "has_receipt": false,
+        "has_paid": false,
+        "has_approval": false,
+        "has_handoff": false,
+        "has_pause_agent": false,
+        "has_resume_agent": false,
+        "has_protected_activity": false,
+        "has_verify_receipt": false,
+        "has_verified_receipt": true,
+        "durability_disclosed": false,
+        "voice_connected": false,
+        "text_ready": false
+      }
+    },
+    {
+      "id": "W-S-NAV-ORD",
+      "result": "Pass",
+      "shots": [
+        "W-S-NAV-ORD-20260714-023601-0.jpeg"
+      ],
+      "notes": "path=/orders tools=['navigate_to', 'navigate_to']",
+      "state": {
+        "pathname": "/orders",
+        "href": "https://ondcseller.aadharcha.in/orders",
+        "hint": "Samantha\n\nNavigating to /orders.\n\nOrders screen is open. Want me to look for a specific order, or handle a refund?\n\nSend\nAgentGuard and memory",
+        "reply": "Orders screen is open. Want me to look for a specific order, or handle a refund?",
+        "tools": [
+          {
+            "at": 1783976816906,
+            "callId": "call_lslIIvt4wVYeDBrf",
+            "message": "Navigating to /catalog.",
+            "name": "navigate_to",
+            "navigateTo": "/catalog",
+            "ok": true
+          },
+          {
+            "at": 1783976855882,
+            "callId": "call_UyuPb0zpws9BgYNP",
+            "message": "Navigating to /orders.",
+            "name": "navigate_to",
+            "navigateTo": "/orders",
+            "ok": true
+          }
+        ],
+        "has_sign_out": true,
+        "has_banana": false,
+        "has_receipt": false,
+        "has_paid": false,
+        "has_approval": false,
+        "has_handoff": false,
+        "has_pause_agent": false,
+        "has_resume_agent": false,
+        "has_protected_activity": false,
+        "has_verify_receipt": false,
+        "has_verified_receipt": false,
+        "durability_disclosed": false,
+        "voice_connected": false,
+        "text_ready": false
+      }
+    },
+    {
+      "id": "W-S-NAV-AG",
+      "result": "Pass",
+      "shots": [
+        "W-S-NAV-AG-20260714-023601-0.jpeg",
+        "W-S-AG-20260714-023601-0.jpeg"
+      ],
+      "notes": "path=/agentguard ag=/agentguard",
+      "state": {
+        "pathname": "/agentguard",
+        "href": "https://ondcseller.aadharcha.in/agentguard",
+        "hint": "Samantha\n\nNavigating to /agentguard.\n\nOkay, let me take you there. I\u2019ll open the AgentGuard area for you now.AgentGuard is open. If you need a refund action or a preference note, tell me the order or what you\u2019re trying to do.\n\nSend\nAgentGuard and memory",
+        "reply": "Okay, let me take you there. I\u2019ll open the AgentGuard area for you now.AgentGuard is open. If you need a refund action or a preference note, tell me the order or what you\u2019re trying to do.",
+        "tools": [
+          {
+            "at": 1783976816906,
+            "callId": "call_lslIIvt4wVYeDBrf",
+            "message": "Navigating to /catalog.",
+            "name": "navigate_to",
+            "navigateTo": "/catalog",
+            "ok": true
+          },
+          {
+            "at": 1783976855882,
+            "callId": "call_UyuPb0zpws9BgYNP",
+            "message": "Navigating to /orders.",
+            "name": "navigate_to",
+            "navigateTo": "/orders",
+            "ok": true
+          },
+          {
+            "at": 1783976895427,
+            "callId": "call_VG2zd5M5baXNWmTK",
+            "message": "Navigating to /agentguard.",
+            "name": "navigate_to",
+            "navigateTo": "/agentguard",
+            "ok": true
+          }
+        ],
+        "has_sign_out": true,
+        "has_banana": false,
+        "has_receipt": true,
+        "has_paid": false,
+        "has_approval": false,
+        "has_handoff": false,
+        "has_pause_agent": true,
+        "has_resume_agent": false,
+        "has_protected_activity": false,
+        "has_verify_receipt": false,
+        "has_verified_receipt": false,
+        "durability_disclosed": false,
+        "voice_connected": false,
+        "text_ready": false
+      }
+    },
+    {
+      "id": "W-S-PUBLISH",
+      "result": "Pass",
+      "shots": [
+        "W-S-PUBLISH-20260714-023601-0.jpeg",
+        "W-S-CAT-AFTER-20260714-023601-0.jpeg"
+      ],
+      "notes": "tools=['catalog_publish'] snip=ONDC Seller\nCatalog under AgentGuard authority\nAgentGuard\nDashboard\nCatalog\nOrders\nConfig\nSign out\nSeller catalog\nRun a tighter product shelf\nReview the inventory buyers will actually encounter, then ",
+      "state": {
+        "pathname": "/catalog",
+        "href": "https://ondcseller.aadharcha.in/catalog",
+        "hint": "Samantha\n\nPublished Test Atta 1kg (item_775f80375e5849e3) to shared commerce \u2014 visible on PreProd ONDC when Buyer searches.\n\nGot it\u2014I'll publish a simple grocery item with that name, price, and a basic listing.Done! I published the item \u201cTest Atta 1kg\u201d at 80 rupees. It\u2019s now in your catalog and visible for buyers when searched.\n\nSend\nAgentGuard and memory",
+        "reply": "Got it\u2014I'll publish a simple grocery item with that name, price, and a basic listing.Done! I published the item \u201cTest Atta 1kg\u201d at 80 rupees. It\u2019s now in your catalog and visible for buyers when searched.",
+        "tools": [
+          {
+            "at": 1783976935944,
+            "callId": "call_ZMb0Lpuoeb88ENpJ",
+            "message": "Published Test Atta 1kg (item_775f80375e5849e3) to shared commerce \u2014 visible on PreProd ONDC when Buyer searches.",
+            "name": "catalog_publish",
+            "navigateTo": "/catalog",
+            "ok": true
+          }
+        ],
+        "has_sign_out": true,
+        "has_banana": false,
+        "has_receipt": false,
+        "has_paid": false,
+        "has_approval": false,
+        "has_handoff": false,
+        "has_pause_agent": false,
+        "has_resume_agent": false,
+        "has_protected_activity": false,
+        "has_verify_receipt": false,
+        "has_verified_receipt": true,
+        "durability_disclosed": false,
+        "voice_connected": false,
+        "text_ready": false
+      }
+    },
+    {
+      "id": "W-S-REFUND",
+      "result": "Pass",
+      "shots": [
+        "W-S-REFUND-20260714-023601-0.jpeg"
+      ],
+      "notes": "tools=['refund_issue'] hint=Samantha\n\nRefund issued; receipt rcpt_41e2c4fbbcf34bbe.\n\nDone! I issued a refund of 50 rupees for the latest order, and it succeeded.\n\nSend\nAgentGuard and memor snip=ONDC Seller\nCatalog under AgentGuard authority\nAgentGuard\nDashboard\nCatalog\nOrders\nConfig\nSign out\nIncoming Orders\nManage and track buyer demand without leaving",
+      "state": {
+        "pathname": "/orders",
+        "href": "https://ondcseller.aadharcha.in/orders",
+        "hint": "Samantha\n\nRefund issued; receipt rcpt_41e2c4fbbcf34bbe.\n\nDone! I issued a refund of 50 rupees for the latest order, and it succeeded.\n\nSend\nAgentGuard and memory",
+        "reply": "Done! I issued a refund of 50 rupees for the latest order, and it succeeded.",
+        "tools": [
+          {
+            "at": 1783976992376,
+            "callId": "call_cIRlulvIcqSM1JRj",
+            "message": "Refund issued; receipt rcpt_41e2c4fbbcf34bbe.",
+            "name": "refund_issue",
+            "navigateTo": null,
+            "ok": true
+          }
+        ],
+        "has_sign_out": true,
+        "has_banana": false,
+        "has_receipt": true,
+        "has_paid": false,
+        "has_approval": false,
+        "has_handoff": false,
+        "has_pause_agent": false,
+        "has_resume_agent": false,
+        "has_protected_activity": false,
+        "has_verify_receipt": false,
+        "has_verified_receipt": false,
+        "durability_disclosed": false,
+        "voice_connected": false,
+        "text_ready": false
+      }
+    },
+    {
+      "id": "W-S-REFUND-PAGE",
+      "result": "Pass",
+      "shots": [
+        "W-S-REFUND-PAGE-20260714-023601-0.jpeg"
+      ],
+      "notes": "path=/orders/order_ea5cc5eab7c64002 panel=True",
+      "state": {
+        "pathname": "/orders/order_ea5cc5eab7c64002",
+        "href": "https://ondcseller.aadharcha.in/orders/order_ea5cc5eab7c64002",
+        "hint": "Samantha\n\nRefund issued; receipt rcpt_41e2c4fbbcf34bbe.\n\nDone! I issued a refund of 50 rupees for the latest order, and it succeeded.\n\nSend\nAgentGuard and memory",
+        "reply": "Done! I issued a refund of 50 rupees for the latest order, and it succeeded.",
+        "tools": [
+          {
+            "at": 1783976992376,
+            "callId": "call_cIRlulvIcqSM1JRj",
+            "message": "Refund issued; receipt rcpt_41e2c4fbbcf34bbe.",
+            "name": "refund_issue",
+            "navigateTo": null,
+            "ok": true
+          }
+        ],
+        "has_sign_out": true,
+        "has_banana": false,
+        "has_receipt": true,
+        "has_paid": true,
+        "has_approval": false,
+        "has_handoff": false,
+        "has_pause_agent": false,
+        "has_resume_agent": false,
+        "has_protected_activity": false,
+        "has_verify_receipt": false,
+        "has_verified_receipt": false,
+        "durability_disclosed": false,
+        "voice_connected": false,
+        "text_ready": false
+      }
+    },
+    {
+      "id": "W-S-REFUND-ALLOW",
+      "result": "Pass",
+      "shots": [
+        "W-S-REFUND-PAGE-20260714-023601-0.jpeg",
+        "W-S-REFUND-ALLOW-20260714-023601-0.jpeg"
+      ],
+      "notes": "page=/orders/order_ea5cc5eab7c64002 receipt=True",
+      "state": {
+        "pathname": "/orders/order_ea5cc5eab7c64002",
+        "href": "https://ondcseller.aadharcha.in/orders/order_ea5cc5eab7c64002",
+        "hint": "Samantha\n\nRefund issued; receipt rcpt_41e2c4fbbcf34bbe.\n\nDone! I issued a refund of 50 rupees for the latest order, and it succeeded.\n\nSend\nAgentGuard and memory",
+        "reply": "Done! I issued a refund of 50 rupees for the latest order, and it succeeded.",
+        "tools": [
+          {
+            "at": 1783976992376,
+            "callId": "call_cIRlulvIcqSM1JRj",
+            "message": "Refund issued; receipt rcpt_41e2c4fbbcf34bbe.",
+            "name": "refund_issue",
+            "navigateTo": null,
+            "ok": true
+          }
+        ],
+        "has_sign_out": true,
+        "has_banana": false,
+        "has_receipt": true,
+        "has_paid": true,
+        "has_approval": false,
+        "has_handoff": false,
+        "has_pause_agent": false,
+        "has_resume_agent": false,
+        "has_protected_activity": false,
+        "has_verify_receipt": false,
+        "has_verified_receipt": true,
+        "durability_disclosed": false,
+        "voice_connected": false,
+        "text_ready": false
+      }
+    },
+    {
+      "id": "W-S-REFUND-APPROVAL",
+      "result": "Pass",
+      "shots": [
+        "W-S-REFUND-APPROVAL-20260714-023601-0.jpeg"
+      ],
+      "notes": "approval=True",
+      "state": {
+        "pathname": "/orders/order_ea5cc5eab7c64002",
+        "href": "https://ondcseller.aadharcha.in/orders/order_ea5cc5eab7c64002",
+        "hint": "Samantha\n\nRefund issued; receipt rcpt_41e2c4fbbcf34bbe.\n\nDone! I issued a refund of 50 rupees for the latest order, and it succeeded.\n\nSend\nAgentGuard and memory",
+        "reply": "Done! I issued a refund of 50 rupees for the latest order, and it succeeded.",
+        "tools": [
+          {
+            "at": 1783976992376,
+            "callId": "call_cIRlulvIcqSM1JRj",
+            "message": "Refund issued; receipt rcpt_41e2c4fbbcf34bbe.",
+            "name": "refund_issue",
+            "navigateTo": null,
+            "ok": true
+          }
+        ],
+        "has_sign_out": true,
+        "has_banana": false,
+        "has_receipt": true,
+        "has_paid": true,
+        "has_approval": true,
+        "has_handoff": false,
+        "has_pause_agent": false,
+        "has_resume_agent": false,
+        "has_protected_activity": false,
+        "has_verify_receipt": false,
+        "has_verified_receipt": false,
+        "durability_disclosed": false,
+        "voice_connected": false,
+        "text_ready": false
+      }
+    },
+    {
+      "id": "W-S-REFUND-REPLAY",
+      "result": "Pass",
+      "shots": [
+        "W-S-REFUND-REPLAY-20260714-023601-0.jpeg"
+      ],
+      "notes": "receipt=True replay_rejected=True",
+      "state": {
+        "pathname": "/orders/order_ea5cc5eab7c64002",
+        "href": "https://ondcseller.aadharcha.in/orders/order_ea5cc5eab7c64002",
+        "hint": "Samantha\n\nRefund issued; receipt rcpt_41e2c4fbbcf34bbe.\n\nDone! I issued a refund of 50 rupees for the latest order, and it succeeded.\n\nSend\nAgentGuard and memory",
+        "reply": "Done! I issued a refund of 50 rupees for the latest order, and it succeeded.",
+        "tools": [
+          {
+            "at": 1783976992376,
+            "callId": "call_cIRlulvIcqSM1JRj",
+            "message": "Refund issued; receipt rcpt_41e2c4fbbcf34bbe.",
+            "name": "refund_issue",
+            "navigateTo": null,
+            "ok": true
+          }
+        ],
+        "has_sign_out": true,
+        "has_banana": false,
+        "has_receipt": true,
+        "has_paid": true,
+        "has_approval": false,
+        "has_handoff": false,
+        "has_pause_agent": false,
+        "has_resume_agent": false,
+        "has_protected_activity": false,
+        "has_verify_receipt": false,
+        "has_verified_receipt": false,
+        "durability_disclosed": false,
+        "voice_connected": false,
+        "text_ready": false
+      }
+    },
+    {
+      "id": "W-S-MEM",
+      "result": "Pass",
+      "shots": [
+        "W-S-MEM-20260714-023601-0.jpeg"
+      ],
+      "notes": "tools=['refund_issue', 'remember_preference']",
+      "state": {
+        "pathname": "/orders/order_ea5cc5eab7c64002",
+        "href": "https://ondcseller.aadharcha.in/orders/order_ea5cc5eab7c64002",
+        "hint": "Samantha\n\nRemembered preference: User prefers brief confirmations.\n\nGot it\u2014I'll note that preference and keep confirmations brief and to the point.Got it! I\u2019ll keep confirmations brief from now on.\n\nSend\nAgentGuard and memory",
+        "reply": "Got it\u2014I'll note that preference and keep confirmations brief and to the point.Got it! I\u2019ll keep confirmations brief from now on.",
+        "tools": [
+          {
+            "at": 1783976992376,
+            "callId": "call_cIRlulvIcqSM1JRj",
+            "message": "Refund issued; receipt rcpt_41e2c4fbbcf34bbe.",
+            "name": "refund_issue",
+            "navigateTo": null,
+            "ok": true
+          },
+          {
+            "at": 1783977066512,
+            "callId": "call_wXv8hlwTZ57AuULf",
+            "message": "Remembered preference: User prefers brief confirmations.",
+            "name": "remember_preference",
+            "navigateTo": null,
+            "ok": true
+          }
+        ],
+        "has_sign_out": true,
+        "has_banana": false,
+        "has_receipt": true,
+        "has_paid": true,
+        "has_approval": false,
+        "has_handoff": false,
+        "has_pause_agent": false,
+        "has_resume_agent": false,
+        "has_protected_activity": false,
+        "has_verify_receipt": false,
+        "has_verified_receipt": false,
+        "durability_disclosed": false,
+        "voice_connected": false,
+        "text_ready": false
+      }
+    },
+    {
+      "id": "W-S-RUNTIME",
+      "result": "Pass",
+      "shots": [
+        "W-S-RUNTIME-20260714-023601-0.jpeg"
+      ],
+      "notes": "handoff=True path=/dashboard tools=['delegate_to_runtime_agent'] hint=Samantha\n\n## Seller ops triage \u2014 13 Jul 2026 ### Totals | Category | Count | |----------|------:| | Pending orders | **1** | | Refund tasks (open) | **2** | | E",
+      "state": {
+        "pathname": "/dashboard",
+        "href": "https://ondcseller.aadharcha.in/dashboard",
+        "hint": "Samantha\n\n## Seller ops triage \u2014 13 Jul 2026 ### Totals | Category | Count | |----------|------:| | Pending orders | **1** | | Refund tasks (open) | **2** | | Executed refunds (today) | **2** (\u20b93,050 total) | | Disputes / issues | **0** | | AgentGuard approvals open | **0** | --- ### P\n\ne, then I\u2019ll summarize the actions needed. If you want, I can also help you decide what to prioritize once it returns.Done \u2014 here\u2019s the brief summary: ## Seller ops triage \u2014 13 Jul 2026 You have 1 pending order, 2 open refund tasks, and 2 refunds executed today totaling \u20b93,050. No disputes or issues, and no AgentGuard approvals are open. If you\u2019d like, I can help you decide what to handle first.\n\nSend\nAgentGu",
+        "reply": "e, then I\u2019ll summarize the actions needed. If you want, I can also help you decide what to prioritize once it returns.Done \u2014 here\u2019s the brief summary: ## Seller ops triage \u2014 13 Jul 2026 You have 1 pending order, 2 open refund tasks, and 2 refunds executed today totaling \u20b93,050. No disputes or issues, and no AgentGuard approvals are open. If you\u2019d like, I can help you decide what to handle first.",
+        "tools": [
+          {
+            "at": 1783977103233,
+            "callId": "call_10dvN20qRgU1rgfP",
+            "message": "I've started that \u2014 I'll let you know when it's done.",
+            "name": "delegate_to_runtime_agent",
+            "navigateTo": null,
+            "ok": true
+          }
+        ],
+        "has_sign_out": true,
+        "has_banana": false,
+        "has_receipt": false,
+        "has_paid": false,
+        "has_approval": false,
+        "has_handoff": false,
+        "has_pause_agent": false,
+        "has_resume_agent": false,
+        "has_protected_activity": false,
+        "has_verify_receipt": false,
+        "has_verified_receipt": true,
+        "durability_disclosed": false,
+        "voice_connected": false,
+        "text_ready": false
+      }
+    },
+    {
+      "id": "W-S-VOICE",
+      "result": "Blocked",
+      "shots": [
+        "W-S-VOICE-20260714-023601-0.jpeg"
+      ],
+      "notes": "hint=",
+      "state": {
+        "pathname": "/dashboard",
+        "href": "https://ondcseller.aadharcha.in/dashboard",
+        "hint": "",
+        "reply": "",
+        "tools": [
+          {
+            "at": 1783977103233,
+            "callId": "call_10dvN20qRgU1rgfP",
+            "message": "I've started that \u2014 I'll let you know when it's done.",
+            "name": "delegate_to_runtime_agent",
+            "navigateTo": null,
+            "ok": true
+          }
+        ],
+        "has_sign_out": true,
+        "has_banana": false,
+        "has_receipt": false,
+        "has_paid": false,
+        "has_approval": false,
+        "has_handoff": false,
+        "has_pause_agent": false,
+        "has_resume_agent": false,
+        "has_protected_activity": false,
+        "has_verify_receipt": false,
+        "has_verified_receipt": true,
+        "durability_disclosed": false,
+        "voice_connected": false,
+        "text_ready": false
+      }
+    }
+  ],
+  "meta": {
+    "realtime": {
+      "configured": true,
+      "model": "gpt-realtime-2.1-mini",
+      "agent_name": "Samantha"
+    },
+    "preflight_ready": true,
+    "sessions_closed": [
+      "fqdn-e2e-20260714-023601"
+    ]
+  }
+}

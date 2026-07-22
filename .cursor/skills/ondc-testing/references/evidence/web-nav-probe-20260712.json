@@ -1,0 +1,42 @@
+{
+  "example": {
+    "requested": "https://example.com/",
+    "ctx_url": "https://example.com/",
+    "title": "Example Domain",
+    "eval": {
+      "href": "https://example.com/",
+      "title": "Example Domain"
+    },
+    "final_url": "https://example.com/"
+  },
+  "gateway_status": {
+    "requested": "https://identity-aadhar-gateway-main.onrender.com/api/realtime/status",
+    "ctx_url": "https://identity-aadhar-gateway-main.onrender.com/api/realtime/status",
+    "title": "",
+    "eval": {
+      "href": "https://identity-aadhar-gateway-main.onrender.com/api/realtime/status",
+      "title": ""
+    },
+    "final_url": "https://identity-aadhar-gateway-main.onrender.com/api/realtime/status"
+  },
+  "auth0_root": {
+    "requested": "https://dev-ejqlkc0qt84udk7i.us.auth0.com/",
+    "ctx_url": "https://auth0.com/",
+    "title": "Secure AI Agent & User Authentication | Auth0",
+    "eval": {
+      "href": "https://auth0.com/",
+      "title": "Secure AI Agent & User Authentication | Auth0"
+    },
+    "final_url": "https://auth0.com/"
+  },
+  "buyer": {
+    "requested": "https://ondcbuyer.aadharcha.in/search",
+    "ctx_url": "https://ondcbuyer.aadharcha.in/search",
+    "title": "ONDC Buyer",
+    "eval": {
+      "href": "https://ondcbuyer.aadharcha.in/search",
+      "title": "ONDC Buyer"
+    },
+    "final_url": "https://ondcbuyer.aadharcha.in/search"
+  }
+}

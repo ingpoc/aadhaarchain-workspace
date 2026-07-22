@@ -47,6 +47,23 @@ def call(handler, args: dict) -> dict:
     return data
 
 
+def click_testid(testid: str) -> dict:
+    return {
+        "type": "locator",
+        "locator": {"by": "testid", "testId": testid},
+        "operation": "click",
+    }
+
+
+def fill_testid(testid: str, value: str) -> dict:
+    return {
+        "type": "locator",
+        "locator": {"by": "testid", "testId": testid},
+        "operation": "fill",
+        "value": value,
+    }
+
+
 WAIT_READY = """
 (() => {
   const panel = document.querySelector('[data-testid="samantha-orb-panel"]');
@@ -85,7 +102,7 @@ EVAL = """
     has_sign_out: btns.some(t => /^Sign out$/i.test(t)),
     has_sign_in: btns.some(t => /^Sign in$/i.test(t)),
     has_banana: /banana/i.test(body),
-    has_atta: /AgentGuard PreProd Atta|Sharbati Atta|Test Atta/i.test(body),
+    has_atta: /Sampoorna Whole Wheat Atta|Sharbati Atta|Test Atta/i.test(body),
     cart_empty: /Your cart is empty/i.test(body),
     has_cart_item: /\\d+ item(?:s)? ready for trust-aware checkout/i.test(body),
     has_milk: /milk/i.test(body),
@@ -222,10 +239,7 @@ def wait_samantha_ready(handler, session: str, max_rounds: int = 8) -> dict:
                 "use_selected_tab": False,
                 "timeout_seconds": 30,
                 "actions": [
-                    {
-                        "type": "click_selector",
-                        "selector": '[data-testid="samantha-orb"]',
-                    },
+                    click_testid("samantha-orb"),
                     {
                         "type": "wait_for_selector",
                         "selector": '[data-testid="samantha-orb-panel"]',
@@ -283,15 +297,8 @@ def ask(handler, session: str, message: str, mid: str, wait_ms: int = 22000) -> 
             "use_selected_tab": False,
             "timeout_seconds": max(120, wait_ms // 1000 + 60),
             "actions": [
-                {
-                    "type": "fill_selector",
-                    "selector": '[data-testid="samantha-orb-text"]',
-                    "value": message,
-                },
-                {
-                    "type": "click_selector",
-                    "selector": '[data-testid="samantha-orb-send"]',
-                },
+                fill_testid("samantha-orb-text", message),
+                click_testid("samantha-orb-send"),
                 {"type": "wait", "ms": wait_ms},
                 {"type": "evaluate", "expression": EVAL},
                 {"type": "screenshot", "format": "jpeg", "quality": 70},
@@ -341,10 +348,7 @@ def run_buyer(handler) -> None:
                 {"type": "wait", "ms": 2500},
                 {"type": "evaluate", "expression": EVAL},
                 {"type": "screenshot", "format": "jpeg", "quality": 70},
-                {
-                    "type": "click_selector",
-                    "selector": '[data-testid="samantha-orb"]',
-                },
+                click_testid("samantha-orb"),
                 {"type": "wait", "ms": 14000},
                 {"type": "evaluate", "expression": WAIT_READY},
                 {"type": "evaluate", "expression": EVAL},
@@ -404,7 +408,7 @@ def run_buyer(handler) -> None:
                     {"type": "wait", "ms": 3000},
                     {"type": "evaluate", "expression": EVAL},
                     {"type": "screenshot", "format": "jpeg", "quality": 70},
-                    {"type": "click_selector", "selector": '[data-testid="samantha-orb"]'},
+                    click_testid("samantha-orb"),
                     {"type": "wait", "ms": 12000},
                     {"type": "evaluate", "expression": EVAL},
                     {"type": "screenshot", "format": "jpeg", "quality": 70},
@@ -440,7 +444,7 @@ def run_buyer(handler) -> None:
     )
 
     # Search the exact Seller-published item used by the PreProd network grader.
-    st, sh = ask(handler, SESSION_B, "find AgentGuard PreProd Atta", "W-B-FIND-ATTA", wait_ms=28000)
+    st, sh = ask(handler, SESSION_B, "find AadhaarChain whole wheat atta", "W-B-FIND-ATTA", wait_ms=28000)
     ok = st.get("has_atta") and "/results" in (st.get("pathname") or "")
     record(
         "buyer",
@@ -452,7 +456,7 @@ def run_buyer(handler) -> None:
     )
 
     # Add to cart
-    st, sh = ask(handler, SESSION_B, "add AgentGuard PreProd Atta to my cart", "W-B-ADD-ATTA", wait_ms=32000)
+    st, sh = ask(handler, SESSION_B, "add AadhaarChain whole wheat atta to my cart", "W-B-ADD-ATTA", wait_ms=32000)
     cart_st, cart_sh = goto_shot(handler, SESSION_B, f"{BUYER}/cart", "W-B-CART")
     ok = cart_st.get("has_cart_item") and not cart_st.get("cart_empty")
     record(
@@ -515,7 +519,7 @@ def run_buyer(handler) -> None:
             "use_selected_tab": False,
             "timeout_seconds": 40,
             "actions": [
-                {"type": "click_selector", "selector": '[data-testid="samantha-orb"]'},
+                click_testid("samantha-orb"),
                 {"type": "wait", "ms": 12000},
             ],
         },
@@ -566,7 +570,7 @@ def run_buyer(handler) -> None:
                 "use_selected_tab": False,
                 "timeout_seconds": 40,
                 "actions": [
-                    {"type": "click_selector", "selector": '[data-testid="buyer-config-toggle-agent"]'},
+                    click_testid("buyer-config-toggle-agent"),
                     {"type": "wait", "ms": 1800},
                     {"type": "evaluate", "expression": EVAL},
                     {"type": "screenshot", "format": "jpeg", "quality": 70},
@@ -583,7 +587,7 @@ def run_buyer(handler) -> None:
                 "use_selected_tab": False,
                 "timeout_seconds": 40,
                 "actions": [
-                    {"type": "click_selector", "selector": '[data-testid="buyer-config-toggle-agent"]'},
+                    click_testid("buyer-config-toggle-agent"),
                     {"type": "wait", "ms": 1800},
                     {"type": "evaluate", "expression": EVAL},
                     {"type": "screenshot", "format": "jpeg", "quality": 70},
@@ -658,7 +662,7 @@ def run_buyer(handler) -> None:
             "actions": [
                 {"type": "goto", "url": f"{BUYER}/search"},
                 {"type": "wait", "ms": 2000},
-                {"type": "click_selector", "selector": '[data-testid="samantha-orb"]'},
+                click_testid("samantha-orb"),
                 {"type": "wait", "ms": 12000},
             ],
         },
@@ -751,10 +755,7 @@ def run_seller(handler) -> None:
                 {"type": "wait", "ms": 2500},
                 {"type": "evaluate", "expression": EVAL},
                 {"type": "screenshot", "format": "jpeg", "quality": 70},
-                {
-                    "type": "click_selector",
-                    "selector": '[data-testid="samantha-orb"]',
-                },
+                click_testid("samantha-orb"),
                 {"type": "wait", "ms": 14000},
                 {"type": "evaluate", "expression": WAIT_READY},
                 {"type": "evaluate", "expression": EVAL},
@@ -793,10 +794,7 @@ def run_seller(handler) -> None:
                     {"type": "wait", "ms": 3000},
                     {"type": "evaluate", "expression": EVAL},
                     {"type": "screenshot", "format": "jpeg", "quality": 70},
-                    {
-                        "type": "click_selector",
-                        "selector": '[data-testid="samantha-orb"]',
-                    },
+                    click_testid("samantha-orb"),
                     {"type": "wait", "ms": 12000},
                     {"type": "evaluate", "expression": EVAL},
                     {"type": "screenshot", "format": "jpeg", "quality": 70},
@@ -886,7 +884,7 @@ def run_seller(handler) -> None:
             "actions": [
                 {"type": "goto", "url": f"{SELLER}/catalog"},
                 {"type": "wait", "ms": 2000},
-                {"type": "click_selector", "selector": '[data-testid="samantha-orb"]'},
+                click_testid("samantha-orb"),
                 {"type": "wait", "ms": 12000},
             ],
         },
@@ -922,7 +920,7 @@ def run_seller(handler) -> None:
             "actions": [
                 {"type": "goto", "url": f"{SELLER}/orders"},
                 {"type": "wait", "ms": 2000},
-                {"type": "click_selector", "selector": '[data-testid="samantha-orb"]'},
+                click_testid("samantha-orb"),
                 {"type": "wait", "ms": 12000},
             ],
         },
@@ -988,7 +986,7 @@ def run_seller(handler) -> None:
             "use_selected_tab": False,
             "timeout_seconds": 60,
             "actions": [
-                {"type": "click_selector", "selector": '[data-testid="refund-3000"]'},
+                click_testid("refund-3000"),
                 {"type": "wait", "ms": 3500},
                 {"type": "evaluate", "expression": EVAL},
                 {"type": "screenshot", "format": "jpeg", "quality": 70},
@@ -1014,7 +1012,7 @@ def run_seller(handler) -> None:
             "use_selected_tab": False,
             "timeout_seconds": 60,
             "actions": [
-                {"type": "click_selector", "selector": '[data-testid="refund-7500"]'},
+                click_testid("refund-7500"),
                 {"type": "wait", "ms": 3000},
                 {"type": "evaluate", "expression": EVAL},
                 {"type": "screenshot", "format": "jpeg", "quality": 70},
@@ -1040,9 +1038,9 @@ def run_seller(handler) -> None:
             "use_selected_tab": False,
             "timeout_seconds": 70,
             "actions": [
-                {"type": "click_selector", "selector": '[data-testid="approve-once"]'},
+                click_testid("approve-once"),
                 {"type": "wait", "ms": 3500},
-                {"type": "click_selector", "selector": '[data-testid="replay-approval"]'},
+                click_testid("replay-approval"),
                 {"type": "wait", "ms": 3500},
                 {"type": "evaluate", "expression": EVAL},
                 {"type": "screenshot", "format": "jpeg", "quality": 70},
@@ -1083,7 +1081,7 @@ def run_seller(handler) -> None:
             "actions": [
                 {"type": "goto", "url": f"{SELLER}/dashboard"},
                 {"type": "wait", "ms": 2000},
-                {"type": "click_selector", "selector": '[data-testid="samantha-orb"]'},
+                click_testid("samantha-orb"),
                 {"type": "wait", "ms": 12000},
             ],
         },
@@ -1116,7 +1114,7 @@ def run_seller(handler) -> None:
             "use_selected_tab": False,
             "timeout_seconds": 40,
             "actions": [
-                {"type": "click_selector", "selector": '[data-testid="samantha-orb"]'},
+                click_testid("samantha-orb"),
                 {"type": "wait", "ms": 10000},
                 {"type": "evaluate", "expression": EVAL},
                 {"type": "screenshot", "format": "jpeg", "quality": 70},

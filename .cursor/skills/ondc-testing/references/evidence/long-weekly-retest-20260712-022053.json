@@ -1,0 +1,81 @@
+{
+  "id": "B-LONG-WEEKLY",
+  "result": "Fail",
+  "note": "leaked path=/search",
+  "screenshots": [
+    "evidence/B-LONG-WEEKLY-20260712-022053-7.jpeg"
+  ],
+  "state": {
+    "events": [
+      "response.function_call_arguments.delta",
+      "response.function_call_arguments.delta",
+      "response.function_call_arguments.delta",
+      "response.function_call_arguments.delta",
+      "response.function_call_arguments.delta",
+      "response.function_call_arguments.delta",
+      "response.function_call_arguments.delta",
+      "response.function_call_arguments.delta",
+      "response.function_call_arguments.delta",
+      "response.function_call_arguments.delta",
+      "response.function_call_arguments.delta",
+      "response.function_call_arguments.delta",
+      "response.function_call_arguments.delta",
+      "response.function_call_arguments.delta",
+      "response.function_call_arguments.delta",
+      "response.function_call_arguments.delta",
+      "response.function_call_arguments.delta",
+      "response.function_call_arguments.delta",
+      "response.function_call_arguments.delta",
+      "response.function_call_arguments.delta"
+    ],
+    "has_handoff": true,
+    "hint": "Samantha\n\nCURSOR_API_KEY is required. Create one at https://cursor.com/dashboard/integrations\n\nGot it, I\u2019ll set that up in the background and keep you posted.I tried to start the background plan, but it needs a cursor or integration setup first. It says you\u2019ll need to create an API key at cursor dot com in your dashboard integrations area. Once that\u2019s connected, I can try again, and then I\u2019ll update you when it\u2019s done.Hey, you got it\u2014just checking in. Whenever you\u2019re ready, we can continue.\n\nSend\nPreferences & AgentGuard",
+    "pathname": "/search",
+    "reply": "Got it, I\u2019ll set that up in the background and keep you posted.I tried to start the background plan, but it needs a cursor or integration setup first. It says you\u2019ll need to create an API key at cursor dot com in your dashboard integrations area. Once that\u2019s connected, I can try again, and then I\u2019ll update you when it\u2019s done.Hey, you got it\u2014just checking in. Whenever you\u2019re ready, we can continue.",
+    "tools": [
+      {
+        "amount_inr": null,
+        "at": 1783803082970,
+        "callId": "call_OSW1CT3ZTg8RF3UE",
+        "cartAdds": [],
+        "decision": null,
+        "message": "CURSOR_API_KEY is required. Create one at https://cursor.com/dashboard/integrations",
+        "name": "delegate_to_runtime_agent",
+        "navigateTo": null,
+        "ok": false,
+        "receiptId": null,
+        "session_id": null
+      }
+    ]
+  },
+  "ready_polls": [
+    {
+      "input": true,
+      "ok": true,
+      "ready": true,
+      "sendDisabled": true,
+      "text": "Samantha\n\nListening + text ready\n\nSend\nPreferences & AgentGuard"
+    },
+    {
+      "input": true,
+      "ok": true,
+      "ready": true,
+      "sendDisabled": true,
+      "text": "Samantha\n\nListening + text ready\n\nSend\nPreferences & AgentGuard"
+    },
+    {
+      "input": true,
+      "ok": true,
+      "ready": false,
+      "sendDisabled": true,
+      "text": "Samantha\n\nSamantha replied\n\nHey there! Nice to chat with you. What can I help you find or look into today?\n\nSend\nPreferences & AgentGuard"
+    },
+    {
+      "input": true,
+      "ok": true,
+      "ready": false,
+      "sendDisabled": true,
+      "text": "Samantha\n\nSamantha replied\n\nHey there! Nice to chat with you. What can I help you find or look into today?\n\nSend\nPreferences & AgentGuard"
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "id": "W-B-FIND-ATTA",
+  "result": "Pass",
+  "shots": [
+    "W-B-FIND-ATTA-SETTLE-20260712-224058-0.jpeg"
+  ],
+  "early_results": true,
+  "late": {
+    "href": "https://ondcbuyer.aadharcha.in/results?category=grocery&q=atta",
+    "pathname": "/results",
+    "pulling": false,
+    "failed": false,
+    "failedFetch": false,
+    "hasGrid": true,
+    "hasAtta": false,
+    "honestEmpty": false,
+    "matches": "10",
+    "tools": [
+      {
+        "name": "search_catalog",
+        "navSuperseded": false,
+        "ok": false
+      },
+      {
+        "name": "navigate_to",
+        "navSuperseded": false,
+        "ok": true
+      }
+    ],
+    "body_snip": "PORTFOLIO\nONDC Buyer\nDiscover commerce under AgentGuard authorization.\nSearch\nCart\nOrders\nConfig\nSign out\nRESULTS\nBrowse atta\n\nRefine the search, compare offers, and move the best candidate into cart without leaving the buyer shell.\n\n10 matches\nDefault filters\nCategory\nGrocery\nGrocery\nRestaurant\nFashion\nElectronics\nSearch\nSearch\nREFINE\nSearch filters\n\nTighten the result set before you compare offers.\n\nBase view\nMAX PRICEMIN RATINGSORT BY\nRelevance\nDELIVERY AREAReset filters\nMATCHES\n10\nCurrent query: atta\nCATEGORY\ngrocery\nUse the compact bar above to pivot into another lane.\nFILTER LOAD\n0\nRelevance sorting only.\nOFFER GRID\nCompare the strongest candidates\n\nOpen product detail for deeper inspection or add the item directly to cart.\n\nGeneral\nAditya Mart pvt. ltd.\nEnglish Cashew\n\nenglish cashew is one of the best preimiume qulity of cashew form astrial\n\nINR 89.25\nSeller: Aditya Mart pvt. ltd.\nView details\nAdd\nGeneral\nAditya Mart pvt. ltd.\nEnglish Cashew 500g\n\nenglish cashew is one of the best preimiume qulity of cashew form astrial\n\nINR 170.00\nSeller: Aditya Mart pvt. ltd.\nView details\nAdd\nGeneral\nAditya Mart pvt. ltd.\nseller-5590522981a4ea31 non-cancellable item\n\nNon-cancellable demo "
+  },
+  "stamp": "20260712-224058",
+  "deploy": "ondcbuyer-ic4t2ojrg"
+}

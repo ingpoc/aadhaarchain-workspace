@@ -1,0 +1,8 @@
+HTTP 200
+data: {"type": "init", "session_id": "sess-preprod-20260712-204642", "mode": "read_write"}
+
+data: {"type": "result", "content": "RUNTIME_OK", "sdk_session_id": "agent-e191bc06-f94f-46f4-9458-b3c6d5f4bd8f", "timestamp": 1783869416767}
+
+data: [DONE]
+
+

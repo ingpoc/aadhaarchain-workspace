@@ -1,0 +1,28 @@
+{
+  "recorded_at": "2026-07-19T22:10:53+0530",
+  "scope": "owner_dispatch_proof_before_seller_merchant",
+  "verdict": "Pass",
+  "ok": true,
+  "order_id": "order_c727108dc9c84245",
+  "backend_status": "fulfilled",
+  "shot": "/Users/gurusharan/plugins/hermes-chrome-cursor-wip/run/cache/hermes-chrome/b697a6aa-fa30-446b-a3b5-708e0189f58b-0.png",
+  "session": "owner-dispatch-proof3-1784479222",
+  "lease_ready_at": "2026-07-19T16:40:23Z",
+  "final_headings": [
+    {
+      "tag": "H1",
+      "text": "Order reference C727108D"
+    }
+  ],
+  "final_buttons": [
+    "Search",
+    "Assistant status: Ready",
+    "Identity status: Verified",
+    "Sign out",
+    "Back to orders",
+    "Review full refund (INR 99)",
+    "Samantha"
+  ],
+  "retained_screenshot": ".cursor/skills/ondc-testing/references/evidence/owner-dispatch-fulfilled-20260719.png",
+  "proof": "Accept\u2192Dispatch with dialog_handle+promptText; backend fulfilled; dialog_opened prompt observed"
+}

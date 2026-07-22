@@ -33,9 +33,10 @@ Cadence: **PR** (blocks merge) · **Post** (post-deploy / soft FQDN) · **Night*
 | Buyer/Seller `/api/agent/*` rewrite | JSON via Vercel rewrite | **H** | Post | graders |
 | Buyer/Seller `/ondc/*` not SPA HTML | Catch missing rewrite | **H** | Post | graders |
 | FQDN bundle `VITE_COMMERCE_DEMO_MODE` | Must be `"false"` in asset | **H** | Post | graders |
-| `ondc_preprod_smoke` | Signed status/lookup/(search) | **H** | Post / Ops | `scripts/ondc_preprod_smoke.py` (`--ci` soft) |
+| `ondc_preprod_smoke` | Signed lookup/search/catalog; optional fail-closed item+quote select→init→confirm | **H** | Post / Ops | `scripts/ondc_preprod_smoke.py --search atta --order` (`--ci` soft only) |
 | BPP `ensure-demo-item` + published count | Marker catalog | **H** | Ops | gateway API; skill friction table |
 | Operator flows B-* / S-* | Samantha text journeys | **B** | Ops / Night | [`operator-flows.md`](operator-flows.md) · Hermes scripts |
+| Independent customer portfolio | Three full-mission actors: post-login Buyer novice, Seller merchant, and cross-app UI/UX + accessibility smoke; no subagent per step; one mission verdict; screenshot read; no internals | **B** | Ops / release | [`independent-customer-gate.md`](independent-customer-gate.md) |
 | Early `/results` visible search | UX ship prove | **B** | Ops | `hermes_operator_visible_search.py` |
 | Thorough FQDN matrix | Full Buyer+Seller | **B** | Night | `hermes_fqdn_e2e_thorough.py` |
 | Voice mic / WebRTC | Realtime voice Pass | **X**→**B** | Ops | Blocked in Hermes without mic |

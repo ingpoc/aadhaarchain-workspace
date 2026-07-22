@@ -1,0 +1,397 @@
+{
+  "stamp": "20260720-000815",
+  "truth": {
+    "rice": [
+      "India Gate Basmati Rice 1kg 20260719235354"
+    ],
+    "poha": [
+      "Harvest House Poha 500g"
+    ],
+    "atta": [
+      "Sampoorna Whole Wheat Atta 1kg",
+      "Dispatch Proof Atta 1kg",
+      "Dispatch Proof2 Atta 1kg"
+    ],
+    "tv": [
+      "Catalog Marker Horizon LED TV 32 20260719234027"
+    ],
+    "banana": []
+  },
+  "ready": {
+    "err": false,
+    "hint": "Samantha\n\nText mode ready (no mic)\n\nClose\nSend\nPreferences and AgentGuard",
+    "ready": true
+  },
+  "samantha": [
+    {
+      "case": "rice",
+      "codes": [
+        "HIT"
+      ],
+      "pass": true,
+      "url_q": "rice",
+      "match_badge": null,
+      "href": "http://127.0.0.1:43102/results?category=grocery&q=rice&ondc_txn=c99f8d28-dca7-4c93-9bcd-f068364fd29c",
+      "pathname": "/results",
+      "tool_q": "",
+      "tool_names": [
+        "search_catalog"
+      ],
+      "tools": [
+        {
+          "name": "search_catalog",
+          "query": null,
+          "ok": null
+        }
+      ],
+      "reply": "You can see a rice offer now. There\u2019s a single option available on the results page\u2014ready when you want to choose or add it.",
+      "flags": {
+        "has_poha": false,
+        "has_basmati": true,
+        "has_atta": false,
+        "has_tv_product": false,
+        "has_oil_product": false
+      },
+      "body_snip": "Open navigation\nONDC Buyer\nSearch, cart, and orders\nAccount\nBrowse rice\n\nReview this offer, seller, delivery, and return terms before adding it to cart.\n\n1 match\nDefault filters\nCategory\nGrocery\nGrocery\nRestaurant\nFashion\nElectronics\nSearch\nSearch groceries\nREFINE\nSearch filters\n\nTighten the result set before you compare offers.\n\nBase view\nMAX PRICEMIN RATINGSORT BY\nRelevance\nDELIVERY AREA\nFilled from your saved checkout area when available. You can edit it.\nReset filters\nOFFER GRID\nReview the a",
+      "errors": [],
+      "ask": "I want to buy some rice.",
+      "shots": [
+        "/Users/gurusharan/plugins/hermes-chrome-cursor-wip/run/cache/hermes-chrome/b06f7d4b-a97c-4561-9177-bce4dbeca869-3.jpeg"
+      ],
+      "truth_sample": [
+        "India Gate Basmati Rice 1kg 20260719235354"
+      ]
+    },
+    {
+      "case": "poha",
+      "codes": [
+        "HIT"
+      ],
+      "pass": true,
+      "url_q": "poha",
+      "match_badge": null,
+      "href": "http://127.0.0.1:43102/results?category=grocery&q=poha&ondc_txn=882de986-682c-4bef-8eb1-8063d5875062",
+      "pathname": "/results",
+      "tool_q": "",
+      "tool_names": [
+        "search_catalog",
+        "search_catalog"
+      ],
+      "tools": [
+        {
+          "name": "search_catalog",
+          "query": null,
+          "ok": null
+        },
+        {
+          "name": "search_catalog",
+          "query": null,
+          "ok": null
+        }
+      ],
+      "reply": "Here are poha options\u2014one is showing on the results page. It\u2019s Harvest House Poha 500g and ready if you\u2019d like to add it.",
+      "flags": {
+        "has_poha": true,
+        "has_basmati": false,
+        "has_atta": false,
+        "has_tv_product": false,
+        "has_oil_product": false
+      },
+      "body_snip": "Open navigation\nONDC Buyer\nSearch, cart, and orders\nAccount\nBrowse poha\n\nReview this offer, seller, delivery, and return terms before adding it to cart.\n\n1 match\nDefault filters\nCategory\nGrocery\nGrocery\nRestaurant\nFashion\nElectronics\nSearch\nSearch groceries\nREFINE\nSearch filters\n\nTighten the result set before you compare offers.\n\nBase view\nMAX PRICEMIN RATINGSORT BY\nRelevance\nDELIVERY AREA\nFilled from your saved checkout area when available. You can edit it.\nReset filters\nOFFER GRID\nReview the a",
+      "errors": [],
+      "ask": "Show me poha",
+      "shots": [
+        "/Users/gurusharan/plugins/hermes-chrome-cursor-wip/run/cache/hermes-chrome/1216300a-5114-45ed-ba6d-af47681ff43b-3.jpeg"
+      ],
+      "truth_sample": [
+        "Harvest House Poha 500g"
+      ]
+    },
+    {
+      "case": "atta",
+      "codes": [
+        "HIT"
+      ],
+      "pass": true,
+      "url_q": "atta",
+      "match_badge": null,
+      "href": "http://127.0.0.1:43102/results?category=grocery&q=atta&ondc_txn=0ee17757-5c83-4440-9664-f952dc230835",
+      "pathname": "/results",
+      "tool_q": "",
+      "tool_names": [
+        "search_catalog",
+        "search_catalog",
+        "search_catalog"
+      ],
+      "tools": [
+        {
+          "name": "search_catalog",
+          "query": null,
+          "ok": null
+        },
+        {
+          "name": "search_catalog",
+          "query": null,
+          "ok": null
+        },
+        {
+          "name": "search_catalog",
+          "query": null,
+          "ok": null
+        }
+      ],
+      "reply": "I\u2019ve pulled up whole wheat atta for you\u20148 options are visible on the results page. You can tap/choose one, and if you want, I can add it after you pick.",
+      "flags": {
+        "has_poha": false,
+        "has_basmati": false,
+        "has_atta": true,
+        "has_tv_product": false,
+        "has_oil_product": false
+      },
+      "body_snip": "Open navigation\nONDC Buyer\nSearch, cart, and orders\nAccount\nBrowse atta\n\nReview this offer, seller, delivery, and return terms before adding it to cart.\n\n1 match\nDefault filters\nCategory\nGrocery\nGrocery\nRestaurant\nFashion\nElectronics\nSearch\nSearch groceries\nREFINE\nSearch filters\n\nTighten the result set before you compare offers.\n\nBase view\nMAX PRICEMIN RATINGSORT BY\nRelevance\nDELIVERY AREA\nFilled from your saved checkout area when available. You can edit it.\nReset filters\nOFFER GRID\nReview the a",
+      "errors": [],
+      "ask": "I need whole wheat atta for roti tonight",
+      "shots": [
+        "/Users/gurusharan/plugins/hermes-chrome-cursor-wip/run/cache/hermes-chrome/d9e7488f-8c7b-47c0-a731-2931b67514ac-3.jpeg"
+      ],
+      "truth_sample": [
+        "Sampoorna Whole Wheat Atta 1kg",
+        "Dispatch Proof Atta 1kg",
+        "Dispatch Proof2 Atta 1kg"
+      ]
+    },
+    {
+      "case": "tv",
+      "codes": [],
+      "pass": false,
+      "url_q": "tv",
+      "match_badge": null,
+      "href": "http://127.0.0.1:43102/results?category=grocery&q=tv&ondc_txn=05daa52f-e562-4f30-bfb1-6fcecacb3358",
+      "pathname": "/results",
+      "tool_q": "",
+      "tool_names": [
+        "search_catalog",
+        "search_catalog",
+        "search_catalog",
+        "search_catalog"
+      ],
+      "tools": [
+        {
+          "name": "search_catalog",
+          "query": null,
+          "ok": null
+        },
+        {
+          "name": "search_catalog",
+          "query": null,
+          "ok": null
+        },
+        {
+          "name": "search_catalog",
+          "query": null,
+          "ok": null
+        },
+        {
+          "name": "search_catalog",
+          "query": null,
+          "ok": null
+        }
+      ],
+      "reply": "Done\u2014TV options are showing now. There\u2019s one available: a Horizon LED TV 32 on the results page.",
+      "flags": {
+        "has_poha": false,
+        "has_basmati": false,
+        "has_atta": false,
+        "has_tv_product": true,
+        "has_oil_product": false
+      },
+      "body_snip": "Open navigation\nONDC Buyer\nSearch, cart, and orders\nAccount\nBrowse tv\n\nReview this offer, seller, delivery, and return terms before adding it to cart.\n\n1 match\nDefault filters\nCategory\nGrocery\nGrocery\nRestaurant\nFashion\nElectronics\nSearch\nSearch groceries\nREFINE\nSearch filters\n\nTighten the result set before you compare offers.\n\nBase view\nMAX PRICEMIN RATINGSORT BY\nRelevance\nDELIVERY AREA\nFilled from your saved checkout area when available. You can edit it.\nReset filters\nOFFER GRID\nReview the ava",
+      "errors": [],
+      "ask": "Search for a TV",
+      "shots": [
+        "/Users/gurusharan/plugins/hermes-chrome-cursor-wip/run/cache/hermes-chrome/7e287a93-be6e-4972-ac06-f6aca2c79884-3.jpeg"
+      ],
+      "truth_sample": [
+        "Catalog Marker Horizon LED TV 32 20260719234027"
+      ]
+    },
+    {
+      "case": "banana",
+      "codes": [],
+      "pass": false,
+      "url_q": "banana",
+      "match_badge": "0",
+      "href": "http://127.0.0.1:43102/results?category=grocery&q=banana&ondc_txn=7b8f86b1-bdff-4d0b-a231-1279cb1cbda6",
+      "pathname": "/results",
+      "tool_q": "",
+      "tool_names": [
+        "search_catalog",
+        "search_catalog",
+        "search_catalog",
+        "search_catalog",
+        "search_catalog"
+      ],
+      "tools": [
+        {
+          "name": "search_catalog",
+          "query": null,
+          "ok": null
+        },
+        {
+          "name": "search_catalog",
+          "query": null,
+          "ok": null
+        },
+        {
+          "name": "search_catalog",
+          "query": null,
+          "ok": null
+        },
+        {
+          "name": "search_catalog",
+          "query": null,
+          "ok": null
+        },
+        {
+          "name": "search_catalog",
+          "query": null,
+          "ok": null
+        }
+      ],
+      "reply": "I searched for bananas and it looks like none matched right now. If you want, I can try a different wording like \u201cbanana\u201d vs \u201cbananas\u201d or we can look for a similar fruit instead.",
+      "flags": {
+        "has_poha": false,
+        "has_basmati": false,
+        "has_atta": false,
+        "has_tv_product": false,
+        "has_oil_product": false
+      },
+      "body_snip": "Open navigation\nONDC Buyer\nSearch, cart, and orders\nAccount\nBrowse banana\n\nAdjust the search or filters to find an available offer.\n\n0 matches\nDefault filters\nCategory\nGrocery\nGrocery\nRestaurant\nFashion\nElectronics\nSearch\nSearch groceries\nREFINE\nSearch filters\n\nTighten the result set before you compare offers.\n\nBase view\nMAX PRICEMIN RATINGSORT BY\nRelevance\nDELIVERY AREA\nFilled from your saved checkout area when available. You can edit it.\nReset filters\nOFFER GRID\nNo exact matches for \u201cbanana\u201d\n\n",
+      "errors": [],
+      "ask": "Find bananas",
+      "shots": [
+        "/Users/gurusharan/plugins/hermes-chrome-cursor-wip/run/cache/hermes-chrome/04f374f0-3ea0-4aee-82cb-b61033549a44-3.jpeg"
+      ],
+      "truth_sample": []
+    }
+  ],
+  "direct_rice": {
+    "pass": true,
+    "has_basmati": true,
+    "has_poha": false,
+    "href": "http://127.0.0.1:43102/results?q=rice",
+    "match_badge": null,
+    "body_snip": "Open navigation\nONDC Buyer\nSearch, cart, and orders\nAccount\nBrowse rice\n\nReview this offer, seller, delivery, and return terms before adding it to cart.\n\n1 match\nDefault filters\nCategory\nGrocery\nGrocery\nRestaurant\nFashion\nElectronics\nSearch\nSearch groceries\nREFINE\nSearch filters\n\nTighten the result set before you compare offers.\n\nBase view\nMAX PRICEMIN RATINGSORT BY\nRelevance\nDELIVERY AREA\nFilled from your saved checkout area when available. You can edit it.\nReset filters\nOFFER GRID\nReview the a",
+    "shots": [
+      "/Users/gurusharan/plugins/hermes-chrome-cursor-wip/run/cache/hermes-chrome/43631467-d338-4605-a73d-cd701548e232-3.jpeg"
+    ]
+  },
+  "page_diag": {
+    "ok": true,
+    "ui": {
+      "url": "http://127.0.0.1:43102/results?q=rice",
+      "title": "ONDC Buyer",
+      "headings": [
+        "Browse rice"
+      ],
+      "buttons": [
+        "Open navigation",
+        "Account",
+        "Grocery",
+        "Search groceries",
+        "Relevance",
+        "Reset filters",
+        "India Gate Basmati Rice 1kg 20260719235354",
+        "View details",
+        "Add",
+        "Samantha"
+      ]
+    },
+    "console": {
+      "installed": true,
+      "total": 6,
+      "errors": [],
+      "warns": [
+        "\u26a0\ufe0f React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.",
+        "\u26a0\ufe0f React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath."
+      ]
+    },
+    "network": {
+      "type": "network_summary",
+      "enabled": true,
+      "capture_started": true,
+      "started_at": "2026-07-19T18:41:50.255Z",
+      "request_count": 0,
+      "response_count": 0,
+      "failed_count": 0,
+      "http_error_count": 0,
+      "error_count": 0,
+      "status_counts": {},
+      "resource_type_counts": {},
+      "last_error": null,
+      "capture_started_now": true,
+      "instruction": "Capture starts now; run network_watch before the navigation or action being diagnosed"
+    },
+    "backend": [
+      {
+        "log": "ondc-buyer.log",
+        "line": "12:01:19 AM [vite] http proxy error: /api/agent/runtime?app=ondc-buyer"
+      },
+      {
+        "log": "ondc-buyer.log",
+        "line": "Error: connect ECONNREFUSED 127.0.0.1:43104"
+      },
+      {
+        "log": "ondc-buyer.log",
+        "line": "12:01:19 AM [vite] http proxy error: /api/agent/runtime?app=ondc-buyer"
+      },
+      {
+        "log": "ondc-buyer.log",
+        "line": "Error: connect ECONNREFUSED 127.0.0.1:43104"
+      }
+    ],
+    "issues": [
+      {
+        "source": "console",
+        "level": "warn",
+        "msg": "\u26a0\ufe0f React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition."
+      },
+      {
+        "source": "console",
+        "level": "warn",
+        "msg": "\u26a0\ufe0f React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath."
+      },
+      {
+        "source": "backend",
+        "level": "context",
+        "msg": "ondc-buyer.log: 12:01:19 AM [vite] http proxy error: /api/agent/runtime?app=ondc-buyer"
+      },
+      {
+        "source": "backend",
+        "level": "context",
+        "msg": "ondc-buyer.log: Error: connect ECONNREFUSED 127.0.0.1:43104"
+      },
+      {
+        "source": "backend",
+        "level": "context",
+        "msg": "ondc-buyer.log: 12:01:19 AM [vite] http proxy error: /api/agent/runtime?app=ondc-buyer"
+      },
+      {
+        "source": "backend",
+        "level": "context",
+        "msg": "ondc-buyer.log: Error: connect ECONNREFUSED 127.0.0.1:43104"
+      }
+    ],
+    "final_url": "http://127.0.0.1:43102/results?q=rice"
+  },
+  "logs": {
+    "recent_issue_lines": [
+      "ondc-buyer.log: 12:01:19 AM [vite] http proxy error: /api/agent/runtime?app=ondc-buyer",
+      "ondc-buyer.log: Error: connect ECONNREFUSED 127.0.0.1:43104",
+      "ondc-buyer.log: 12:01:19 AM [vite] http proxy error: /api/agent/runtime?app=ondc-buyer",
+      "ondc-buyer.log: Error: connect ECONNREFUSED 127.0.0.1:43104"
+    ],
+    "count": 4
+  },
+  "overall_pass": false
+}

@@ -1,0 +1,51 @@
+ffmpeg version 8.0.1 Copyright (c) 2000-2025 the FFmpeg developers
+  built with Apple clang version 17.0.0 (clang-1700.6.3.2)
+  configuration: --prefix=/opt/homebrew/Cellar/ffmpeg/8.0.1_4 --enable-shared --enable-pthreads --enable-version3 --cc=clang --host-cflags= --host-ldflags= --enable-ffplay --enable-gpl --enable-libsvtav1 --enable-libopus --enable-libx264 --enable-libmp3lame --enable-libdav1d --enable-libvpx --enable-libx265 --enable-openssl --enable-videotoolbox --enable-audiotoolbox --enable-neon
+  libavutil      60.  8.100 / 60.  8.100
+  libavcodec     62. 11.100 / 62. 11.100
+  libavformat    62.  3.100 / 62.  3.100
+  libavdevice    62.  1.100 / 62.  1.100
+  libavfilter    11.  4.100 / 11.  4.100
+  libswscale      9.  1.100 /  9.  1.100
+  libswresample   6.  1.100 /  6.  1.100
+objc[84925]: class `NSKVONotifying_AVCaptureScreenInput' not linked into application
+objc[84925]: class `NSKVONotifying_AVCaptureScreenInput' not linked into application
+objc[84925]: class `NSKVONotifying_AVCaptureScreenInput' not linked into application
+[AVFoundation indev @ 0x933400140] Configuration of video device failed, falling back to default.
+[avfoundation @ 0x932804000] Stream #0: not enough frames to estimate rate; consider increasing probesize
+Input #0, avfoundation, from '1':
+  Duration: N/A, start: 1246206.406667, bitrate: N/A
+  Stream #0:0: Video: rawvideo (UYVY / 0x59565955), uyvy422, 1920x1080, 1000k tbr, 1000k tbn, start 1246206.406667
+Stream mapping:
+  Stream #0:0 -> #0:0 (rawvideo (native) -> h264 (libx264))
+Press [q] to stop, [?] for help
+[libx264 @ 0x932e80a80] MB rate (8160000000) > level limit (16711680)
+[libx264 @ 0x932e80a80] using cpu capabilities: ARMv8 NEON DotProd I8MM
+[libx264 @ 0x932e80a80] profile High, level 6.2, 4:2:0, 8-bit
+[libx264 @ 0x932e80a80] 264 - core 165 r3222 b35605a - H.264/MPEG-4 AVC codec - Copyleft 2003-2025 - http://www.videolan.org/x264.html - options: cabac=1 ref=1 deblock=1:0:0 analyse=0x3:0x113 me=hex subme=2 psy=1 psy_rd=1.00:0.00 mixed_ref=0 me_range=16 chroma_me=1 trellis=0 8x8dct=1 cqm=0 deadzone=21,11 fast_pskip=1 chroma_qp_offset=0 threads=15 lookahead_threads=5 sliced_threads=0 nr=0 decimate=1 interlaced=0 bluray_compat=0 constrained_intra=0 bframes=3 b_pyramid=2 b_adapt=1 b_bias=0 direct=1 weightb=1 open_gop=0 weightp=1 keyint=250 keyint_min=25 scenecut=40 intra_refresh=0 rc_lookahead=10 rc=crf mbtree=1 crf=22.0 qcomp=0.60 qpmin=0 qpmax=69 qpstep=4 ip_ratio=1.40 aq=1:1.00
+Output #0, mp4, to '/Users/gurusharan/Documents/remote-claude/active/apps/AadhaarChainWorkspace/.cursor/skills/apisetu-partner-onboarding/references/evidence/token-nxt-demo/ui_cursor_v3.mp4':
+  Metadata:
+    encoder         : Lavf62.3.100
+  Stream #0:0: Video: h264 (avc1 / 0x31637661), yuv420p(tv, progressive), 1920x1080, q=2-31, 1000k fps, 1000k tbn
+    Metadata:
+      encoder         : Lavc62.11.100 libx264
+    Side data:
+      cpb: bitrate max/min/avg: 0/0/0 buffer size: 0 vbv_delay: N/A
+frame=    0 fps=0.0 q=0.0 size=       0KiB time=N/A bitrate=N/A speed=N/A elapsed=0:00:00.50    frame=    3 fps=3.0 q=28.0 size=       0KiB time=00:00:00.00 bitrate=384000.0kbits/s speed=9.94e-07x elapsed=0:00:01.00    frame=   18 fps= 12 q=28.0 size=       0KiB time=00:00:00.50 bitrate=   0.8kbits/s speed=0.331x elapsed=0:00:01.51    frame=   33 fps= 16 q=28.0 size=       0KiB time=00:00:01.00 bitrate=   0.4kbits/s speed=0.497x elapsed=0:00:02.01    frame=   48 fps= 19 q=28.0 size=       0KiB time=00:00:01.50 bitrate=   0.3kbits/s speed=0.596x elapsed=0:00:02.51    frame=   63 fps= 21 q=28.0 size=       0KiB time=00:00:02.00 bitrate=   0.2kbits/s speed=0.662x elapsed=0:00:03.02    frame=   78 fps= 22 q=28.0 size=       0KiB time=00:00:02.50 bitrate=   0.2kbits/s speed=0.709x elapsed=0:00:03.52    frame=   86 fps= 21 q=28.0 size=       0KiB time=00:00:02.76 bitrate=   0.1kbits/s speed=0.687x elapsed=0:00:04.02    frame=  108 fps= 24 q=28.0 size=       0KiB time=00:00:03.50 bitrate=   0.1kbits/s speed=0.773x elapsed=0:00:04.52    frame=  123 fps= 24 q=28.0 size=       0KiB time=00:00:04.00 bitrate=   0.1kbits/s speed=0.795x elapsed=0:00:05.03    frame=  138 fps= 25 q=28.0 size=       0KiB time=00:00:04.50 bitrate=   0.1kbits/s speed=0.813x elapsed=0:00:05.53    frame=  153 fps= 25 q=28.0 size=       0KiB time=00:00:05.00 bitrate=   0.1kbits/s speed=0.829x elapsed=0:00:06.03    frame=  168 fps= 26 q=28.0 size=       0KiB time=00:00:05.50 bitrate=   0.1kbits/s speed=0.841x elapsed=0:00:06.54    frame=  172 fps= 24 q=28.0 size=       0KiB time=00:00:05.63 bitrate=   0.1kbits/s speed=0.792x elapsed=0:00:07.11    frame=  173 fps= 22 q=28.0 size=       0KiB time=00:00:05.66 bitrate=   0.1kbits/s speed=0.735x elapsed=0:00:07.71    frame=  173 fps= 21 q=28.0 size=       0KiB time=00:00:05.66 bitrate=   0.1kbits/s speed=0.69x elapsed=0:00:08.21    frame=  173 fps= 19 q=28.0 size=       0KiB time=00:00:05.66 bitrate=   0.1kbits/s speed=0.626x elapsed=0:00:09.04    frame=  173 fps= 18 q=28.0 size=       0KiB time=00:00:05.66 bitrate=   0.1kbits/s speed=0.593x elapsed=0:00:09.55    frame=  173 fps= 17 q=28.0 size=       0KiB time=00:00:05.66 bitrate=   0.1kbits/s speed=0.563x elapsed=0:00:10.07    frame=  174 fps= 16 q=28.0 size=       0KiB time=00:00:05.70 bitrate=   0.1kbits/s speed=0.537x elapsed=0:00:10.61    frame=  174 fps= 16 q=28.0 size=       0KiB time=00:00:05.70 bitrate=   0.1kbits/s speed=0.512x elapsed=0:00:11.12    frame=  174 fps= 14 q=28.0 size=       0KiB time=00:00:05.70 bitrate=   0.1kbits/s speed=0.474x elapsed=0:00:12.02    [out#0/mp4 @ 0x933488b40] video:172KiB audio:0KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: 2.781648%
+frame=  231 fps= 18 q=-1.0 Lsize=     177KiB time=00:00:12.30 bitrate= 118.0kbits/s speed=0.946x elapsed=0:00:13.00    
+[libx264 @ 0x932e80a80] frame I:1     Avg QP:16.12  size: 48029
+[libx264 @ 0x932e80a80] frame P:58    Avg QP:16.78  size:  1662
+[libx264 @ 0x932e80a80] frame B:172   Avg QP:18.80  size:   183
+[libx264 @ 0x932e80a80] consecutive B-frames:  0.4%  0.9%  0.0% 98.7%
+[libx264 @ 0x932e80a80] mb I  I16..4: 47.8% 41.4% 10.8%
+[libx264 @ 0x932e80a80] mb P  I16..4:  0.7%  6.2%  0.0%  P16..4:  0.9%  0.0%  0.0%  0.0%  0.0%    skip:92.2%
+[libx264 @ 0x932e80a80] mb B  I16..4:  0.0%  0.0%  0.0%  B16..8:  0.1%  0.0%  0.0%  direct: 2.6%  skip:97.2%  L0:35.9% L1:63.0% BI: 1.0%
+[libx264 @ 0x932e80a80] 8x8 transform intra:79.3% inter:29.5%
+[libx264 @ 0x932e80a80] coded y,uvDC,uvAC intra: 30.7% 20.4% 17.3% inter: 0.1% 2.1% 0.0%
+[libx264 @ 0x932e80a80] i16 v,h,dc,p: 27% 72%  0%  0%
+[libx264 @ 0x932e80a80] i8 v,h,dc,ddl,ddr,vr,hd,vl,hu: 27%  2% 70%  0%  0%  0%  0%  0%  0%
+[libx264 @ 0x932e80a80] i4 v,h,dc,ddl,ddr,vr,hd,vl,hu: 29% 29% 24%  1%  5%  3%  3%  2%  4%
+[libx264 @ 0x932e80a80] i8c dc,h,v,p: 84% 14%  2%  0%
+[libx264 @ 0x932e80a80] Weighted P-Frames: Y:0.0% UV:0.0%
+[libx264 @ 0x932e80a80] kb/s:113.46
+Exiting normally, received signal 15.

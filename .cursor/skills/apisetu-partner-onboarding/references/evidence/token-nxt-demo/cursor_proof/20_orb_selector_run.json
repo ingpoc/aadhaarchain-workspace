@@ -1,0 +1,268 @@
+{
+  "success": true,
+  "id": "c5b3f8ca-fa33-4ebf-88ae-0216059fabd9",
+  "tab_id": 1951715614,
+  "final_url": "http://127.0.0.1:43102/search",
+  "results": [
+    {
+      "type": "goto",
+      "tabId": 1951715614,
+      "url": "http://127.0.0.1:43103/agentguard"
+    },
+    {
+      "type": "evaluate",
+      "result": {
+        "count": 0,
+        "installed": true
+      }
+    },
+    {
+      "type": "wait",
+      "ms": 400
+    },
+    {
+      "type": "wait",
+      "ms": 2000
+    },
+    {
+      "type": "click_selector",
+      "selector": "[data-testid='samantha-orb']",
+      "point": {
+        "onTarget": true,
+        "tag": "BUTTON",
+        "text": "S",
+        "x": 1862,
+        "y": 830
+      }
+    },
+    {
+      "type": "wait",
+      "ms": 2500
+    },
+    {
+      "type": "cursor_status",
+      "visible": true,
+      "x": 1862,
+      "y": 830,
+      "phase": "idle",
+      "agent_id": "",
+      "agent_label": "",
+      "session_id": "",
+      "color": "#64d8ff",
+      "pointer_bounds": {
+        "top": 828.1095581054688,
+        "right": 1889.8900146484375,
+        "bottom": 856.260498046875,
+        "left": 1861.7391357421875
+      },
+      "label_bounds": {
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      },
+      "label_below_pointer": false,
+      "url": "http://127.0.0.1:43102/search",
+      "title": "ONDC Buyer"
+    },
+    {
+      "type": "screenshot",
+      "format": "jpeg",
+      "screenshot_path": "/Users/gurusharan/.hermes/cache/hermes-chrome/c5b3f8ca-fa33-4ebf-88ae-0216059fabd9-7.jpeg"
+    },
+    {
+      "type": "page_context",
+      "url": "http://127.0.0.1:43102/search",
+      "title": "ONDC Buyer",
+      "headings": [
+        {
+          "tag": "H1",
+          "text": "Search verified commerce"
+        }
+      ],
+      "nav": [
+        {
+          "text": "Search",
+          "href": "http://127.0.0.1:43102/search"
+        },
+        {
+          "text": "Cart",
+          "href": "http://127.0.0.1:43102/cart"
+        },
+        {
+          "text": "Orders",
+          "href": "http://127.0.0.1:43102/orders"
+        },
+        {
+          "text": "Config",
+          "href": "http://127.0.0.1:43102/config"
+        }
+      ],
+      "buttons": [
+        "Open search",
+        "Open runtime status",
+        "Sign out",
+        "Grocery",
+        "Search",
+        "Send",
+        "Preferences & AgentGuard",
+        "S"
+      ],
+      "inputs": [
+        {
+          "name": "category",
+          "type": "select-one",
+          "value": "grocery"
+        },
+        {
+          "name": "query",
+          "type": "text",
+          "value": ""
+        },
+        {
+          "name": "Type to Samantha\u2026",
+          "type": "text",
+          "value": ""
+        }
+      ],
+      "console_error_count": 0,
+      "console_warn_count": 0,
+      "last_console_error": null
+    },
+    {
+      "type": "page_context",
+      "url": "http://127.0.0.1:43102/search",
+      "title": "ONDC Buyer",
+      "headings": [
+        {
+          "tag": "H1",
+          "text": "Search verified commerce"
+        }
+      ],
+      "nav": [
+        {
+          "text": "Search",
+          "href": "http://127.0.0.1:43102/search"
+        },
+        {
+          "text": "Cart",
+          "href": "http://127.0.0.1:43102/cart"
+        },
+        {
+          "text": "Orders",
+          "href": "http://127.0.0.1:43102/orders"
+        },
+        {
+          "text": "Config",
+          "href": "http://127.0.0.1:43102/config"
+        }
+      ],
+      "buttons": [
+        "Open search",
+        "Open runtime status",
+        "Sign out",
+        "Grocery",
+        "Search",
+        "Send",
+        "Preferences & AgentGuard",
+        "S"
+      ],
+      "inputs": [
+        {
+          "name": "category",
+          "type": "select-one",
+          "value": "grocery"
+        },
+        {
+          "name": "query",
+          "type": "text",
+          "value": ""
+        },
+        {
+          "name": "Type to Samantha\u2026",
+          "type": "text",
+          "value": ""
+        }
+      ],
+      "console_error_count": 0,
+      "console_warn_count": 0,
+      "last_console_error": null
+    },
+    {
+      "type": "evaluate",
+      "result": {
+        "errors": [
+          "fetch failed https://gateway.aadharcha.in/api/realtime/status Failed to fetch",
+          "fetch failed https://gateway.aadharcha.in/api/realtime/status Failed to fetch",
+          "fetch failed https://gateway.aadharcha.in/api/realtime/status Failed to fetch",
+          "fetch failed https://gateway.aadharcha.in/api/realtime/status Failed to fetch",
+          "fetch failed https://gateway.aadharcha.in/api/realtime/status Failed to fetch"
+        ],
+        "installed": true,
+        "total": 5,
+        "warns": []
+      }
+    }
+  ],
+  "page_diag": {
+    "ok": false,
+    "ui": {
+      "url": "http://127.0.0.1:43102/search",
+      "title": "ONDC Buyer",
+      "headings": [
+        "Search verified commerce"
+      ],
+      "buttons": [
+        "Open search",
+        "Open runtime status",
+        "Sign out",
+        "Grocery",
+        "Search",
+        "Send",
+        "Preferences & AgentGuard",
+        "S"
+      ]
+    },
+    "console": {
+      "installed": true,
+      "total": 5,
+      "errors": [
+        "fetch failed https://gateway.aadharcha.in/api/realtime/status Failed to fetch",
+        "fetch failed https://gateway.aadharcha.in/api/realtime/status Failed to fetch",
+        "fetch failed https://gateway.aadharcha.in/api/realtime/status Failed to fetch",
+        "fetch failed https://gateway.aadharcha.in/api/realtime/status Failed to fetch",
+        "fetch failed https://gateway.aadharcha.in/api/realtime/status Failed to fetch"
+      ],
+      "warns": []
+    },
+    "backend": [],
+    "issues": [
+      {
+        "source": "console",
+        "level": "error",
+        "msg": "fetch failed https://gateway.aadharcha.in/api/realtime/status Failed to fetch"
+      },
+      {
+        "source": "console",
+        "level": "error",
+        "msg": "fetch failed https://gateway.aadharcha.in/api/realtime/status Failed to fetch"
+      },
+      {
+        "source": "console",
+        "level": "error",
+        "msg": "fetch failed https://gateway.aadharcha.in/api/realtime/status Failed to fetch"
+      },
+      {
+        "source": "console",
+        "level": "error",
+        "msg": "fetch failed https://gateway.aadharcha.in/api/realtime/status Failed to fetch"
+      },
+      {
+        "source": "console",
+        "level": "error",
+        "msg": "fetch failed https://gateway.aadharcha.in/api/realtime/status Failed to fetch"
+      }
+    ],
+    "final_url": "http://127.0.0.1:43102/search"
+  }
+}

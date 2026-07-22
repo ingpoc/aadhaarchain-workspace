@@ -1,0 +1,382 @@
+{
+  "success": true,
+  "page_diag": {
+    "ok": true,
+    "ui": {
+      "url": "https://forms.office.com/pages/responsepage.aspx?id=ayGpjN8bVkCXdfXkAqSNMhDHh4YmRFVNsFUMu-B6IyJUOTNTSkpOVlBVRkJGWlJCQ01FUTFYWDRKMS4u&route=shorturl",
+      "title": "Token Nxt By NPCI (Page 1 of 7)",
+      "headings": [],
+      "buttons": [
+        "Form Menu",
+        "Select your answer",
+        "Select your answer",
+        "Next",
+        "Microsoft Forms"
+      ]
+    },
+    "console": {
+      "installed": true,
+      "total": 0,
+      "errors": [],
+      "warns": []
+    },
+    "backend": [],
+    "issues": [],
+    "final_url": "https://forms.office.com/pages/responsepage.aspx?id=ayGpjN8bVkCXdfXkAqSNMhDHh4YmRFVNsFUMu-B6IyJUOTNTSkpOVlBVRkJGWlJCQ01FUTFYWDRKMS4u&route=shorturl"
+  },
+  "results": [
+    {
+      "type": "evaluate",
+      "result": {
+        "count": 0,
+        "installed": true
+      }
+    },
+    {
+      "type": "page_context",
+      "url": "https://forms.office.com/pages/responsepage.aspx?id=ayGpjN8bVkCXdfXkAqSNMhDHh4YmRFVNsFUMu-B6IyJUOTNTSkpOVlBVRkJGWlJCQ01FUTFYWDRKMS4u&route=shorturl",
+      "title": "Token Nxt By NPCI",
+      "headings": [],
+      "nav": [],
+      "buttons": [
+        "Form Menu",
+        "Start now",
+        "Microsoft Forms"
+      ],
+      "inputs": [],
+      "console_error_count": 0,
+      "console_warn_count": 5,
+      "last_console_error": null
+    },
+    {
+      "type": "screenshot",
+      "format": "jpeg",
+      "screenshot_path": "/Users/gurusharan/.hermes/cache/hermes-chrome/3505a2af-a9dc-496a-85c7-39ddf0d8cc2f-5.jpeg"
+    },
+    {
+      "type": "evaluate",
+      "result": {
+        "clicked": true,
+        "label": "Start now"
+      }
+    },
+    {
+      "type": "page_context",
+      "url": "https://forms.office.com/pages/responsepage.aspx?id=ayGpjN8bVkCXdfXkAqSNMhDHh4YmRFVNsFUMu-B6IyJUOTNTSkpOVlBVRkJGWlJCQ01FUTFYWDRKMS4u&route=shorturl",
+      "title": "Token Nxt By NPCI (Page 1 of 7)",
+      "headings": [],
+      "nav": [],
+      "buttons": [
+        "Form Menu",
+        "Select your answer",
+        "Select your answer",
+        "Next",
+        "Microsoft Forms"
+      ],
+      "inputs": [
+        {
+          "name": "Enter your answer",
+          "type": "text",
+          "value": ""
+        },
+        {
+          "name": "Please enter a URL",
+          "type": "text",
+          "value": ""
+        },
+        {
+          "name": "Enter your answer",
+          "type": "text",
+          "value": ""
+        },
+        {
+          "name": "Please enter a number less than or equal to 2026",
+          "type": "text",
+          "value": ""
+        },
+        {
+          "name": "Enter your answer",
+          "type": "text",
+          "value": ""
+        },
+        {
+          "name": "Please enter an email",
+          "type": "text",
+          "value": ""
+        },
+        {
+          "name": "Enter your answer",
+          "type": "text",
+          "value": ""
+        },
+        {
+          "name": "Enter your answer",
+          "type": "text",
+          "value": ""
+        }
+      ],
+      "console_error_count": 0,
+      "console_warn_count": 5,
+      "last_console_error": null
+    },
+    {
+      "type": "screenshot",
+      "format": "jpeg",
+      "screenshot_path": "/Users/gurusharan/.hermes/cache/hermes-chrome/3505a2af-a9dc-496a-85c7-39ddf0d8cc2f-9.jpeg"
+    },
+    {
+      "type": "evaluate",
+      "result": {
+        "buttons": [
+          "Select your answer",
+          "Select your answer",
+          "Next",
+          "Report abuse",
+          "Microsoft Forms",
+          "Create my own form",
+          "Consumer Health Privacy",
+          "Terms of use"
+        ],
+        "headings": [
+          "Token Nxt By NPCI",
+          "Company Identity",
+          "1. Company Name",
+          "2. Company Website URL",
+          "3. Headquarters Country",
+          "4. Year of Founding",
+          "5. Company Size (Employees)",
+          "6. Funding Stage",
+          "7. Primary Contact Name",
+          "8. Primary Contact Email",
+          "9. Primary Contact Designation",
+          "10. LinkedIn Company Page URL"
+        ],
+        "pageTextLen": 1060,
+        "pageTextPreview": "Token Nxt By NPCI\nWhen you submit this form, it will not automatically collect your details like name and email address unless you provide it yourself.\nRequired\nCompany Identity\n1.\nCompany Name\n2.\nCompany Website URL\n3.\nHeadquarters Country\n4.\nYear of Founding\n5.\nCompany Size (Employees)\nSelect your answer\n6.\nFunding Stage\nSelect your answer\n7.\nPrimary Contact Name\n8.\n        Primary   Contact Email      \n9.\nPrimary Contact Designation\n10.\nLinkedIn Company Page URL\nNext\nPage 1 of 7\nNever give out your password.Report abuse\nThis content is created by the owner of the form. The data you submit will be sent to the form owner. Microsoft is not responsible for the privacy or security practices of its customers, including those of this form owner. Never give out your password.\nMicrosoft Forms | AI-Powered surveys, quizzes and pollsCreate my own form\nThe owner of this form has not provided a privacy statement as to how they will use your response data. Do not provide personal or sensitive information. | Consumer Health Privacy | Terms of use\nForm Menu",
+        "questionCount": 10,
+        "questions": [
+          {
+            "body": "1. Company Name",
+            "choices": [],
+            "inputs": [
+              {
+                "aria": "Single line text",
+                "checked": false,
+                "name": "",
+                "placeholder": "Enter your answer",
+                "tag": "input",
+                "type": "",
+                "value": ""
+              }
+            ],
+            "required": true,
+            "title": "1. Company Name"
+          },
+          {
+            "body": "2. Company Website URL",
+            "choices": [],
+            "inputs": [
+              {
+                "aria": "Single line text",
+                "checked": false,
+                "name": "",
+                "placeholder": "Please enter a URL",
+                "tag": "input",
+                "type": "",
+                "value": ""
+              }
+            ],
+            "required": true,
+            "title": "2. Company Website URL"
+          },
+          {
+            "body": "3. Headquarters Country",
+            "choices": [],
+            "inputs": [
+              {
+                "aria": "Single line text",
+                "checked": false,
+                "name": "",
+                "placeholder": "Enter your answer",
+                "tag": "input",
+                "type": "",
+                "value": ""
+              }
+            ],
+            "required": true,
+            "title": "3. Headquarters Country"
+          },
+          {
+            "body": "4. Year of Founding",
+            "choices": [],
+            "inputs": [
+              {
+                "aria": "Single line text",
+                "checked": false,
+                "name": "",
+                "placeholder": "Please enter a number less than or equal to 2026",
+                "tag": "input",
+                "type": "",
+                "value": ""
+              }
+            ],
+            "required": true,
+            "title": "4. Year of Founding"
+          },
+          {
+            "body": "5. Company Size (Employees) Select your answer",
+            "choices": [],
+            "inputs": [],
+            "required": true,
+            "title": "5. Company Size (Employees)"
+          },
+          {
+            "body": "6. Funding Stage Select your answer",
+            "choices": [],
+            "inputs": [],
+            "required": true,
+            "title": "6. Funding Stage"
+          },
+          {
+            "body": "7. Primary Contact Name",
+            "choices": [],
+            "inputs": [
+              {
+                "aria": "Single line text",
+                "checked": false,
+                "name": "",
+                "placeholder": "Enter your answer",
+                "tag": "input",
+                "type": "",
+                "value": ""
+              }
+            ],
+            "required": true,
+            "title": "7. Primary Contact Name"
+          },
+          {
+            "body": "8. Primary Contact Email",
+            "choices": [],
+            "inputs": [
+              {
+                "aria": "Single line text",
+                "checked": false,
+                "name": "",
+                "placeholder": "Please enter an email",
+                "tag": "input",
+                "type": "",
+                "value": ""
+              }
+            ],
+            "required": true,
+            "title": "8. Primary Contact Email"
+          },
+          {
+            "body": "9. Primary Contact Designation",
+            "choices": [],
+            "inputs": [
+              {
+                "aria": "Single line text",
+                "checked": false,
+                "name": "",
+                "placeholder": "Enter your answer",
+                "tag": "input",
+                "type": "",
+                "value": ""
+              }
+            ],
+            "required": true,
+            "title": "9. Primary Contact Designation"
+          },
+          {
+            "body": "10. LinkedIn Company Page URL",
+            "choices": [],
+            "inputs": [
+              {
+                "aria": "Single line text",
+                "checked": false,
+                "name": "",
+                "placeholder": "Enter your answer",
+                "tag": "input",
+                "type": "",
+                "value": ""
+              }
+            ],
+            "required": false,
+            "title": "10. LinkedIn Company Page URL"
+          }
+        ],
+        "title": "Token Nxt By NPCI (Page 1 of 7)",
+        "url": "https://forms.office.com/pages/responsepage.aspx?id=ayGpjN8bVkCXdfXkAqSNMhDHh4YmRFVNsFUMu-B6IyJUOTNTSkpOVlBVRkJGWlJCQ01FUTFYWDRKMS4u&route=shorturl"
+      }
+    },
+    {
+      "type": "page_context",
+      "url": "https://forms.office.com/pages/responsepage.aspx?id=ayGpjN8bVkCXdfXkAqSNMhDHh4YmRFVNsFUMu-B6IyJUOTNTSkpOVlBVRkJGWlJCQ01FUTFYWDRKMS4u&route=shorturl",
+      "title": "Token Nxt By NPCI (Page 1 of 7)",
+      "headings": [],
+      "nav": [],
+      "buttons": [
+        "Form Menu",
+        "Select your answer",
+        "Select your answer",
+        "Next",
+        "Microsoft Forms"
+      ],
+      "inputs": [
+        {
+          "name": "Enter your answer",
+          "type": "text",
+          "value": ""
+        },
+        {
+          "name": "Please enter a URL",
+          "type": "text",
+          "value": ""
+        },
+        {
+          "name": "Enter your answer",
+          "type": "text",
+          "value": ""
+        },
+        {
+          "name": "Please enter a number less than or equal to 2026",
+          "type": "text",
+          "value": ""
+        },
+        {
+          "name": "Enter your answer",
+          "type": "text",
+          "value": ""
+        },
+        {
+          "name": "Please enter an email",
+          "type": "text",
+          "value": ""
+        },
+        {
+          "name": "Enter your answer",
+          "type": "text",
+          "value": ""
+        },
+        {
+          "name": "Enter your answer",
+          "type": "text",
+          "value": ""
+        }
+      ],
+      "console_error_count": 0,
+      "console_warn_count": 5,
+      "last_console_error": null
+    },
+    {
+      "type": "evaluate",
+      "result": {
+        "errors": [],
+        "installed": true,
+        "total": 0,
+        "warns": []
+      }
+    }
+  ]
+}

@@ -1,0 +1,999 @@
+{
+  "stamp": "20260712-225913",
+  "buyer": [
+    {
+      "id": "W-B-SPA-SESSION",
+      "result": "Pass",
+      "shots": [
+        "W-B-USP-BOOT-20260712-225913-0.jpeg"
+      ],
+      "notes": "sign_out=True ready=True hint=Samantha\n\nText mode ready (no mic)\n\nSend\nPreferences & AgentGuard",
+      "state": {
+        "pathname": "/search",
+        "search": "",
+        "hint": "Samantha\n\nText mode ready (no mic)\n\nSend\nPreferences & AgentGuard",
+        "reply": "",
+        "tools": [],
+        "toolCount": 0,
+        "offerCount": 0,
+        "cart_empty": false,
+        "cart_line": false,
+        "paid": false,
+        "receipt": false,
+        "ag_card": true,
+        "has_atta": false,
+        "has_organic": false,
+        "errors": []
+      }
+    },
+    {
+      "id": "W-B-HI",
+      "result": "Pass",
+      "shots": [
+        "W-B-HI-20260712-225913-0.jpeg"
+      ],
+      "notes": "path=/search new_bad=[] reply=Hey! Nice to see you. \ud83d\ude0a What are we shopping for today?",
+      "state": {
+        "pathname": "/search",
+        "search": "",
+        "hint": "Samantha\n\nSamantha replied\n\nHey! Nice to see you. \ud83d\ude0a What are we shopping for today?\n\nSend\nPreferences & AgentGuard",
+        "reply": "Hey! Nice to see you. \ud83d\ude0a What are we shopping for today?",
+        "tools": [],
+        "toolCount": 0,
+        "offerCount": 0,
+        "cart_empty": false,
+        "cart_line": false,
+        "paid": false,
+        "receipt": false,
+        "ag_card": true,
+        "has_atta": false,
+        "has_organic": false,
+        "errors": [],
+        "_send": {
+          "draft": "hi",
+          "ok": true,
+          "toolCountBefore": 0
+        },
+        "_early": {},
+        "_tool_before": 0
+      }
+    },
+    {
+      "id": "W-B-FIND-ATTA",
+      "result": "Pass",
+      "shots": [
+        "W-B-FIND-ATTA-20260712-225913-0.jpeg"
+      ],
+      "notes": "early=/results late=/results offers=18 atta=True tools=['search_catalog']",
+      "state": {
+        "pathname": "/results",
+        "search": "?category=grocery&q=atta&ondc_txn=d336abf2-6628-40fd-b02b-e7927be4155c",
+        "hint": "Samantha\n\nOpened results for \u201catta\u201d \u2014 watching offers load on the page.\n\nSure thing\u2014let me pull up atta options so you can browse and pick.I\u2019ve opened the atta results page\u2014but it looks like there aren\u2019t any items showing yet. The page is still loading offers. If you\u2019d like, try a slightly different search (like \u201catta flour\u201d, \u201cwhole wheat atta\u201d, or \u201cchakki atta\u201d) and we can see if other listings appear.\n\nSend\nPreferences & AgentGuard",
+        "reply": "Sure thing\u2014let me pull up atta options so you can browse and pick.I\u2019ve opened the atta results page\u2014but it looks like there aren\u2019t any items showing yet. The page is still loading offers. If you\u2019d like, try a slightly different search (like \u201catta flour\u201d, \u201cwhole wheat atta\u201d, or \u201cchakki atta\u201d) and we can see if other listings appear.",
+        "tools": [
+          {
+            "cartAdds": [],
+            "message": "Opened results for \u201catta\u201d \u2014 watching offers load on the page.",
+            "name": "search_catalog",
+            "navSuperseded": false,
+            "navigateTo": "/results?category=grocery&q=atta&ondc_txn=d336abf2-6628-40fd-b02b-e7927be4155c",
+            "ok": true
+          }
+        ],
+        "toolCount": 1,
+        "offerCount": 18,
+        "cart_empty": false,
+        "cart_line": false,
+        "paid": false,
+        "receipt": false,
+        "ag_card": true,
+        "has_atta": true,
+        "has_organic": true,
+        "errors": [],
+        "_send": {
+          "draft": "search for atta",
+          "ok": true,
+          "toolCountBefore": 0
+        },
+        "_early": {
+          "ag_card": true,
+          "body_snip": "PORTFOLIO\nONDC Buyer\nDiscover commerce under AgentGuard authorization.\nSearch\nCart\nOrders\nConfig\nSign out\nPulling the latest offers for your selected category.\nAgent chat\nHow it works\n\nSamantha\n\nSearching for \u201catta\u201d \u2014 watch the results page\u2026\n\nSure thing\u2014let me pull up atta options so you can browse and pick.\n\nSend\nPreferences & AgentGuard\nS",
+          "cacheIds": [],
+          "cards": [],
+          "cart_empty": false,
+          "cart_line": false,
+          "errors": [],
+          "events": [
+            "response.output_text.delta",
+            "response.output_text.delta",
+            "response.output_text.delta",
+            "response.output_text.delta",
+            "response.output_item.added",
+            "conversation.item.added",
+            "response.function_call_arguments.delta",
+            "response.function_call_arguments.delta",
+            "response.function_call_arguments.delta",
+            "response.function_call_arguments.delta",
+            "response.function_call_arguments.delta",
+            "response.output_text.done",
+            "response.content_part.done",
+            "conversation.item.done",
+            "response.output_item.done",
+            "response.function_call_arguments.done",
+            "conversation.item.done",
+            "response.output_item.done",
+            "response.done",
+            "rate_limits.updated"
+          ],
+          "has_atta": true,
+          "has_banana": false,
+          "has_organic": false,
+          "has_sign_out": true,
+          "headings": [],
+          "hint": "Samantha\n\nSearching for \u201catta\u201d \u2014 watch the results page\u2026\n\nSure thing\u2014let me pull up atta options so you can browse and pick.\n\nSend\nPreferences & AgentGuard",
+          "href": "https://ondcbuyer.aadharcha.in/results?category=grocery&q=atta",
+          "listening": false,
+          "no_mic": false,
+          "offerCount": 0,
+          "paid": false,
+          "pathname": "/results",
+          "pulling": true,
+          "receipt": false,
+          "reply": "Sure thing\u2014let me pull up atta options so you can browse and pick.",
+          "search": "?category=grocery&q=atta",
+          "text_ready": false,
+          "toolCount": 0,
+          "tools": []
+        },
+        "_tool_before": 0
+      }
+    },
+    {
+      "id": "W-B-ADD-ATTA",
+      "result": "Fail",
+      "shots": [
+        "W-B-ADD-ATTA-20260712-225913-0.jpeg"
+      ],
+      "notes": "path=/results empty=False line=False tool=None tools=['search_catalog', 'search_catalog']",
+      "state": {
+        "pathname": "/results",
+        "search": "?category=grocery&q=atta%20flour&ondc_txn=1e7778bf-1e17-4bc5-bc7b-00ea09cfc98d",
+        "hint": "Samantha\n\nOpened results for \u201catta flour\u201d \u2014 watching offers load on the page.\n\nGot it\u2014quickly checking for a matching atta listing first, then I\u2019ll add it if we find one.I tried \u201catta flour,\u201d but there still aren\u2019t any matching items available right now\u2014so I can\u2019t add any to your cart yet. If you want, we can try a broader search like \u201cwhole wheat flour\u201d or \u201cchakki atta\u201d to see if anything shows up under a different name.\n\nSend\nPreferences & AgentGuard",
+        "reply": "Got it\u2014quickly checking for a matching atta listing first, then I\u2019ll add it if we find one.I tried \u201catta flour,\u201d but there still aren\u2019t any matching items available right now\u2014so I can\u2019t add any to your cart yet. If you want, we can try a broader search like \u201cwhole wheat flour\u201d or \u201cchakki atta\u201d to see if anything shows up under a different name.",
+        "tools": [
+          {
+            "cartAdds": [],
+            "message": "Opened results for \u201catta\u201d \u2014 watching offers load on the page.",
+            "name": "search_catalog",
+            "navSuperseded": false,
+            "navigateTo": "/results?category=grocery&q=atta&ondc_txn=d336abf2-6628-40fd-b02b-e7927be4155c",
+            "ok": true
+          },
+          {
+            "cartAdds": [],
+            "message": "Opened results for \u201catta flour\u201d \u2014 watching offers load on the page.",
+            "name": "search_catalog",
+            "navSuperseded": false,
+            "navigateTo": "/results?category=grocery&q=atta%20flour&ondc_txn=1e7778bf-1e17-4bc5-bc7b-00ea09cfc98d",
+            "ok": true
+          }
+        ],
+        "toolCount": 2,
+        "offerCount": 4,
+        "cart_empty": false,
+        "cart_line": false,
+        "paid": false,
+        "receipt": false,
+        "ag_card": true,
+        "has_atta": true,
+        "has_organic": false,
+        "errors": [],
+        "_send": {
+          "draft": "add the atta to my cart",
+          "ok": true,
+          "toolCountBefore": 1
+        },
+        "_early": {},
+        "_tool_before": 1
+      }
+    },
+    {
+      "id": "W-B-NAV-CONFIG",
+      "result": "Pass",
+      "shots": [
+        "W-B-NAV-CONFIG-20260712-225913-0.jpeg"
+      ],
+      "notes": "path=/config organic=True",
+      "state": {
+        "pathname": "/config",
+        "search": "",
+        "hint": "Samantha\n\nRemembered note: User delivery area code: 412207.\n\nGot it\u2014thank you. I\u2019ve saved your delivery area code as 412207 so we can use it when relevant.\n\nSend\nPreferences & AgentGuard",
+        "reply": "Got it\u2014thank you. I\u2019ve saved your delivery area code as 412207 so we can use it when relevant.",
+        "tools": [
+          {
+            "cartAdds": [],
+            "message": "Opened results for \u201catta\u201d \u2014 watching offers load on the page.",
+            "name": "search_catalog",
+            "navSuperseded": false,
+            "navigateTo": "/results?category=grocery&q=atta&ondc_txn=d336abf2-6628-40fd-b02b-e7927be4155c",
+            "ok": true
+          },
+          {
+            "cartAdds": [],
+            "message": "Opened results for \u201catta flour\u201d \u2014 watching offers load on the page.",
+            "name": "search_catalog",
+            "navSuperseded": false,
+            "navigateTo": "/results?category=grocery&q=atta%20flour&ondc_txn=1e7778bf-1e17-4bc5-bc7b-00ea09cfc98d",
+            "ok": true
+          },
+          {
+            "cartAdds": [],
+            "message": "Remembered preference: User prefers organic atta.",
+            "name": "remember_preference",
+            "navSuperseded": false,
+            "ok": true
+          },
+          {
+            "cartAdds": [],
+            "message": "Navigating to /config.",
+            "name": "navigate_to",
+            "navSuperseded": false,
+            "navigateTo": "/config",
+            "ok": true
+          },
+          {
+            "cartAdds": [],
+            "message": "Remembered note: User delivery area code: 412207.",
+            "name": "remember_preference",
+            "navSuperseded": false,
+            "ok": true
+          }
+        ],
+        "toolCount": 5,
+        "offerCount": 1,
+        "cart_empty": false,
+        "cart_line": false,
+        "paid": false,
+        "receipt": false,
+        "ag_card": true,
+        "has_atta": true,
+        "has_organic": true,
+        "errors": [],
+        "_send": {
+          "draft": "open config",
+          "ok": true,
+          "toolCountBefore": 3
+        },
+        "_early": {},
+        "_tool_before": 3
+      }
+    },
+    {
+      "id": "W-B-MEM-ORG",
+      "result": "Pass",
+      "shots": [
+        "W-B-MEM-ORG-20260712-225913-0.jpeg"
+      ],
+      "notes": "tool_ok=True visible_organic=True tools=['search_catalog', 'search_catalog', 'remember_preference']",
+      "state": {
+        "pathname": "/results",
+        "search": "?category=grocery&q=atta%20flour&ondc_txn=1e7778bf-1e17-4bc5-bc7b-00ea09cfc98d",
+        "hint": "Samantha\n\nRemembered preference: User prefers organic atta.\n\nAll set! I\u2019ll keep in mind that you prefer organic atta, and next time we search, I\u2019ll aim for organic options.\n\nSend\nPreferences & AgentGuard",
+        "reply": "All set! I\u2019ll keep in mind that you prefer organic atta, and next time we search, I\u2019ll aim for organic options.",
+        "tools": [
+          {
+            "cartAdds": [],
+            "message": "Opened results for \u201catta\u201d \u2014 watching offers load on the page.",
+            "name": "search_catalog",
+            "navSuperseded": false,
+            "navigateTo": "/results?category=grocery&q=atta&ondc_txn=d336abf2-6628-40fd-b02b-e7927be4155c",
+            "ok": true
+          },
+          {
+            "cartAdds": [],
+            "message": "Opened results for \u201catta flour\u201d \u2014 watching offers load on the page.",
+            "name": "search_catalog",
+            "navSuperseded": false,
+            "navigateTo": "/results?category=grocery&q=atta%20flour&ondc_txn=1e7778bf-1e17-4bc5-bc7b-00ea09cfc98d",
+            "ok": true
+          },
+          {
+            "cartAdds": [],
+            "message": "Remembered preference: User prefers organic atta.",
+            "name": "remember_preference",
+            "navSuperseded": false,
+            "ok": true
+          }
+        ],
+        "toolCount": 3,
+        "offerCount": 4,
+        "cart_empty": false,
+        "cart_line": false,
+        "paid": false,
+        "receipt": false,
+        "ag_card": true,
+        "has_atta": true,
+        "has_organic": true,
+        "errors": [],
+        "_send": {
+          "draft": "remember I prefer organic atta",
+          "ok": true,
+          "toolCountBefore": 2
+        },
+        "_early": {},
+        "_tool_before": 2
+      }
+    },
+    {
+      "id": "W-B-FIND-PREF",
+      "result": "Pass",
+      "shots": [
+        "W-B-FIND-PREF-20260712-225913-0.jpeg"
+      ],
+      "notes": "path=/results offers=60 organic=True tools=['search_catalog', 'remember_preference']",
+      "state": {
+        "pathname": "/results",
+        "search": "?category=grocery&q=organic&ondc_txn=e52604c0-5290-4905-bc0e-dd13674fa36a",
+        "hint": "Samantha\n\nRemembered note: User delivery area code: 412207\n\nGot it\u2014let me quickly save that delivery area as a note so your shopping can stay relevant.All set\u2014I saved your delivery area code 412207 as a note.\n\nSend\nPreferences & AgentGuard",
+        "reply": "Got it\u2014let me quickly save that delivery area as a note so your shopping can stay relevant.All set\u2014I saved your delivery area code 412207 as a note.",
+        "tools": [
+          {
+            "cartAdds": [],
+            "message": "Opened results for \u201corganic\u201d \u2014 watching offers load on the page.",
+            "name": "search_catalog",
+            "navSuperseded": false,
+            "navigateTo": "/results?category=grocery&q=organic&ondc_txn=e52604c0-5290-4905-bc0e-dd13674fa36a",
+            "ok": true
+          },
+          {
+            "cartAdds": [],
+            "message": "Remembered note: User delivery area code: 412207",
+            "name": "remember_preference",
+            "navSuperseded": false,
+            "ok": true
+          }
+        ],
+        "toolCount": 2,
+        "offerCount": 60,
+        "cart_empty": false,
+        "cart_line": false,
+        "paid": false,
+        "receipt": false,
+        "ag_card": true,
+        "has_atta": true,
+        "has_organic": true,
+        "errors": [],
+        "_send": {
+          "draft": "find something that matches my organic preference",
+          "ok": true,
+          "toolCountBefore": 0
+        },
+        "_early": {
+          "ag_card": true,
+          "body_snip": "PORTFOLIO\nONDC Buyer\nDiscover commerce under AgentGuard authorization.\nSearch\nCart\nOrders\nConfig\nSign out\nPulling the latest offers for your selected category.\nAgent chat\nHow it works\n\nSamantha\n\nSearching for \u201corganic\u201d \u2014 watch the results page\u2026\n\nOkay, let me pull up organic options for you so you can see what\u2019s available.\n\nSend\nPreferences & AgentGuard\nS",
+          "cacheIds": [],
+          "cards": [],
+          "cart_empty": false,
+          "cart_line": false,
+          "errors": [],
+          "events": [
+            "response.output_text.delta",
+            "response.output_text.delta",
+            "response.output_text.delta",
+            "response.output_text.delta",
+            "response.output_item.added",
+            "conversation.item.added",
+            "response.function_call_arguments.delta",
+            "response.function_call_arguments.delta",
+            "response.function_call_arguments.delta",
+            "response.function_call_arguments.delta",
+            "response.function_call_arguments.delta",
+            "response.output_text.done",
+            "response.content_part.done",
+            "conversation.item.done",
+            "response.output_item.done",
+            "response.function_call_arguments.done",
+            "conversation.item.done",
+            "response.output_item.done",
+            "response.done",
+            "rate_limits.updated"
+          ],
+          "has_atta": false,
+          "has_banana": false,
+          "has_organic": true,
+          "has_sign_out": true,
+          "headings": [],
+          "hint": "Samantha\n\nSearching for \u201corganic\u201d \u2014 watch the results page\u2026\n\nOkay, let me pull up organic options for you so you can see what\u2019s available.\n\nSend\nPreferences & AgentGuard",
+          "href": "https://ondcbuyer.aadharcha.in/results?category=grocery&q=organic",
+          "listening": false,
+          "no_mic": false,
+          "offerCount": 0,
+          "paid": false,
+          "pathname": "/results",
+          "pulling": true,
+          "receipt": false,
+          "reply": "Okay, let me pull up organic options for you so you can see what\u2019s available.",
+          "search": "?category=grocery&q=organic",
+          "text_ready": false,
+          "toolCount": 0,
+          "tools": []
+        },
+        "_tool_before": 0
+      }
+    },
+    {
+      "id": "W-B-CHECKOUT",
+      "result": "Pass",
+      "shots": [
+        "W-B-CHECKOUT-20260712-225913-0.jpeg"
+      ],
+      "notes": "path=/cart paid=True receipt=False ag=True tools=['search_catalog', 'remember_preference', 'navigate_to', 'search_catalog', 'checkout_commit']",
+      "state": {
+        "pathname": "/cart",
+        "search": "",
+        "hint": "Samantha\n\nCart total is empty. Add items before checkout.\n\nAlright, I\u2019ll open checkout first so you can see what\u2019s being paid, then I\u2019ll submit the checkout to complete payment.I tried to get you through checkout, but the cart is empty\u2014there\u2019s nothing to pay yet. You can add a product first, then I can proceed to checkout and payment. If you\u2019d like, we can search again for organic items and pick one to add.\n\nSend\nPreferences & AgentGuard",
+        "reply": "Alright, I\u2019ll open checkout first so you can see what\u2019s being paid, then I\u2019ll submit the checkout to complete payment.I tried to get you through checkout, but the cart is empty\u2014there\u2019s nothing to pay yet. You can add a product first, then I can proceed to checkout and payment. If you\u2019d like, we can search again for organic items and pick one to add.",
+        "tools": [
+          {
+            "cartAdds": [],
+            "message": "Opened results for \u201corganic\u201d \u2014 watching offers load on the page.",
+            "name": "search_catalog",
+            "navSuperseded": false,
+            "navigateTo": "/results?category=grocery&q=organic&ondc_txn=e52604c0-5290-4905-bc0e-dd13674fa36a",
+            "ok": true
+          },
+          {
+            "cartAdds": [],
+            "message": "Remembered note: User delivery area code: 412207",
+            "name": "remember_preference",
+            "navSuperseded": false,
+            "ok": true
+          },
+          {
+            "cartAdds": [],
+            "message": "Navigating to /checkout.",
+            "name": "navigate_to",
+            "navSuperseded": false,
+            "navigateTo": "/checkout",
+            "ok": true
+          },
+          {
+            "cartAdds": [],
+            "message": "Search finished but you already navigated away \u2014 left you on your current page.",
+            "name": "search_catalog",
+            "navSuperseded": true,
+            "ok": true
+          },
+          {
+            "cartAdds": [],
+            "message": "Cart total is empty. Add items before checkout.",
+            "name": "checkout_commit",
+            "navSuperseded": false,
+            "navigateTo": "/cart",
+            "ok": false
+          }
+        ],
+        "toolCount": 5,
+        "offerCount": 0,
+        "cart_empty": true,
+        "cart_line": false,
+        "paid": true,
+        "receipt": false,
+        "ag_card": true,
+        "has_atta": false,
+        "has_organic": true,
+        "errors": [
+          {
+            "error": {
+              "code": "conversation_already_has_active_response",
+              "event_id": null,
+              "message": "Conversation already has an active response in progress: resp_E0sLUWpI39MCOhf52BPIy. Wait until the response is finished before creating a new one.",
+              "param": null,
+              "type": "invalid_request_error"
+            },
+            "event_id": "event_E0sLUWPwjsv60jMEdqCUR",
+            "type": "error"
+          }
+        ],
+        "_send": {
+          "draft": "checkout and pay for my cart",
+          "ok": true,
+          "toolCountBefore": 2
+        },
+        "_early": {},
+        "_tool_before": 2
+      }
+    },
+    {
+      "id": "W-B-RUNTIME",
+      "result": "Pass",
+      "shots": [
+        "W-B-RUNTIME-20260712-225913-0.jpeg"
+      ],
+      "notes": "path=/search tools=['delegate_to_runtime_agent'] hint=Samantha\n\n**Weekly grocery plan \u2014 staples, produce, dairy (budget \u2264 \u20b92,000)** Practical base list for ~1 week, 2\u20133 people. Prices are approx",
+      "state": {
+        "pathname": "/search",
+        "search": "",
+        "hint": "Samantha\n\n**Weekly grocery plan \u2014 staples, produce, dairy (budget \u2264 \u20b92,000)** Practical base list for ~1 week, 2\u20133 people. Prices are approximate for planning; catalog may vary. --- ### Staples (~\u20b9800) | Item | Qty | ~\u20b9 | |------|-----|-----| | Rice (Sona Masoori) | 5 kg | 280 | | Atta\n\nst for you to review and then we can pull items from the catalog.Done\u2014your weekly plan is ready! Staples, produce, and dairy, budgeted around \u20b92,000, with a practical base for about 2\u20133 people. It includes rice, atta, lentils, vegetables, and dairy as a balanced starter for a week. Note: prices are approximate and catalog offers may vary, so we can now search and pick products if you\u2019d like.\n\nSend\nPreferences",
+        "reply": "st for you to review and then we can pull items from the catalog.Done\u2014your weekly plan is ready! Staples, produce, and dairy, budgeted around \u20b92,000, with a practical base for about 2\u20133 people. It includes rice, atta, lentils, vegetables, and dairy as a balanced starter for a week. Note: prices are approximate and catalog offers may vary, so we can now search and pick products if you\u2019d like.",
+        "tools": [
+          {
+            "cartAdds": [],
+            "message": "I've started that \u2014 I'll let you know when it's done.",
+            "name": "delegate_to_runtime_agent",
+            "navSuperseded": false,
+            "ok": true
+          }
+        ],
+        "toolCount": 1,
+        "offerCount": 4,
+        "cart_empty": false,
+        "cart_line": false,
+        "paid": false,
+        "receipt": false,
+        "ag_card": true,
+        "has_atta": true,
+        "has_organic": false,
+        "errors": [],
+        "_send": {
+          "draft": "Plan a weekly grocery list under 2000 rupees with staples, produce, and dairy \u2014 work on it in the background and let me know when done.",
+          "ok": true,
+          "toolCountBefore": 0
+        },
+        "_early": {},
+        "_tool_before": 0
+      }
+    }
+  ],
+  "seller": [
+    {
+      "id": "W-S-SPA-SESSION",
+      "result": "Pass",
+      "shots": [
+        "W-S-USP-BOOT-20260712-225913-0.jpeg"
+      ],
+      "notes": "sign_out=True ready=True",
+      "state": {
+        "pathname": "/dashboard",
+        "search": "",
+        "hint": "Samantha\n\nText mode ready (no mic)\n\nSend\nAgentGuard & memory",
+        "reply": "",
+        "tools": [],
+        "toolCount": 0,
+        "offerCount": 0,
+        "cart_empty": false,
+        "cart_line": false,
+        "paid": false,
+        "receipt": false,
+        "ag_card": true,
+        "has_atta": true,
+        "has_organic": false,
+        "errors": []
+      }
+    },
+    {
+      "id": "W-S-HI",
+      "result": "Pass",
+      "shots": [
+        "W-S-HI-20260712-225913-0.jpeg"
+      ],
+      "notes": "path=/dashboard tools=[]",
+      "state": {
+        "pathname": "/dashboard",
+        "search": "",
+        "hint": "Samantha\n\nSamantha replied\n\nHey there! \ud83d\udc4b I\u2019m Samantha \u2014 quick and cheerful. How can I help today?\n\nSend\nAgentGuard & memory",
+        "reply": "Hey there! \ud83d\udc4b I\u2019m Samantha \u2014 quick and cheerful. How can I help today?",
+        "tools": [],
+        "toolCount": 0,
+        "offerCount": 0,
+        "cart_empty": false,
+        "cart_line": false,
+        "paid": false,
+        "receipt": false,
+        "ag_card": true,
+        "has_atta": true,
+        "has_organic": false,
+        "errors": [],
+        "_send": {
+          "draft": "hi",
+          "ok": true,
+          "toolCountBefore": 0
+        },
+        "_early": {},
+        "_tool_before": 0
+      }
+    },
+    {
+      "id": "W-S-NAV-CAT",
+      "result": "Pass",
+      "shots": [
+        "W-S-NAV-CAT-20260712-225913-0.jpeg"
+      ],
+      "notes": "path=/catalog tools=['navigate_to']",
+      "state": {
+        "pathname": "/catalog",
+        "search": "",
+        "hint": "Samantha\n\nNavigating to /catalog.\n\nSure thing \u2014 I\u2019ll take you to the catalog area now.You\u2019re in the catalog now. Want to create a new item, edit an existing listing, or just browse what\u2019s there?\n\nSend\nAgentGuard & memory",
+        "reply": "Sure thing \u2014 I\u2019ll take you to the catalog area now.You\u2019re in the catalog now. Want to create a new item, edit an existing listing, or just browse what\u2019s there?",
+        "tools": [
+          {
+            "message": "Navigating to /catalog.",
+            "name": "navigate_to",
+            "navigateTo": "/catalog",
+            "ok": true
+          }
+        ],
+        "toolCount": 1,
+        "offerCount": 2,
+        "cart_empty": false,
+        "cart_line": false,
+        "paid": false,
+        "receipt": false,
+        "ag_card": true,
+        "has_atta": true,
+        "has_organic": false,
+        "errors": [],
+        "_send": {
+          "draft": "open catalog",
+          "ok": true,
+          "toolCountBefore": 0
+        },
+        "_early": {},
+        "_tool_before": 0
+      }
+    },
+    {
+      "id": "W-S-NAV-ORD",
+      "result": "Pass",
+      "shots": [
+        "W-S-NAV-ORD-20260712-225913-0.jpeg"
+      ],
+      "notes": "path=/orders tools=['navigate_to', 'navigate_to']",
+      "state": {
+        "pathname": "/orders",
+        "search": "",
+        "hint": "Samantha\n\nNavigating to /orders.\n\nGot it\u2014I'll switch to the orders view for you now.All set\u2014you\u2019re in the orders section. If you want, tell me which order you\u2019re focusing on and I\u2019ll help with the next step.\n\nSend\nAgentGuard & memory",
+        "reply": "Got it\u2014I'll switch to the orders view for you now.All set\u2014you\u2019re in the orders section. If you want, tell me which order you\u2019re focusing on and I\u2019ll help with the next step.",
+        "tools": [
+          {
+            "message": "Navigating to /catalog.",
+            "name": "navigate_to",
+            "navigateTo": "/catalog",
+            "ok": true
+          },
+          {
+            "message": "Navigating to /orders.",
+            "name": "navigate_to",
+            "navigateTo": "/orders",
+            "ok": true
+          }
+        ],
+        "toolCount": 2,
+        "offerCount": 0,
+        "cart_empty": false,
+        "cart_line": false,
+        "paid": false,
+        "receipt": false,
+        "ag_card": true,
+        "has_atta": false,
+        "has_organic": false,
+        "errors": [],
+        "_send": {
+          "draft": "show orders",
+          "ok": true,
+          "toolCountBefore": 1
+        },
+        "_early": {},
+        "_tool_before": 1
+      }
+    },
+    {
+      "id": "W-S-NAV-AG",
+      "result": "Pass",
+      "shots": [
+        "W-S-NAV-AG-20260712-225913-0.jpeg"
+      ],
+      "notes": "path=/agentguard tools=['navigate_to', 'navigate_to', 'navigate_to']",
+      "state": {
+        "pathname": "/agentguard",
+        "search": "",
+        "hint": "Samantha\n\nNavigating to /agentguard.\n\nGot it\u2014I'll open AgentGuard for you now so you can manage sensitive actions.You\u2019re in AgentGuard. Tell me what you need\u2014refunds, approvals, or restrictions\u2014and I\u2019ll help you proceed.\n\nSend\nAgentGuard & memory",
+        "reply": "Got it\u2014I'll open AgentGuard for you now so you can manage sensitive actions.You\u2019re in AgentGuard. Tell me what you need\u2014refunds, approvals, or restrictions\u2014and I\u2019ll help you proceed.",
+        "tools": [
+          {
+            "message": "Navigating to /catalog.",
+            "name": "navigate_to",
+            "navigateTo": "/catalog",
+            "ok": true
+          },
+          {
+            "message": "Navigating to /orders.",
+            "name": "navigate_to",
+            "navigateTo": "/orders",
+            "ok": true
+          },
+          {
+            "message": "Navigating to /agentguard.",
+            "name": "navigate_to",
+            "navigateTo": "/agentguard",
+            "ok": true
+          }
+        ],
+        "toolCount": 3,
+        "offerCount": 3,
+        "cart_empty": false,
+        "cart_line": false,
+        "paid": false,
+        "receipt": false,
+        "ag_card": true,
+        "has_atta": false,
+        "has_organic": false,
+        "errors": [],
+        "_send": {
+          "draft": "open agentguard",
+          "ok": true,
+          "toolCountBefore": 2
+        },
+        "_early": {},
+        "_tool_before": 2
+      }
+    },
+    {
+      "id": "W-S-PUBLISH",
+      "result": "Pass",
+      "shots": [
+        "W-S-PUBLISH-20260712-225913-0.jpeg"
+      ],
+      "notes": "path=/catalog tools=['navigate_to', 'navigate_to', 'navigate_to', 'catalog_publish'] hint=Samantha\n\nPublished Test Organic Atta 1kg (item_284f29722e76476a) to shared commerce \u2014 visible on Pr",
+      "state": {
+        "pathname": "/catalog",
+        "search": "",
+        "hint": "Samantha\n\nPublished Test Organic Atta 1kg (item_284f29722e76476a) to shared commerce \u2014 visible on PreProd ONDC when Buyer searches.\n\nDone! \ud83c\udf89 I published \u201cTest Organic Atta 1kg\u201d at \u20b985. It\u2019s now visible on the shared demo commerce space when buyers search on PreProd ONDC.\n\nSend\nAgentGuard & memory",
+        "reply": "Done! \ud83c\udf89 I published \u201cTest Organic Atta 1kg\u201d at \u20b985. It\u2019s now visible on the shared demo commerce space when buyers search on PreProd ONDC.",
+        "tools": [
+          {
+            "message": "Navigating to /catalog.",
+            "name": "navigate_to",
+            "navigateTo": "/catalog",
+            "ok": true
+          },
+          {
+            "message": "Navigating to /orders.",
+            "name": "navigate_to",
+            "navigateTo": "/orders",
+            "ok": true
+          },
+          {
+            "message": "Navigating to /agentguard.",
+            "name": "navigate_to",
+            "navigateTo": "/agentguard",
+            "ok": true
+          },
+          {
+            "message": "Published Test Organic Atta 1kg (item_284f29722e76476a) to shared commerce \u2014 visible on PreProd ONDC when Buyer searches.",
+            "name": "catalog_publish",
+            "navigateTo": "/catalog",
+            "ok": true
+          }
+        ],
+        "toolCount": 4,
+        "offerCount": 5,
+        "cart_empty": false,
+        "cart_line": false,
+        "paid": false,
+        "receipt": false,
+        "ag_card": true,
+        "has_atta": true,
+        "has_organic": true,
+        "errors": [],
+        "_send": {
+          "draft": "publish a test organic atta 1kg at 85 rupees",
+          "ok": true,
+          "toolCountBefore": 3
+        },
+        "_early": {},
+        "_tool_before": 3
+      }
+    },
+    {
+      "id": "W-S-REFUND",
+      "result": "Partial",
+      "shots": [
+        "W-S-REFUND-20260712-225913-0.jpeg"
+      ],
+      "notes": "path=/orders tools=['navigate_to', 'navigate_to', 'navigate_to', 'catalog_publish', 'navigate_to'] send=True",
+      "state": {
+        "pathname": "/orders",
+        "search": "",
+        "hint": "Samantha\n\nNavigating to /orders.\n\nefore taking any refund action.I can\u2019t safely refund yet from here\u2014 I don\u2019t have a way to see or identify \u201cthe latest order\u201d list through a tool in this chat, and the refund tool needs a specific order ID. If you have the latest order ID, send it to me and I can try to issue the \u20b950 refund. If you don\u2019t have one, please share the order ID you see in the orders section and I\u2019ll take it from there.\n\nSend\nAgentGuard & memory",
+        "reply": "efore taking any refund action.I can\u2019t safely refund yet from here\u2014 I don\u2019t have a way to see or identify \u201cthe latest order\u201d list through a tool in this chat, and the refund tool needs a specific order ID. If you have the latest order ID, send it to me and I can try to issue the \u20b950 refund. If you don\u2019t have one, please share the order ID you see in the orders section and I\u2019ll take it from there.",
+        "tools": [
+          {
+            "message": "Navigating to /catalog.",
+            "name": "navigate_to",
+            "navigateTo": "/catalog",
+            "ok": true
+          },
+          {
+            "message": "Navigating to /orders.",
+            "name": "navigate_to",
+            "navigateTo": "/orders",
+            "ok": true
+          },
+          {
+            "message": "Navigating to /agentguard.",
+            "name": "navigate_to",
+            "navigateTo": "/agentguard",
+            "ok": true
+          },
+          {
+            "message": "Published Test Organic Atta 1kg (item_284f29722e76476a) to shared commerce \u2014 visible on PreProd ONDC when Buyer searches.",
+            "name": "catalog_publish",
+            "navigateTo": "/catalog",
+            "ok": true
+          },
+          {
+            "message": "Navigating to /orders.",
+            "name": "navigate_to",
+            "navigateTo": "/orders",
+            "ok": true
+          }
+        ],
+        "toolCount": 5,
+        "offerCount": 1,
+        "cart_empty": false,
+        "cart_line": false,
+        "paid": false,
+        "receipt": false,
+        "ag_card": true,
+        "has_atta": false,
+        "has_organic": false,
+        "errors": [],
+        "_send": {
+          "draft": "refund the latest order for 50 rupees if any exist, otherwise say none",
+          "ok": true,
+          "toolCountBefore": 4
+        },
+        "_early": {},
+        "_tool_before": 4
+      }
+    },
+    {
+      "id": "W-S-RUNTIME",
+      "result": "Pass",
+      "shots": [
+        "W-S-RUNTIME-20260712-225913-0.jpeg"
+      ],
+      "notes": "path=/dashboard tools=['delegate_to_runtime_agent']",
+      "state": {
+        "pathname": "/dashboard",
+        "search": "",
+        "hint": "Samantha\n\nI've started that \u2014 I'll let you know when it's done.\n\nGot it\u2014I'll kick off a background workflow to triage today\u2019s orders and identify any refunds that need attention. I\u2019ll check for anything that requires follow-up and flag it for action.All set\u2014I\u2019ve started the background task to triage today\u2019s orders and flag any refunds that need attention. When it\u2019s done, I\u2019ll share a brief summary of what needs follow-up.\n\nSend\nAgentGuard & memory",
+        "reply": "Got it\u2014I'll kick off a background workflow to triage today\u2019s orders and identify any refunds that need attention. I\u2019ll check for anything that requires follow-up and flag it for action.All set\u2014I\u2019ve started the background task to triage today\u2019s orders and flag any refunds that need attention. When it\u2019s done, I\u2019ll share a brief summary of what needs follow-up.",
+        "tools": [
+          {
+            "message": "I've started that \u2014 I'll let you know when it's done.",
+            "name": "delegate_to_runtime_agent",
+            "ok": true
+          }
+        ],
+        "toolCount": 1,
+        "offerCount": 0,
+        "cart_empty": false,
+        "cart_line": false,
+        "paid": false,
+        "receipt": false,
+        "ag_card": true,
+        "has_atta": true,
+        "has_organic": true,
+        "errors": [],
+        "_send": {
+          "draft": "Triage today's orders and flag any refunds that need attention \u2014 work in the background.",
+          "ok": true,
+          "toolCountBefore": 0
+        },
+        "_early": {},
+        "_tool_before": 0
+      }
+    }
+  ],
+  "voice": [
+    {
+      "id": "W-B-VOICE",
+      "result": "Blocked",
+      "shots": [],
+      "notes": "Realtime configured; Hermes mic/WebRTC voice ask not Pass. hint=Samantha\n\n**Weekly grocery plan \u2014 staples, produce, dairy (budget \u2264 \u20b92,000)** Practical base list for ~1 week, 2\u20133 people. Prices are approximate for planning;  no_mic=True",
+      "state": {
+        "hint": "Samantha\n\n**Weekly grocery plan \u2014 staples, produce, dairy (budget \u2264 \u20b92,000)** Practical base list for ~1 week, 2\u20133 people. Prices are approximate for planning; catalog may vary. --- ### Staples (~\u20b9800) | Item | Qty | ~\u20b9 | |------|-----|-----| | Rice (Sona Masoori) | 5 kg | 280 | | Atta\n\nst for you t"
+      }
+    },
+    {
+      "id": "W-S-VOICE",
+      "result": "Blocked",
+      "shots": [],
+      "notes": "Seller voice twin not attempted \u2014 Hermes mic Blocked (same as Buyer)",
+      "state": {}
+    }
+  ],
+  "not_covered": [
+    "B-THX",
+    "B-FIND-BANANA",
+    "B-FIND-MILK",
+    "B-FIND-APPLE",
+    "B-NAV-CART",
+    "B-NAV-CHECKOUT",
+    "B-NAV-ORDERS",
+    "B-CHECKOUT-OVER",
+    "B-EMPTY",
+    "B-CHAINED",
+    "S-REFUND-OVER",
+    "S-MEM"
+  ],
+  "meta": {
+    "health": {
+      "status": "healthy",
+      "service": "aadhaar-chain-gateway",
+      "version": "1.0.0"
+    },
+    "ondc_status": {
+      "success": true,
+      "data": {
+        "enabled": true,
+        "configured": true,
+        "subscriber_id": "ondcbuyer.aadharcha.in",
+        "bap_id": "ondcbuyer.aadharcha.in",
+        "bap_uri": "https://ondcbuyer.aadharcha.in/ondc",
+        "gateway_url": "https://preprod.gateway.ondc.org/search",
+        "registry_url": "https://preprod.registry.ondc.org/v2.0/lookup",
+        "signing_key_present": true,
+        "unique_key_id": "1aee68ad-bc2a-4fc4-b233-7e14c6abba9b",
+        "registry_env": "preprod",
+        "outbox_depth": 0,
+        "inbox_depth": 3,
+        "note": "PreProd: signed lookup + search + select/init/confirm when enabled+configured. Do not flip VITE_COMMERCE_DEMO_MODE without commerce_demo_mode_gate evidence."
+      }
+    },
+    "realtime": {
+      "success": true,
+      "data": {
+        "configured": true,
+        "model": "gpt-realtime-2.1-mini",
+        "agent_name": "Samantha"
+      }
+    },
+    "ensure_demo": {
+      "success": true,
+      "data": {
+        "item": {
+          "item_id": "item_9b5c060944c44506",
+          "version": 2,
+          "status": "published",
+          "seller_id": "ondcseller.aadharcha.in",
+          "title": "AgentGuard PreProd Atta 1kg",
+          "description": "Network-visible Seller catalog item for PreProd Buyer discovery",
+          "price_inr": 89,
+          "created_at": "2026-07-12T17:26:33.535916+00:00",
+          "updated_at": "2026-07-12T17:26:33.536428+00:00"
+        },
+        "created": false
+      }
+    },
+    "preflight_ready": true,
+    "closeout_nav": "https://ondcbuyer.aadharcha.in/search"
+  },
+  "completeness": {
+    "catalog_ids": 28,
+    "attempted": 17,
+    "pass": 13,
+    "partial": 1,
+    "blocked": 2,
+    "fail": 1,
+    "pct_catalog_weighted": 50.0,
+    "pct_attempted_weighted": 82.4,
+    "usp_gaps": [
+      "add\u2192cart after shared txn",
+      "voice mic/WebRTC",
+      "B-THX / B-EMPTY / B-CHAINED / B-FIND-MILK|APPLE / B-CHECKOUT-OVER / S-MEM / S-REFUND-OVER not in this run"
+    ]
+  }
+}

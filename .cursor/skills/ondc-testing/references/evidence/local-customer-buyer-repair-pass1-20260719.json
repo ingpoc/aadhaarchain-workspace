@@ -1,0 +1,54 @@
+{
+  "recorded_at": "2026-07-19T16:11:23+0530",
+  "base_source_hash": "af98738a621dfb6109e06d06c2833a20e593cb6e4cf8f08d3edb23dd3781088e",
+  "ui_repair_fingerprint": "sha256:22235abcd344ace09c4d9b4ba22483174a976fee38040204f2e1dc8c4e133267",
+  "scope": "final-local-visible-customer-acceptance",
+  "status": "buyer_pass_1_on_repaired_ui",
+  "run": "buyer-novice-repair-pass1",
+  "actor": "ff3e6257-cfaf-4ca2-9064-1efbfecb60f0",
+  "verdict": "Pass",
+  "lease_ready_at": "2026-07-19T10:31:36Z",
+  "verdict_at": "2026-07-19T10:39:22Z",
+  "session_id": "buyer-novice-repair-pass1",
+  "principal_id": "principal:demo:5d85140bd88e4530",
+  "final_url": "http://127.0.0.1:43102/orders/order_fc3339ca83b5458d",
+  "order_id": "order_fc3339ca83b5458d",
+  "order_ref": "FC3339CA",
+  "auth_ref": "DF71DB09",
+  "item": "Fresh Farm Toor Dal 1kg x 1",
+  "amount_inr": 149,
+  "session_absent_after_closeout": true,
+  "first_friction": "Search for atta showed 0 matches; browse available groceries; only one offer to compare",
+  "screenshots": [
+    {
+      "path": "/Users/gurusharan/plugins/hermes-chrome-cursor-wip/run/cache/hermes-chrome/a5472d8a-041b-4d2d-81f5-738da0b5b2df-0.png",
+      "readback": "Cart Toor Dal x1 INR 149; Proceed to checkout"
+    },
+    {
+      "path": "/Users/gurusharan/plugins/hermes-chrome-cursor-wip/run/cache/hermes-chrome/5d8fb5d3-4832-46ba-a774-47bcc2b31114-1.png",
+      "readback": "Checkout Pune 411001; Authorize and place order"
+    },
+    {
+      "path": "/Users/gurusharan/plugins/hermes-chrome-cursor-wip/run/cache/hermes-chrome/46b2f85d-ed3a-4327-bb7b-baf24295f94c-5.png",
+      "readback": "Order FC3339CA Authorized DF71DB09; fulfillment Pending"
+    }
+  ],
+  "main_thread_verified": true,
+  "cleanup": {
+    "orders_removed_by_exact_id": [
+      "order_fc3339ca83b5458d",
+      "order_d305e2ef40f548f3"
+    ],
+    "orders_before": 12,
+    "orders_after": 10,
+    "inventory_restored_units": 2,
+    "fresh_farm_toor_inv_before": 3,
+    "fresh_farm_toor_inv_after": 5,
+    "agentguard_removed": {
+      "receipts": 2,
+      "approvals": 0
+    },
+    "hermes_sessions": 0
+  },
+  "next": "Buyer customer pass 2 on unchanged repaired UI fingerprint"
+}

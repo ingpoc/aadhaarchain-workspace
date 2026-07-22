@@ -1,0 +1,39 @@
+{
+  "success": true,
+  "results_slim": [
+    {
+      "type": "evaluate",
+      "result": {
+        "open": true,
+        "realtimeErr": false
+      }
+    },
+    {
+      "type": "evaluate",
+      "result": {
+        "hasAtta": true,
+        "hasCart": true,
+        "realtimeErr": false,
+        "reply": "Sure thing\u2014I'll quickly look for atta under 200 rupees and then add one to your cart.I searched for atta under 200 rupees, and the results came back empty\u2014so there wasn\u2019t a matching offer to add. That means I can\u2019t add one yet. If you\u2019d like, you can try a different brand, a larger pack size, or a broader search like \u201catta\u201d and we can see if something appears."
+      }
+    },
+    {
+      "type": "screenshot",
+      "screenshot_path": "/Users/gurusharan/.hermes/cache/hermes-chrome/8def4fd3-2cdc-4cc4-b944-93e59c93f88c-11.jpeg"
+    },
+    {
+      "type": "evaluate",
+      "result": {
+        "count": 0,
+        "installed": true
+      }
+    },
+    {
+      "type": "evaluate",
+      "result": {
+        "count": 0,
+        "installed": true
+      }
+    }
+  ]
+}

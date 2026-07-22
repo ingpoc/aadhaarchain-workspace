@@ -1,0 +1,77 @@
+{
+  "verdict": "Pass",
+  "lease_ready_at": "2026-07-19T17:01:50Z",
+  "verdict_at": "2026-07-19T17:06:06Z",
+  "session_id": "seller-merchant-pass2-1784480509",
+  "session_absent_after_closeout": true,
+  "final_url": "http://127.0.0.1:43103/orders",
+  "published_item": {
+    "title": "Tata Sampann Toor Dal 1kg",
+    "price_inr": 165,
+    "stock": 40
+  },
+  "prepared_order_outcome": "Pending order 34413F79 (Asha Merchant, 12 Market Road, Pune, Maharashtra 411001) accepted then dispatched with tracking TRACK-PASS2-19; orders list shows Completed 1 / Pending 0.",
+  "first_friction": "Add product form: CSS name-attribute locators failed to fill; had to rediscover #product-* ids via inspect then fill_selector.",
+  "findings": [
+    "Dashboard signed-in with Sign out, Identity Verified, Assistant Ready, inventory snapshot, and nav to Catalog/Orders.",
+    "Published Tata Sampann Toor Dal 1kg (Grocery, Bengaluru); catalog card and table show INR 165.00 and stock 40.",
+    "One Pending order with full Pune delivery address; Accept order succeeded without incomplete-delivery Retry.",
+    "Dispatch order opened tracking prompt; dialog handled with TRACK-PASS2-19; Accept/Dispatch actions cleared.",
+    "Orders filters ended at Completed 1 / Pending 0 / Dispatched 0 \u2014 visible terminal Completed state."
+  ],
+  "screenshots": [
+    {
+      "path": ".cursor/skills/ondc-testing/references/evidence/local-customer-seller-merchant-pass2-20260719-catalog.png",
+      "readback": "Catalog shows Tata Sampann Toor Dal 1kg grocery card with INR 165.00 and stock 40; Sign out and Identity Verified visible."
+    },
+    {
+      "path": ".cursor/skills/ondc-testing/references/evidence/local-customer-seller-merchant-pass2-20260719-order.png",
+      "readback": "Order 34413F79 Pending/Paid; delivery Asha Merchant, 12 Market Road, Pune, Maharashtra 411001; Accept order and Review full refund (INR 125) visible."
+    },
+    {
+      "path": ".cursor/skills/ondc-testing/references/evidence/local-customer-seller-merchant-pass2-20260719-completed.png",
+      "readback": "Incoming Orders: Completed 1 / Pending 0; card 34413F79 shows Delivered + Payment Paid for Kitchen Moong Dal to Pune."
+    }
+  ],
+  "milestones": {
+    "dashboard_understood": true,
+    "catalog_inspected": true,
+    "product_published": true,
+    "price_stock_verified": true,
+    "orders_inspected": true,
+    "prepared_order_terminal": true
+  },
+  "main_thread_verified": true,
+  "backend_prepared_order_status": "fulfilled",
+  "cleanup": {
+    "cleanup_at": "2026-07-19T17:07:05Z",
+    "backup": "aadharchain/gateway/data/commerce-demo-state.json.bak-pass2-cleanup-1784480825",
+    "removed": {
+      "items": [
+        {
+          "id": "item_475770d5151740a6",
+          "title": "Tata Sampann Toor Dal 1kg"
+        },
+        {
+          "id": "item_ff1ada60cede45e5",
+          "title": "Kitchen Moong Dal 480423"
+        }
+      ],
+      "orders": [
+        {
+          "id": "order_34413f79f22a40f7",
+          "status": "fulfilled",
+          "title": "Kitchen Moong Dal 480423"
+        }
+      ],
+      "reservations": [
+        "rsv_9ea38e58020b410c"
+      ]
+    },
+    "items_match_baseline": true,
+    "orders_match_baseline": true,
+    "after_items": 33,
+    "after_orders": 31
+  },
+  "actor": "b7a8fc96-04fd-49b6-8e00-2b08661618a9"
+}

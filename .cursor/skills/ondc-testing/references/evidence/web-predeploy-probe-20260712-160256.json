@@ -1,0 +1,92 @@
+{
+  "buyer-pre": {
+    "shots": [
+      "web-buyer-pre-20260712-160256-4.jpeg"
+    ],
+    "probe": {
+      "bodySample": "PORTFOLIO\nONDC Buyer\nDiscover commerce under AgentGuard authorization.\nSearch\nCart\nOrders\nConfig\nBUYER DISCOVERY\nSearch verified commerce\n\nFind offers, then checkout under AgentGuard authorization.\n\nTrust check: Unsigned\n\nSign in before elevated buyer actions. Wallet KYC is optional advanced setup.\n\nSearch the network\n\nSign in (Google or demo) before elevated checkout.\n\nCategory\nGrocery\nGrocery\nRestaurant\nFashion\nElectronics\nSearch\nSearch\nAgent chat\nHow it works\nS",
+      "buttons": [
+        "PORTFOLIO\nONDC Buyer\nDiscover commerce under AgentGuard authorization."
+      ],
+      "googleOrDemo": true,
+      "hasSignIn": false,
+      "hasSignOut": false,
+      "samanthaHint": false,
+      "simulated": false,
+      "url": "https://ondcbuyer.aadharcha.in/search",
+      "walletKyc": true
+    },
+    "diag": {
+      "ok": true,
+      "ui": {
+        "url": "https://ondcbuyer.aadharcha.in/search",
+        "title": "ONDC Buyer",
+        "headings": [
+          "Search verified commerce"
+        ],
+        "buttons": [
+          "Open search",
+          "Grocery",
+          "Search",
+          "S"
+        ]
+      },
+      "console": {
+        "installed": true,
+        "total": 0,
+        "errors": [],
+        "warns": []
+      },
+      "backend": [],
+      "issues": [],
+      "final_url": "https://ondcbuyer.aadharcha.in/search"
+    }
+  },
+  "seller-pre": {
+    "shots": [
+      "web-seller-pre-20260712-160256-4.jpeg"
+    ],
+    "probe": {
+      "bodySample": "SELLER\nONDC Seller\nOperate a trust-aware catalog and fulfillment surface.\nDashboard\nCatalog\nOrders\nConfig\nSELLER\nCatalog and trust\nPublish listings when verified. Open catalog to manage the full shelf.\nAdd product\nOpen catalog\nTrust check: Unsigned\n\nSign in with Google or Continue as demo user before elevated seller actions. Wallet KYC is optional advanced setup.\n\nPRODUCTS\nLive\n0\nLive listings in the demo catalog\nCATEGORIES\nInfo\n0\nSingle category so far\nTRUST\nWatch\nNeeds action\nRequired for elevated publish actions\nRECENT PRODUCTS\nInventory snapshot\nNo products yet\nCreate a first product so buyers can discover your storefront.\nAdd first product\nAgentGuard authority\nAgent chat\nHow it works\nS",
+      "buttons": [
+        "AgentGuard authority"
+      ],
+      "googleOrDemo": true,
+      "hasSignIn": false,
+      "hasSignOut": false,
+      "samanthaHint": false,
+      "simulated": false,
+      "url": "https://ondcseller.aadharcha.in/dashboard",
+      "walletKyc": true
+    },
+    "diag": {
+      "ok": true,
+      "ui": {
+        "url": "https://ondcseller.aadharcha.in/dashboard",
+        "title": "ONDC Seller",
+        "headings": [
+          "Catalog and trust",
+          "Inventory snapshot"
+        ],
+        "buttons": [
+          "Open catalog search",
+          "Open runtime status",
+          "Open trust status",
+          "Add product",
+          "Open catalog",
+          "Add first product",
+          "S"
+        ]
+      },
+      "console": {
+        "installed": true,
+        "total": 0,
+        "errors": [],
+        "warns": []
+      },
+      "backend": [],
+      "issues": [],
+      "final_url": "https://ondcseller.aadharcha.in/dashboard"
+    }
+  }
+}

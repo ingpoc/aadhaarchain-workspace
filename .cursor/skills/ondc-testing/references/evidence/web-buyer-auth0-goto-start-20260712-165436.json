@@ -1,0 +1,89 @@
+{
+  "stamp": "20260712-165436",
+  "start": "https://identity-aadhar-gateway-main.onrender.com/api/auth/auth0/start?aud=buyer&return=https%3A%2F%2Fondcbuyer.aadharcha.in%2Fsearch",
+  "page_diag": {
+    "ok": true,
+    "ui": {
+      "url": "https://ondcbuyer.aadharcha.in/search",
+      "title": "ONDC Buyer",
+      "headings": [
+        "Search verified commerce"
+      ],
+      "buttons": [
+        "Open search",
+        "Sign in",
+        "Grocery",
+        "Search",
+        "S"
+      ]
+    },
+    "console": {
+      "installed": true,
+      "total": 0,
+      "errors": [],
+      "warns": []
+    },
+    "backend": [],
+    "issues": [],
+    "final_url": "https://ondcbuyer.aadharcha.in/search"
+  },
+  "results": [
+    {
+      "type": "goto",
+      "url": "https://ondcbuyer.aadharcha.in/search"
+    },
+    {
+      "type": "evaluate"
+    },
+    {
+      "type": "page_context",
+      "url": "https://ondcbuyer.aadharcha.in/search",
+      "title": "ONDC Buyer",
+      "headings": [
+        {
+          "tag": "H1",
+          "text": "Search verified commerce"
+        }
+      ],
+      "buttons": [
+        "Open search",
+        "Sign in",
+        "Grocery",
+        "Search",
+        "S"
+      ]
+    },
+    {
+      "type": "text",
+      "text": "PORTFOLIO\nONDC Buyer\nDiscover commerce under AgentGuard authorization.\nSearch\nCart\nOrders\nConfig\nSign in\nBUYER DISCOVERY\nSearch verified commerce\n\nFind offers, then checkout under AgentGuard authorization.\n\nTrust check: Unsigned\n\nSign in before elevated buyer actions.\n\nSearch the network\n\nSign in before elevated checkout.\n\nCategory\nGrocery\nGrocery\nRestaurant\nFashion\nElectronics\nSearch\nSearch\nAgent chat\nHow it works\nS"
+    },
+    {
+      "type": "screenshot",
+      "screenshot_path": "/Users/gurusharan/.hermes/cache/hermes-chrome/e0c9d339-792b-4ccf-9131-f665a867cc17-6.jpeg"
+    },
+    {
+      "type": "evaluate"
+    },
+    {
+      "type": "page_context",
+      "url": "https://ondcbuyer.aadharcha.in/search",
+      "title": "ONDC Buyer",
+      "headings": [
+        {
+          "tag": "H1",
+          "text": "Search verified commerce"
+        }
+      ],
+      "buttons": [
+        "Open search",
+        "Sign in",
+        "Grocery",
+        "Search",
+        "S"
+      ]
+    },
+    {
+      "type": "evaluate"
+    }
+  ]
+}

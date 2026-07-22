@@ -1,0 +1,68 @@
+{
+  "verdict": "Not Tested",
+  "lease_ready_at": "2026-07-19T16:49:40Z",
+  "verdict_at": "2026-07-19T16:52:30Z",
+  "session_id": "seller-ux-half-1784479779",
+  "session_absent_after_closeout": true,
+  "final_url": "http://127.0.0.1:43103/",
+  "unresolved_p0_p1": [],
+  "findings": [
+    {
+      "id": "S1",
+      "severity": "P1",
+      "area": "keyboard_focus_visibility",
+      "summary": "After multiple Tabs, focus reached an interactive control (How it works) with a computed 3px outline, but settled screenshots did not show a clearly visible focus ring on primary nav or that control—keyboard focus is not reliably perceivable in the UI.",
+      "evidence": "activeElement text=How it works, outline=oklch(0.55 0.06 195) solid 3px; screenshots 02/03 readback show no obvious focus ring"
+    },
+    {
+      "id": "S2",
+      "severity": "P2",
+      "area": "status_affordance",
+      "summary": "Header chips Assistant status: Ready and Identity status: Verified appear as button-like controls alongside Search and Sign out, without a clear status-vs-action distinction; Ready/Verified can over-promise readiness relative to body copy that separates identity, store connection, and authority.",
+      "evidence": "dashboard page_context buttons include those labels; screenshot 01 chrome + body disclaimer"
+    },
+    {
+      "id": "S3",
+      "severity": "P2",
+      "area": "assistant_authority_cues",
+      "summary": "Samantha FAB plus Assistant status chrome present two assistant entry/status cues on Dashboard while authority is deferred to Assistant permissions; purpose/boundary was not confirmed because that surface and a harmless Samantha open were not completed before signed-in session ended.",
+      "evidence": "screenshot 01 FAB + status chip; nav link Assistant permissions present; Orders/Settings/AgentGuard not reviewed signed-in"
+    },
+    {
+      "id": "S4",
+      "severity": "P3",
+      "area": "catalog_empty_hierarchy",
+      "summary": "Catalog exposes H2s Review published listings and Update products in one table while empty inventory still offers Add first product—wording implies existing listings/table edits when count is zero (observed via page_context only).",
+      "evidence": "Catalog page_context headings after mouse nav; no Catalog screenshot retained"
+    },
+    {
+      "id": "S5",
+      "severity": "blocker",
+      "area": "mission_incomplete",
+      "summary": "Signed-in review aborted after accidental Sign out; landing required Sign in and re-auth was forbidden, so keyboard Enter-activate of primary nav, Orders, Assistant permissions, Settings, and Samantha purpose check remain untested.",
+      "evidence": "final_url http://127.0.0.1:43103/ buttons Sign in / Sign in to Seller workspace; navigate to /dashboard stayed signed out"
+    }
+  ],
+  "screenshots": [
+    {
+      "path": ".cursor/skills/ondc-testing/references/evidence/local-customer-seller-ux-half-20260719-01-dashboard.png",
+      "readback": "Signed-in Seller dashboard: ONDC Seller brand, nav (Assistant permissions/Dashboard/Catalog/Orders/Settings), Search + Assistant status Ready + Identity status Verified + Sign out visible; H1 Seller dashboard; products/categories 0; identity Verified with identity≠store≠authority disclaimer; empty Inventory snapshot with Add first product; Samantha FAB bottom-right; How it works bottom-left."
+    },
+    {
+      "path": ".cursor/skills/ondc-testing/references/evidence/local-customer-seller-ux-half-20260719-02-keyboard-focus.png",
+      "readback": "Post-Tab settle on dashboard; same layout; Hermes cursor/tooltip near Dashboard; no clearly visible keyboard focus ring on nav or bottom controls in image readback despite Tab sequence."
+    },
+    {
+      "path": ".cursor/skills/ondc-testing/references/evidence/local-customer-seller-ux-half-20260719-03-dashboard-post-tab.png",
+      "readback": "Further Tab settle; activeElement was How it works with computed outline, but screenshot readback still lacks an obvious focus ring; Sign out and Samantha remain visible."
+    }
+  ],
+  "confirmed": [
+    "Started signed-in at /dashboard with Sign out visible",
+    "Primary nav labels and H1/H2 hierarchy readable on Dashboard",
+    "Empty inventory state and Add first product CTA understandable",
+    "Catalog route reachable (mouse) with Product catalog H1",
+    "Tab moves focus among interactive controls",
+    "Hermes lease closed; sessions inventory empty (seller-ux-half-1784479779 absent); probe active_agent_sessions=0"
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "cleanup_at": "2026-07-19T16:48:26Z",
+  "backup": "aadharchain/gateway/data/commerce-demo-state.json.bak-cleanup-1784479706",
+  "removed": {
+    "items": [
+      {
+        "id": "item_40c872920bf64bcd",
+        "title": "Ashirvaad Whole Wheat Atta 5kg"
+      },
+      {
+        "id": "item_d1043c131e9640ec",
+        "title": "Kitchen Chana Dal 479252"
+      }
+    ],
+    "orders": [
+      {
+        "id": "order_0c88d5ae11c54fdb",
+        "status": "fulfilled",
+        "title": "Kitchen Chana Dal 479252"
+      }
+    ],
+    "reservations": [
+      "rsv_0bcfc52b76d54bd1"
+    ],
+    "inventory_keys": [
+      "item_40c872920bf64bcd",
+      "item_d1043c131e9640ec"
+    ]
+  },
+  "baseline_items": 33,
+  "baseline_orders": 31,
+  "after_items": 33,
+  "after_orders": 31,
+  "items_match_baseline": true,
+  "orders_match_baseline": true,
+  "extra_items": [],
+  "missing_items": [],
+  "extra_orders": [],
+  "missing_orders": []
+}

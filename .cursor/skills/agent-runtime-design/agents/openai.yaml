@@ -1,0 +1,4 @@
+interface:
+  display_name: "Agent Runtime Design"
+  short_description: "Design reliable voice and runtime agents"
+  default_prompt: "Use $agent-runtime-design to design or review a model-driven voice and runtime agent with efficient context and safe tools."

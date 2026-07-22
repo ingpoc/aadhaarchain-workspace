@@ -1,0 +1,40 @@
+{
+  "recorded_at": "2026-07-19T15:44:06+0530",
+  "executable_source_hash": "af98738a621dfb6109e06d06c2833a20e593cb6e4cf8f08d3edb23dd3781088e",
+  "scope": "final-local-visible-customer-acceptance",
+  "status": "buyer_ux_app_fail",
+  "run": "buyer-ux-af987-pass1",
+  "actor": "b9de4204-e254-4b91-bf22-2454f66bcf77",
+  "verdict": "App Fail",
+  "lease_ready_at": "2026-07-19T10:10:23Z",
+  "verdict_at": "2026-07-19T10:13:24Z",
+  "session_absent_after_closeout": true,
+  "findings": [
+    {
+      "sev": "P0",
+      "id": "ask-samantha-hero-dead",
+      "summary": "Hero Ask Samantha click does not open assistant"
+    },
+    {
+      "sev": "P1",
+      "id": "runtime-api-key-header",
+      "summary": "Open runtime status exposes Runtime api_key to shopper"
+    },
+    {
+      "sev": "P1",
+      "id": "samantha-fab-overlap",
+      "summary": "FAB overlaps open Samantha panel"
+    },
+    {
+      "sev": "P1",
+      "id": "preferences-jargon",
+      "summary": "AgentGuard preferences status/actions unclear + hosting jargon"
+    },
+    {
+      "sev": "P2",
+      "id": "above-limit-opaque",
+      "summary": "Exact one-time approval opaque on checkout access card"
+    }
+  ],
+  "gate": "Do not start Buyer pass 2 until UX P0/P1 cleared on new or repaired source"
+}

@@ -1,0 +1,329 @@
+{
+  "recorded_at": "2026-07-21T18:34:48+05:30",
+  "campaign": "local-customer-chrome-catalog-20260721",
+  "mode": "A_catalog_then_fix",
+  "driver": "@chrome plugin",
+  "scope": "Local ONDC Buyer, Seller, combined UI/UX and accessibility smoke, Buyer Samantha, Seller Samantha, and supporting deterministic gates",
+  "source": {
+    "git_head": "d4ca699a15e9da68810f6f6c04341518545d1aa5",
+    "dirty_tree": true,
+    "tracked_diff_sha256": "cc7d960fe1c39b7e0d584e79b609b5870791f77545a3fd3c226485dd0cfa4fdf"
+  },
+  "customer_missions": [
+    {
+      "profile": "Novice Buyer",
+      "verdict": "Pass",
+      "result": "Search, compare, add, remove, re-add, checkout, AgentGuard authorization, and visible receipt completed.",
+      "terminal_state": "Order 88FDF65A, INR 89.00, Created, signed reference verified, fulfillment pending seller confirmation.",
+      "first_friction": "Checkout retained the incomplete-quote instruction after all required fields were complete and authorization was enabled.",
+      "screenshot_evidence": "Three Chrome captures were read in-session; no filesystem paths were emitted."
+    },
+    {
+      "profile": "Small Seller merchant",
+      "verdict": "Tooling Blocked",
+      "result": "Published Kaveri Toor Dal 1kg at INR 145 with stock 18 and accepted prepared paid order 2BEE2CD5.",
+      "terminal_state": "Order remained Accepted; dispatch, completion, and refund were unproven.",
+      "first_friction": "Dispatch tracking prompt disconnected Chrome control. The single fresh recovery repeated the same browser-unavailable class.",
+      "screenshot_evidence": "Two Chrome captures were read in-session; no filesystem paths were emitted."
+    },
+    {
+      "profile": "Combined UI/UX and accessibility smoke",
+      "verdict": "App Fail",
+      "result": "Buyer and Seller read-only missions completed with keyboard navigation and five deduplicated findings.",
+      "screenshots": [
+        "/var/folders/d4/n827kdgs5hl0dj940t7t6wm00000gn/T/buyer-search-overview.png",
+        "/var/folders/d4/n827kdgs5hl0dj940t7t6wm00000gn/T/buyer-agentguard-preferences.png",
+        "/var/folders/d4/n827kdgs5hl0dj940t7t6wm00000gn/T/buyer-samantha-panel.png",
+        "/var/folders/d4/n827kdgs5hl0dj940t7t6wm00000gn/T/seller-dashboard-overview.png",
+        "/var/folders/d4/n827kdgs5hl0dj940t7t6wm00000gn/T/seller-agentguard-authority.png",
+        "/var/folders/d4/n827kdgs5hl0dj940t7t6wm00000gn/T/seller-network-configuration.png"
+      ]
+    },
+    {
+      "profile": "Buyer Samantha customer",
+      "verdict": "App Fail",
+      "passed": [
+        "Greeting without visible side effect",
+        "Atta search with 19 visible matches",
+        "Visible INR 89 price grounding",
+        "Matching item cart add",
+        "Orders and Preferences navigation",
+        "Low-value checkout with signed AgentGuard authorization"
+      ],
+      "failed": [
+        "Cart navigation",
+        "Preference persistence readback",
+        "Weekly-groceries background outcome"
+      ],
+      "voice": "Not Tested: no visible microphone control or status; no ambient audio captured.",
+      "screenshot_evidence": "Two Chrome captures were read in-session; no filesystem paths were emitted."
+    },
+    {
+      "profile": "Seller Samantha customer",
+      "verdict": "App Fail",
+      "passed": [
+        "Greeting without visible side effect",
+        "Catalog, Orders, and AgentGuard navigation",
+        "Fresh Toor Dal 1 kg publish at INR 189 with stock 24",
+        "Preference storage and conversational recall"
+      ],
+      "failed": [
+        "Actionable paid-order fulfillment",
+        "Eligible refund and AgentGuard remedy",
+        "Bulk-order-triage data coherence"
+      ],
+      "voice": "Not Tested: Listening + text ready appeared, but no microphone permission or ambient audio was used.",
+      "screenshot_evidence": "Two Chrome captures were read in-session; no filesystem paths were emitted."
+    }
+  ],
+  "issues": [
+    {
+      "id": "CUST-CHROME-20260721-01",
+      "priority": "P1",
+      "owner_surface": "Buyer checkout",
+      "summary": "Quote instruction remains stale after checkout form completion",
+      "evidence": "All required delivery fields were complete and Authorize and place order was enabled, but the page still said Complete the form to estimate delivery, tax, and the final quote."
+    },
+    {
+      "id": "CUST-CHROME-20260721-02",
+      "priority": "P1",
+      "owner_surface": "Buyer catalog results",
+      "summary": "Customer results mix credible offers with fixture-like catalog litter and incomplete commerce terms",
+      "evidence": "Atta results included Dispatch Proof-style listings alongside Sampoorna; seller, delivery, and returns context was incomplete on affected cards."
+    },
+    {
+      "id": "CUST-CHROME-20260721-03",
+      "priority": "P1",
+      "owner_surface": "Buyer Samantha panel",
+      "summary": "Samantha is not keyboard-accessible as a dialog",
+      "evidence": "Keyboard opening left focus on BODY, exposed no dialog or panel heading semantics, and Escape did not close; Seller supplied the expected dialog, heading, focus, and Escape behavior."
+    },
+    {
+      "id": "CUST-CHROME-20260721-04",
+      "priority": "P1",
+      "owner_surface": "Buyer and Seller Samantha status",
+      "summary": "Listening plus text ready ambiguously implies microphone capture",
+      "evidence": "The state appeared without a visible microphone control, consent affordance, or explanation of whether audio capture was active."
+    },
+    {
+      "id": "CUST-CHROME-20260721-05",
+      "priority": "P1",
+      "owner_surface": "Buyer and Seller authority copy",
+      "summary": "Execution boundaries are inconsistent and customer surfaces expose internal jargon",
+      "evidence": "Buyer enabled Checkout, Cancel order, Return, and Accept remedy without clear confirmation boundaries; visible copy exposed principal:demo, seller principal, PII-free AgentGuard receipts, and Mandate: active."
+    },
+    {
+      "id": "CUST-CHROME-20260721-06",
+      "priority": "P2",
+      "owner_surface": "Seller network settings",
+      "summary": "Consequential network controls remain enabled with incomplete connection details",
+      "evidence": "Generate key pair, Save configuration, and Test connection remained enabled while Connection details incomplete was visible."
+    },
+    {
+      "id": "CUST-CHROME-20260721-07",
+      "priority": "P2",
+      "owner_surface": "Seller order filters",
+      "summary": "Selected order queue is visual only",
+      "evidence": "Keyboard activation worked, but the active pending 0 button exposed neither aria-pressed nor aria-current."
+    },
+    {
+      "id": "CUST-CHROME-20260721-08",
+      "priority": "P1",
+      "owner_surface": "Buyer Samantha navigation",
+      "summary": "Cart navigation is misclassified as catalog search and leaks internal operator instructions",
+      "evidence": "Show me my cart navigated to q=Show+me+my+cart. with zero offers and exposed Tell the user honestly none matched - do not invent products or say they are still loading."
+    },
+    {
+      "id": "CUST-CHROME-20260721-09",
+      "priority": "P1",
+      "owner_surface": "Buyer Samantha memory",
+      "summary": "Preference success claim disagrees with the visible memory owner",
+      "evidence": "Samantha said Remembered preference: Prefers whole wheat groceries, while Preferences showed Likes, Dislikes, Preferences, and Notes all as dash."
+    },
+    {
+      "id": "CUST-CHROME-20260721-10",
+      "priority": "P1",
+      "owner_surface": "Buyer runtime handoff",
+      "summary": "Background task completes without producing the requested weekly basket",
+      "evidence": "The terminal state said Background task complete and Nothing has been added to the cart yet, with no visible plan or completed requested basket."
+    },
+    {
+      "id": "CUST-CHROME-20260721-11",
+      "priority": "P1",
+      "owner_surface": "Buyer order detail",
+      "summary": "Completed checkout loses delivery-address detail",
+      "evidence": "After a full fictional address was submitted, the visible order detail reduced delivery address to IND."
+    },
+    {
+      "id": "CUST-CHROME-20260721-12",
+      "priority": "P2",
+      "owner_surface": "Buyer Samantha reply rendering",
+      "summary": "Assistant replies truncate mid-sentence",
+      "evidence": "Observed replies ended at Done! ... you're on the cart and If you want me to proceed with."
+    },
+    {
+      "id": "CUST-CHROME-20260721-13",
+      "priority": "P1",
+      "owner_surface": "Demo-principal continuity",
+      "summary": "Seller data disappears across demo sign-ins because each session receives a new principal",
+      "evidence": "A prepared order and published catalog existed for the prior signed-in seller, while the next ordinary demo sign-in visibly showed Products 0 and every order queue count 0."
+    },
+    {
+      "id": "CUST-CHROME-20260721-14",
+      "priority": "P0",
+      "owner_surface": "Seller runtime handoff",
+      "summary": "Bulk triage completion contradicts the visible order queue",
+      "evidence": "The visible queue showed all counts 0 while Background task complete reported 17 paid orders awaiting acceptance, 16 accepted awaiting fulfillment, and 1 fulfilled; a follow-up again reported no pending orders."
+    },
+    {
+      "id": "CUST-CHROME-20260721-15",
+      "priority": "P2",
+      "owner_surface": "Seller Samantha memory navigation",
+      "summary": "Samantha recalls the preference but cannot open its memory settings",
+      "evidence": "Conversational recall succeeded, but Samantha said I can't directly display the memory settings screen."
+    },
+    {
+      "id": "CUST-CHROME-20260721-16",
+      "priority": "P0-tooling",
+      "owner_surface": "Chrome plugin dialog control",
+      "summary": "Seller dispatch prompt disconnects Chrome control",
+      "evidence": "Dispatch order opened the tracking prompt, then Chrome control became unavailable. The one fresh bounded recovery repeated the same class before any postcondition."
+    },
+    {
+      "id": "CUST-CHROME-20260721-17",
+      "priority": "P1-tooling",
+      "owner_surface": "portfolio-browser preflight",
+      "summary": "AgentGuard demo setup incorrectly requires the legacy wallet validator lane",
+      "evidence": "Preflight waited on :43100, attempted Solana startup, and failed because solana was unavailable even though AgentGuard acceptance explicitly excludes wallet and Solana."
+    },
+    {
+      "id": "CUST-CHROME-20260721-18",
+      "priority": "P1-tooling",
+      "owner_surface": "reviewer_ready.py",
+      "summary": "Post-idle readiness read loses its browser session preflight",
+      "evidence": "The second stable read failed with WIP Hermes run requires preflight for this session before any browser action; closeout proved zero owned sessions afterward."
+    }
+  ],
+  "deterministic_support": {
+    "gateway": "135 passed, 11 warnings",
+    "buyer": "npm test and production build exited 0",
+    "seller": "196 passed and production build exited 0",
+    "offline_graders": "Pass",
+    "commerce_demo_mode_gate": "Pass"
+  },
+  "boundaries": {
+    "physical_voice": "Not Tested; no microphone permission or ambient audio was used.",
+    "seller_dispatch_refund": "Tooling Blocked after one bounded fresh recovery.",
+    "fqdn": "Not tested because the dirty local source is not the deployed FQDN source.",
+    "production_ondc_and_live_payment": "Out of scope by product contract."
+  },
+  "cleanup": {
+    "backup": "/tmp/aadhaarchain-commerce-pre-cleanup-20260721.json",
+    "removed_items": [
+      "item_366a164fd9094039",
+      "item_4dfa986447e14e68",
+      "item_65df3e9fa9c84593"
+    ],
+    "removed_orders": [
+      "order_2bee2cd51d974306",
+      "order_433cd99f4b004c4d",
+      "order_88fdf65a12c346b1"
+    ],
+    "removed_reservations": [
+      "rsv_457fb92de12f4999",
+      "rsv_574655de95984da1",
+      "rsv_d961d13dc12d43db"
+    ],
+    "restored_preexisting_inventory": {
+      "item_id": "item_c5d8daa0520f476f",
+      "quantity": 21
+    },
+    "baseline_proof": {
+      "items": 53,
+      "orders": 35,
+      "reservations": 33,
+      "item_ids_match": true,
+      "order_ids_match": true,
+      "reservation_ids_match": true,
+      "lingering_campaign_idempotency": []
+    }
+  },
+  "fix_acceptance": {
+    "recorded_at": "2026-07-21T19:26:00+05:30",
+    "result": "Pass on frozen local source",
+    "pre_ledger_source_diff_sha256": {
+      "portfolio": "39b16853698949972db585f21039e9644b1ef1a1504ee044f3c9b40ad7156952",
+      "aadharchain": "6c213090b932bb0deaac81435fd2df5b5bb1ef6bcc297a2e63c54b0e03cdec4d",
+      "ondcbuyer": "15754c515361f30ace47110010f733b89e7870edde94885da21d5d740573a5e0",
+      "ondcseller": "1f007601abbb1474e580c545539cc7313ef70cbd8081de7b3cea5d19228899fd"
+    },
+    "accepted_issue_ids": [
+      "CUST-CHROME-20260721-01",
+      "CUST-CHROME-20260721-02",
+      "CUST-CHROME-20260721-03",
+      "CUST-CHROME-20260721-04",
+      "CUST-CHROME-20260721-05",
+      "CUST-CHROME-20260721-06",
+      "CUST-CHROME-20260721-07",
+      "CUST-CHROME-20260721-08",
+      "CUST-CHROME-20260721-09",
+      "CUST-CHROME-20260721-10",
+      "CUST-CHROME-20260721-11",
+      "CUST-CHROME-20260721-12",
+      "CUST-CHROME-20260721-13",
+      "CUST-CHROME-20260721-14",
+      "CUST-CHROME-20260721-15",
+      "CUST-CHROME-20260721-16",
+      "CUST-CHROME-20260721-17",
+      "CUST-CHROME-20260721-18"
+    ],
+    "chrome_proof": [
+      "Buyer atta search showed one customer-safe Sampoorna offer with seller, delivery, and return context and no fixture catalog litter.",
+      "Checkout changed from incomplete guidance to ready guidance only after billing and the full delivery address were complete; authorization became enabled.",
+      "Created Buyer order retained Customer QA, street, city, state, PIN, and country; repeat demo sign-in retained the same order.",
+      "Buyer Samantha opened as a named dialog, focused the text box, exposed microphone state, closed with Escape, routed Show me my cart to /cart, and made remembered preferences visible immediately.",
+      "Buyer weekly-basket background work ended as could not finish when no verified tool/postcondition evidence was returned; it did not claim completion.",
+      "Seller filters exposed pressed state; incomplete Network settings disabled Save and Test; customer authority copy contained no principal, PII-free, or mandate jargon.",
+      "Seller dispatch opened an accessible in-page tracking dialog with required tracking ID and no native prompt.",
+      "Seller Samantha linked directly to /config?tab=samantha and exposed microphone state/control.",
+      "Seller bulk triage made no unintended second-pass mutation and displayed grounded read/action outcomes instead of fabricated aggregate counts.",
+      "Fresh dispatch-dialog tab produced zero console errors after DialogOverlay ref forwarding."
+    ],
+    "re_review_findings_fixed_before_empty_iteration": [
+      "Residual Diag/Catalog Marker/Hermes fixture families and missing catalog terms remained after the first cleanup; cleanup provenance, customer-safe seller filtering, and fallback terms were fixed.",
+      "Direct Seller Realtime multi-tool prose contradicted one executed fulfillment; order mutations now require exact order IDs and visible replies are built from tool outcomes.",
+      "DialogOverlay emitted a React ref warning; the wrapper now forwards the Radix ref."
+    ],
+    "empty_iteration": "Pass: a fresh Chrome dispatch-dialog replay on the final source had correct semantics and zero console errors; the repeated Seller triage mission remained grounded with no unintended mutation.",
+    "deterministic_support": {
+      "gateway": "144 passed, 12 warnings",
+      "buyer": "187 passed; production build and copy gate passed",
+      "seller": "207 passed; production build and copy gate passed",
+      "offline_graders": "Pass",
+      "ondc_testing_validator": "Pass",
+      "portfolio_browser_validator": "Pass",
+      "diff_check": "Pass in portfolio and all three nested repositories"
+    },
+    "cleanup": {
+      "known_fixture_catalog_removed": true,
+      "temporary_fix_acceptance_items_removed": 2,
+      "temporary_fix_acceptance_orders_removed": 4,
+      "temporary_fix_acceptance_reservations_removed": 4,
+      "temporary_buyer_memory_cleared": true,
+      "final_state_counts": {
+        "items": 22,
+        "orders": 13,
+        "reservations": 11
+      },
+      "recoverable_backups": [
+        "/tmp/aadhaarchain-commerce-pre-cleanup-20260721.json",
+        "/tmp/aadhaarchain-commerce-before-catalog-quality-cleanup-20260721.json"
+      ]
+    },
+    "remaining_boundaries": [
+      "Local dirty-source proof only; FQDN deployment was not changed or tested.",
+      "Production ONDC, live payment, and official conformance remain out of scope.",
+      "Existing Chrome microphone permission exposed live on/off state, but no controlled physical voice accuracy campaign was run."
+    ]
+  }
+}

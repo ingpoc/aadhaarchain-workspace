@@ -1,0 +1,395 @@
+{
+  "stamp": "20260712-170051",
+  "steps": [
+    {
+      "id": "W-B-SEARCH",
+      "err": null,
+      "shots": [
+        "web-buyer-search-20260712-170051-6.jpeg"
+      ],
+      "text": "PORTFOLIO\nONDC Buyer\nDiscover commerce under AgentGuard authorization.\nSearch\nCart\nOrders\nConfig\nSign in\nBUYER DISCOVERY\nSearch verified commerce\n\nFind offers, then checkout under AgentGuard authorization.\n\nTrust check: Unsigned\n\nSign in before elevated buyer actions.\n\nSearch the network\n\nSign in before elevated checkout.\n\nCategory\nGrocery\nGrocery\nRestaurant\nFashion\nElectronics\nSearch\nSearch\nAgent chat\nHow it works\n\nSamantha\n\nText mode ready (no mic)\n\nSend\nPreferences & AgentGuard\nS",
+      "evals": [
+        {
+          "already": true,
+          "count": 0
+        },
+        {
+          "btns": [
+            "Open navigation",
+            "Sign in",
+            "Grocery",
+            "Search",
+            "Send",
+            "Preferences & AgentGuard",
+            "S"
+          ],
+          "cards": false
+        },
+        {
+          "errors": [],
+          "installed": true,
+          "total": 0,
+          "warns": []
+        }
+      ],
+      "diag": {
+        "ok": true,
+        "ui": {
+          "url": "https://ondcbuyer.aadharcha.in/search",
+          "title": "ONDC Buyer",
+          "headings": [
+            "Search verified commerce"
+          ],
+          "buttons": [
+            "Open search",
+            "Sign in",
+            "Grocery",
+            "Search",
+            "Send",
+            "Preferences & AgentGuard",
+            "S"
+          ]
+        },
+        "console": {
+          "installed": true,
+          "total": 0,
+          "errors": [],
+          "warns": []
+        },
+        "backend": [],
+        "issues": [],
+        "final_url": "https://ondcbuyer.aadharcha.in/search"
+      }
+    },
+    {
+      "id": "W-B-CART-CHECKOUT",
+      "err": null,
+      "shots": [
+        "web-buyer-cc-20260712-170051-3.jpeg",
+        "web-buyer-cc-20260712-170051-8.jpeg"
+      ],
+      "texts": [
+        "PORTFOLIO\nONDC Buyer\nDiscover commerce under AgentGuard authorization.\nSearch\nCart\nOrders\nConfig\nSign in\nCART\nShopping cart\n\n2 items ready for trust-aware checkout.\n\nTrust check: Unsigned\n\nSign in before elevated buyer actions.\n\nSharbati Atta 5kg\nINR 325.00 \u00d7 1\n1\nRemove\nRobusta Bananas (12 pcs)\nINR 78.00 \u00d7 3\n3\nRemove\nOrder summary\nSubtotal\nINR 559.00\nTotal\nINR 559.00\nProceed to checkout\nNeed more items?\nContinue shopping\nAgent chat\nHow it works\nS",
+        "PORTFOLIO\nONDC Buyer\nDiscover commerce under AgentGuard authorization.\nSearch\nCart\nOrders\nConfig\nSign in\nCHECKOUT\nCheckout\n\nConfirm buyer information, generate a quote, and place the order. AgentGuard authorizes protected checkout.\n\nTrust check: Unsigned\n\nSign in before elevated buyer actions.\n\nBUYER DETAILS\nBilling information\nFull name *\nEmail *\nPhone *\nGSTIN\n\nOptional, used for business purchases and GST invoices.\n\nDELIVERY\nDelivery address\nStreet address *\nCity *\nState *\nPostal code *\n\nUse a"
+      ],
+      "diag": {
+        "ok": true,
+        "ui": {
+          "url": "https://ondcbuyer.aadharcha.in/checkout",
+          "title": "ONDC Buyer",
+          "headings": [
+            "Checkout"
+          ],
+          "buttons": [
+            "Open search",
+            "Sign in",
+            "UPI",
+            "Card",
+            "Net banking",
+            "Wallet",
+            "Cash on delivery",
+            "Confirm mandate",
+            "Trust verification required",
+            "Back to cart"
+          ]
+        },
+        "console": {
+          "installed": true,
+          "total": 0,
+          "errors": [],
+          "warns": []
+        },
+        "backend": [],
+        "issues": [],
+        "final_url": "https://ondcbuyer.aadharcha.in/checkout"
+      }
+    },
+    {
+      "id": "W-B-SAM-TEXT",
+      "err": null,
+      "shots": [
+        "web-buyer-sam-20260712-170051-9.jpeg",
+        "web-buyer-sam-20260712-170051-14.jpeg"
+      ],
+      "texts": [
+        "PORTFOLIO\nONDC Buyer\nDiscover commerce under AgentGuard authorization.\nSearch\nCart\nOrders\nConfig\nSign in\nBUYER DISCOVERY\nSearch verified commerce\n\nFind offers, then checkout under AgentGuard authorization.\n\nTrust check: Unsigned\n\nSign in before elevated buyer actions.\n\nSearch the network\n\nSign in before elevated checkout.\n\nCategory\nGrocery\nGrocery\nRestaurant\nFashion\nElectronics\nSearch\nSearch\nAgent chat\nHow it works\n\nSamantha\n\nText mode ready (no mic)\n\nSend\nPreferences & AgentGuard\nS",
+        "PORTFOLIO\nONDC Buyer\nDiscover commerce under AgentGuard authorization.\nSearch\nCart\nOrders\nConfig\nSign in\nCART\nShopping cart\n\n2 items ready for trust-aware checkout.\n\nTrust check: Unsigned\n\nSign in before elevated buyer actions.\n\nSharbati Atta 5kg\nINR 325.00 \u00d7 1\n1\nRemove\nRobusta Bananas (12 pcs)\nINR 78.00 \u00d7 3\n3\nRemove\nOrder summary\nSubtotal\nINR 559.00\nTotal\nINR 559.00\nProceed to checkout\nNeed more items?\nContinue shopping\nAgent chat\nHow it works\nS"
+      ],
+      "diag": {
+        "ok": true,
+        "ui": {
+          "url": "https://ondcbuyer.aadharcha.in/cart",
+          "title": "ONDC Buyer",
+          "headings": [
+            "Shopping cart"
+          ],
+          "buttons": [
+            "Open search",
+            "Sign in",
+            "Remove",
+            "Remove",
+            "Proceed to checkout",
+            "Continue shopping",
+            "S"
+          ]
+        },
+        "console": {
+          "installed": true,
+          "total": 0,
+          "errors": [],
+          "warns": []
+        },
+        "backend": [],
+        "issues": [],
+        "final_url": "https://ondcbuyer.aadharcha.in/cart"
+      }
+    },
+    {
+      "id": "W-B-VOICE",
+      "err": null,
+      "shots": [
+        "web-buyer-voice-20260712-170051-5.jpeg"
+      ],
+      "evals": [
+        {
+          "count": 0,
+          "installed": true
+        },
+        {
+          "ok": true
+        },
+        {
+          "notConfigured": false,
+          "snippet": "PORTFOLIO ONDC Buyer Discover commerce under AgentGuard authorization. Search Cart Orders Config Sign in BUYER DISCOVERY Search verified commerce Find offers, then checkout under AgentGuard authorization. Trust check: Unsigned Sign in before elevated buyer actions. Search the network Sign in before elevated checkout. Category Grocery Grocery Restaurant Fashion Electronics Search Search Agent chat How it works Samantha Text mode ready (no mic) Send Preferences & AgentGuard S"
+        },
+        {
+          "errors": [],
+          "installed": true,
+          "total": 0,
+          "warns": []
+        }
+      ],
+      "text": "PORTFOLIO\nONDC Buyer\nDiscover commerce under AgentGuard authorization.\nSearch\nCart\nOrders\nConfig\nSign in\nBUYER DISCOVERY\nSearch verified commerce\n\nFind offers, then checkout under AgentGuard authorization.\n\nTrust check: Unsigned\n\nSign in before elevated buyer actions.\n\nSearch the network\n\nSign in before elevated checkout.\n\nCategory\nGrocery\nGrocery\nRestaurant\nFashion\nElectronics\nSearch\nSearch\nAgent chat\nHow it works\n\nSamantha\n\nText mode ready (no mic)\n\nSend\nPreferences & AgentGuard\nS",
+      "diag": {
+        "ok": true,
+        "ui": {
+          "url": "https://ondcbuyer.aadharcha.in/search",
+          "title": "ONDC Buyer",
+          "headings": [
+            "Search verified commerce"
+          ],
+          "buttons": [
+            "Open search",
+            "Sign in",
+            "Grocery",
+            "Search",
+            "Send",
+            "Preferences & AgentGuard",
+            "S"
+          ]
+        },
+        "console": {
+          "installed": true,
+          "total": 0,
+          "errors": [],
+          "warns": []
+        },
+        "backend": [],
+        "issues": [],
+        "final_url": "https://ondcbuyer.aadharcha.in/search"
+      }
+    },
+    {
+      "id": "W-B-RUNTIME",
+      "err": null,
+      "shots": [
+        "web-buyer-runtime-20260712-170051-8.jpeg"
+      ],
+      "text": "PORTFOLIO\nONDC Buyer\nDiscover commerce under AgentGuard authorization.\nSearch\nCart\nOrders\nConfig\nSign in\nBUYER DISCOVERY\nSearch verified commerce\n\nFind offers, then checkout under AgentGuard authorization.\n\nTrust check: Unsigned\n\nSign in before elevated buyer actions.\n\nSearch the network\n\nSign in before elevated checkout.\n\nCategory\nGrocery\nGrocery\nRestaurant\nFashion\nElectronics\nSearch\nSearch\nAgent chat\nHow it works\n\nSamantha\n\nText mode ready (no mic)\n\nSend\nPreferences & AgentGuard\nS",
+      "url": "https://ondcbuyer.aadharcha.in/search",
+      "diag": {
+        "ok": true,
+        "ui": {
+          "url": "https://ondcbuyer.aadharcha.in/search",
+          "title": "ONDC Buyer",
+          "headings": [
+            "Search verified commerce"
+          ],
+          "buttons": [
+            "Open search",
+            "Sign in",
+            "Grocery",
+            "Search",
+            "Send",
+            "Preferences & AgentGuard",
+            "S"
+          ]
+        },
+        "console": {
+          "installed": true,
+          "total": 0,
+          "errors": [],
+          "warns": []
+        },
+        "backend": [],
+        "issues": [],
+        "final_url": "https://ondcbuyer.aadharcha.in/search"
+      }
+    },
+    {
+      "id": "W-S-HOME",
+      "err": null,
+      "route": "https://ondcseller.aadharcha.in/",
+      "shots": [
+        "web-seller-home-20260712-170051-3.jpeg"
+      ],
+      "text": "SELLER\nONDC Seller\nOperate a trust-aware catalog and fulfillment surface.\nDashboard\nCatalog\nOrders\nConfig\nSign in\nSELLER\nCatalog and trust\nPublish listings when verified. Open catalog to manage the full shelf.\nAdd product\nOpen catalog\nTrust check: Unsigned\n\nSign in before elevated seller actions.\n\nPRODUCTS\nLive\n0\nLive listings in the demo catalog\nCATEGORIES\nInfo\n0\nSingle category so far\nTRUST\nWatch\nNeeds action\nRequired for elevated publish actions\nRECENT PRODUCTS\nInventory snapshot\nNo products yet\nCreate a first product so buyers can discover your storefront.\nAdd first product\nAgentGuard authority\nAgent chat\nHow it works\nS",
+      "buttons": [
+        "Open catalog search",
+        "Open runtime status",
+        "Open trust status",
+        "Sign in",
+        "Add product",
+        "Open catalog",
+        "Add first product",
+        "S"
+      ]
+    },
+    {
+      "id": "W-S-CAT",
+      "err": null,
+      "route": "https://ondcseller.aadharcha.in/catalog",
+      "shots": [
+        "web-seller-cat-20260712-170051-3.jpeg"
+      ],
+      "text": "SELLER\nONDC Seller\nOperate a trust-aware catalog and fulfillment surface.\nDashboard\nCatalog\nOrders\nConfig\nSign in\nSELLER CATALOG\nRun a tighter product shelf\nReview the inventory buyers will actually encounter, then edit the exact SKU that needs cleanup.\nRefresh catalog\nAdd product\nTrust check: Unsigned\n\nSign in before elevated seller actions.\n\nVISIBLE PRODUCTS\nLive\n0\nActive SKUs in the current view\nCATEGORIES COVERED\nInfo\n0\nBroader spread helps discovery across buyer intents\nIMAGE COVERAGE\nWatch\n0\nListings with imagery read better in buyer result cards\nTRUST CONTROL\nWatch\nRestricted\nCatalog edits stay gated until sign-in or trust is verified\nFEATURED REVIEW\nSpot-check the top listings\nThese cards mimic how the catalog reads at a glance before buyers drill into edit flows.\nNo products published yet\nCreate a product to populate the seller shelf.\nAdd first product\nINVENTORY LEDGER\nEdit ever",
+      "buttons": [
+        "Open catalog search",
+        "Open runtime status",
+        "Open trust status",
+        "Sign in",
+        "Refresh catalog",
+        "Add product",
+        "Add first product",
+        "S"
+      ]
+    },
+    {
+      "id": "W-S-ORD",
+      "err": null,
+      "route": "https://ondcseller.aadharcha.in/orders",
+      "shots": [
+        "web-seller-ord-20260712-170051-3.jpeg"
+      ],
+      "text": "SELLER\nONDC Seller\nOperate a trust-aware catalog and fulfillment surface.\nDashboard\nCatalog\nOrders\nConfig\nSign in\nIncoming Orders\nManage and track buyer demand without leaving the trust-aware seller shell.\nTrust check: Unsigned\n\nSign in before elevated seller actions.\n\nAll\n0\nPending\n0\nAccepted\n0\nDispatched\n0\nCompleted\n0\nCancelled\n0\nNo incoming orders yet\nOrders will appear here once live or demo buyer traffic reaches the seller queue.\nAgentGuard authority\nAgent chat\nHow it works\nS",
+      "buttons": [
+        "Open catalog search",
+        "Open runtime status",
+        "Open trust status",
+        "Sign in",
+        "All\n0",
+        "Pending\n0",
+        "Accepted\n0",
+        "Dispatched\n0",
+        "Completed\n0",
+        "Cancelled\n0"
+      ]
+    },
+    {
+      "id": "W-S-AG",
+      "err": null,
+      "route": "https://ondcseller.aadharcha.in/agentguard",
+      "shots": [
+        "web-seller-ag-20260712-170051-3.jpeg"
+      ],
+      "text": "SELLER\nONDC Seller\nOperate a trust-aware catalog and fulfillment surface.\nDashboard\nCatalog\nOrders\nConfig\nSign in\nAGENTGUARD\nStore Operations Assistant\n\nConfigure what the agent may do. AgentGuard enforces limits \u2014 not the model.\n\nTrust check: Unsigned\n\nSign in before elevated seller actions.\n\nSign in so AgentGuard can bind a policy to your principal.\nAgentGuard authority\nAgent chat\nHow it works\nS",
+      "buttons": [
+        "Open catalog search",
+        "Open runtime status",
+        "Open trust status",
+        "Sign in",
+        "S"
+      ]
+    },
+    {
+      "id": "W-S-CFG",
+      "err": null,
+      "route": "https://ondcseller.aadharcha.in/config",
+      "shots": [
+        "web-seller-cfg-20260712-170051-3.jpeg"
+      ],
+      "text": "SELLER\nONDC Seller\nOperate a trust-aware catalog and fulfillment surface.\nDashboard\nCatalog\nOrders\nConfig\nSign in\nSELLER CONFIGURATION\nKeep the seller node ready for verified operations\n\nConfigure ONDC credentials, gateway routing, and the local seller runtime context without leaving the trust-aware shell.\n\nTrust check: Unsigned\n\nSign in before elevated seller actions.\n\nONDC credentials\nGateway URL\n\nUse the ONDC gateway your seller node should target.\n\nSubscriber ID\n\nMatch the subscriber identity registered for the seller app.\n\nPrivate key\nShow key\nGenerate key pair\nKey ID\n\nUsed to identify the currently active signing key.\n\nMarketplace context\nDomain\nCountry\nCity\nTimeout (ms)\nSave configuration\nTest connection\nAgentGuard authority\nAgent chat\nHow it works\nS",
+      "buttons": [
+        "Open catalog search",
+        "Open runtime status",
+        "Open trust status",
+        "Sign in",
+        "Show key",
+        "Generate key pair",
+        "Save configuration",
+        "Test connection",
+        "S"
+      ]
+    },
+    {
+      "id": "W-GW-ME",
+      "err": null,
+      "shots": [
+        "web-gw-me-20260712-170051-4.jpeg"
+      ],
+      "texts": [
+        "{\"success\":true,\"message\":\"Authenticated identity session active.\",\"data\":{\"principal_id\":\"principal:auth0:google-oauth2:109432510636331667287\",\"identity_provider\":\"auth0\",\"assurance_level\":\"social\",\"display_name\":\"Gurusharan Gupta Gupta\",\"email\":\"[redacted-email]\"}}"
+      ]
+    },
+    {
+      "id": "W-GW-LOGOUT",
+      "err": null,
+      "shots": [
+        "web-gw-logout-20260712-170051-7.jpeg"
+      ],
+      "texts": [
+        "{\"success\":true,\"message\":\"Authenticated identity session active.\",\"data\":{\"principal_id\":\"principal:auth0:google-oauth2:109432510636331667287\",\"identity_provider\":\"auth0\",\"assurance_level\":\"social\",\"display_name\":\"Gurusharan Gupta Gupta\",\"email\":\"[redacted-email]\"}}"
+      ]
+    },
+    {
+      "id": "W-B-COOKIE-GAP",
+      "err": null,
+      "shots": [
+        "web-cookie-gap-20260712-170051-7.jpeg",
+        "web-cookie-gap-20260712-170051-11.jpeg"
+      ],
+      "evals": [
+        {
+          "count": 0,
+          "installed": true
+        },
+        {
+          "count": 0,
+          "installed": true
+        },
+        {
+          "count": 0,
+          "installed": true
+        },
+        {
+          "signIn": true,
+          "spaMe": {
+            "data": null,
+            "message": "No authenticated identity session.",
+            "success": true
+          }
+        },
+        {
+          "errors": [],
+          "installed": true,
+          "total": 0,
+          "warns": []
+        }
+      ],
+      "texts": [
+        "{\"success\":true,\"message\":\"Authenticated identity session active.\",\"data\":{\"principal_id\":\"principal:auth0:google-oauth2:109432510636331667287\",\"identity_provider\":\"auth0\",\"assurance_level\":\"social\",\"display_name\":\"Gurusharan Gupta Gupta\",\"email\":\"[redacted-email]\"}}",
+        "PORTFOLIO\nONDC Buyer\nDiscover commerce under AgentGuard authorization.\nSearch\nCart\nOrders\nConfig\nSign in\nBUYER DISCOVERY\nSearch verified commerce\n\nFind offers, then checkout under AgentGuard authorization.\n\nTrust check: Unsigned\n\nSign in before elevated buyer actions.\n\nSearch the network\n\nSign in be"
+      ]
+    }
+  ]
+}

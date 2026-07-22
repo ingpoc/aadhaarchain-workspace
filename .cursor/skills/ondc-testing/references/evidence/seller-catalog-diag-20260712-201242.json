@@ -1,0 +1,20 @@
+[
+  {
+    "gatewayFetch": {
+      "count": 1,
+      "err": "Items",
+      "ok": true,
+      "status": 200,
+      "title": "AgentGuard PreProd Atta 1kg"
+    },
+    "href": "https://ondcseller.aadharcha.in/catalog",
+    "relativeFetch": {
+      "bodyType": "object",
+      "keys": [],
+      "ok": true,
+      "snippet": "{}",
+      "status": 200
+    },
+    "textHead": "SELLER\nONDC Seller\nOperate a trust-aware catalog and fulfillment surface.\nDashboard\nCatalog\nOrders\nConfig\nSign out\nSELLER CATALOG\nRun a tighter product shelf\nReview the inventory buyers will actually encounter, then edit the exact SKU that needs cleanup.\nRefresh catalog\nAdd product\nVISIBLE PRODUCTS\nLive\n1\nActive SKUs in the current view\nCATEGORIES COVERED\nInfo\n1\nBroader spread helps discovery across buyer intents\nIMAGE COVERAGE\nWatch\n0\nListings with imagery read better in buyer result cards\nTRUST CONTROL\nReady\nOpen\nCatalog edits stay gated until sign-in or trust is verified\nFEATURED REVIEW\nSpot-check the top listings\nThese cards mimic how the catalog reads at a glance before buyers drill into edit flows.\nDemo Commerce\n\ud83d\udce6\nAgentGuard PreProd Atta 1kg\n\nNetwork-visible Seller catalog item for PreProd Buyer discovery\n\nPRICE\nINR 89.00\nEdit\nINVENTORY LEDGER\nEdit every SKU from one table\nUse the table for precise edits once the top-level card view confirms the shelf is headed in the right direction.\nPRODUCT\tPRICE\tCATEGORY\tACTIONS\n\n\ud83d\udce6\nAgentGuard PreProd Atta 1kg\nNetwork-visible Seller catalog item for PreProd Buyer discovery\n\tINR 89.00\tDemo Commerce\t\nEdit\nDelete\nAgentGuard authority\nAgent chat\nHow it works\nS"
+  }
+]

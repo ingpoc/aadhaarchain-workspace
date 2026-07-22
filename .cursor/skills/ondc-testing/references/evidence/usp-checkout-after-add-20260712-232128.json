@@ -1,0 +1,38 @@
+{
+  "stamp": "20260712-232128",
+  "buyer": [
+    {
+      "id": "W-B-CHECKOUT",
+      "result": "Pass",
+      "notes": "path=/orders/demo-1783878701096-xajytt paid=True receipt=True ag=True tools=['navigate_to', 'checkout_commit'] hint=Samantha\n\nCheckout committed; receipt rcpt_58e6538e26024a23.\n\nGot it\u2014I'll pull up checkout and then submit payment through the cart flow.All set! I\u2019ve committed",
+      "shots": [
+        "W-B-CHECKOUT-AFTER-ADD-20260712-232128-0.jpeg"
+      ],
+      "state": {
+        "pathname": "/orders/demo-1783878701096-xajytt",
+        "paid": true,
+        "receipt": true,
+        "ag_card": true,
+        "tools": [
+          {
+            "cartAdds": [],
+            "message": "Navigating to /checkout.",
+            "name": "navigate_to",
+            "navSuperseded": false,
+            "navigateTo": "/checkout",
+            "ok": true
+          },
+          {
+            "cartAdds": [],
+            "message": "Checkout committed; receipt rcpt_58e6538e26024a23.",
+            "name": "checkout_commit",
+            "navSuperseded": false,
+            "navigateTo": "/orders/demo-1783878701096-xajytt",
+            "ok": true
+          }
+        ],
+        "hint": "Samantha\n\nCheckout committed; receipt rcpt_58e6538e26024a23.\n\nGot it\u2014I'll pull up checkout and then submit payment through the cart flow.All set! I\u2019ve committed checkout and payment went through successfully. It was approved, and the order is marked paid. If you want, I can navigate you to your orders to see the confirmation screen.\n\nSend\nPreferences & AgentGuard"
+      }
+    }
+  ]
+}

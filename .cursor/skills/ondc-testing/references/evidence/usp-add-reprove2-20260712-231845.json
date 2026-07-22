@@ -1,0 +1,126 @@
+{
+  "stamp": "20260712-231845",
+  "buyer": [
+    {
+      "id": "W-B-FIND-ATTA",
+      "result": "Pass",
+      "notes": "offers=59",
+      "shots": [
+        "W-B-FIND-ATTA-R2-20260712-231845-0.jpeg"
+      ],
+      "state": {
+        "pathname": "/results",
+        "tools": [
+          {
+            "cartAdds": [],
+            "message": "Opened results for \u201catta\u201d \u2014 watching offers load on the page. When adding, use add_to_cart with the product name (ids fill as offers paint).",
+            "name": "search_catalog",
+            "navSuperseded": false,
+            "navigateTo": "/results?category=grocery&q=atta&ondc_txn=57b6be14-4d4f-4892-be7a-455e831682f8",
+            "ok": true
+          }
+        ],
+        "offerCount": 59,
+        "cart_line": false,
+        "cart_empty": false,
+        "hint": "Samantha\n\nOpened results for \u201catta\u201d \u2014 watching offers load on the page. When adding, use add_to_cart with the product name (ids fill as offers paint).\n\nOpening results for atta so you can see the offers load.I\u2019ve pulled up the atta results page, and it\u2019s currently showing as loading with no offers yet. It looks like the catalog hasn\u2019t returned items for that query right now. Want me to try a different spelling/variant like \u201catta flour\u201d or \u201cwheat flour,\u201d or are you looking for a specific brand/size?\n\nSend\nPreferences & AgentGuard",
+        "_send": {
+          "draft": "search for atta",
+          "ok": true,
+          "toolCountBefore": 0
+        }
+      }
+    },
+    {
+      "id": "W-B-ADD-ATTA",
+      "result": "Pass",
+      "notes": "path=/cart empty=False line=True tools=['search_catalog', 'add_to_cart'] hint=Samantha\n\nAdded atta \u00d7 1 to cart.\n\nDone \u2014 I added atta to your cart and opened the cart page so you can see the line.\n\nSend\nPreferences & Ag",
+      "shots": [
+        "W-B-ADD-ATTA-R2-20260712-231845-0.jpeg"
+      ],
+      "state": {
+        "pathname": "/cart",
+        "tools": [
+          {
+            "cartAdds": [],
+            "message": "Opened results for \u201catta\u201d \u2014 watching offers load on the page. When adding, use add_to_cart with the product name (ids fill as offers paint).",
+            "name": "search_catalog",
+            "navSuperseded": false,
+            "navigateTo": "/results?category=grocery&q=atta&ondc_txn=57b6be14-4d4f-4892-be7a-455e831682f8",
+            "ok": true
+          },
+          {
+            "cartAdds": [
+              "1874"
+            ],
+            "message": "Added atta \u00d7 1 to cart.",
+            "name": "add_to_cart",
+            "navSuperseded": false,
+            "navigateTo": "/cart",
+            "ok": true
+          }
+        ],
+        "offerCount": 3,
+        "cart_line": true,
+        "cart_empty": false,
+        "hint": "Samantha\n\nAdded atta \u00d7 1 to cart.\n\nDone \u2014 I added atta to your cart and opened the cart page so you can see the line.\n\nSend\nPreferences & AgentGuard",
+        "_send": {
+          "draft": "add the atta to my cart",
+          "ok": true,
+          "toolCountBefore": 1
+        }
+      }
+    }
+  ],
+  "meta": {
+    "bake": "index-Mo-Hxb-1",
+    "health": {
+      "status": "healthy",
+      "service": "aadhaar-chain-gateway",
+      "version": "1.0.0"
+    },
+    "ondc_status": {
+      "success": true,
+      "data": {
+        "enabled": true,
+        "configured": true,
+        "subscriber_id": "ondcbuyer.aadharcha.in",
+        "bap_id": "ondcbuyer.aadharcha.in",
+        "bap_uri": "https://ondcbuyer.aadharcha.in/ondc",
+        "gateway_url": "https://preprod.gateway.ondc.org/search",
+        "registry_url": "https://preprod.registry.ondc.org/v2.0/lookup",
+        "signing_key_present": true,
+        "unique_key_id": "1aee68ad-bc2a-4fc4-b233-7e14c6abba9b",
+        "registry_env": "preprod",
+        "outbox_depth": 5,
+        "inbox_depth": 111,
+        "note": "PreProd: signed lookup + search + select/init/confirm when enabled+configured. Do not flip VITE_COMMERCE_DEMO_MODE without commerce_demo_mode_gate evidence."
+      }
+    },
+    "realtime": {
+      "success": true,
+      "data": {
+        "configured": true,
+        "model": "gpt-realtime-2.1-mini",
+        "agent_name": "Samantha"
+      }
+    },
+    "ensure_demo": {
+      "success": true,
+      "data": {
+        "item": {
+          "item_id": "item_9b5c060944c44506",
+          "version": 2,
+          "status": "published",
+          "seller_id": "ondcseller.aadharcha.in",
+          "title": "AgentGuard PreProd Atta 1kg",
+          "description": "Network-visible Seller catalog item for PreProd Buyer discovery",
+          "price_inr": 89,
+          "created_at": "2026-07-12T17:26:33.535916+00:00",
+          "updated_at": "2026-07-12T17:26:33.536428+00:00"
+        },
+        "created": false
+      }
+    }
+  }
+}

@@ -1,0 +1,127 @@
+{
+  "stamp": "20260712-232726",
+  "alias": "ondcbuyer-archive-deploy-3i99740un \u2192 ondcbuyer.aadharcha.in",
+  "bundle": "index-BaIfxHlR.js",
+  "demo_mode": false,
+  "steps": [
+    {
+      "id": "B-FIND-ATTA",
+      "result": "Pass",
+      "shots": [],
+      "state": {
+        "pathname": "/results",
+        "has_atta": true,
+        "pulling": false,
+        "tools": [
+          {
+            "cartAdds": [],
+            "message": "Opened results for \u201catta\u201d \u2014 watching offers load on the page. When adding, use add_to_cart with the product name (ids fill as offers paint).",
+            "name": "search_catalog",
+            "navSuperseded": false,
+            "navigateTo": "/results?category=grocery&q=atta&ondc_txn=0970316e-6bf2-44aa-a2c9-9b772f516cf6",
+            "ok": true
+          }
+        ],
+        "hint": "Samantha\n\nOpened results for \u201catta\u201d \u2014 watching offers load on the page. When adding, use add_to_cart with the product name (ids fill as offers paint).\n\nAlright, I\u2019ll open the results for atta so you can see the offers load and pick one.Done \u2014 I opened the atta results page, and the offers are still "
+      }
+    },
+    {
+      "id": "B-ADD-ATTA",
+      "result": "Pass",
+      "shots": [],
+      "state": {
+        "pathname": "/cart",
+        "cart_line": true,
+        "tools": [
+          {
+            "cartAdds": [],
+            "message": "Opened results for \u201catta\u201d \u2014 watching offers load on the page. When adding, use add_to_cart with the product name (ids fill as offers paint).",
+            "name": "search_catalog",
+            "navSuperseded": false,
+            "navigateTo": "/results?category=grocery&q=atta&ondc_txn=0970316e-6bf2-44aa-a2c9-9b772f516cf6",
+            "ok": true
+          },
+          {
+            "cartAdds": [
+              "1874"
+            ],
+            "message": "Added atta \u00d7 1 to cart.",
+            "name": "add_to_cart",
+            "navSuperseded": false,
+            "navigateTo": "/cart",
+            "ok": true
+          }
+        ],
+        "cart_check": null,
+        "hint": "Samantha\n\nAdded atta \u00d7 1 to cart.\n\nGot it\u2014I'll add an item matching \u201catta\u201d from the visible context to your cart now.Done! I added atta to your cart, and you\u2019re now on the cart page so you can see the line.\n\nSend\nPreferences & AgentGuard"
+      }
+    },
+    {
+      "id": "W-B-CHECKOUT",
+      "result": "Pass",
+      "shots": [
+        ".cursor/skills/ondc-testing/references/evidence/W-B-ORDER-DETAIL-20260712-232726-3.jpeg"
+      ],
+      "state": {
+        "pathname": "/orders/demo-1783879102172-2701w7",
+        "paid": true,
+        "receipt": true,
+        "unavailable": false,
+        "tools": [
+          {
+            "cartAdds": [],
+            "message": "Opened results for \u201catta\u201d \u2014 watching offers load on the page. When adding, use add_to_cart with the product name (ids fill as offers paint).",
+            "name": "search_catalog",
+            "navSuperseded": false,
+            "navigateTo": "/results?category=grocery&q=atta&ondc_txn=0970316e-6bf2-44aa-a2c9-9b772f516cf6",
+            "ok": true
+          },
+          {
+            "cartAdds": [
+              "1874"
+            ],
+            "message": "Added atta \u00d7 1 to cart.",
+            "name": "add_to_cart",
+            "navSuperseded": false,
+            "navigateTo": "/cart",
+            "ok": true
+          },
+          {
+            "cartAdds": [],
+            "message": "Checkout committed; receipt rcpt_c9a68660930b4fba.",
+            "name": "checkout_commit",
+            "navSuperseded": false,
+            "navigateTo": "/orders/demo-1783879102172-2701w7",
+            "ok": true
+          }
+        ],
+        "localOrders": {
+          "count": 3,
+          "ids": [
+            "demo-1783879102172-2701w7",
+            "demo-1783878701096-xajytt",
+            "demo-1783859251508-w7m0e0"
+          ],
+          "lastPaid": false,
+          "lastStatus": "accepted"
+        },
+        "body_snip": "PORTFOLIO\nONDC Buyer\nDiscover commerce under AgentGuard authorization.\nSearch\nCart\nOrders\nConfig\nSign out\nBack to orders\nORDER DETAIL\nOrder #demo-1783879102172-2701w7\n\nCreated on Jul 12, 2026\n\nAccepted\nPaid\nReceipt rcpt_c9a68660930b4fba\nCancel order\nTrust check: Unsigned\n\nSign in before elevated buyer actions.\n\nItems\natta\nQuantity: 1\nINR 118.00\nPricing\nItems\nINR 118.00\nDelivery\nINR 49.00\nTax\nINR 5.90\nTotal\nINR 118.00\nSupport & grievance\nIssue type\nFulfillment\nCancellation\nPost delivery\nPayment\nOther\nDescribe the issue\nCreate support case\n\nNo support cases yet for this order.\n\nPayment\nStatus\nPAID\nAmount\nINR 118.00\nReceipt\nrcpt_c9a68660930b4fba\nFulfillment\nStatus\nPending\nProvider\nLocal logistics\n\nWaiting for the seller to confirm the local order.\n\nDelivery address\nLocal delivery\nBangalore, KA, 560001\nIND\nAgent chat\nHow it works\n\nSamantha\n\nCheckout committed; receipt rcpt_c9a68660930b4fba.\n\nAll set \u2014 checkout was allowed and your payment succeeded. Your order is marked paid, and you\u2019ve been taken to the orders screen to see it.\n\nSend\nPreferences & AgentGuard\nS",
+        "hint": "Samantha\n\nCheckout committed; receipt rcpt_c9a68660930b4fba.\n\nAll set \u2014 checkout was allowed and your payment succeeded. Your order is marked paid, and you\u2019ve been taken to the orders screen to see it.\n\nSend\nPreferences & AgentGuard"
+      }
+    }
+  ],
+  "boot": {
+    "signed_in": true,
+    "path": "/search",
+    "hint": "Samantha\n\nText mode ready (no mic)\n\nSend\nPreferences & AgentGuard"
+  },
+  "result": "Pass",
+  "pass_gate": {
+    "order_detail_paid_receipt": true,
+    "checkout_commit": true,
+    "unavailable": false
+  },
+  "screenshot_paths": [
+    ".cursor/skills/ondc-testing/references/evidence/W-B-ORDER-DETAIL-20260712-232726-3.jpeg"
+  ]
+}

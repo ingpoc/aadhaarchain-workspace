@@ -1,0 +1,21 @@
+{
+  "recorded_at": "2026-07-19T16:26:10+0530",
+  "ui_repair_fingerprint": "sha256:22235abcd344ace09c4d9b4ba22483174a976fee38040204f2e1dc8c4e133267",
+  "scope": "final-local-visible-customer-acceptance",
+  "status": "buyer_pass_2_tooling_blocked_recovery",
+  "run": "buyer-novice-repair-pass2-recovery",
+  "actor": "b90cf6ed-f364-412e-b9ce-3615bb710acb",
+  "verdict": "Tooling Blocked",
+  "lease_ready_at": "2026-07-19T10:53:14Z",
+  "verdict_at": "2026-07-19T10:54:30Z",
+  "session_id": "buyer-novice-repair-pass2-recovery",
+  "session_absent_after_closeout": true,
+  "first_friction": "Actor controller died after ready before page_context; repeated prior pass2 failure",
+  "campaign_rule": "same tooling failure after one bounded recovery \u2192 stop blind reruns; fix Hermes owner",
+  "owner_diagnosis": {
+    "hermes_direct_smoke": "pass (lease\u2192page_context\u2192closeout)",
+    "root_cause": "reviewer-invented controllers exiting / closing lease after ready",
+    "fix": "skill/scripts/durable_lease_controller.py + SKILL.md pointer"
+  },
+  "next": "Buyer pass2 with mandatory durable_lease_controller"
+}

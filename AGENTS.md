@@ -9,6 +9,7 @@ Read this file first. Repo-local app `GOAL.md` files add outcome detail only.
 | Concern | Owner |
 | --- | --- |
 | Product thesis / non-goals | [`PRODUCTIDEA.md`](PRODUCTIDEA.md) |
+| Product design / UX / design acceptance | [`DESIGN.md`](DESIGN.md) |
 | Shared contracts / protocol | [`ARCHITECTURE.md`](ARCHITECTURE.md) |
 | Build order / milestones | [`IMPLEMENTATIONPLAN.md`](IMPLEMENTATIONPLAN.md) |
 | Verification gates / evidence | [`TESTINGPLAN.md`](TESTINGPLAN.md) |
@@ -47,10 +48,10 @@ do not invent parallel auth contracts.
 cd ondcbuyer && npm test && npm run build
 cd ../ondcseller && npm test && npm run build
 
-# 2. Current validated AgentGuard browser lane (Seller only today)
+# 2. Legacy deterministic browser harness (explicit fallback/diagnosis only)
 python3 scripts/portfolio_browser.py agentguard seller --fixture
 
-# 3. Demo principal SSO (AgentGuard acceptance — no wallet)
+# 3. Legacy harness demo-principal SSO helper (no wallet)
 python3 scripts/portfolio_browser.py sso demo buyer
 ```
 
@@ -58,19 +59,20 @@ Restart ONDC buyer/seller after changing `.env.local`. Solana `:8899` is **not**
 
 ## Portfolio browser
 
-Bookends: `.cursor/skills/portfolio-browser/SKILL.md`. Ledger: `.cursor/skills/portfolio-browser/references/validation-ledger.md`. Samantha / ONDC user journeys: `.cursor/skills/ondc-testing/SKILL.md`. Auth / Auth0 / sessions: `.cursor/skills/authentication/SKILL.md`. Public Render/Vercel deploy + **CI/CD** (graders, `ci.yml` / `deploy.yml`, Free/Hobby): `.cursor/skills/portfolio-deploy/SKILL.md` (`references/ci-cd.md`).
+Bookends: `.cursor/skills/portfolio-browser/SKILL.md`. Ledger: `.cursor/skills/portfolio-browser/references/validation-ledger.md`. Samantha / ONDC customer gate: `.cursor/skills/ondc-testing/SKILL.md` (doctrine → `~/.agents/skills/testing-framework`). Auth / Auth0 / sessions: `.cursor/skills/authentication/SKILL.md`. Public Render/Vercel deploy + **CI/CD** (graders, `ci.yml` / `deploy.yml`, Free/Hobby): `.cursor/skills/portfolio-deploy/SKILL.md` (`references/ci-cd.md`).
 
 | Lane | Status |
 | --- | --- |
-| `agentguard seller --fixture` | **Validated** UI path ×2 (2026-07-11 night; demo principal approve/replay/pause/deny) |
-| `agentguard buyer --fixture` | **Validated** API/Hermes (2026-07-11); strict FQDN discovery→cart→checkout→receipt/pause/verify **2×** (2026-07-14) |
-| `two-sided --fixture` | **Validated** unique run_ids (2026-07-11) |
-| Mandate editor / agent tools / Realtime | M10 code present; M11 text tools/runtime **FQDN validated**; M12 Realtime configured + text validated, physical mic still blocked |
+| Current CF1 Buyer `@Chrome` | **Pass 1** (2026-07-22, local PostgreSQL); Pass 2, combined responsive/accessibility smoke and current-source FQDN/Auth0 proof remain open |
+| Current CF1 Seller `@Chrome` | **Pass 1** (2026-07-22, local PostgreSQL, after owner fixes); Pass 2 and combined responsive/accessibility smoke remain open |
+| Legacy `agentguard buyer/seller --fixture` | Historical deterministic/Hermes proof: Seller ×2 (2026-07-11); Buyer API/Hermes and FQDN ×2 (2026-07-14). These do not close the current CF1 source gate |
+| Legacy `two-sided --fixture` | Historical unique-run proof (2026-07-11); current unchanged-source two-pass browser proof remains open |
+| Mandate editor / agent tools / Realtime | M10 code present; M11 text tools/runtime historically FQDN validated; M12 Realtime configured + text validated. Current-source runtime breadth and physical microphone proof remain open |
 | FlatWatch AgentGuard | **Deferred** — out of scope |
 
-Use **WIP Hermes only** (never `~/.codex` / `~/.hermes` live). SSO stays mutex. Parallel smoke → skill Multi-app orchestration.
+Default interactive UI control is bundled `@chrome` for browser pages and bundled `@Computer` for native Mac UI. The WIP Hermes portfolio harness is legacy deterministic replay/diagnosis only; use it only when explicitly requested or after the operator approves fallback from an unavailable bundled route. SSO stays mutex.
 
-**Validated ops fixes:** preflight auto-starts `start-dev.sh`; HTTP retries 30s; AG lanes use **demo principal SSO** (no Solana); legacy burner SSO auto-`ensure-validator.sh` only for hangar wallet lanes; `lane` avoids triple preflight; WIP `SOCKET_DOWN` — evidence first: **SW Inactive** (primary 2026-07-12) vs classic path trap (`native_host.py` → `~/.hermes/run`); preflight `ensure-wip-native-host.sh` must keep `native_host_wip.sh`; wake/Reload in Comet — do not `launch-wip-chrome` to fix Comet.
+**Legacy harness history:** preflight auto-starts `start-dev.sh`; HTTP retries 30s; AG lanes use **demo principal SSO** (no Solana); legacy burner SSO auto-`ensure-validator.sh` only for hangar wallet lanes; `lane` avoids triple preflight; WIP `SOCKET_DOWN` — evidence first: **SW Inactive** (primary 2026-07-12) vs classic path trap (`native_host.py` → `~/.hermes/run`); preflight `ensure-wip-native-host.sh` must keep `native_host_wip.sh`; wake/Reload in Comet — do not `launch-wip-chrome` to fix Comet.
 
 ## Ports (local)
 
@@ -83,19 +85,19 @@ Use **WIP Hermes only** (never `~/.codex` / `~/.hermes` live). SSO stays mutex. 
 | FlatWatch API / web | http://127.0.0.1:43104 / `:43105` |
 | Solana validator (optional, not AG) | http://127.0.0.1:8899 |
 
-## What is real vs stubbed (2026-07-12)
+## What is real vs stubbed (reconciled 2026-07-22)
 
 | Subsystem | Status |
 | --- | --- |
-| AgentGuard domain (evaluate / consume / pause / receipts) | **Real** — file-backed; `DATA_DIR=/tmp/…` on Render Free; principal-keyed |
+| AgentGuard domain (evaluate / consume / pause / receipts) | **Real** — principal-scoped PostgreSQL mandates, decisions, approvals, execution intents and receipts when `DATABASE_URL` selects CF1 persistence; local-file mode is the exclusive development fallback, not a concurrent owner |
 | ONDC Seller AgentGuard UI | **Real** — refund demo + `/agentguard` |
-| Buyer AgentGuard checkout | **Real** on FQDN (Auth0 + DATA_DIR) |
-| Shared commerce exchange | **Partial** — `/api/demo-commerce`; Seller publish feeds PreProd BPP catalog; Buyer uses network fanout plus signed configured-BPP search for deterministic portfolio discovery |
-| Signed receipt verify | **Partial** — routes exist; FQDN browser proof thin |
+| Buyer AgentGuard checkout | **Real locally on CF1 PostgreSQL** — exact landed cost, exact approval, mutation rejection, simulated payment truth, one order effect and signed receipt; current-source FQDN/Auth0 revalidation remains open |
+| CommerceV1 + compatibility exchange | **Real CF1 foundation, partial product lifecycle** — PostgreSQL carts, quotes, inventory, orders, payment attempts, balanced ledger and refunds; `/api/demo-commerce` is a compatibility adapter, not an independent file store. Multi-seller checkout, full fulfilment/returns and settlement remain open |
+| Signed receipt verify | **Real locally** — issue/verify and tamper tests plus current-source Buyer/Seller UI verification; current-source FQDN proof remains open |
 | Authenticated principal on AG APIs | **Real** — session cookie principal; body wallet cannot override social/demo session |
 | ONDC commerce UI labels | **Demo mode off** — `VITE_COMMERCE_DEMO_MODE=false` (gate evidence 2026-07-12); label **ONDC network**; payment still simulated (not live UPI) |
 | Host identity | **Auth0** (FQDN PreProd) + local `AUTH_DEMO_CONTINUE` (Hermes only) |
-| ONDC PreProd Beckn (BAP+BPP) | **Real, partial** — `ONDC_ENABLED`; signed lookup/search; gateway fanout + signed configured Seller BPP search; Seller `search`→`on_search`; **select→init→confirm** ACK + `on_*` stubs. Buyer visibly finds Seller Atta 2×. Not prod/conformance-complete. Matrix: `.cursor/skills/ondc-testing/references/preprod-network-matrix.md` |
+| ONDC PreProd Beckn (BAP+BPP) | **Real, partial** — signed lookup/search and configured Seller BPP discovery; **select→init→confirm** ACK + `on_*` stubs. PostgreSQL inbox/outbox adds persist-before-ACK, deduplication, correlation validation, leases, retries and dead-letter recovery. Full lifecycle semantics, production onboarding and official conformance remain open. Matrix: `.cursor/skills/ondc-testing/references/preprod-network-matrix.md` |
 | Buyer mock grocery fallback | **Removed** when ONDC adapter ready |
 | Trust / demo KYC | **Deferred hangar** — not AgentGuard acceptance |
 | MeitY DigiLocker / **prod** ONDC / NPCI agent UPI | **Out of scope** — PRODUCTION-READINESS; UPI Circle AI = CUG only |

@@ -1,0 +1,26 @@
+{
+  "recorded_at": "2026-07-17T19:49:00+05:30",
+  "executable_source_hash": "af98738a621dfb6109e06d06c2833a20e593cb6e4cf8f08d3edb23dd3781088e",
+  "source_file_count": 994,
+  "deterministic_passes": [
+    {"run_id": "LOCAL-SAFETY-20260717-AF987-P1", "gateway": "133 passed", "buyer": "173 passed; typecheck, build and production-copy gate passed", "seller": "192 passed; typecheck, build and production-copy gate passed", "targeted_adversarial": "91 passed"},
+    {"run_id": "LOCAL-SAFETY-20260717-AF987-P2", "gateway": "133 passed", "buyer": "173 passed; typecheck, build and production-copy gate passed", "seller": "192 passed; typecheck, build and production-copy gate passed", "targeted_adversarial": "91 passed"}
+  ],
+  "focused_regressions": {
+    "gateway_network_serviceability": "35 passed",
+    "buyer_location_preference_url_and_fallback": "31 passed",
+    "assertions": ["network-shaped catalog items retain delivery areas", "toor dal remains the visible base query", "unpolished is relevant and removable", "cleared preferences leave the visible URL", "queued text search derives only explicit safe preferences when Realtime is unavailable"]
+  },
+  "browser_admission": {
+    "status": "partial_current-source-proof",
+    "accepted_local_journey_source_hash": "be09d8949a04ee4785119519046f770c508d2af5eb9425a4adc82e38ca167c9d",
+    "order_reference": "E3711B23",
+    "authorization_reference": "F24E01EE",
+    "approval_reference": "F2EAF37C",
+    "verified": ["exact toor dal query", "one relevant result", "Pune retained one result", "Delivers to Pune visible", "editable Pune checkout prefill", "exact one-time approval", "one order, empty cart, no duplicate"],
+    "final_hash_gap": "The Realtime-unavailable local text fallback was added after the accepted journey. It is deterministic-test verified but still needs a fresh blind browser pass on af98738a.",
+    "seller_gap": "Seller and two-sided visible lanes were not rerun after the final Buyer fallback change."
+  },
+  "cleanup": {"orders_removed_by_exact_id": 3, "inventory_restored": 6, "final_fresh_farm_stock": 7, "hermes_sessions": 0, "macos_cua_used": false},
+  "known_non_blocking_warning": "Buyer production bundle remains larger than 500 kB after minification."
+}

@@ -1,0 +1,13 @@
+{
+  "success": true,
+  "counts": {
+    "pass": 0,
+    "fail": 0,
+    "skip": 0,
+    "total": 0
+  },
+  "rows": [],
+  "evidence_dir": "/Users/gurusharan/Documents/remote-claude/active/apps/AadhaarChainWorkspace/.cursor/skills/ondc-testing/references/evidence",
+  "realtime_model": "gpt-realtime-2.1-mini",
+  "ts": "20260714-153419"
+}

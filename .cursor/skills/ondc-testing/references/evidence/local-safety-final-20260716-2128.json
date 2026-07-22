@@ -1,0 +1,63 @@
+{
+  "artifact": "agentguard-local-safety-final",
+  "recorded_at": "2026-07-16T21:28:51+05:30",
+  "environment": "local",
+  "source_hash_scope": "AgentGuard shared contract, gateway app/tests, Buyer/Seller manifests, locks, public assets, shared packages, frontend source and build configuration; docs and evidence excluded",
+  "source_hash_sha256": "c29e70aa9240852e8678f5a69574ada06c77120b40927e8958fc5384e644ccbd",
+  "targeted_adversarial": {
+    "run_id": "LOCAL-ADVERSARIAL-20260716-2125",
+    "command": "cd aadharchain/gateway && PYTHONPATH=. PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 .venv/bin/python -m pytest -q -p asyncio tests/test_agentguard_contract.py tests/test_agentguard.py tests/test_commerce_demo.py tests/test_payment_adapter.py tests/test_social_auth.py tests/test_demo_dependency_independence.py",
+    "passed": 37,
+    "failed": 0
+  },
+  "passes": [
+    {
+      "run_id": "LOCAL-SAFETY-20260716-2126-P1",
+      "commands": [
+        "./scripts/verify-portfolio.sh",
+        "cd ondcbuyer && npx vitest run --reporter=json && npm run typecheck && npm run build",
+        "cd ondcseller && npx vitest run --reporter=json && npm run typecheck && npm run build"
+      ],
+      "gateway": { "passed": 103, "failed": 0 },
+      "buyer": { "passed": 137, "failed": 0, "typecheck": "pass", "build": "pass" },
+      "seller": { "passed": 163, "failed": 0, "typecheck": "pass", "build": "pass" }
+    },
+    {
+      "run_id": "LOCAL-SAFETY-20260716-2127-P2",
+      "commands": [
+        "./scripts/verify-portfolio.sh",
+        "cd ondcbuyer && npx vitest run --reporter=json && npm run typecheck && npm run build",
+        "cd ondcseller && npx vitest run --reporter=json && npm run typecheck && npm run build"
+      ],
+      "gateway": { "passed": 103, "failed": 0 },
+      "buyer": { "passed": 137, "failed": 0, "typecheck": "pass", "build": "pass" },
+      "seller": { "passed": 163, "failed": 0, "typecheck": "pass", "build": "pass" }
+    }
+  ],
+  "dependency_boundary": {
+    "gateway_optional_integrations_disabled": "pass",
+    "gateway_import_with_solana_and_solders_blocked": "pass",
+    "buyer_solana_wallet_dependencies_absent": "pass",
+    "seller_solana_wallet_dependencies_absent": "pass",
+    "buyer_and_seller_scope_copy_tests": "pass",
+    "deployed_fqdn_refreshed": false
+  },
+  "validators": {
+    "ondc_testing": "pass",
+    "portfolio_browser": "pass",
+    "workflow_lint_full": "pass",
+    "diff_check": "pass"
+  },
+  "warnings": [
+    "Gateway emitted dependency deprecation warnings only.",
+    "Buyer build emitted the existing greater-than-500-kB chunk-size advisory."
+  ],
+  "excluded_claims": [
+    "deployed FQDN browser proof",
+    "deployment",
+    "Milestone 9",
+    "live ONDC",
+    "NPCI integration",
+    "physical microphone proof"
+  ]
+}

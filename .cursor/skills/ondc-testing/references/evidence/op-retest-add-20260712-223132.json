@@ -1,0 +1,29 @@
+{
+  "id": "W-B-ADD",
+  "result": "Fail",
+  "shots": [
+    "W-B-ADD-RETEST-20260712-223132-0.jpeg"
+  ],
+  "send": {
+    "draft": "add the first atta or first result to my cart",
+    "ok": true
+  },
+  "path": "/results",
+  "tools": [
+    "search_catalog"
+  ],
+  "tools_detail": [
+    {
+      "cartAdds": [],
+      "name": "search_catalog",
+      "navSuperseded": false,
+      "navigateTo": "/results?category=grocery&q=atta",
+      "ok": false
+    }
+  ],
+  "cart_empty": false,
+  "has_line": true,
+  "hint": "Samantha\n\nSearching for \u201catta\u201d \u2014 watch the results page\u2026\n\nI\u2019m still waiting on the search results to load, so I can\u2019t safely pick the first atta item yet\u2014or add it without a valid item ID. Once the results appear, I\u2019ll grab the first item and add it to your cart immediately. Please keep the app open",
+  "early_ok": true,
+  "stamp": "20260712-223132"
+}

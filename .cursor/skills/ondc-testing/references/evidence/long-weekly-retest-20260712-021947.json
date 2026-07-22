@@ -1,0 +1,15 @@
+{
+  "id": "B-LONG-WEEKLY",
+  "result": "Fail",
+  "note": "no handoff path=/search tools=[] blob=samantha\n\nsamantha \u00b7 gpt-realtime-2.1-mini\n\nsend\npreferences & agentguard ",
+  "screenshots": [
+    "evidence/B-LONG-WEEKLY-20260712-021947-7.jpeg"
+  ],
+  "state": {
+    "has_handoff": false,
+    "hint": "Samantha\n\nSamantha \u00b7 gpt-realtime-2.1-mini\n\nSend\nPreferences & AgentGuard",
+    "pathname": "/search",
+    "reply": "",
+    "tools": []
+  }
+}

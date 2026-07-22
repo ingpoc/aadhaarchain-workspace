@@ -1,0 +1,117 @@
+{
+  "stamp": "20260712-170803",
+  "home": {
+    "success": true,
+    "id": "e15dcde4-04c3-4a99-a19b-0756f13249d4",
+    "tab_id": 1951715409,
+    "final_url": "https://dashboard.render.com/",
+    "results": [
+      {
+        "type": "goto",
+        "tabId": 1951715409,
+        "url": "https://dashboard.render.com/"
+      },
+      {
+        "type": "page_context",
+        "url": "https://dashboard.render.com/",
+        "title": "Render Dashboard",
+        "headings": [
+          {
+            "tag": "H1",
+            "text": "Overview"
+          }
+        ],
+        "nav": [
+          {
+            "text": "Projects",
+            "href": "https://dashboard.render.com/"
+          },
+          {
+            "text": "Blueprints",
+            "href": "https://dashboard.render.com/blueprints"
+          },
+          {
+            "text": "Environment Groups",
+            "href": "https://dashboard.render.com/env-groups"
+          },
+          {
+            "text": "Observability",
+            "href": "https://dashboard.render.com/observability"
+          },
+          {
+            "text": "Webhooks",
+            "href": "https://dashboard.render.com/webhooks"
+          },
+          {
+            "text": "Notifications",
+            "href": "https://dashboard.render.com/notifications"
+          },
+          {
+            "text": "Private Links",
+            "href": "https://dashboard.render.com/private-links"
+          },
+          {
+            "text": "Dedicated IPs\nNew",
+            "href": "https://dashboard.render.com/dedicated-ips"
+          },
+          {
+            "text": "Billing",
+            "href": "https://dashboard.render.com/w/tea-d5nj7rtactks73chalb0/billing"
+          },
+          {
+            "text": "Settings",
+            "href": "https://dashboard.render.com/w/tea-d5nj7rtactks73chalb0/settings"
+          },
+          {
+            "text": "Opt-in early",
+            "href": "https://dashboard.render.com/billing/update-plan"
+          },
+          {
+            "text": "Changelog",
+            "href": "https://render.com/changelog"
+          },
+          {
+            "text": "Invite a friend",
+            "href": "https://dashboard.render.com/invites"
+          },
+          {
+            "text": "Render Status",
+            "href": "https://status.render.com/"
+          }
+        ],
+        "buttons": [
+          "M\nMy Workspace",
+          "Search\nCOMMAND\n+\nK\nK",
+          "New",
+          "Upgrade",
+          "G",
+          "Close notification",
+          "Collapse items",
+          "Contact support",
+          "Share feedback",
+          "Invite your team",
+          "New",
+          "Move",
+          "Close actions"
+        ],
+        "inputs": [],
+        "console_error_count": 0,
+        "console_warn_count": 5,
+        "last_console_error": null
+      },
+      {
+        "type": "screenshot",
+        "format": "jpeg",
+        "screenshot_path": "/Users/gurusharan/.hermes/cache/hermes-chrome/e15dcde4-04c3-4a99-a19b-0756f13249d4-2.jpeg"
+      },
+      {
+        "type": "evaluate",
+        "result": {
+          "href": "https://dashboard.render.com/",
+          "text": "M\nMy Workspace\nProjects\nSearch\nCOMMAND\n+\nK\nK\nNew\nUpgrade\nG\nProjects\nBlueprints\nEnvironment Groups\nINTEGRATIONS\nObservability\nWebhooks\nNotifications\nNETWORKING\nPrivate Links\nDedicated IPs\nNew\nWORKSPACE\nBilling\nSettings\nNew plans, zero seat fees\nWe're updating workspace pricing to help teams grow faster. No seat fees, more self-serve features, granular bandwidth billing, and more.\nOpt-in early\nChangelog\nInvite a friend\nContact support\nRender Status\nShare feedback\nOverview\nInvite your team\nNew\nProjects\nMy project\nProduction\nCreate new project\n0 services selected:\nMove",
+          "title": "Render Dashboard"
+        }
+      }
+    ]
+  }
+}

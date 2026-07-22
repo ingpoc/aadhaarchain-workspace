@@ -1,0 +1,178 @@
+{
+  "success": true,
+  "id": "aaf99313-5f94-4d62-92a2-a4d0fa8ecf61",
+  "tab_id": 1951715614,
+  "final_url": "http://127.0.0.1:43103/agentguard",
+  "results": [
+    {
+      "type": "goto",
+      "tabId": 1951715614,
+      "url": "http://127.0.0.1:43102/search"
+    },
+    {
+      "type": "evaluate",
+      "result": {
+        "count": 0,
+        "installed": true
+      }
+    },
+    {
+      "type": "wait",
+      "ms": 400
+    },
+    {
+      "type": "wait",
+      "ms": 3000
+    },
+    {
+      "type": "page_context",
+      "url": "http://127.0.0.1:43103/agentguard",
+      "title": "ONDC Seller",
+      "headings": [
+        {
+          "tag": "H1",
+          "text": "Store Operations Assistant"
+        }
+      ],
+      "nav": [
+        {
+          "text": "Dashboard",
+          "href": "http://127.0.0.1:43103/dashboard"
+        },
+        {
+          "text": "Catalog",
+          "href": "http://127.0.0.1:43103/catalog"
+        },
+        {
+          "text": "Orders",
+          "href": "http://127.0.0.1:43103/orders"
+        },
+        {
+          "text": "Config",
+          "href": "http://127.0.0.1:43103/config"
+        }
+      ],
+      "buttons": [
+        "Open catalog search",
+        "Open runtime status",
+        "Open trust status",
+        "S"
+      ],
+      "inputs": [],
+      "console_error_count": 0,
+      "console_warn_count": 0,
+      "last_console_error": null
+    },
+    {
+      "type": "screenshot",
+      "format": "jpeg",
+      "screenshot_path": "/Users/gurusharan/.hermes/cache/hermes-chrome/aaf99313-5f94-4d62-92a2-a4d0fa8ecf61-5.jpeg"
+    },
+    {
+      "type": "evaluate",
+      "result": {
+        "headings": [
+          "Store Operations Assistant"
+        ],
+        "text": "SELLER\nONDC Seller\nOperate a trust-aware catalog and fulfillment surface.\nDashboard\nCatalog\nOrders\nConfig\nSign-in not configured\nAGENTGUARD\nStore Operations Assistant\n\nConfigure what the agent may do. AgentGuard enforces limits \u2014 not the model.\n\nTrust check: Unsigned\n\nSign in before elevated seller actions.\n\nSign in so AgentGuard can bind a policy to your principal.\nAgentGuard authority\nAgent chat\nHow it works\nS"
+      }
+    },
+    {
+      "type": "page_context",
+      "url": "http://127.0.0.1:43103/agentguard",
+      "title": "ONDC Seller",
+      "headings": [
+        {
+          "tag": "H1",
+          "text": "Store Operations Assistant"
+        }
+      ],
+      "nav": [
+        {
+          "text": "Dashboard",
+          "href": "http://127.0.0.1:43103/dashboard"
+        },
+        {
+          "text": "Catalog",
+          "href": "http://127.0.0.1:43103/catalog"
+        },
+        {
+          "text": "Orders",
+          "href": "http://127.0.0.1:43103/orders"
+        },
+        {
+          "text": "Config",
+          "href": "http://127.0.0.1:43103/config"
+        }
+      ],
+      "buttons": [
+        "Open catalog search",
+        "Open runtime status",
+        "Open trust status",
+        "S"
+      ],
+      "inputs": [],
+      "console_error_count": 0,
+      "console_warn_count": 0,
+      "last_console_error": null
+    },
+    {
+      "type": "evaluate",
+      "result": {
+        "errors": [
+          "fetch failed https://gateway.aadharcha.in/api/realtime/status Failed to fetch",
+          "fetch failed https://gateway.aadharcha.in/api/realtime/status Failed to fetch",
+          "fetch failed https://gateway.aadharcha.in/api/realtime/status Failed to fetch"
+        ],
+        "installed": true,
+        "total": 3,
+        "warns": []
+      }
+    }
+  ],
+  "page_diag": {
+    "ok": false,
+    "ui": {
+      "url": "http://127.0.0.1:43103/agentguard",
+      "title": "ONDC Seller",
+      "headings": [
+        "Store Operations Assistant"
+      ],
+      "buttons": [
+        "Open catalog search",
+        "Open runtime status",
+        "Open trust status",
+        "S"
+      ]
+    },
+    "console": {
+      "installed": true,
+      "total": 3,
+      "errors": [
+        "fetch failed https://gateway.aadharcha.in/api/realtime/status Failed to fetch",
+        "fetch failed https://gateway.aadharcha.in/api/realtime/status Failed to fetch",
+        "fetch failed https://gateway.aadharcha.in/api/realtime/status Failed to fetch"
+      ],
+      "warns": []
+    },
+    "backend": [],
+    "issues": [
+      {
+        "source": "console",
+        "level": "error",
+        "msg": "fetch failed https://gateway.aadharcha.in/api/realtime/status Failed to fetch"
+      },
+      {
+        "source": "console",
+        "level": "error",
+        "msg": "fetch failed https://gateway.aadharcha.in/api/realtime/status Failed to fetch"
+      },
+      {
+        "source": "console",
+        "level": "error",
+        "msg": "fetch failed https://gateway.aadharcha.in/api/realtime/status Failed to fetch"
+      }
+    ],
+    "final_url": "http://127.0.0.1:43103/agentguard"
+  }
+}

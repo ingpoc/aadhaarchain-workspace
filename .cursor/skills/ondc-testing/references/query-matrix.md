@@ -15,6 +15,10 @@ Pass = claim verified by screenshot (agent **Read**s the image). Ledger: [`matri
 | B-FIND-MILK | “find milk under 100” | Results / filter |
 | B-FIND-APPLE | “show Shimla apples” | Apple results |
 | B-ADD-BANANA | “add banana to my cart” | `/cart` line |
+| B-RESULT-GROUND | “what choices are on this page and what does the first cost?” | Reply matches visible result + price |
+| B-CLEAR-CART | “empty my cart” | `/cart` empty state |
+| B-REMOVE | “remove that atta” | Line removed; `/cart` updated |
+| B-QUANTITY | “make that two packs” | Quantity 2 visible on `/cart` |
 | B-NAV-CART | “go to my cart” | `/cart` |
 | B-NAV-CHECKOUT | “go to checkout” | `/checkout` |
 | B-NAV-CONFIG | “open config” | `/config` |
@@ -37,6 +41,9 @@ Pass = claim verified by screenshot (agent **Read**s the image). Ledger: [`matri
 | S-NAV-AG | “open agentguard” | `/agentguard` |
 | S-AG-PAUSE | Pause agent (UI) | Agent paused on `/agentguard` |
 | S-PUBLISH | publish simple item | Catalog change |
+| S-ORDER-ACCEPT | “accept the newest paid order” | Accepted order page |
+| S-ORDER-REJECT | “reject the newest paid order” | Cancelled order page |
+| S-ORDER-FULFIL | “mark that accepted order fulfilled” | Delivered order page |
 | S-REFUND-OK | refund in-limit | AG allow/executed |
 | S-REFUND-OVER | refund over-limit | need_approval / deny |
 | S-MEM | brief confirmations memory | Memory if shown |

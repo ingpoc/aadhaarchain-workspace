@@ -1,0 +1,31 @@
+{
+  "success": false,
+  "tool_hit": false,
+  "tool_ok": false,
+  "ag_visible": false,
+  "checkout_tool": {},
+  "tools": [],
+  "after_ask": {
+    "pathname": "/search",
+    "reply": "",
+    "hint": "",
+    "tools_detail": []
+  },
+  "checkout_page": {
+    "pathname": "/checkout",
+    "has_receipt": false,
+    "has_approval": false,
+    "body_snip": ""
+  },
+  "cart_seed": {
+    "pathname": "/search",
+    "has_banana": false,
+    "shots": [
+      "/Users/gurusharan/Documents/remote-claude/active/apps/AadhaarChainWorkspace/.cursor/skills/ondc-testing/references/evidence/B-CHECKOUT-RETEST-CART-20260712-020652-5.jpeg"
+    ]
+  },
+  "screenshots": [
+    "/Users/gurusharan/Documents/remote-claude/active/apps/AadhaarChainWorkspace/.cursor/skills/ondc-testing/references/evidence/B-CHECKOUT-RETEST-20260712-020652-5.jpeg",
+    "/Users/gurusharan/Documents/remote-claude/active/apps/AadhaarChainWorkspace/.cursor/skills/ondc-testing/references/evidence/B-CHECKOUT-RETEST-20260712-020652-9.jpeg"
+  ]
+}

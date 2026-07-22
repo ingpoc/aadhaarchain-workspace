@@ -1,0 +1,78 @@
+{
+  "start": "https://identity-aadhar-gateway-main.onrender.com/api/auth/auth0/start?aud=buyer&return=https%3A%2F%2Fondcbuyer.aadharcha.in%2Fsearch",
+  "shots": [
+    "/Users/gurusharan/Documents/remote-claude/active/apps/AadhaarChainWorkspace/.cursor/skills/ondc-testing/references/evidence/web-buyer-auth0-start-20260712-154614-8.jpeg"
+  ],
+  "final_url": "https://dev-ejqlkc0qt84udk7i.us.auth0.com/authorize?client_id=kzV7kK7YlqRHtWj8NIxtJ3R95nmEJaBn&redirect_uri=https%3A%2F%2Fidentity-aadhar-gateway-main.onrender.com%2Fapi%2Fauth%2Fauth0%2Fcallback&response_type=code&scope=openid+profile+email&state=eyJhdWQiOiJidXllciIsImV4cCI6MTc4Mzg1MTk3OSwicmV0dXJuX3VybCI6Imh0dHBzOi8vb25kY2J1eWVyLmFhZGhhcmNoYS5pbi9zZWFyY2gifQ.449fe50dae3b1c28737d86ba6ff021a6057a8d3983fbfccd3b34c13ffb09d6c2",
+  "page_diag": {
+    "ok": true,
+    "ui": {
+      "url": "https://dev-ejqlkc0qt84udk7i.us.auth0.com/authorize?client_id=kzV7kK7YlqRHtWj8NIxtJ3R95nmEJaBn&redirect_uri=https%3A%2F%2Fidentity-aadhar-gateway-main.onrender.com%2Fapi%2Fauth%2Fauth0%2Fcallback&response_type=code&scope=openid+profile+email&state=eyJhdWQiOiJidXllciIsImV4cCI6MTc4Mzg1MTk3OSwicmV0dXJuX3VybCI6Imh0dHBzOi8vb25kY2J1eWVyLmFhZGhhcmNoYS5pbi9zZWFyY2gifQ.449fe50dae3b1c28737d86ba6ff021a6057a8d3983fbfccd3b34c13ffb09d6c2",
+      "title": "dev-ejqlkc0qt84udk7i",
+      "headings": [
+        "dev-ejqlkc0qt84udk7i",
+        "Oops!, something went wrong"
+      ],
+      "buttons": []
+    },
+    "console": {
+      "installed": true,
+      "total": 0,
+      "errors": [],
+      "warns": []
+    },
+    "backend": [],
+    "issues": [],
+    "final_url": "https://dev-ejqlkc0qt84udk7i.us.auth0.com/authorize?client_id=kzV7kK7YlqRHtWj8NIxtJ3R95nmEJaBn&redirect_uri=https%3A%2F%2Fidentity-aadhar-gateway-main.onrender.com%2Fapi%2Fauth%2Fauth0%2Fcallback&response_type=code&scope=openid+profile+email&state=eyJhdWQiOiJidXllciIsImV4cCI6MTc4Mzg1MTk3OSwicmV0dXJuX3VybCI6Imh0dHBzOi8vb25kY2J1eWVyLmFhZGhhcmNoYS5pbi9zZWFyY2gifQ.449fe50dae3b1c28737d86ba6ff021a6057a8d3983fbfccd3b34c13ffb09d6c2"
+  },
+  "results_slim": [
+    {
+      "type": "goto",
+      "url": "https://ondcbuyer.aadharcha.in/search"
+    },
+    {
+      "type": "evaluate"
+    },
+    {
+      "type": "wait"
+    },
+    {
+      "type": "wait"
+    },
+    {
+      "type": "goto",
+      "url": "https://ondcbuyer.aadharcha.in/search"
+    },
+    {
+      "type": "evaluate"
+    },
+    {
+      "type": "wait"
+    },
+    {
+      "type": "wait"
+    },
+    {
+      "type": "screenshot",
+      "screenshot_path": "/Users/gurusharan/.hermes/cache/hermes-chrome/59a0fbb7-8c59-4553-a93c-d64410670ca6-8.jpeg"
+    },
+    {
+      "type": "page_context",
+      "url": "https://dev-ejqlkc0qt84udk7i.us.auth0.com/authorize?client_id=kzV7kK7YlqRHtWj8NIxtJ3R95nmEJaBn&redirect_uri=https%3A%2F%2Fidentity-aadhar-gateway-main.onrender.com%2Fapi%2Fauth%2Fauth0%2Fcallback&response_type=code&scope=openid+profile+email&state=eyJhdWQiOiJidXllciIsImV4cCI6MTc4Mzg1MTk3OSwicmV0dXJuX3VybCI6Imh0dHBzOi8vb25kY2J1eWVyLmFhZGhhcmNoYS5pbi9zZWFyY2gifQ.449fe50dae3b1c28737d86ba6ff021a6057a8d3983fbfccd3b34c13ffb09d6c2",
+      "title": "dev-ejqlkc0qt84udk7i",
+      "buttons": []
+    },
+    {
+      "type": "evaluate"
+    },
+    {
+      "type": "page_context",
+      "url": "https://dev-ejqlkc0qt84udk7i.us.auth0.com/authorize?client_id=kzV7kK7YlqRHtWj8NIxtJ3R95nmEJaBn&redirect_uri=https%3A%2F%2Fidentity-aadhar-gateway-main.onrender.com%2Fapi%2Fauth%2Fauth0%2Fcallback&response_type=code&scope=openid+profile+email&state=eyJhdWQiOiJidXllciIsImV4cCI6MTc4Mzg1MTk3OSwicmV0dXJuX3VybCI6Imh0dHBzOi8vb25kY2J1eWVyLmFhZGhhcmNoYS5pbi9zZWFyY2gifQ.449fe50dae3b1c28737d86ba6ff021a6057a8d3983fbfccd3b34c13ffb09d6c2",
+      "title": "dev-ejqlkc0qt84udk7i",
+      "buttons": []
+    },
+    {
+      "type": "evaluate"
+    }
+  ]
+}

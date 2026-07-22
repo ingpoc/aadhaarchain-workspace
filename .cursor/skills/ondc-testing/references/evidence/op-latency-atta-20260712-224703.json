@@ -1,0 +1,120 @@
+{
+  "id": "W-B-FIND-ATTA-LATENCY",
+  "result": "Fail",
+  "shots": [
+    "W-B-LAT-ATTA-20260712-224703-0.jpeg"
+  ],
+  "before": {
+    "note": "pre-fix: search_catalog ran ondcSearchAndCollect(attempts=3) while ResultsPage also collected(attempts=10); settle~93s; Failed-to-fetch under cold",
+    "tool_collect_block_ms": "up to 3600-12000",
+    "settle_ms": 93000,
+    "search_posts_typical": 2
+  },
+  "after": {
+    "early_results_ms": 1024,
+    "tool_done_ms": 3688,
+    "grid_paint_ms": 43815,
+    "search_posts": 2,
+    "catalog_gets": 4,
+    "has_txn": true,
+    "failed": false,
+    "matches": "65",
+    "fetch_ondc": [
+      {
+        "at": 1679,
+        "ms": 603,
+        "status": 200,
+        "url": "/api/ondc/status"
+      },
+      {
+        "at": 1679,
+        "ms": 603,
+        "status": 200,
+        "url": "/api/ondc/status"
+      },
+      {
+        "at": 2272,
+        "ms": 977,
+        "status": 200,
+        "url": "/api/ondc/status"
+      },
+      {
+        "at": 2272,
+        "ms": 977,
+        "status": 200,
+        "url": "/api/ondc/status"
+      },
+      {
+        "at": 2882,
+        "ms": 1201,
+        "status": 200,
+        "url": "/api/ondc/status"
+      },
+      {
+        "at": 2882,
+        "ms": 1201,
+        "status": 200,
+        "url": "/api/ondc/status"
+      },
+      {
+        "at": 3387,
+        "ms": 890,
+        "status": 200,
+        "url": "/api/ondc/search"
+      },
+      {
+        "at": 3387,
+        "ms": 890,
+        "status": 200,
+        "url": "/api/ondc/search"
+      },
+      {
+        "at": 4285,
+        "ms": 625,
+        "status": 200,
+        "url": "/api/ondc/status"
+      },
+      {
+        "at": 4285,
+        "ms": 625,
+        "status": 200,
+        "url": "/api/ondc/status"
+      },
+      {
+        "at": 4786,
+        "ms": 501,
+        "status": 200,
+        "url": "/api/ondc/catalogs?transaction_id=ab534b0b-74d3-469f-8bc7-c21308f89324"
+      },
+      {
+        "at": 4786,
+        "ms": 501,
+        "status": 200,
+        "url": "/api/ondc/catalogs?transaction_id=ab534b0b-74d3-469f-8bc7-c21308f89324"
+      },
+      {
+        "at": 43301,
+        "ms": 37314,
+        "status": 200,
+        "url": "/api/ondc/catalogs?transaction_id=ab534b0b-74d3-469f-8bc7-c21308f89324"
+      },
+      {
+        "at": 43301,
+        "ms": 37314,
+        "status": 200,
+        "url": "/api/ondc/catalogs?transaction_id=ab534b0b-74d3-469f-8bc7-c21308f89324"
+      }
+    ],
+    "tools": [
+      {
+        "age_ms": 40429,
+        "at": 1783876635286,
+        "name": "search_catalog",
+        "navigateTo": "/results?category=grocery&q=atta&ondc_txn=ab534b0b-74d3-469f-8bc7-c21308f89324",
+        "ok": true
+      }
+    ]
+  },
+  "stamp": "20260712-224703",
+  "deploy": "ondcbuyer-6rfghexhw"
+}

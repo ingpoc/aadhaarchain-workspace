@@ -1,0 +1,66 @@
+{
+  "shots": [
+    "/Users/gurusharan/Documents/remote-claude/active/apps/AadhaarChainWorkspace/.cursor/skills/ondc-testing/references/evidence/web-buyer-commerce-20260712-154639-7.jpeg",
+    "/Users/gurusharan/Documents/remote-claude/active/apps/AadhaarChainWorkspace/.cursor/skills/ondc-testing/references/evidence/web-buyer-commerce-20260712-154639-13.jpeg",
+    "/Users/gurusharan/Documents/remote-claude/active/apps/AadhaarChainWorkspace/.cursor/skills/ondc-testing/references/evidence/web-buyer-commerce-20260712-154639-17.jpeg"
+  ],
+  "page_diag": {
+    "ok": true,
+    "ui": {},
+    "console": {
+      "installed": false,
+      "total": 0,
+      "errors": [],
+      "warns": []
+    },
+    "backend": [],
+    "issues": [],
+    "final_url": "https://ondcbuyer.aadharcha.in/cart"
+  },
+  "routes": [
+    {
+      "pathname": "/results",
+      "body": "PORTFOLIO\nONDC Buyer\nDiscover commerce under AgentGuard authorization.\nSearch\nCart\nOrders\nConfig\nRESULTS\nBrowse banana\n\nRefine the search, compare offers, and move the best candidate into cart without leaving the buyer shell.\n\n1 matches\nDefault filters\nCategory\nGrocery\nGrocery\nRestaurant\nFashion\nElectronics\nSearch\nSearch\nREFINE\nSearch filters\n\nTighten the result set before you compare offers.\n\nBase view\nMAX PRICEMIN RATINGSORT BY\nRelevance\nDELIVERY AREAReset filters\nMATCHES\n1\nCurrent query: banana\nCATEGORY\ngrocery\nUse the compact bar above to pivot into another lane.\nFILTER LOAD\n0\nRelevance sorting only.\nOFFER GRID\nCompare the strongest candidates\n\nOpen product detail for deeper inspection or add the item directly to cart.\n\nfruits\nCity Greens\nRobusta Bananas (12 pcs)\n\nBanana bunch for quick-delivery household orders.\n\nINR 78.00\nSeller: City Greens\nView details\nAdd\nAgent chat\nHow it works",
+      "buttons": [
+        "Open navigation",
+        "PORTFOLIO\nONDC Buyer\nDiscover commerce under AgentGuard auth",
+        "Search",
+        "Cart",
+        "Orders",
+        "Config",
+        "Grocery",
+        "Search",
+        "Relevance",
+        "Reset filters",
+        "Robusta Bananas (12 pcs)",
+        "View details",
+        "Add",
+        "Agent chat",
+        "How it works",
+        "S"
+      ]
+    },
+    {
+      "pathname": "/results",
+      "body": "PORTFOLIO\nONDC Buyer\nDiscover commerce under AgentGuard authorization.\nSearch\nCart\nOrders\nConfig\nRESULTS\nBrowse banana\n\nRefine the search, compare offers, and move the best candidate into cart without leaving the buyer shell.\n\n1 matches\nDefault filters\nCategory\nGrocery\nGrocery\nRestaurant\nFashion\nElectronics\nSearch\nSearch\nREFINE\nSearch filters\n\nTighten the result set before you compare offers.\n\nBase view\nMAX PRICEMIN RATINGSORT BY\nRelevance\nDELIVERY AREAReset filters\nMATCHES\n1\nCurrent query: banana\nCATEGORY\ngrocery\nUse the compact bar above to pivot into another lane.\nFILTER LOAD\n0\nRelevance sorting only.\nOFFER GRID\nCompare the strongest candidates\n\nOpen product detail for deeper inspection or add the item directly to cart.\n\nfruits\nCity Greens\nRobusta Bananas (12 pcs)\n\nBanana bunch for quick-delivery household orders.\n\nINR 78.00\nSeller: City Greens\nView details\nAdd\nAgent chat\nHow it works",
+      "buttons": [
+        "Open navigation",
+        "PORTFOLIO\nONDC Buyer\nDiscover commerce under AgentGuard auth",
+        "Search",
+        "Cart",
+        "Orders",
+        "Config",
+        "Grocery",
+        "Search",
+        "Relevance",
+        "Reset filters",
+        "Robusta Bananas (12 pcs)",
+        "View details",
+        "Add",
+        "Agent chat",
+        "How it works",
+        "S"
+      ]
+    }
+  ]
+}

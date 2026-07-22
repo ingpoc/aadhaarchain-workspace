@@ -1,0 +1,29 @@
+{
+  "attested_at": "2026-07-16T06:08:40Z",
+  "environment": "preprod",
+  "gateway_commit": "099a93d68db910bb7e855d300e67aec30ab4f8a8",
+  "render_plan": "free",
+  "command": "python3 scripts/ondc_preprod_smoke.py --base https://gateway.aadharcha.in --search atta --order --quantity 2",
+  "registry": {
+    "subscriber_id": "ondcbuyer.aadharcha.in",
+    "status": "SUBSCRIBED"
+  },
+  "search": {
+    "gateway_ack": "ACK",
+    "configured_seller_ack": "ACK",
+    "catalog_count": 1,
+    "seller_bpp_id": "ondcseller.aadharcha.in",
+    "item_name": "AadhaarChain Whole Wheat Atta 1kg"
+  },
+  "order_sequence": {
+    "quantity": 2,
+    "unit_price_inr": "89.00",
+    "quote_total_inr": "178.00",
+    "item_provider_quantity_quote_stable": true,
+    "callbacks": ["on_select", "on_init", "on_confirm"],
+    "confirm_state": "Accepted",
+    "confirm_payment_status": "PAID",
+    "persisted_order_count": 1
+  },
+  "boundary": "PreProd Beckn with simulated payment; not production ONDC or live UPI."
+}

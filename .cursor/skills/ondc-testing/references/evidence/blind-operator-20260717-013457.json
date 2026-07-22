@@ -1,0 +1,64 @@
+{
+  "success": false,
+  "mode": "blinded-visible-operator-first",
+  "rows": [
+    {
+      "id": "B-AUTH-GATE",
+      "result": "Pass",
+      "evidence": "orb=0 sign_in=True",
+      "pathname": "/search",
+      "reply": "",
+      "screenshots": [
+        "/Users/gurusharan/Documents/remote-claude/active/apps/AadhaarChainWorkspace/.cursor/skills/ondc-testing/references/evidence/BLIND-B-AUTH-GATE-20260717-013457-0.jpeg"
+      ]
+    },
+    {
+      "id": "B-SIGN-IN",
+      "result": "Fail",
+      "evidence": "origin=https://dev-ejqlkc0qt84udk7i.us.auth0.com signed_in=False",
+      "pathname": "/u/consent",
+      "reply": "",
+      "screenshots": [
+        "/Users/gurusharan/Documents/remote-claude/active/apps/AadhaarChainWorkspace/.cursor/skills/ondc-testing/references/evidence/BLIND-B-SIGN-IN-20260717-013457-0.jpeg"
+      ]
+    },
+    {
+      "id": "S-AUTH-GATE",
+      "result": "Pass",
+      "evidence": "orb=0 sign_in=True",
+      "pathname": "/dashboard",
+      "reply": "",
+      "screenshots": [
+        "/Users/gurusharan/Documents/remote-claude/active/apps/AadhaarChainWorkspace/.cursor/skills/ondc-testing/references/evidence/BLIND-S-AUTH-GATE-20260717-013457-0.jpeg"
+      ]
+    },
+    {
+      "id": "S-SIGN-IN",
+      "result": "Fail",
+      "evidence": "origin=https://dev-ejqlkc0qt84udk7i.us.auth0.com signed_in=False",
+      "pathname": "/u/consent",
+      "reply": "",
+      "screenshots": [
+        "/Users/gurusharan/Documents/remote-claude/active/apps/AadhaarChainWorkspace/.cursor/skills/ondc-testing/references/evidence/BLIND-S-SIGN-IN-20260717-013457-0.jpeg"
+      ]
+    }
+  ],
+  "diagnostics_after_visible_journey": {
+    "buyer": {
+      "all_asks_persisted": true,
+      "asks": {},
+      "event_types": [],
+      "tool_results": [],
+      "errors": []
+    },
+    "seller": {
+      "all_asks_persisted": true,
+      "asks": {},
+      "event_types": [],
+      "tool_results": [],
+      "errors": []
+    }
+  },
+  "diagnostics_ok": true,
+  "ts": "20260717-013457"
+}

@@ -3,6 +3,16 @@
 # Exit 0 only when HTTP + WIP bridge are healthy (ready: true).
 set -euo pipefail
 
+AGENTGUARD_ONLY=0
+if [[ "${1:-}" == "--agentguard" ]]; then
+  AGENTGUARD_ONLY=1
+  shift
+fi
+if [[ "$#" -ne 0 ]]; then
+  echo "Usage: $0 [--agentguard]" >&2
+  exit 2
+fi
+
 ROOT="$(cd "$(dirname "$0")/../../../.." && pwd)"
 # shellcheck source=../../../../scripts/lib/http-wait.sh
 source "$ROOT/scripts/lib/http-wait.sh"
@@ -10,6 +20,7 @@ source "$ROOT/scripts/lib/http-wait.sh"
 WIP_ROOT="${HERMES_CHROME_WIP_ROOT:-/Users/gurusharan/plugins/hermes-chrome-cursor-wip}"
 export HERMES_CHROME_BRIDGE_SOCKET="${HERMES_CHROME_BRIDGE_SOCKET:-$WIP_ROOT/run/chrome-bridge.sock}"
 WIP_SYNC="$WIP_ROOT/scripts/sync-wip.sh"
+WIP_HOST_INFO="$WIP_ROOT/run/extension-host.json"
 BRIDGE_PY="$ROOT/.cursor/skills/portfolio-browser/scripts/hermes_bridge.py"
 
 fail=0
@@ -39,7 +50,11 @@ ensure_portfolio_stack() {
     return 0
   fi
   echo "→ Portfolio stack not ready — starting ./scripts/start-dev.sh"
-  "$ROOT/scripts/start-dev.sh"
+  if [[ "$AGENTGUARD_ONLY" -eq 1 ]]; then
+    "$ROOT/scripts/start-dev.sh" gateway buyer seller
+  else
+    "$ROOT/scripts/start-dev.sh"
+  fi
 }
 
 check_http() {
@@ -82,13 +97,21 @@ elif [[ -f "$ENSURE_WIP_NATIVE" ]]; then
   bash "$ENSURE_WIP_NATIVE" || true
 fi
 
+WIP_HOST_APP="Unknown"
+WIP_HOST_PROFILE="Unknown"
+if [[ -f "$WIP_HOST_INFO" ]]; then
+  WIP_HOST_APP="$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1])).get("app", "Unknown"))' "$WIP_HOST_INFO" 2>/dev/null || echo Unknown)"
+  WIP_HOST_PROFILE="$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1])).get("profile_directory", "Unknown"))' "$WIP_HOST_INFO" 2>/dev/null || echo Unknown)"
+fi
+echo "→ WIP browser owner: $WIP_HOST_APP (profile directory: $WIP_HOST_PROFILE)"
+
 echo "→ Hermes Chrome WIP bridge"
 if ! bridge_ready 2>/dev/null; then
   if [[ -x "$WIP_SYNC" ]]; then
     echo "→ Bridge down — running sync-wip.sh..."
     bash "$WIP_SYNC" 2>&1 | tail -30 || true
   fi
-  # Wake: status ping after short wait (extension must be loaded in Comet/Chrome)
+  # Wake: status ping after short wait in the discovered extension profile.
   sleep 2
   if ! bridge_ready 2>/dev/null; then
     LIVE_SOCK="${HOME}/.hermes/run/chrome-bridge.sock"
@@ -96,11 +119,18 @@ if ! bridge_ready 2>/dev/null; then
     if [[ -S "$LIVE_SOCK" && ! -S "$HERMES_CHROME_BRIDGE_SOCKET" ]]; then
       echo "  TRAP: live socket exists at ~/.hermes/run/chrome-bridge.sock but WIP socket is missing."
       echo "  Do NOT point agents at ~/.hermes — portfolio uses WIP only."
-      echo "  Cause: NativeMessagingHosts path was native_host.py (no WIP env)."
-      echo "  ensure-wip-native-host.sh repairs manifests; reload unpacked WIP extension next."
+      echo "  The ensure output above owns the cause: manifest path trap vs inactive service worker."
     fi
-    echo "  1. Load/reload unpacked: $WIP_ROOT/deploy/extension"
-    echo "  2. Confirm native host parent is that browser (Comet or Chrome)"
+    if [[ "$WIP_HOST_APP" == "Google Chrome" ]]; then
+      echo "  1. Open Google Chrome profile directory '$WIP_HOST_PROFILE' → chrome://extensions"
+      echo "  2. Reload Hermes Chrome Bridge (Cursor WIP); do not use Comet or install a duplicate"
+    elif [[ "$WIP_HOST_APP" == "Comet" ]]; then
+      echo "  1. Open Comet profile directory '$WIP_HOST_PROFILE' → comet://extensions"
+      echo "  2. Reload Hermes Chrome Bridge (Cursor WIP); do not use Chrome or install a duplicate"
+    else
+      echo "  1. Discover the profile containing $WIP_ROOT/deploy/extension"
+      echo "  2. Reload Hermes Chrome Bridge (Cursor WIP) only in that browser/profile"
+    fi
     echo "  3. Confirm manifest path ends with native_host_wip.sh (never native_host.py)"
     echo "  4. export HERMES_CHROME_BRIDGE_SOCKET=$HERMES_CHROME_BRIDGE_SOCKET"
     echo "  5. Re-run preflight"
@@ -117,29 +147,39 @@ fi
 
 echo "→ Portfolio HTTP"
 ensure_portfolio_stack
-check_http "AadhaarChain web" "http://127.0.0.1:43100/login"
+if [[ "$AGENTGUARD_ONLY" -eq 1 ]]; then
+  echo "○ AgentGuard-only preflight — legacy host web is not required"
+else
+  check_http "AadhaarChain web" "http://127.0.0.1:43100/login"
+fi
 check_http "Gateway"        "http://127.0.0.1:43101/api/health"
 check_http "ONDC Buyer"     "http://127.0.0.1:43102/search"
 check_http "ONDC Seller"    "http://127.0.0.1:43103/dashboard"
 
-echo "→ Browser desktop visibility (Chrome or Comet)"
+echo "→ Browser desktop visibility ($WIP_HOST_APP profile $WIP_HOST_PROFILE)"
 visible=0
-if osascript -e 'tell application "Google Chrome" to get name of every window' 2>/dev/null | grep -qE 'AadhaarChain|ONDC|Identity Agent|Solflare|127\.0\.0\.1'; then
-  visible=1
-  echo "✓ Google Chrome portfolio windows visible"
+if [[ "$WIP_HOST_APP" == "Google Chrome" || "$WIP_HOST_APP" == "Unknown" ]]; then
+  if osascript -e 'tell application "Google Chrome" to get name of every window' 2>/dev/null | grep -qE 'AadhaarChain|ONDC|Identity Agent|Solflare|127\.0\.0\.1'; then
+    visible=1
+    echo "✓ Google Chrome portfolio windows visible"
+  fi
 fi
-if osascript -e 'tell application "Comet" to get name of every window' 2>/dev/null | grep -qE 'AadhaarChain|ONDC|Identity Agent|Solflare|127\.0\.0\.1|Example'; then
-  visible=1
-  echo "✓ Comet portfolio/windows visible"
+if [[ "$WIP_HOST_APP" == "Comet" || "$WIP_HOST_APP" == "Unknown" ]]; then
+  if osascript -e 'tell application "Comet" to get name of every window' 2>/dev/null | grep -qE 'AadhaarChain|ONDC|Identity Agent|Solflare|127\.0\.0\.1|Example'; then
+    visible=1
+    echo "✓ Comet portfolio/windows visible"
+  fi
 fi
 if [[ "$visible" -eq 0 ]]; then
-  echo "⚠ No Chrome/Comet portfolio tabs visible on this macOS Space"
-  echo "  Move the WIP host browser to the same desktop as Cursor, then re-run"
+  echo "⚠ No portfolio tab visible in the discovered WIP host on this macOS Space"
+  echo "  Move $WIP_HOST_APP profile '$WIP_HOST_PROFILE' to the same desktop as Cursor, then re-run"
   # Soft warn only — WIP may still drive background windows
 fi
 
 echo "→ Dev burner wallet"
-if grep -q 'NEXT_PUBLIC_DEV_BURNER_WALLET=true' "$ROOT/aadharchain/frontend/.env.local" 2>/dev/null; then
+if [[ "$AGENTGUARD_ONLY" -eq 1 ]]; then
+  echo "○ AgentGuard-only preflight — wallet and Solana validator are not required"
+elif grep -q 'NEXT_PUBLIC_DEV_BURNER_WALLET=true' "$ROOT/aadharchain/frontend/.env.local" 2>/dev/null; then
   echo "✓ Burner wallet enabled — Hermes SSO uses dev_auto=1"
   check_validator_rpc
 else

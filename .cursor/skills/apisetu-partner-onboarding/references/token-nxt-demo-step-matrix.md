@@ -44,4 +44,11 @@ Proof: `references/evidence/token-nxt-demo/cursor_proof/dryrun_20260713.json`, `
 - [x] Seller AG signed-in controls visible  
 - [x] Samantha ask → visible Atta + add-to-cart (after `catalogSearchQuery` + seeded demo-commerce)
 
-**Record allowed:** **Yes**
+**Historical local record gate:** **Pass** (2026-07-13)
+
+The 2026-07-15 script targets FQDN PreProd and adds an exact eight-beat Hermes
+walkthrough plus OpenAI-generated narration. This historical loopback proof does
+not authorize that new take. Create fresh FQDN screenshot + image-read proof for
+all eight beats before recording.
+
+**Record allowed for the 2026-07-15 FQDN script:** **No — fresh dry-run required.**

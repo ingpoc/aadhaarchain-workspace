@@ -1,0 +1,25 @@
+{
+  "recorded_at": "2026-07-19T17:07:05Z",
+  "scope": "final-local-visible-customer-acceptance",
+  "git_head": "d4ca699",
+  "buyer": {
+    "pass1": "Pass",
+    "ux": "Pass",
+    "pass2": "Pass",
+    "note": "earlier today on ui_repair_fingerprint"
+  },
+  "seller": {
+    "pass1": "Pass",
+    "ux": "Pass",
+    "pass2": "Pass",
+    "owner_dispatch_proof": "Pass"
+  },
+  "combined_ux": "Pass",
+  "evidence": {
+    "seller_pass1": "local-customer-seller-merchant-pass1-20260719-rerun.json",
+    "seller_ux": "local-customer-seller-ux-half-rerun-20260719.json",
+    "seller_pass2": "local-customer-seller-merchant-pass2-20260719.json",
+    "combined_ux": "local-customer-combined-ux-pass-20260719.json",
+    "owner_dispatch": "local-owner-dispatch-proof-pass-20260719.json"
+  }
+}

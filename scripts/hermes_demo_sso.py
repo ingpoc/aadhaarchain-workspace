@@ -89,7 +89,10 @@ def main() -> int:
     # injection checks even when WIP sock is healthy. Recover via session goto;
     # do not re-preflight the stuck active tab — SSO run uses use_selected_tab=False.
     try:
-        preflight = call(handler, {"action": "preflight", "timeout_seconds": 15})
+        preflight = call(
+            handler,
+            {"action": "preflight", "url": expect_return, "timeout_seconds": 15},
+        )
         if not preflight.get("ready"):
             print(json.dumps({"bridge_ready": False, "preflight": preflight}, indent=2), file=sys.stderr)
             return 1
@@ -129,12 +132,20 @@ def main() -> int:
     page_diag = load_page_diag().extract_diag(result)
     final_url = result.get("final_url") or ""
 
-    me_ok = any(
-        "principal_id" in (step.get("text") or "")
-        and "principal:demo:" in (step.get("text") or "")
-        for step in result.get("results", [])
-        if step.get("type") == "text"
-    )
+    principal_id = ""
+    for step in result.get("results", []):
+        if step.get("type") != "text":
+            continue
+        try:
+            payload = json.loads(step.get("text") or "{}")
+        except (TypeError, json.JSONDecodeError):
+            continue
+        candidate = ((payload.get("data") or {}).get("principal_id") or "").strip()
+        if candidate.startswith("principal:demo:"):
+            principal_id = candidate
+            break
+
+    me_ok = bool(principal_id)
     if not me_ok or expect_return.split("/")[2] not in final_url and expect_return not in final_url:
         # Host check: path presence is enough (43102/search etc.)
         landed = expect_return.rstrip("/") in final_url.rstrip("/") or any(
@@ -161,6 +172,7 @@ def main() -> int:
                 "bridge_ready": True,
                 "app": app,
                 "auth_mode": "demo_continue",
+                "principal_id": principal_id,
                 "login_url": login,
                 "final_url": final_url,
                 "page_diag": page_diag,

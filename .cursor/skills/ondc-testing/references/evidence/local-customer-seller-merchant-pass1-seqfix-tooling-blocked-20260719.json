@@ -1,0 +1,32 @@
+{
+  "recorded_at": "2026-07-19T17:19:00+0530",
+  "scope": "final-local-visible-customer-acceptance",
+  "status": "seller_merchant_pass1_seqfix_tooling_blocked",
+  "run": "seller-merchant-repair-pass1-seqfix",
+  "actor": "9fdbb587-9931-4a9a-8aa8-d9191178c29d",
+  "verdict": "Tooling Blocked",
+  "lease_ready_at": "2026-07-19T11:37:09Z",
+  "verdict_at": "2026-07-19T11:42:15Z",
+  "session_id": "seller-merchant-repair-pass1-seqfix",
+  "session_absent_after_closeout": false,
+  "published_item": {
+    "title": "Moong Dal 1kg",
+    "price_inr": 128,
+    "stock": 40
+  },
+  "prepared_order_outcome": "Accepted only; Dispatch unverified",
+  "order_ref": "A235CB9D",
+  "first_friction": "After Dispatch click: ensureContentScript(getPageContext) 3s timeout \u2192 EXTENSION_TIMEOUT; busy orphan",
+  "campaign_stop": true,
+  "campaign_stop_reason": "Same EXTENSION_TIMEOUT tooling class repeated after bounded recovery + seq-desync fix; stop further blind Seller merchant until owner Dispatch\u2192page_context proof passes",
+  "owner_fixes_applied": [
+    "sendToContentScript ensure 12s / message 10s + retry",
+    "page_context wait for tab.status complete",
+    "probeContentScript 1.5s timeout so hung probe cannot block re-inject",
+    "inject executeScript timeouts; clear-guard best-effort",
+    "stuckBusyStale orphan reclaim; reap busy past ttl",
+    "durable_lease_controller seq-matched send"
+  ],
+  "owner_proof_status": "incomplete \u2014 Dispatch click still flaky under load; false-pass avoided",
+  "next": "Main-thread owner proof: signed-in Accept\u2192Dispatch\u2192page_context with Dispatched terminal; then one blind Seller merchant journey"
+}

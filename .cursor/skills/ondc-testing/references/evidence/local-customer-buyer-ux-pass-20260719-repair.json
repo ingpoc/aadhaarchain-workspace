@@ -1,0 +1,24 @@
+{
+  "recorded_at": "2026-07-19T15:53:34+0530",
+  "base_source_hash": "af98738a621dfb6109e06d06c2833a20e593cb6e4cf8f08d3edb23dd3781088e",
+  "ui_repair_fingerprint": "sha256:22235abcd344ace09c4d9b4ba22483174a976fee38040204f2e1dc8c4e133267",
+  "scope": "final-local-visible-customer-acceptance",
+  "status": "buyer_ux_pass",
+  "run": "buyer-ux-af987-retest",
+  "actor": "240ebd28-af2d-49b0-808b-50373a459f47",
+  "verdict": "Pass",
+  "lease_ready_at": "2026-07-19T10:21:53Z",
+  "verdict_at": "2026-07-19T10:22:47Z",
+  "session_absent_after_closeout": true,
+  "unresolved_p0_p1": [],
+  "confirmed": [
+    "Ask Samantha opens Ask/Send panel",
+    "No api_key in shopper header",
+    "FAB does not block open panel"
+  ],
+  "screenshots": [
+    "/Users/gurusharan/plugins/hermes-chrome-cursor-wip/run/cache/hermes-chrome/dd5b569b-5085-40e6-8023-57e6bbabae92-1.png",
+    "/Users/gurusharan/plugins/hermes-chrome-cursor-wip/run/cache/hermes-chrome/8bca5958-9da8-48bf-b87e-f832ca1734d2-4.png"
+  ],
+  "next": "Buyer customer journey on repaired UI source (post-UX; counts toward two Passes)"
+}

@@ -240,18 +240,6 @@ def wake_gateway():
             meta[key] = json.loads(urllib.request.urlopen(url, timeout=30).read())
         except Exception as exc:
             meta[f"{key}_err"] = str(exc)
-    try:
-        req = urllib.request.Request(
-            f"{GATEWAY}/api/ondc/bpp/ensure-demo-item",
-            data=b"{}",
-            headers={"Content-Type": "application/json"},
-            method="POST",
-        )
-        meta["ensure_demo"] = json.loads(urllib.request.urlopen(req, timeout=60).read())
-    except Exception as exc:
-        meta["ensure_err"] = str(exc)
-
-
 def wait_orb_ready(handler, session: str, rounds: int = 10) -> dict:
     last = {}
     for _ in range(rounds):

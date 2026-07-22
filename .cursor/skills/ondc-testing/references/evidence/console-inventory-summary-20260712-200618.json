@@ -1,0 +1,14 @@
+{
+  "stamp": "20260712-200618",
+  "unique_issues": [
+    {
+      "msg": "fetch failed http://127.0.0.1:43102/api/cart?sessionId=session-1769264983827-fzqlgs6 TypeError: Failed to fetch",
+      "pages": [
+        "buyer:results_atta",
+        "buyer:search"
+      ]
+    }
+  ],
+  "raw_error_count": 4,
+  "raw_warn_count": 0
+}

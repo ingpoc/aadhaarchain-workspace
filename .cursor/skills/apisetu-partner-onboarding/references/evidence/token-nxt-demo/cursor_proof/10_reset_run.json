@@ -1,0 +1,192 @@
+{
+  "success": true,
+  "id": "31f62399-4b71-42b6-ac76-527f5b4cee39",
+  "tab_id": 1951715614,
+  "final_url": "http://127.0.0.1:43102/search",
+  "results": [
+    {
+      "type": "goto",
+      "tabId": 1951715614,
+      "url": "http://127.0.0.1:43102/search"
+    },
+    {
+      "type": "evaluate",
+      "result": {
+        "already": true,
+        "count": 3
+      }
+    },
+    {
+      "type": "wait",
+      "ms": 400
+    },
+    {
+      "type": "wait",
+      "ms": 2000
+    },
+    {
+      "type": "page_context",
+      "url": "http://127.0.0.1:43102/search",
+      "title": "ONDC Buyer",
+      "headings": [
+        {
+          "tag": "H1",
+          "text": "Search verified commerce"
+        }
+      ],
+      "nav": [
+        {
+          "text": "Search",
+          "href": "http://127.0.0.1:43102/search"
+        },
+        {
+          "text": "Cart",
+          "href": "http://127.0.0.1:43102/cart"
+        },
+        {
+          "text": "Orders",
+          "href": "http://127.0.0.1:43102/orders"
+        },
+        {
+          "text": "Config",
+          "href": "http://127.0.0.1:43102/config"
+        }
+      ],
+      "buttons": [
+        "Open search",
+        "Open runtime status",
+        "Sign out",
+        "Fashion",
+        "Search",
+        "S"
+      ],
+      "inputs": [
+        {
+          "name": "category",
+          "type": "select-one",
+          "value": "fashion"
+        },
+        {
+          "name": "query",
+          "type": "text",
+          "value": ""
+        }
+      ],
+      "console_error_count": 0,
+      "console_warn_count": 0,
+      "last_console_error": null
+    },
+    {
+      "type": "page_context",
+      "url": "http://127.0.0.1:43102/search",
+      "title": "ONDC Buyer",
+      "headings": [
+        {
+          "tag": "H1",
+          "text": "Search verified commerce"
+        }
+      ],
+      "nav": [
+        {
+          "text": "Search",
+          "href": "http://127.0.0.1:43102/search"
+        },
+        {
+          "text": "Cart",
+          "href": "http://127.0.0.1:43102/cart"
+        },
+        {
+          "text": "Orders",
+          "href": "http://127.0.0.1:43102/orders"
+        },
+        {
+          "text": "Config",
+          "href": "http://127.0.0.1:43102/config"
+        }
+      ],
+      "buttons": [
+        "Open search",
+        "Open runtime status",
+        "Sign out",
+        "Fashion",
+        "Search",
+        "S"
+      ],
+      "inputs": [
+        {
+          "name": "category",
+          "type": "select-one",
+          "value": "fashion"
+        },
+        {
+          "name": "query",
+          "type": "text",
+          "value": ""
+        }
+      ],
+      "console_error_count": 0,
+      "console_warn_count": 0,
+      "last_console_error": null
+    },
+    {
+      "type": "evaluate",
+      "result": {
+        "errors": [
+          "fetch failed https://gateway.aadharcha.in/api/realtime/status Failed to fetch",
+          "fetch failed https://gateway.aadharcha.in/api/realtime/status Failed to fetch",
+          "fetch failed https://gateway.aadharcha.in/api/realtime/status Failed to fetch"
+        ],
+        "installed": true,
+        "total": 3,
+        "warns": []
+      }
+    }
+  ],
+  "page_diag": {
+    "ok": false,
+    "ui": {
+      "url": "http://127.0.0.1:43102/search",
+      "title": "ONDC Buyer",
+      "headings": [
+        "Search verified commerce"
+      ],
+      "buttons": [
+        "Open search",
+        "Open runtime status",
+        "Sign out",
+        "Fashion",
+        "Search",
+        "S"
+      ]
+    },
+    "console": {
+      "installed": true,
+      "total": 3,
+      "errors": [
+        "fetch failed https://gateway.aadharcha.in/api/realtime/status Failed to fetch",
+        "fetch failed https://gateway.aadharcha.in/api/realtime/status Failed to fetch",
+        "fetch failed https://gateway.aadharcha.in/api/realtime/status Failed to fetch"
+      ],
+      "warns": []
+    },
+    "backend": [],
+    "issues": [
+      {
+        "source": "console",
+        "level": "error",
+        "msg": "fetch failed https://gateway.aadharcha.in/api/realtime/status Failed to fetch"
+      },
+      {
+        "source": "console",
+        "level": "error",
+        "msg": "fetch failed https://gateway.aadharcha.in/api/realtime/status Failed to fetch"
+      },
+      {
+        "source": "console",
+        "level": "error",
+        "msg": "fetch failed https://gateway.aadharcha.in/api/realtime/status Failed to fetch"
+      }
+    ],
+    "final_url": "http://127.0.0.1:43102/search"
+  }
+}

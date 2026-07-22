@@ -1,0 +1,3302 @@
+{
+  "status_http": 200,
+  "status": {
+    "success": true,
+    "data": {
+      "enabled": true,
+      "configured": true,
+      "subscriber_id": "ondcbuyer.aadharcha.in",
+      "bap_id": "ondcbuyer.aadharcha.in",
+      "bap_uri": "https://ondcbuyer.aadharcha.in/ondc",
+      "gateway_url": "https://preprod.gateway.ondc.org/search",
+      "registry_url": "https://preprod.registry.ondc.org/v2.0/lookup",
+      "signing_key_present": true,
+      "unique_key_id": "1aee68ad-bc2a-4fc4-b233-7e14c6abba9b",
+      "registry_env": "preprod",
+      "outbox_depth": 7,
+      "inbox_depth": 86,
+      "note": "PreProd: signed lookup + search + select/init/confirm when enabled+configured. Do not flip VITE_COMMERCE_DEMO_MODE without commerce_demo_mode_gate evidence."
+    }
+  }
+}
+{
+  "lookup_http": 200,
+  "lookup": {
+    "success": true,
+    "data": {
+      "http_status": 200,
+      "registry_url": "https://preprod.registry.ondc.org/v2.0/lookup",
+      "request": {
+        "subscriber_id": "ondcbuyer.aadharcha.in",
+        "domain": "ONDC:RET10",
+        "country": "IND",
+        "type": "BAP",
+        "ukId": "1aee68ad-bc2a-4fc4-b233-7e14c6abba9b"
+      },
+      "response": [
+        {
+          "subscriber_id": "ondcbuyer.aadharcha.in",
+          "status": "SUBSCRIBED",
+          "ukId": "1aee68ad-bc2a-4fc4-b233-7e14c6abba9b",
+          "subscriber_url": "https://ondcbuyer.aadharcha.in/ondc",
+          "country": "IND",
+          "domain": "ONDC:RET10",
+          "valid_from": "2026-07-12T08:36:49.232Z",
+          "valid_until": "2027-07-12T08:36:49.232Z",
+          "type": "BAP",
+          "signing_public_key": "ZRhviWsJWmC6ZxfQLVFnshJlrmSGPMArhZXSkxRXkKw=",
+          "encr_public_key": "MCowBQYDK2VuAyEAK9alCEqSh+aAX6TSmLrBwJhrZBhcyDaVWEkFE5swxBo=",
+          "created": "2026-07-12T08:39:17.346Z",
+          "updated": "2026-07-12T08:39:17.346Z",
+          "br_id": "1aee68ad-bc2a-4fc4-b233-7e14c6abba9b",
+          "city": "*"
+        }
+      ]
+    }
+  }
+}
+{
+  "search_http": 200,
+  "search": {
+    "success": true,
+    "data": {
+      "queued": false,
+      "dispatched": true,
+      "outbox_id": "out_8d7251bee7ee",
+      "message_id": "fd1a7326-95c9-4c88-bf11-fc0452a4cc22",
+      "transaction_id": "5a3c8648-5f9d-4f8b-a7b0-efabae178482",
+      "http_status": 200,
+      "ack": "ACK",
+      "gateway_url": "https://preprod.gateway.ondc.org/search",
+      "gateway_response": {
+        "context": {
+          "domain": "ONDC:RET10",
+          "action": "search",
+          "bap_id": "ondcbuyer.aadharcha.in",
+          "bap_uri": "https://ondcbuyer.aadharcha.in/ondc",
+          "transaction_id": "5a3c8648-5f9d-4f8b-a7b0-efabae178482",
+          "message_id": "fd1a7326-95c9-4c88-bf11-fc0452a4cc22",
+          "timestamp": "2026-07-12T14:41:27.896Z",
+          "ttl": "PT30S"
+        },
+        "message": {
+          "ack": {
+            "status": "ACK"
+          }
+        }
+      },
+      "note": "Poll GET /api/ondc/catalogs?transaction_id=\u2026 for on_search results."
+    }
+  }
+}
+{
+  "catalogs_http": 200,
+  "catalogs": {
+    "success": true,
+    "data": {
+      "transaction_id": "5a3c8648-5f9d-4f8b-a7b0-efabae178482",
+      "items": [
+        {
+          "id": "504448752",
+          "name": "Deep Jyoti Refined Soyabean Oil Bottle 1LT X 12",
+          "description": "Unadulterated oil Anti-spillage bottle design\r\nEasy to store and convenient to use when cooking\r\nSuitable for use in deep frying, sauteing and salad dressings\r\nWith a specially designed antioxidant system that helps improve immunity\r\nSuitable for high-temperature cooking",
+          "price_inr": "1695.92",
+          "currency": "INR",
+          "provider_id": "6749",
+          "provider_name": "Hanuman Amar Chomu",
+          "bpp_id": "ondc1.mydailygoods.com",
+          "bpp_uri": "https://ondc1.mydailygoods.com",
+          "transaction_id": "5a3c8648-5f9d-4f8b-a7b0-efabae178482",
+          "inbox_id": "in_fa7644568e94",
+          "raw_item": {
+            "id": "504448752",
+            "parent_item_id": "V504448752",
+            "time": {
+              "label": "enable",
+              "timestamp": "2026-07-12T14:41:28.072Z"
+            },
+            "descriptor": {
+              "name": "Deep Jyoti Refined Soyabean Oil Bottle 1LT X 12",
+              "code": "5:504448752",
+              "short_desc": "Deep Jyoti Refined Soyabean Oil Plastic Bottle  (1 L)",
+              "long_desc": "Unadulterated oil Anti-spillage bottle design\r\nEasy to store and convenient to use when cooking\r\nSuitable for use in deep frying, sauteing and salad dressings\r\nWith a specially designed antioxidant system that helps improve immunity\r\nSuitable for high-temperature cooking",
+              "symbol": "https://www.mydailygoods.com/admin/product_img/504448752_51753540795.png",
+              "images": [
+                "https://www.mydailygoods.com/admin/product_img/504448752_83753541016.png",
+                "https://www.mydailygoods.com/admin/product_img/1755706837.png"
+              ]
+            },
+            "price": {
+              "currency": "INR",
+              "value": "1695.92",
+              "maximum_value": "2204.08"
+            },
+            "quantity": {
+              "available": {
+                "count": "99"
+              },
+              "maximum": {
+                "count": "99"
+              },
+              "unitized": {
+                "measure": {
+                  "unit": "unit",
+                  "value": "12"
+                }
+              }
+            },
+            "category_id": "Oil & Ghee",
+            "fulfillment_id": "F1",
+            "location_id": "L4911",
+            "@ondc/org/returnable": false,
+            "@ondc/org/cancellable": false,
+            "@ondc/org/available_on_cod": true,
+            "@ondc/org/return_window": "P7D",
+            "@ondc/org/seller_pickup_return": false,
+            "@ondc/org/time_to_ship": "PT24H",
+            "@ondc/org/contact_details_consumer_care": "Hanuman Amar Chomu,support@mydailygoods.com,9528460488",
+            "@ondc/org/statutory_reqs_packaged_commodities": {
+              "manufacturer_or_packer_name": "Hanuman Amar Chomu",
+              "manufacturer_or_packer_address": "test",
+              "common_or_generic_name_of_commodity": "Deep Jyoti Refined Soyabean Oil Bottle 1LT X 12",
+              "month_year_of_manufacture_packing_import": "07/2026"
+            },
+            "tags": [
+              {
+                "code": "origin",
+                "list": [
+                  {
+                    "code": "country",
+                    "value": "IND"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": "504448758",
+          "name": "DEEP JYOTI Refined Soybean Oil TIN 15KG",
+          "description": "Soyabean oil is better known for reducing cholesterol levels and minimizing heart issues. This Refined Soybean Oil from Deep Jyoti is a premium quality product and is made from A-1 quality soybeans. It has a great shelf life of 6 months and is a suitable product for vegetarians. With the presence of good omega-3 fatty acids and an advantageous factor for good bone health, this is a versatile product and can be used as a cooking oil in any household. Get ready to use this oil for your daily cooking and store it in your kitchen as an essential commodity. 100% premium and refined product. An acceptable item for both vegetarians and non-vegetarians. Economical and conveniently priced.",
+          "price_inr": "2255.10",
+          "currency": "INR",
+          "provider_id": "6749",
+          "provider_name": "Hanuman Amar Chomu",
+          "bpp_id": "ondc1.mydailygoods.com",
+          "bpp_uri": "https://ondc1.mydailygoods.com",
+          "transaction_id": "5a3c8648-5f9d-4f8b-a7b0-efabae178482",
+          "inbox_id": "in_fa7644568e94",
+          "raw_item": {
+            "id": "504448758",
+            "parent_item_id": "V504448758",
+            "time": {
+              "label": "enable",
+              "timestamp": "2026-07-12T14:41:28.072Z"
+            },
+            "descriptor": {
+              "name": "DEEP JYOTI Refined Soybean Oil TIN 15KG",
+              "code": "5:504448758",
+              "short_desc": "DEEP JYOTI Refined Soybean Oil - Omega 3 Fatty Acids Rich Cooking Medium, Supports Heart Health, Bone Health",
+              "long_desc": "Soyabean oil is better known for reducing cholesterol levels and minimizing heart issues. This Refined Soybean Oil from Deep Jyoti is a premium quality product and is made from A-1 quality soybeans. It has a great shelf life of 6 months and is a suitable product for vegetarians. With the presence of good omega-3 fatty acids and an advantageous factor for good bone health, this is a versatile product and can be used as a cooking oil in any household. Get ready to use this oil for your daily cooking and store it in your kitchen as an essential commodity. 100% premium and refined product. An acceptable item for both vegetarians and non-vegetarians. Economical and conveniently priced.",
+              "symbol": "https://www.mydailygoods.com/admin/product_img/1753546258.png",
+              "images": []
+            },
+            "price": {
+              "currency": "INR",
+              "value": "2255.10",
+              "maximum_value": "2551.02"
+            },
+            "quantity": {
+              "available": {
+                "count": "0"
+              },
+              "maximum": {
+                "count": "99"
+              },
+              "unitized": {
+                "measure": {
+                  "unit": "kilogram",
+                  "value": "15"
+                }
+              }
+            },
+            "category_id": "Oil & Ghee",
+            "fulfillment_id": "F1",
+            "location_id": "L4911",
+            "@ondc/org/returnable": false,
+            "@ondc/org/cancellable": false,
+            "@ondc/org/available_on_cod": true,
+            "@ondc/org/return_window": "P7D",
+            "@ondc/org/seller_pickup_return": false,
+            "@ondc/org/time_to_ship": "PT24H",
+            "@ondc/org/contact_details_consumer_care": "Hanuman Amar Chomu,support@mydailygoods.com,9528460488",
+            "@ondc/org/statutory_reqs_packaged_commodities": {
+              "manufacturer_or_packer_name": "Hanuman Amar Chomu",
+              "manufacturer_or_packer_address": "test",
+              "common_or_generic_name_of_commodity": "DEEP JYOTI Refined Soybean Oil TIN 15KG",
+              "month_year_of_manufacture_packing_import": "07/2026"
+            },
+            "tags": [
+              {
+                "code": "origin",
+                "list": [
+                  {
+                    "code": "country",
+                    "value": "IND"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": "504448933",
+          "name": "Mango Pickle",
+          "description": "Organic Homemade Mango Pickle ,No Preservative, No Vinegar, No Color, No Chemical ,Pure Sarso Ke Oil Se Bana Hua  Hai. Bilkul Natural Tarike Se Bana Hua. Sudh Ghar Ke Masale Use Kiya Hua Hai",
+          "price_inr": "219.39",
+          "currency": "INR",
+          "provider_id": "6917",
+          "provider_name": "House wife Pickle",
+          "bpp_id": "ondc1.mydailygoods.com",
+          "bpp_uri": "https://ondc1.mydailygoods.com",
+          "transaction_id": "5a3c8648-5f9d-4f8b-a7b0-efabae178482",
+          "inbox_id": "in_fa7644568e94",
+          "raw_item": {
+            "id": "504448933",
+            "parent_item_id": "V504448933",
+            "time": {
+              "label": "enable",
+              "timestamp": "2026-07-12T14:41:28.072Z"
+            },
+            "descriptor": {
+              "name": "Mango Pickle",
+              "code": "5:504448933",
+              "short_desc": "Organic Homemade Mango Pickle",
+              "long_desc": "Organic Homemade Mango Pickle ,No Preservative, No Vinegar, No Color, No Chemical ,Pure Sarso Ke Oil Se Bana Hua  Hai. Bilkul Natural Tarike Se Bana Hua. Sudh Ghar Ke Masale Use Kiya Hua Hai",
+              "symbol": "https://www.mydailygoods.com/admin/product_img/504448933_51000401416.jpg",
+              "images": [
+                "https://www.mydailygoods.com/admin/product_img/504448933_83933000367499.jpg",
+                "https://www.mydailygoods.com/admin/product_img/504448933_69299000367472.jpg"
+              ]
+            },
+            "price": {
+              "currency": "INR",
+              "value": "219.39",
+              "maximum_value": "255.10"
+            },
+            "quantity": {
+              "available": {
+                "count": "99"
+              },
+              "maximum": {
+                "count": "99"
+              },
+              "unitized": {
+                "measure": {
+                  "unit": "unit",
+                  "value": "500"
+                }
+              }
+            },
+            "category_id": "Pickles and Chutney",
+            "fulfillment_id": "F1",
+            "location_id": "L5000",
+            "@ondc/org/returnable": false,
+            "@ondc/org/cancellable": false,
+            "@ondc/org/available_on_cod": true,
+            "@ondc/org/return_window": "P7D",
+            "@ondc/org/seller_pickup_return": false,
+            "@ondc/org/time_to_ship": "PT24H",
+            "@ondc/org/contact_details_consumer_care": "House wife Pickle,support@mydailygoods.com,9528460488",
+            "@ondc/org/statutory_reqs_packaged_commodities": {
+              "manufacturer_or_packer_name": "House wife Pickle",
+              "manufacturer_or_packer_address": "test",
+              "common_or_generic_name_of_commodity": "Mango Pickle",
+              "month_year_of_manufacture_packing_import": "07/2026"
+            },
+            "tags": [
+              {
+                "code": "origin",
+                "list": [
+                  {
+                    "code": "country",
+                    "value": "IND"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": "504448934",
+          "name": "Green Chilli Pickle",
+          "description": "Green Chilli Pickle - 500 unit",
+          "price_inr": "219.39",
+          "currency": "INR",
+          "provider_id": "6917",
+          "provider_name": "House wife Pickle",
+          "bpp_id": "ondc1.mydailygoods.com",
+          "bpp_uri": "https://ondc1.mydailygoods.com",
+          "transaction_id": "5a3c8648-5f9d-4f8b-a7b0-efabae178482",
+          "inbox_id": "in_fa7644568e94",
+          "raw_item": {
+            "id": "504448934",
+            "parent_item_id": "V504448934",
+            "time": {
+              "label": "enable",
+              "timestamp": "2026-07-12T14:41:28.072Z"
+            },
+            "descriptor": {
+              "name": "Green Chilli Pickle",
+              "code": "5:504448934",
+              "short_desc": "Green Chilli Pickle - 500 unit",
+              "long_desc": "Green Chilli Pickle - 500 unit",
+              "symbol": "https://www.mydailygoods.com/admin/product_img/504448934_51000396198.jpg",
+              "images": [
+                "https://www.mydailygoods.com/admin/product_img/504448934_833000370859.jpg",
+                "https://www.mydailygoods.com/admin/product_img/504448934_699000370862.jpg"
+              ]
+            },
+            "price": {
+              "currency": "INR",
+              "value": "219.39",
+              "maximum_value": "255.10"
+            },
+            "quantity": {
+              "available": {
+                "count": "99"
+              },
+              "maximum": {
+                "count": "99"
+              },
+              "unitized": {
+                "measure": {
+                  "unit": "unit",
+                  "value": "500"
+                }
+              }
+            },
+            "category_id": "Pickles and Chutney",
+            "fulfillment_id": "F1",
+            "location_id": "L5000",
+            "@ondc/org/returnable": false,
+            "@ondc/org/cancellable": false,
+            "@ondc/org/available_on_cod": true,
+            "@ondc/org/return_window": "P7D",
+            "@ondc/org/seller_pickup_return": false,
+            "@ondc/org/time_to_ship": "PT24H",
+            "@ondc/org/contact_details_consumer_care": "House wife Pickle,support@mydailygoods.com,9528460488",
+            "@ondc/org/statutory_reqs_packaged_commodities": {
+              "manufacturer_or_packer_name": "House wife Pickle",
+              "manufacturer_or_packer_address": "test",
+              "common_or_generic_name_of_commodity": "Green Chilli Pickle",
+              "month_year_of_manufacture_packing_import": "07/2026"
+            },
+            "tags": [
+              {
+                "code": "origin",
+                "list": [
+                  {
+                    "code": "country",
+                    "value": "IND"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": "504448906",
+          "name": "Haldi Powder",
+          "description": "Haldi Powder - 100 unit",
+          "price_inr": "30.61",
+          "currency": "INR",
+          "provider_id": "6914",
+          "provider_name": "al madina shop",
+          "bpp_id": "ondc1.mydailygoods.com",
+          "bpp_uri": "https://ondc1.mydailygoods.com",
+          "transaction_id": "5a3c8648-5f9d-4f8b-a7b0-efabae178482",
+          "inbox_id": "in_fa7644568e94",
+          "raw_item": {
+            "id": "504448906",
+            "parent_item_id": "V504448906",
+            "time": {
+              "label": "enable",
+              "timestamp": "2026-07-12T14:41:28.072Z"
+            },
+            "descriptor": {
+              "name": "Haldi Powder",
+              "code": "5:504448906",
+              "short_desc": "Haldi Powder - 100 unit",
+              "long_desc": "Haldi Powder - 100 unit",
+              "symbol": "https://www.mydailygoods.com/admin/product_img/504448906_691453556.jpg",
+              "images": []
+            },
+            "price": {
+              "currency": "INR",
+              "value": "30.61",
+              "maximum_value": "40.82"
+            },
+            "quantity": {
+              "available": {
+                "count": "99"
+              },
+              "maximum": {
+                "count": "99"
+              },
+              "unitized": {
+                "measure": {
+                  "unit": "unit",
+                  "value": "100"
+                }
+              }
+            },
+            "category_id": "Masala & Seasoning",
+            "fulfillment_id": "F1",
+            "location_id": "L4998",
+            "@ondc/org/returnable": false,
+            "@ondc/org/cancellable": false,
+            "@ondc/org/available_on_cod": true,
+            "@ondc/org/return_window": "P7D",
+            "@ondc/org/seller_pickup_return": false,
+            "@ondc/org/time_to_ship": "PT24H",
+            "@ondc/org/contact_details_consumer_care": "al madina shop,support@mydailygoods.com,9528460488",
+            "@ondc/org/statutory_reqs_packaged_commodities": {
+              "manufacturer_or_packer_name": "al madina shop",
+              "manufacturer_or_packer_address": "test",
+              "common_or_generic_name_of_commodity": "Haldi Powder",
+              "month_year_of_manufacture_packing_import": "07/2026"
+            },
+            "tags": [
+              {
+                "code": "origin",
+                "list": [
+                  {
+                    "code": "country",
+                    "value": "IND"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": "504448908",
+          "name": "Red Chilli Powder",
+          "description": "Red Chilli Powder - 100 unit",
+          "price_inr": "38.78",
+          "currency": "INR",
+          "provider_id": "6914",
+          "provider_name": "al madina shop",
+          "bpp_id": "ondc1.mydailygoods.com",
+          "bpp_uri": "https://ondc1.mydailygoods.com",
+          "transaction_id": "5a3c8648-5f9d-4f8b-a7b0-efabae178482",
+          "inbox_id": "in_fa7644568e94",
+          "raw_item": {
+            "id": "504448908",
+            "parent_item_id": "V504448908",
+            "time": {
+              "label": "enable",
+              "timestamp": "2026-07-12T14:41:28.072Z"
+            },
+            "descriptor": {
+              "name": "Red Chilli Powder",
+              "code": "5:504448908",
+              "short_desc": "Red Chilli Powder - 100 unit",
+              "long_desc": "Red Chilli Powder - 100 unit",
+              "symbol": "https://www.mydailygoods.com/admin/product_img/504448908_691441386.jpg",
+              "images": [
+                "https://www.mydailygoods.com/admin/product_img/504448908_691421564.jpg"
+              ]
+            },
+            "price": {
+              "currency": "INR",
+              "value": "38.78",
+              "maximum_value": "47.96"
+            },
+            "quantity": {
+              "available": {
+                "count": "99"
+              },
+              "maximum": {
+                "count": "99"
+              },
+              "unitized": {
+                "measure": {
+                  "unit": "unit",
+                  "value": "100"
+                }
+              }
+            },
+            "category_id": "Masala & Seasoning",
+            "fulfillment_id": "F1",
+            "location_id": "L4998",
+            "@ondc/org/returnable": false,
+            "@ondc/org/cancellable": false,
+            "@ondc/org/available_on_cod": true,
+            "@ondc/org/return_window": "P7D",
+            "@ondc/org/seller_pickup_return": false,
+            "@ondc/org/time_to_ship": "PT24H",
+            "@ondc/org/contact_details_consumer_care": "al madina shop,support@mydailygoods.com,9528460488",
+            "@ondc/org/statutory_reqs_packaged_commodities": {
+              "manufacturer_or_packer_name": "al madina shop",
+              "manufacturer_or_packer_address": "test",
+              "common_or_generic_name_of_commodity": "Red Chilli Powder",
+              "month_year_of_manufacture_packing_import": "07/2026"
+            },
+            "tags": [
+              {
+                "code": "origin",
+                "list": [
+                  {
+                    "code": "country",
+                    "value": "IND"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": "504448980",
+          "name": "Mango pickle. 250 rs kg",
+          "description": "Mango pickle. 250 rs kg - 1 kilogram",
+          "price_inr": "255.10",
+          "currency": "INR",
+          "provider_id": "6907",
+          "provider_name": "KG enterprises",
+          "bpp_id": "ondc1.mydailygoods.com",
+          "bpp_uri": "https://ondc1.mydailygoods.com",
+          "transaction_id": "5a3c8648-5f9d-4f8b-a7b0-efabae178482",
+          "inbox_id": "in_fa7644568e94",
+          "raw_item": {
+            "id": "504448980",
+            "parent_item_id": "V504448980",
+            "time": {
+              "label": "enable",
+              "timestamp": "2026-07-12T14:41:28.072Z"
+            },
+            "descriptor": {
+              "name": "Mango pickle. 250 rs kg",
+              "code": "5:504448980",
+              "short_desc": "Mango pickle. 250 rs kg - 1 kilogram",
+              "long_desc": "Mango pickle. 250 rs kg - 1 kilogram",
+              "symbol": "https://www.mydailygoods.com/admin/product_img/504448980_690724949.jpg",
+              "images": []
+            },
+            "price": {
+              "currency": "INR",
+              "value": "255.10",
+              "maximum_value": "357.14"
+            },
+            "quantity": {
+              "available": {
+                "count": "99"
+              },
+              "maximum": {
+                "count": "99"
+              },
+              "unitized": {
+                "measure": {
+                  "unit": "kilogram",
+                  "value": "1"
+                }
+              }
+            },
+            "category_id": "Pickles and Chutney",
+            "fulfillment_id": "F1",
+            "location_id": "L4994",
+            "@ondc/org/returnable": false,
+            "@ondc/org/cancellable": false,
+            "@ondc/org/available_on_cod": true,
+            "@ondc/org/return_window": "P7D",
+            "@ondc/org/seller_pickup_return": false,
+            "@ondc/org/time_to_ship": "PT24H",
+            "@ondc/org/contact_details_consumer_care": "KG enterprises,support@mydailygoods.com,9528460488",
+            "@ondc/org/statutory_reqs_packaged_commodities": {
+              "manufacturer_or_packer_name": "KG enterprises",
+              "manufacturer_or_packer_address": "test",
+              "common_or_generic_name_of_commodity": "Mango pickle. 250 rs kg",
+              "month_year_of_manufacture_packing_import": "07/2026"
+            },
+            "tags": [
+              {
+                "code": "origin",
+                "list": [
+                  {
+                    "code": "country",
+                    "value": "IND"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": "504448983",
+          "name": "Red chilli. 200 rs kg",
+          "description": "Red chilli. 200 rs kg - 1 kilogram",
+          "price_inr": "204.08",
+          "currency": "INR",
+          "provider_id": "6907",
+          "provider_name": "KG enterprises",
+          "bpp_id": "ondc1.mydailygoods.com",
+          "bpp_uri": "https://ondc1.mydailygoods.com",
+          "transaction_id": "5a3c8648-5f9d-4f8b-a7b0-efabae178482",
+          "inbox_id": "in_fa7644568e94",
+          "raw_item": {
+            "id": "504448983",
+            "parent_item_id": "V504448983",
+            "time": {
+              "label": "enable",
+              "timestamp": "2026-07-12T14:41:28.072Z"
+            },
+            "descriptor": {
+              "name": "Red chilli. 200 rs kg",
+              "code": "5:504448983",
+              "short_desc": "Red chilli. 200 rs kg - 1 kilogram",
+              "long_desc": "Red chilli. 200 rs kg - 1 kilogram",
+              "symbol": "https://www.mydailygoods.com/admin/product_img/504448983_690756888.jpg",
+              "images": []
+            },
+            "price": {
+              "currency": "INR",
+              "value": "204.08",
+              "maximum_value": "306.12"
+            },
+            "quantity": {
+              "available": {
+                "count": "99"
+              },
+              "maximum": {
+                "count": "99"
+              },
+              "unitized": {
+                "measure": {
+                  "unit": "kilogram",
+                  "value": "1"
+                }
+              }
+            },
+            "category_id": "Pickles and Chutney",
+            "fulfillment_id": "F1",
+            "location_id": "L4994",
+            "@ondc/org/returnable": false,
+            "@ondc/org/cancellable": false,
+            "@ondc/org/available_on_cod": true,
+            "@ondc/org/return_window": "P7D",
+            "@ondc/org/seller_pickup_return": false,
+            "@ondc/org/time_to_ship": "PT24H",
+            "@ondc/org/contact_details_consumer_care": "KG enterprises,support@mydailygoods.com,9528460488",
+            "@ondc/org/statutory_reqs_packaged_commodities": {
+              "manufacturer_or_packer_name": "KG enterprises",
+              "manufacturer_or_packer_address": "test",
+              "common_or_generic_name_of_commodity": "Red chilli. 200 rs kg",
+              "month_year_of_manufacture_packing_import": "07/2026"
+            },
+            "tags": [
+              {
+                "code": "origin",
+                "list": [
+                  {
+                    "code": "country",
+                    "value": "IND"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": "504450522",
+          "name": "Anjeer special",
+          "description": "Anjeer special - 500 unit",
+          "price_inr": "739.80",
+          "currency": "INR",
+          "provider_id": "8011",
+          "provider_name": "RADHE DRY FRUITS",
+          "bpp_id": "ondc1.mydailygoods.com",
+          "bpp_uri": "https://ondc1.mydailygoods.com",
+          "transaction_id": "5a3c8648-5f9d-4f8b-a7b0-efabae178482",
+          "inbox_id": "in_fa7644568e94",
+          "raw_item": {
+            "id": "504450522",
+            "parent_item_id": "V504450522",
+            "time": {
+              "label": "enable",
+              "timestamp": "2026-07-12T14:41:28.072Z"
+            },
+            "descriptor": {
+              "name": "Anjeer special",
+              "code": "5:504450522",
+              "short_desc": "Anjeer special - 500 unit",
+              "long_desc": "Anjeer special - 500 unit",
+              "symbol": "https://www.mydailygoods.com/admin/product_img/504450522_801145992.jpg",
+              "images": [
+                "https://www.mydailygoods.com/admin/product_img/504450522_801163663.jpg"
+              ]
+            },
+            "price": {
+              "currency": "INR",
+              "value": "739.80",
+              "maximum_value": "841.84"
+            },
+            "quantity": {
+              "available": {
+                "count": "99"
+              },
+              "maximum": {
+                "count": "99"
+              },
+              "unitized": {
+                "measure": {
+                  "unit": "unit",
+                  "value": "500"
+                }
+              }
+            },
+            "category_id": "Masala & Seasoning",
+            "fulfillment_id": "F1",
+            "location_id": "L5836",
+            "@ondc/org/returnable": false,
+            "@ondc/org/cancellable": false,
+            "@ondc/org/available_on_cod": true,
+            "@ondc/org/return_window": "P7D",
+            "@ondc/org/seller_pickup_return": false,
+            "@ondc/org/time_to_ship": "PT24H",
+            "@ondc/org/contact_details_consumer_care": "RADHE DRY FRUITS,support@mydailygoods.com,9528460488",
+            "@ondc/org/statutory_reqs_packaged_commodities": {
+              "manufacturer_or_packer_name": "RADHE DRY FRUITS",
+              "manufacturer_or_packer_address": "test",
+              "common_or_generic_name_of_commodity": "Anjeer special",
+              "month_year_of_manufacture_packing_import": "07/2026"
+            },
+            "tags": [
+              {
+                "code": "origin",
+                "list": [
+                  {
+                    "code": "country",
+                    "value": "IND"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": "504450611",
+          "name": "Walnuts",
+          "description": "Walnuts - 1 unit",
+          "price_inr": "438.78",
+          "currency": "INR",
+          "provider_id": "7845",
+          "provider_name": "RASHAN JUNCTION",
+          "bpp_id": "ondc1.mydailygoods.com",
+          "bpp_uri": "https://ondc1.mydailygoods.com",
+          "transaction_id": "5a3c8648-5f9d-4f8b-a7b0-efabae178482",
+          "inbox_id": "in_fa7644568e94",
+          "raw_item": {
+            "id": "504450611",
+            "parent_item_id": "V504450611",
+            "time": {
+              "label": "enable",
+              "timestamp": "2026-07-12T14:41:28.072Z"
+            },
+            "descriptor": {
+              "name": "Walnuts",
+              "code": "5:504450611",
+              "short_desc": "Walnuts - 1 unit",
+              "long_desc": "Walnuts - 1 unit",
+              "symbol": "https://www.mydailygoods.com/admin/product_img/504450611_784563352.jpg",
+              "images": []
+            },
+            "price": {
+              "currency": "INR",
+              "value": "438.78",
+              "maximum_value": "815.31"
+            },
+            "quantity": {
+              "available": {
+                "count": "99"
+              },
+              "maximum": {
+                "count": "99"
+              },
+              "unitized": {
+                "measure": {
+                  "unit": "unit",
+                  "value": "1"
+                }
+              }
+            },
+            "category_id": "Snacks, Dry Fruits, Nuts",
+            "fulfillment_id": "F1",
+            "location_id": "L5682",
+            "@ondc/org/returnable": false,
+            "@ondc/org/cancellable": false,
+            "@ondc/org/available_on_cod": true,
+            "@ondc/org/return_window": "P7D",
+            "@ondc/org/seller_pickup_return": false,
+            "@ondc/org/time_to_ship": "PT24H",
+            "@ondc/org/contact_details_consumer_care": "RASHAN JUNCTION,support@mydailygoods.com,9528460488",
+            "@ondc/org/statutory_reqs_packaged_commodities": {
+              "manufacturer_or_packer_name": "RASHAN JUNCTION",
+              "manufacturer_or_packer_address": "test",
+              "common_or_generic_name_of_commodity": "Walnuts",
+              "month_year_of_manufacture_packing_import": "07/2026"
+            },
+            "tags": [
+              {
+                "code": "origin",
+                "list": [
+                  {
+                    "code": "country",
+                    "value": "IND"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": "504450612",
+          "name": "Munakkha Or Abjosh",
+          "description": "Munakkha Or Abjosh - 1 unit",
+          "price_inr": "224.49",
+          "currency": "INR",
+          "provider_id": "7845",
+          "provider_name": "RASHAN JUNCTION",
+          "bpp_id": "ondc1.mydailygoods.com",
+          "bpp_uri": "https://ondc1.mydailygoods.com",
+          "transaction_id": "5a3c8648-5f9d-4f8b-a7b0-efabae178482",
+          "inbox_id": "in_fa7644568e94",
+          "raw_item": {
+            "id": "504450612",
+            "parent_item_id": "V504450612",
+            "time": {
+              "label": "enable",
+              "timestamp": "2026-07-12T14:41:28.072Z"
+            },
+            "descriptor": {
+              "name": "Munakkha Or Abjosh",
+              "code": "5:504450612",
+              "short_desc": "Munakkha Or Abjosh - 1 unit",
+              "long_desc": "Munakkha Or Abjosh - 1 unit",
+              "symbol": "https://www.mydailygoods.com/admin/product_img/504450612_784596725.jpg",
+              "images": []
+            },
+            "price": {
+              "currency": "INR",
+              "value": "224.49",
+              "maximum_value": "357.14"
+            },
+            "quantity": {
+              "available": {
+                "count": "99"
+              },
+              "maximum": {
+                "count": "99"
+              },
+              "unitized": {
+                "measure": {
+                  "unit": "unit",
+                  "value": "1"
+                }
+              }
+            },
+            "category_id": "Snacks, Dry Fruits, Nuts",
+            "fulfillment_id": "F1",
+            "location_id": "L5682",
+            "@ondc/org/returnable": false,
+            "@ondc/org/cancellable": false,
+            "@ondc/org/available_on_cod": true,
+            "@ondc/org/return_window": "P7D",
+            "@ondc/org/seller_pickup_return": false,
+            "@ondc/org/time_to_ship": "PT24H",
+            "@ondc/org/contact_details_consumer_care": "RASHAN JUNCTION,support@mydailygoods.com,9528460488",
+            "@ondc/org/statutory_reqs_packaged_commodities": {
+              "manufacturer_or_packer_name": "RASHAN JUNCTION",
+              "manufacturer_or_packer_address": "test",
+              "common_or_generic_name_of_commodity": "Munakkha Or Abjosh",
+              "month_year_of_manufacture_packing_import": "07/2026"
+            },
+            "tags": [
+              {
+                "code": "origin",
+                "list": [
+                  {
+                    "code": "country",
+                    "value": "IND"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": "504451252",
+          "name": "Taj Hing Spice Compound Buy 1 Get 1 Free",
+          "description": "Product Overview\n\nExperience the rich, traditional flavor of Indian cooking with the Taj Hing Compound. This versatile spice blend adds a unique depth to your dishes, enhancing their taste and aroma.\n\nCategory\n\nspices\n\nKey Features\n\nTaj Hing Compound is a premium blend of high-quality spices, free from artificial preservatives and additives. It is easy to use and adds a burst of flavor to various dishes.\n\nIdeal For\n\nIdeal for those who love to cook Indian dishes and want to add an authentic touch to their culinary creations.\n\nMaterial Colour\n\nBrown\n\nCare Instructions\n\nStore in a cool, dry place away from direct sunlight.\n\nWhy You will Love It\n\nTaj Hing Compound is a must-have in your spice rack. Its unique flavor profile will elevate your Indian cooking, making your dishes stand out. Trusted by Indian households for generations, it is a testament to quality and authenticity.\n\nProduct Type\n\nProduct type: Taj Hing Compound\n\nOccasion\n\nOccassion: None",
+          "price_inr": "306.12",
+          "currency": "INR",
+          "provider_id": "8739",
+          "provider_name": "RS Taj hing",
+          "bpp_id": "ondc1.mydailygoods.com",
+          "bpp_uri": "https://ondc1.mydailygoods.com",
+          "transaction_id": "5a3c8648-5f9d-4f8b-a7b0-efabae178482",
+          "inbox_id": "in_fa7644568e94",
+          "raw_item": {
+            "id": "504451252",
+            "parent_item_id": "V504451252",
+            "time": {
+              "label": "enable",
+              "timestamp": "2026-07-12T14:41:28.072Z"
+            },
+            "descriptor": {
+              "name": "Taj Hing Spice Compound Buy 1 Get 1 Free",
+              "code": "5:504451252",
+              "short_desc": "Taj Hing Spice Compound Buy 1 Get 1 Free - 2 unit",
+              "long_desc": "Product Overview\n\nExperience the rich, traditional flavor of Indian cooking with the Taj Hing Compound. This versatile spice blend adds a unique depth to your dishes, enhancing their taste and aroma.\n\nCategory\n\nspices\n\nKey Features\n\nTaj Hing Compound is a premium blend of high-quality spices, free from artificial preservatives and additives. It is easy to use and adds a burst of flavor to various dishes.\n\nIdeal For\n\nIdeal for those who love to cook Indian dishes and want to add an authentic touch to their culinary creations.\n\nMaterial Colour\n\nBrown\n\nCare Instructions\n\nStore in a cool, dry place away from direct sunlight.\n\nWhy You will Love It\n\nTaj Hing Compound is a must-have in your spice rack. Its unique flavor profile will elevate your Indian cooking, making your dishes stand out. Trusted by Indian households for generations, it is a testament to quality and authenticity.\n\nProduct Type\n\nProduct type: Taj Hing Compound\n\nOccasion\n\nOccassion: None",
+              "symbol": "https://www.mydailygoods.com/admin/product_img/504451252_873970497.jpg",
+              "images": [
+                "https://www.mydailygoods.com/admin/product_img/504451252_873931607.jpg"
+              ]
+            },
+            "price": {
+              "currency": "INR",
+              "value": "306.12",
+              "maximum_value": "306.12"
+            },
+            "quantity": {
+              "available": {
+                "count": "99"
+              },
+              "maximum": {
+                "count": "99"
+              },
+              "unitized": {
+                "measure": {
+                  "unit": "unit",
+                  "value": "2"
+                }
+              }
+            },
+            "category_id": "Masala & Seasoning",
+            "fulfillment_id": "F1",
+            "location_id": "L6467",
+            "@ondc/org/returnable": false,
+            "@ondc/org/cancellable": false,
+            "@ondc/org/available_on_cod": true,
+            "@ondc/org/return_window": "P7D",
+            "@ondc/org/seller_pickup_return": false,
+            "@ondc/org/time_to_ship": "PT24H",
+            "@ondc/org/contact_details_consumer_care": "RS Taj hing,support@mydailygoods.com,9528460488",
+            "@ondc/org/statutory_reqs_packaged_commodities": {
+              "manufacturer_or_packer_name": "RS Taj hing",
+              "manufacturer_or_packer_address": "test",
+              "common_or_generic_name_of_commodity": "Taj Hing Spice Compound Buy 1 Get 1 Free",
+              "month_year_of_manufacture_packing_import": "07/2026"
+            },
+            "tags": [
+              {
+                "code": "origin",
+                "list": [
+                  {
+                    "code": "country",
+                    "value": "IND"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": "504451253",
+          "name": "RS TAJ Hing Peda Buy 1 Get 1 Free",
+          "description": "RS TAJ Hing Peda Buy 1 Get 1 Free - 2 unit",
+          "price_inr": "153.06",
+          "currency": "INR",
+          "provider_id": "8739",
+          "provider_name": "RS Taj hing",
+          "bpp_id": "ondc1.mydailygoods.com",
+          "bpp_uri": "https://ondc1.mydailygoods.com",
+          "transaction_id": "5a3c8648-5f9d-4f8b-a7b0-efabae178482",
+          "inbox_id": "in_fa7644568e94",
+          "raw_item": {
+            "id": "504451253",
+            "parent_item_id": "V504451253",
+            "time": {
+              "label": "enable",
+              "timestamp": "2026-07-12T14:41:28.072Z"
+            },
+            "descriptor": {
+              "name": "RS TAJ Hing Peda Buy 1 Get 1 Free",
+              "code": "5:504451253",
+              "short_desc": "RS TAJ Hing Peda Buy 1 Get 1 Free - 2 unit",
+              "long_desc": "RS TAJ Hing Peda Buy 1 Get 1 Free - 2 unit",
+              "symbol": "https://www.mydailygoods.com/admin/product_img/504451253_873972293.jpg",
+              "images": [
+                "https://www.mydailygoods.com/admin/product_img/504451253_873923933.jpg"
+              ]
+            },
+            "price": {
+              "currency": "INR",
+              "value": "153.06",
+              "maximum_value": "153.06"
+            },
+            "quantity": {
+              "available": {
+                "count": "99"
+              },
+              "maximum": {
+                "count": "99"
+              },
+              "unitized": {
+                "measure": {
+                  "unit": "unit",
+                  "value": "2"
+                }
+              }
+            },
+            "category_id": "Masala & Seasoning",
+            "fulfillment_id": "F1",
+            "location_id": "L6467",
+            "@ondc/org/returnable": false,
+            "@ondc/org/cancellable": false,
+            "@ondc/org/available_on_cod": true,
+            "@ondc/org/return_window": "P7D",
+            "@ondc/org/seller_pickup_return": false,
+            "@ondc/org/time_to_ship": "PT24H",
+            "@ondc/org/contact_details_consumer_care": "RS Taj hing,support@mydailygoods.com,9528460488",
+            "@ondc/org/statutory_reqs_packaged_commodities": {
+              "manufacturer_or_packer_name": "RS Taj hing",
+              "manufacturer_or_packer_address": "test",
+              "common_or_generic_name_of_commodity": "RS TAJ Hing Peda Buy 1 Get 1 Free",
+              "month_year_of_manufacture_packing_import": "07/2026"
+            },
+            "tags": [
+              {
+                "code": "origin",
+                "list": [
+                  {
+                    "code": "country",
+                    "value": "IND"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": "504451394",
+          "name": "HING CRYSTAL",
+          "description": "HING CRYSTAL - 1 unit",
+          "price_inr": "320.41",
+          "currency": "INR",
+          "provider_id": "8871",
+          "provider_name": "SDP's Hing",
+          "bpp_id": "ondc1.mydailygoods.com",
+          "bpp_uri": "https://ondc1.mydailygoods.com",
+          "transaction_id": "5a3c8648-5f9d-4f8b-a7b0-efabae178482",
+          "inbox_id": "in_fa7644568e94",
+          "raw_item": {
+            "id": "504451394",
+            "parent_item_id": "V504451394",
+            "time": {
+              "label": "enable",
+              "timestamp": "2026-07-12T14:41:28.072Z"
+            },
+            "descriptor": {
+              "name": "HING CRYSTAL",
+              "code": "5:504451394",
+              "short_desc": "HING CRYSTAL - 1 unit",
+              "long_desc": "HING CRYSTAL - 1 unit",
+              "symbol": "https://www.mydailygoods.com/admin/product_img/504451394_887122401.jpg",
+              "images": []
+            },
+            "price": {
+              "currency": "INR",
+              "value": "320.41",
+              "maximum_value": "458.16"
+            },
+            "quantity": {
+              "available": {
+                "count": "99"
+              },
+              "maximum": {
+                "count": "99"
+              },
+              "unitized": {
+                "measure": {
+                  "unit": "unit",
+                  "value": "1"
+                }
+              }
+            },
+            "category_id": "Masala & Seasoning",
+            "fulfillment_id": "F1",
+            "location_id": "L6576",
+            "@ondc/org/returnable": false,
+            "@ondc/org/cancellable": false,
+            "@ondc/org/available_on_cod": true,
+            "@ondc/org/return_window": "P7D",
+            "@ondc/org/seller_pickup_return": false,
+            "@ondc/org/time_to_ship": "PT24H",
+            "@ondc/org/contact_details_consumer_care": "SDP's Hing,support@mydailygoods.com,9528460488",
+            "@ondc/org/statutory_reqs_packaged_commodities": {
+              "manufacturer_or_packer_name": "SDP's Hing",
+              "manufacturer_or_packer_address": "test",
+              "common_or_generic_name_of_commodity": "HING CRYSTAL",
+              "month_year_of_manufacture_packing_import": "07/2026"
+            },
+            "tags": [
+              {
+                "code": "origin",
+                "list": [
+                  {
+                    "code": "country",
+                    "value": "IND"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": "504451395",
+          "name": "Super Strong Hing Powder",
+          "description": "Super Strong Hing Powder - 1 unit",
+          "price_inr": "195.92",
+          "currency": "INR",
+          "provider_id": "8871",
+          "provider_name": "SDP's Hing",
+          "bpp_id": "ondc1.mydailygoods.com",
+          "bpp_uri": "https://ondc1.mydailygoods.com",
+          "transaction_id": "5a3c8648-5f9d-4f8b-a7b0-efabae178482",
+          "inbox_id": "in_fa7644568e94",
+          "raw_item": {
+            "id": "504451395",
+            "parent_item_id": "V504451395",
+            "time": {
+              "label": "enable",
+              "timestamp": "2026-07-12T14:41:28.072Z"
+            },
+            "descriptor": {
+              "name": "Super Strong Hing Powder",
+              "code": "5:504451395",
+              "short_desc": "Super Strong Hing Powder - 1 unit",
+              "long_desc": "Super Strong Hing Powder - 1 unit",
+              "symbol": "https://www.mydailygoods.com/admin/product_img/504451395_887118923.jpg",
+              "images": []
+            },
+            "price": {
+              "currency": "INR",
+              "value": "195.92",
+              "maximum_value": "357.14"
+            },
+            "quantity": {
+              "available": {
+                "count": "99"
+              },
+              "maximum": {
+                "count": "99"
+              },
+              "unitized": {
+                "measure": {
+                  "unit": "unit",
+                  "value": "1"
+                }
+              }
+            },
+            "category_id": "Masala & Seasoning",
+            "fulfillment_id": "F1",
+            "location_id": "L6576",
+            "@ondc/org/returnable": false,
+            "@ondc/org/cancellable": false,
+            "@ondc/org/available_on_cod": true,
+            "@ondc/org/return_window": "P7D",
+            "@ondc/org/seller_pickup_return": false,
+            "@ondc/org/time_to_ship": "PT24H",
+            "@ondc/org/contact_details_consumer_care": "SDP's Hing,support@mydailygoods.com,9528460488",
+            "@ondc/org/statutory_reqs_packaged_commodities": {
+              "manufacturer_or_packer_name": "SDP's Hing",
+              "manufacturer_or_packer_address": "test",
+              "common_or_generic_name_of_commodity": "Super Strong Hing Powder",
+              "month_year_of_manufacture_packing_import": "07/2026"
+            },
+            "tags": [
+              {
+                "code": "origin",
+                "list": [
+                  {
+                    "code": "country",
+                    "value": "IND"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": "504451704",
+          "name": "Oryzo Kalanamak Rice",
+          "description": "Kalanamak rice, deriving its name from the black husk paddy it originates from, holds a distinguished position in the agricultural and culinary traditions of Eastern Uttar Pradesh, India, and Nepal\u2019s Tarai region. Its history traces back to approximately 600 BC during the Buddhist era, signifying its deep-rooted heritage and cultural significance.\n\nThis traditional rice variety is renowned for its exceptional qualities, often surpassing even the famed Basmati rice in various aspects. While Kalanamak rice may not match Basmati in grain length, it compensates with its unique attributes. It boasts a soft texture, making it easily digestible, and exhibits a remarkable shelf life, ensuring prolonged enjoyment for consumers.",
+          "price_inr": "295.92",
+          "currency": "INR",
+          "provider_id": "9200",
+          "provider_name": "Riceghar",
+          "bpp_id": "ondc1.mydailygoods.com",
+          "bpp_uri": "https://ondc1.mydailygoods.com",
+          "transaction_id": "5a3c8648-5f9d-4f8b-a7b0-efabae178482",
+          "inbox_id": "in_fa7644568e94",
+          "raw_item": {
+            "id": "504451704",
+            "parent_item_id": "V504451704",
+            "time": {
+              "label": "enable",
+              "timestamp": "2026-07-12T14:41:28.072Z"
+            },
+            "descriptor": {
+              "name": "Oryzo Kalanamak Rice",
+              "code": "5:504451704",
+              "short_desc": "Original Kalanamak Rice from Farm To Your Plate.",
+              "long_desc": "Kalanamak rice, deriving its name from the black husk paddy it originates from, holds a distinguished position in the agricultural and culinary traditions of Eastern Uttar Pradesh, India, and Nepal\u2019s Tarai region. Its history traces back to approximately 600 BC during the Buddhist era, signifying its deep-rooted heritage and cultural significance.\n\nThis traditional rice variety is renowned for its exceptional qualities, often surpassing even the famed Basmati rice in various aspects. While Kalanamak rice may not match Basmati in grain length, it compensates with its unique attributes. It boasts a soft texture, making it easily digestible, and exhibits a remarkable shelf life, ensuring prolonged enjoyment for consumers.",
+              "symbol": "https://www.mydailygoods.com/admin/product_img/504451704_5120035114.jpg",
+              "images": [
+                "https://www.mydailygoods.com/admin/product_img/504451704_8320096556.jpg",
+                "https://www.mydailygoods.com/admin/product_img/504451704_692009258.jpg",
+                "https://www.mydailygoods.com/admin/product_img/504451704_49200849.jpg",
+                "https://www.mydailygoods.com/admin/product_img/504451704_9920092963.jpg"
+              ]
+            },
+            "price": {
+              "currency": "INR",
+              "value": "295.92",
+              "maximum_value": "295.92"
+            },
+            "quantity": {
+              "available": {
+                "count": "99"
+              },
+              "maximum": {
+                "count": "99"
+              },
+              "unitized": {
+                "measure": {
+                  "unit": "kilogram",
+                  "value": "1"
+                }
+              }
+            },
+            "category_id": "Atta, Flours and Sooji",
+            "fulfillment_id": "F1",
+            "location_id": "L6848",
+            "@ondc/org/returnable": false,
+            "@ondc/org/cancellable": false,
+            "@ondc/org/available_on_cod": true,
+            "@ondc/org/return_window": "P7D",
+            "@ondc/org/seller_pickup_return": false,
+            "@ondc/org/time_to_ship": "PT24H",
+            "@ondc/org/contact_details_consumer_care": "Riceghar,support@mydailygoods.com,9528460488",
+            "@ondc/org/statutory_reqs_packaged_commodities": {
+              "manufacturer_or_packer_name": "Riceghar",
+              "manufacturer_or_packer_address": "test",
+              "common_or_generic_name_of_commodity": "Oryzo Kalanamak Rice",
+              "month_year_of_manufacture_packing_import": "07/2026"
+            },
+            "tags": [
+              {
+                "code": "origin",
+                "list": [
+                  {
+                    "code": "country",
+                    "value": "IND"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": "504451707",
+          "name": "Adamchini Chawal",
+          "description": "Adamchini rice is a rare, short-grained, aromatic, traditional rice variety originating from the Vindhya, Varanasi, and Chandauli regions of Eastern Uttar Pradesh, India. It is prized for its pleasant fragrance, unique taste, softness, and quick cooking qualities. The grains are small, and the name \"Adamchini\" is possibly derived from the sugar-crystal appearance of the grains. The rice has a Geographical Indication (GI) tag, signifying its origin and cultural significance",
+          "price_inr": "255.10",
+          "currency": "INR",
+          "provider_id": "9200",
+          "provider_name": "Riceghar",
+          "bpp_id": "ondc1.mydailygoods.com",
+          "bpp_uri": "https://ondc1.mydailygoods.com",
+          "transaction_id": "5a3c8648-5f9d-4f8b-a7b0-efabae178482",
+          "inbox_id": "in_fa7644568e94",
+          "raw_item": {
+            "id": "504451707",
+            "parent_item_id": "V504451707",
+            "time": {
+              "label": "enable",
+              "timestamp": "2026-07-12T14:41:28.072Z"
+            },
+            "descriptor": {
+              "name": "Adamchini Chawal",
+              "code": "5:504451707",
+              "short_desc": "Adamchini rice is a rare, short-grained, aromatic, traditional rice variety originating from the Vindhya, Varanasi, and Chandauli regions of U.P",
+              "long_desc": "Adamchini rice is a rare, short-grained, aromatic, traditional rice variety originating from the Vindhya, Varanasi, and Chandauli regions of Eastern Uttar Pradesh, India. It is prized for its pleasant fragrance, unique taste, softness, and quick cooking qualities. The grains are small, and the name \"Adamchini\" is possibly derived from the sugar-crystal appearance of the grains. The rice has a Geographical Indication (GI) tag, signifying its origin and cultural significance",
+              "symbol": "https://www.mydailygoods.com/admin/product_img/504451707_920033310.jpg",
+              "images": [
+                "https://www.mydailygoods.com/admin/product_img/504451707_920037318.jpg",
+                "https://www.mydailygoods.com/admin/product_img/504451707_920036940.jpg",
+                "https://www.mydailygoods.com/admin/product_img/504451707_920074023.jpg",
+                "https://www.mydailygoods.com/admin/product_img/504451707_920048386.jpg"
+              ]
+            },
+            "price": {
+              "currency": "INR",
+              "value": "255.10",
+              "maximum_value": "255.10"
+            },
+            "quantity": {
+              "available": {
+                "count": "99"
+              },
+              "maximum": {
+                "count": "99"
+              },
+              "unitized": {
+                "measure": {
+                  "unit": "kilogram",
+                  "value": "1"
+                }
+              }
+            },
+            "category_id": "Atta, Flours and Sooji",
+            "fulfillment_id": "F1",
+            "location_id": "L6848",
+            "@ondc/org/returnable": false,
+            "@ondc/org/cancellable": false,
+            "@ondc/org/available_on_cod": true,
+            "@ondc/org/return_window": "P7D",
+            "@ondc/org/seller_pickup_return": false,
+            "@ondc/org/time_to_ship": "PT24H",
+            "@ondc/org/contact_details_consumer_care": "Riceghar,support@mydailygoods.com,9528460488",
+            "@ondc/org/statutory_reqs_packaged_commodities": {
+              "manufacturer_or_packer_name": "Riceghar",
+              "manufacturer_or_packer_address": "test",
+              "common_or_generic_name_of_commodity": "Adamchini Chawal",
+              "month_year_of_manufacture_packing_import": "07/2026"
+            },
+            "tags": [
+              {
+                "code": "origin",
+                "list": [
+                  {
+                    "code": "country",
+                    "value": "IND"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": "504450833",
+          "name": "Diaper Mamy Poko Pants",
+          "description": "Diaper Mamy Poko Pants all size available",
+          "price_inr": "350.14",
+          "currency": "INR",
+          "provider_id": "8239",
+          "provider_name": "Chhan Chhan Mall 99",
+          "bpp_id": "ondc1.mydailygoods.com",
+          "bpp_uri": "https://ondc1.mydailygoods.com",
+          "transaction_id": "5a3c8648-5f9d-4f8b-a7b0-efabae178482",
+          "inbox_id": "in_fa7644568e94",
+          "raw_item": {
+            "id": "504450833",
+            "parent_item_id": "V504450833",
+            "time": {
+              "label": "enable",
+              "timestamp": "2026-07-12T14:41:28.072Z"
+            },
+            "descriptor": {
+              "name": "Diaper Mamy Poko Pants",
+              "code": "5:504450833",
+              "short_desc": "Diaper",
+              "long_desc": "Diaper Mamy Poko Pants all size available",
+              "symbol": "https://www.mydailygoods.com/admin/product_img/504450833_51123974046.jpg",
+              "images": [
+                "https://www.mydailygoods.com/admin/product_img/504450833_83323944669.jpg",
+                "https://www.mydailygoods.com/admin/product_img/504450833_69923935265.jpg",
+                "https://www.mydailygoods.com/admin/product_img/504450833_49923965960.jpg"
+              ]
+            },
+            "price": {
+              "currency": "INR",
+              "value": "350.14",
+              "maximum_value": "407.14"
+            },
+            "quantity": {
+              "available": {
+                "count": "99"
+              },
+              "maximum": {
+                "count": "99"
+              },
+              "unitized": {
+                "measure": {
+                  "unit": "unit",
+                  "value": "22"
+                }
+              }
+            },
+            "category_id": "Detergents and Dishwash",
+            "fulfillment_id": "F1",
+            "location_id": "L6038",
+            "@ondc/org/returnable": false,
+            "@ondc/org/cancellable": false,
+            "@ondc/org/available_on_cod": true,
+            "@ondc/org/return_window": "P7D",
+            "@ondc/org/seller_pickup_return": false,
+            "@ondc/org/time_to_ship": "PT24H",
+            "@ondc/org/contact_details_consumer_care": "Chhan Chhan Mall 99,support@mydailygoods.com,9528460488",
+            "@ondc/org/statutory_reqs_packaged_commodities": {
+              "manufacturer_or_packer_name": "Chhan Chhan Mall 99",
+              "manufacturer_or_packer_address": "test",
+              "common_or_generic_name_of_commodity": "Diaper Mamy Poko Pants",
+              "month_year_of_manufacture_packing_import": "07/2026"
+            },
+            "tags": [
+              {
+                "code": "origin",
+                "list": [
+                  {
+                    "code": "country",
+                    "value": "IND"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": "504452002",
+          "name": "Touch Shop Dispenser",
+          "description": "Touch Shop Dispenser - 1 unit",
+          "price_inr": "254.08",
+          "currency": "INR",
+          "provider_id": "8239",
+          "provider_name": "Chhan Chhan Mall 99",
+          "bpp_id": "ondc1.mydailygoods.com",
+          "bpp_uri": "https://ondc1.mydailygoods.com",
+          "transaction_id": "5a3c8648-5f9d-4f8b-a7b0-efabae178482",
+          "inbox_id": "in_fa7644568e94",
+          "raw_item": {
+            "id": "504452002",
+            "parent_item_id": "V504452002",
+            "time": {
+              "label": "enable",
+              "timestamp": "2026-07-12T14:41:28.072Z"
+            },
+            "descriptor": {
+              "name": "Touch Shop Dispenser",
+              "code": "5:504452002",
+              "short_desc": "Touch Shop Dispenser - 1 unit",
+              "long_desc": "Touch Shop Dispenser - 1 unit",
+              "symbol": "https://www.mydailygoods.com/admin/product_img/504452002_823913494.jpg",
+              "images": [
+                "https://www.mydailygoods.com/admin/product_img/504452002_823965633.jpg"
+              ]
+            },
+            "price": {
+              "currency": "INR",
+              "value": "254.08",
+              "maximum_value": "357.14"
+            },
+            "quantity": {
+              "available": {
+                "count": "99"
+              },
+              "maximum": {
+                "count": "99"
+              },
+              "unitized": {
+                "measure": {
+                  "unit": "unit",
+                  "value": "1"
+                }
+              }
+            },
+            "category_id": "Detergents and Dishwash",
+            "fulfillment_id": "F1",
+            "location_id": "L6038",
+            "@ondc/org/returnable": false,
+            "@ondc/org/cancellable": false,
+            "@ondc/org/available_on_cod": true,
+            "@ondc/org/return_window": "P7D",
+            "@ondc/org/seller_pickup_return": false,
+            "@ondc/org/time_to_ship": "PT24H",
+            "@ondc/org/contact_details_consumer_care": "Chhan Chhan Mall 99,support@mydailygoods.com,9528460488",
+            "@ondc/org/statutory_reqs_packaged_commodities": {
+              "manufacturer_or_packer_name": "Chhan Chhan Mall 99",
+              "manufacturer_or_packer_address": "test",
+              "common_or_generic_name_of_commodity": "Touch Shop Dispenser",
+              "month_year_of_manufacture_packing_import": "07/2026"
+            },
+            "tags": [
+              {
+                "code": "origin",
+                "list": [
+                  {
+                    "code": "country",
+                    "value": "IND"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": "504445688",
+          "name": "Besan",
+          "description": "Besan - 1 kilogram",
+          "price_inr": "132.65",
+          "currency": "INR",
+          "provider_id": "5185",
+          "provider_name": "shitala flour mill",
+          "bpp_id": "ondc1.mydailygoods.com",
+          "bpp_uri": "https://ondc1.mydailygoods.com",
+          "transaction_id": "5a3c8648-5f9d-4f8b-a7b0-efabae178482",
+          "inbox_id": "in_fa7644568e94",
+          "raw_item": {
+            "id": "504445688",
+            "parent_item_id": "V504445688",
+            "time": {
+              "label": "enable",
+              "timestamp": "2026-07-12T14:41:28.072Z"
+            },
+            "descriptor": {
+              "name": "Besan",
+              "code": "5:504445688",
+              "short_desc": "Besan - 1 kilogram",
+              "long_desc": "Besan - 1 kilogram",
+              "symbol": "https://www.mydailygoods.com/admin/product_img/504445688_12000002742.jpg",
+              "images": []
+            },
+            "price": {
+              "currency": "INR",
+              "value": "132.65",
+              "maximum_value": "153.06"
+            },
+            "quantity": {
+              "available": {
+                "count": "99"
+              },
+              "maximum": {
+                "count": "99"
+              },
+              "unitized": {
+                "measure": {
+                  "unit": "kilogram",
+                  "value": "1"
+                }
+              }
+            },
+            "category_id": "Atta, Flours and Sooji",
+            "fulfillment_id": "F1",
+            "location_id": "L3685",
+            "@ondc/org/returnable": false,
+            "@ondc/org/cancellable": false,
+            "@ondc/org/available_on_cod": true,
+            "@ondc/org/return_window": "P7D",
+            "@ondc/org/seller_pickup_return": false,
+            "@ondc/org/time_to_ship": "PT24H",
+            "@ondc/org/contact_details_consumer_care": "shitala flour mill,support@mydailygoods.com,9528460488",
+            "@ondc/org/statutory_reqs_packaged_commodities": {
+              "manufacturer_or_packer_name": "shitala flour mill",
+              "manufacturer_or_packer_address": "test",
+              "common_or_generic_name_of_commodity": "Besan",
+              "month_year_of_manufacture_packing_import": "07/2026"
+            },
+            "tags": [
+              {
+                "code": "origin",
+                "list": [
+                  {
+                    "code": "country",
+                    "value": "IND"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": "504445691",
+          "name": "Aata",
+          "description": "Aata - 5 kilogram",
+          "price_inr": "234.69",
+          "currency": "INR",
+          "provider_id": "5185",
+          "provider_name": "shitala flour mill",
+          "bpp_id": "ondc1.mydailygoods.com",
+          "bpp_uri": "https://ondc1.mydailygoods.com",
+          "transaction_id": "5a3c8648-5f9d-4f8b-a7b0-efabae178482",
+          "inbox_id": "in_fa7644568e94",
+          "raw_item": {
+            "id": "504445691",
+            "parent_item_id": "V504445691",
+            "time": {
+              "label": "enable",
+              "timestamp": "2026-07-12T14:41:28.072Z"
+            },
+            "descriptor": {
+              "name": "Aata",
+              "code": "5:504445691",
+              "short_desc": "Aata - 5 kilogram",
+              "long_desc": "Aata - 5 kilogram",
+              "symbol": "https://www.mydailygoods.com/admin/product_img/504445691_512000002745.jpg",
+              "images": []
+            },
+            "price": {
+              "currency": "INR",
+              "value": "234.69",
+              "maximum_value": "285.71"
+            },
+            "quantity": {
+              "available": {
+                "count": "99"
+              },
+              "maximum": {
+                "count": "99"
+              },
+              "unitized": {
+                "measure": {
+                  "unit": "kilogram",
+                  "value": "5"
+                }
+              }
+            },
+            "category_id": "Atta, Flours and Sooji",
+            "fulfillment_id": "F1",
+            "location_id": "L3685",
+            "@ondc/org/returnable": false,
+            "@ondc/org/cancellable": false,
+            "@ondc/org/available_on_cod": true,
+            "@ondc/org/return_window": "P7D",
+            "@ondc/org/seller_pickup_return": false,
+            "@ondc/org/time_to_ship": "PT24H",
+            "@ondc/org/contact_details_consumer_care": "shitala flour mill,support@mydailygoods.com,9528460488",
+            "@ondc/org/statutory_reqs_packaged_commodities": {
+              "manufacturer_or_packer_name": "shitala flour mill",
+              "manufacturer_or_packer_address": "test",
+              "common_or_generic_name_of_commodity": "Aata",
+              "month_year_of_manufacture_packing_import": "07/2026"
+            },
+            "tags": [
+              {
+                "code": "origin",
+                "list": [
+                  {
+                    "code": "country",
+                    "value": "IND"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": "504452609",
+          "name": "Pure Electral Oral Rehydration SALT",
+          "description": "Product Overview\r\nIntroducing the Electral ORS, your go-to solution for quick hydration and electrolyte replenishment. This product is designed to help you stay energized and active, especially during the hot Indian summers.</p>\r\n\r\n<p><b>Category</b></p>\r\n<p>Electral ORS falls under the category of health and wellness products, specifically oral rehydration solutions.</p>\r\n\r\n<p><b>Key Features</b></p>\r\n<p>The Electral ORS is enriched with essential electrolytes, glucose, and electrolytes. It is easily digestible, has a pleasant taste, and is suitable for all ages. It helps in preventing dehydration and maintaining the balance of body fluids.</p>\r\n\r\n<p><b>Ideal For</b></p>\r\n<p>Ideal for individuals engaged in physical activities, those suffering from diarrhea or vomiting, and for everyone seeking a healthy hydration solution.</p>\r\n\r\n<p><b>Material Colour</b></p>\r\n<p>The Electral ORS powder comes in a bright orange color, making it easily recognizable.</p>\r\n\r\n<p><b>Care Instructions</b></p>\r\n<p>Store the Electral ORS powder in a cool, dry place away from direct sunlight. Once prepared, consume the solution within 24 hours.</p>\r\n\r\n<p><b>Why You will Love It</b></p>\r\n<p>Not only does the Electral ORS help in rehydrating your body effectively, but it also tastes great! It's a reliable product you can trust during those hot Indian days.</p>",
+          "price_inr": "61.22",
+          "currency": "INR",
+          "provider_id": "10138",
+          "provider_name": "SONU MEDICAL STORES",
+          "bpp_id": "ondc1.mydailygoods.com",
+          "bpp_uri": "https://ondc1.mydailygoods.com",
+          "transaction_id": "5a3c8648-5f9d-4f8b-a7b0-efabae178482",
+          "inbox_id": "in_fa7644568e94",
+          "raw_item": {
+            "id": "504452609",
+            "parent_item_id": "V504452609",
+            "time": {
+              "label": "enable",
+              "timestamp": "2026-07-12T14:41:28.072Z"
+            },
+            "descriptor": {
+              "name": "Pure Electral Oral Rehydration SALT",
+              "code": "5:504452609",
+              "short_desc": "ELECTRAL ORS POWDER 3*21.80GM",
+              "long_desc": "Product Overview\r\nIntroducing the Electral ORS, your go-to solution for quick hydration and electrolyte replenishment. This product is designed to help you stay energized and active, especially during the hot Indian summers.</p>\r\n\r\n<p><b>Category</b></p>\r\n<p>Electral ORS falls under the category of health and wellness products, specifically oral rehydration solutions.</p>\r\n\r\n<p><b>Key Features</b></p>\r\n<p>The Electral ORS is enriched with essential electrolytes, glucose, and electrolytes. It is easily digestible, has a pleasant taste, and is suitable for all ages. It helps in preventing dehydration and maintaining the balance of body fluids.</p>\r\n\r\n<p><b>Ideal For</b></p>\r\n<p>Ideal for individuals engaged in physical activities, those suffering from diarrhea or vomiting, and for everyone seeking a healthy hydration solution.</p>\r\n\r\n<p><b>Material Colour</b></p>\r\n<p>The Electral ORS powder comes in a bright orange color, making it easily recognizable.</p>\r\n\r\n<p><b>Care Instructions</b></p>\r\n<p>Store the Electral ORS powder in a cool, dry place away from direct sunlight. Once prepared, consume the solution within 24 hours.</p>\r\n\r\n<p><b>Why You will Love It</b></p>\r\n<p>Not only does the Electral ORS help in rehydrating your body effectively, but it also tastes great! It's a reliable product you can trust during those hot Indian days.</p>",
+              "symbol": "https://www.mydailygoods.com/admin/product_img/504452609_51762778554.png",
+              "images": [
+                "https://www.mydailygoods.com/admin/product_img/504452609_83PEG_20251112_190150_7225795028830535342.jpg"
+              ]
+            },
+            "price": {
+              "currency": "INR",
+              "value": "61.22",
+              "maximum_value": "69.37"
+            },
+            "quantity": {
+              "available": {
+                "count": "99"
+              },
+              "maximum": {
+                "count": "99"
+              },
+              "unitized": {
+                "measure": {
+                  "unit": "unit",
+                  "value": "3"
+                }
+              }
+            },
+            "category_id": "Gift Voucher",
+            "fulfillment_id": "F1",
+            "location_id": "L7613",
+            "@ondc/org/returnable": false,
+            "@ondc/org/cancellable": false,
+            "@ondc/org/available_on_cod": true,
+            "@ondc/org/return_window": "P7D",
+            "@ondc/org/seller_pickup_return": false,
+            "@ondc/org/time_to_ship": "PT24H",
+            "@ondc/org/contact_details_consumer_care": "SONU MEDICAL STORES,support@mydailygoods.com,9528460488",
+            "@ondc/org/statutory_reqs_packaged_commodities": {
+              "manufacturer_or_packer_name": "SONU MEDICAL STORES",
+              "manufacturer_or_packer_address": "test",
+              "common_or_generic_name_of_commodity": "Pure Electral Oral Rehydration SALT",
+              "month_year_of_manufacture_packing_import": "07/2026"
+            },
+            "tags": [
+              {
+                "code": "origin",
+                "list": [
+                  {
+                    "code": "country",
+                    "value": "IND"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": "504452610",
+          "name": "Adult NonOccassional Diaper for Adults",
+          "description": "Product Overview\n\nIntroducing our premium Adult Diaper, a product designed with utmost care for adults needing additional assistance. This diaper offers exceptional comfort and leak-proof protection, making daily life easier and stress-free.\n\nCategory\n\nAdult Diaper - a hygienic solution for adults seeking independence and peace of mind.\n\nKey Features\n\nLeak-proof construction, soft and breathable materials, easy-to-use fasteners, and a snug fit for all-day comfort.\n\nIdeal For\n\nAdults seeking reliable protection, elderly individuals, people with incontinence issues, and those recovering from surgery or illness.\n\nMaterial Colour\n\nAvailable in discreet white and beige colours, blending seamlessly with your everyday attire.\n\nCare Instructions\n\nSimply dispose of after use. No washing or maintenance required.\n\nWhy You will Love It\n\nExperience the comfort of our premium Adult Diaper, designed with Indian customers in mind, ensuring a perfect fit and high-quality performance. Trust us to make your life easier and more comfortable.\n\nHappy shopping!",
+          "price_inr": "357.14",
+          "currency": "INR",
+          "provider_id": "10138",
+          "provider_name": "SONU MEDICAL STORES",
+          "bpp_id": "ondc1.mydailygoods.com",
+          "bpp_uri": "https://ondc1.mydailygoods.com",
+          "transaction_id": "5a3c8648-5f9d-4f8b-a7b0-efabae178482",
+          "inbox_id": "in_fa7644568e94",
+          "raw_item": {
+            "id": "504452610",
+            "parent_item_id": "V504452610",
+            "time": {
+              "label": "enable",
+              "timestamp": "2026-07-12T14:41:28.072Z"
+            },
+            "descriptor": {
+              "name": "Adult NonOccassional Diaper for Adults",
+              "code": "5:504452610",
+              "short_desc": "SUPER LIFE ADULT DIAPERS L 10PIC",
+              "long_desc": "Product Overview\n\nIntroducing our premium Adult Diaper, a product designed with utmost care for adults needing additional assistance. This diaper offers exceptional comfort and leak-proof protection, making daily life easier and stress-free.\n\nCategory\n\nAdult Diaper - a hygienic solution for adults seeking independence and peace of mind.\n\nKey Features\n\nLeak-proof construction, soft and breathable materials, easy-to-use fasteners, and a snug fit for all-day comfort.\n\nIdeal For\n\nAdults seeking reliable protection, elderly individuals, people with incontinence issues, and those recovering from surgery or illness.\n\nMaterial Colour\n\nAvailable in discreet white and beige colours, blending seamlessly with your everyday attire.\n\nCare Instructions\n\nSimply dispose of after use. No washing or maintenance required.\n\nWhy You will Love It\n\nExperience the comfort of our premium Adult Diaper, designed with Indian customers in mind, ensuring a perfect fit and high-quality performance. Trust us to make your life easier and more comfortable.\n\nHappy shopping!",
+              "symbol": "https://www.mydailygoods.com/admin/product_img/504452610_51111762780005.png",
+              "images": [
+                "https://www.mydailygoods.com/admin/product_img/504452610_83333762780014.png",
+                "https://www.mydailygoods.com/admin/product_img/504452610_69999762780023.png"
+              ]
+            },
+            "price": {
+              "currency": "INR",
+              "value": "357.14",
+              "maximum_value": "560.20"
+            },
+            "quantity": {
+              "available": {
+                "count": "99"
+              },
+              "maximum": {
+                "count": "99"
+              },
+              "unitized": {
+                "measure": {
+                  "unit": "unit",
+                  "value": "1"
+                }
+              }
+            },
+            "category_id": "Gift Voucher",
+            "fulfillment_id": "F1",
+            "location_id": "L7613",
+            "@ondc/org/returnable": false,
+            "@ondc/org/cancellable": false,
+            "@ondc/org/available_on_cod": true,
+            "@ondc/org/return_window": "P7D",
+            "@ondc/org/seller_pickup_return": false,
+            "@ondc/org/time_to_ship": "PT24H",
+            "@ondc/org/contact_details_consumer_care": "SONU MEDICAL STORES,support@mydailygoods.com,9528460488",
+            "@ondc/org/statutory_reqs_packaged_commodities": {
+              "manufacturer_or_packer_name": "SONU MEDICAL STORES",
+              "manufacturer_or_packer_address": "test",
+              "common_or_generic_name_of_commodity": "Adult NonOccassional Diaper for Adults",
+              "month_year_of_manufacture_packing_import": "07/2026"
+            },
+            "tags": [
+              {
+                "code": "origin",
+                "list": [
+                  {
+                    "code": "country",
+                    "value": "IND"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": "39739",
+          "name": "Sunfeast YiPPee Noodles Mood Masala",
+          "description": "Sunfeast YiPPee Noodles Mood Masala - 240 gram",
+          "price_inr": "50.00",
+          "currency": "INR",
+          "provider_id": "1130",
+          "provider_name": "krishna gopalan and sons supermarket",
+          "bpp_id": "ondc1.mydailygoods.com",
+          "bpp_uri": "https://ondc1.mydailygoods.com",
+          "transaction_id": "5a3c8648-5f9d-4f8b-a7b0-efabae178482",
+          "inbox_id": "in_fa7644568e94",
+          "raw_item": {
+            "id": "39739",
+            "parent_item_id": "V39739",
+            "time": {
+              "label": "enable",
+              "timestamp": "2026-07-12T14:41:28.072Z"
+            },
+            "descriptor": {
+              "name": "Sunfeast YiPPee Noodles Mood Masala",
+              "code": "5:39739",
+              "short_desc": "Sunfeast YiPPee Noodles Mood Masala - 240 gram",
+              "long_desc": "Sunfeast YiPPee Noodles Mood Masala - 240 gram",
+              "symbol": "https://www.mydailygoods.com/admin/product_img/4_1212001-2_2-sunfeast-yippee-noodles-mood-masala-240gms.jpg",
+              "images": []
+            },
+            "price": {
+              "currency": "INR",
+              "value": "50.00",
+              "maximum_value": "51.02"
+            },
+            "quantity": {
+              "available": {
+                "count": "99"
+              },
+              "maximum": {
+                "count": "99"
+              },
+              "unitized": {
+                "measure": {
+                  "unit": "gram",
+                  "value": "240"
+                }
+              }
+            },
+            "category_id": "Bakery, Cakes & Dairy",
+            "fulfillment_id": "F1",
+            "location_id": "L31",
+            "@ondc/org/returnable": false,
+            "@ondc/org/cancellable": false,
+            "@ondc/org/available_on_cod": true,
+            "@ondc/org/return_window": "P7D",
+            "@ondc/org/seller_pickup_return": false,
+            "@ondc/org/time_to_ship": "PT24H",
+            "@ondc/org/contact_details_consumer_care": "krishna gopalan and sons supermarket,support@mydailygoods.com,9528460488",
+            "@ondc/org/statutory_reqs_packaged_commodities": {
+              "manufacturer_or_packer_name": "krishna gopalan and sons supermarket",
+              "manufacturer_or_packer_address": "test",
+              "common_or_generic_name_of_commodity": "Sunfeast YiPPee Noodles Mood Masala",
+              "month_year_of_manufacture_packing_import": "07/2026"
+            },
+            "tags": [
+              {
+                "code": "origin",
+                "list": [
+                  {
+                    "code": "country",
+                    "value": "IND"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": "39740",
+          "name": "Masoor Malka (Red Lentil Whole without skin)",
+          "description": "Masoor Malka (Red Lentil Whole without skin) - 500 gram",
+          "price_inr": "81.63",
+          "currency": "INR",
+          "provider_id": "1130",
+          "provider_name": "krishna gopalan and sons supermarket",
+          "bpp_id": "ondc1.mydailygoods.com",
+          "bpp_uri": "https://ondc1.mydailygoods.com",
+          "transaction_id": "5a3c8648-5f9d-4f8b-a7b0-efabae178482",
+          "inbox_id": "in_fa7644568e94",
+          "raw_item": {
+            "id": "39740",
+            "parent_item_id": "V39740",
+            "time": {
+              "label": "disable",
+              "timestamp": "2026-07-12T14:41:28.072Z"
+            },
+            "descriptor": {
+              "name": "Masoor Malka (Red Lentil Whole without skin)",
+              "code": "5:39740",
+              "short_desc": "Masoor Malka (Red Lentil Whole without skin) - 500 gram",
+              "long_desc": "Masoor Malka (Red Lentil Whole without skin) - 500 gram",
+              "symbol": "https://www.mydailygoods.com/admin/product_img/7_70000257_2-rajdhani-masoor-malka.jpg",
+              "images": []
+            },
+            "price": {
+              "currency": "INR",
+              "value": "81.63",
+              "maximum_value": "81.63"
+            },
+            "quantity": {
+              "available": {
+                "count": "99"
+              },
+              "maximum": {
+                "count": "99"
+              },
+              "unitized": {
+                "measure": {
+                  "unit": "gram",
+                  "value": "500"
+                }
+              }
+            },
+            "category_id": "Atta, Flours and Sooji",
+            "fulfillment_id": "F1",
+            "location_id": "L31",
+            "@ondc/org/returnable": false,
+            "@ondc/org/cancellable": false,
+            "@ondc/org/available_on_cod": true,
+            "@ondc/org/return_window": "P7D",
+            "@ondc/org/seller_pickup_return": false,
+            "@ondc/org/time_to_ship": "PT24H",
+            "@ondc/org/contact_details_consumer_care": "krishna gopalan and sons supermarket,support@mydailygoods.com,9528460488",
+            "@ondc/org/statutory_reqs_packaged_commodities": {
+              "manufacturer_or_packer_name": "krishna gopalan and sons supermarket",
+              "manufacturer_or_packer_address": "test",
+              "common_or_generic_name_of_commodity": "Masoor Malka (Red Lentil Whole without skin)",
+              "month_year_of_manufacture_packing_import": "07/2026"
+            },
+            "tags": [
+              {
+                "code": "origin",
+                "list": [
+                  {
+                    "code": "country",
+                    "value": "IND"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": "504453154",
+          "name": "Authentic Mustard Yellow Sambhar Masala",
+          "description": "<p><b>Product Overview</b></p>\r\n<p>Experience the authentic taste of India with our Tangry Sambhar Masala. This traditional blend of spices is meticulously crafted to elevate your Sambhar dish to a new level of flavor.</p>\r\n\r\n<p><b>Category</b></p>\r\n<p>Masala</p>\r\n\r\n<p><b>Key Features</b></p>\r\n<p>- Authentic taste that transports you to the heart of India</p>\r\n<p>- Perfect balance of spices for a rich, aromatic Sambhar</p>\r\n<p>- No artificial flavors or colors, just pure, traditional spices</p>\r\n\r\n<p><b>Ideal For</b></p>\r\n<p>Those who appreciate the authentic taste of Indian cuisine and want to enhance their Sambhar with a traditional masala.</p>\r\n\r\n<p><b>Material Colour</b></p>\r\n<p>Mustard Yellow</p>\r\n\r\n<p><b>Care Instructions</b></p>\r\n<p>Store in a cool, dry place away from direct sunlight. Use within six months of opening for best results.</p>\r\n\r\n<p><b>Why You will Love It</b></p>\r\n<p>Not only will our Tangry Sambhar Masala add a delightful twist to your Sambhar, but it also supports local artisans who meticulously craft this traditional blend. Experience the rich flavors of India in every spoonful.</p>\r\n\r\n<p><b>Occassion</b></p>\r\n<p>None</p>\r\n\r\n<p><b>Special feature</b></p>\r\n<p>Authentic Taste</p>",
+          "price_inr": "172.45",
+          "currency": "INR",
+          "provider_id": "10733",
+          "provider_name": "TANGRY",
+          "bpp_id": "ondc1.mydailygoods.com",
+          "bpp_uri": "https://ondc1.mydailygoods.com",
+          "transaction_id": "5a3c8648-5f9d-4f8b-a7b0-efabae178482",
+          "inbox_id": "in_fa7644568e94",
+          "raw_item": {
+            "id": "504453154",
+            "parent_item_id": "V504453154",
+            "time": {
+              "label": "enable",
+              "timestamp": "2026-07-12T14:41:28.072Z"
+            },
+            "descriptor": {
+              "name": "Authentic Mustard Yellow Sambhar Masala",
+              "code": "5:504453154",
+              "short_desc": "AUTHENTIC SOUTH INDIAN SAMBHAR POWDER, 100 PERCENT ORGANIC AND HEALTHY.",
+              "long_desc": "<p><b>Product Overview</b></p>\r\n<p>Experience the authentic taste of India with our Tangry Sambhar Masala. This traditional blend of spices is meticulously crafted to elevate your Sambhar dish to a new level of flavor.</p>\r\n\r\n<p><b>Category</b></p>\r\n<p>Masala</p>\r\n\r\n<p><b>Key Features</b></p>\r\n<p>- Authentic taste that transports you to the heart of India</p>\r\n<p>- Perfect balance of spices for a rich, aromatic Sambhar</p>\r\n<p>- No artificial flavors or colors, just pure, traditional spices</p>\r\n\r\n<p><b>Ideal For</b></p>\r\n<p>Those who appreciate the authentic taste of Indian cuisine and want to enhance their Sambhar with a traditional masala.</p>\r\n\r\n<p><b>Material Colour</b></p>\r\n<p>Mustard Yellow</p>\r\n\r\n<p><b>Care Instructions</b></p>\r\n<p>Store in a cool, dry place away from direct sunlight. Use within six months of opening for best results.</p>\r\n\r\n<p><b>Why You will Love It</b></p>\r\n<p>Not only will our Tangry Sambhar Masala add a delightful twist to your Sambhar, but it also supports local artisans who meticulously craft this traditional blend. Experience the rich flavors of India in every spoonful.</p>\r\n\r\n<p><b>Occassion</b></p>\r\n<p>None</p>\r\n\r\n<p><b>Special feature</b></p>\r\n<p>Authentic Taste</p>",
+              "symbol": "https://www.mydailygoods.com/admin/product_img/504453154_51765903759.png",
+              "images": [
+                "https://www.mydailygoods.com/admin/product_img/504453154_83765903792.png",
+                "https://www.mydailygoods.com/admin/product_img/504453154_69765903807.png"
+              ]
+            },
+            "price": {
+              "currency": "INR",
+              "value": "172.45",
+              "maximum_value": "172.45"
+            },
+            "quantity": {
+              "available": {
+                "count": "99"
+              },
+              "maximum": {
+                "count": "99"
+              },
+              "unitized": {
+                "measure": {
+                  "unit": "gram",
+                  "value": "200"
+                }
+              }
+            },
+            "category_id": "Atta, Flours and Sooji",
+            "fulfillment_id": "F1",
+            "location_id": "L7992",
+            "@ondc/org/returnable": false,
+            "@ondc/org/cancellable": false,
+            "@ondc/org/available_on_cod": true,
+            "@ondc/org/return_window": "P7D",
+            "@ondc/org/seller_pickup_return": false,
+            "@ondc/org/time_to_ship": "PT24H",
+            "@ondc/org/contact_details_consumer_care": "TANGRY,support@mydailygoods.com,9528460488",
+            "@ondc/org/statutory_reqs_packaged_commodities": {
+              "manufacturer_or_packer_name": "TANGRY",
+              "manufacturer_or_packer_address": "test",
+              "common_or_generic_name_of_commodity": "Authentic Mustard Yellow Sambhar Masala",
+              "month_year_of_manufacture_packing_import": "07/2026"
+            },
+            "tags": [
+              {
+                "code": "origin",
+                "list": [
+                  {
+                    "code": "country",
+                    "value": "IND"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": "504453509",
+          "name": "Coconut Oil",
+          "description": "\u300bAll Product below MRP\n\n\u300bBest Coconut Oil for Hair \n\n\u300bCash on delivery available\n \n\u300b100% Guarantee",
+          "price_inr": "68.37",
+          "currency": "INR",
+          "provider_id": "10992",
+          "provider_name": "DP Kirana And General Store's",
+          "bpp_id": "ondc1.mydailygoods.com",
+          "bpp_uri": "https://ondc1.mydailygoods.com",
+          "transaction_id": "5a3c8648-5f9d-4f8b-a7b0-efabae178482",
+          "inbox_id": "in_fa7644568e94",
+          "raw_item": {
+            "id": "504453509",
+            "parent_item_id": "V504453509",
+            "time": {
+              "label": "enable",
+              "timestamp": "2026-07-12T14:41:28.072Z"
+            },
+            "descriptor": {
+              "name": "Coconut Oil",
+              "code": "5:504453509",
+              "short_desc": "100% Pure And Natural Coconut oil",
+              "long_desc": "\u300bAll Product below MRP\n\n\u300bBest Coconut Oil for Hair \n\n\u300bCash on delivery available\n \n\u300b100% Guarantee",
+              "symbol": "https://www.mydailygoods.com/admin/product_img/504453509_5111116471.jpg",
+              "images": []
+            },
+            "price": {
+              "currency": "INR",
+              "value": "68.37",
+              "maximum_value": "72.45"
+            },
+            "quantity": {
+              "available": {
+                "count": "99"
+              },
+              "maximum": {
+                "count": "99"
+              },
+              "unitized": {
+                "measure": {
+                  "unit": "millilitre",
+                  "value": "100"
+                }
+              }
+            },
+            "category_id": "Oil & Ghee",
+            "fulfillment_id": "F1",
+            "location_id": "L8192",
+            "@ondc/org/returnable": false,
+            "@ondc/org/cancellable": false,
+            "@ondc/org/available_on_cod": false,
+            "@ondc/org/return_window": "P7D",
+            "@ondc/org/seller_pickup_return": false,
+            "@ondc/org/time_to_ship": "PT24H",
+            "@ondc/org/contact_details_consumer_care": "DP Kirana And General Store's,support@mydailygoods.com,9528460488",
+            "@ondc/org/statutory_reqs_packaged_commodities": {
+              "manufacturer_or_packer_name": "DP Kirana And General Store's",
+              "manufacturer_or_packer_address": "test",
+              "common_or_generic_name_of_commodity": "Coconut Oil",
+              "month_year_of_manufacture_packing_import": "07/2026"
+            },
+            "tags": [
+              {
+                "code": "origin",
+                "list": [
+                  {
+                    "code": "country",
+                    "value": "IND"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": "1",
+          "name": "Butter Chicken",
+          "description": "Creamy butter chicken gravy",
+          "price_inr": "299",
+          "currency": "INR",
+          "provider_id": "1",
+          "provider_name": "Mancu Store",
+          "bpp_id": "ondc.mancu.cloud",
+          "bpp_uri": "https://ondc.mancu.cloud/ondc/v1",
+          "transaction_id": "5a3c8648-5f9d-4f8b-a7b0-efabae178482",
+          "inbox_id": "in_d30a958c38fa",
+          "raw_item": {
+            "id": "1",
+            "descriptor": {
+              "name": "Butter Chicken",
+              "short_desc": "Creamy butter chicken gravy",
+              "images": [],
+              "code": "4:HSN"
+            },
+            "price": {
+              "currency": "INR",
+              "value": "299",
+              "maximum_value": "299"
+            },
+            "quantity": {
+              "available": {
+                "count": 99
+              },
+              "maximum": {
+                "count": 99
+              }
+            },
+            "category_id": "Chicken",
+            "category_ids": [
+              "1:1"
+            ],
+            "fulfillment_ids": [
+              "1"
+            ],
+            "location_ids": [
+              "1"
+            ],
+            "location_id": "1",
+            "@ondc/org/time_to_ship": "PT30M",
+            "@ondc/org/return_window": "PT24H",
+            "@ondc/org/returnable": true,
+            "@ondc/org/cancellable": true,
+            "@ondc/org/seller_pickup_return": false,
+            "tags": [
+              {
+                "code": "custom_group",
+                "list": [
+                  {
+                    "code": "id",
+                    "value": "101"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": "2",
+          "name": "Naan Bread",
+          "description": "Tandoori baked naan",
+          "price_inr": "45",
+          "currency": "INR",
+          "provider_id": "1",
+          "provider_name": "Mancu Store",
+          "bpp_id": "ondc.mancu.cloud",
+          "bpp_uri": "https://ondc.mancu.cloud/ondc/v1",
+          "transaction_id": "5a3c8648-5f9d-4f8b-a7b0-efabae178482",
+          "inbox_id": "in_d30a958c38fa",
+          "raw_item": {
+            "id": "2",
+            "descriptor": {
+              "name": "Naan Bread",
+              "short_desc": "Tandoori baked naan",
+              "images": [],
+              "code": "4:HSN"
+            },
+            "price": {
+              "currency": "INR",
+              "value": "45",
+              "maximum_value": "45"
+            },
+            "quantity": {
+              "available": {
+                "count": 99
+              },
+              "maximum": {
+                "count": 99
+              }
+            },
+            "category_id": "Bread",
+            "category_ids": [
+              "2:3"
+            ],
+            "fulfillment_ids": [
+              "1"
+            ],
+            "location_ids": [
+              "1"
+            ],
+            "location_id": "1",
+            "@ondc/org/time_to_ship": "PT30M",
+            "@ondc/org/return_window": "PT24H",
+            "@ondc/org/returnable": true,
+            "@ondc/org/cancellable": true,
+            "@ondc/org/seller_pickup_return": false,
+            "tags": [
+              {
+                "code": "custom_group",
+                "list": [
+                  {
+                    "code": "id",
+                    "value": "102"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": "3",
+          "name": "Biryani",
+          "description": "Fragrant rice preparation",
+          "price_inr": "249",
+          "currency": "INR",
+          "provider_id": "1",
+          "provider_name": "Mancu Store",
+          "bpp_id": "ondc.mancu.cloud",
+          "bpp_uri": "https://ondc.mancu.cloud/ondc/v1",
+          "transaction_id": "5a3c8648-5f9d-4f8b-a7b0-efabae178482",
+          "inbox_id": "in_d30a958c38fa",
+          "raw_item": {
+            "id": "3",
+            "descriptor": {
+              "name": "Biryani",
+              "short_desc": "Fragrant rice preparation",
+              "images": [],
+              "code": "4:HSN"
+            },
+            "price": {
+              "currency": "INR",
+              "value": "249",
+              "maximum_value": "249"
+            },
+            "quantity": {
+              "available": {
+                "count": 99
+              },
+              "maximum": {
+                "count": 99
+              }
+            },
+            "category_id": "Biryani",
+            "category_ids": [
+              "1:2"
+            ],
+            "fulfillment_ids": [
+              "1"
+            ],
+            "location_ids": [
+              "1"
+            ],
+            "location_id": "1",
+            "@ondc/org/time_to_ship": "PT30M",
+            "@ondc/org/return_window": "PT24H",
+            "@ondc/org/returnable": true,
+            "@ondc/org/cancellable": true,
+            "@ondc/org/seller_pickup_return": false,
+            "tags": [
+              {
+                "code": "custom_group",
+                "list": [
+                  {
+                    "code": "id",
+                    "value": "101"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": "seller-5590522981a4ea31:auto-mqinuory-lr3761",
+          "name": "English Cashew",
+          "description": "english cashew is one of the best preimiume qulity of cashew form astrial",
+          "price_inr": "89.25",
+          "currency": "INR",
+          "provider_id": "seller-5590522981a4ea31",
+          "provider_name": "Aditya Mart pvt. ltd.",
+          "bpp_id": "api.kaarobari.com",
+          "bpp_uri": "https://api.kaarobari.com",
+          "transaction_id": "5a3c8648-5f9d-4f8b-a7b0-efabae178482",
+          "inbox_id": "in_c54f6c081f22",
+          "raw_item": {
+            "id": "seller-5590522981a4ea31:auto-mqinuory-lr3761",
+            "tags": [
+              {
+                "code": "origin",
+                "list": [
+                  {
+                    "code": "country",
+                    "value": "IND"
+                  }
+                ]
+              },
+              {
+                "code": "type",
+                "list": [
+                  {
+                    "code": "type",
+                    "value": "item"
+                  }
+                ]
+              },
+              {
+                "code": "veg_nonveg",
+                "list": [
+                  {
+                    "code": "veg",
+                    "value": "yes"
+                  }
+                ]
+              },
+              {
+                "code": "image",
+                "list": [
+                  {
+                    "code": "type",
+                    "value": "back_image"
+                  }
+                ]
+              }
+            ],
+            "time": {
+              "label": "enable",
+              "timestamp": "2026-07-12T14:41:27.942Z"
+            },
+            "price": {
+              "value": "89.25",
+              "currency": "INR",
+              "maximum_value": "100.00"
+            },
+            "quantity": {
+              "maximum": {
+                "count": "100"
+              },
+              "unitized": {
+                "measure": {
+                  "unit": "kilogram",
+                  "value": "0.25"
+                }
+              },
+              "available": {
+                "count": "39"
+              }
+            },
+            "descriptor": {
+              "code": "1:automqinuorylr3761",
+              "name": "English Cashew",
+              "images": [
+                "https://via.placeholder.com/512x512.png"
+              ],
+              "symbol": "https://via.placeholder.com/512x512.png",
+              "long_desc": "english cashew is one of the best preimiume qulity of cashew form astrial",
+              "short_desc": "english cashew is one of the best preimiume qulity of cashew form astrial"
+            },
+            "category_id": "Dals and Pulses",
+            "location_id": "store-6e0c26a2",
+            "fulfillment_id": "F1",
+            "parent_item_id": "CASHEW1",
+            "@ondc/org/returnable": true,
+            "@ondc/org/cancellable": true,
+            "@ondc/org/time_to_ship": "PT45M",
+            "@ondc/org/return_window": "P3D",
+            "@ondc/org/available_on_cod": true,
+            "@ondc/org/seller_pickup_return": true,
+            "@ondc/org/contact_details_consumer_care": "SNP care 9999999999 contact@snp.local",
+            "@ondc/org/statutory_reqs_prepackaged_food": {
+              "additives_info": "No additives",
+              "nutritional_info": "Energy 100kcal per 100g",
+              "other_FSSAI_license_no": "12345678901234",
+              "importer_FSSAI_license_no": "12345678901234",
+              "brand_owner_FSSAI_license_no": "12345678901234"
+            },
+            "@ondc/org/statutory_reqs_packaged_commodities": {
+              "manufacturer_or_packer_name": "Aditya Mart pvt. ltd. Pvt Ltd",
+              "manufacturer_or_packer_address": "Pune, Maharashtra 411001",
+              "common_or_generic_name_of_commodity": "English Cashew",
+              "month_year_of_manufacture_packing_import": "2026-06-14",
+              "net_quantity_or_measure_of_commodity_in_pkg": "0.25 kg"
+            }
+          }
+        },
+        {
+          "id": "seller-5590522981a4ea31:cashew500-8ec0ee21",
+          "name": "English Cashew 500g",
+          "description": "english cashew is one of the best preimiume qulity of cashew form astrial",
+          "price_inr": "170.00",
+          "currency": "INR",
+          "provider_id": "seller-5590522981a4ea31",
+          "provider_name": "Aditya Mart pvt. ltd.",
+          "bpp_id": "api.kaarobari.com",
+          "bpp_uri": "https://api.kaarobari.com",
+          "transaction_id": "5a3c8648-5f9d-4f8b-a7b0-efabae178482",
+          "inbox_id": "in_c54f6c081f22",
+          "raw_item": {
+            "id": "seller-5590522981a4ea31:cashew500-8ec0ee21",
+            "tags": [
+              {
+                "code": "origin",
+                "list": [
+                  {
+                    "code": "country",
+                    "value": "IND"
+                  }
+                ]
+              },
+              {
+                "code": "type",
+                "list": [
+                  {
+                    "code": "type",
+                    "value": "item"
+                  }
+                ]
+              },
+              {
+                "code": "veg_nonveg",
+                "list": [
+                  {
+                    "code": "veg",
+                    "value": "yes"
+                  }
+                ]
+              },
+              {
+                "code": "image",
+                "list": [
+                  {
+                    "code": "type",
+                    "value": "back_image"
+                  }
+                ]
+              }
+            ],
+            "time": {
+              "label": "enable",
+              "timestamp": "2026-07-12T14:41:27.942Z"
+            },
+            "price": {
+              "value": "170.00",
+              "currency": "INR",
+              "maximum_value": "180.00"
+            },
+            "quantity": {
+              "maximum": {
+                "count": "100"
+              },
+              "unitized": {
+                "measure": {
+                  "unit": "kilogram",
+                  "value": "0.5"
+                }
+              },
+              "available": {
+                "count": "25"
+              }
+            },
+            "descriptor": {
+              "code": "1:cashew5008ec0ee21",
+              "name": "English Cashew 500g",
+              "images": [
+                "https://via.placeholder.com/512x512.png"
+              ],
+              "symbol": "https://via.placeholder.com/512x512.png",
+              "long_desc": "english cashew is one of the best preimiume qulity of cashew form astrial",
+              "short_desc": "english cashew is one of the best preimiume qulity of cashew form astrial"
+            },
+            "category_id": "Dals and Pulses",
+            "location_id": "store-6e0c26a2",
+            "fulfillment_id": "F1",
+            "parent_item_id": "CASHEW1",
+            "@ondc/org/returnable": true,
+            "@ondc/org/cancellable": true,
+            "@ondc/org/time_to_ship": "PT45M",
+            "@ondc/org/return_window": "P3D",
+            "@ondc/org/available_on_cod": true,
+            "@ondc/org/seller_pickup_return": true,
+            "@ondc/org/contact_details_consumer_care": "SNP care 9999999999 contact@snp.local",
+            "@ondc/org/statutory_reqs_prepackaged_food": {
+              "additives_info": "No additives",
+              "nutritional_info": "Energy 100kcal per 100g",
+              "other_FSSAI_license_no": "12345678901234",
+              "importer_FSSAI_license_no": "12345678901234",
+              "brand_owner_FSSAI_license_no": "12345678901234"
+            },
+            "@ondc/org/statutory_reqs_packaged_commodities": {
+              "manufacturer_or_packer_name": "Aditya Mart pvt. ltd. Pvt Ltd",
+              "manufacturer_or_packer_address": "Pune, Maharashtra 411001",
+              "common_or_generic_name_of_commodity": "English Cashew 500g",
+              "month_year_of_manufacture_packing_import": "2026-06-14",
+              "net_quantity_or_measure_of_commodity_in_pkg": "0.5 kg"
+            }
+          }
+        },
+        {
+          "id": "seller-5590522981a4ea31:sku-nc",
+          "name": "seller-5590522981a4ea31 non-cancellable item",
+          "description": "Non-cancellable demo item (Flow 7)",
+          "price_inr": "150.00",
+          "currency": "INR",
+          "provider_id": "seller-5590522981a4ea31",
+          "provider_name": "Aditya Mart pvt. ltd.",
+          "bpp_id": "api.kaarobari.com",
+          "bpp_uri": "https://api.kaarobari.com",
+          "transaction_id": "5a3c8648-5f9d-4f8b-a7b0-efabae178482",
+          "inbox_id": "in_c54f6c081f22",
+          "raw_item": {
+            "id": "seller-5590522981a4ea31:sku-nc",
+            "tags": [
+              {
+                "code": "origin",
+                "list": [
+                  {
+                    "code": "country",
+                    "value": "IND"
+                  }
+                ]
+              },
+              {
+                "code": "type",
+                "list": [
+                  {
+                    "code": "type",
+                    "value": "item"
+                  }
+                ]
+              },
+              {
+                "code": "veg_nonveg",
+                "list": [
+                  {
+                    "code": "veg",
+                    "value": "yes"
+                  }
+                ]
+              },
+              {
+                "code": "image",
+                "list": [
+                  {
+                    "code": "type",
+                    "value": "back_image"
+                  }
+                ]
+              }
+            ],
+            "time": {
+              "label": "enable",
+              "timestamp": "2026-07-12T14:41:27.942Z"
+            },
+            "price": {
+              "value": "150.00",
+              "currency": "INR",
+              "maximum_value": "150.00"
+            },
+            "quantity": {
+              "maximum": {
+                "count": "10"
+              },
+              "unitized": {
+                "measure": {
+                  "unit": "unit",
+                  "value": "1"
+                }
+              },
+              "available": {
+                "count": "100"
+              }
+            },
+            "descriptor": {
+              "code": "1:skunc",
+              "name": "seller-5590522981a4ea31 non-cancellable item",
+              "images": [
+                "https://via.placeholder.com/512x512.png"
+              ],
+              "symbol": "https://via.placeholder.com/512x512.png",
+              "long_desc": "Non-cancellable demo item (Flow 7)",
+              "short_desc": "Non-cancellable demo item (Flow 7)"
+            },
+            "category_id": "Foodgrains",
+            "location_id": "store-6e0c26a2",
+            "fulfillment_id": "F1",
+            "@ondc/org/returnable": true,
+            "@ondc/org/cancellable": false,
+            "@ondc/org/time_to_ship": "PT45M",
+            "@ondc/org/return_window": "P3D",
+            "@ondc/org/available_on_cod": true,
+            "@ondc/org/seller_pickup_return": true,
+            "@ondc/org/contact_details_consumer_care": "SNP care 9999999999 contact@snp.local",
+            "@ondc/org/statutory_reqs_prepackaged_food": {
+              "additives_info": "No additives",
+              "nutritional_info": "Energy 100kcal per 100g",
+              "other_FSSAI_license_no": "12345678901234",
+              "importer_FSSAI_license_no": "12345678901234",
+              "brand_owner_FSSAI_license_no": "12345678901234"
+            },
+            "@ondc/org/statutory_reqs_packaged_commodities": {
+              "manufacturer_or_packer_name": "Aditya Mart pvt. ltd. Pvt Ltd",
+              "manufacturer_or_packer_address": "Pune, Maharashtra 411001",
+              "common_or_generic_name_of_commodity": "seller-5590522981a4ea31 non-cancellable item",
+              "month_year_of_manufacture_packing_import": "04/2026",
+              "net_quantity_or_measure_of_commodity_in_pkg": "1 unit"
+            }
+          }
+        },
+        {
+          "id": "seller-5590522981a4ea31:sku-oos",
+          "name": "seller-5590522981a4ea31 OOS item",
+          "description": "Out-of-stock demo item",
+          "price_inr": "125.00",
+          "currency": "INR",
+          "provider_id": "seller-5590522981a4ea31",
+          "provider_name": "Aditya Mart pvt. ltd.",
+          "bpp_id": "api.kaarobari.com",
+          "bpp_uri": "https://api.kaarobari.com",
+          "transaction_id": "5a3c8648-5f9d-4f8b-a7b0-efabae178482",
+          "inbox_id": "in_c54f6c081f22",
+          "raw_item": {
+            "id": "seller-5590522981a4ea31:sku-oos",
+            "tags": [
+              {
+                "code": "origin",
+                "list": [
+                  {
+                    "code": "country",
+                    "value": "IND"
+                  }
+                ]
+              },
+              {
+                "code": "type",
+                "list": [
+                  {
+                    "code": "type",
+                    "value": "item"
+                  }
+                ]
+              },
+              {
+                "code": "veg_nonveg",
+                "list": [
+                  {
+                    "code": "veg",
+                    "value": "yes"
+                  }
+                ]
+              },
+              {
+                "code": "image",
+                "list": [
+                  {
+                    "code": "type",
+                    "value": "back_image"
+                  }
+                ]
+              }
+            ],
+            "time": {
+              "label": "enable",
+              "timestamp": "2026-07-12T14:41:27.942Z"
+            },
+            "price": {
+              "value": "125.00",
+              "currency": "INR",
+              "maximum_value": "125.00"
+            },
+            "quantity": {
+              "maximum": {
+                "count": "0"
+              },
+              "unitized": {
+                "measure": {
+                  "unit": "unit",
+                  "value": "1"
+                }
+              },
+              "available": {
+                "count": "0"
+              }
+            },
+            "descriptor": {
+              "code": "1:skuoos",
+              "name": "seller-5590522981a4ea31 OOS item",
+              "images": [
+                "https://via.placeholder.com/512x512.png"
+              ],
+              "symbol": "https://via.placeholder.com/512x512.png",
+              "long_desc": "Out-of-stock demo item",
+              "short_desc": "Out-of-stock demo item"
+            },
+            "category_id": "Foodgrains",
+            "location_id": "store-6e0c26a2",
+            "fulfillment_id": "F1",
+            "@ondc/org/returnable": true,
+            "@ondc/org/cancellable": true,
+            "@ondc/org/time_to_ship": "PT45M",
+            "@ondc/org/return_window": "P3D",
+            "@ondc/org/available_on_cod": true,
+            "@ondc/org/seller_pickup_return": true,
+            "@ondc/org/contact_details_consumer_care": "SNP care 9999999999 contact@snp.local",
+            "@ondc/org/statutory_reqs_prepackaged_food": {
+              "additives_info": "No additives",
+              "nutritional_info": "Energy 100kcal per 100g",
+              "other_FSSAI_license_no": "12345678901234",
+              "importer_FSSAI_license_no": "12345678901234",
+              "brand_owner_FSSAI_license_no": "12345678901234"
+            },
+            "@ondc/org/statutory_reqs_packaged_commodities": {
+              "manufacturer_or_packer_name": "Aditya Mart pvt. ltd. Pvt Ltd",
+              "manufacturer_or_packer_address": "Pune, Maharashtra 411001",
+              "common_or_generic_name_of_commodity": "seller-5590522981a4ea31 OOS item",
+              "month_year_of_manufacture_packing_import": "04/2026",
+              "net_quantity_or_measure_of_commodity_in_pkg": "1 unit"
+            }
+          }
+        },
+        {
+          "id": "67386a75c5be6c91528f5806",
+          "name": "Saffola oil",
+          "description": "description",
+          "price_inr": "100",
+          "currency": "INR",
+          "provider_id": "65c729244f2d6bf0e260b8d0",
+          "provider_name": "Udyamwell General Store",
+          "bpp_id": "dev.udyamwell.in",
+          "bpp_uri": "https://dev.udyamwell.in",
+          "transaction_id": "5a3c8648-5f9d-4f8b-a7b0-efabae178482",
+          "inbox_id": "in_ba945d4fa1d6",
+          "raw_item": {
+            "id": "67386a75c5be6c91528f5806",
+            "time": {
+              "label": "enable",
+              "timestamp": "2024-11-16T11:22:39.354Z"
+            },
+            "descriptor": {
+              "name": "Saffola oil",
+              "code": "1:971349590800",
+              "symbol": "https://udyamwell.s3.amazonaws.com/1731755160117-compressed_image5755910983972930007.png",
+              "short_desc": "description",
+              "long_desc": "description",
+              "images": [
+                "https://udyamwell.s3.amazonaws.com/1731755160117-compressed_image5755910983972930007.png",
+                "https://udyamwell.s3.amazonaws.com/1731755160908-compressed_image1439910567861863439.png",
+                "https://udyamwell.s3.amazonaws.com/1731755161640-compressed_image1899827129759491220.png"
+              ]
+            },
+            "quantity": {
+              "unitized": {
+                "measure": {
+                  "unit": "kilogram",
+                  "value": "100"
+                }
+              },
+              "available": {
+                "count": "10000"
+              },
+              "maximum": {
+                "count": "99"
+              }
+            },
+            "price": {
+              "currency": "INR",
+              "value": "100",
+              "maximum_value": "100"
+            },
+            "category_id": "Oil & Ghee",
+            "location_id": "L1",
+            "fulfillment_id": "1",
+            "@ondc/org/returnable": false,
+            "@ondc/org/cancellable": true,
+            "@ondc/org/available_on_cod": false,
+            "@ondc/org/time_to_ship": "P2D",
+            "@ondc/org/seller_pickup_return": true,
+            "@ondc/org/return_window": "P2D",
+            "@ondc/org/contact_details_consumer_care": "Akash Dhiman,undefined,8629829598",
+            "tags": [
+              {
+                "code": "origin",
+                "list": [
+                  {
+                    "code": "country",
+                    "value": "IND"
+                  }
+                ]
+              },
+              {
+                "code": "image",
+                "list": [
+                  {
+                    "code": "type",
+                    "value": "back_image"
+                  },
+                  {
+                    "code": "url",
+                    "value": "https://udyamwell.s3.amazonaws.com/1731755160908-compressed_image1439910567861863439.png"
+                  }
+                ]
+              },
+              {
+                "code": "veg_nonveg",
+                "list": [
+                  {
+                    "code": "veg",
+                    "value": "yes"
+                  }
+                ]
+              }
+            ],
+            "@ondc/org/statutory_reqs_packaged_commodities": {
+              "manufacturer_or_packer_name": "Safolla",
+              "manufacturer_or_packer_address": "W64H+786, Sholinganallur, Chennai, Tamil Nadu 600097, India",
+              "common_or_generic_name_of_commodity": "Saffola oil",
+              "month_year_of_manufacture_packing_import": "2024-10-01 16:36"
+            }
+          }
+        },
+        {
+          "id": "67386a75c5be6c91528f5808",
+          "name": "Rajma",
+          "description": "description",
+          "price_inr": "100",
+          "currency": "INR",
+          "provider_id": "65c729244f2d6bf0e260b8d0",
+          "provider_name": "Udyamwell General Store",
+          "bpp_id": "dev.udyamwell.in",
+          "bpp_uri": "https://dev.udyamwell.in",
+          "transaction_id": "5a3c8648-5f9d-4f8b-a7b0-efabae178482",
+          "inbox_id": "in_ba945d4fa1d6",
+          "raw_item": {
+            "id": "67386a75c5be6c91528f5808",
+            "time": {
+              "label": "enable",
+              "timestamp": "2024-11-16T09:51:11.369Z"
+            },
+            "descriptor": {
+              "name": "Rajma",
+              "code": "1:169348572174",
+              "symbol": "https://udyamwell.s3.amazonaws.com/1731750669275-compressed_image277063850232611904.png",
+              "short_desc": "description",
+              "long_desc": "description",
+              "images": [
+                "https://udyamwell.s3.amazonaws.com/1731750669275-compressed_image277063850232611904.png",
+                "https://udyamwell.s3.amazonaws.com/1731750670079-compressed_image437167316142145641.png",
+                "https://udyamwell.s3.amazonaws.com/1731750670876-compressed_image8581456120056230535.png"
+              ]
+            },
+            "quantity": {
+              "unitized": {
+                "measure": {
+                  "unit": "kilogram",
+                  "value": "1"
+                }
+              },
+              "available": {
+                "count": "10000"
+              },
+              "maximum": {
+                "count": "99"
+              }
+            },
+            "price": {
+              "currency": "INR",
+              "value": "100",
+              "maximum_value": "120"
+            },
+            "category_id": "Dals and Pulses",
+            "location_id": "L1",
+            "fulfillment_id": "1",
+            "@ondc/org/returnable": false,
+            "@ondc/org/cancellable": true,
+            "@ondc/org/available_on_cod": true,
+            "@ondc/org/time_to_ship": "P2D",
+            "@ondc/org/seller_pickup_return": true,
+            "@ondc/org/return_window": "P2D",
+            "@ondc/org/contact_details_consumer_care": "Akash Dhiman,undefined,8629829598",
+            "tags": [
+              {
+                "code": "origin",
+                "list": [
+                  {
+                    "code": "country",
+                    "value": "IND"
+                  }
+                ]
+              },
+              {
+                "code": "image",
+                "list": [
+                  {
+                    "code": "type",
+                    "value": "back_image"
+                  },
+                  {
+                    "code": "url",
+                    "value": "https://udyamwell.s3.amazonaws.com/1731750670079-compressed_image437167316142145641.png"
+                  }
+                ]
+              },
+              {
+                "code": "veg_nonveg",
+                "list": [
+                  {
+                    "code": "veg",
+                    "value": "yes"
+                  }
+                ]
+              }
+            ],
+            "@ondc/org/statutory_reqs_packaged_commodities": {
+              "manufacturer_or_packer_name": "Parle",
+              "manufacturer_or_packer_address": "Delhi",
+              "common_or_generic_name_of_commodity": "Rajma",
+              "month_year_of_manufacture_packing_import": "2023-12-31 00:00"
+            }
+          }
+        },
+        {
+          "id": "67386a75c5be6c91528f5809",
+          "name": "Rice",
+          "description": "description",
+          "price_inr": "40",
+          "currency": "INR",
+          "provider_id": "65c729244f2d6bf0e260b8d0",
+          "provider_name": "Udyamwell General Store",
+          "bpp_id": "dev.udyamwell.in",
+          "bpp_uri": "https://dev.udyamwell.in",
+          "transaction_id": "5a3c8648-5f9d-4f8b-a7b0-efabae178482",
+          "inbox_id": "in_ba945d4fa1d6",
+          "raw_item": {
+            "id": "67386a75c5be6c91528f5809",
+            "time": {
+              "label": "enable",
+              "timestamp": "2024-11-16T10:22:02.363Z"
+            },
+            "descriptor": {
+              "name": "Rice",
+              "code": "1:357722048058",
+              "symbol": "https://udyamwell.s3.amazonaws.com/1731752520472-compressed_image2340256204659525232.png",
+              "short_desc": "description",
+              "long_desc": "description",
+              "images": [
+                "https://udyamwell.s3.amazonaws.com/1731752520472-compressed_image2340256204659525232.png",
+                "https://udyamwell.s3.amazonaws.com/1731752521185-compressed_image3720347126664873742.png",
+                "https://udyamwell.s3.amazonaws.com/1731752521902-compressed_image9002019519637187540.png"
+              ]
+            },
+            "quantity": {
+              "unitized": {
+                "measure": {
+                  "unit": "kilogram",
+                  "value": "1"
+                }
+              },
+              "available": {
+                "count": "10000"
+              },
+              "maximum": {
+                "count": "99"
+              }
+            },
+            "price": {
+              "currency": "INR",
+              "value": "40",
+              "maximum_value": "50"
+            },
+            "category_id": "Rice and Rice Products",
+            "location_id": "L1",
+            "fulfillment_id": "1",
+            "@ondc/org/returnable": false,
+            "@ondc/org/cancellable": false,
+            "@ondc/org/available_on_cod": false,
+            "@ondc/org/time_to_ship": "P2D",
+            "@ondc/org/seller_pickup_return": true,
+            "@ondc/org/return_window": "P2D",
+            "@ondc/org/contact_details_consumer_care": "Akash Dhiman,undefined,8629829598",
+            "tags": [
+              {
+                "code": "origin",
+                "list": [
+                  {
+                    "code": "country",
+                    "value": "IND"
+                  }
+                ]
+              },
+              {
+                "code": "image",
+                "list": [
+                  {
+                    "code": "type",
+                    "value": "back_image"
+                  },
+                  {
+                    "code": "url",
+                    "value": "https://udyamwell.s3.amazonaws.com/1731752521185-compressed_image3720347126664873742.png"
+                  }
+                ]
+              },
+              {
+                "code": "veg_nonveg",
+                "list": [
+                  {
+                    "code": "veg",
+                    "value": "yes"
+                  }
+                ]
+              }
+            ],
+            "@ondc/org/statutory_reqs_packaged_commodities": {
+              "manufacturer_or_packer_name": "Himshakti",
+              "manufacturer_or_packer_address": "Delhi",
+              "common_or_generic_name_of_commodity": "Rice",
+              "month_year_of_manufacture_packing_import": "2024-11-01 15:50"
+            }
+          }
+        },
+        {
+          "id": "67386a75c5be6c91528f5807",
+          "name": "MDH masala",
+          "description": "description",
+          "price_inr": "100",
+          "currency": "INR",
+          "provider_id": "65c729244f2d6bf0e260b8d0",
+          "provider_name": "Udyamwell General Store",
+          "bpp_id": "dev.udyamwell.in",
+          "bpp_uri": "https://dev.udyamwell.in",
+          "transaction_id": "5a3c8648-5f9d-4f8b-a7b0-efabae178482",
+          "inbox_id": "in_ba945d4fa1d6",
+          "raw_item": {
+            "id": "67386a75c5be6c91528f5807",
+            "time": {
+              "label": "enable",
+              "timestamp": "2024-11-16T11:24:51.296Z"
+            },
+            "descriptor": {
+              "name": "MDH masala",
+              "code": "1:115903069812",
+              "symbol": "https://udyamwell.s3.amazonaws.com/1731756289241-compressed_image4210741991010977798.png",
+              "short_desc": "description",
+              "long_desc": "description",
+              "images": [
+                "https://udyamwell.s3.amazonaws.com/1731756289241-compressed_image4210741991010977798.png",
+                "https://udyamwell.s3.amazonaws.com/1731756290009-compressed_image8745720909923531141.png",
+                "https://udyamwell.s3.amazonaws.com/1731756290754-compressed_image6864424328627362589.png"
+              ]
+            },
+            "quantity": {
+              "unitized": {
+                "measure": {
+                  "unit": "kilogram",
+                  "value": "100"
+                }
+              },
+              "available": {
+                "count": "10000"
+              },
+              "maximum": {
+                "count": "99"
+              }
+            },
+            "price": {
+              "currency": "INR",
+              "value": "100",
+              "maximum_value": "100"
+            },
+            "category_id": "Masala & Seasoning",
+            "location_id": "L1",
+            "fulfillment_id": "1",
+            "@ondc/org/returnable": false,
+            "@ondc/org/cancellable": false,
+            "@ondc/org/available_on_cod": false,
+            "@ondc/org/time_to_ship": "P2D",
+            "@ondc/org/seller_pickup_return": true,
+            "@ondc/org/return_window": "P2D",
+            "@ondc/org/contact_details_consumer_care": "Akash Dhiman,undefined,8629829598",
+            "tags": [
+              {
+                "code": "origin",
+                "list": [
+                  {
+                    "code": "country",
+                    "value": "IND"
+                  }
+                ]
+              },
+              {
+                "code": "image",
+                "list": [
+                  {
+                    "code": "type",
+                    "value": "back_image"
+                  },
+                  {
+                    "code": "url",
+                    "value": "https://udyamwell.s3.amazonaws.com/1731756290009-compressed_image8745720909923531141.png"
+                  }
+                ]
+              },
+              {
+                "code": "veg_nonveg",
+                "list": [
+                  {
+                    "code": "veg",
+                    "value": "yes"
+                  }
+                ]
+              }
+            ],
+            "@ondc/org/statutory_reqs_packaged_commodities": {
+              "manufacturer_or_packer_name": "Parle",
+              "manufacturer_or_packer_address": "Pune",
+              "common_or_generic_name_of_commodity": "MDH masala",
+              "month_year_of_manufacture_packing_import": "2023-12-31 00:00"
+            }
+          }
+        },
+        {
+          "id": "67387bdbc5be6c91528f5dab",
+          "name": "Tur Daal",
+          "description": "tur daal",
+          "price_inr": "150",
+          "currency": "INR",
+          "provider_id": "65c729244f2d6bf0e260b8d0",
+          "provider_name": "Udyamwell General Store",
+          "bpp_id": "dev.udyamwell.in",
+          "bpp_uri": "https://dev.udyamwell.in",
+          "transaction_id": "5a3c8648-5f9d-4f8b-a7b0-efabae178482",
+          "inbox_id": "in_ba945d4fa1d6",
+          "raw_item": {
+            "id": "67387bdbc5be6c91528f5dab",
+            "time": {
+              "label": "enable",
+              "timestamp": "2024-11-16T11:02:51.956Z"
+            },
+            "descriptor": {
+              "name": "Tur Daal",
+              "code": "1:463679037301",
+              "symbol": "https://udyamwell.s3.amazonaws.com/1731754970163-compressed_image9181491111160757906.png",
+              "short_desc": "tur daal",
+              "long_desc": "tur daal",
+              "images": [
+                "https://udyamwell.s3.amazonaws.com/1731754970163-compressed_image9181491111160757906.png",
+                "https://udyamwell.s3.amazonaws.com/1731754970870-compressed_image2392790031509246061.png",
+                "https://udyamwell.s3.amazonaws.com/1731754971525-compressed_image3993478633802610357.png"
+              ]
+            },
+            "quantity": {
+              "unitized": {
+                "measure": {
+                  "unit": "kilogram",
+                  "value": "1"
+                }
+              },
+              "available": {
+                "count": "10000"
+              },
+              "maximum": {
+                "count": "99"
+              }
+            },
+            "price": {
+              "currency": "INR",
+              "value": "150",
+              "maximum_value": "180"
+            },
+            "category_id": "Dals and Pulses",
+            "location_id": "L1",
+            "fulfillment_id": "1",
+            "@ondc/org/returnable": false,
+            "@ondc/org/cancellable": true,
+            "@ondc/org/available_on_cod": true,
+            "@ondc/org/time_to_ship": "P2D",
+            "@ondc/org/seller_pickup_return": true,
+            "@ondc/org/return_window": "P2D",
+            "@ondc/org/contact_details_consumer_care": "Akash Dhiman,undefined,8629829598",
+            "tags": [
+              {
+                "code": "origin",
+                "list": [
+                  {
+                    "code": "country",
+                    "value": "IND"
+                  }
+                ]
+              },
+              {
+                "code": "image",
+                "list": [
+                  {
+                    "code": "type",
+                    "value": "back_image"
+                  },
+                  {
+                    "code": "url",
+                    "value": "https://udyamwell.s3.amazonaws.com/1731754970870-compressed_image2392790031509246061.png"
+                  }
+                ]
+              },
+              {
+                "code": "veg_nonveg",
+                "list": [
+                  {
+                    "code": "veg",
+                    "value": "yes"
+                  }
+                ]
+              }
+            ],
+            "@ondc/org/statutory_reqs_packaged_commodities": {
+              "manufacturer_or_packer_name": "Udyamwell",
+              "manufacturer_or_packer_address": "IIT Mandi, Catalyst, N Campus Rd, Salgi, Kamand, Himachal Pradesh 175005, India",
+              "common_or_generic_name_of_commodity": "Tur Daal",
+              "month_year_of_manufacture_packing_import": "2024-10-01 16:30"
+            }
+          }
+        }
+      ],
+      "count": 39,
+      "source": "ondc-network"
+    }
+  }
+}

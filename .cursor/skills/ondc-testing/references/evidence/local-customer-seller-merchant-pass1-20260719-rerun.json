@@ -1,0 +1,86 @@
+{
+  "verdict": "Pass",
+  "lease_ready_at": "2026-07-19T16:42:20Z",
+  "verdict_at": "2026-07-19T16:47:21Z",
+  "session_id": "seller-merchant-pass1-1784479339",
+  "session_absent_after_closeout": true,
+  "final_url": "http://127.0.0.1:43103/orders/order_0c88d5ae11c54fdb",
+  "published_item": {
+    "title": "Ashirvaad Whole Wheat Atta 5kg",
+    "price_inr": 285,
+    "stock": 48
+  },
+  "prepared_order_outcome": "Order 0C88D5AE (Kitchen Chana Dal, Asha Merchant / Pune): Accepted then Dispatched with tracking TRK-ASHA-411001; visible terminal state Delivered (Payment: Paid). Timeline shows Order placed \u2192 Order accepted \u2192 Order delivered.",
+  "first_friction": "On Incoming Orders, Accept for the first Pending row (Delivery to: Unknown city) replaced the whole Orders page with 'Orders unavailable \u2014 Delivery details are incomplete; the order cannot be accepted.' Retry restored the list; completed a different Pending order that showed a full Pune address.",
+  "findings": [
+    "Accept on a Pending list row with 'Delivery to: Unknown city' fails closed into a full-page 'Orders unavailable' error instead of a per-order message; Retry recovers the queue.",
+    "Newly published Ashirvaad Whole Wheat Atta 5kg shows correctly in the catalog table (INR 285.00, stock 48) but does not appear in the featured product cards row above.",
+    "After Accept \u2192 Dispatch reaches Delivered, the order Timeline still labels accepted/delivered steps as 'Awaiting update'.",
+    "Sign out remained visible throughout; Identity Verified / Assistant Ready stayed on."
+  ],
+  "screenshots": [
+    {
+      "path": "/Users/gurusharan/plugins/hermes-chrome-cursor-wip/run/cache/hermes-chrome/e25cd961-fa29-48a4-8532-d7d6ea1e3e2c-0.png",
+      "readback": "Catalog after publish: Sign out visible; Visible products 5; featured cards show existing grocery dals; Identity Verified."
+    },
+    {
+      "path": "/Users/gurusharan/plugins/hermes-chrome-cursor-wip/run/cache/hermes-chrome/657ea054-34b8-49e4-ae44-0b72eade0bc4-0.png",
+      "readback": "Second catalog capture same session: Product catalog active, 5 visible products, Sign out present."
+    },
+    {
+      "path": "/Users/gurusharan/plugins/hermes-chrome-cursor-wip/run/cache/hermes-chrome/f7e6c715-aa42-4859-9baf-304f684555a5-0.png",
+      "readback": "Order detail 0C88D5AE after fulfill: Kitchen Chana Dal INR 119; buyer Asha Merchant / Pune; AgentGuard refund remedy still offered; Sign out visible. Page text confirmed status Delivered."
+    }
+  ],
+  "milestones": [
+    "Dashboard understood with Sign out \u2014 Pass",
+    "Catalog inspected \u2014 Pass",
+    "Published grocery listing (Ashirvaad Whole Wheat Atta 5kg) \u2014 Pass",
+    "Verified visible price INR 285 and stock 48 \u2014 Pass",
+    "Orders inspected \u2014 Pass",
+    "Prepared order completed to Delivered \u2014 Pass"
+  ],
+  "main_thread_verified": true,
+  "backend_prepared_order_status": "fulfilled",
+  "cleanup": {
+    "cleanup_at": "2026-07-19T16:48:26Z",
+    "backup": "aadharchain/gateway/data/commerce-demo-state.json.bak-cleanup-1784479706",
+    "removed": {
+      "items": [
+        {
+          "id": "item_40c872920bf64bcd",
+          "title": "Ashirvaad Whole Wheat Atta 5kg"
+        },
+        {
+          "id": "item_d1043c131e9640ec",
+          "title": "Kitchen Chana Dal 479252"
+        }
+      ],
+      "orders": [
+        {
+          "id": "order_0c88d5ae11c54fdb",
+          "status": "fulfilled",
+          "title": "Kitchen Chana Dal 479252"
+        }
+      ],
+      "reservations": [
+        "rsv_0bcfc52b76d54bd1"
+      ],
+      "inventory_keys": [
+        "item_40c872920bf64bcd",
+        "item_d1043c131e9640ec"
+      ]
+    },
+    "baseline_items": 33,
+    "baseline_orders": 31,
+    "after_items": 33,
+    "after_orders": 31,
+    "items_match_baseline": true,
+    "orders_match_baseline": true,
+    "extra_items": [],
+    "missing_items": [],
+    "extra_orders": [],
+    "missing_orders": []
+  },
+  "actor": "7b7b9d3d-458b-49ee-8681-2951cc3621c4"
+}

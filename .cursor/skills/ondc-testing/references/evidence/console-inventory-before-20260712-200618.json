@@ -1,0 +1,203 @@
+{
+  "stamp": "20260712-200618",
+  "buyer": [
+    {
+      "page": "search",
+      "url": "https://ondcbuyer.aadharcha.in/search",
+      "dump": {
+        "errorCount": 2,
+        "href": "https://ondcbuyer.aadharcha.in/results?category=grocery&q=AgentGuard%20PreProd%20Atta",
+        "logs": [
+          {
+            "href": "https://ondcbuyer.aadharcha.in/results?category=grocery&q=AgentGuard%20PreProd%20Atta",
+            "level": "log",
+            "msg": "%c[Vercel Speed Insights]%c [vitals] color: rgb(120, 120, 120) color: inherit {\"speed\":\"4g\",\"metrics\":[{\"id\":\"v3-1783866979313-2177621658449\",\"type\":\"FCP\",\"href\":\"https://ondcbuyer.aadharcha.in/search\",\"value\":480},{\"id\":\"v3-1783866979313-3475644594200\",\"type\":\"TTFB\",\"href\":\"https://ondcbuyer.aadharcha.in/search\",\"value\":157},{\"id\":\"v3-1783866979313-1910189193669\",\"type\":\"LCP\",\"href\":\"https://ondcbuyer.aadharcha.in/search\",\"value\":480,\"attribution\":{\"eventTarget\":\"section.space-y-3>h1.max-w-3xl.text-3xl.font-semibold.tracking-tight.text-foreground.sm:text-4xl\"}}],\"scriptVersion\":\"0.1.3\",\"sdkName\":\"@vercel/speed-insights/react\",\"sdkVersion\":\"2.0.0\"} /_vercel/speed-insights/vitals",
+            "t": 1783866985865
+          },
+          {
+            "href": "https://ondcbuyer.aadharcha.in/results?category=grocery&q=AgentGuard%20PreProd%20Atta",
+            "level": "log",
+            "msg": "%c[Vercel Web Analytics]%c [view] https://ondcbuyer.aadharcha.in/results?category=grocery&q=AgentGuard%20PreProd%20Atta color: rgb(120, 120, 120) color: inherit {\"o\":\"https://ondcbuyer.aadharcha.in/results?category=grocery&q=AgentGuard%20PreProd%20Atta\",\"sv\":\"0.1.3\",\"sdkn\":\"@vercel/analytics/react\",\"sdkv\":\"2.0.1\",\"ts\":1783866985864} /_vercel/insights/view",
+            "t": 1783866985886
+          },
+          {
+            "href": "https://ondcbuyer.aadharcha.in/results?category=grocery&q=AgentGuard%20PreProd%20Atta",
+            "level": "error",
+            "msg": "fetch failed http://127.0.0.1:43102/api/cart?sessionId=session-1769264983827-fzqlgs6 TypeError: Failed to fetch",
+            "t": 1783866985951
+          },
+          {
+            "href": "https://ondcbuyer.aadharcha.in/results?category=grocery&q=AgentGuard%20PreProd%20Atta",
+            "level": "error",
+            "msg": "fetch failed http://127.0.0.1:43102/api/cart?sessionId=session-1769264983827-fzqlgs6 TypeError: Failed to fetch",
+            "t": 1783866985960
+          }
+        ],
+        "textHead": "PORTFOLIO\nONDC Buyer\nDiscover commerce under AgentGuard authorization.\nSearch\nCart\nOrders\nConfig\nSign out\nPulling the latest offers for your selected category.\nAgent chat\nHow it works\nS",
+        "title": "ONDC Buyer",
+        "warnCount": 0
+      }
+    },
+    {
+      "page": "results_atta",
+      "url": "https://ondcbuyer.aadharcha.in/results?category=grocery&q=AgentGuard%20PreProd%20Atta",
+      "dump": {
+        "errorCount": 2,
+        "href": "https://ondcbuyer.aadharcha.in/results?category=grocery&q=AgentGuard%20PreProd%20Atta",
+        "logs": [
+          {
+            "href": "https://ondcbuyer.aadharcha.in/results?category=grocery&q=AgentGuard%20PreProd%20Atta",
+            "level": "log",
+            "msg": "%c[Vercel Speed Insights]%c [vitals] color: rgb(120, 120, 120) color: inherit {\"speed\":\"4g\",\"metrics\":[{\"id\":\"v3-1783866979313-2177621658449\",\"type\":\"FCP\",\"href\":\"https://ondcbuyer.aadharcha.in/search\",\"value\":480},{\"id\":\"v3-1783866979313-3475644594200\",\"type\":\"TTFB\",\"href\":\"https://ondcbuyer.aadharcha.in/search\",\"value\":157},{\"id\":\"v3-1783866979313-1910189193669\",\"type\":\"LCP\",\"href\":\"https://ondcbuyer.aadharcha.in/search\",\"value\":480,\"attribution\":{\"eventTarget\":\"section.space-y-3>h1.max-w-3xl.text-3xl.font-semibold.tracking-tight.text-foreground.sm:text-4xl\"}}],\"scriptVersion\":\"0.1.3\",\"sdkName\":\"@vercel/speed-insights/react\",\"sdkVersion\":\"2.0.0\"} /_vercel/speed-insights/vitals",
+            "t": 1783866985865
+          },
+          {
+            "href": "https://ondcbuyer.aadharcha.in/results?category=grocery&q=AgentGuard%20PreProd%20Atta",
+            "level": "log",
+            "msg": "%c[Vercel Web Analytics]%c [view] https://ondcbuyer.aadharcha.in/results?category=grocery&q=AgentGuard%20PreProd%20Atta color: rgb(120, 120, 120) color: inherit {\"o\":\"https://ondcbuyer.aadharcha.in/results?category=grocery&q=AgentGuard%20PreProd%20Atta\",\"sv\":\"0.1.3\",\"sdkn\":\"@vercel/analytics/react\",\"sdkv\":\"2.0.1\",\"ts\":1783866985864} /_vercel/insights/view",
+            "t": 1783866985886
+          },
+          {
+            "href": "https://ondcbuyer.aadharcha.in/results?category=grocery&q=AgentGuard%20PreProd%20Atta",
+            "level": "error",
+            "msg": "fetch failed http://127.0.0.1:43102/api/cart?sessionId=session-1769264983827-fzqlgs6 TypeError: Failed to fetch",
+            "t": 1783866985951
+          },
+          {
+            "href": "https://ondcbuyer.aadharcha.in/results?category=grocery&q=AgentGuard%20PreProd%20Atta",
+            "level": "error",
+            "msg": "fetch failed http://127.0.0.1:43102/api/cart?sessionId=session-1769264983827-fzqlgs6 TypeError: Failed to fetch",
+            "t": 1783866985960
+          }
+        ],
+        "textHead": "PORTFOLIO\nONDC Buyer\nDiscover commerce under AgentGuard authorization.\nSearch\nCart\nOrders\nConfig\nSign out\nPulling the latest offers for your selected category.\nAgent chat\nHow it works\nS",
+        "title": "ONDC Buyer",
+        "warnCount": 0
+      }
+    },
+    {
+      "page": "cart",
+      "url": "https://ondcbuyer.aadharcha.in/cart",
+      "dump": {
+        "errorCount": 0,
+        "href": "https://ondcbuyer.aadharcha.in/cart",
+        "logs": [],
+        "textHead": "PORTFOLIO\nONDC Buyer\nDiscover commerce under AgentGuard authorization.\nSearch\nCart\nOrders\nConfig\nSign out\nCart error\n\nRefresh cart failed against the commerce API: Failed to fetch\n\nDismiss\nAgent chat\nHow it works\nS",
+        "title": "ONDC Buyer",
+        "warnCount": 0
+      }
+    },
+    {
+      "page": "checkout",
+      "url": "https://ondcbuyer.aadharcha.in/checkout",
+      "dump": {
+        "errorCount": 0,
+        "href": "https://ondcbuyer.aadharcha.in/checkout",
+        "logs": [],
+        "textHead": "PORTFOLIO\nONDC Buyer\nDiscover commerce under AgentGuard authorization.\nSearch\nCart\nOrders\nConfig\nSign out\nUnable to load checkout\n\nRefresh cart failed against the commerce API: Failed to fetch\n\nBack to cart\nAgent chat\nHow it works\nS",
+        "title": "ONDC Buyer",
+        "warnCount": 0
+      }
+    },
+    {
+      "page": "agentguard",
+      "url": "https://ondcbuyer.aadharcha.in/agentguard",
+      "dump": {
+        "errorCount": 0,
+        "href": "https://ondcbuyer.aadharcha.in/search",
+        "logs": [],
+        "textHead": "PORTFOLIO\nONDC Buyer\nDiscover commerce under AgentGuard authorization.\nSearch\nCart\nOrders\nConfig\nSign out\nBUYER DISCOVERY\nSearch verified commerce\n\nFind offers, then checkout under AgentGuard authorization.\n\nSearch the network\n\nSigned in \u2014 elevated checkout is available via AgentGuard.\n\nCategory\nGrocery\nGrocery\nRestaurant\nFashion\nElectronics\nSearch\nSearch\nAgent chat\nHow it works\nS",
+        "title": "ONDC Buyer",
+        "warnCount": 0
+      }
+    },
+    {
+      "page": "orders",
+      "url": "https://ondcbuyer.aadharcha.in/orders",
+      "dump": {
+        "errorCount": 0,
+        "href": "https://ondcbuyer.aadharcha.in/orders",
+        "logs": [],
+        "textHead": "PORTFOLIO\nONDC Buyer\nDiscover commerce under AgentGuard authorization.\nSearch\nCart\nOrders\nConfig\nSign out\nORDERS\nTrack buyer orders\n\nReview pending, active, and completed orders from the buyer shell without losing trust or delivery context.\n\nall (0)\npending (0)\nactive (0)\ncomplete (0)\nFailed to fetch\nAgent chat\nHow it works\nS",
+        "title": "ONDC Buyer",
+        "warnCount": 0
+      }
+    }
+  ],
+  "seller": [
+    {
+      "page": "dashboard",
+      "url": "https://ondcseller.aadharcha.in/dashboard",
+      "dump": {
+        "errorCount": 0,
+        "href": "https://ondcseller.aadharcha.in/dashboard",
+        "logs": [],
+        "textHead": "SELLER\nONDC Seller\nOperate a trust-aware catalog and fulfillment surface.\nDashboard\nCatalog\nOrders\nConfig\nSign out\nSELLER\nCatalog and trust\nPublish listings when verified. Open catalog to manage the full shelf.\nAdd product\nOpen catalog\nPRODUCTS\nLive\n0\nLive listings in the demo catalog\nCATEGORIES\nInfo\n0\nSingle category so far\nTRUST\nReady\nVerified\nRequired for elevated publish actions\nRECENT PRODUCTS\nInventory snapshot\nCatalog unavailable\nPublished catalog unavailable\nRetry\nAgentGuard authority\nAgent chat\nHow it works\nS",
+        "title": "ONDC Seller",
+        "warnCount": 0
+      }
+    },
+    {
+      "page": "catalog",
+      "url": "https://ondcseller.aadharcha.in/catalog",
+      "dump": {
+        "errorCount": 0,
+        "href": "https://ondcseller.aadharcha.in/catalog",
+        "logs": [],
+        "textHead": "SELLER\nONDC Seller\nOperate a trust-aware catalog and fulfillment surface.\nDashboard\nCatalog\nOrders\nConfig\nSign out\nSELLER CATALOG\nRun a tighter product shelf\nReview the inventory buyers will actually encounter, then edit the exact SKU that needs cleanup.\nRefresh catalog\nAdd product\nVISIBLE PRODUCTS\nLive\n0\nActive SKUs in the current view\nCATEGORIES COVERED\nInfo\n0\nBroader spread helps discovery across buyer intents\nIMAGE COVERAGE\nWatch\n0\nListings with imagery read better in buyer result cards\nTRUST CONTROL\nReady\nOpen\nCatalog edits stay gated until sign-in or trust is verified\nUnable to load the catalog\nPublished catalog unavailable\nRetry\nAgentGuard authority\nAgent chat\nHow it works\nS",
+        "title": "ONDC Seller",
+        "warnCount": 0
+      }
+    },
+    {
+      "page": "orders",
+      "url": "https://ondcseller.aadharcha.in/orders",
+      "dump": {
+        "errorCount": 0,
+        "href": "https://ondcseller.aadharcha.in/orders",
+        "logs": [],
+        "textHead": "SELLER\nONDC Seller\nOperate a trust-aware catalog and fulfillment surface.\nDashboard\nCatalog\nOrders\nConfig\nSign out\nIncoming Orders\nManage and track buyer demand without leaving the trust-aware seller shell.\nTrust check: Unsigned\n\nSign in before elevated seller actions.\n\nOrders unavailable\nFailed to fetch\nRetry\nAgentGuard authority\nAgent chat\nHow it works\nS",
+        "title": "ONDC Seller",
+        "warnCount": 0
+      }
+    },
+    {
+      "page": "agentguard",
+      "url": "https://ondcseller.aadharcha.in/agentguard",
+      "dump": {
+        "errorCount": 0,
+        "href": "https://ondcseller.aadharcha.in/agentguard",
+        "logs": [],
+        "textHead": "SELLER\nONDC Seller\nOperate a trust-aware catalog and fulfillment surface.\nDashboard\nCatalog\nOrders\nConfig\nSign out\nAGENTGUARD\nStore Operations Assistant\n\nConfigure what the agent may do. AgentGuard enforces limits \u2014 not the model.\n\nTrust check: Unsigned\n\nSign in before elevated seller actions.\n\nFailed to fetch\n\nEdit mandate\nAuto-approve refunds up to (INR)\nAllowed actions\nPublish catalog\nChange price\nCommit inventory\nAccept orders\nReject orders\nFulfilment\nPromise remedy\nIssue refund\n\nRefunds up to INR 5000 auto-approve. Allowed: Publish catalog, Change price, Commit inventory, Accept orders, Reject orders, Fulfilment, Promise remedy, Issue refund.\n\nRoutine refunds up to INR 5000 may execute automatically. Larger refunds require one-time approval.\n\nAgent: \u2014 \u00b7 Status: \u2014\n\nMandate: template ready \u00b7 ONDC network; payment rails simulated (not live UPI)\n\nConfirm mandate\nPause agent\nRefresh\nTry refunds on demo order\nSamantha memory\n\nLikes\n\n\u2014\n\nDislikes\n\n\u2014\n\nPreferences\n\n\u2014\n\nNotes\n\n\u2014\n\nClear memory\nReceipts (PII-free)\n\nNo receipts yet.\n\nAgentGuard authority\nAgent chat\nHow it works\nS",
+        "title": "ONDC Seller",
+        "warnCount": 0
+      }
+    },
+    {
+      "page": "config",
+      "url": "https://ondcseller.aadharcha.in/config",
+      "dump": {
+        "errorCount": 0,
+        "href": "https://ondcseller.aadharcha.in/config",
+        "logs": [],
+        "textHead": "SELLER\nONDC Seller\nOperate a trust-aware catalog and fulfillment surface.\nDashboard\nCatalog\nOrders\nConfig\nSign out\nSELLER CONFIGURATION\nKeep the seller node ready for verified operations\n\nConfigure ONDC credentials, gateway routing, and the local seller runtime context without leaving the trust-aware shell.\n\nTrust check: Unsigned\n\nSign in before elevated seller actions.\n\nONDC credentials\nGateway URL\n\nUse the ONDC gateway your seller node should target.\n\nSubscriber ID\n\nMatch the subscriber identity registered for the seller app.\n\nPrivate key\nShow key\nGenerate key pair\nKey ID\n\nUsed to identify the currently active signing key.\n\nMarketplace context\nDomain\nCountry\nCity\nTimeout (ms)\nSave configuration\nTest connection\nAgentGuard authority\nAgent chat\nHow it works\nS",
+        "title": "ONDC Seller",
+        "warnCount": 0
+      }
+    }
+  ],
+  "summary": {
+    "stamp": "20260712-200618",
+    "unique_issues": [
+      {
+        "msg": "fetch failed http://127.0.0.1:43102/api/cart?sessionId=session-1769264983827-fzqlgs6 TypeError: Failed to fetch",
+        "pages": [
+          "buyer:results_atta",
+          "buyer:search"
+        ]
+      }
+    ],
+    "raw_error_count": 4,
+    "raw_warn_count": 0
+  }
+}

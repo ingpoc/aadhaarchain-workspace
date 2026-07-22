@@ -1,0 +1,203 @@
+{
+  "date": "2026-07-12",
+  "ts": "2026-07-12T13:44:11.061889+00:00",
+  "tier": {
+    "render": "Free",
+    "vercel": "Hobby",
+    "policy": "$0 abort upgrades"
+  },
+  "gateway": {
+    "service": "identity-aadhar-gateway-main",
+    "service_id": "srv-d7f256f41pts73f68660",
+    "branch": "codex/ondc-onboard-fqdn-20260712",
+    "live_commit": "a7a4355",
+    "live_note": "Deploy live for a7a4355 BPP search handler (Render Events 2026-07-12 7:10 PM)"
+  },
+  "seller_vercel": {
+    "project": "ondcseller",
+    "deployment": "https://ondcseller-9cqjnmzd5-ingpocs-projects.vercel.app",
+    "deployment_id": "dpl_9C3KFt2Pm8PkW3MMpxqqV3osQu29",
+    "alias": "ondcseller.aadharcha.in",
+    "method": "archive=tgz non-git",
+    "vite_commerce_demo_mode": true,
+    "rewrites": [
+      "/ondc/:path* -> gateway /ondc/np/seller/:path*"
+    ],
+    "probes": {
+      "home_200": true,
+      "ondc_search_ack": true,
+      "not_spa": true
+    }
+  },
+  "probes": {
+    "bpp_status": {
+      "status": 200,
+      "body": {
+        "success": true,
+        "data": {
+          "ready": true,
+          "bpp_id": "ondcseller.aadharcha.in",
+          "bpp_uri": "https://ondcseller.aadharcha.in/ondc",
+          "signing_key_present": true,
+          "unique_key_id": "baf58086-7024-438a-becf-4cfa056ec8d9",
+          "published_item_count": 1
+        }
+      }
+    },
+    "ensure_demo": {
+      "status": 200,
+      "body": {
+        "success": true,
+        "data": {
+          "item": {
+            "item_id": "item_8e805bea61f34b7b",
+            "version": 2,
+            "status": "published",
+            "seller_id": "ondcseller.aadharcha.in",
+            "title": "AgentGuard PreProd Atta 1kg",
+            "description": "Network-visible Seller catalog item for PreProd Buyer discovery",
+            "price_inr": 89,
+            "created_at": "2026-07-12T13:40:29.602640+00:00",
+            "updated_at": "2026-07-12T13:40:29.603268+00:00"
+          },
+          "created": false
+        }
+      }
+    },
+    "seller_home": {
+      "status": 200,
+      "html": true
+    },
+    "seller_fqdn_search": {
+      "status": 200,
+      "body": {
+        "message": {
+          "ack": {
+            "status": "ACK"
+          }
+        }
+      },
+      "ack": true,
+      "is_spa": false
+    },
+    "gateway_seller_search": {
+      "status": 200,
+      "body": {
+        "message": {
+          "ack": {
+            "status": "ACK"
+          }
+        }
+      },
+      "transaction_id": "direct-gw-feee6482-e45f-467e-836b-831db3401bfb"
+    },
+    "direct_on_search_via_fqdn": {
+      "found": true,
+      "inbox_id": "in_3f81cda2616e",
+      "transaction_id": "direct-80b3359a-cd9a-4e5c-b5a8-ced0e7d70421",
+      "match_tx": true,
+      "bpp_id": "ondcseller.aadharcha.in",
+      "bpp_uri": "https://ondcseller.aadharcha.in/ondc",
+      "has_atta_item": true,
+      "item_names": [
+        "AadhaarChain AgentGuard Seller",
+        "AadhaarChain AgentGuard Seller",
+        "AgentGuard PreProd Atta 1kg",
+        "AadhaarChain AgentGuard Seller",
+        "AgentGuard PreProd Atta 1kg"
+      ]
+    },
+    "direct_on_search_via_gateway": {
+      "found": true,
+      "inbox_id": "in_0de3955bd151",
+      "transaction_id": "direct-gw-feee6482-e45f-467e-836b-831db3401bfb",
+      "match_tx": true,
+      "bpp_id": "ondcseller.aadharcha.in",
+      "bpp_uri": "https://ondcseller.aadharcha.in/ondc",
+      "has_atta_item": true,
+      "item_names": [
+        "AadhaarChain AgentGuard Seller",
+        "AadhaarChain AgentGuard Seller",
+        "AgentGuard PreProd Atta 1kg",
+        "AadhaarChain AgentGuard Seller",
+        "AgentGuard PreProd Atta 1kg"
+      ]
+    },
+    "network_search_atta": {
+      "status": 200,
+      "data": {
+        "queued": false,
+        "dispatched": true,
+        "outbox_id": "out_e0faa6ba26bf",
+        "message_id": "d7952849-763a-4a24-ac4e-65b7dcc889b6",
+        "transaction_id": "51ac0470-d8bb-4547-a3e1-233e7aaff134",
+        "http_status": 200,
+        "ack": "ACK",
+        "gateway_url": "https://preprod.gateway.ondc.org/search"
+      }
+    },
+    "network_catalogs_atta": {
+      "transaction_id": "51ac0470-d8bb-4547-a3e1-233e7aaff134",
+      "has_our_bpp": true,
+      "has_atta_item": true,
+      "bpp_count": 10,
+      "bpp_ids_sample": [
+        "api.kaarobari.com",
+        "beta.mystore.in",
+        "ondc.mancu.cloud",
+        "ondc.mysellercentral.com",
+        "ondc.preprod.yuukke.com",
+        "ondc1.mydailygoods.com",
+        "ondcseller.aadharcha.in",
+        "seller-preprod-ondc.bino.bot",
+        "seller.glydiotech.in",
+        "sellerondc.dittomart.in"
+      ],
+      "catalog_count": 90
+    },
+    "network_search_banana": {
+      "status": 200,
+      "data": {
+        "queued": false,
+        "dispatched": true,
+        "outbox_id": "out_f5765a234f33",
+        "message_id": "87bdf584-9e16-4aa6-bb3c-d255daf45f78",
+        "transaction_id": "1bc1ee2a-f11c-4223-8316-4e4af60acfec",
+        "http_status": 200,
+        "ack": "ACK",
+        "gateway_url": "https://preprod.gateway.ondc.org/search"
+      }
+    },
+    "network_catalogs_banana": {
+      "transaction_id": "1bc1ee2a-f11c-4223-8316-4e4af60acfec",
+      "has_our_bpp": false,
+      "has_atta_item": false,
+      "bpp_count": 4,
+      "bpp_ids_sample": [
+        "api.kaarobari.com",
+        "dev.udyamwell.in",
+        "ondc.preprod.yuukke.com",
+        "ondc1.mydailygoods.com"
+      ],
+      "catalog_count": 54
+    }
+  },
+  "verdict": {
+    "pass": true,
+    "buyer_sees_seller_on_network": true,
+    "buyer_sees_seller_direct_only": false,
+    "preprod_gateway_fanout_gap": "partial",
+    "notes": "Atta network search catalogs include bpp_id ondcseller.aadharcha.in and AgentGuard PreProd Atta 1kg. Banana network search did not include our BPP (query/fanout variance). Direct Seller FQDN/gateway search\u2192Buyer on_search also PASS."
+  },
+  "env_runtime_proof": {
+    "source": "GET /api/ondc/bpp/status",
+    "ONDC_ENABLED_implied": true,
+    "ONDC_BPP_ID": "ondcseller.aadharcha.in",
+    "ONDC_BPP_URI": "https://ondcseller.aadharcha.in/ondc",
+    "ONDC_SELLER_UNIQUE_KEY_ID": "baf58086-7024-438a-becf-4cfa056ec8d9",
+    "ONDC_SELLER_SUBSCRIBER_ID_implied": "ondcseller.aadharcha.in",
+    "dashboard_env_list_ui": "Env page shows KEY/VALUE table with masked values (keys not exposed in DOM text); PEMs preserved (Cancel after Edit probe). Runtime /api/ondc/bpp/status proves required BPP fields.",
+    "render_tier": "Free confirmed on service H1; Upgrade prompts NOT clicked",
+    "deploy": "a7a4355 already live via Auto-Deploy; no paid upgrade"
+  }
+}

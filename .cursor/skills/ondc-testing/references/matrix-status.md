@@ -1,5 +1,20 @@
 # Matrix status ledger
 
+## Seller Samantha ops — 2026-07-20
+
+- Local Hermes WIP · demo SSO · `hermes_samantha_seller_ops.py` → **script Pass** (`turns_passed` 5/5, Realtime `gpt-realtime-2.1-mini`).
+- Evidence: [`evidence/seller-samantha-ops-20260720.json`](evidence/seller-samantha-ops-20260720.json).
+- Nav active pill uses theme primary (`oklch(0.48 0.07 195)`) — verified on `/dashboard`.
+- Product notes (not script failures): ₹500 refund on `seller-demo-1002` → unknown order for fresh demo principal; ₹25k → `need_approval` (correct); model once refused explicit `navigate_to /agentguard` while already on that page from approval redirect.
+
+## Current local safety record — 2026-07-17
+
+- Executable source: `af98738a621dfb6109e06d06c2833a20e593cb6e4cf8f08d3edb23dd3781088e`.
+- Two unchanged-source passes: gateway 133, Buyer 173 plus typecheck/build/copy gate, Seller 192 plus typecheck/build/copy gate, targeted adversarial 91.
+- Buyer loopback admission on the immediately preceding hash verified exact `toor dal`, Pune serviceability, editable Pune checkout prefill, one exact approval, one order, empty cart and no duplicate.
+- Final-hash browser status remains partial: the Realtime-unavailable text fallback is deterministic-test verified but still needs fresh blind browser proof; Seller and two-sided final-hash lanes remain pending.
+- Retained record: [`evidence/local-safety-final-20260717-af987.json`](evidence/local-safety-final-20260717-af987.json).
+
 **Session:** 2026-07-12  
 **Bridge:** Hermes Chrome WIP · demo SSO  
 **Doctrine:** claim → screenshot Read → Pass  
@@ -524,3 +539,306 @@ Buyer: `lookupBuyerCatalogByQuery` + `add_to_cart` query/name resolve; search ea
 **Reply polish proof:** `B-REPLY-POLISH-20260714-142407-0.jpeg` · `S-REPLY-POLISH-20260714-142407-0.jpeg` — readable bullets, no raw Markdown markers.
 
 **Regression:** Buyer 151 tests + build Pass; Seller 158 tests + build Pass. Portfolio gateway 80 tests Pass. Hermes skill validation hard=0 (soft folder/name warning only). Hermes session inventory empty at closeout.
+
+---
+
+## Post-deployment Chrome web gate — 2026-07-14 17:40 IST
+
+**Protocol:** authenticated Buyer + Seller FQDN matrix through WIP Hermes in the discovered Google Chrome profile directory `robo-trader-testing`; semantic locators for mutations; session closeout required.
+**Ledger:** `evidence/web-e2e-thorough-20260714-174011.json`
+**Result:** **26 Pass / 3 Blocked / 0 Fail**; all Blocked checks are physical microphone/voice proof.
+
+| Surface | Result | Evidence |
+| --- | --- | --- |
+| Buyer | **13 Pass / 2 Blocked / 0 Fail** | Auth0 session + mandate; text Samantha; ONDC Atta search; resolved cart add; cart/checkout; Paid order + receipt; pause/resume; protected activity + receipt verification; memory; Realtime config; runtime delegation. `W-B-VOICE-MIC` and `W-B-VOICE` remain Blocked because the browser exposed `Text mode ready (no mic)`. The first Atta screenshot caught the offer grid painting; the ledger assertion and following cart captures prove the completed result and product resolution. |
+| Seller | **13 Pass / 1 Blocked / 0 Fail** | Auth0 session; text Samantha; catalog/orders/AgentGuard navigation; catalog publish; refund page; INR 3,000 auto-allow receipt; INR 7,500 approval; consume; replay rejection; memory; runtime delegation. `W-S-VOICE` remains Blocked because no physical mic state was available. |
+| Browser owner | **Pass** | Preflight discovered `Google Chrome` / profile directory `robo-trader-testing`; no duplicate Comet or isolated-Chrome profile was launched. |
+| Closeout | **Pass** | Ledger `meta.sessions_closed` contains `fqdn-e2e-20260714-174011`; no validation lease was left open. |
+
+Realtime is configured (`gpt-realtime-2.1-mini`, Samantha), and text/runtime tool execution passed. This gate does **not** claim physical mic/WebRTC completion.
+
+---
+
+## Local Samantha frozen-source text gate — 2026-07-16 00:08–00:34 IST
+
+**Protocol:** WIP Hermes local browser; Buyer `http://127.0.0.1:43102`, Seller `http://127.0.0.1:43103`; customer-language text asks; exact turn-scoped tools; settled turn; visible screenshot; backend semantic owner check. Two consecutive combined runs used unchanged source. Every screenshot was opened and visually accepted. API writes were limited to unique catalog/order preconditions; browser `evaluate` remained read-only.
+
+**Ledgers:** `evidence/matrix-run-20260716-000819.json` · `evidence/matrix-run-20260716-002128.json`
+
+| Surface | Result | Evidence |
+| --- | --- | --- |
+| Buyer | **19/19 Pass ×2** | Search-only discovery, grounded results, add/clear/quantity/remove, cart/checkout/config navigation, preference memory, real INR 25,089 cart → exact `need_approval`, high-value item removal → INR 89 exact `allow` + matching receipt, runtime handoff. Origin `:43102`; zero turn errors. |
+| Seller | **12/12 Pass ×2** | First-time help, AgentGuard/catalog/orders navigation, exact Ragi publish + backend visibility, accept→fulfill and reject with exact backend states, refund allow receipt, INR 26,000 approval, memory, multi-tool runtime handoff. Origin `:43103`; zero turn errors. |
+| Visual review | **64/64 accepted** | 32 screenshots per run (Seller memory row has separate action and AgentGuard captures); no error panel, wrong-origin page, hidden `/agent` route, or stale checkout fallback accepted. |
+| Regression | **Pass** | Buyer **155/155** tests + typecheck + production build; Seller **163/163** tests + typecheck + production build; `ondc-testing` and `portfolio-browser` validators Pass; Python compile, Ruff, and diff checks Pass. |
+| Closeout | **Pass** | Matrix-owned WIP Hermes closeout completed after both runs. |
+
+Durable fixes: Realtime follow-up responses are serialized per active response and reset per `response.created`, so chained navigation→delegation no longer races or stalls. Matrix proof is turn-scoped, fails on new Realtime errors, validates exact frontend origin and backend response semantics, uses a real over-limit cart instead of overriding the cart total, and reloads only approval/deny checkout states.
+
+**Boundary:** local text/runtime proof only. No deployment, FQDN freshness, release, or physical microphone/WebRTC claim is made; physical mic remains blocked.
+
+---
+
+## Milestone 8 server-owned two-sided lifecycle — 2026-07-16 18:41–18:43 IST
+
+**Protocol:** local WIP Hermes with app-specific demo SSO immediately before each capture; unique server-owned item/order/transaction/issue identities; screenshot + page text + gateway state agreement; cleanup after capture. Full evidence: `evidence/m8-browser-local-authority.md`.
+
+| Gate | Result | Evidence |
+| --- | --- | --- |
+| First browser attempt | **Fail → fixed** | `m8-visible-1784208100-a`; Seller visible, Buyer audience cookie overwritten and gateway process stale. Lane now authenticates per app; stack restarted through `scripts/start-dev.sh`. |
+| Two-sided run A | **Pass** | `m8-visible-1784208200-a`; order `order_046194d8c55b46e5`; transaction `txn_7c370c1c44094790`; issue `issue_b2b3839a03174e14`; three retained screenshots visually accepted. |
+| Two-sided run B | **Pass** | `m8-visible-1784208201-b`; order `order_e5539c89c77b4593`; transaction `txn_26866a2a067a46a0`; issue `issue_6ec0143760424ab3`; three retained screenshots visually accepted. |
+| Deterministic gates | **Pass** | Gateway 86; targeted commerce/AgentGuard 15; Buyer 143 + build; Seller 162 + build. |
+
+Conclusion: browser storage is no longer authoritative for catalog, orders, inventory, checkout, or support cases. Remaining local storage is limited to cart/session/UI preferences, drafts, audit annotations, and seller notes; every accepted commerce mutation is server-owned.
+
+---
+
+## Milestone 8 shared contract and single assistant surface — 2026-07-16 19:13–19:20 IST
+
+**Protocol:** final-source Buyer/Seller tests, typechecks, builds, gateway CI,
+contract/shortcut searches, then two consecutive unique WIP-Hermes two-sided
+runs with screenshot review and closeout. Full evidence:
+`evidence/m8-contract-flow-consolidation.md`.
+
+| Gate | Result | Evidence |
+| --- | --- | --- |
+| Shared contract | **Pass** | Buyer/Seller use shared action, agent, mandate, approval, and intent-receipt types; dated Seller compatibility vocabulary remains explicitly legacy |
+| Single assistant surface | **Pass** | standalone Buyer and Seller `/agent` routes/navigation removed; Samantha remains the global orb; model navigation allowlists reject `/agent` |
+| Judged-flow integrity | **Pass** | no AgentGuard protected-action API shortcut in judged Buyer/Seller/two-sided Hermes scripts |
+| Two-sided run A | **Pass** | `m8-contract-final-1784209300-a`; order `order_47aa87015f8f40ec`; transaction `txn_a9607f26c37c4315`; issue `issue_6ff48b295bd64728`; three screenshots accepted |
+| Two-sided run B | **Pass** | `m8-contract-final-1784209301-b`; order `order_070f0ce5a9274463`; transaction `txn_8b9c603db3d04b5c`; issue `issue_46a0ee83c93d45d9`; three screenshots accepted |
+| Regression | **Pass** | Buyer 131 tests + typecheck + build; Seller 162 tests + typecheck + build; gateway 86 tests |
+| Closeout | **Pass** | WIP bridge ready; no validation lease retained |
+
+Conclusion: Milestone 8 cleanup has one shared AgentGuard contract owner and one
+visible Samantha surface per app while preserving the server-owned two-sided
+commerce and receipt proof.
+
+---
+
+## Independent customer and UX gate hardening — 2026-07-16 19:34–20:18 IST
+
+**Protocol:** blind context-isolated reviewers through leased WIP Hermes;
+correct app-audience demo SSO prepared by the main thread; visible UI only;
+screenshots read before verdicts; every owned lease closed. An unrelated
+BrandGPT lease was left untouched.
+
+| Reviewer / gate | Result | Evidence |
+| --- | --- | --- |
+| Buyer novice, signed in | **App Fail** | “Ask Samantha” was visible but the first activation did not expose a usable input; downstream shopping was Not Tested. `6b71284b-c5da-42e0-ab9a-ef94cbd73c2f-1.png`, `432435a2-129a-4231-b024-9eb0961064ee-0.png` |
+| Seller novice, signed in | **App Fail (incomplete)** | Samantha text mode accepted “Hello there”; catalog showed three products. Publish, stock/price proof, and orders were Not Tested before the old short bound. `0a95c81d-4dcc-4aac-8156-136dc18ddef4-1.png` |
+| Buyer UX/accessibility | **App Fail** | Vague “verified/protected” claims; Samantha authority unexplained; floating assistant overlaps the search action; hero/status content competes with the primary search. `3e850fc1-179a-4b06-9b43-cb23010dec23-1.png`, `3e850fc1-179a-4b06-9b43-cb23010dec23-4.png` |
+| Seller UX/accessibility | **App Fail** | “Verified” and “AgentGuard” are unexplained; product rows look static despite control semantics; Samantha purpose/authority is unclear. `dbbbd5ad-dcf9-4818-ac77-c902df031dbc-1.png` |
+| Buyer search accessibility | **Fail → fixed** | Hero and form submit both exposed “Search catalog”; the form submit now exposes unique name “Search the network”. Focused component test and live role/name counts pass. |
+| Fresh novice Buyer A | **App Fail** | `rice` reached a truthful zero-result page. `fd0eb80a-ae09-4b43-9d7a-81ffd44df95b-3.png` |
+| Fresh novice Buyer B | **App Fail** | `rice`, then the visible broadening follow-up `grocery`, both returned zero results despite Seller inventory. `d7b0d5a3-f9ea-4d37-9c75-16883fbf0186-1.png`, `56850fd0-f5fa-406d-a10b-412878c46603-1.png`, `02c868df-6b8b-495a-9e52-ceb699e2d0e0-0.png` |
+
+**Elon-algorithm correction:** the old 90-second micro-runs produced setup churn
+and left journeys incomplete. They are historical rejected evidence. The owner
+gate now uses three sequential full-mission actors: post-login Buyer novice,
+post-login Seller merchant, and cross-app UI/UX plus accessibility smoke. Briefs
+contain only profile, signed-in URL, and customer goal—no control names, fixes,
+internals, fixtures, or known defects. Customer missions have six-minute
+outcome budgets; read-only UX app missions have four-minute budgets. Each report
+has one mission verdict, and any fix requires the whole affected journey to run
+again in a fresh blind context.
+
+**Current stop:** Buyer blind acceptance remains **App Fail** until the whole
+journey is rerun. The earlier local CORS root cause is corrected in current
+source through the Buyer `/ondc-control` development proxy, and the proxied
+PreProd status endpoint now reports enabled/configured. That deterministic
+repair is not customer proof. The WIP Hermes bridge currently reports
+`SOCKET_DOWN`, so none of the three revised full-mission profiles has run yet.
+The FQDN build also remains unchanged because deployment is outside this goal.
+Do not promote this gate from curl, fixture, or diagnostic evidence.
+
+### Current-source deterministic safety closure — 2026-07-16 21:28 IST
+
+| Gate | Result | Current-source evidence |
+| --- | --- | --- |
+| Shared Python/TypeScript canonical action request | **Pass** | `test_python_canonicalizes_and_hashes_shared_golden_action_request`; Buyer `agentGuardContract.test.ts`; shared expected SHA-256 `b1845e24832e79a73abc2f3502a3130f9d947caf5b1c89e3c2cf8e74fa9ebab2` |
+| Session ownership and tenant isolation | **Pass** | session-principal/body-wallet tests, session-B cannot consume session-A approval, plus `test_approval_cannot_cross_tenants`; legacy body-wallet fixture routes remain explicitly outside AgentGuard acceptance |
+| Exact approval binding, expiry, atomic consume and replay | **Pass** | bound-field, changed-payload, explicit-expiry, concurrent-consume and replay-conflict tests |
+| Pause/revoke and mandate-change invalidation | **Pass** | pause/resume invalidation, mandate replacement, and both stop-vs-consume race variants |
+| Checkout cardinality/inventory | **Pass** | duplicate order idempotency yields exactly one stored order, one explicit reservation, and inventory `4 → 2` for quantity two |
+| Fulfilment and issue/remedy lifecycle | **Pass** | Seller accepts then fulfils; Buyer reads fulfilled; Seller reads/responds to issue; Buyer reads resolved issue with attached refund remedy ID |
+| Simulated payment/refund/reconciliation | **Pass** | success/idempotency test plus timeout `unknown → succeeded` reconciliation and missing-payment unknown result |
+| Receipt tamper, prompt injection and direct executor bypass | **Pass** | focused receipt verification/tamper, mandate non-expansion, and no-effect protected executor tests |
+| Optional dependency boundary | **Pass locally** | gateway starts and completes core commerce with Solana/Solders imports blocked and ONDC/eKYC/Solana disabled; Buyer/Seller manifests, lockfiles and installed trees contain no Solana wallet stack; visible scope-copy tests reject the legacy identity narrative |
+
+Commands on unchanged local source:
+
+- Executable-source SHA-256: `c29e70aa9240852e8678f5a69574ada06c77120b40927e8958fc5384e644ccbd`.
+- `LOCAL-ADVERSARIAL-20260716-2125` → focused gateway contract, isolation, approval, lifecycle, payment, race, tamper, bypass and dependency suite **37 passed**.
+- `LOCAL-SAFETY-20260716-2126-P1` → gateway **103 passed**; Buyer **137 passed** + typecheck/build; Seller **163 passed** + typecheck/build.
+- `LOCAL-SAFETY-20260716-2127-P2` → the same counts and builds on the unchanged executable-source hash.
+- `ondc-testing` and `portfolio-browser` validators, `workflow lint --full`, and all root/nested `git diff --check` gates → **PASS**.
+- Retained artifact: [`evidence/local-safety-final-20260716-2128.json`](evidence/local-safety-final-20260716-2128.json).
+
+This closes the local deterministic safety rows only. The three final browser
+rows and deployed dependency-honesty row in `TESTINGPLAN.md` remain open until
+the WIP Hermes bridge is healthy and an authorized deployment places the final
+source on the FQDN. Neither condition may be replaced by local or API evidence.
+
+### Current local safety closure — 2026-07-17 08:23 IST
+
+This entry supersedes the preceding current-source counts and browser blocker.
+
+- Executable-source SHA-256: `d940189015a07678ac2704554a80da16874d0c0021b15c9b5d2bb7ec54684a05`.
+- `LOCAL-ADVERSARIAL-20260717-D940-P1` and `LOCAL-ADVERSARIAL-20260717-D940-P2` → targeted gateway contract, isolation, approval, lifecycle, payment, race, tamper, bypass and dependency suite **87 passed** each.
+- `LOCAL-SAFETY-20260717-D940-P1` and `LOCAL-SAFETY-20260717-D940-P2` → gateway **129 passed**; Buyer **151 passed** + typecheck/build; Seller **172 passed** + typecheck/build.
+- Seller UI/UX attempt `SELLER-UX-D940-A1` → **Tooling Blocked**: lease semantic context and owned screenshot referred to different pages; closeout passed and the session was absent.
+- One bounded recovery and fresh retry `SELLER-UX-D940-A2-BOUNDED-RETRY` → **Tooling Blocked**: the owned lease disappeared twice; closeout passed and owned sessions were absent.
+- Buyer/Seller customer passes and the two-sided visible repeat are **Not Tested** on this hash. The campaign stopped after the repeated browser-ownership failure; prior Seller passes were invalidated by the visible authority fix and are not counted.
+- Retained artifact: [`evidence/local-safety-final-20260717-d940.json`](evidence/local-safety-final-20260717-d940.json).
+
+Local deterministic Layers 1–4 and the deterministic portion of Layer 5 pass
+twice on unchanged source. The three visible acceptance rows remain open; API,
+unit, build, or older-hash browser evidence does not replace them.
+
+### Final-hash independent Buyer campaign — 2026-07-17 23:30–23:45 IST
+
+- Executable-source SHA-256: `af98738a621dfb6109e06d06c2833a20e593cb6e4cf8f08d3edb23dd3781088e`.
+- Buyer pass 1 reached checkout after visible discovery, cart add, quantity change, remove, and re-add, then stopped **Tooling Blocked** when the visible full-name field could not be targeted reliably.
+- The one permitted fresh recovery repeated the same class of failure: semantic full-name lookup reported no matching visible element and cursor entry diverged into the wrong checkout field. No AgentGuard authorization, order, or receipt was created.
+- Both owned leases closed and were absent afterward. The campaign stopped under the independent-customer gate; Seller, two-sided, and combined UI/UX missions are **Not Tested** on this hash.
+- Retained blocker: [`evidence/local-customer-proof-blocker-20260717-af987.json`](evidence/local-customer-proof-blocker-20260717-af987.json).
+
+The checkout semantic-input and screenshot owners were repaired, and the WIP
+Hermes isolation gate passed three times. A fresh signed-in blind Buyer rerun on
+2026-07-18 nevertheless stopped **Tooling Blocked** on the live search surface:
+the labeled fill failed once, succeeded after the sole recovery, then the visible
+Search click returned `Locator did not resolve for click`. `rice` remained
+visibly entered; the 12-item / 8-order / inventory baseline was unchanged and
+the owned lease closed. Retained blocker:
+[`evidence/local-customer-proof-blocker-20260718-af987-search-locator.json`](evidence/local-customer-proof-blocker-20260718-af987-search-locator.json).
+Visible customer acceptance is paused on this narrower WIP Hermes locator-readiness
+owner; API or deterministic evidence cannot replace the missing browser rows.
+
+### Independent customer gate — local close 2026-07-19 evening IST
+
+- Git HEAD: `d4ca699`. Buyer audience already had repaired-UI Pass ×2 + Buyer UX Pass earlier the same day (`ui_repair_fingerprint` `22235abcd…`).
+- Owner Dispatch proof **Pass** before Seller merchant: Accept → `dialog_opened` prompt → `dialog_handle` → backend `fulfilled`. Evidence: [`evidence/local-owner-dispatch-proof-pass-20260719.json`](evidence/local-owner-dispatch-proof-pass-20260719.json). Prior Seller stop was prompt mishandled as inject/`EXTENSION_TIMEOUT`.
+- Seller merchant pass 1 **Pass** ([`Blind Seller merchant`](evidence/local-customer-seller-merchant-pass1-20260719-rerun.json)): publish + Accept→Dispatch→Delivered; incomplete-delivery Accept fails closed to full-page Orders error (recoverable via Retry). Cleanup restored baseline 33 items / 31 orders.
+- Seller UX half first attempt **Not Tested** (accidental Sign out). Rerun **Pass**, no unresolved P0/P1: [`evidence/local-customer-seller-ux-half-rerun-20260719.json`](evidence/local-customer-seller-ux-half-rerun-20260719.json). Combined UX **Pass**: [`evidence/local-customer-combined-ux-pass-20260719.json`](evidence/local-customer-combined-ux-pass-20260719.json).
+- Seller merchant pass 2 **Pass** (stability): Tata Sampann Toor Dal published; order `34413F79` → Delivered/Completed. Evidence: [`evidence/local-customer-seller-merchant-pass2-20260719.json`](evidence/local-customer-seller-merchant-pass2-20260719.json). Cleanup matched baseline again.
+- Campaign close: [`evidence/local-customer-campaign-close-20260719.json`](evidence/local-customer-campaign-close-20260719.json). Bridge closeout ready; `active_agent_sessions=0`.
+- Release threshold for this local visible portfolio: Buyer Pass×2 + Seller Pass×2 + combined UX clear on the day’s repaired UI / current HEAD. Parallel Buyer+Seller actors remain blocked on shared WIP cookie (gate).
+
+### Samantha catalog data validation — local 2026-07-19 night IST
+
+- Protocol: [`samantha-catalog-validation.md`](samantha-catalog-validation.md). Evidence: [`evidence/samantha-catalog-validation-20260719.json`](evidence/samantha-catalog-validation-20260719.json).
+- Blind Samantha actors: pass1 `bb108593-…` / retest `d4beef4d-…`. **B-HI Pass**; **B-FIND-NL-ATTA Fail** (JUNK `q=roti`, then SKIP-UI unsolicited add); GHOST Atta vs empty `buyer/search?q=atta` before fix.
+- Root cause (catalog MISS): `commerce_demo.search_items` required `seller_name` — published fixture Atta with null name was invisible. Fixed to published + in-stock. Gateway restarted; `q=atta` now returns 17 rows (includes test litter `Dispatch Proof*`).
+- **Relevance harden (same night):** strict token match in `commerce_demo` + BPP (no empty→full-catalog fallback); Buyer `filterBuyerItemsForQuery` keeps short tokens (`tv`); `catalogSearchQuery` maps TV/television→`tv` and keeps `toor dal`. Delivery-area filter no longer hides SKUs with empty `deliveryAreas`. Empty ONDC network collect falls back to demo-commerce so the grid matches Samantha.
+- Seeded markers `20260719234027` (Atta / Toor Dal / Oil / LED TV). API truth: `q=tv` → 1 TV (no oil); `q=oil` → oils only; `q=banana` → 0.
+- Browser recheck **Pass** (direct `/results?q=tv` + Samantha “Search for a TV”): **1 match**, Horizon LED TV, no oil. Evidence: [`evidence/samantha-catalog-relevance-recheck-20260719-234802.json`](evidence/samantha-catalog-relevance-recheck-20260719-234802.json). Earlier Samantha pass also HIT oil/atta with `search_catalog` tool: [`evidence/samantha-catalog-relevance-20260719-234437.json`](evidence/samantha-catalog-relevance-20260719-234437.json).
+- Still open: find-only “I need atta…” can still unsolicited `add_to_cart` (instruction tightened; needs fresh blind re-proof); catalog litter `Dispatch Proof*` / Hermes Fix*.
+- **Live voice session 2026-07-19 ~23:51 IST** (`samantha-buyer-97c8df0d-…`): user asked rice → **JUNK** Poha via description “flattened rice”; orb reply buffer **concatenated** prior rice text onto later Atta turns; ASR “somebody”/“shoamizamata”. Fixes: title-primary search (rice≠poha); `response.created` clears reply; NL stop-words + `basmati rice` compound; seeded India Gate Basmati Rice. Reload Buyer orb before retest.
+- **Operator retest 2026-07-20 ~00:08 IST** (Hermes WIP + demo SSO + API truth + page settle): evidence [`operator-catalog-retest-20260720-000815-rescored.json`](evidence/operator-catalog-retest-20260720-000815-rescored.json). First pass found **Atta GHOST** (reply claimed Atta while `q=poha`, no new `search_catalog` — Host `visible_results` leaked full-session cache) and **banana GHOST** (“still loading” after wait with 0 matches). Fixes: scope Host visible_results to `current_query`; force `search_catalog` when find-ask skips tools; after `waitForBuyerCatalogItems` empty → `can_assert_empty=true` + honest empty message. Rescored **Pass**: rice/poha/atta/tv HIT, banana EMPTY-OK. Spot poha→atta: `q=atta` navigates correctly.
+
+---
+
+## Chrome customer issue catalog — local dirty source, 2026-07-21 17:14–18:35 IST
+
+**Protocol:** Mode A catalog-then-fix; explicit `@chrome` plugin; sequential
+signed-in Buyer, Seller, combined UI/UX-accessibility, Buyer Samantha, and
+Seller Samantha missions. Reviewers used visible UI only and continued past
+individual findings. Product and harness source were not edited. Evidence:
+[`customer-chrome-issue-catalog-20260721.json`](evidence/customer-chrome-issue-catalog-20260721.json).
+
+**Source boundary:** `HEAD d4ca699a15e9`; dirty tracked-diff SHA-256
+`cc7d960fe1c39b7e0d584e79b609b5870791f77545a3fd3c226485dd0cfa4fdf`.
+This is local dirty-source evidence, not FQDN or release evidence.
+
+| Mission | Verdict | Customer outcome |
+| --- | --- | --- |
+| Novice Buyer | **Pass** | Search → compare → add/remove/re-add → checkout → signed AgentGuard authorization → order `88FDF65A` receipt. |
+| Small Seller merchant | **Tooling Blocked** | Published Kaveri Toor Dal and accepted order `2BEE2CD5`; Chrome disconnected at dispatch tracking prompt, and the single fresh recovery repeated the same class. |
+| Combined UI/UX + accessibility smoke | **App Fail** | Both apps reviewed; five deduplicated P1/P2 findings, including Buyer Samantha dialog keyboard failure and ambiguous listening state. |
+| Buyer Samantha customer | **App Fail** | Search, grounding, add, checkout, and authorization passed; cart navigation, memory readback, weekly-task completion, address coherence, and reply rendering failed. |
+| Seller Samantha customer | **App Fail** | Navigation, publish, memory, and recall passed; fulfillment/refund were unavailable and bulk triage contradicted the visible zero-order queue. |
+
+### Issue ledger
+
+| ID | Priority | Owner surface | Finding |
+| --- | --- | --- | --- |
+| `CUST-CHROME-20260721-01` | P1 | Buyer checkout | Stale “Complete the form…” quote instruction remains after all required fields are complete and authorization is enabled. |
+| `CUST-CHROME-20260721-02` | P1 | Buyer results | Credible offers are mixed with fixture-like `Dispatch Proof` catalog litter and incomplete seller/delivery/returns context. |
+| `CUST-CHROME-20260721-03` | P1 | Buyer Samantha | Keyboard opening leaves focus on `BODY`; no dialog/heading semantics; Escape does not close. |
+| `CUST-CHROME-20260721-04` | P1 | Buyer + Seller Samantha | `Listening + text ready` implies audio capture without a microphone control, consent affordance, or state explanation. |
+| `CUST-CHROME-20260721-05` | P1 | Authority copy | Execution boundaries are inconsistent; visible surfaces expose `principal:demo`, `seller principal`, `PII-free`, and `Mandate: active`. |
+| `CUST-CHROME-20260721-06` | P2 | Seller Network | Generate/save/test controls remain enabled while connection details are incomplete. |
+| `CUST-CHROME-20260721-07` | P2 | Seller Orders | Active queue filter is visual only; no `aria-pressed` or `aria-current`. |
+| `CUST-CHROME-20260721-08` | P1 | Buyer Samantha | “Show me my cart” becomes a zero-result catalog query and leaks an internal operator instruction. |
+| `CUST-CHROME-20260721-09` | P1 | Buyer memory | Samantha claims a preference was remembered while the visible memory owner remains empty. |
+| `CUST-CHROME-20260721-10` | P1 | Buyer runtime | Weekly-grocery background task reports complete without a plan or requested basket. |
+| `CUST-CHROME-20260721-11` | P1 | Buyer order detail | Full submitted delivery address is reduced to `IND`. |
+| `CUST-CHROME-20260721-12` | P2 | Buyer Samantha | Replies truncate mid-sentence. |
+| `CUST-CHROME-20260721-13` | P1 | Demo principal | Seller catalog/orders disappear across demo sign-ins because each session receives a new principal. |
+| `CUST-CHROME-20260721-14` | **P0** | Seller runtime | Bulk triage reports `17/16/1` orders while the visible queue and follow-up both report zero. |
+| `CUST-CHROME-20260721-15` | P2 | Seller Samantha | Preference recall works, but Samantha cannot open the visible memory settings. |
+| `CUST-CHROME-20260721-16` | **P0 tooling** | Chrome dialog control | Dispatch tracking prompt disconnects Chrome; the one bounded recovery repeats. |
+| `CUST-CHROME-20260721-17` | P1 tooling | Portfolio preflight | AgentGuard demo setup incorrectly waits for legacy host/Solana wallet infrastructure. |
+| `CUST-CHROME-20260721-18` | P1 tooling | `reviewer_ready.py` | Post-idle readiness read loses its required browser-session preflight. |
+
+**Supporting gates:** gateway `135 passed`; Buyer test/build Pass; Seller
+`196 passed` + build Pass; offline graders Pass; commerce-demo-mode gate Pass.
+
+**Not converted to Pass:** physical voice remained Not Tested; Seller
+dispatch/completion/refund remained Tooling Blocked; dirty local source was not
+tested on FQDN. Production ONDC and live payment remain contractually out of
+scope.
+
+**Cleanup:** removed exactly three campaign items, three orders, three
+reservations, and matching idempotency entries; restored the one pre-existing
+item’s inventory to 21. Baseline identity sets match again: 53 items, 35 orders,
+33 reservations. Recoverable pre-cleanup copy:
+`/tmp/aadhaarchain-commerce-pre-cleanup-20260721.json`.
+
+## Chrome customer fix acceptance — local dirty source, 2026-07-21 18:36–19:26 IST
+
+**Result: Pass on frozen local source.** All 18 cataloged findings were fixed
+and accepted. The fix loop continued through three additional findings exposed
+by re-review: residual non-Dispatch fixture catalog families, a direct Seller
+Realtime multi-tool reply that contradicted an executed fulfillment, and a
+Radix dialog ref warning. Each was fixed before the final empty iteration.
+
+| Acceptance area | Evidence |
+| --- | --- |
+| Buyer commerce | One customer-safe Atta offer; readiness copy changes only after complete billing/address; authorized order retained full delivery address; repeat demo sign-in retained the order. |
+| Buyer Samantha | Named dialog, initial text focus, Escape close/focus restore, explicit mic state, cart intent → `/cart`, immediate memory readback, and unverified weekly work ends as **could not finish**. |
+| Seller operations | Pressed filter state, incomplete Network Save/Test disabled, customer authority copy, accessible in-page dispatch tracking, direct Samantha memory link. |
+| Seller truthfulness | Order mutations require exact order IDs; the repeated bulk-triage mission showed grounded read/action outcomes and made no unintended mutation. |
+| Tooling | AgentGuard preflight excludes legacy host/Solana; post-idle reviewer read re-runs session preflight; dispatch no longer opens a native prompt. |
+| Empty iteration | Fresh Chrome dispatch replay on final source: correct dialog semantics and zero console errors. |
+
+**Deterministic support:** gateway `144 passed`; Buyer `187 passed` + build/copy
+gate; Seller `207 passed` + build/copy gate; offline graders Pass; both repo
+skill validators Pass; diff checks Pass in the portfolio and all nested repos.
+
+**Cleanup:** removed known stale fixture catalog families, four temporary
+acceptance orders/reservations, two temporary acceptance items, and temporary
+Buyer Samantha memory. Final demo state: 22 items, 13 orders, 11 reservations.
+Recoverable copies remain at
+`/tmp/aadhaarchain-commerce-pre-cleanup-20260721.json` and
+`/tmp/aadhaarchain-commerce-before-catalog-quality-cleanup-20260721.json`.
+
+**Boundaries:** local dirty-source proof only; the FQDN deployment was not
+changed or tested. Production ONDC, live payment, and official conformance
+remain out of scope. Existing Chrome microphone permission exposed live state,
+but no controlled physical voice-accuracy campaign was run.
+
+## CF1 PostgreSQL `@Chrome` customer validation — local dirty source, 2026-07-22 16:30–17:30 IST
+
+- Focused frozen-source fingerprint: `9c7fadc8fab66f3f456272f5dd8041e357780830bbabfe7185d4c30199704d66` (compatibility read model, Seller AgentGuard executor, regression tests, and Seller commerce mapping). Portfolio HEAD `fbafeb7f`; nested HEADs: AadhaarChain `30e6d11`, Buyer `d24e4fe`, Seller `9ca5e85`. Worktrees were dirty and existing user changes were preserved.
+- **Buyer novice: Pass.** Visible Chrome journey searched for a generic grocery, compared the one available Atta offer, added it, changed quantity `1 → 2`, previewed exact `INR 178`, confirmed the one-time AgentGuard approval, and reached order `7C71667B` with `Simulated payment succeeded` and `Authorized · signed reference verified`. Retained screenshots: `/private/tmp/buyer-offer.png`, `/private/tmp/buyer-cart.png`, `/private/tmp/buyer-order.png`.
+- Buyer PostgreSQL readback agreed with the UI: one `paid` order for `17800` paise, one `succeeded` payment attempt, one executed receipt bound to its decision and approval, one order effect for the quote, and inventory `12 → 10`.
+- **Seller discovery/fix loop:** the first blind run was **App Fail** because `seller.order.accept` treated the CommerceV1 compatibility order as a wrapped object. The next run exposed a distinct **App Fail**: already-refunded orders still rendered Pending/refundable and a duplicate refund surfaced only as `Failed to fetch`. The owner fixes changed the Seller executor to consume the direct order shape and projected durable refund amount/status into Seller as terminal `Cancelled / Payment: Refunded`; focused regression tests were added before each full rerun.
+- **Seller merchant: Pass after one bounded Chrome recovery.** The final actor published `Farm Fresh Tomatoes 1kg` (`INR 62`, stock `14`), distinguished two terminal refunded orders from actionable order `EE247B4A`, completed the full `INR 89` AgentGuard refund, and observed `Payment: Refunded`, `The full order value has been refunded. No further refund is available.`, verified authorization reference `7474C04D`, and `Order cancelled`. Retained screenshots: `/private/tmp/seller-add-product-form.png`, `/private/tmp/seller-catalog-published-new.png`, `/private/tmp/seller-orders-before-new.png` (the last file contains the terminal refunded detail despite its historical filename).
+- Seller PostgreSQL readback agreed with the terminal UI: order `ee247b4a-551b-403a-9d45-fe14ff65bca4` was `cancelled`; payment remained truthfully `succeeded`; exactly one `succeeded` refund for `8900` paise and one `seller.refund.issue` AgentGuard receipt existed.
+- Frozen-source deterministic support: gateway `198 passed`; Seller `210 passed` plus production build/copy gate; targeted Ruff and diff checks passed; `ondc_ci_graders.py --offline` passed all checks.
+- Cleanup removed every temporary catalog listing; the isolated UTF-8 PostgreSQL validation cluster owns all generated orders/refunds and is deleted at closeout. All Chrome sessions were finalized.
+
+**Acceptance boundary:** this establishes one complete Buyer customer Pass and one complete Seller customer Pass on the corrected local source. It is not the two-pass release threshold: Buyer Pass 2, Seller Pass 2, the combined UI/UX-accessibility smoke, Samantha voice/runtime breadth, FQDN Auth0, live payment, production ONDC lifecycle/conformance, and iOS remain **Not Tested** in this campaign.

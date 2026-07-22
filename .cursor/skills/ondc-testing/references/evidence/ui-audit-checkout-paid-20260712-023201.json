@@ -1,0 +1,65 @@
+{
+  "success": true,
+  "ts": "20260712-023201",
+  "tool_ok": true,
+  "tool": {
+    "amount_inr": 156,
+    "at": 1783803782815,
+    "callId": "call_Ac2RxcrfxqjjBRVj",
+    "cartAdds": [],
+    "decision": "allow",
+    "message": "Checkout committed; receipt rcpt_0a3b8242465f406f.",
+    "name": "checkout_commit",
+    "navigateTo": "/orders/demo-1783803782813-w7fjvh",
+    "ok": true,
+    "receiptId": "rcpt_0a3b8242465f406f",
+    "session_id": "session-1783800693829-8uz9lku"
+  },
+  "page_paid": true,
+  "page_receipt": true,
+  "on_order": true,
+  "pathname": "/orders/demo-1783803782813-w7fjvh",
+  "stale_hits": [],
+  "no_stale": true,
+  "cart_seed": {
+    "pathname": "/cart",
+    "has_banana": true,
+    "shots": [
+      "/Users/gurusharan/Documents/remote-claude/active/apps/AadhaarChainWorkspace/.cursor/skills/ondc-testing/references/evidence/UI-AUDIT-checkout-cart-20260712-023201-7.jpeg"
+    ]
+  },
+  "after_ask": {
+    "pathname": "/orders/demo-1783803782813-w7fjvh",
+    "reply": "Alright, I\u2019ll initiate checkout now and get that payment process started.All set \u2014 checkout and payment went through successfully. The payment status is succeeded, and your order has been paid.",
+    "hint": "Samantha\n\nCheckout committed; receipt rcpt_0a3b8242465f406f.\n\nAlright, I\u2019ll initiate checkout now and get that payment process started.All set \u2014 checkout and payment went through successfully. The payment status is succeeded, and your order has been paid.\n\nSend\nPreferences & AgentGuard",
+    "body_snip": "PORTFOLIO\nONDC Buyer\nDiscover commerce under AgentGuard authorization.\nSearch\nCart\nOrders\nConfig\nSign out\nBack to orders\nORDER DETAIL\nOrder #demo-1783803782813-w7fjvh\n\nCreated on Jul 12, 2026\n\nAccepted\nPaid\nReceipt rcpt_0a3b8242465f406f\nCancel order\nTrust check: Unsigned\n\nSign in with Google or Continue as demo user before elevated buyer actions. Wallet KYC is optional hangar.\n\nItems\nRobusta Banan"
+  },
+  "order_page": {
+    "pathname": "/orders/demo-1783803782813-w7fjvh",
+    "has_paid": true,
+    "has_receipt": true,
+    "stale_hits": [],
+    "body_snip": "PORTFOLIO\nONDC Buyer\nDiscover commerce under AgentGuard authorization.\nSearch\nCart\nOrders\nConfig\nSign out\nBack to orders\nORDER DETAIL\nOrder #demo-1783803782813-w7fjvh\n\nCreated on Jul 12, 2026\n\nAccepted\nPaid\nReceipt rcpt_0a3b8242465f406f\nCancel order\nTrust check: Unsigned\n\nSign in with Google or Continue as demo user before elevated buyer actions. Wallet KYC is optional hangar.\n\nItems\nRobusta Bananas (12 pcs)\nQuantity: 2\nINR 156.00\nPricing\nItems\nINR 156.00\nDelivery\nINR 49.00\nTax\nINR 7.80\nTotal\nIN"
+  },
+  "checkout_visit": {
+    "pathname": "/orders/demo-1783803782813-w7fjvh",
+    "stale_hits": [],
+    "body_snip": "PORTFOLIO\nONDC Buyer\nDiscover commerce under AgentGuard authorization.\nSearch\nCart\nOrders\nConfig\nSign out\nBack to orders\nORDER DETAIL\nOrder #demo-1783803782813-w7fjvh\n\nCreated on Jul 12, 2026\n\nAccepted\nPaid\nReceipt rcpt_0a3b8242465f406f\nCancel order\nTrust check: Unsigned\n\nSign in with Google or Continue as demo user before elevated buyer actions. Wallet KYC is optional hangar.\n\nItems\nRobusta Banan"
+  },
+  "screenshots": {
+    "cart": [
+      "/Users/gurusharan/Documents/remote-claude/active/apps/AadhaarChainWorkspace/.cursor/skills/ondc-testing/references/evidence/UI-AUDIT-checkout-cart-20260712-023201-7.jpeg"
+    ],
+    "checkout_paid": [
+      "/Users/gurusharan/Documents/remote-claude/active/apps/AadhaarChainWorkspace/.cursor/skills/ondc-testing/references/evidence/UI-AUDIT-checkout-paid-20260712-023201-7.jpeg",
+      "/Users/gurusharan/Documents/remote-claude/active/apps/AadhaarChainWorkspace/.cursor/skills/ondc-testing/references/evidence/UI-AUDIT-checkout-paid-20260712-023201-10.jpeg"
+    ],
+    "orders_id": [
+      "/Users/gurusharan/Documents/remote-claude/active/apps/AadhaarChainWorkspace/.cursor/skills/ondc-testing/references/evidence/UI-AUDIT-checkout-paid-20260712-023201-7.jpeg",
+      "/Users/gurusharan/Documents/remote-claude/active/apps/AadhaarChainWorkspace/.cursor/skills/ondc-testing/references/evidence/UI-AUDIT-checkout-paid-20260712-023201-10.jpeg"
+    ],
+    "checkout_visit": [
+      "/Users/gurusharan/Documents/remote-claude/active/apps/AadhaarChainWorkspace/.cursor/skills/ondc-testing/references/evidence/UI-AUDIT-checkout-visit-20260712-023201-3.jpeg"
+    ]
+  }
+}

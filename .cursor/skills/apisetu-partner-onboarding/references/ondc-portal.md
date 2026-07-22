@@ -98,8 +98,13 @@ Password / OTP were hard-stops for agents — operator completed signup. Account
 
 ```bash
 export HERMES_CHROME_BRIDGE_SOCKET=/Users/gurusharan/plugins/hermes-chrome-cursor-wip/run/chrome-bridge.sock
-# reuse session
-python3 -c "import sys; sys.path.insert(0,'scripts'); from portfolio_browser import hermes_run; ..."
-# session='ondc-portal-onboard'
+# Multi-page portal / Token Nxt: durable controller (same session id for whole campaign)
+WORK=/tmp/hermes-ondc-portal-onboard
+python3 /Users/gurusharan/plugins/hermes-chrome-cursor-wip/skill/scripts/durable_lease_controller.py start \
+  --session-id ondc-portal-onboard --label ondc-portal --url https://portal.ondc.org \
+  --workdir "$WORK" --ttl-seconds 1800
+python3 /Users/gurusharan/plugins/hermes-chrome-cursor-wip/skill/scripts/durable_lease_controller.py send --workdir "$WORK" \
+  '{"actions":[{"type":"page_context"}]}'
+# Do NOT drive with short-lived python3 -c / hermes_run shells (orphan lease).
 # GST companion: session='gst-huf-check' — idle / CA-owned; do not agent-fill
 ```

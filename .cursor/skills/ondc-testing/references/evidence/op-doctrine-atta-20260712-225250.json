@@ -1,0 +1,146 @@
+{
+  "id": "W-B-FIND-ATTA-DOCTRINE",
+  "result": "Fail",
+  "shots": [
+    "W-B-DOCTRINE-ATTA-20260712-225250-0.jpeg"
+  ],
+  "ready": {
+    "asset": "https://ondcbuyer.aadharcha.in/assets/index-BOJ-lTjI.js",
+    "err": false,
+    "hint": "Samantha\n\nText mode ready (no mic)\n\nSend\nPreferences & AgentGuard",
+    "ready": true,
+    "sign": true
+  },
+  "send": {
+    "draft": "find atta",
+    "ok": true
+  },
+  "before": {
+    "settle_ms": 93000,
+    "tool_ms": "<=12000 collect",
+    "search_posts": 2
+  },
+  "after": {
+    "early_ms": 1220,
+    "tool_ms": 6164,
+    "paint_ms": null,
+    "search_posts": 1,
+    "matches": null,
+    "has_txn": true,
+    "failed": false,
+    "fetches": [
+      {
+        "at": 1086,
+        "ms": 376,
+        "p": "/api/health",
+        "st": 200
+      },
+      {
+        "at": 1860,
+        "ms": 774,
+        "p": "/api/ondc/status",
+        "st": 200
+      },
+      {
+        "at": 1862,
+        "ms": 1129,
+        "p": "/api/health",
+        "st": 200
+      },
+      {
+        "at": 2091,
+        "ms": 1357,
+        "p": "/api/health",
+        "st": 200
+      },
+      {
+        "at": 2756,
+        "ms": 894,
+        "p": "/api/ondc/status",
+        "st": 200
+      },
+      {
+        "at": 3459,
+        "ms": 1368,
+        "p": "/api/ondc/status",
+        "st": 200
+      },
+      {
+        "at": 6068,
+        "ms": 4207,
+        "p": "/api/ondc/search",
+        "st": 200
+      },
+      {
+        "at": 14073,
+        "ms": 8004,
+        "p": "/api/ondc/catalogs?transaction_id=1c66a74e-92fa-46f6-9c37-75dca5e06b2b"
+      },
+      {
+        "at": 14874,
+        "ms": 0,
+        "p": "/api/ondc/catalogs?transaction_id=1c66a74e-92fa-46f6-9c37-75dca5e06b2b"
+      },
+      {
+        "at": 16475,
+        "ms": 0,
+        "p": "/api/ondc/catalogs?transaction_id=1c66a74e-92fa-46f6-9c37-75dca5e06b2b"
+      },
+      {
+        "at": 25478,
+        "ms": 8001,
+        "p": "/api/ondc/catalogs?transaction_id=1c66a74e-92fa-46f6-9c37-75dca5e06b2b"
+      },
+      {
+        "at": 26279,
+        "ms": 0,
+        "p": "/api/ondc/catalogs?transaction_id=1c66a74e-92fa-46f6-9c37-75dca5e06b2b"
+      },
+      {
+        "at": 27880,
+        "ms": 0,
+        "p": "/api/ondc/catalogs?transaction_id=1c66a74e-92fa-46f6-9c37-75dca5e06b2b"
+      },
+      {
+        "at": 29110,
+        "ms": 228,
+        "p": "/api/ondc/catalogs?transaction_id=1c66a74e-92fa-46f6-9c37-75dca5e06b2b"
+      },
+      {
+        "at": 30141,
+        "ms": 231,
+        "p": "/api/ondc/catalogs?transaction_id=1c66a74e-92fa-46f6-9c37-75dca5e06b2b"
+      },
+      {
+        "at": 31971,
+        "ms": 229,
+        "p": "/api/ondc/catalogs?transaction_id=1c66a74e-92fa-46f6-9c37-75dca5e06b2b"
+      },
+      {
+        "at": 33206,
+        "ms": 233,
+        "p": "/api/ondc/catalogs?transaction_id=1c66a74e-92fa-46f6-9c37-75dca5e06b2b"
+      },
+      {
+        "at": 34237,
+        "ms": 230,
+        "p": "/api/ondc/catalogs?transaction_id=1c66a74e-92fa-46f6-9c37-75dca5e06b2b"
+      },
+      {
+        "at": 36071,
+        "ms": 231,
+        "p": "/api/ondc/catalogs?transaction_id=1c66a74e-92fa-46f6-9c37-75dca5e06b2b"
+      }
+    ],
+    "tools": [
+      {
+        "loading": false,
+        "name": "search_catalog",
+        "navigateTo": "/results?category=grocery&q=atta&ondc_txn=1c66a74e-92fa-46f6-9c37-75dca5e06b2b",
+        "ok": true
+      }
+    ]
+  },
+  "stamp": "20260712-225250",
+  "deploy": "ondcbuyer-j89jf0yuw"
+}

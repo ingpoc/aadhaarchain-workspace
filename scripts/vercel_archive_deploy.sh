@@ -48,11 +48,25 @@ command -v vercel >/dev/null
 test -f "$app_dir/vercel.json"
 test -f "$app_dir/.vercel/project.json"
 
+lock_backup="$(mktemp "/tmp/${app}-package-lock.XXXXXX")"
+cp "$app_dir/package-lock.json" "$lock_backup"
+restore_lock() {
+  cp "$lock_backup" "$app_dir/package-lock.json"
+  rm -f "$lock_backup"
+}
+trap restore_lock EXIT
+
 (
   cd "$app_dir"
   vercel pull --yes --environment=production
-  vercel build --prod
+  # Vercel's production environment sets NODE_ENV=production. The local
+  # TypeScript build still needs dev-only compiler declarations before the
+  # already-built dist directory is archived.
+  npm ci --include=dev
+  NPM_CONFIG_INCLUDE=dev vercel build --prod
 )
+restore_lock
+trap - EXIT
 
 stage="$(mktemp -d "/tmp/${app}-vercel-stage.XXXXXX")"
 trap 'rm -rf "$stage"' EXIT

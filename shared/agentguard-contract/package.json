@@ -2,12 +2,25 @@
   "name": "@aadharchain/agentguard-contract",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --experimental-strip-types --test test/*.test.ts",
+    "typecheck": "tsc --noEmit"
+  },
   "main": "src/index.ts",
   "types": "src/index.ts",
   "exports": {
     ".": {
       "types": "./src/index.ts",
       "default": "./src/index.ts"
+    },
+    "./decisions": {
+      "types": "./src/decisions.ts",
+      "default": "./src/decisions.ts"
     }
+  },
+  "devDependencies": {
+    "@types/node": "22.10.7",
+    "typescript": "5.8.3"
   }
 }

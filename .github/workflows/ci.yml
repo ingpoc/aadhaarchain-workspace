@@ -50,6 +50,22 @@ jobs:
   gateway:
     name: Gateway pytest
     runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:17
+        env:
+          POSTGRES_DB: agentguard_test
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_USER: postgres
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres -d agentguard_test"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    env:
+      DATABASE_URL: postgresql://postgres:postgres@127.0.0.1:5432/agentguard_test
     steps:
       - uses: actions/checkout@v4
 
@@ -71,6 +87,27 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
+
+      - name: Apply PostgreSQL migrations
+        working-directory: aadharchain/gateway
+        run: |
+          python - <<'PY'
+          import asyncio
+          from pathlib import Path
+
+          from app.persistence import ConnectionPool, MigrationRunner
+
+          async def migrate() -> None:
+              pool = ConnectionPool(min_size=1, max_size=2)
+              await pool.open()
+              try:
+                  applied = await MigrationRunner(pool, Path("migrations")).apply()
+                  print(f"Applied migrations: {applied}")
+              finally:
+                  await pool.close()
+
+          asyncio.run(migrate())
+          PY
 
       - name: verify-portfolio --ci (gateway pytest)
         env:

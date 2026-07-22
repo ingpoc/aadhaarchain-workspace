@@ -1,5 +1,14 @@
 # Matrix status ledger
 
+## CF1 release checkpoint — 2026-07-22
+
+- Frozen product/deploy fingerprint: `e95340b069cab63b75f436e0d5fdfe4e667545c40d2ee9b378f1b5957914db26` (`b8b90bd` / `fd586da` / `f028ade` / `8146340`).
+- Deterministic gates pass: gateway CI 152 passed/48 skipped; PostgreSQL breadth 200 passed; Buyer 195 tests plus typecheck/build; Seller 211 tests plus typecheck/build; offline ONDC grader passed.
+- Final PostgreSQL database `cf1_release_e95340` contains two exact published SKUs, two orders, two successful simulated payments, two successful full refunds, and publish/checkout/refund receipts twice. Inventory is 18 from 20 for each SKU.
+- Render Free deployment `dep-d9gc443bc2fs73frb320` is live on gateway commit `fd586da`; Buyer and Seller Hobby archive deployments are Ready and their FQDN aliases return 200.
+- **Open visible rows:** the bundled Chrome session is not controllable in this thread, so two-pass semantic logs, combined responsive/accessibility smoke, and FQDN/Auth0 Buyer/Seller acceptance are not yet credited. The live soft grader remains advisory-failed on the unseeded public exact item.
+- Structured checkpoint: [`evidence/cf1-release-e95340-checkpoint-20260722.json`](evidence/cf1-release-e95340-checkpoint-20260722.json).
+
 ## Seller Samantha ops — 2026-07-20
 
 - Local Hermes WIP · demo SSO · `hermes_samantha_seller_ops.py` → **script Pass** (`turns_passed` 5/5, Realtime `gpt-realtime-2.1-mini`).

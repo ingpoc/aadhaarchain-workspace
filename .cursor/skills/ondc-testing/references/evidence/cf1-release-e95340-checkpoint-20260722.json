@@ -1,0 +1,87 @@
+{
+  "status": "browser_semantic_evidence_pending",
+  "recorded_at": "2026-07-22T19:10:00+05:30",
+  "source": {
+    "fingerprint_sha256": "e95340b069cab63b75f436e0d5fdfe4e667545c40d2ee9b378f1b5957914db26",
+    "portfolio": "b8b90bda4ed78da55ed606e2132b7fd6d1d63655",
+    "gateway": "fd586da33045367c9443201d49242d463ebd80ae",
+    "buyer": "f028adea3eaf85759fb6a36ffcf7617e1ac00be5",
+    "seller": "8146340a4145a663978610780cf3118b5acefe0e"
+  },
+  "deterministic": {
+    "gateway_ci": "152 passed, 48 skipped",
+    "gateway_postgresql": "200 passed",
+    "buyer": "39 files, 195 tests, typecheck and build passed",
+    "seller": "26 files, 211 tests, typecheck and build passed",
+    "offline_ondc_grader": "passed"
+  },
+  "local_postgresql": {
+    "database": "cf1_release_e95340",
+    "orders": 2,
+    "successful_payment_attempts": 2,
+    "successful_full_refunds": 2,
+    "agentguard_receipts": 6,
+    "inventory": [
+      {
+        "title": "CF1 e953 A Atta 1kg",
+        "unit_price_paise": 10100,
+        "available_quantity": 18,
+        "initial_quantity": 20
+      },
+      {
+        "title": "CF1 e953 B Atta 1kg",
+        "unit_price_paise": 10300,
+        "available_quantity": 18,
+        "initial_quantity": 20
+      }
+    ],
+    "receipt_actions": {
+      "seller.catalog.publish": 2,
+      "buyer.checkout.commit": 2,
+      "seller.refund.issue": 2
+    },
+    "note": "Durable effects prove two complete commerce cycles, but do not substitute for the missing bundled Chrome semantic log."
+  },
+  "deployments": {
+    "render": {
+      "deployment_id": "dep-d9gc443bc2fs73frb320",
+      "commit": "fd586da33045367c9443201d49242d463ebd80ae",
+      "status": "live",
+      "plan": "free"
+    },
+    "buyer": {
+      "deployment_url": "https://ondcbuyer-ln5yct8x0-ingpocs-projects.vercel.app",
+      "alias": "https://ondcbuyer.aadharcha.in",
+      "status": "READY",
+      "plan": "hobby"
+    },
+    "seller": {
+      "deployment_url": "https://ondcseller-ej4uffaid-ingpocs-projects.vercel.app",
+      "alias": "https://ondcseller.aadharcha.in",
+      "status": "READY",
+      "plan": "hobby"
+    }
+  },
+  "live_probes": {
+    "gateway_health": 200,
+    "buyer_site_verification": 200,
+    "seller_site_verification": 200,
+    "bpp_status": 200,
+    "soft_grader_advisory": "seller_to_buyer_on_search_exact_item returned zero because the public catalog was not seeded"
+  },
+  "open_gates": [
+    "Ingest or rerun bundled Chrome Buyer Pass 1 and Pass 2 semantic evidence on this fingerprint",
+    "Ingest or rerun bundled Chrome Seller Pass 1 and Pass 2 semantic evidence on this fingerprint",
+    "Run combined desktop/mobile responsive and accessibility smoke",
+    "Run FQDN/Auth0 Buyer and Seller acceptance and seed the public exact item",
+    "Replace this checkpoint status with final pass evidence before closing the release goal"
+  ],
+  "exclusions": [
+    "real payments",
+    "production ONDC conformance",
+    "native voice",
+    "iOS",
+    "multi-seller checkout",
+    "broad redesign"
+  ]
+}

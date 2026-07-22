@@ -2,6 +2,17 @@
 
 Gate: **all boxes before** `render` / `vercel --prod` / MCP deploy mutate.
 
+**Current live stamp (2026-07-22, Free/Hobby):** frozen CF1 fingerprint
+`e95340b069cab63b75f436e0d5fdfe4e667545c40d2ee9b378f1b5957914db26`;
+Render `dep-d9gc443bc2fs73frb320` live at gateway `fd586da`;
+Buyer `f028ade` and Seller `8146340` Ready on their FQDNs; health/site probes
+200; FQDN/Auth0 Buyer/Seller acceptance passed. Public ONDC search is advisory
+on the intentionally unseeded catalog and payment remains simulated. Evidence:
+[`../../ondc-testing/references/evidence/cf1-release-e95340-checkpoint-20260722.json`](../../ondc-testing/references/evidence/cf1-release-e95340-checkpoint-20260722.json).
+
+Unchecked boxes below are a copy-per-run template or dated historical run
+notes; they are not the current deployment status.
+
 ```
 Pre-deploy
 - [ ] $0 ONLY: Render instance = Free; workspace = Hobby; Vercel = Hobby;
@@ -99,10 +110,10 @@ Post-deploy
 
 ## Run stamp — 2026-07-12 evening demo-mode off + select/confirm ($0)
 
-- [x] Gate: `commerce_demo_mode_gate.py --allow-with-evidence` → [`../ondc-testing/references/evidence/commerce-demo-mode-gate-20260712.json`](../ondc-testing/references/evidence/commerce-demo-mode-gate-20260712.json)
+- [x] Gate: `commerce_demo_mode_gate.py --allow-with-evidence` → [`../../ondc-testing/references/evidence/commerce-demo-mode-gate-20260712.json`](../../ondc-testing/references/evidence/commerce-demo-mode-gate-20260712.json)
 - [x] Gateway nested push **`1ba0a0c`** (select/init/confirm BAP+BPP); live note shows select/init/confirm; API ACK path proven
 - [x] Vercel Hobby: `VITE_COMMERCE_DEMO_MODE=false` Prod+Preview Buyer+Seller; archive deploys `dpl_6ynH5M49…` / `dpl_J5rZDKoH…` + FQDN aliases
-- [x] Proof: [`../ondc-testing/references/evidence/demo-mode-off-select-confirm-20260712.json`](../ondc-testing/references/evidence/demo-mode-off-select-confirm-20260712.json)
+- [x] Proof: [`../../ondc-testing/references/evidence/demo-mode-off-select-confirm-20260712.json`](../../ondc-testing/references/evidence/demo-mode-off-select-confirm-20260712.json)
 - [x] No Disk / Pro / paid add-ons; **not** production ONDC; payment still simulated
 
 ## Run stamp — 2026-07-12 web identity env ($0)
@@ -118,4 +129,3 @@ Post-deploy
 - Stale `pnpm-lock.yaml` made Vercel use frozen `pnpm install` → fail; force `"installCommand": "npm install"` in app `vercel.json`; rename/remove stale pnpm lock.
 - Vendor `@aadharchain/agentguard-contract` under `ondcbuyer|ondcseller/shared/` (`file:./shared/...`) so CLI uploads resolve.
 - Multiple Production deploys stuck **UNKNOWN** with empty builds — cancel stuck deploys in dashboard; retry one at a time on Hobby ($0).
-

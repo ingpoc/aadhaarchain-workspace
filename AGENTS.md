@@ -63,10 +63,10 @@ Bookends: `.cursor/skills/portfolio-browser/SKILL.md`. Ledger: `.cursor/skills/p
 
 | Lane | Status |
 | --- | --- |
-| Current CF1 Buyer `@Chrome` | **Pass 1** (2026-07-22, local PostgreSQL); Pass 2, combined responsive/accessibility smoke and current-source FQDN/Auth0 proof remain open |
-| Current CF1 Seller `@Chrome` | **Pass 1** (2026-07-22, local PostgreSQL, after owner fixes); Pass 2 and combined responsive/accessibility smoke remain open |
-| Legacy `agentguard buyer/seller --fixture` | Historical deterministic/Hermes proof: Seller ×2 (2026-07-11); Buyer API/Hermes and FQDN ×2 (2026-07-14). These do not close the current CF1 source gate |
-| Legacy `two-sided --fixture` | Historical unique-run proof (2026-07-11); current unchanged-source two-pass browser proof remains open |
+| Current CF1 Buyer `@Chrome` | **Pass 1 + Pass 2** (2026-07-22, unchanged source, PostgreSQL); combined responsive/accessibility smoke and FQDN/Auth0 Buyer acceptance also passed |
+| Current CF1 Seller `@Chrome` | **Pass 1 + Pass 2** (2026-07-22, unchanged source, PostgreSQL); combined responsive/accessibility smoke and FQDN/Auth0 Seller acceptance also passed |
+| Legacy `agentguard buyer/seller --fixture` | Historical deterministic/Hermes proof: Seller ×2 (2026-07-11); Buyer API/Hermes and FQDN ×2 (2026-07-14). Historical only; the current CF1 source gate is closed by the bundled Chrome checkpoint below |
+| Legacy `two-sided --fixture` | Historical unique-run proof (2026-07-11); historical only, not the owner of current CF1 acceptance |
 | Mandate editor / agent tools / Realtime | M10 code present; M11 text tools/runtime historically FQDN validated; M12 Realtime configured + text validated. Current-source runtime breadth and physical microphone proof remain open |
 | FlatWatch AgentGuard | **Deferred** — out of scope |
 
@@ -91,9 +91,9 @@ Default interactive UI control is bundled `@chrome` for browser pages and bundle
 | --- | --- |
 | AgentGuard domain (evaluate / consume / pause / receipts) | **Real** — principal-scoped PostgreSQL mandates, decisions, approvals, execution intents and receipts when `DATABASE_URL` selects CF1 persistence; local-file mode is the exclusive development fallback, not a concurrent owner |
 | ONDC Seller AgentGuard UI | **Real** — refund demo + `/agentguard` |
-| Buyer AgentGuard checkout | **Real locally on CF1 PostgreSQL** — exact landed cost, exact approval, mutation rejection, simulated payment truth, one order effect and signed receipt; current-source FQDN/Auth0 revalidation remains open |
+| Buyer AgentGuard checkout | **Real locally on CF1 PostgreSQL** — exact landed cost, exact approval, mutation rejection, simulated payment truth, one order effect and signed receipt; current-source FQDN/Auth0 Buyer acceptance passed. Public checkout/payment was not claimed |
 | CommerceV1 + compatibility exchange | **Real CF1 foundation, partial product lifecycle** — PostgreSQL carts, quotes, inventory, orders, payment attempts, balanced ledger and refunds; `/api/demo-commerce` is a compatibility adapter, not an independent file store. Multi-seller checkout, full fulfilment/returns and settlement remain open |
-| Signed receipt verify | **Real locally** — issue/verify and tamper tests plus current-source Buyer/Seller UI verification; current-source FQDN proof remains open |
+| Signed receipt verify | **Real locally** — issue/verify and tamper tests plus current-source Buyer/Seller UI verification. FQDN/Auth0 app acceptance passed; receipt verification itself was not re-exercised on FQDN |
 | Authenticated principal on AG APIs | **Real** — session cookie principal; body wallet cannot override social/demo session |
 | ONDC commerce UI labels | **Demo mode off** — `VITE_COMMERCE_DEMO_MODE=false` (gate evidence 2026-07-12); label **ONDC network**; payment still simulated (not live UPI) |
 | Host identity | **Auth0** (FQDN PreProd) + local `AUTH_DEMO_CONTINUE` (Hermes only) |

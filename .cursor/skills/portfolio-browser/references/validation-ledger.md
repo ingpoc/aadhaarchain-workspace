@@ -4,7 +4,7 @@ Track **manual** runs before simplifying or automating. Update after each full-p
 
 Phase order: make it work → **validate (this file)** → simplify → optimize → automate.
 
-**Lane status:** Portfolio API + browser (burner) + first-run setup + identity onboarding + on-chain lanes validated historically. **AgentGuard seller Hermes** pass 2026-07-11 evening (WIP bridge recovered). **AgentGuard buyer Hermes** first judged pass 2026-07-11 evening; re-pass 15:54Z. **Buyer `/config` + Samantha** operator path 1× pass 15:55Z; **full Buyer journey** re-pass 16:10Z (UI search apples + tool cart + AG + orb; live mic env-dependent). **Buyer Samantha operator-long** 11/11 + cart/memory re-pass 2026-07-11 night. **Seller Samantha ops** (`hermes_samantha_seller_ops.py`) 5/5 + memory on `/agentguard` same night. **Two-sided** consecutive unique run_ids pass. FlatWatch AgentGuard remains **deferred**.
+**Lane status:** Current CF1 release checkpoint **passed** on 2026-07-22 at frozen fingerprint `e95340b069cab63b75f436e0d5fdfe4e667545c40d2ee9b378f1b5957914db26`: Buyer bundled Chrome ×2, Seller bundled Chrome ×2, combined responsive/accessibility smoke, deterministic/build/offline gates, PostgreSQL readback, matching deployment, and FQDN/Auth0 Buyer/Seller acceptance. Earlier burner, Hermes, Samantha, and two-sided rows below are historical evidence only. FlatWatch AgentGuard and physical microphone proof remain deferred/out of this gate.
 
 ## Milestone 0 baseline (IMPLEMENTATIONPLAN)
 

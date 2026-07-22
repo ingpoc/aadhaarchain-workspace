@@ -59,7 +59,7 @@ workflow_dispatch deploy (confirm Free/Hobby) → post-probes
 
 **Deploy:** `workflow_dispatch` only; requires `confirm_free_tier=true` (**$0 abort** otherwise); re-runs graders by default; then Render gateway and/or Vercel Buyer/Seller; then FQDN probes. Secrets names only in [`references/ci-cd.md`](references/ci-cd.md).
 
-**Last live stamp (2026-07-12 evening, Free/Hobby):** gateway **`1ba0a0c`** on `codex/ondc-onboard-fqdn-20260712` — BAP+BPP PreProd search + **select/init/confirm**; Buyer+Seller Hobby archive deploys with **`VITE_COMMERCE_DEMO_MODE=false`** (gate evidence); `/ondc/:path*` rewrites both apps → gateway. Full table: [`references/checklist.md`](references/checklist.md).
+**Last live stamp (2026-07-22, Free/Hobby):** frozen CF1 fingerprint `e95340b069cab63b75f436e0d5fdfe4e667545c40d2ee9b378f1b5957914db26`; Render deployment `dep-d9gc443bc2fs73frb320` is live at gateway `fd586da`; Buyer `f028ade` and Seller `8146340` Hobby deployments are Ready on their FQDNs. Health/site probes returned 200 and bundled Chrome FQDN/Auth0 Buyer/Seller acceptance passed. Public ONDC search remains advisory on the intentionally unseeded catalog; payment is simulated. Evidence: [`../ondc-testing/references/evidence/cf1-release-e95340-checkpoint-20260722.json`](../ondc-testing/references/evidence/cf1-release-e95340-checkpoint-20260722.json); run history: [`references/checklist.md`](references/checklist.md).
 
 ## When to use
 

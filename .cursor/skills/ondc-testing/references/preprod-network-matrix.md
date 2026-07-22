@@ -1,11 +1,12 @@
 # PreProd ONDC network matrix (real data — no mock)
 
-**Currency boundary (2026-07-22):** the latest deployed PreProd evidence in
-this ledger is the 2026-07-16 row. The CF1 PostgreSQL source validated locally
-on 2026-07-22 was not deployed or revalidated through FQDN/Auth0. Do not use
-this matrix to claim current-source production ONDC, live payment, or official
-conformance; current local customer evidence lives in
-[`matrix-status.md`](matrix-status.md).
+**Currency boundary (2026-07-22):** the latest network-protocol evidence in
+this ledger is the 2026-07-16 row. The frozen CF1 PostgreSQL source validated on
+2026-07-22 was subsequently deployed unchanged and passed FQDN/Auth0 Buyer and
+Seller acceptance. That acceptance did not refresh ONDC protocol conformance or
+exercise public checkout/payment. Do not use this matrix to claim production
+ONDC, live payment, or official conformance; the current CF1 release checkpoint
+lives in [`matrix-status.md`](matrix-status.md).
 
 **Policy:** `ONDC_ENABLED` may be true on gateway. Flip `VITE_COMMERCE_DEMO_MODE` only with [`commerce_demo_mode_gate.py`](../../../../scripts/commerce_demo_mode_gate.py) evidence (unlocked 2026-07-12 evening — see ledger).
 

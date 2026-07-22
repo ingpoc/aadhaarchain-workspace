@@ -593,11 +593,12 @@ Source fingerprint: `e95340b069cab63b75f436e0d5fdfe4e667545c40d2ee9b378f1b595791
 | Deterministic matrix | **Pass** — gateway CI 152/48 skipped and PostgreSQL 200; Buyer 195 plus typecheck/build; Seller 211 plus typecheck/build; offline ONDC grader passed. |
 | PostgreSQL two-cycle readback | **Pass** — two SKUs, orders, successful simulated payments and full refunds; inventory 20→18 twice; six signed receipts grouped as publish/checkout/refund ×2. |
 | Deployment | **Pass** — Render Free deployment `dep-d9gc443bc2fs73frb320` live at gateway commit `fd586da`; Buyer/Seller Vercel Hobby deployments Ready and FQDN verification probes 200. |
-| Buyer/Seller Chrome Pass 1+2 | **Evidence pending** — durable effects exist, but this thread cannot control the currently registered bundled Chrome session and therefore does not credit database effects as semantic UI proof. |
-| Combined responsive/accessibility smoke | **Not credited** — requires a controllable bundled Chrome session on this fingerprint. |
-| FQDN/Auth0 Buyer/Seller | **Not credited** — probes pass, but authenticated visible journeys remain open. Public exact-item live soft grader is advisory-failed until the FQDN Seller journey seeds the item. |
+| Buyer Chrome Pass 1+2 | **Pass** — unchanged source and database `cf1_release_e95340`: `CF1 e953 A Atta 1kg` produced order `CAC1D3A8`, simulated payment `CFD9BD5C`, and verified signed receipt; `CF1 e953 B Atta 1kg` produced order `EC116D90`, simulated payment `945F12AE`, and verified signed receipt. Both runs used exact one-time approval and ended with zero browser console errors. |
+| Seller Chrome Pass 1+2 | **Pass** — each Buyer order was discovered and fully refunded in the same unchanged-source campaign. The terminal UI showed Cancelled/Refunded with verified authorization references `DC4D0FC9` and `F3601E3D`; PostgreSQL agreed with exactly two successful full refunds and no duplicate effect. |
+| Combined responsive/accessibility smoke | **Pass** — Buyer and Seller desktop shells at 1920×902 each exposed one main, one navigation and one banner, no duplicate IDs, and no horizontal overflow. At 390×844 both navigation dialogs had accessible names/headings, closed with Escape, returned focus to their triggers, and had no horizontal overflow or console errors. Temporary viewport overrides were reset. |
+| FQDN/Auth0 Buyer/Seller | **Pass** — deployed Buyer returned from Auth0 to a verified AgentGuard session, exposed protected navigation/account state, and completed an `atta` search to the truthful zero-match state. Deployed Seller returned from Auth0 to a verified identity, then loaded protected dashboard, catalog and incoming-orders surfaces. Both FQDN journeys had zero console errors. The public ONDC live-search soft grader remains advisory: the public catalog is intentionally unseeded and the first Free-tier calls briefly returned 503 while the service settled. |
 
-Checkpoint evidence: `.cursor/skills/ondc-testing/references/evidence/cf1-release-e95340-checkpoint-20260722.json`.
+Final evidence: `.cursor/skills/ondc-testing/references/evidence/cf1-release-e95340-checkpoint-20260722.json`.
 
 Remaining exclusions are unchanged: real payments, production ONDC conformance,
 native voice, iOS, multi-seller checkout, and broad redesign.

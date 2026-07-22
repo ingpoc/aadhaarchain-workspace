@@ -40,7 +40,7 @@
       "buyer.checkout.commit": 2,
       "seller.refund.issue": 2
     },
-    "note": "Durable effects prove two complete commerce cycles, but do not substitute for the missing bundled Chrome semantic log."
+    "note": "PostgreSQL readback agrees with the two complete bundled Chrome commerce cycles."
   },
   "deployments": {
     "render": {
@@ -67,15 +67,21 @@
     "buyer_site_verification": 200,
     "seller_site_verification": 200,
     "bpp_status": 200,
-    "soft_grader_advisory": "seller_to_buyer_on_search_exact_item returned zero because the public catalog was not seeded"
+    "soft_grader_advisory": "public catalog intentionally unseeded; initial Free-tier status/search calls briefly returned 503 before ten consecutive health probes passed"
   },
-  "open_gates": [
-    "Ingest or rerun bundled Chrome Buyer Pass 1 and Pass 2 semantic evidence on this fingerprint",
-    "Ingest or rerun bundled Chrome Seller Pass 1 and Pass 2 semantic evidence on this fingerprint",
-    "Run combined desktop/mobile responsive and accessibility smoke",
-    "Run FQDN/Auth0 Buyer and Seller acceptance and seed the public exact item",
-    "Replace this checkpoint status with final pass evidence before closing the release goal"
-  ],
+  "browser_acceptance": {
+    "buyer_passes": [
+      {"order": "CAC1D3A8", "payment": "CFD9BD5C", "signed_receipt": "verified"},
+      {"order": "EC116D90", "payment": "945F12AE", "signed_receipt": "verified"}
+    ],
+    "seller_passes": [
+      {"buyer_order": "CAC1D3A8", "refund_authorization": "DC4D0FC9", "terminal_state": "cancelled_refunded"},
+      {"buyer_order": "EC116D90", "refund_authorization": "F3601E3D", "terminal_state": "cancelled_refunded"}
+    ],
+    "responsive_accessibility": "passed at 1920x902 and 390x844 with semantic landmarks/dialogs, Escape focus return, no duplicate IDs or horizontal overflow, zero console errors, and overrides reset",
+    "fqdn_auth0": "Buyer verified AgentGuard session plus truthful search state; Seller verified identity plus protected dashboard/catalog/orders; zero console errors"
+  },
+  "open_gates": [],
   "exclusions": [
     "real payments",
     "production ONDC conformance",

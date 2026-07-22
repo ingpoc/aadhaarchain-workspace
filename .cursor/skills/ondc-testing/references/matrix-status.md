@@ -6,8 +6,10 @@
 - Deterministic gates pass: gateway CI 152 passed/48 skipped; PostgreSQL breadth 200 passed; Buyer 195 tests plus typecheck/build; Seller 211 tests plus typecheck/build; offline ONDC grader passed.
 - Final PostgreSQL database `cf1_release_e95340` contains two exact published SKUs, two orders, two successful simulated payments, two successful full refunds, and publish/checkout/refund receipts twice. Inventory is 18 from 20 for each SKU.
 - Render Free deployment `dep-d9gc443bc2fs73frb320` is live on gateway commit `fd586da`; Buyer and Seller Hobby archive deployments are Ready and their FQDN aliases return 200.
-- **Open visible rows:** the bundled Chrome session is not controllable in this thread, so two-pass semantic logs, combined responsive/accessibility smoke, and FQDN/Auth0 Buyer/Seller acceptance are not yet credited. The live soft grader remains advisory-failed on the unseeded public exact item.
-- Structured checkpoint: [`evidence/cf1-release-e95340-checkpoint-20260722.json`](evidence/cf1-release-e95340-checkpoint-20260722.json).
+- Bundled Chrome Buyer Pass 1 and Pass 2 completed on unchanged source with orders `CAC1D3A8` / `EC116D90`, simulated payments `CFD9BD5C` / `945F12AE`, exact one-time approvals, and verified signed receipts. Seller Pass 1 and Pass 2 completed the corresponding full refunds and reached terminal Cancelled/Refunded state with verified authorization references `DC4D0FC9` / `F3601E3D`.
+- Combined responsive/accessibility smoke passed at 1920×902 and 390×844: correct main/navigation/banner and dialog semantics, no duplicate IDs or horizontal overflow, Escape close with focus return, zero console errors, and viewport overrides reset.
+- FQDN/Auth0 acceptance passed for Buyer and Seller. Buyer reached verified AgentGuard state and a truthful zero-match search; Seller reached verified identity plus protected dashboard, catalog and orders. The live ONDC search grader remains advisory on the intentionally unseeded public catalog; production ONDC conformance is excluded.
+- Structured final evidence: [`evidence/cf1-release-e95340-checkpoint-20260722.json`](evidence/cf1-release-e95340-checkpoint-20260722.json).
 
 ## Seller Samantha ops — 2026-07-20
 

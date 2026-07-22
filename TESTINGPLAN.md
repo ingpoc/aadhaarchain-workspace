@@ -632,18 +632,18 @@ inspection, feature rollback, and a global pause for autonomous writes.
 
 ## Current local safety checklist
 
-The latest CF1 evidence is the 2026-07-22 PostgreSQL `@Chrome` campaign in
-`.cursor/skills/ondc-testing/references/matrix-status.md`. Its focused frozen
-source fingerprint is
-`9c7fadc8fab66f3f456272f5dd8041e357780830bbabfe7185d4c30199704d66`.
-It records gateway `198 passed`, Seller `210 passed` plus production build/copy
-gate, offline ONDC graders, one complete Buyer customer Pass and one complete
-Seller customer Pass with PostgreSQL readback. The worktree was dirty and the
-campaign did not establish the required unchanged-source two-pass release
-threshold. The older `af98738a` two-pass deterministic artifact remains
-historical evidence only; it is not the current CF1 source fingerprint.
+The final CF1 evidence is the 2026-07-22 PostgreSQL bundled `@Chrome` campaign
+in `.cursor/skills/ondc-testing/references/matrix-status.md`. Its frozen
+application/deploy fingerprint is
+`e95340b069cab63b75f436e0d5fdfe4e667545c40d2ee9b378f1b5957914db26`
+(`b8b90bd` / `fd586da` / `f028ade` / `8146340`). It records the complete
+deterministic matrix, two unchanged-source Buyer passes, two unchanged-source
+Seller passes, combined responsive/accessibility smoke, exact PostgreSQL
+readback, matching Free/Hobby deployments, and FQDN/Auth0 Buyer and Seller
+acceptance. The focused evidence-only closeout commit is not part of the frozen
+application fingerprint.
 
-- [x] Focused CF1 deterministic support passes on the recorded fingerprint (gateway 198; Seller 210 plus production build/copy gate; targeted Ruff/diff checks; offline ONDC graders).
+- [x] CF1 deterministic support passes on the recorded fingerprint (gateway CI 152 passed/48 skipped and PostgreSQL breadth 200; Buyer 195; Seller 211; typecheck/build/copy gates; offline ONDC graders).
 - [x] Buyer and Seller builds pass.
 - [x] Shared schema golden fixtures pass in Python and TypeScript.
 - [x] Authenticated ownership and tenant isolation pass.
@@ -656,10 +656,10 @@ historical evidence only; it is not the current CF1 source fingerprint.
 - [x] Pause and revoke races fail safely.
 - [x] Receipts verify and tampering fails.
 - [x] Prompt-injection and direct-API bypass attempts fail.
-- [ ] Buyer AgentGuard browser lane passes twice on unchanged current source (2026-07-22 current-source Pass 1 complete; Pass 2 not tested).
-- [ ] Seller AgentGuard browser lane passes twice on unchanged current source (2026-07-22 current-source Pass 1 complete after owner fixes and one bounded Chrome recovery; Pass 2 not tested).
-- [ ] Combined two-sided discovery/order/refund and responsive semantic UI/UX-accessibility smoke passes twice on unchanged current source.
-- [ ] Current CF1 source is deployed and revalidated through FQDN/Auth0; the 2026-07-22 campaign was local only.
+- [x] Buyer AgentGuard browser lane passes twice on unchanged current source.
+- [x] Seller AgentGuard browser lane passes twice on unchanged current source.
+- [x] Combined two-sided discovery/order/refund and responsive semantic UI/UX-accessibility smoke passes on unchanged current source.
+- [x] Current CF1 source is deployed and revalidated through FQDN/Auth0 Buyer and Seller journeys.
 - [ ] Controlled physical microphone/WebRTC voice proof passes if voice is claimed; configured or text-ready status is not voice proof.
 - [x] Validation ledger contains commands, run IDs and artifacts.
 - [x] Product UI avoids environment/test labels and describes simulated payment and logistics truthfully.

@@ -105,10 +105,10 @@ jobs:
         if: ${{ inputs.skip_graders != true }}
         run: |
           set -euo pipefail
-          gitleaks detect --source . --no-git --verbose --redact --exit-code 1
-          gitleaks detect --source aadharchain --no-git --verbose --redact --exit-code 1
-          gitleaks detect --source ondcbuyer --no-git --verbose --redact --exit-code 1
-          gitleaks detect --source ondcseller --no-git --verbose --redact --exit-code 1
+          gitleaks detect --source . --no-git --config .gitleaks.toml --verbose --redact --exit-code 1
+          gitleaks detect --source aadharchain --no-git --config .gitleaks.toml --verbose --redact --exit-code 1
+          gitleaks detect --source ondcbuyer --no-git --config .gitleaks.toml --verbose --redact --exit-code 1
+          gitleaks detect --source ondcseller --no-git --config .gitleaks.toml --verbose --redact --exit-code 1
 
       - name: Gateway pytest + verify-portfolio --ci
         if: ${{ inputs.skip_graders != true }}

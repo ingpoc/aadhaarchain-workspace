@@ -1,0 +1,27 @@
+[extend]
+useDefault = true
+
+[[rules]]
+id = "generic-api-key"
+
+  [[rules.allowlists]]
+  description = "ONDC unique key identifiers are public registry UUIDs, not credentials"
+  condition = "AND"
+  regexTarget = "line"
+  regexes = [
+    '''"unique_key_id"\s*:\s*"[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}"''',
+  ]
+  paths = [
+    '''\.cursor/skills/(apisetu-partner-onboarding|ondc-testing)/references/evidence/''',
+  ]
+
+  [[rules.allowlists]]
+  description = "ONDC public registry UUIDs captured under environment-style field names"
+  condition = "AND"
+  regexTarget = "line"
+  regexes = [
+    '''"ONDC_(BUYER|SELLER)_UNIQUE_KEY_ID"\s*:\s*"[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}"''',
+  ]
+  paths = [
+    '''\.cursor/skills/ondc-testing/references/evidence/''',
+  ]

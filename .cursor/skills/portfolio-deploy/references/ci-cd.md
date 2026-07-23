@@ -32,7 +32,7 @@ Hermes / WIP browser lanes are **out of CI** (`verify-portfolio.sh --ci` skips t
 
 | Grader | Command / job | Notes |
 | --- | --- | --- |
-| Secret scan | `gitleaks detect --source … --no-git --exit-code 1` | Current release tree; historical credential rotation is tracked separately; free CLI, no Codecov/paid SaaS |
+| Secret scan | `gitleaks detect --source … --no-git --config .gitleaks.toml --exit-code 1` | Current release tree; the config narrowly allows public ONDC registry UUIDs in evidence; historical credential rotation is tracked separately; free CLI, no Codecov/paid SaaS |
 | Gateway pytest | `./scripts/verify-portfolio.sh --ci` | No `start-dev`; TestClient only — see green path below |
 | ONDC Buyer | `npm ci && npm run lint && npm run typecheck && npm test && npm run build` | Does **not** set `VITE_COMMERCE_DEMO_MODE` |
 | ONDC Seller | same npm chain | — |

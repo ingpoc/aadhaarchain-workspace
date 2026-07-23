@@ -45,7 +45,7 @@ jobs:
           gitleaks version
 
       - name: Scan workspace tree
-        run: gitleaks detect --source . --no-git --verbose --redact --exit-code 1
+        run: gitleaks detect --source . --no-git --config .gitleaks.toml --verbose --redact --exit-code 1
 
   gateway:
     name: Gateway pytest

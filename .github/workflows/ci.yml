@@ -76,6 +76,20 @@ jobs:
           ref: ${{ env.AADHAAR_CHAIN_REF }}
           path: aadharchain
 
+      - name: Checkout ondcbuyer contract consumer
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ env.ONDC_BUYER_REPO }}
+          ref: ${{ env.ONDC_BUYER_REF }}
+          path: ondcbuyer
+
+      - name: Checkout ondcseller contract consumer
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ env.ONDC_SELLER_REPO }}
+          ref: ${{ env.ONDC_SELLER_REF }}
+          path: ondcseller
+
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"

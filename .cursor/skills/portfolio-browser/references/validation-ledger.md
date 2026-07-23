@@ -4,7 +4,7 @@ Track **manual** runs before simplifying or automating. Update after each full-p
 
 Phase order: make it work → **validate (this file)** → simplify → optimize → automate.
 
-**Lane status:** Current CF1 release checkpoint **passed** on 2026-07-22 at frozen fingerprint `e95340b069cab63b75f436e0d5fdfe4e667545c40d2ee9b378f1b5957914db26`: Buyer bundled Chrome ×2, Seller bundled Chrome ×2, combined responsive/accessibility smoke, deterministic/build/offline gates, PostgreSQL readback, matching deployment, and FQDN/Auth0 Buyer/Seller acceptance. Earlier burner, Hermes, Samantha, and two-sided rows below are historical evidence only. FlatWatch AgentGuard and physical microphone proof remain deferred/out of this gate.
+**Lane status:** Current CF0 contract-closure checkpoint **passed** on 2026-07-23 at frozen application-source fingerprint `cb0769ea45b0f9e9cf63c825706d8fee1eeb3facf97d8e28bb3a832d1d026215`: Buyer bundled Chrome ×2, Seller bundled Chrome ×2, combined responsive/accessibility smoke, deterministic/build/offline gates, PostgreSQL readback, exact-source deployment, and FQDN/Auth0 Buyer/Seller acceptance. The 2026-07-22 CF1 checkpoint and earlier burner, Hermes, Samantha and two-sided rows below are historical evidence only. FlatWatch AgentGuard and physical microphone proof remain deferred/out of this gate.
 
 ## Milestone 0 baseline (IMPLEMENTATIONPLAN)
 
@@ -602,3 +602,31 @@ Final evidence: `.cursor/skills/ondc-testing/references/evidence/cf1-release-e95
 
 Remaining exclusions are unchanged: real payments, production ONDC conformance,
 native voice, iOS, multi-seller checkout, and broad redesign.
+
+## CF0 contract-closure checkpoint — 2026-07-23
+
+Frozen application-source fingerprint:
+`cb0769ea45b0f9e9cf63c825706d8fee1eeb3facf97d8e28bb3a832d1d026215`
+(gateway `5431307bf36bb8c906600b3ceea859efb34f9d44`, Buyer
+`bdd67735f54794a1936030288cf0e41a4c746893`, Seller
+`872e850cc451d91a63b1f5fd0216490ec2841cdc`).
+
+| Gate | Result |
+| --- | --- |
+| CF0 artifacts | **Pass** — `cf0.journey.v1`, six `cf0.v1` lifecycle machines, Decision Contract v2, the executable 83-route `cf0.write-risk.v1` inventory and `cf0.kpi.v1` have one canonical owner each. V1 decisions are compatibility input only. |
+| Deterministic/PostgreSQL | **Pass** — PostgreSQL gateway 279 passed; CI-shaped portfolio 231 passed/48 skipped; Buyer 195 and Seller 215 tests plus typecheck/build; offline ONDC grader and cross-copy parity verifier passed. Gateway/Buyer/Seller GitHub Actions runs `29982273344` / `29982147201` / `29981879263` succeeded. |
+| Buyer Chrome Pass 1+2 | **Pass** — unchanged source and PostgreSQL database `cf0_validation_20260723`: orders `E36D08D9` / `256DD6FF`, simulated payments `782EF8C3` / `093C4B41`, exact authorization references `24BF88AC` / `743EBE5C`. |
+| Seller Chrome Pass 1+2 | **Pass** — each frozen-source Buyer order was accepted and fully refunded once. Terminal UI was Cancelled/Refunded with authorization references `2393687B` / `FAE50567`; PostgreSQL shows each order confirmed at version 3 with one succeeded payment and one succeeded full refund. Preliminary defect-discovery cycles are excluded from the two-pass claim. |
+| Combined responsive/accessibility smoke | **Pass** — Buyer and Seller desktop shells exposed one main, one navigation and one banner, no duplicate IDs or horizontal overflow. At 390×844 both navigation dialogs had accessible names, closed with Escape, returned focus and had no horizontal overflow. The Seller Escape defect found by the smoke was fixed and regression-tested. |
+| Deployment | **Pass** — exact-commit Render Free deployment `dep-d9gqfcjtqb8s73e0l940` is live at gateway `5431307bf36bb8c906600b3ceea859efb34f9d44`; Buyer and Seller Vercel Hobby archive deployments are Ready at their FQDN aliases. Health, Auth0 provider, Buyer/Seller NP status and site-verification probes returned 200. |
+| FQDN/Auth0 Buyer/Seller | **Pass** — Buyer re-authenticated to Account Ready and AgentGuard-protected checkout at `/search`; Seller re-authenticated to Verified identity and loaded protected dashboard and orders. Desktop semantic checks found no Buyer duplicate IDs or horizontal overflow. |
+
+Final evidence:
+`.cursor/skills/ondc-testing/references/evidence/cf0-completion-cb0769-20260723.json`.
+
+Residuals are explicitly outside CF0 closure: Vercel dependency audits reported
+19 Buyer and 28 Seller findings that require a separately scoped upgrade and
+regression campaign; removed historical token material should be rotated if
+still valid; the public ONDC catalog remains intentionally unseeded. Exclusions
+remain real payments, production ONDC onboarding/conformance, native voice,
+iOS, multi-seller checkout and broad redesign.

@@ -111,7 +111,7 @@ export type Approval = {
   mandate_version: number;
   policy_version: number;
   nonce: string;
-  status: "issued" | "consumed" | "expired";
+  status: "issued" | "consumed" | "expired" | "revoked";
   expires_at: string;
   created_at: string;
   consumed_at?: string;

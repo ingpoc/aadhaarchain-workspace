@@ -32,7 +32,7 @@ Hermes / WIP browser lanes are **out of CI** (`verify-portfolio.sh --ci` skips t
 
 | Grader | Command / job | Notes |
 | --- | --- | --- |
-| Secret scan | `gitleaks detect --source … --exit-code 1` | Free CLI; no Codecov/paid SaaS |
+| Secret scan | `gitleaks detect --source … --no-git --exit-code 1` | Current release tree; historical credential rotation is tracked separately; free CLI, no Codecov/paid SaaS |
 | Gateway pytest | `./scripts/verify-portfolio.sh --ci` | No `start-dev`; TestClient only — see green path below |
 | ONDC Buyer | `npm ci && npm run lint && npm run typecheck && npm test && npm run build` | Does **not** set `VITE_COMMERCE_DEMO_MODE` |
 | ONDC Seller | same npm chain | — |
@@ -78,7 +78,9 @@ App-repo CI (extend, don’t duplicate):
 2. Must set `confirm_free_tier=true` (else abort — $0 hard stop).
 3. Default re-runs graders; `skip_graders` is emergency-only.
 4. Surfaces: `all` | `gateway` | `buyer` | `seller`.
-5. On failure: fix code/env and re-dispatch — **never** upgrade plan / add Disk / open billing.
+5. Gateway checkout resolves the selected ref to a commit and sends that exact
+   commit to Render. Do not rely on the service's configured branch.
+6. On failure: fix code/env and re-dispatch — **never** upgrade plan / add Disk / open billing.
 
 Disable platform auto-deploy-on-push if you want this dispatch to be the sole prod path; otherwise keep branch protection + green CI on the Render/Vercel-connected repos.
 

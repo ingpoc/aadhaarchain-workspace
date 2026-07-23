@@ -1,7 +1,7 @@
 # Integration gaps vs product intent
 
 **Owners:** `PRODUCTIDEA.md`, `IMPLEMENTATIONPLAN.md`, `ondcbuyer/GOAL.md`, `ondcseller/GOAL.md`.  
-**Current through:** 2026-07-22 CF1 release checkpoint · **Evidence:** [`matrix-status.md`](matrix-status.md) and [`evidence/cf1-release-e95340-checkpoint-20260722.json`](evidence/cf1-release-e95340-checkpoint-20260722.json). Older tool/runtime observations below are explicitly historical where they were not part of the CF1 gate.
+**Current through:** 2026-07-23 CF0 contract-closure checkpoint · **Evidence:** [`matrix-status.md`](matrix-status.md) and [`evidence/cf0-completion-cb0769-20260723.json`](evidence/cf0-completion-cb0769-20260723.json). Older CF1 and tool/runtime observations below are explicitly historical where they were not part of the current gate.
 
 Status legend: **Present** (demo-usable) · **Partial** · **Missing** · **External** (ops/onboarding).
 

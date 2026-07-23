@@ -63,6 +63,9 @@ fi
 
 echo "=== Portfolio verify ==="
 
+echo "→ AgentGuard contract parity"
+python3 "$ROOT/scripts/verify_agentguard_contract_sync.py"
+
 run_gateway_pytest() {
   echo "→ Gateway tests"
   cd "$ROOT/aadharchain/gateway"

@@ -13,17 +13,47 @@ runtime behavior.
 
 ## Truthful test states
 
-- **Current baseline:** existing tests and validated Seller browser lane.
+- **Current baseline:** the 2026-07-23 unchanged-source CF0 closure checkpoint: Buyer
+  bundled Chrome ×2, Seller bundled Chrome ×2, combined responsive/accessibility,
+  PostgreSQL, deterministic/build/offline, and FQDN/Auth0 acceptance.
 - **Demo gate:** required for the local Token Nxt demonstration.
-  Status (2026-07-11 night): **Buyer Samantha 11/11** · **Seller Samantha 5/5** ·
-  **Seller AG fixture Pass ×2** (demo principal UI allow/approve/replay/pause/deny).
-  Buyer AG Hermes + two-sided unique runs remain separately validated.
+  Status (2026-07-23): **Passed** on the recorded fingerprint through the
+  current bundled-Chrome Buyer/Seller two-pass checkpoint. Earlier Samantha,
+  Hermes and fixture lanes are historical evidence only.
 - **Production security gate:** required before any external pilot with real
   users or money.
 - **ONDC conformance gate:** blocked until official participant onboarding,
   environment access, and active domain specifications exist.
 
 Never report an ONDC, NPCI, payment, or production pass based on demo fixtures.
+
+## CF0 KPI baseline `cf0.kpi.v1`
+
+The current measured window is the unchanged-source CF0 closure campaign on
+2026-07-23 at fingerprint
+`cb0769ea45b0f9e9cf63c825706d8fee1eeb3facf97d8e28bb3a832d1d026215`.
+It is a two-cycle engineering baseline, not customer or production evidence.
+The owner is named so the next campaign updates the same metric rather than
+inventing a parallel scorecard.
+
+| KPI | Definition and window | Owner / source | Current | CF0 target |
+| --- | --- | --- | --- | --- |
+| Two-sided task completion | Complete Buyer checkout and Seller full-refund cycles / attempted cycles | Release QA / CF0 checkpoint + PostgreSQL readback | 2/2 Buyer and 2/2 Seller | 100% in two unchanged-source passes |
+| Protected-write authority | Protected effects lacking a current decision, mandate/approval path and receipt | AgentGuard / decisions, intents, receipts | 0 unauthorized effects; 6/6 protected effects had signed receipts | 0 unauthorized; 100% receipt coverage |
+| Duplicate financial effects | Duplicate order, successful payment or refund rows for one idempotent command | CommerceV1 / PostgreSQL readback | 0 in the two claimed cycles; each has one order, one successful simulated payment and one successful full refund | 0 |
+| Approval replay and pause safety | Successful replay or protected effect after expiry, pause or revoke | AgentGuard / deterministic negative tests | 0 successful bypasses in the release gate | 0 |
+| Inventory correctness | Expected quantity decrement minus persisted decrement | CommerceV1 / reservation and inventory readback | 0 variance; each claimed order has one consumed unit reservation | 0 variance |
+| Browser technical quality | Console errors, duplicate IDs or horizontal-overflow failures during accepted viewports | Buyer/Seller UI / bundled Chrome evidence | 0 across desktop 1920×902 and mobile 390×844 | 0 |
+| Deterministic gate health | Required gateway, PostgreSQL, Buyer, Seller, build and offline grader gates passing | Release QA / checkpoint | All passed: CI-shaped portfolio 231/48 skipped, PostgreSQL 279, Buyer 195, Seller 215 | 100% required gates |
+| Mandate completion time | Supported users confirming a mandate in under 120 seconds | Product research / browser telemetry | Not captured; timing coverage 0/2 eligible app passes | 100% instrumented, then <120s |
+| Authority explanation | Test users accurately explaining allowed actions and approval conditions | Product research / moderated study | Not measured; 0 participants | ≥90%, minimum 3–5 operators |
+| Decision/execute latency | p50/p95/p99 server duration from accepted request to response | Gateway SRE / structured telemetry | Not instrumented; percentile coverage 0% | 100% sampled; thresholds set before pilot |
+| Commercial Buyer/Seller outcomes | Search, conversion, fulfilment, returns, support and time-saved metrics over real users | Product analytics / consented event stream | Not applicable; no external pilot traffic | Definitions frozen before pilot; targets after first valid cohort |
+| Voice outcomes | Response, interruption, transcription/tool accuracy, completion and cost | Voice QA / evaluation telemetry | Excluded; no physical microphone proof | Remains blocked until voice enters scope |
+
+Missing timing, research and commercial values are explicit zero-coverage
+baselines, not inferred successes. They block an external-pilot or production
+claim but do not invalidate the bounded CF0 engineering contract.
 
 ## Environments and ports
 
@@ -632,18 +662,19 @@ inspection, feature rollback, and a global pause for autonomous writes.
 
 ## Current local safety checklist
 
-The final CF1 evidence is the 2026-07-22 PostgreSQL bundled `@Chrome` campaign
+The current CF0 closure evidence is the 2026-07-23 PostgreSQL bundled `@Chrome` campaign
 in `.cursor/skills/ondc-testing/references/matrix-status.md`. Its frozen
-application/deploy fingerprint is
-`e95340b069cab63b75f436e0d5fdfe4e667545c40d2ee9b378f1b5957914db26`
-(`b8b90bd` / `fd586da` / `f028ade` / `8146340`). It records the complete
-deterministic matrix, two unchanged-source Buyer passes, two unchanged-source
-Seller passes, combined responsive/accessibility smoke, exact PostgreSQL
-readback, matching Free/Hobby deployments, and FQDN/Auth0 Buyer and Seller
-acceptance. The focused evidence-only closeout commit is not part of the frozen
-application fingerprint.
+application-source fingerprint is
+`cb0769ea45b0f9e9cf63c825706d8fee1eeb3facf97d8e28bb3a832d1d026215`
+(`5431307` / `bdd6773` / `872e850`). It records the closed journey/domain,
+state, Decision v2, mutation and KPI owners; the complete deterministic matrix;
+two unchanged-source Buyer passes; two unchanged-source Seller passes;
+combined responsive/accessibility smoke; exact PostgreSQL readback; matching
+Free/Hobby deployments; and FQDN/Auth0 Buyer and Seller acceptance. The focused
+portfolio evidence/owner-surface commit is not part of the deployed application
+fingerprint.
 
-- [x] CF1 deterministic support passes on the recorded fingerprint (gateway CI 152 passed/48 skipped and PostgreSQL breadth 200; Buyer 195; Seller 211; typecheck/build/copy gates; offline ONDC graders).
+- [x] CF0 deterministic support passes on the recorded fingerprint (gateway CI 231 passed/48 skipped and PostgreSQL breadth 279; Buyer 195; Seller 215; typecheck/build/copy gates; offline ONDC grader).
 - [x] Buyer and Seller builds pass.
 - [x] Shared schema golden fixtures pass in Python and TypeScript.
 - [x] Authenticated ownership and tenant isolation pass.
@@ -659,7 +690,7 @@ application fingerprint.
 - [x] Buyer AgentGuard browser lane passes twice on unchanged current source.
 - [x] Seller AgentGuard browser lane passes twice on unchanged current source.
 - [x] Combined two-sided discovery/order/refund and responsive semantic UI/UX-accessibility smoke passes on unchanged current source.
-- [x] Current CF1 source is deployed and revalidated through FQDN/Auth0 Buyer and Seller journeys.
+- [x] Current CF0 application source is deployed and revalidated through FQDN/Auth0 Buyer and Seller journeys.
 - [ ] Controlled physical microphone/WebRTC voice proof passes if voice is claimed; configured or text-ready status is not voice proof.
 - [x] Validation ledger contains commands, run IDs and artifacts.
 - [x] Product UI avoids environment/test labels and describes simulated payment and logistics truthfully.

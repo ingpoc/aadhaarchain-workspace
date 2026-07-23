@@ -65,14 +65,16 @@ enforcement, and receipt integrity must be real.
 | Commerce compatibility | `aadharchain/gateway/app/commerce_compat.py` | `/api/demo-commerce` request/response compatibility over the process-selected commerce owner; not an independent store |
 | ONDC messaging | `aadharchain/gateway/app/persistence/ondc_repository.py` | Durable inbox/outbox, persist-before-ACK, deduplication, correlation, leases, retries and dead-letter recovery |
 | Agent proposal parsers | `ondcbuyer/src/lib/agentBuyerState.ts`, `ondcseller/src/lib/agentSellerState.ts` | Typed proposal normalization and staging patterns |
-| Existing write guards | Buyer/Seller action-policy and backend-enforcement modules | Fail-closed patterns; must converge on AgentGuard |
+| Mutation authority inventory | `aadharchain/gateway/app/mutation_inventory.py` | Executable CF0 classification for every non-safe route; completeness fails closed on an unknown route family |
 | Browser framework | `scripts/portfolio_browser.py` and Hermes scripts | Preflight, SSO, fixture and evidence foundation |
 | Shared identity helper | `shared/trust-client/src/index.ts` | Optional host assurance adapter during migration |
 
 ### Known gaps
 
-- The shared decision contract lacks the customer-facing policy, risk,
-  required-action, expiry, and decision identifiers needed by every client.
+- Decision Contract v2 is frozen across the canonical, Buyer and Seller
+  packages with policy, risk, required action, expiry and decision identifiers.
+  V1 is compatibility-only and cannot authorize; its deletion gate is recorded
+  in the contract README and `ARCHITECTURE.md`.
 - Mandate editors cover the demo actions and limits, not the complete Buyer and
   Seller production mandate.
 - The CF1 commerce foundation is durable in PostgreSQL when `DATABASE_URL`
@@ -590,9 +592,20 @@ customer journey or financial-safety gates.
 | CF7. On-device intelligence | Availability-aware router; local classification, summarization, rewriting, redaction, and offline help; prompt/OS regression suite | App works without the local model; local output is never authoritative transaction data |
 | CF8. Production hardening and launch | Threat/privacy/accessibility review; load and resilience tests; SLOs; support console; runbooks; feature flags; phased rollout; rollback; reconciliation and global pause | Financial reconciliation passes; critical flows have monitored SLOs/runbooks; support can recover; autonomous writes can be stopped globally |
 
+**CF0 closure (2026-07-23):** CF0 is complete at frozen application-source
+fingerprint
+`cb0769ea45b0f9e9cf63c825706d8fee1eeb3facf97d8e28bb3a832d1d026215`.
+`cf0.journey.v1`, lifecycle contract `cf0.v1`, Decision Contract v2, the
+83-route executable `cf0.write-risk.v1` inventory, and `cf0.kpi.v1` are the canonical
+owners. PostgreSQL, deterministic, build, offline grader, two-pass bundled
+Chrome, responsive/accessibility, exact-source deploy, and FQDN/Auth0 gates
+passed. CF1 implementation evidence remains valid historical foundation; it
+does not substitute for this CF0 contract-closure evidence.
+
 ### Build order and release priority
 
-1. Complete CF0 before changing production contracts.
+1. Preserve the frozen CF0 contracts and rerun their parity/inventory gates
+   before changing production contracts.
 2. Build CF1 as modules in the existing gateway unless evidence requires a
    deployment split. Start with decision-contract v2, durable cart/order state,
    idempotency, audit events, and the financial ledger.
@@ -659,7 +672,7 @@ release or external gates stay explicit in the evidence column.
 | 10. Mandate editor | **Done** (2026-07-11) | Seller `/agentguard` edit refund max + allowed actions; Buyer checkout authority card checkout max; gateway `allowed_actions` + limit normalize |
 | 11. Agent tool runner (Cursor) | **Done** (2026-07-11) | `ondcbuyer`/`ondcseller` `agentTools.ts`; Cursor agent context includes tool defs; chat path invokes runner |
 | 12. Buyer Realtime voice | **Partial** (2026-07-14) | Gateway session path, Buyer `SamanthaOrb`, text tools, and mandate/memory integration pass; physical microphone journey remains unproved |
-| CF0. Product/contract alignment | **In progress** | Customer promise, production phases, architecture boundary, risk taxonomy, test gates, and launch gates are owner-documented; journey/domain artifacts and contract v2 remain |
+| CF0. Product/contract alignment | **Complete; release validated** (2026-07-23) | `cf0.journey.v1`, six `cf0.v1` lifecycle families, Decision Contract v2, the exhaustive 83-route `cf0.write-risk.v1` inventory and `cf0.kpi.v1` are canonical. PostgreSQL, deterministic/build/offline, Buyer/Seller bundled Chrome ×2, responsive/accessibility, exact-source deployment and FQDN/Auth0 acceptance pass at fingerprint `cb0769ea45b0f9e9cf63c825706d8fee1eeb3facf97d8e28bb3a832d1d026215`. |
 | CF1. Production foundation | **Implemented; release validated** (2026-07-22) | Frozen fingerprint `e95340b069cab63b75f436e0d5fdfe4e667545c40d2ee9b378f1b5957914db26`: process-selected PostgreSQL ownership covers AgentGuard, CommerceV1 and ONDC; compatibility routes do not create a second store. Gateway/Buyer/Seller/build/offline gates, PostgreSQL two-cycle readback, Buyer and Seller bundled Chrome Pass 1+2, combined responsive/accessibility smoke, matching deployment, and FQDN/Auth0 Buyer/Seller acceptance passed. Payment remains simulated; this is not a production-money or production-ONDC claim. See `.cursor/skills/ondc-testing/references/matrix-status.md`. |
 | CF2. Complete Buyer | **Partial** | Search, cart, exact landed-cost checkout, AgentGuard approval, orders, receipts and bounded remedy UI exist. Location-aware normalized multi-seller comparison, full tracking/cancellation/return/replacement/grievance/support lifecycle and current-source release proof remain. |
 | CF3. Complete Seller | **Partial** | Catalog publish/archive, inventory, order actions, protected refunds, mandates, Pause and receipts exist. Onboarding, roles/import, complete SLA fulfilment, settlement, analytics and current-source release proof remain. |

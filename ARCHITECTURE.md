@@ -203,19 +203,20 @@ boundary and are committed by hash where evidence binding is needed.
 ### Decision, approval, and receipt
 
 ```text
-Decision {
-  decision_id, request_id,
-  outcome: allow | approval_required | deny,
+DecisionV2 {
+  schema_version: "2", decision_id,
+  decision: allow | need_approval | deny,
   policy_id, reason_code, human_reason,
   required_action, risk_level,
-  policy_version, expires_at
+  policy_version, expires_at, request_hash?
 }
 
 Approval {
-  approval_id, decision_id, request_hash,
-  approved_by, approved_at, expires_at,
-  nonce, status: available | consumed | expired | revoked,
-  signature
+  approval_id, request_hash, principal_id, agent_id,
+  action, resource_id, amount_inr, mandate_id,
+  mandate_version, policy_version, nonce,
+  status: issued | consumed | expired | revoked,
+  expires_at, created_at
 }
 
 IntentReceipt {
@@ -238,6 +239,14 @@ Seller Web, iOS, voice, notifications, and App Intents consume one decision
 contract. A short-lived approval token produced after strong authentication is
 bound to the user, device, exact action, amount, resource, decision, and expiry;
 it is never reusable authority for a different action.
+
+Decision Contract v2 is the only live authorization contract. The canonical
+package is `shared/agentguard-contract`; the Buyer and Seller vendored packages
+must remain byte-aligned through `scripts/verify_agentguard_contract_sync.py`.
+V1 may be parsed only for stored-data display or migration and always produces
+`authorization_usable: false`. Delete V1 compatibility only after persisted
+storage contains no V1 rows and two consecutive release checkpoints exercise
+V2 exclusively.
 
 ### Risk taxonomy
 
@@ -272,21 +281,44 @@ schema, policy rule, executor, receipt mapping, and negative tests.
 
 ## Two-sided commerce flow
 
-### Local demonstration
+### CF0 journey/domain contract `cf0.journey.v1`
 
-1. Seller confirms an operations mandate.
-2. Seller agent drafts a catalog item; protected publication is evaluated.
-3. The CommerceV1-backed local compatibility exchange stores a versioned
-   product event visible to Buyer.
-4. Buyer agent searches, compares, and prepares a cart.
-5. Buyer `checkout.commit` is evaluated. If allowed or exactly approved, the
-   payment adapter simulates payment and the exchange creates one order.
-6. Seller receives the same `transaction_id`, evaluates protected order actions,
-   and updates fulfilment.
-7. Buyer raises an issue. Seller agent may draft a response; a binding remedy or
-   refund is evaluated before execution.
-8. Each protected mutation returns a receipt linked to the commerce transaction
-   without exposing its private evidence.
+This is the canonical implemented CF0 journey, not a production ONDC claim.
+`SOT` is the authoritative state owner; `AG` is the AgentGuard action or
+authority path. Evidence is required at every protected effect.
+
+| Buyer step | Owner | SOT / state transition | Risk / AG | Evidence |
+| --- | --- | --- | --- | --- |
+| Authenticate | Host identity | Signed server session principal | Medium / Auth0 or local demo gate | `/api/auth/me`, tenant-isolation tests |
+| Discover | ONDC adapter | Signed inbox/outbox; no commerce mutation | Read-only / trace | Envelope, signature and correlation tests |
+| Prepare cart | CommerceV1 | Cart version `n → n+1` | Medium / active principal mandate | Version/idempotency record and stale-write test |
+| Preview checkout | CommerceV1 | Open quote and held reservation | Low / `buyer.cart.prepare` | Quote, landed-cost and expiry tests |
+| Commit checkout | AgentGuard + CommerceV1 | `prepared → payment_pending` | High / `buyer.checkout.commit` | DecisionV2, exact approval, intent and signed receipt |
+| Record payment | CommerceV1 | Payment `pending → succeeded\|failed\|unknown`; coupled order state | High / authorized checkout effect | Balanced ledger, reservation and reconciliation tests |
+| Track/receive | CommerceV1 | Order progresses through declared legal edges | Read-only; High for cancel | Versioned order row and illegal-edge tests |
+| Raise/resolve issue | CommerceV1 | `open → acknowledged → resolution_proposed → accepted → closed` | High / `buyer.remedy.accept` | Issue version, ownership test and protected receipt |
+| Request return | CommerceV1 | Return begins at `requested`; legal edges in `cf0.v1` | High / `buyer.return.submit` | Durable return row and transition-contract tests |
+
+| Seller step | Owner | SOT / state transition | Risk / AG | Evidence |
+| --- | --- | --- | --- | --- |
+| Authenticate and mandate | Host identity + AgentGuard | Active immutable mandate version | High / principal confirmation | Mandate history and cross-tenant tests |
+| Draft catalog | Commerce compatibility | Draft item version | Low / authenticated owner | Item row and ownership test |
+| Publish catalog | AgentGuard + commerce | Draft item becomes discoverable | High / `seller.catalog.publish` | Decision, execution intent and signed receipt |
+| Receive order | CommerceV1 | Same Buyer-owned order, seller-scoped view | Read-only / trace | Transaction/order correlation |
+| Accept/fulfil | CommerceV1 | `paid → accepted → fulfilled → closed` or declared compatibility path | High / seller order action | Versioned transitions and stale/illegal tests |
+| Respond to issue | CommerceV1 | `open → acknowledged` | Medium / seller ownership | Issue row/version and foreign-owner rejection |
+| Promise remedy | AgentGuard + CommerceV1 | `acknowledged → resolution_proposed` | High / `seller.remedy.promise` | Decision/approval/receipt and idempotency proof |
+| Issue refund | AgentGuard + CommerceV1 | Refund `pending → succeeded`; one balanced reversal | High / `seller.refund.issue` | Exact approval, one refund row, balanced ledger and signed receipt |
+| Operate recovery | ONDC runtime | Lease/retry/dead-letter transition | Critical / operator service authority | Durable attempt history and requeue audit |
+
+The domain aggregates are principal, agent, mandate/policy, decision, approval,
+execution intent/receipt, cart, quote, inventory reservation, order, payment
+attempt, ledger transaction, refund, return, issue/remedy, and ONDC
+inbox/outbox/dead-letter. Their lifecycle owner is the gateway PostgreSQL
+process whenever `DATABASE_URL` selects CF1 persistence; the local file backend
+is an exclusive development fallback. State machines are executable in
+`aadharchain/gateway/app/domain_state_machines.py`; every non-safe HTTP route is
+classified by `aadharchain/gateway/app/mutation_inventory.py`.
 
 The local compatibility exchange and durable ONDC repository must exercise
 asynchronous request/callback behavior,
@@ -306,7 +338,7 @@ sequenceDiagram
     Host->>T: function_call
     alt protected tool
         T->>G: ActionRequest plus evidence hash
-        G-->>T: allow, approval_required, or deny
+        G-->>T: allow, need_approval, or deny
         alt exact approval required
             T-->>H: Plain-language action preview
             H->>G: Approve exact request
@@ -370,19 +402,13 @@ location, transaction ID, message ID, timestamp, TTL, BAP/BPP IDs, and callback
 URIs. Map ONDC messages to internal commands and events; do not leak protocol
 payloads directly into UI or AgentGuard policy.
 
-The internal order state machine is the product source of truth and must not be
-a loose copy of participant status strings:
-
-```text
-DRAFT -> SEARCHED -> SELECTED -> INITIALIZED -> PAYMENT_PENDING
-      -> CONFIRMED -> ACCEPTED -> PACKED -> DISPATCHED -> DELIVERED
-
-CANCELLATION_REQUESTED -> CANCELLED
-RETURN_REQUESTED -> RETURN_APPROVED -> RETURN_PICKED
-REFUND_PENDING -> REFUNDED
-DISPUTED
-FAILED
-```
+The executable internal lifecycle contract `cf0.v1` is the product source
+of truth and is not a loose copy of participant status strings. It defines
+separate `order`, `payment`, `refund`, `return`, `issue`, and `approval`
+machines in `aadharchain/gateway/app/domain_state_machines.py`. PostgreSQL
+migrations constrain persisted values; runtime commands validate legal,
+duplicate, stale-version, recovery, and terminal behavior before mutation.
+Protocol callbacks may only request a declared transition.
 
 Each transition declares allowed source states, actor and resource ownership,
 required AgentGuard policy, idempotency key, external operation, compensating

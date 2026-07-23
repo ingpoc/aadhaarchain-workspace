@@ -63,9 +63,10 @@ Bookends: `.cursor/skills/portfolio-browser/SKILL.md`. Ledger: `.cursor/skills/p
 
 | Lane | Status |
 | --- | --- |
-| Current CF1 Buyer `@Chrome` | **Pass 1 + Pass 2** (2026-07-22, unchanged source, PostgreSQL); combined responsive/accessibility smoke and FQDN/Auth0 Buyer acceptance also passed |
-| Current CF1 Seller `@Chrome` | **Pass 1 + Pass 2** (2026-07-22, unchanged source, PostgreSQL); combined responsive/accessibility smoke and FQDN/Auth0 Seller acceptance also passed |
-| Legacy `agentguard buyer/seller --fixture` | Historical deterministic/Hermes proof: Seller ×2 (2026-07-11); Buyer API/Hermes and FQDN ×2 (2026-07-14). Historical only; the current CF1 source gate is closed by the bundled Chrome checkpoint below |
+| Current CF0 Buyer `@Chrome` | **Pass 1 + Pass 2** (2026-07-23, unchanged source, PostgreSQL); combined responsive/accessibility smoke and exact-source FQDN/Auth0 Buyer acceptance also passed |
+| Current CF0 Seller `@Chrome` | **Pass 1 + Pass 2** (2026-07-23, unchanged source, PostgreSQL); combined responsive/accessibility smoke and exact-source FQDN/Auth0 Seller acceptance also passed |
+| Prior CF1 release checkpoint | **Historical pass** (2026-07-22); retained in the validation ledger and superseded as current acceptance by the CF0 contract-closure checkpoint |
+| Legacy `agentguard buyer/seller --fixture` | Historical deterministic/Hermes proof: Seller ×2 (2026-07-11); Buyer API/Hermes and FQDN ×2 (2026-07-14). Historical only; current CF0 acceptance is owned by the bundled Chrome checkpoint |
 | Legacy `two-sided --fixture` | Historical unique-run proof (2026-07-11); historical only, not the owner of current CF1 acceptance |
 | Mandate editor / agent tools / Realtime | M10 code present; M11 text tools/runtime historically FQDN validated; M12 Realtime configured + text validated. Current-source runtime breadth and physical microphone proof remain open |
 | FlatWatch AgentGuard | **Deferred** — out of scope |
@@ -85,7 +86,7 @@ Default interactive UI control is bundled `@chrome` for browser pages and bundle
 | FlatWatch API / web | http://127.0.0.1:43104 / `:43105` |
 | Solana validator (optional, not AG) | http://127.0.0.1:8899 |
 
-## What is real vs stubbed (reconciled 2026-07-22)
+## What is real vs stubbed (reconciled 2026-07-23)
 
 | Subsystem | Status |
 | --- | --- |

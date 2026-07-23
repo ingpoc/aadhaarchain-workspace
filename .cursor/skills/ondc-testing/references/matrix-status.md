@@ -1,5 +1,16 @@
 # Matrix status ledger
 
+## CF0 contract closure — 2026-07-23
+
+- Frozen application-source fingerprint: `cb0769ea45b0f9e9cf63c825706d8fee1eeb3facf97d8e28bb3a832d1d026215` (gateway `5431307bf36bb8c906600b3ceea859efb34f9d44`, Buyer `bdd67735f54794a1936030288cf0e41a4c746893`, Seller `872e850cc451d91a63b1f5fd0216490ec2841cdc`).
+- CF0 owners are closed: `cf0.journey.v1`, six `cf0.v1` lifecycle machines (order, payment, refund, return, issue and approval), Decision Contract v2 across canonical/gateway/Buyer/Seller fixtures and consumers, the exhaustive 83-route `cf0.write-risk.v1` inventory, and `cf0.kpi.v1`.
+- Deterministic gates pass: PostgreSQL gateway 279 passed; CI-shaped portfolio 231 passed/48 skipped; Buyer 195 tests plus typecheck/build; Seller 215 tests plus typecheck/build; offline ONDC grader and cross-copy contract verifier passed. GitHub Actions runs `29982273344`, `29982147201`, and `29981879263` are green.
+- Bundled Chrome Buyer Pass 1 and Pass 2 completed on unchanged source with orders `E36D08D9` / `256DD6FF`, simulated payments `782EF8C3` / `093C4B41`, and authorization references `24BF88AC` / `743EBE5C`. Seller Pass 1 and Pass 2 accepted and fully refunded those orders, reaching terminal Cancelled/Refunded UI with authorization references `2393687B` / `FAE50567`. PostgreSQL readback agrees: both orders are confirmed at version 3 with one succeeded payment and one succeeded full refund each.
+- Combined responsive/accessibility smoke passed on Buyer and Seller at desktop and 390×844: one semantic main/navigation/banner, no duplicate IDs or horizontal overflow, named mobile dialogs, Escape close and focus return.
+- Exact-source deploy passed at $0: Render Free deployment `dep-d9gqfcjtqb8s73e0l940` is live at gateway `5431307bf36bb8c906600b3ceea859efb34f9d44`; Buyer and Seller Vercel Hobby deployments are Ready at their production aliases. Health, identity-provider, ONDC NP status and site-verification probes returned 200.
+- FQDN/Auth0 acceptance passed sequentially: Buyer re-authenticated to Account Ready / AgentGuard-protected checkout and Seller re-authenticated to Verified identity plus protected dashboard/orders. Desktop semantic checks showed no duplicate IDs or overflow.
+- Structured final evidence: [`evidence/cf0-completion-cb0769-20260723.json`](evidence/cf0-completion-cb0769-20260723.json).
+
 ## CF1 release checkpoint — 2026-07-22
 
 - Frozen product/deploy fingerprint: `e95340b069cab63b75f436e0d5fdfe4e667545c40d2ee9b378f1b5957914db26` (`b8b90bd` / `fd586da` / `f028ade` / `8146340`).

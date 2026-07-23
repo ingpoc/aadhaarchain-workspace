@@ -1,0 +1,171 @@
+{
+  "status": "complete",
+  "recorded_at": "2026-07-23T11:20:00+05:30",
+  "source": {
+    "fingerprint_sha256": "cb0769ea45b0f9e9cf63c825706d8fee1eeb3facf97d8e28bb3a832d1d026215",
+    "fingerprint_input": "gateway, buyer and seller full commit IDs separated by newlines",
+    "gateway": "5431307bf36bb8c906600b3ceea859efb34f9d44",
+    "buyer": "bdd67735f54794a1936030288cf0e41a4c746893",
+    "seller": "872e850cc451d91a63b1f5fd0216490ec2841cdc"
+  },
+  "cf0_contracts": {
+    "journey_domain_artifact": "cf0.journey.v1 in ARCHITECTURE.md",
+    "state_contract": {
+      "version": "cf0.v1",
+      "families": [
+        "order",
+        "payment",
+        "refund",
+        "return",
+        "issue",
+        "approval"
+      ],
+      "implementation": "aadharchain/gateway/app/domain_state_machines.py",
+      "persistence_migration": "aadharchain/gateway/app/persistence/migrations/023_cf0_state_contracts.sql"
+    },
+    "decision_contract": {
+      "live_version": "agentguard.decision.v2",
+      "v1_policy": "compatibility input only; never emitted by current evaluators",
+      "parity": "canonical, gateway, Buyer and Seller golden fixtures and consumers passed"
+    },
+    "mutation_inventory": {
+      "version": "cf0.write-risk.v1",
+      "admitted_non_safe_routes": 83,
+      "completeness": "independently matched FastAPI OpenAPI; unknown route families fail closed",
+      "owner": "aadharchain/gateway/app/mutation_inventory.py"
+    },
+    "kpi_baseline": {
+      "version": "cf0.kpi.v1",
+      "owner": "TESTINGPLAN.md",
+      "coverage": [
+        "buyer",
+        "seller",
+        "trust_safety",
+        "reliability",
+        "operations"
+      ]
+    }
+  },
+  "deterministic": {
+    "gateway_postgresql": "279 passed, 23 warnings",
+    "portfolio_ci_shape": "231 passed, 48 skipped",
+    "buyer": "39 files, 195 tests, lint checked, typecheck and build passed",
+    "seller": "27 files, 215 tests, lint checked, typecheck and build passed",
+    "offline_ondc_grader": "passed",
+    "contract_copy_verifier": "passed, including three gateway golden fixtures",
+    "github_actions": {
+      "gateway": {
+        "run_id": "29982273344",
+        "status": "success"
+      },
+      "buyer": {
+        "run_id": "29982147201",
+        "status": "success"
+      },
+      "seller": {
+        "run_id": "29981879263",
+        "status": "success"
+      }
+    }
+  },
+  "local_postgresql": {
+    "database": "cf0_validation_20260723",
+    "frozen_source_cycles": [
+      {
+        "order_short": "E36D08D9",
+        "order_id": "e36d08d9-7fc0-49b8-b3bc-8643ca518e1d",
+        "payment_short": "782EF8C3",
+        "buyer_authorization": "24BF88AC",
+        "seller_authorization": "2393687B",
+        "database_order_status": "confirmed",
+        "database_order_version": 3,
+        "payment_status": "succeeded",
+        "refund_status": "succeeded",
+        "refund_amount_paise": 12500,
+        "seller_terminal_ui": "cancelled_refunded"
+      },
+      {
+        "order_short": "256DD6FF",
+        "order_id": "256dd6ff-0185-4084-959d-dd798cfac68b",
+        "payment_short": "093C4B41",
+        "buyer_authorization": "743EBE5C",
+        "seller_authorization": "FAE50567",
+        "database_order_status": "confirmed",
+        "database_order_version": 3,
+        "payment_status": "succeeded",
+        "refund_status": "succeeded",
+        "refund_amount_paise": 12500,
+        "seller_terminal_ui": "cancelled_refunded"
+      }
+    ],
+    "agentguard_receipts_for_frozen_cycles": {
+      "executed": 2,
+      "succeeded": 4
+    },
+    "note": "Preliminary defect-discovery cycles are excluded from the unchanged-source two-pass claim."
+  },
+  "browser_acceptance": {
+    "controller": "bundled Chrome",
+    "buyer_passes": 2,
+    "seller_passes": 2,
+    "responsive_accessibility": {
+      "desktop": "Buyer 1686x873 and Seller 1920x902: one main, one navigation and one banner; no duplicate IDs, horizontal overflow or captured console errors",
+      "mobile": "Buyer and Seller 390x844: named navigation dialogs, Escape close, focus return and no horizontal overflow"
+    },
+    "fqdn_auth0": {
+      "buyer": "re-authenticated at https://ondcbuyer.aadharcha.in/search; Account Ready; checkout Protected by AgentGuard; desktop main/navigation/banner unique with no duplicate IDs or overflow",
+      "seller": "re-authenticated at https://ondcseller.aadharcha.in/dashboard; Verified identity; protected orders route loaded at /orders"
+    }
+  },
+  "deployments": {
+    "render": {
+      "service_id": "srv-d7f256f41pts73f68660",
+      "deployment_id": "dep-d9gqfcjtqb8s73e0l940",
+      "commit": "5431307bf36bb8c906600b3ceea859efb34f9d44",
+      "status": "live",
+      "plan": "free",
+      "selection": "exact commit"
+    },
+    "buyer": {
+      "deployment_url": "https://ondcbuyer-9hlyz6wjg-ingpocs-projects.vercel.app",
+      "alias": "https://ondcbuyer.aadharcha.in",
+      "commit": "bdd67735f54794a1936030288cf0e41a4c746893",
+      "status": "READY",
+      "plan": "hobby"
+    },
+    "seller": {
+      "deployment_url": "https://ondcseller-e6cyacmzi-ingpocs-projects.vercel.app",
+      "alias": "https://ondcseller.aadharcha.in",
+      "commit": "872e850cc451d91a63b1f5fd0216490ec2841cdc",
+      "status": "READY",
+      "plan": "hobby"
+    }
+  },
+  "live_probes": {
+    "gateway_health": 200,
+    "auth_providers": {
+      "http_status": 200,
+      "auth0": true,
+      "demo_continue": false,
+      "runtime_mode": "staging"
+    },
+    "buyer_np_status": 200,
+    "seller_np_status": 200,
+    "buyer_site_verification": 200,
+    "seller_site_verification": 200
+  },
+  "open_cf0_gates": [],
+  "residual_risks": [
+    "Vercel npm audit reported Buyer 19 and Seller 28 dependency findings during archive builds; remediation requires a separately scoped dependency upgrade and regression campaign.",
+    "Tokens removed from the current Buyer tree remain in historical Git objects; rotate or revoke any credential that is still valid. Current-tree secret scans pass.",
+    "The Render service branch setting remains historical; exact-commit deployment and the hardened workflow prevent it from selecting release source."
+  ],
+  "exclusions": [
+    "real payments",
+    "production ONDC onboarding or conformance",
+    "native voice or physical microphone proof",
+    "iOS",
+    "multi-seller checkout",
+    "broad redesign"
+  ]
+}

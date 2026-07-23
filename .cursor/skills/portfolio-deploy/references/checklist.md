@@ -2,13 +2,17 @@
 
 Gate: **all boxes before** `render` / `vercel --prod` / MCP deploy mutate.
 
-**Current live stamp (2026-07-22, Free/Hobby):** frozen CF1 fingerprint
-`e95340b069cab63b75f436e0d5fdfe4e667545c40d2ee9b378f1b5957914db26`;
-Render `dep-d9gc443bc2fs73frb320` live at gateway `fd586da`;
-Buyer `f028ade` and Seller `8146340` Ready on their FQDNs; health/site probes
-200; FQDN/Auth0 Buyer/Seller acceptance passed. Public ONDC search is advisory
-on the intentionally unseeded catalog and payment remains simulated. Evidence:
-[`../../ondc-testing/references/evidence/cf1-release-e95340-checkpoint-20260722.json`](../../ondc-testing/references/evidence/cf1-release-e95340-checkpoint-20260722.json).
+**Current live stamp (2026-07-23, Free/Hobby):** frozen CF0 application-source
+fingerprint
+`cb0769ea45b0f9e9cf63c825706d8fee1eeb3facf97d8e28bb3a832d1d026215`;
+exact-commit Render `dep-d9gqfcjtqb8s73e0l940` live at gateway
+`5431307bf36bb8c906600b3ceea859efb34f9d44`; Buyer
+`bdd67735f54794a1936030288cf0e41a4c746893` and Seller
+`872e850cc451d91a63b1f5fd0216490ec2841cdc` Ready on their FQDNs;
+health/identity/NP/site probes 200; FQDN/Auth0 Buyer/Seller acceptance passed.
+Public ONDC search is advisory on the intentionally unseeded catalog and
+payment remains simulated. Evidence:
+[`../../ondc-testing/references/evidence/cf0-completion-cb0769-20260723.json`](../../ondc-testing/references/evidence/cf0-completion-cb0769-20260723.json).
 
 Unchecked boxes below are a copy-per-run template or dated historical run
 notes; they are not the current deployment status.
@@ -129,3 +133,13 @@ Post-deploy
 - Stale `pnpm-lock.yaml` made Vercel use frozen `pnpm install` → fail; force `"installCommand": "npm install"` in app `vercel.json`; rename/remove stale pnpm lock.
 - Vendor `@aadharchain/agentguard-contract` under `ondcbuyer|ondcseller/shared/` (`file:./shared/...`) so CLI uploads resolve.
 - Multiple Production deploys stuck **UNKNOWN** with empty builds — cancel stuck deploys in dashboard; retry one at a time on Hobby ($0).
+
+## Run stamp — 2026-07-23 CF0 exact-source release ($0)
+
+- [x] Frozen application fingerprint `cb0769ea45b0f9e9cf63c825706d8fee1eeb3facf97d8e28bb3a832d1d026215`
+- [x] Render plan confirmed Free; exact gateway commit `5431307bf36bb8c906600b3ceea859efb34f9d44` deployed as `dep-d9gqfcjtqb8s73e0l940`
+- [x] Buyer `bdd67735f54794a1936030288cf0e41a4c746893` and Seller `872e850cc451d91a63b1f5fd0216490ec2841cdc` deployed sequentially to Vercel Hobby and aliased to production FQDNs
+- [x] Gateway health/providers, Buyer/Seller NP status and both site-verification probes returned 200
+- [x] Bundled Chrome FQDN/Auth0 acceptance passed for Buyer and Seller protected surfaces
+- [x] Deploy workflow hardened to send the checked-out gateway commit explicitly; stale Render branch metadata is no longer a source selector
+- [x] No Disk, paid Render instance, Vercel Pro or paid add-on

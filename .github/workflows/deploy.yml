@@ -105,10 +105,10 @@ jobs:
         if: ${{ inputs.skip_graders != true }}
         run: |
           set -euo pipefail
-          gitleaks detect --source . --verbose --redact --exit-code 1
-          gitleaks detect --source aadharchain --verbose --redact --exit-code 1
-          gitleaks detect --source ondcbuyer --verbose --redact --exit-code 1
-          gitleaks detect --source ondcseller --verbose --redact --exit-code 1
+          gitleaks detect --source . --no-git --verbose --redact --exit-code 1
+          gitleaks detect --source aadharchain --no-git --verbose --redact --exit-code 1
+          gitleaks detect --source ondcbuyer --no-git --verbose --redact --exit-code 1
+          gitleaks detect --source ondcseller --no-git --verbose --redact --exit-code 1
 
       - name: Gateway pytest + verify-portfolio --ci
         if: ${{ inputs.skip_graders != true }}
@@ -142,6 +142,11 @@ jobs:
     if: ${{ inputs.surface == 'all' || inputs.surface == 'gateway' }}
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: ${{ env.AADHAAR_CHAIN_REPO }}
+          ref: ${{ env.AADHAAR_CHAIN_REF }}
+
       - name: Require Render secrets
         env:
           RENDER_API_KEY: ${{ secrets.RENDER_API_KEY }}
@@ -159,14 +164,16 @@ jobs:
           RENDER_GATEWAY_SERVICE_ID: ${{ secrets.RENDER_GATEWAY_SERVICE_ID }}
         run: |
           set -euo pipefail
+          GATEWAY_COMMIT="$(git rev-parse HEAD)"
           curl -fsS -X POST \
             "https://api.render.com/v1/services/${RENDER_GATEWAY_SERVICE_ID}/deploys" \
             -H "Authorization: Bearer ${RENDER_API_KEY}" \
             -H "Accept: application/json" \
             -H "Content-Type: application/json" \
-            -d '{"clearCache":"do_not_clear"}' \
+            -d "$(jq -n --arg commitId "$GATEWAY_COMMIT" \
+              '{clearCache:"do_not_clear",commitId:$commitId}')" \
             | tee /tmp/render-deploy.json
-          echo "Render deploy requested (Free plan only — do not upgrade)."
+          echo "Render deploy requested for exact commit ${GATEWAY_COMMIT} (Free plan only — do not upgrade)."
 
   deploy-buyer:
     name: Deploy Vercel Buyer

@@ -66,6 +66,7 @@ jobs:
           --health-retries 10
     env:
       DATABASE_URL: postgresql://postgres:postgres@127.0.0.1:5432/agentguard_test
+      AADHAAR_CHAIN_ENV: demo
     steps:
       - uses: actions/checkout@v4
 

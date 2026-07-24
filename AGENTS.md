@@ -9,21 +9,26 @@ Read this file first. Repo-local app `GOAL.md` files add outcome detail only.
 | Concern | Owner |
 | --- | --- |
 | Product thesis / non-goals | [`PRODUCTIDEA.md`](PRODUCTIDEA.md) |
-| Product design / UX / design acceptance | [`DESIGN.md`](DESIGN.md) |
-| Shared contracts / protocol | [`ARCHITECTURE.md`](ARCHITECTURE.md) |
-| Build order / milestones | [`IMPLEMENTATIONPLAN.md`](IMPLEMENTATIONPLAN.md) |
-| Verification gates / evidence | [`TESTINGPLAN.md`](TESTINGPLAN.md) |
+| Product design / UX / design acceptance | [`.voice/DESIGN.md`](.voice/DESIGN.md) |
+| Shared contracts / protocol | [`.voice/ARCHITECTURE.md`](.voice/ARCHITECTURE.md) |
+| Build order / milestones | [`.voice/IMPLEMENTATIONPLAN.md`](.voice/IMPLEMENTATIONPLAN.md) |
+| Verification gates / evidence | [`.agents/skills/testing-ledger/SKILL.md`](.agents/skills/testing-ledger/SKILL.md) |
 | Buyer outcome | [`ondcbuyer/GOAL.md`](ondcbuyer/GOAL.md) |
 | Seller outcome | [`ondcseller/GOAL.md`](ondcseller/GOAL.md) |
 | Gateway decomposition | [`aadharchain/GOAL.md`](aadharchain/GOAL.md) |
 | FlatWatch (deferred) | [`flatwatch/GOAL.md`](flatwatch/GOAL.md) |
 | Ops / KYC / ONDC portal later | [`PRODUCTION-READINESS.md`](PRODUCTION-READINESS.md) |
+| Current execution state / evidence gates | [`.voice/progress.md`](.voice/progress.md) |
 
 Work in IMPLEMENTATIONPLAN milestone order. PreProd-ready Token Nxt demo =
 milestones 0–7 + TESTINGPLAN demo gate + FQDN `W-*`. **Agent-as-executor** =
 milestones 10–12 (mandate editor, Cursor tool runner, Buyer Realtime voice).
 Live ONDC = milestone 9 only. AgentGuard remains the sole authorization owner;
 do not invent parallel auth contracts.
+
+`.voice/IMPLEMENTATIONPLAN.md` owns long-term milestones and sequencing; `.voice/progress.md`
+owns current execution state and evidence gates. Update the relevant owner when
+work changes.
 
 ## Workflow hardening gate (read before changing scripts)
 
@@ -59,7 +64,7 @@ Restart ONDC buyer/seller after changing `.env.local`. Solana `:8899` is **not**
 
 ## Portfolio browser
 
-Bookends: `.cursor/skills/portfolio-browser/SKILL.md`. Ledger: `.cursor/skills/portfolio-browser/references/validation-ledger.md`. Samantha / ONDC customer gate: `.cursor/skills/ondc-testing/SKILL.md` (doctrine → `~/.agents/skills/testing-framework`). Auth / Auth0 / sessions: `.cursor/skills/authentication/SKILL.md`. Public Render/Vercel deploy + **CI/CD** (graders, `ci.yml` / `deploy.yml`, Free/Hobby): `.cursor/skills/portfolio-deploy/SKILL.md` (`references/ci-cd.md`).
+Bookends: `.cursor/skills/portfolio-browser/SKILL.md`. Ledger: `.cursor/skills/portfolio-browser/references/validation-ledger.md`. Samantha / ONDC customer gate: `.agents/skills/testing-ledger/SKILL.md` (doctrine → `~/.agents/skills/testing-framework`). Auth / Auth0 / sessions: `.cursor/skills/authentication/SKILL.md`. Public Render/Vercel deploy + **CI/CD** (graders, `ci.yml` / `deploy.yml`, Free/Hobby): `.cursor/skills/portfolio-deploy/SKILL.md` (`references/ci-cd.md`).
 
 | Lane | Status |
 | --- | --- |
@@ -98,7 +103,7 @@ Default interactive UI control is bundled `@chrome` for browser pages and bundle
 | Authenticated principal on AG APIs | **Real** — session cookie principal; body wallet cannot override social/demo session |
 | ONDC commerce UI labels | **Demo mode off** — `VITE_COMMERCE_DEMO_MODE=false` (gate evidence 2026-07-12); label **ONDC network**; payment still simulated (not live UPI) |
 | Host identity | **Auth0** (FQDN PreProd) + local `AUTH_DEMO_CONTINUE` (Hermes only) |
-| ONDC PreProd Beckn (BAP+BPP) | **Real, partial** — signed lookup/search and configured Seller BPP discovery; **select→init→confirm** ACK + `on_*` stubs. PostgreSQL inbox/outbox adds persist-before-ACK, deduplication, correlation validation, leases, retries and dead-letter recovery. Full lifecycle semantics, production onboarding and official conformance remain open. Matrix: `.cursor/skills/ondc-testing/references/preprod-network-matrix.md` |
+| ONDC PreProd Beckn (BAP+BPP) | **Real, partial** — signed lookup/search and configured Seller BPP discovery; **select→init→confirm** ACK + `on_*` stubs. PostgreSQL inbox/outbox adds persist-before-ACK, deduplication, correlation validation, leases, retries and dead-letter recovery. Full lifecycle semantics, production onboarding and official conformance remain open. Matrix: `.agents/skills/testing-ledger/references/preprod-network-matrix.md` |
 | Buyer mock grocery fallback | **Removed** when ONDC adapter ready |
 | Trust / demo KYC | **Deferred hangar** — not AgentGuard acceptance |
 | MeitY DigiLocker / **prod** ONDC / NPCI agent UPI | **Out of scope** — PRODUCTION-READINESS; UPI Circle AI = CUG only |

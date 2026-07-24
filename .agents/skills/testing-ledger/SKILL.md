@@ -1,14 +1,14 @@
 ---
-name: ondc-testing
+name: testing-ledger
 description: >-
   Customer-gate lane for ONDC Buyer (:43102) / Seller (:43103) and FQDNs:
   Samantha + AgentGuard blind operator journeys, matrix status, settle–validate–next.
-  Doctrine/modes/locks → testing-framework. Triggers: ondc-testing, Samantha,
+  Doctrine/modes/locks → testing-framework. Triggers: testing-ledger, ONDC, Samantha,
   Buyer Seller matrix, checkout payment, independent customer gate. Bridge:
   bundled Chrome plugin by default; portfolio-browser WIP is legacy diagnostics.
 ---
 
-# ONDC testing (customer-gate adapter)
+# Testing ledger (ONDC customer-gate adapter)
 
 > **Self-validate after edits.** Run `./scripts/validate.sh` from this skill directory.
 

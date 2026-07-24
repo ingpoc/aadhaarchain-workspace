@@ -13,6 +13,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 SKILLS_ROOT = ROOT / ".cursor" / "skills"
+LOCAL_SKILL_ROOTS = {"testing-ledger": ROOT / ".agents" / "skills"}
 AUDIT = Path.home() / ".codex" / "skills" / "create-skill" / "scripts" / "audit.py"
 
 REQUIRED_MARKERS: dict[str, tuple[str, ...]] = {
@@ -36,7 +37,7 @@ REQUIRED_MARKERS: dict[str, tuple[str, ...]] = {
         '"testId": "samantha-orb-text"',
         "references/evidence/README.md",
     ),
-    "ondc-testing": (
+    "testing-ledger": (
         "started → heartbeat → completed",
         "scripts/hermes_ondc_testing_matrix.py",
         'semantic `locator` actions',
@@ -118,7 +119,7 @@ def validate_guidance(name: str, skill_dir: Path) -> None:
     missing = [marker for marker in REQUIRED_MARKERS[name] if marker not in corpus]
     stale = [marker for marker in FORBIDDEN_GUIDANCE if marker.casefold() in corpus.casefold()]
     structure_errors: list[str] = []
-    if name == "ondc-testing":
+    if name == "testing-ledger":
         skill_text = (skill_dir / "SKILL.md").read_text(encoding="utf-8")
         protocol = skill_dir / "references" / "operator-protocol.md"
         if "testing-framework" not in skill_text:
@@ -171,7 +172,7 @@ def validate_domain(name: str) -> None:
         if not ffmpeg:
             raise SystemExit("ffmpeg is required for the recording skill")
         print(f"ffmpeg: {ffmpeg}")
-    elif name == "ondc-testing":
+    elif name == "testing-ledger":
         syntax_check(
             [
                 ROOT / "scripts" / "hermes_demo_sso.py",
@@ -191,7 +192,7 @@ def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("skill", choices=sorted(REQUIRED_MARKERS))
     args = parser.parse_args()
-    skill_dir = SKILLS_ROOT / args.skill
+    skill_dir = LOCAL_SKILL_ROOTS.get(args.skill, SKILLS_ROOT) / args.skill
     audit_skill(skill_dir)
     validate_guidance(args.skill, skill_dir)
     validate_domain(args.skill)

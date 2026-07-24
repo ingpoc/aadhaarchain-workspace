@@ -1,0 +1,76 @@
+{
+  "status": "blocked_no_on_search_callback",
+  "recorded_at": "2026-07-24T03:24:18Z",
+  "scope": "single fixed-query signed Buyer PreProd search; no order actions",
+  "source": {
+    "workspace_head": "2995d54924bd45e2e58e81f896410bf609c65af1",
+    "tracked_changes": false,
+    "pre_existing_untracked_path": "portfolio-site/"
+  },
+  "runtime": {
+    "base_url": "https://gateway.aadharcha.in",
+    "enabled": true,
+    "configured": true,
+    "subscriber_id": "ondcbuyer.aadharcha.in",
+    "bap_uri": "https://ondcbuyer.aadharcha.in/ondc",
+    "gateway_url": "https://preprod.gateway.ondc.org/search",
+    "registry_env": "preprod",
+    "persistence_backend": "local_file"
+  },
+  "request": {
+    "transaction_id": "ondc-verify-20260724-032417",
+    "message_id": "ondc-verify-20260724-032417-search",
+    "query": "atta",
+    "city": "std:080",
+    "domain": "ONDC:RET10"
+  },
+  "outbound": {
+    "outbox_id": "out_b575dd6fa27d",
+    "http_status": 200,
+    "ack": "ACK",
+    "status": "sent",
+    "destination": "https://preprod.gateway.ondc.org/search"
+  },
+  "callback_poll": {
+    "catalog_source": "ondc-network",
+    "catalog_count": 0,
+    "inbox_on_search_count": 0,
+    "polls": 12,
+    "interval_seconds": 2
+  },
+  "result": {
+    "on_search_proven": false,
+    "buyer_visible_network_results_proven": false,
+    "select_init_confirm_attempted": false,
+    "test_order_created": false,
+    "recovery_action": "none; no callback or order state exists to recover"
+  },
+  "follow_up_diagnosis": {
+    "recorded_at": "2026-07-24T03:31:00Z",
+    "buyer_registry": {
+      "type": "BAP",
+      "status": "SUBSCRIBED",
+      "subscriber_url": "https://ondcbuyer.aadharcha.in/ondc",
+      "city": "*"
+    },
+    "seller_registry": {
+      "type": "BPP",
+      "status": "SUBSCRIBED",
+      "subscriber_url": "https://ondcseller.aadharcha.in/ondc",
+      "city": "*",
+      "unique_key_id": "baf58086-7024-438a-becf-4cfa056ec8d9"
+    },
+    "bpp_runtime": {
+      "ready": true,
+      "signing_key_present": true,
+      "published_item_count": 0
+    },
+    "callback_route": {
+      "url": "https://ondcbuyer.aadharcha.in/ondc/on_search",
+      "get_result": "405 Allow: POST",
+      "conclusion": "The deployed FQDN rewrite exposes the expected POST callback route; no route repair is evidenced."
+    },
+    "conclusion": "The fixed-query search used the registered ONDC:RET10 domain and std:080 city, and both participants are discoverable. The preprod gateway ACK did not produce an inbound callback. No source, configuration, or deployment change is justified without PreProd gateway/fanout diagnostics."
+  },
+  "next_action": "Investigate PreProd callback reachability and BPP fanout for this city/domain, then repeat one frozen-source search and require a correlated on_search inbox record before any select/init/confirm."
+}

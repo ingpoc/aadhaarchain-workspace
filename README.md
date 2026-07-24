@@ -21,13 +21,15 @@ Milestone 9).
 | Doc | Owns |
 | --- | --- |
 | [`PRODUCTIDEA.md`](PRODUCTIDEA.md) | Product thesis |
-| [`ARCHITECTURE.md`](ARCHITECTURE.md) | Shared contracts / protocol |
-| [`IMPLEMENTATIONPLAN.md`](IMPLEMENTATIONPLAN.md) | Build milestones |
-| [`TESTINGPLAN.md`](TESTINGPLAN.md) | Verification gates |
+| [`.voice/ARCHITECTURE.md`](.voice/ARCHITECTURE.md) | Shared contracts / protocol |
+| [`.voice/IMPLEMENTATIONPLAN.md`](.voice/IMPLEMENTATIONPLAN.md) | Build milestones |
+| [`.agents/skills/testing-ledger/SKILL.md`](.agents/skills/testing-ledger/SKILL.md) | Verification gates |
 | [`ondcbuyer/GOAL.md`](ondcbuyer/GOAL.md) / [`ondcseller/GOAL.md`](ondcseller/GOAL.md) | App outcomes |
 | [`aadharchain/GOAL.md`](aadharchain/GOAL.md) | Gateway decomposition |
 | [`AGENTS.md`](AGENTS.md) | Agent routing / first commands |
 | [`PRODUCTION-READINESS.md`](PRODUCTION-READINESS.md) | Ops / KYC / live ONDC later |
+| [`.voice/progress.md`](.voice/progress.md) | Current detailed execution state and evidence gates |
+| [`voice.md`](voice.md) | Voice-conversation instructions for this ChatGPT assistant only |
 
 ## Quick start
 

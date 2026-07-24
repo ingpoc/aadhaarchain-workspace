@@ -464,7 +464,7 @@ declaring the demo stable.
 
 ### Buyer Realtime voice lane — Samantha (Milestone 12)
 
-Manual / Hermes-assist until automated. No `portfolio_browser` subcommand yet.
+Use bundled Chrome for the customer gate until a supported automation command is documented here.
 Product UX matrix + visible bar: `.cursor/skills/ondc-testing/SKILL.md`.
 
 **Precondition**

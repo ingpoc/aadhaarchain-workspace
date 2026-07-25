@@ -871,3 +871,119 @@ but no controlled physical voice-accuracy campaign was run.
 **Blocked (no `on_search` callback):** frozen workspace `2995d54924bd45e2e58e81f896410bf609c65af1` sent one signed, fixed-query `atta` search to the live PreProd gateway. The gateway returned HTTP 200 / ACK and durable outbox record `out_b575dd6fa27d` for transaction `ondc-verify-20260724-032417`; 12 correlated polls found zero inbox `on_search` records and zero network catalog items. No select/init/confirm call or test order was made. Evidence: [`preprod-buyer-search-20260724-032417.json`](evidence/preprod-buyer-search-20260724-032417.json). Next: resolve callback reachability or PreProd fanout, then repeat the frozen-source search and require the correlated inbox record before lifecycle actions.
 
 **Bounded external blocker (follow-up):** live registry lookups confirm both Buyer BAP and Seller BPP are `SUBSCRIBED` for `ONDC:RET10`, each with its distinct active key and `subscriber_url`; the Seller runtime is key-ready and the Buyer FQDN callback path returns `405 Allow: POST` to a GET probe, proving the public POST rewrite is present. The original fixed query already used `std:080`, which both participants advertise as `*`. The PreProd gateway nevertheless ACKed without fanout callback. No source/config/deployment repair is justified by this evidence; request PreProd gateway/fanout diagnostics, then repeat one frozen-source low-risk search. See the follow-up diagnosis in the same evidence artifact.
+
+## CF2/CF3 FQDN customer campaign — 2026-07-25
+
+- Frozen public-surface fingerprint:
+  `caa700d5a36465188c37048213365bfc558293d6f0abcc4411d8731ba5f6782d`
+  (Buyer HTML `f2697328`, Seller HTML `1759111c`, gateway health
+  `5677cfe6`, gateway ONDC status `96b44b95`).
+- Setup proved Buyer Auth0 `Account: Ready`, AgentGuard-protected checkout, an
+  empty cart, and zero existing Buyer orders. Gateway health was `healthy` and
+  ONDC persistence was `postgres`.
+- The first blind actor was **Tooling Blocked before customer action** because
+  its browser route required a missing Chrome `DevToolsActivePort`; no lease or
+  mutation existed. The single bounded recovery used the bundled Chrome
+  extension route and completed the mission.
+- Buyer pass 1 recovery verdict: **App Fail**. Searching for `rice` showed
+  `0 matches` / `No exact matches for 'rice'`; the visible
+  `Browse available groceries` recovery still showed `Nothing surfaced yet`,
+  `No results found`, and zero grocery matches. Comparison, cart, checkout,
+  AgentGuard decision, payment, and receipt were unreachable.
+- Live BPP diagnosis agreed with the visible failure:
+  `GET https://gateway.aadharcha.in/api/ondc/bpp/status` returned
+  `ready: true` and `published_item_count: 0`.
+- A subsequent read-only signed-in Seller inspection showed verified identity,
+  `Products: 0`, `Visible products: 0`, `No products published yet`, and
+  `No inventory in this view`. There is no existing Seller draft that can be
+  selected without an operator-approved listing decision.
+- No catalog, cart, order, payment, approval, or receipt mutation occurred.
+  The Chrome lease closed. Screenshot:
+  `/Users/gurusharan/.codex/visualizations/2026/07/25/019f999c-4969-7b72-9512-ff6a8fdcab02/buyer-pass1-empty-catalog-app-fail.png`.
+- Campaign manifest:
+  `.session/evidence/cf23-fqdn-caa700d5a36465188c37048213365bfc558293d6f0abcc4411d8731ba5f6782d/campaign.json`.
+
+**Acceptance boundary:** no CF2/CF3 customer pass is claimed. Buyer pass 1 is
+failed and all later Buyer/Seller repetitions plus combined UX/accessibility
+remain Not Tested. Resume only after the operator approves one specific Seller
+retail listing for publication or identifies an approved existing item; do not
+invent public catalog content.
+
+## Final local visible campaign follow-up — 2026-07-25
+
+The earlier empty-catalog boundary was resolved with operator-authorized
+temporary listings. The campaign then exposed and repaired three visible
+owners:
+
+1. Buyer browse-all incorrectly substituted the keyword `grocery` for an empty
+   query, hiding valid categorized offers.
+2. Buyer results and product detail allowed zero-stock purchase actions.
+3. Seller Samantha could remain indefinitely on `Connecting Samantha…` without
+   timeout or retry.
+
+On combined fingerprint
+`f4e65e14791d65d0f876d844574b489c71e9f9e0e41a2c58d503508f64392fac`,
+both blind Buyer passes succeeded:
+
+- `33177196`: authorization `3EFC3BCB`, simulated payment `ADAD602E`;
+- `EBDCF386`: authorization `DF26DE78`, simulated payment `7D486FFE`.
+
+Seller UX had no remaining P0/P1. Seller pass 1 then fulfilled and fully
+refunded `EBDCF386`, with verified refund authorization `1596B3E0` and durable
+Cancelled/Refunded state. Seller pass 2 fulfilled and refunded `33177196`, with
+verified authorization `C444B6DA`, but froze **App Fail**: after reload the
+authorization disappeared and no durable refund/receipt identifier was shown.
+The business effect is real; it is not accepted as the required visible receipt
+proof.
+
+Diagnosis proved the signed `seller.refund.issue` receipt already exists in
+PostgreSQL. Candidate
+`886e8372219c456a9066f3a2f8c51fe269b7aa9d9245ebe765ed313946e11fe3`
+adds the missing gateway projection and Seller readback. Deterministic evidence
+passes: gateway `232 passed / 49 skipped`, Seller `216 passed`, and Seller
+production build/copy. PostgreSQL integration is **Not Tested** because the
+gateway restart replaced a process-only `DATABASE_URL`; the current healthy
+gateway selected `local_file`, which cannot substitute for the frozen
+PostgreSQL campaign.
+
+Cleanup is incomplete. Local PostgreSQL item `item-1784991737462` and evidence
+orders are unreachable until secure database access returns. FQDN item
+`item-1784990847715` remains published: archive confirmation was accepted, but
+the remote request did not complete and live BPP `published_item_count` remains
+`1`.
+
+**Acceptance boundary:** no final all-green same-hash claim. Restore
+`DATABASE_URL` securely outside chat, require PostgreSQL receipt readback, then
+freeze and rerun both Buyer and Seller passes twice on `886e8372...`. Complete
+both local and FQDN cleanup before closeout.
+
+## Final local visible closure — 2026-07-25
+
+The prior boundary is superseded by restored PostgreSQL access and the final
+bundled-Chrome campaign.
+
+- Frozen source `bf4c7cee...` passed Buyer twice on one INR 89 Seller listing:
+  order `83A97020` / authorization `2F48D8C7`, then order `709D9B9E` /
+  authorization `C1C66BCF`. Both showed exact landed cost, saved INR 10000
+  mandate, simulated payment success, and verified signed authorization.
+- Seller passed twice on those same orders. Each traversed Pending -> Accepted
+  -> In progress -> Dispatched -> Delivered -> Cancelled and Paid -> Refunded.
+  Refund references `AB167E21` and `4DA37A95` and their signed AgentGuard
+  receipt IDs survived reload. The final queue contained two
+  Cancelled/Refunded orders and no actionable orders.
+- Combined visible Buyer/Seller review found no unresolved P0/P1.
+- The first cleanup attempt truthfully exposed a PostgreSQL compatibility-shape
+  defect in protected catalog archive. Source `923e1113...` accepts the direct
+  item returned by PostgreSQL (while retaining wrapped compatibility), adds a
+  live publish/archive regression, and passed the affected archive lane in
+  Chrome. Session-orchestrate permits retaining the unaffected two-pass
+  order/refund evidence after this targeted repair.
+- Cleanup is complete: Seller catalog reload shows zero visible products and
+  `No products published yet`; BPP `published_item_count` is `0`; campaign
+  reservations are `held: 0`, `consumed: 2`, `released: 2`.
+- Structured evidence:
+  `.session/evidence/local-visible-923e1113599de304fc0af97a7c075eb2bffe3f42682e713d88b066c08aa6df2e/campaign.json`.
+
+**Acceptance boundary:** final local visible Buyer, Seller, two-sided, and
+combined UX acceptance is complete. This does not claim deployment, production
+money, physical microphone proof, pilot completion, spend, or Milestone 9.

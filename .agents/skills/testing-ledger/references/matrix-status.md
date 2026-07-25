@@ -868,9 +868,25 @@ but no controlled physical voice-accuracy campaign was run.
 
 ## PreProd Buyer search verification — 2026-07-24
 
-**Blocked (no `on_search` callback):** frozen workspace `2995d54924bd45e2e58e81f896410bf609c65af1` sent one signed, fixed-query `atta` search to the live PreProd gateway. The gateway returned HTTP 200 / ACK and durable outbox record `out_b575dd6fa27d` for transaction `ondc-verify-20260724-032417`; 12 correlated polls found zero inbox `on_search` records and zero network catalog items. No select/init/confirm call or test order was made. Evidence: [`preprod-buyer-search-20260724-032417.json`](evidence/preprod-buyer-search-20260724-032417.json). Next: resolve callback reachability or PreProd fanout, then repeat the frozen-source search and require the correlated inbox record before lifecycle actions.
+**Initial blocked attempt (superseded later the same day):** frozen workspace
+`2995d54924bd45e2e58e81f896410bf609c65af1` sent one signed, fixed-query
+`atta` search to the live PreProd gateway. The gateway returned HTTP 200 / ACK
+and durable outbox record `out_b575dd6fa27d` for transaction
+`ondc-verify-20260724-032417`; 12 correlated polls found zero inbox `on_search`
+records and zero network catalog items. No select/init/confirm call or test
+order was made. Evidence:
+[`preprod-buyer-search-20260724-032417.json`](evidence/preprod-buyer-search-20260724-032417.json).
+The callback blocker in this historical attempt was superseded by the
+PostgreSQL retest below.
 
-**Bounded external blocker (follow-up):** live registry lookups confirm both Buyer BAP and Seller BPP are `SUBSCRIBED` for `ONDC:RET10`, each with its distinct active key and `subscriber_url`; the Seller runtime is key-ready and the Buyer FQDN callback path returns `405 Allow: POST` to a GET probe, proving the public POST rewrite is present. The original fixed query already used `std:080`, which both participants advertise as `*`. The PreProd gateway nevertheless ACKed without fanout callback. No source/config/deployment repair is justified by this evidence; request PreProd gateway/fanout diagnostics, then repeat one frozen-source low-risk search. See the follow-up diagnosis in the same evidence artifact.
+**Initial-attempt diagnosis (historical):** live registry lookups confirmed both
+Buyer BAP and Seller BPP as `SUBSCRIBED` for `ONDC:RET10`, each with its
+distinct active key and `subscriber_url`; the Seller runtime was key-ready and
+the Buyer FQDN callback path returned `405 Allow: POST` to a GET probe. The
+query used `std:080`, which both participants advertised as `*`. No
+source/config/deployment repair was justified by that attempt; the later
+PostgreSQL retest below established callback delivery and narrowed the blocker
+to the empty Seller catalog.
 
 **PostgreSQL retest (13:56 UTC; callback proved, result still blocked):**
 gateway exact commit `5431307bf36bb8c906600b3ceea859efb34f9d44`

@@ -13,13 +13,15 @@ runtime behavior.
 
 ## Truthful test states
 
-- **Current baseline:** the 2026-07-23 unchanged-source CF0 closure checkpoint: Buyer
-  bundled Chrome ×2, Seller bundled Chrome ×2, combined responsive/accessibility,
-  PostgreSQL, deterministic/build/offline, and FQDN/Auth0 acceptance.
+- **Current baseline:** the 2026-07-25 final local visible campaign: Buyer
+  bundled Chrome ×2, Seller two-order lifecycle/refund completion, combined
+  UX review, PostgreSQL readback, and a targeted protected catalog-archive
+  rerun. FQDN/Auth0 acceptance remains the unchanged 2026-07-23 checkpoint.
 - **Demo gate:** required for the local Token Nxt demonstration.
-  Status (2026-07-23): **Passed** on the recorded fingerprint through the
-  current bundled-Chrome Buyer/Seller two-pass checkpoint. Earlier Samantha,
-  Hermes and fixture lanes are historical evidence only.
+  Status (2026-07-25): **Passed** for the scoped local Buyer/Seller demo on
+  source `bf4c7cee...` plus archive repair `923e1113...`. Physical microphone
+  proof remains a separate open Milestone 12 gate. Earlier Samantha, Hermes,
+  and fixture lanes are historical evidence only.
 - **Production security gate:** required before any external pilot with real
   users or money.
 - **ONDC conformance gate:** blocked until official participant onboarding,

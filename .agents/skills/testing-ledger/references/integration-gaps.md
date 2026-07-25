@@ -1,7 +1,12 @@
 # Integration gaps vs product intent
 
 **Owners:** `PRODUCTIDEA.md`, `IMPLEMENTATIONPLAN.md`, `ondcbuyer/GOAL.md`, `ondcseller/GOAL.md`.  
-**Current through:** 2026-07-23 CF0 contract-closure checkpoint · **Evidence:** [`matrix-status.md`](matrix-status.md) and [`evidence/cf0-completion-cb0769-20260723.json`](evidence/cf0-completion-cb0769-20260723.json). Older CF1 and tool/runtime observations below are explicitly historical where they were not part of the current gate.
+**Current through:** 2026-07-25 final local visible campaign plus the 2026-07-24
+PreProd PostgreSQL search retest · **Evidence:** [`matrix-status.md`](matrix-status.md),
+[`preprod-network-matrix.md`](preprod-network-matrix.md), and
+[`evidence/preprod-postgres-search-20260724-135337.json`](evidence/preprod-postgres-search-20260724-135337.json).
+Older CF1 and tool/runtime observations below are explicitly historical where
+they were not part of the current gate.
 
 Status legend: **Present** (demo-usable) · **Partial** · **Missing** · **External** (ops/onboarding).
 
@@ -15,10 +20,10 @@ Status legend: **Present** (demo-usable) · **Partial** · **Missing** · **Exte
 | **Shared commerce exchange** | Seller publish ↔ Buyer discover same SKU; shared order id | **Present on CF1 PostgreSQL** — two unchanged-source publish/order/refund cycles passed; `/api/demo-commerce` is compatibility-only | **Partial** — deployed Buyer truthful zero-match and Seller protected surfaces passed; public cross-app order was not exercised | Multi-seller and two-sided public lifecycle remain open |
 | **Simulated payment** | Labelled simulated; AG before pay | **Pass ×2** with balanced ledger and no duplicate effect | Not exercised on FQDN in the CF1 acceptance | Real payment remains excluded |
 | **Signed receipt verify** | Third party can verify Intent Receipt | **Pass** — issue/verify, tamper rejection and current-source Buyer/Seller UI verification | Not re-exercised on FQDN in the CF1 acceptance | Public receipt verification remains unclaimed |
-| **ONDC protocol (live Beckn)** | Search/confirm on network | **Partial** — signed lookup/search and configured-Seller discovery; select→init→confirm ACK plus `on_*` stubs; durable inbox/outbox | Latest protocol-specific FQDN evidence remains the 2026-07-16 matrix row | Full lifecycle, portal onboarding and official conformance remain open |
+| **ONDC protocol (live Beckn)** | Search/confirm on network | **Partial** — signed lookup/search and configured-Seller discovery; select→init→confirm ACK plus `on_*` stubs; durable inbox/outbox | 2026-07-24 PostgreSQL retest proved signed delivery and correlated `on_search`; result remained blocked because the Seller catalog was empty | Non-empty Buyer result, full lifecycle, portal onboarding and official conformance remain open |
 | **ONDC site verification** | Registry challenge | Present | FQDN verification meta **Pass**; NP status via **gateway** origin | FQDN `/ondc/np/*/status` may 404 JSON (not SPA) — rewrite OK if not HTML |
 | **Samantha text tools** | Short chainable tools under mandate | Present | **Historical 2026-07-12 pass** after SPA session + ready-wait — search/add/nav/memory proven with screenshots | Current-source runtime breadth was outside the CF1 gate |
-| **Samantha voice (Realtime)** | User-like mic/WebRTC | Code Present (M12) + orb re-probe fix | Gateway `configured:true`; UI **“Text mode ready (no mic)”** (config Pass); mic missing in Hermes | Operator mic for true voice Pass; false “not configured” race **fixed** 2026-07-12 |
+| **Samantha voice (Realtime)** | User-like mic/WebRTC | Code Present (M12) + orb re-probe fix | Gateway `configured:true`; UI **“Text mode ready (no mic)”** passed configuration proof; physical mic was not tested | Mic-capable bundled-Chrome/device proof remains open; false “not configured” race **fixed** 2026-07-12 |
 | **Runtime agent (Cursor)** | Long handoff via `delegate_to_runtime_agent` | Present (M11) | **Historical 2026-07-12 pass** — gateway `/api/agent/*` + Vercel rewrite; browser W-B/W-S runtime and SSE evidence | Current-source runtime breadth and Free cold-start behavior were outside the CF1 gate |
 | **Buyer tools** | `search_catalog`, `navigate_to`, `add_to_cart`, `checkout_commit`, `remember_preference`, `delegate_to_runtime_agent` | Present | **Historical 2026-07-12 pass** for search/add/cart/checkout/order detail | Current-source broad tool-chain retest remains outside CF1 |
 | **Hobby Vite bake / agent plane** | FQDN must not call loopback or FlatWatch agent | Present (`loopback.ts` + empty control plane → gateway rewrite) | Required on archive deploys | FlatWatch FQDN 401s portfolio `X-User-Id` |

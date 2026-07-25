@@ -872,6 +872,20 @@ but no controlled physical voice-accuracy campaign was run.
 
 **Bounded external blocker (follow-up):** live registry lookups confirm both Buyer BAP and Seller BPP are `SUBSCRIBED` for `ONDC:RET10`, each with its distinct active key and `subscriber_url`; the Seller runtime is key-ready and the Buyer FQDN callback path returns `405 Allow: POST` to a GET probe, proving the public POST rewrite is present. The original fixed query already used `std:080`, which both participants advertise as `*`. The PreProd gateway nevertheless ACKed without fanout callback. No source/config/deployment repair is justified by this evidence; request PreProd gateway/fanout diagnostics, then repeat one frozen-source low-risk search. See the follow-up diagnosis in the same evidence artifact.
 
+**PostgreSQL retest (13:56 UTC; callback proved, result still blocked):**
+gateway exact commit `5431307bf36bb8c906600b3ceea859efb34f9d44`
+reported `persistence_backend: postgres`, and three isolated persistence tests
+passed. Signed `atta` transaction
+`ff912749-a4ef-4503-8cb5-aa6a031f561c` received registry `SUBSCRIBED`,
+gateway ACK, configured-Seller ACK, three delivered outbox records, and a
+correlated signed `on_search` inbox record. The callback catalog was empty
+because Seller `published_item_count` was `0`; Buyer therefore had no
+network-sourced result and Gate 1 remained **Blocked**. No lifecycle or later
+gate ran. Evidence:
+[`preprod-postgres-search-20260724-135337.json`](evidence/preprod-postgres-search-20260724-135337.json).
+Unblock only by publishing an explicitly approved Seller item, then repeating
+one frozen-source signed search and requiring a non-empty correlated callback.
+
 ## CF2/CF3 FQDN customer campaign — 2026-07-25
 
 - Frozen public-surface fingerprint:

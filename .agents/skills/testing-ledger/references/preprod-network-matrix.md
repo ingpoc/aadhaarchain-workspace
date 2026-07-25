@@ -1,12 +1,13 @@
 # PreProd ONDC network matrix (real data — no mock)
 
-**Currency boundary (2026-07-22):** the latest network-protocol evidence in
-this ledger is the 2026-07-16 row. The frozen CF1 PostgreSQL source validated on
-2026-07-22 was subsequently deployed unchanged and passed FQDN/Auth0 Buyer and
-Seller acceptance. That acceptance did not refresh ONDC protocol conformance or
-exercise public checkout/payment. Do not use this matrix to claim production
-ONDC, live payment, or official conformance; the current CF1 release checkpoint
-lives in [`matrix-status.md`](matrix-status.md).
+**Currency boundary (2026-07-24):** the latest network-protocol evidence is the
+2026-07-24 13:56 UTC row. It verified PostgreSQL persistence, signed search
+delivery, and a correlated signed `on_search`, but the callback catalog was
+empty because the Seller had no published item. Later Buyer/Seller acceptance
+did not refresh ONDC protocol conformance or exercise public checkout/payment.
+Do not use this matrix to claim production ONDC, live payment, or official
+conformance; the current release checkpoint lives in
+[`matrix-status.md`](matrix-status.md).
 
 **Policy:** `ONDC_ENABLED` may be true on gateway. Flip `VITE_COMMERCE_DEMO_MODE` only with [`commerce_demo_mode_gate.py`](../../../../scripts/commerce_demo_mode_gate.py) evidence (unlocked 2026-07-12 evening — see ledger).
 
@@ -35,12 +36,14 @@ python3 scripts/ondc_preprod_smoke.py --base https://gateway.aadharcha.in --sear
 | 2026-07-12 evening | **Pass** demo mode off + select→init→confirm | [`evidence/commerce-demo-mode-gate-20260712.json`](evidence/commerce-demo-mode-gate-20260712.json) + [`evidence/demo-mode-off-select-confirm-20260712.json`](evidence/demo-mode-off-select-confirm-20260712.json) | PreProd only; payment simulated (not live UPI); UI checkout thin vs API proof; network Atta fanout still variable |
 | 2026-07-12 night | **Pass** boot ensure `067ec32` + console harden | [`evidence/console-inventory-before-20260712-200618.json`](evidence/console-inventory-before-20260712-200618.json) → [`evidence/console-inventory-after-20260712-201123.json`](evidence/console-inventory-after-20260712-201123.json); [`evidence/prove-atta-select-confirm-retry-20260712.json`](evidence/prove-atta-select-confirm-retry-20260712.json); [`evidence/seller-catalog-diag-20260712-201242.json`](evidence/seller-catalog-diag-20260712-201242.json) | Buyer results UI may still be loading at 5s (poll ≤20s); Free 503 mid-poll intermittent; no live UPI |
 | 2026-07-16 | **Pass** fail-closed public search + item/provider/quantity/quote-consistent select→init→confirm on gateway `099a93d` | [`evidence/preprod-order-consistency-20260716.json`](evidence/preprod-order-consistency-20260716.json) | PreProd only; payment state simulated, not live UPI |
+| 2026-07-24 03:24 UTC | **Blocked** after gateway ACK; no callback | [`evidence/preprod-buyer-search-20260724-032417.json`](evidence/preprod-buyer-search-20260724-032417.json) | Local-file persistence; 12 polls found no correlated `on_search` and no network item |
+| 2026-07-24 13:56 UTC | **Blocked** after durable delivery and callback; catalog empty | [`evidence/preprod-postgres-search-20260724-135337.json`](evidence/preprod-postgres-search-20260724-135337.json) | Free PostgreSQL and exact commit `5431307` passed persistence proof; signed `atta` search received gateway + Seller ACK, three delivered outbox records, and a correlated `on_search`, but Seller `published_item_count: 0` left Buyer with no network result |
 
-## Historical deployed protocol status (2026-07-12 night; latest row 2026-07-16)
+## Last verified deployed protocol status (latest row 2026-07-24)
 
 | Step | Status |
 | --- | --- |
-| search / on_search | **Live** PreProd |
+| search / on_search | **Transport verified; result blocked** — latest signed callback was correlated but its catalog was empty |
 | select / init / confirm (+ on_*) | **Wired** gateway ≥`067ec32` — boot ensure + API ACK path proven |
 | `VITE_COMMERCE_DEMO_MODE` | **false** on Vercel Hobby; loopback `.env.local` bake guarded at runtime |
 | Production ONDC / live UPI | **Out of scope** |

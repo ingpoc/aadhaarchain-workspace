@@ -48,7 +48,7 @@ work changes.
 # 0. Fresh clone / missing deps
 ./scripts/setup.sh   # then ./scripts/start-dev.sh if :43100–43105 are not all 2xx
 
-# 1. Baseline (TESTINGPLAN)
+# 1. Testing-ledger baseline
 ./scripts/verify-portfolio.sh
 cd ondcbuyer && npm test && npm run build
 cd ../ondcseller && npm test && npm run build
@@ -68,11 +68,12 @@ Bookends: `.cursor/skills/portfolio-browser/SKILL.md`. Ledger: `.cursor/skills/p
 
 | Lane | Status |
 | --- | --- |
-| Current CF0 Buyer `@Chrome` | **Pass 1 + Pass 2** (2026-07-23, unchanged source, PostgreSQL); combined responsive/accessibility smoke and exact-source FQDN/Auth0 Buyer acceptance also passed |
-| Current CF0 Seller `@Chrome` | **Pass 1 + Pass 2** (2026-07-23, unchanged source, PostgreSQL); combined responsive/accessibility smoke and exact-source FQDN/Auth0 Seller acceptance also passed |
+| Current local Buyer `@Chrome` | **Pass 1 + Pass 2** (2026-07-25, frozen source, PostgreSQL): two mandate-governed orders, simulated payments, signed authorization, and reload persistence |
+| Current local Seller `@Chrome` | **Pass** (2026-07-25): both orders completed full lifecycle/refund; targeted protected archive rerun passed and cleanup returned the catalog to zero products |
+| Current FQDN/Auth0 checkpoint | **Pass 1 + Pass 2** (2026-07-23, unchanged source, PostgreSQL) for Buyer and Seller plus combined responsive/accessibility smoke |
 | Prior CF1 release checkpoint | **Historical pass** (2026-07-22); retained in the validation ledger and superseded as current acceptance by the CF0 contract-closure checkpoint |
 | Legacy `agentguard buyer/seller --fixture` | Historical deterministic/Hermes proof: Seller ×2 (2026-07-11); Buyer API/Hermes and FQDN ×2 (2026-07-14). Historical only; current CF0 acceptance is owned by the bundled Chrome checkpoint |
-| Legacy `two-sided --fixture` | Historical unique-run proof (2026-07-11); historical only, not the owner of current CF1 acceptance |
+| Legacy `two-sided --fixture` | Historical unique-run proof (2026-07-11); historical only, not the owner of current local or FQDN acceptance |
 | Mandate editor / agent tools / Realtime | M10 code present; M11 text tools/runtime historically FQDN validated; M12 Realtime configured + text validated. Current-source runtime breadth and physical microphone proof remain open |
 | FlatWatch AgentGuard | **Deferred** — out of scope |
 
@@ -91,19 +92,19 @@ Default interactive UI control is bundled `@chrome` for browser pages and bundle
 | FlatWatch API / web | http://127.0.0.1:43104 / `:43105` |
 | Solana validator (optional, not AG) | http://127.0.0.1:8899 |
 
-## What is real vs stubbed (reconciled 2026-07-23)
+## What is real vs stubbed (reconciled 2026-07-25)
 
 | Subsystem | Status |
 | --- | --- |
 | AgentGuard domain (evaluate / consume / pause / receipts) | **Real** — principal-scoped PostgreSQL mandates, decisions, approvals, execution intents and receipts when `DATABASE_URL` selects CF1 persistence; local-file mode is the exclusive development fallback, not a concurrent owner |
 | ONDC Seller AgentGuard UI | **Real** — refund demo + `/agentguard` |
-| Buyer AgentGuard checkout | **Real locally on CF1 PostgreSQL** — exact landed cost, exact approval, mutation rejection, simulated payment truth, one order effect and signed receipt; current-source FQDN/Auth0 Buyer acceptance passed. Public checkout/payment was not claimed |
-| CommerceV1 + compatibility exchange | **Real CF1 foundation, partial product lifecycle** — PostgreSQL carts, quotes, inventory, orders, payment attempts, balanced ledger and refunds; `/api/demo-commerce` is a compatibility adapter, not an independent file store. Multi-seller checkout, full fulfilment/returns and settlement remain open |
+| Buyer AgentGuard checkout | **Real locally on CF1 PostgreSQL** — exact landed cost, saved mandate, mutation rejection, two simulated-payment order effects and signed authorization; current-source FQDN/Auth0 Buyer acceptance passed. Public checkout/payment was not claimed |
+| CommerceV1 + compatibility exchange | **Real CF1 foundation, partial product lifecycle** — PostgreSQL carts, quotes, inventory, orders, payment attempts, balanced ledger and two full lifecycle/refund cycles; `/api/demo-commerce` is a compatibility adapter, not an independent file store. Multi-seller checkout and settlement remain open |
 | Signed receipt verify | **Real locally** — issue/verify and tamper tests plus current-source Buyer/Seller UI verification. FQDN/Auth0 app acceptance passed; receipt verification itself was not re-exercised on FQDN |
 | Authenticated principal on AG APIs | **Real** — session cookie principal; body wallet cannot override social/demo session |
 | ONDC commerce UI labels | **Demo mode off** — `VITE_COMMERCE_DEMO_MODE=false` (gate evidence 2026-07-12); label **ONDC network**; payment still simulated (not live UPI) |
 | Host identity | **Auth0** (FQDN PreProd) + local `AUTH_DEMO_CONTINUE` (Hermes only) |
-| ONDC PreProd Beckn (BAP+BPP) | **Real, partial** — signed lookup/search and configured Seller BPP discovery; **select→init→confirm** ACK + `on_*` stubs. PostgreSQL inbox/outbox adds persist-before-ACK, deduplication, correlation validation, leases, retries and dead-letter recovery. Full lifecycle semantics, production onboarding and official conformance remain open. Matrix: `.agents/skills/testing-ledger/references/preprod-network-matrix.md` |
+| ONDC PreProd Beckn (BAP+BPP) | **Real, partial** — the 2026-07-24 PostgreSQL retest proved signed search delivery and correlated signed `on_search`; the Seller had zero published items, so the callback catalog and Buyer results were empty. Historical **select→init→confirm** ACK + `on_*` stubs remain protocol foundation, not current lifecycle acceptance. Production onboarding and official conformance remain open. Matrix: `.agents/skills/testing-ledger/references/preprod-network-matrix.md` |
 | Buyer mock grocery fallback | **Removed** when ONDC adapter ready |
 | Trust / demo KYC | **Deferred hangar** — not AgentGuard acceptance |
 | MeitY DigiLocker / **prod** ONDC / NPCI agent UPI | **Out of scope** — PRODUCTION-READINESS; UPI Circle AI = CUG only |

@@ -467,7 +467,7 @@ declaring the demo stable.
 ### Buyer Realtime voice lane — Samantha (Milestone 12)
 
 Use bundled Chrome for the customer gate until a supported automation command is documented here.
-Product UX matrix + visible bar: `.cursor/skills/ondc-testing/SKILL.md`.
+Product UX matrix + visible bar: `.agents/skills/testing-ledger/SKILL.md`.
 
 **Precondition**
 
@@ -665,7 +665,7 @@ inspection, feature rollback, and a global pause for autonomous writes.
 ## Current local safety checklist
 
 The current CF0 closure evidence is the 2026-07-23 PostgreSQL bundled `@Chrome` campaign
-in `.cursor/skills/ondc-testing/references/matrix-status.md`. Its frozen
+in `.agents/skills/testing-ledger/references/matrix-status.md`. Its frozen
 application-source fingerprint is
 `cb0769ea45b0f9e9cf63c825706d8fee1eeb3facf97d8e28bb3a832d1d026215`
 (`5431307` / `bdd6773` / `872e850`). It records the closed journey/domain,

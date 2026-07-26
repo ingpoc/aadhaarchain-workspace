@@ -186,6 +186,10 @@ def validate_domain(name: str) -> None:
         syntax_check(browser_scripts)
     elif name == "portfolio-deploy":
         run(["env", "PYTHONDONTWRITEBYTECODE=1", sys.executable, "scripts/ondc_ci_graders.py", "--offline"])
+        if "agents/skills/testing-ledger" not in (ROOT / ".gitleaks.toml").read_text(
+            encoding="utf-8"
+        ):
+            raise SystemExit("gitleaks must allow public ONDC UUIDs in testing-ledger evidence")
 
 
 def main() -> int:

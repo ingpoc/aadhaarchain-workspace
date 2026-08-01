@@ -56,6 +56,9 @@ workflow_dispatch deploy (confirm Free/Hobby) → post-probes
 
 **CI graders (fail closed):** gitleaks → gateway pytest via `verify-portfolio.sh --ci` → ondcbuyer npm test+build → ondcseller npm test+build. Browser UI lanes are out of CI. No rumdl/ruff unless already adopted. **Never** flip `VITE_COMMERCE_DEMO_MODE` in CI/deploy.
 
+**Live probes are read-only by default.** CI/deploy must never pass
+`--protocol-search`; that flag requires a separately authorized ONDC search gate.
+
 **Gateway pytest green path (2026-07-12):** `--ci` runs `pytest tests/ -q -p asyncio` with `PYTEST_DISABLE_PLUGIN_AUTOLOAD=1`. Auth0/provider tests **monkeypatch** `settings.auth0_*` off so host `.env` Auth0 creds cannot flip `"auth0": true` mid-suite. Detail: [`references/ci-cd.md`](references/ci-cd.md).
 
 **Deploy:** `workflow_dispatch` only; requires `confirm_free_tier=true` (**$0 abort** otherwise); re-runs graders by default; then Render gateway and/or required Vercel edges; then FQDN probes. Secrets names only in [`references/ci-cd.md`](references/ci-cd.md).

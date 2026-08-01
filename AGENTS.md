@@ -53,6 +53,8 @@ expires, and derive every later identifier from signed callback/readback. An
 and preserve the exact Workbench/portal tabs when stopping there. Validate tags
 per outbound action instead of copying callback tags blindly, and advance an
 `INPUT-REQUIRED` step with an empty schema exactly once using empty inputs.
+Deployment/FQDN probes stay read-only; `--protocol-search` requires its own
+explicit ONDC search authorization.
 
 ## Workflow hardening gate (read before changing scripts)
 

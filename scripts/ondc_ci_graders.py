@@ -3,7 +3,8 @@
 
 Modes:
   --offline   Local/PR: commerce demo gate + static checks (blocks CI)
-  --live      Hit FQDN/gateway JSON + rewrite + bundle probes
+  --live      Read-only FQDN/gateway JSON + rewrite + bundle probes
+  --protocol-search  With --live: explicitly dispatch bounded PreProd searches
   --soft      With --live: network/cold-start failures → warn exit 0
   --hard      With --live: any fail → non-zero (post-deploy optional)
 
@@ -20,6 +21,7 @@ No secrets. Does not flip VITE_COMMERCE_DEMO_MODE. No UPI/prod order claims.
 from __future__ import annotations
 
 import argparse
+import inspect
 import json
 import re
 import subprocess
@@ -77,7 +79,11 @@ def _self_test() -> int:
         local_test.write_text("def test_placeholder(): pass\n", encoding="utf-8")
         resolved, source = _gateway_tests(current, [primary])
         assert resolved == local_test.parent.resolve() and source == "current"
-    print(json.dumps({"ok": True, "self_test": "gateway-tests-worktree-resolution"}))
+    signature = inspect.signature(grade_live)
+    assert signature.parameters["protocol_search"].default is False
+    live_source = inspect.getsource(grade_live)
+    assert "_post_json(" not in live_source and "if protocol_search:" in live_source
+    print(json.dumps({"ok": True, "self_test": "gateway-worktree-and-live-readonly"}))
     return 0
 
 
@@ -135,6 +141,127 @@ def _post_json(url: str, payload: dict[str, Any], timeout: float = 60) -> tuple[
         data=json.dumps(payload).encode("utf-8"),
         timeout=timeout,
     )
+
+
+def grade_protocol_search(gw: str, by: str, sl: str) -> list[dict[str, Any]]:
+    """Dispatch bounded PreProd searches only after explicit authorization."""
+    rows: list[dict[str, Any]] = []
+    direct_txn = f"ci-grader-{uuid.uuid4()}"
+    direct_payload = {
+        "context": {
+            "action": "search",
+            "bap_uri": f"{by}/ondc",
+            "bap_id": "ondcbuyer.aadharcha.in",
+            "transaction_id": direct_txn,
+            "message_id": f"ci-grader-{uuid.uuid4()}",
+            "domain": "ONDC:RET10",
+            "city": "std:080",
+            "country": "IND",
+            "core_version": "1.2.0",
+        },
+        "message": {
+            "intent": {
+                "payment": {
+                    "@ondc/org/buyer_app_finder_fee_type": "Percent",
+                    "@ondc/org/buyer_app_finder_fee_amount": "0",
+                },
+                "item": {"descriptor": {"name": "Sampoorna Whole Wheat Atta"}},
+            }
+        },
+    }
+    seller_code = 0
+    seller_body = ""
+    seller_ctype = ""
+    seller_attempts = 0
+    for attempt in range(10):
+        seller_attempts = attempt + 1
+        seller_code, seller_body, seller_ctype = _post_json(
+            f"{sl}/ondc/search", direct_payload
+        )
+        if seller_code == 200:
+            break
+        if attempt < 9:
+            time.sleep(3)
+    seller_json = _try_json(seller_body)
+    seller_ack = (
+        seller_json.get("message", {}).get("ack", {}).get("status")
+        if isinstance(seller_json, dict)
+        else None
+    )
+    rows.append(
+        {
+            "id": "seller_fqdn_bpp_search_json_ack",
+            "ok": seller_code == 200
+            and seller_ack == "ACK"
+            and not _is_spa_html(seller_body, seller_ctype),
+            "detail": (
+                f"http={seller_code} ack={seller_ack} "
+                f"spa={_is_spa_html(seller_body, seller_ctype)} attempts={seller_attempts}"
+            ),
+        }
+    )
+
+    exact_items: list[dict[str, Any]] = []
+    catalog_code = 0
+    for attempt in range(8):
+        if attempt:
+            time.sleep(3)
+        catalog_code, catalog_body, _ = _fetch(
+            f"{gw}/api/ondc/catalogs?transaction_id={direct_txn}", timeout=30
+        )
+        catalog_json = _try_json(catalog_body)
+        catalog_data = catalog_json.get("data") if isinstance(catalog_json, dict) else None
+        items = catalog_data.get("items", []) if isinstance(catalog_data, dict) else []
+        exact_items = [
+            item
+            for item in items
+            if isinstance(item, dict)
+            and item.get("bpp_id") == "ondcseller.aadharcha.in"
+            and "Sampoorna Whole Wheat Atta" in str(item.get("name") or "")
+        ]
+        if exact_items:
+            break
+    rows.append(
+        {
+            "id": "seller_to_buyer_on_search_exact_item",
+            "ok": catalog_code == 200 and bool(exact_items),
+            "detail": f"http={catalog_code} exact_items={len(exact_items)} txn={direct_txn}",
+        }
+    )
+
+    code, body, ctype = _post_json(
+        f"{gw}/api/ondc/search",
+        {
+            "query": "Sampoorna Whole Wheat Atta",
+            "city": "std:080",
+            "domain": "ONDC:RET10",
+            "include_configured_bpp": True,
+        },
+    )
+    search_json = _try_json(body)
+    search_data = search_json.get("data") if isinstance(search_json, dict) else None
+    direct_bpp = search_data.get("direct_bpp") if isinstance(search_data, dict) else None
+    network_ack_ok = (
+        code == 200
+        and not _is_spa_html(body, ctype)
+        and isinstance(search_data, dict)
+        and search_data.get("http_status") == 200
+        and search_data.get("ack") == "ACK"
+        and bool(search_data.get("transaction_id"))
+    )
+    rows.append(
+        {
+            "id": "ondc_network_search_ack_semantic",
+            "ok": network_ack_ok,
+            "detail": (
+                f"wrapper_http={code} upstream_http="
+                f"{search_data.get('http_status') if isinstance(search_data, dict) else None} "
+                f"ack={search_data.get('ack') if isinstance(search_data, dict) else None} "
+                f"direct_bpp_ack={direct_bpp.get('ack') if isinstance(direct_bpp, dict) else None}"
+            ),
+        }
+    )
+    return rows
 
 
 def grade_offline() -> list[dict[str, Any]]:
@@ -206,7 +333,12 @@ def grade_offline() -> list[dict[str, Any]]:
     return rows
 
 
-def grade_live(gateway: str, buyer: str, seller: str) -> list[dict[str, Any]]:
+def grade_live(
+    gateway: str,
+    buyer: str,
+    seller: str,
+    protocol_search: bool = False,
+) -> list[dict[str, Any]]:
     rows: list[dict[str, Any]] = []
     gw = gateway.rstrip("/")
     by = buyer.rstrip("/")
@@ -239,87 +371,8 @@ def grade_live(gateway: str, buyer: str, seller: str) -> list[dict[str, Any]]:
         }
     )
 
-    # Deterministic two-sided proof: public Seller rewrite ACKs a real BPP search,
-    # then the Seller posts on_search to the public Buyer callback on the same txn.
-    # Run this before noisy network fanout so unrelated PreProd callbacks cannot
-    # displace or delay the deterministic configured-Seller evidence.
-    direct_txn = f"ci-grader-{uuid.uuid4()}"
-    direct_payload = {
-        "context": {
-            "action": "search",
-            "bap_uri": f"{by}/ondc",
-            "bap_id": "ondcbuyer.aadharcha.in",
-            "transaction_id": direct_txn,
-            "message_id": f"ci-grader-{uuid.uuid4()}",
-            "domain": "ONDC:RET10",
-            "city": "std:080",
-            "country": "IND",
-            "core_version": "1.2.0",
-        },
-        "message": {
-            "intent": {
-                "payment": {
-                    "@ondc/org/buyer_app_finder_fee_type": "Percent",
-                    "@ondc/org/buyer_app_finder_fee_amount": "0",
-                },
-                "item": {"descriptor": {"name": "Sampoorna Whole Wheat Atta"}},
-            }
-        },
-    }
-    seller_code = 0
-    seller_body = ""
-    seller_ctype = ""
-    seller_attempts = 0
-    for attempt in range(10):
-        seller_attempts = attempt + 1
-        seller_code, seller_body, seller_ctype = _post_json(
-            f"{sl}/ondc/search", direct_payload
-        )
-        if seller_code == 200:
-            break
-        if attempt < 9:
-            time.sleep(3)
-    seller_json = _try_json(seller_body)
-    seller_ack = (
-        seller_json.get("message", {}).get("ack", {}).get("status")
-        if isinstance(seller_json, dict)
-        else None
-    )
-    rows.append(
-        {
-            "id": "seller_fqdn_bpp_search_json_ack",
-            "ok": seller_code == 200 and seller_ack == "ACK" and not _is_spa_html(seller_body, seller_ctype),
-            "detail": f"http={seller_code} ack={seller_ack} spa={_is_spa_html(seller_body, seller_ctype)} attempts={seller_attempts}",
-        }
-    )
-
-    exact_items: list[dict[str, Any]] = []
-    catalog_code = 0
-    for attempt in range(8):
-        if attempt:
-            time.sleep(3)
-        catalog_code, catalog_body, catalog_ctype = _fetch(
-            f"{gw}/api/ondc/catalogs?transaction_id={direct_txn}", timeout=30
-        )
-        catalog_json = _try_json(catalog_body)
-        catalog_data = catalog_json.get("data") if isinstance(catalog_json, dict) else None
-        items = catalog_data.get("items", []) if isinstance(catalog_data, dict) else []
-        exact_items = [
-            item
-            for item in items
-            if isinstance(item, dict)
-            and item.get("bpp_id") == "ondcseller.aadharcha.in"
-            and "Sampoorna Whole Wheat Atta" in str(item.get("name") or "")
-        ]
-        if exact_items:
-            break
-    rows.append(
-        {
-            "id": "seller_to_buyer_on_search_exact_item",
-            "ok": catalog_code == 200 and bool(exact_items),
-            "detail": f"http={catalog_code} exact_items={len(exact_items)} txn={direct_txn}",
-        }
-    )
+    if protocol_search:
+        rows.extend(grade_protocol_search(gw, by, sl))
 
     # Realtime
     code, body, ctype = _fetch(f"{gw}/api/realtime/status")
@@ -411,42 +464,6 @@ def grade_live(gateway: str, buyer: str, seller: str) -> list[dict[str, Any]]:
             }
         )
 
-    # Network fanout is intentionally last: it can generate many asynchronous
-    # callbacks on a Free instance. Configured-Seller behavior is already proven
-    # above; this check owns only the upstream semantic ACK contract.
-    code, body, ctype = _post_json(
-        f"{gw}/api/ondc/search",
-        {
-            "query": "Sampoorna Whole Wheat Atta",
-            "city": "std:080",
-            "domain": "ONDC:RET10",
-            "include_configured_bpp": True,
-        },
-    )
-    search_json = _try_json(body)
-    search_data = search_json.get("data") if isinstance(search_json, dict) else None
-    direct_bpp = search_data.get("direct_bpp") if isinstance(search_data, dict) else None
-    network_ack_ok = (
-        code == 200
-        and not _is_spa_html(body, ctype)
-        and isinstance(search_data, dict)
-        and search_data.get("http_status") == 200
-        and search_data.get("ack") == "ACK"
-        and bool(search_data.get("transaction_id"))
-    )
-    rows.append(
-        {
-            "id": "ondc_network_search_ack_semantic",
-            "ok": network_ack_ok,
-            "detail": (
-                f"wrapper_http={code} upstream_http="
-                f"{search_data.get('http_status') if isinstance(search_data, dict) else None} "
-                f"ack={search_data.get('ack') if isinstance(search_data, dict) else None} "
-                f"direct_bpp_ack={direct_bpp.get('ack') if isinstance(direct_bpp, dict) else None}"
-            ),
-        }
-    )
-
     return rows
 
 
@@ -454,6 +471,11 @@ def main() -> int:
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("--offline", action="store_true", help="PR-blocking local graders")
     p.add_argument("--live", action="store_true", help="FQDN/gateway HTTP graders")
+    p.add_argument(
+        "--protocol-search",
+        action="store_true",
+        help="With --live, explicitly dispatch bounded PreProd search checks",
+    )
     p.add_argument("--self-test", action="store_true", help="Run deterministic grader checks")
     p.add_argument("--soft", action="store_true", help="Live: warn-only on fail (exit 0)")
     p.add_argument("--hard", action="store_true", help="Live: fail closed")
@@ -462,6 +484,8 @@ def main() -> int:
     p.add_argument("--seller", default="https://ondcseller.aadharcha.in")
     args = p.parse_args()
 
+    if args.protocol_search and not args.live:
+        p.error("--protocol-search requires --live")
     if args.self_test:
         return _self_test()
 
@@ -472,7 +496,14 @@ def main() -> int:
     if args.offline:
         report["checks"].extend(grade_offline())
     if args.live:
-        report["checks"].extend(grade_live(args.gateway, args.buyer, args.seller))
+        report["checks"].extend(
+            grade_live(
+                args.gateway,
+                args.buyer,
+                args.seller,
+                protocol_search=args.protocol_search,
+            )
+        )
 
     failed = [c for c in report["checks"] if not c.get("ok")]
     report["ok"] = len(failed) == 0

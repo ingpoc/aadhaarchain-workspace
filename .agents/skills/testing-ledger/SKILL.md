@@ -71,6 +71,7 @@ python3 scripts/portfolio_browser.py closeout https://ondcbuyer.aadharcha.in/sea
 | `python3 scripts/hermes_checkout_retest.py` | Checkout/payment helper |
 | `python3 scripts/hermes_operator_visible_search.py` | FQDN early `/results` smoke |
 | `python3 scripts/ondc_ci_graders.py --offline` | PR soft/offline graders |
+| `python3 scripts/ondc_ci_graders.py --live` | Read-only FQDN probes. `--protocol-search` requires a separately authorized search gate. |
 
 Return capsules: inline JSON matching global testing-framework capsule schema, or evidence JSON under `references/evidence/`.
 

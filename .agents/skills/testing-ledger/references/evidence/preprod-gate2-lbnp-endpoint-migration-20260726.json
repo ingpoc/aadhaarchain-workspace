@@ -1,0 +1,105 @@
+{
+  "captured_at_utc": "2026-07-26T08:11:22Z",
+  "result": "pass",
+  "scope": "Dedicated ONDC:LOG10 LBNP onboarding identity and public-host migration only",
+  "identity": {
+    "subscriber_id": "ondclbnp.aadharcha.in",
+    "callback_base": "https://ondclbnp.aadharcha.in/ondc",
+    "domain": "ONDC:LOG10",
+    "participant_role": "Logistics Buyer NP / LBNP / BAP",
+    "protocol_target": "1.2.5",
+    "accepted_response_versions": [
+      "1.2.5",
+      "1.2.0"
+    ],
+    "response_version_rule": "Accept 1.2.0 only when the selected LSP advertises it",
+    "initial_scope": "Immediate Delivery, P2P, forward lifecycle only",
+    "counterparty": "External LSP / BPP",
+    "fleet_owner": "external LSP"
+  },
+  "source": {
+    "control_commit": "e942658daedfdaac736cc41b63f623e589584d8e",
+    "gateway_base_commit": "af06b644bd2e6f9350fcdec8ca7b875394ff20ba",
+    "gateway_deployed_commit": "b3e81b2ebb29fd10d1a22ecb694d8b2c3953fbee",
+    "render_deploy_id": "dep-d9irpocm0tmc73a0st7g",
+    "gateway_candidate_diff_sha256": "0fb7a4a752963902b7b5c79191a594582f659756e627293ed1c5e137776e0075",
+    "keygen_permission_fix_diff_sha256": "8d67becb707ac7c64c691d173f11aac52fad6faf1b2e87f491dcc4042efe35fa",
+    "changed_gateway_owners": [
+      "gateway/config.py",
+      "gateway/app/ondc_onboard_routes.py",
+      "gateway/.env.example",
+      "gateway/tests/test_ondc_adapter.py"
+    ],
+    "changed_control_owner": "scripts/ondc_generate_keys.py",
+    "retail_buyer_or_seller_source_changed": false
+  },
+  "local_proof": {
+    "gateway_test_suite": "233 passed, 50 skipped",
+    "portfolio_ci": "pass",
+    "offline_ondc_grader_full_checkout": "pass",
+    "sparse_worktree_skill_validator": "gateway_tests_present false negative because the nested gateway is absent from the sparse checkout",
+    "buyer_test_and_build": "pass",
+    "seller_test_and_build": "pass",
+    "lbnp_status_http": 200,
+    "site_verification_http": 200,
+    "valid_on_subscribe_challenge_http": 200,
+    "invalid_on_subscribe_challenge_http": 400,
+    "signing_key_present": true,
+    "encryption_key_present": true,
+    "distinct_from_retail_seller": {
+      "signing": true,
+      "encryption": true
+    },
+    "private_key_mode_before_fix": "0644",
+    "private_key_mode_after_fix": "0600",
+    "private_key_material_printed_or_committed": false,
+    "unique_key_id_invented": false
+  },
+  "hosting_readback": {
+    "service_id": "srv-d7f256f41pts73f68660",
+    "service_name": "identity-aadhar-gateway-main",
+    "service_plan": "free",
+    "service_url": "https://identity-aadhar-gateway-main.onrender.com",
+    "health_check_path": "/api/health",
+    "auto_deploy": "off",
+    "service_health_http": 200,
+    "current_custom_domains": [
+      "gateway.aadharcha.in",
+      "ondclbnp.aadharcha.in"
+    ],
+    "current_custom_domain_count": 2,
+    "ondclbnp_domain_verification": "verified",
+    "ondclbnp_cname": "identity-aadhar-gateway-main.onrender.com",
+    "ondclbnp_dns_chain": [
+      "identity-aadhar-gateway-main.onrender.com",
+      "gcp-us-west1-1.origin.onrender.com",
+      "gcp-us-west1-1.origin.onrender.com.cdn.cloudflare.net",
+      "216.24.57.7",
+      "216.24.57.15"
+    ],
+    "ondclbnp_tls": "pass",
+    "ondclbnp_status_http": 200,
+    "ondclbnp_status_identity": "lbnp / ondclbnp.aadharcha.in / env-backed isolated keys",
+    "ondclbnp_status_contract": "ONDC:LOG10 / 1.2.5 target / advertised-only 1.2.0 / Immediate Delivery P2P forward only",
+    "ondclbnp_site_verification_http": 200,
+    "ondclbnp_on_subscribe_http": 200,
+    "ondclbnp_on_subscribe_answer_matches": true,
+    "retail_non_regression": {
+      "gateway_buyer_status_http": 200,
+      "gateway_seller_status_http": 200,
+      "buyer_site_verification_http": 200,
+      "seller_site_verification_http": 200
+    }
+  },
+  "external_mutations": {
+    "render_deploy": true,
+    "render_custom_domain_add": true,
+    "godaddy_dns_edit": true,
+    "portal_edit_or_submission": false,
+    "registry_or_protocol_call": false,
+    "order_or_payment_call": false
+  },
+  "blocker": null,
+  "single_next_action": "In a separately authorized portal gate, register ondclbnp.aadharcha.in against Logistics Buyer profile 15462-10220; stop at authentication, 1.b, legal, key-upload, or registry-mutation boundaries.",
+  "claim_boundary": "Dedicated public LBNP onboarding endpoint readiness only. No portal subscription, registry acceptance, LSP selection, logistics lifecycle, order, payment, production ONDC, official conformance, or later gate is claimed."
+}

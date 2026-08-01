@@ -1,6 +1,11 @@
 # ONDC Participant Portal — ledger
 
 Append-only. Agent/operator sessions driving https://portal.ondc.org signup.
+**Currency rule:** every dated `Next`, `Status`, command, and browser note below
+is historical evidence, not active instruction. Current execution comes from
+[`.voice/progress.md`](../../../../.voice/progress.md); current portal rules
+come from [`../SKILL.md`](../SKILL.md). Never replay an action from this ledger
+without the current owner authorizing it.
 
 ## 2026-07-12 — session `ondc-portal-onboard`
 
@@ -288,3 +293,246 @@ No secrets committed. No prod registry POST. Demo mode unchanged.
 | Demo mode | Unchanged |
 
 **Next:** Signed PreProd lookup if needed; network e2e later; no demo flip.
+
+## 2026-07-26 — LOG10 Buyer profile created; registry role collision blocks submission
+
+Bundled Chrome claimed the existing `ONDC` tab at
+`https://portal.ondc.org/integration-create-plan`. No secrets, legal
+attestations, documents, production actions, or protocol calls were used.
+
+| Item | Portal readback |
+| --- | --- |
+| Business profile | Created `15462-10220`: Logistics (B2C), API `v 1.2`, `Buyer NP`, status `Initiated Integration` |
+| Approved registration fields | PreProd; subscriber `ondcseller.aadharcha.in`; URL `/ondc`; TSP `No`; domain option `P2P - ONDC:LOG10`; all-cities remained the portal default |
+| New-request result | `Raise Request` did **not** add a request. The table remained the two 12/07/2026 Subscribed rows for `ondcseller.aadharcha.in` and `ondcbuyer.aadharcha.in`. |
+| Existing Seller readback | `View` resolves `ondcseller.aadharcha.in` to `Seller NP - Inventory Seller Node (ISN)`, `Grocery - ONDC:RET10`, `/ondc`, all cities |
+| Portal update route | `Edit` offers `Domain Addition`, but no role change. Submitting it would add LOG10 to the existing Seller/ISN registration, conflicting with the approved LOG10 LBNP/`Buyer NP` role. |
+| Hard stop | Stopped before `Domain Addition`/`Submit`, key generation/download, `Get N.O. Token`, task 1.b attestation, legal tasks, or production. |
+| Status | Profile exists, but LOG10 PreProd registration is **not raised/subscribed**. |
+| Exact next operator action | Confirm the portal-supported way to give `ondcseller.aadharcha.in` a second `Buyer NP` role without changing its Retail ISN registration, or approve a distinct BAP/LBNP subscriber FQDN. Then resume profile `15462-10220`; do not use the current Seller `Domain Addition` path unless ONDC confirms it preserves the Buyer role. |
+
+## 2026-07-26 — combined-role support issue drafted, not submitted
+
+| Item | Portal readback |
+| --- | --- |
+| Draft URL | `https://portal.ondc.org/issue-form` |
+| Raised by | `Buyer NP - Logistics (B2C) - v 1.2` (`raised_by_config=10220`) |
+| Raised for | ONDC `Tech Support Team` |
+| Classification | `Onboarding & Integration` → `Registry support` |
+| Question | Convert existing `ondcseller.aadharcha.in` PreProd record to supported combined Buyer & Seller registration (`ops_no 4`) while preserving RET10 `sellerApp` and adding LOG10 `buyerApp`; confirm no new subscriber ID is required |
+| Safety readback | No contact field was present or populated; no attachment; final `Submit` remained visible and untouched |
+| Status | Draft left open for operator review; **not submitted** |
+
+## 2026-07-26 — supersession: dedicated LBNP identity
+
+The operator subsequently reported that the support query was submitted and
+authorized `ondclbnp.aadharcha.in` as the dedicated Logistics Buyer/LBNP
+subscriber. No portal readback was performed in this documentation lane.
+
+- The earlier combined-role question and `ondcseller` next action are
+  historical only; do not resend the support request or change the Retail
+  Seller registration.
+- Profile `15462-10220` remains the Logistics Buyer profile. Resume its portal
+  environment-access path only after current public endpoint/key evidence
+  passes the onboarding skill's gate.
+
+## 2026-07-26 — dedicated LBNP portal registration blocked at one-time key action
+
+Bundled Chrome opened the authenticated portal and verified organization
+`15462`, then continued only profile `15462-10220`. No Retail profile was
+opened or changed.
+
+| Item | Portal/readback evidence |
+| --- | --- |
+| Profile | Logistics (B2C), API `v 1.2`, `Buyer NP`, Integration in Progress |
+| Live prerequisite | `ondclbnp.aadharcha.in`; site verification 200; fresh `on_subscribe` challenge 200 with matching answer |
+| Public-key match | Local and live SHA-256 fingerprints match: signing `4b68b7cb...e83eb`, encryption `c8cf4500...04678`; private PEMs remain `0600` |
+| 1.a draft | PreProd; subscriber `ondclbnp.aadharcha.in`; URL `/ondc`; rendered URL `https://ondclbnp.aadharcha.in/ondc`; `P2P - ONDC:LOG10`; portal default Select all cities remained checked |
+| Version boundary | Profile exposes API `v 1.2`; the portal form has no patch-version field. Runtime target remains `1.2.5`. |
+| Key boundary | No existing-public-key input is visible. The only key control is `Click to generate & download below Key`, with a one-time save warning. |
+| Raise Request readback | No modal, Submit control, or request row appeared; List of Requests remained `No Configuration added!` |
+| Hard stops preserved | No key generation/download, 1.b, legal action, saved request, registry/protocol call, order, payment, or production action |
+| Exact user action | In the open draft, click the one-time key generation/download button and retain the file securely without sharing it in chat. Then resume to compare/rotate only the LBNP endpoint keys before submission. |
+
+Evidence:
+[`preprod-gate2-lbnp-portal-registration-20260726.json`](../../../../.agents/skills/testing-ledger/references/evidence/preprod-gate2-lbnp-portal-registration-20260726.json).
+
+## 2026-07-26 — latest LBNP modal pair deployed; operator Submit handoff
+
+The operator generated and downloaded the `Raise Request` modal's one-time
+pair. It supersedes the outer draft pair. The newest valid download was secured
+from `0644` to `0600`, its private/public pairs validated, and no private
+material or secret-bearing filename was printed or committed.
+
+| Item | Evidence/readback |
+| --- | --- |
+| Modal identity | PreProd; `ondclbnp.aadharcha.in`; `/ondc`; `P2P - ONDC:LOG10`; all cities |
+| Authoritative key ID | `9e7388f4-c68e-4006-ac5a-e7517382999f` |
+| Public fingerprints | Signing raw SHA-256 `b4af3f0e...54e2d`; encryption DER-SPKI SHA-256 `78d884b2...6f809`; portal, local, and live match |
+| Deployment | Existing Render Free service; exact gateway commit `b3e81b2e...`; live deploy `dep-d9itdcjeo5us73ag2v30` |
+| Public proof | DNS/TLS, status, site verification, and fresh `on_subscribe` challenge pass; Retail Buyer/Seller status and site verification remain 200 |
+| Portal state | Submit enabled and untouched; 1.b unchecked; tab finalized as operator handoff |
+| Exact next action | Operator clicks Submit once, leaves 1.b untouched, and returns the visible request row/status |
+
+No saved request, registry acceptance, protocol call, order, payment,
+production, legal, 1.b, or later-gate claim is made.
+
+## 2026-07-26 — LBNP 1.a completed and registry subscribed
+
+The operator clicked the prepared modal Submit. Reload persisted task 1.a as
+**Completed** at `26/07/2026 03:15 PM`. The page still rendered
+`No Configuration added!`, so that display was not promoted to registration
+proof.
+
+Exactly one read-only signed lookup of the PreProd registry resolved the
+contradiction:
+
+| Field | Authoritative registry readback |
+| --- | --- |
+| Subscriber | `ondclbnp.aadharcha.in` |
+| Status | `SUBSCRIBED` |
+| Domain / type | `ONDC:LOG10` / `BAP` |
+| Callback | `https://ondclbnp.aadharcha.in/ondc` |
+| Key ID | `9e7388f4-c68e-4006-ac5a-e7517382999f` |
+| City | `*` |
+| Keys | Registry public keys match portal, local materialization, and live endpoint |
+
+Gate 2 portal registration therefore passed. The portal's red announcement
+that ONDC Protocol Workbench is replacing Pramaan applies to later protocol
+testing, compliance validation, and report generation; it is not an error and
+does not reopen 1.a. Task 1.b, Workbench verification, logistics lifecycle,
+orders, payments, production, legal actions, and official conformance were not
+started.
+
+## 2026-07-26 — Gate 3 provider discovery; 1.b operator boundary retained
+
+The official participant directory and signed PreProd registry lookup proved
+`ondc.bringg.space` is a current `SUBSCRIBED` `ONDC:LOG10` BPP for all cities.
+One signed `1.2.5` LOG10 search received a correlated `on_search` from that BPP
+advertising Immediate Delivery, P2P, and an INR 59 forward quote. This is
+provider/discovery evidence only: the currently deployed callback path did not
+verify or record the inbound signature.
+
+Portal profile `15462-10220` still shows 1.a Completed, 1.b Pending, and
+`Verify your build` with four tasks pending. The 1.b control is the explicit
+checkbox `I have a working application with user interface as required`;
+it remains unchecked because it is an operator attestation. No Workbench
+plan/session, protocol lifecycle, order, payment, shipment, legal acceptance,
+or production action ran.
+
+The bounded LOG10 lifecycle/signature-verification implementation now passes
+locally but needs exact-commit deployment before official proof. The next
+action is deployment authorization; after public re-proof, the operator can
+personally review 1.b. Evidence:
+[`preprod-gate3-logistics-conformance-preflight-20260726.json`](../../../../.agents/skills/testing-ledger/references/evidence/preprod-gate3-logistics-conformance-preflight-20260726.json).
+Visible boundary:
+[`preprod-gate3-portal-1b-blocked-20260726.jpg`](../../../../.agents/skills/testing-ledger/references/evidence/preprod-gate3-portal-1b-blocked-20260726.jpg).
+
+## 2026-07-26 — Gate 3 exact deploy; protocol blocked before confirm
+
+Exact LBNP commit `cde2242cb49fb6429766e253ef613f7ff5c083ae`
+is live on the existing Render Free gateway as deploy
+`dep-d9iun27aqgkc73an2cpg`. Public DNS/TLS/status/site verification and a valid
+`on_subscribe` challenge all passed.
+
+One signed `ONDC:LOG10` `1.2.5` search received three registry-matched,
+signature-verified `on_search` callbacks. The official Pramaan mock and TapTap
+each ACKed one bounded `init` using public ONDC test data and returned a
+signature-verified `on_init`. Neither supplied mandatory
+`rider_check/inline_check_for_rider=yes`, so no `confirm`, update, status,
+track, payment, or shipment call ran.
+
+The portal still reads 1.a Completed, 1.b Pending, and `Verify your build` with
+four tasks pending. The 1.b checkbox remains unchecked because it is the
+operator attestation `I have a working application with user interface as
+required`. The exact tab is preserved at that control.
+
+**Exact operator action:** personally review task 1.b and, only if true, check
+the statement and click `Complete Task`. Resume Workbench afterward; do not
+reuse either non-compliant `on_init` for `confirm`.
+
+Evidence:
+[`preprod-gate3-logistics-conformance-20260726.json`](../../../../.agents/skills/testing-ledger/references/evidence/preprod-gate3-logistics-conformance-20260726.json).
+
+## 2026-07-31 19:21 UTC — Gate 3 resume blocked at portal sign-in
+
+Bundled Chrome reopened the exact Logistics profile URL for `15462-10220`,
+but the portal returned `Session expired` and redirected to its sign-in page.
+The visible boundary requires email/mobile, password, and CAPTCHA. No
+credentials or CAPTCHA were entered; task 1.b and the four Workbench tasks
+could not be re-read. The sign-in tab was preserved as an operator handoff.
+No portal mutation or protocol call ran, so the existing Gate 3 blocker and
+evidence remain unchanged.
+
+## 2026-07-31 19:25 UTC — Authenticated Gate 3 readback; 1.b still pending
+
+After the operator signed in, bundled Chrome reopened Logistics profile
+`15462-10220`. Visible portal readback confirmed `Logistics (B2C)`, API `v1.2`,
+Buyer NP, 1.a Completed at `26/07/2026 03:15 PM`, 1.b Pending with the checkbox
+`I have a working application with user interface as required` still
+unchecked, and `Verify your build` at `4 Task(s) Pending`. Opening the four-task
+row exposed no task details while 1.b remained incomplete. No attestation,
+portal mutation, or protocol call ran. The exact tab was preserved at 1.b for
+the operator.
+
+## 2026-07-31 19:35 UTC — 1.b completed; Workbench opened
+
+The operator completed Logistics profile `15462-10220` task 1.b. Authenticated
+portal readback persisted Build components as Completed and exposed Verify your
+build tasks 2.a–2.d. Task 2.d opened the official ONDC Workbench. Its new-session
+form showed BAP and PRE-PRODUCTION preselected; the dedicated subscriber URL was
+entered and the domain list visibly offered `ONDC:LOG10`. Bundled Chrome control
+then repeatedly timed out during domain selection. No version/use-case was
+selected, Submit was not reached, and no Workbench session, report,
+observability token, or protocol call was created.
+
+## 2026-07-31 20:24 UTC — Workbench passed through on_init; legal stop at confirm
+
+Official Workbench session `PafpxsF3NAoH3p1uvcHzr152Ec_j3pmT` was created for
+`ondclbnp.aadharcha.in`, `ONDC:LOG10` `1.2.5`, Logistics (P2P), BAP,
+PRE-PRODUCTION. One Immediate Delivery flow was selected. Corrected transaction
+`900b80c1-72a6-430e-8e64-bed93d971a5b` has authoritative Workbench ACK records
+for `search`, `on_search`, `init`, and `on_init`. Public LBNP inbox rows `8668`
+and `8669` independently read back both callbacks from `workbench.ondc.tech` as
+registry-matched and signature-verified at `1.2.5`.
+
+The first signed search NACKed because an empty holidays array does not satisfy
+the official `REQUIRED_MESSAGE_HOLIDAYS` rule; the corrected search used
+future-dated test values. A first init omitted the official `linked_provider`
+fulfillment tags and made the Workbench `on_init` generator throw before
+callback delivery; the corrected init preserved the official test tag and
+passed. Workbench now listens for confirm. Its official contract requires
+`bap_terms/accept_bpp_terms=yes`, so the workflow stopped without setting that
+legal-semantic field. No confirm, update, status, track, payment, shipment,
+production, report, or portal mutation ran. The portal and Workbench tabs were
+left open for operator handoff.
+
+**Exact operator decision:** explicitly authorize or decline the PreProd mock
+`accept_bpp_terms=yes` confirm field. If authorized, resume this transaction
+from its signed `on_init`; do not repeat search or init.
+
+## 2026-08-01 04:25 UTC — Gate 3 Workbench forward lifecycle passed
+
+The operator explicitly authorized the synthetic PreProd
+`bap_terms/accept_bpp_terms=yes` field. The existing official Workbench session
+and transaction resumed from the signed `on_init`; Gate 1, search, and init were
+not repeated. The official validator ACKed the derived confirm after retaining
+only confirm-valid tags, then the public LBNP sent signed `confirm`, ready-to-ship
+`update`, and `track` actions to the Workbench BPP.
+
+All 15 Immediate Delivery flow steps are `COMPLETE`; all 15 Workbench records
+ACKed, with no missed or extra steps. Public inbox rows `8668` through `8868`
+contain all 10 Workbench callbacks at `1.2.5`, each registry-matched and
+`signature_verified: true`. Empty-input `INPUT-REQUIRED` unsolicited status
+steps were advanced exactly once through the official proceed API.
+
+Exact holiday-validator commit
+`63df7ca73faa6096961d9cf1333bc9e2387f5770` is live on the existing Render Free
+gateway as deploy `dep-d9mna2942hec73e3eq40`. GoDaddy CNAME, TLS, dedicated
+status, site verification, valid/invalid `on_subscribe`, and public empty/past
+holiday rejection all passed. Retail identities and Gate 1 evidence were not
+changed. No real shipment, payment, production onboarding, report generation,
+or later gate ran.
+
+**Next:** stop this gate. A Workbench report or later portal/production gate
+requires separately owned authorization.

@@ -1,0 +1,160 @@
+{
+  "captured_at_utc": "2026-07-26T11:33:46Z",
+  "result": "blocked",
+  "gate": "PreProd Gate 3 Logistics conformance",
+  "scope": "ONDC:LOG10 v1.2.5 Immediate Delivery P2P forward lifecycle only",
+  "official_contract": {
+    "title": "ONDC - API Contract for Logistics (v1.2.5)",
+    "document_id": "1vz1Iawvy4ucUAX1xo-BCNsvm-BZSJFeN80vgwjNI-kc",
+    "revision_id": "AIroW34HOAR6kRc7lPl3hBmUUWe7tNfz6Fh0xb8cwIqRgJNk-80UZdtBA0_1MJ204IlSUA7g8Ue4wMm5184LioA",
+    "immediate_delivery_rule": "on_init must advertise rider_check/inline_check_for_rider=yes before confirm; confirm must carry prep_time and ready_to_ship=yes; update later carries order_ready=yes"
+  },
+  "release": {
+    "gateway_base_commit": "b3e81b2ebb29fd10d1a22ecb694d8b2c3953fbee",
+    "lifecycle_commit": "69bf9ad3053d242543e3022276be97bc4d82033c",
+    "postgres_test_fix_commit": "cde2242cb49fb6429766e253ef613f7ff5c083ae",
+    "workspace_ci_owner_fix_commit": "c78582016e36b94264c6a812e0321d0d18b761b8",
+    "render_service_id": "srv-d7f256f41pts73f68660",
+    "render_plan": "free",
+    "render_deploy_id": "dep-d9iun27aqgkc73an2cpg",
+    "render_deployed_commit": "cde2242cb49fb6429766e253ef613f7ff5c083ae",
+    "render_status": "live",
+    "auto_deploy": false
+  },
+  "ci_and_regressions": {
+    "gateway_local": "236 passed, 50 skipped",
+    "postgres_targeted_after": "2 passed",
+    "nested_gateway_ci": {
+      "run_id": 30199528844,
+      "result": "success",
+      "commit": "cde2242cb49fb6429766e253ef613f7ff5c083ae"
+    },
+    "workspace_deploy_grader_gate": {
+      "run_id": 30199597264,
+      "result": "success",
+      "checks": [
+        "gitleaks workspace and app trees",
+        "gateway pytest and verify-portfolio --ci with PostgreSQL",
+        "Buyer test and build",
+        "Seller test and build"
+      ],
+      "deploy_step": "not used because Render secret names were absent; authenticated Render CLI deployed the exact commit"
+    },
+    "gitleaks_owner_path_defect": {
+      "fail_before": "deploy run 30199171600 found 15 false positives because public ONDC registry UUID allowlists still named the former .cursor/skills/ondc-testing evidence path",
+      "root_fix": ".gitleaks.toml now follows the canonical .agents/skills/testing-ledger evidence owner",
+      "regression": "portfolio-deploy validator asserts the canonical allowlist owner",
+      "pass_after": "workspace secret scan and deploy grader gate passed"
+    },
+    "postgres_role_test_double_defect": {
+      "fail_before": "workspace CI called the new role-aware _ondc_configured(role) through two zero-argument persistence test doubles",
+      "root_fix": "the two existing test doubles accept the role contract",
+      "pass_after": "targeted local PostgreSQL tests passed and the exact GitHub PostgreSQL grader passed"
+    }
+  },
+  "public_endpoint_reproof": {
+    "subscriber_id": "ondclbnp.aadharcha.in",
+    "callback_base": "https://ondclbnp.aadharcha.in/ondc",
+    "dns": "GoDaddy CNAME resolves through identity-aadhar-gateway-main.onrender.com to the existing Render edge",
+    "tls": "pass",
+    "gateway_health_http": 200,
+    "lbnp_status_http": 200,
+    "lbnp_status_contract": "ONDC:LOG10 / LBNP BAP / 1.2.5 target / advertised-only 1.2.0 / Immediate Delivery P2P forward only",
+    "signing_key_present": true,
+    "encryption_key_present": true,
+    "site_verification_http": 200,
+    "on_subscribe_http": 200,
+    "on_subscribe_answer_matches": true
+  },
+  "preprod_protocol": {
+    "transaction_id": "AA79565B-3815-4D2E-A63A-D8CA8F9E70C5",
+    "search_message_id": "ABC13A80-C2D6-485C-AF94-F5B903AEF1BD",
+    "search_outbox_id": "pg_out_1937",
+    "search_request": "Official ONDC contract-shaped 1 kg Grocery parcel; dangerous_goods=false; Immediate Delivery; P2P; Bengaluru public test coordinates; no live customer data",
+    "search_dispatch": "HTTP 200 ACK",
+    "signature_verified_on_search": [
+      {
+        "bpp_id": "www.reachmystore.com",
+        "core_version": "1.2.5"
+      },
+      {
+        "bpp_id": "pramaan.ondc.org/beta/preprod/mock/seller",
+        "core_version": "1.2.5"
+      },
+      {
+        "bpp_id": "preprod-bpp.taptap.in",
+        "core_version": "1.2.5"
+      }
+    ],
+    "init_attempts": [
+      {
+        "bpp_id": "pramaan.ondc.org/beta/preprod/mock/seller",
+        "provider": "ONDC Pramaaan Logistics",
+        "item_id": "I1",
+        "category": "Immediate Delivery",
+        "descriptor": "60 min delivery",
+        "quote": {
+          "currency": "INR",
+          "value": "37.21"
+        },
+        "tat": "PT45M",
+        "message_id": "5A927028-6894-438D-8F95-65F9CB1A8A52",
+        "outbox_id": "pg_out_1939",
+        "dispatch": "HTTP 200 ACK",
+        "on_init_signature_verified": true,
+        "inline_check_for_rider": "missing",
+        "confirm_sent": false
+      },
+      {
+        "bpp_id": "preprod-bpp.taptap.in",
+        "provider": "TapTap Logistics",
+        "item_id": "I1",
+        "category": "Immediate Delivery",
+        "descriptor": "Intercity Courier",
+        "quote": {
+          "currency": "INR",
+          "value": "59.00"
+        },
+        "tat": "PT60M",
+        "message_id": "5BEE135A-5F2D-45C7-805A-76276C20EF12",
+        "outbox_id": "pg_out_1941",
+        "dispatch": "HTTP 200 ACK",
+        "on_init_signature_verified": true,
+        "inline_check_for_rider": "missing",
+        "confirm_sent": false
+      }
+    ],
+    "feature_discovery": "No optional 1.2.5 feature was enabled. Both init candidates failed the mandatory Immediate Delivery rider-check prerequisite.",
+    "confirm_update_status_track": "not sent"
+  },
+  "portal": {
+    "profile": "15462-10220",
+    "task_1a": "Completed",
+    "task_1b": "Pending",
+    "task_1b_attestation": "I have a working application with user interface as required",
+    "task_1b_checked_or_completed": false,
+    "verify_your_build": "4 Task(s) Pending",
+    "workbench_banner": "ONDC Protocol Workbench is replacing Pramaan for protocol testing, compliance validation, and report generation",
+    "handoff_tab": "preserved open and positioned at the unchecked 1.b attestation",
+    "evidence_image": "preprod-gate3-portal-1b-blocked-20260726.jpg"
+  },
+  "external_mutations": {
+    "commit": true,
+    "push": true,
+    "render_free_deploy": true,
+    "preprod_search": true,
+    "preprod_init": true,
+    "preprod_confirm": false,
+    "preprod_update": false,
+    "preprod_status": false,
+    "preprod_track": false,
+    "payment": false,
+    "shipment": false,
+    "portal_task_1b": false,
+    "legal_acceptance": false,
+    "production": false
+  },
+  "blocker": "No tested current 1.2.5 LOG10 BPP supplied the mandatory inline_check_for_rider=yes in on_init, so confirm is contractually blocked. Official Workbench remains inaccessible behind portal task 1.b, which is an explicit operator attestation.",
+  "single_next_action": "In the preserved ONDC portal tab, the operator must personally review task 1.b and, only if the statement is true, check 'I have a working application with user interface as required' and click Complete Task. Then resume the four Verify your build/Workbench tasks; do not reuse either non-compliant on_init for confirm.",
+  "claim_boundary": "Gate 3 has not passed. Exact deployment, public endpoint proof, signed search/on_search, and signed init/on_init passed. No compliant on_init, confirm, update, status, track, Workbench report, payment, shipment, production, legal, or later-gate evidence exists."
+}

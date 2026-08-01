@@ -23,8 +23,12 @@ REQUIRED_MARKERS: dict[str, tuple[str, ...]] = {
         "No deterministic user-intent routing",
     ),
     "apisetu-partner-onboarding": (
-        'semantic `locator`',
-        "Use `testId` (camel case)",
+        "Browser UI owner: bundled `@chrome`",
+        "ondclbnp.aadharcha.in",
+        'Finalize hard-stop operator tabs with `status: "handoff"`',
+        "modal's latest generated/downloaded pair",
+        "ONDC Protocol Workbench replaces Pramaan",
+        "Current state owner",
         "token-nxt-curated-answers.md",
     ),
     "authentication": (
@@ -55,6 +59,18 @@ REQUIRED_MARKERS: dict[str, tuple[str, ...]] = {
         "Validation is read-only/offline and never deploys",
         "scripts/ondc_ci_graders.py --offline",
         "HARD POLICY: always free tier",
+    ),
+}
+
+SKILL_FORBIDDEN_GUIDANCE: dict[str, tuple[str, ...]] = {
+    "apisetu-partner-onboarding": (
+        "## Prerequisites (Hermes)",
+        "Apply by **15 Jul 2026**",
+        "404** today",
+    ),
+    "portfolio-deploy": (
+        "intentionally unseeded catalog",
+        "ondc_preprod_smoke.py --base",
     ),
 }
 
@@ -117,7 +133,8 @@ def validate_guidance(name: str, skill_dir: Path) -> None:
         markdown.append(path.read_text(encoding="utf-8"))
     corpus = "\n".join(markdown)
     missing = [marker for marker in REQUIRED_MARKERS[name] if marker not in corpus]
-    stale = [marker for marker in FORBIDDEN_GUIDANCE if marker.casefold() in corpus.casefold()]
+    stale_markers = FORBIDDEN_GUIDANCE + SKILL_FORBIDDEN_GUIDANCE.get(name, ())
+    stale = [marker for marker in stale_markers if marker.casefold() in corpus.casefold()]
     structure_errors: list[str] = []
     if name == "testing-ledger":
         skill_text = (skill_dir / "SKILL.md").read_text(encoding="utf-8")
@@ -151,6 +168,8 @@ def validate_guidance(name: str, skill_dir: Path) -> None:
 def validate_domain(name: str) -> None:
     if name == "apisetu-partner-onboarding":
         syntax_check([ROOT / "scripts" / "ondc_preprod_smoke.py"])
+        run([sys.executable, "scripts/ondc_generate_keys.py", "--self-test"])
+        run([sys.executable, "scripts/ondc_materialize_portal_keys.py", "--self-test"])
     elif name == "authentication":
         run(
             [
@@ -180,16 +199,19 @@ def validate_domain(name: str) -> None:
                 ROOT / "scripts" / "ondc_preprod_smoke.py",
             ]
         )
+        run([sys.executable, "scripts/ondc_ci_graders.py", "--self-test"])
         run(["env", "PYTHONDONTWRITEBYTECODE=1", sys.executable, "scripts/ondc_ci_graders.py", "--offline"])
     elif name == "portfolio-browser":
         browser_scripts = sorted((SKILLS_ROOT / name / "scripts").glob("*.py"))
         syntax_check(browser_scripts)
     elif name == "portfolio-deploy":
         run(["env", "PYTHONDONTWRITEBYTECODE=1", sys.executable, "scripts/ondc_ci_graders.py", "--offline"])
-        if "agents/skills/testing-ledger" not in (ROOT / ".gitleaks.toml").read_text(
-            encoding="utf-8"
+        gitleaks_config = (ROOT / ".gitleaks.toml").read_text(encoding="utf-8")
+        if not all(
+            marker in gitleaks_config
+            for marker in ("agents/skills/testing-ledger", '"(status_)?unique_key_id"')
         ):
-            raise SystemExit("gitleaks must allow public ONDC UUIDs in testing-ledger evidence")
+            raise SystemExit("gitleaks must allow public ONDC UUID fields in testing-ledger evidence")
 
 
 def main() -> int:

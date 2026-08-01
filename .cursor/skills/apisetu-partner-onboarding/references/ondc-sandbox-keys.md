@@ -1,6 +1,9 @@
-# ONDC sandbox / staging keys — official process
+# ONDC participant keys — official process
 
-**Policy (2026-07-12):** Buyer + Seller **staging/sandbox first**. **Prod whitelist / prod subscribe only after GSTIN (CA)**. Do not flip `VITE_COMMERCE_DEMO_MODE`. Do not commit private keys. Do not invent FQDNs.
+**Policy:** Retail Buyer/Seller are already PreProd subscribed. LOG10 uses the
+separate `ondclbnp.aadharcha.in` identity and a distinct keypair. Production
+whitelist/subscribe remains blocked until GSTIN and its own gate evidence. Do
+not commit private keys or regenerate an existing participant's keys.
 
 Keys are **generated locally** (Ed25519 signing + X25519 encryption). They are **not** “downloaded as API keys” from the portal. Portal = account + **subscriber_id whitelist / environment access**; registry `/subscribe` registers public keys.
 
@@ -33,54 +36,43 @@ Lookup (staging): `https://staging.registry.ondc.org/v2.0/lookup`
 ONDC staging public encryption key (for `/on_subscribe` challenge) — Onboarding §6:  
 `MCowBQYDK2VuAyEAduMuZgmtpjdCuxv+Nc49K0cB6tL/Dj3HZetvVN7ZekM=`
 
-## Checklist — Buyer staging (BAP) then Seller (BPP)
+## Current participant identities
 
-### Buyer
+| Identity | Role | Key boundary |
+| --- | --- | --- |
+| `ondcbuyer.aadharcha.in` | Retail BAP | Existing Retail Buyer keys; do not regenerate |
+| `ondcseller.aadharcha.in` | Retail ISN/BPP | Existing Retail Seller keys; do not regenerate or reuse for LOG10 |
+| `ondclbnp.aadharcha.in` | LOG10 Buyer NP/LBNP/BAP | Distinct Ed25519/X25519 pair; portal registration remains gated |
 
-1. **Portal account + profile** — org `15462`, Buyer `15462-10008`, Integration in Progress. *(Done.)*
-2. **FQDN = `subscriber_id`** — **`ondcbuyer.aadharcha.in`** (operator confirmed 2026-07-12). Signup typo `ondcbuyer.aadharchain.in` is obsolete. Live: DNS A `76.76.21.21`, HTTPS 200, `server: Vercel`, Vite ONDC Buyer shell.
-3. **Staging whitelist** — raise environment access for that FQDN; wait 6–48h. Skip → `Subscriber Id is not whitelisted` (code 132).
-4. **Local keygen** — Ed25519 + X25519 → `aadharchain/gateway/.local/ondc-sandbox/buyer/` (see below). Encryption public must be **ASN.1 DER b64** before subscribe.
-5. **Host** `https://ondcbuyer.aadharcha.in/ondc-site-verification.html` — meta `ondc-site-verification` = request_id signed with signing private key (**no hash**). Static Vite alone cannot serve this + POST — need gateway/proxy route or Vercel rewrite to gateway.
-6. **Host** `POST https://ondcbuyer.aadharcha.in/<callback_url>/on_subscribe` — decrypt challenge; return `{ "answer": "..." }`.
-7. **POST `/subscribe`** to **staging** registry (`ops_no` buyer). Expect ACK.
-8. **Lookup** staging registry — confirm subscriber record.
-9. **E2E** vs staging ref seller. Keep `VITE_COMMERCE_DEMO_MODE=true` until evidence gate.
-
-### Seller (second profile + FQDN)
-
-1. Portal **Add another** business profile: Domain Retail + Role **Seller NP — ISN** (AgentGuard inventory default). **MSN only if marketplace-node** — ask operator only if portal forces a choice.
-2. FQDN **`ondcseller.aadharcha.in`** (operator confirmed 2026-07-12) + SSL live (same Vercel A) + **staging whitelist**.
-3. Separate keypair under `.local/ondc-sandbox/seller/`.
-4. Same site-verification + `/on_subscribe` + `/subscribe` with seller `ops_no` / `sellerApp` (MSN flag aligned).
-5. Lookup + E2E vs staging ref buyer.
-
-**Order:** Buyer staging path first, then Seller. Prod path only after GSTIN.
+For every new identity, prove its own TLS, site-verification,
+`/ondc/on_subscribe`, registry/portal readback, and key source. An HTTP 200 from
+another participant's mapper is a failure, not reuse.
 
 ## Local key material
 
 ```bash
-# Preferred staging path (exists; gitignored)
-python3 scripts/ondc_generate_keys.py --out aadharchain/gateway/.local/ondc-sandbox/buyer
-python3 scripts/ondc_generate_keys.py --out aadharchain/gateway/.local/ondc-sandbox/seller
+# Inspect the existing generator before a separately authorized new identity.
+python3 scripts/ondc_generate_keys.py --help
 ```
 
 | Concern | Fact |
 | --- | --- |
-| Path | `aadharchain/gateway/.local/ondc-sandbox/{buyer,seller}/` — PEMs + `public_metadata.json` + `request_id.txt` |
+| Path | `aadharchain/gateway/.local/ondc-sandbox/{buyer,seller,lbnp}/` — PEMs + `public_metadata.json` + `request_id.txt` |
 | Gitignore | Nested `aadharchain/.gitignore`: `gateway/.local/` + `data/ondc-keys/`. Workspace also ignores `/aadharchain/` |
 | Script default | `scripts/ondc_generate_keys.py` defaults to `data/ondc-keys/` — use `--out` for sandbox path |
+| Private PEM mode | `0600`; `scripts/ondc_generate_keys.py` enforces this after each write and fails closed if group/other bits remain |
+| Public metadata | Public keys and private-key paths only; private key bytes stay in the `0600` PEMs. `--self-test` blocks private material from `public_metadata.json`. |
 | Encryption public | **`asn1_der_spki_b64`** (fixed 2026-07-12); `--convert-existing` supported |
-| Wire | Ask before writing `ONDC_*` into `gateway/.env`. Staging URLs only. `ONDC_ENABLED` can stay false until subscribe ACK |
+| Wire | Configure only the intended identity after its endpoint gate. Do not change existing Retail env or `ONDC_ENABLED` from this key guide. |
 
 ## Map to this repo
 
 | Concern | Owner |
 | --- | --- |
 | Ops ladder | `PRODUCTION-READINESS.md` A5–A8, C3–C5 — **A6/A8 for staging now**; **prod A6–A8 after GST** |
-| Onboard hosting | `aadharchain/gateway/app/ondc_onboard_routes.py` — site-verification + `on_subscribe` + status (local). Vercel rewrites → `REPLACE_PUBLIC_GATEWAY_ORIGIN` |
-| Commerce adapter | `aadharchain/gateway/app/ondc_routes.py` scaffold — signed search later |
-| Buyer Vite | `VITE_ONDC_*` staging sketches in `.env.example`; keep demo mode on |
+| Onboard hosting | `aadharchain/gateway/app/ondc_onboard_routes.py` — site-verification + `on_subscribe` + status. Retail uses Vercel rewrites; LBNP is the second custom domain on the existing Render gateway. |
+| Protocol adapters | Retail signed traffic remains in its existing mapper; LOG10 requires its dedicated namespace/version mapping |
+| Browser apps | Never hold ONDC private keys or Registry credentials |
 
 ## Portal download vs local DER (2026-07-12)
 
@@ -100,24 +92,11 @@ python3 scripts/ondc_onboard_portal_smoke.py
 # local: GET :43101/ondc/np/{buyer|seller}/status → keys_source=portal-download
 ```
 
-## Gap vs portal state (2026-07-12 late)
+## State routing
 
-| Doc step | Our state |
-| --- | --- |
-| Portal account | Done — org 15462 |
-| Buyer / Seller profiles | Done — both PreProd **Subscribed** |
-| FQDN + SSL | Vercel 200 |
-| Portal keys stored | **Done** — buyer+seller under `portal-download/` (gitignored) |
-| Local onboard routes | **Done** — verification + on_subscribe + status; portal PEMs wired |
-| Vercel rewrite origin | Set to `identity-aadhar-gateway-main.onrender.com` in repo `vercel.json` — **needs Vercel redeploy** |
-| Render gateway onboard routes | **404** today — **needs Render redeploy** of current gateway code + portal keys on host |
-| `/subscribe` POST | PreProd drafts ready (`evidence/preprod-subscribe-drafts-20260712.json`) — **do not POST** until FQDN endpoints live; portal may already hold registry row |
-| Prod | **Forbidden until GSTIN** |
-
-## Next actions
-
-| Who | Action |
-| --- | --- |
-| **Operator** | Redeploy Render gateway (include onboard routes + mount/copy `.local` portal PEMs or set `ONDC_*_KEYS_DIR`); redeploy Vercel Buyer+Seller |
-| **Agent** | After live: probe FQDN verification + on_subscribe; optional PreProd lookup; POST subscribe only if lookup empty |
-| **After GSTIN** | Portal KYC + prod path |
+- Retail Buyer/Seller public endpoint and network evidence is historical and
+  remains owned by the testing ledger; never re-run it from this key guide.
+- The LBNP pair exists only for its dedicated identity. Current deployment and
+  public-DNS status is owned by [`.voice/progress.md`](../../../../.voice/progress.md).
+- Portal environment access, `1.b`, legal tasks, registry mutation, and
+  production remain separate authorized gates.

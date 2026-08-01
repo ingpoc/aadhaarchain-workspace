@@ -1,16 +1,16 @@
 ---
 name: portfolio-deploy
 description: >-
-  Pre-deploy checklist, CI graders, Render gateway + Vercel Buyer/Seller deploy,
+  Pre-deploy checklist, CI graders, Render gateway + Vercel participant-edge deploy,
   post-deploy probes, and free-tier maintenance for AadhaarChainWorkspace. Sole
   CI/CD owner (ci.yml + deploy.yml + references/ci-cd.md) — do not create a
   separate CI skill; Create PRs is Cursor built-in. Use when deploying,
   redeploying, waking cold starts, setting Render/Vercel env, Auth0 callbacks
   for FQDNs, ONDC onboard routes on public hosts, CI/CD lifecycle, or checking
   identity-aadhar-gateway-main.onrender.com / ondcbuyer.aadharcha.in /
-  ondcseller.aadharcha.in. HARD POLICY: always free tier — $0 spend; abort any
-  upgrade/billing/paid add-on; cold starts OK; no Render Disk for PEMs; confirm
-  Free/Hobby before deploy. Does not own partner portal rails
+  ondcseller.aadharcha.in / ondclbnp.aadharcha.in. HARD POLICY: always free tier
+  — $0 spend; abort any upgrade/billing/paid add-on; cold starts OK; no
+  Render Disk for PEMs; confirm Free/Hobby before deploy. Does not own partner portal rails
   (apisetu-partner-onboarding) or Auth0 app design (authentication).
 ---
 
@@ -36,6 +36,7 @@ Do **not** duplicate Render Blueprint authorship or Auth0 product rules — link
 | Gateway + AgentGuard + ONDC onboard | `https://gateway.aadharcha.in` (also `identity-aadhar-gateway-main.onrender.com`) | Render **Free only** |
 | ONDC Buyer SPA | `https://ondcbuyer.aadharcha.in` | Vercel **Hobby only** |
 | ONDC Seller SPA | `https://ondcseller.aadharcha.in` | Vercel **Hobby only** |
+| ONDC Logistics Buyer endpoint | `https://ondclbnp.aadharcha.in` | Second custom domain on the existing Render **Free** gateway; GoDaddy DNS only, no Vercel project or new service |
 
 Local ports remain `:43101` / `:43102` / `:43103` — see repo [`AGENTS.md`](../../../AGENTS.md).
 
@@ -53,22 +54,53 @@ workflow_dispatch deploy (confirm Free/Hobby) → post-probes
 | Operator deploy (no auto prod on push) | `.github/workflows/deploy.yml` |
 | Local/CI API lane | `./scripts/verify-portfolio.sh --ci` |
 
-**CI graders (fail closed):** gitleaks → gateway pytest via `verify-portfolio.sh --ci` → ondcbuyer npm test+build → ondcseller npm test+build. Hermes optional/out of CI. No rumdl/ruff unless already adopted. **Never** flip `VITE_COMMERCE_DEMO_MODE` in CI/deploy.
+**CI graders (fail closed):** gitleaks → gateway pytest via `verify-portfolio.sh --ci` → ondcbuyer npm test+build → ondcseller npm test+build. Browser UI lanes are out of CI. No rumdl/ruff unless already adopted. **Never** flip `VITE_COMMERCE_DEMO_MODE` in CI/deploy.
 
 **Gateway pytest green path (2026-07-12):** `--ci` runs `pytest tests/ -q -p asyncio` with `PYTEST_DISABLE_PLUGIN_AUTOLOAD=1`. Auth0/provider tests **monkeypatch** `settings.auth0_*` off so host `.env` Auth0 creds cannot flip `"auth0": true` mid-suite. Detail: [`references/ci-cd.md`](references/ci-cd.md).
 
-**Deploy:** `workflow_dispatch` only; requires `confirm_free_tier=true` (**$0 abort** otherwise); re-runs graders by default; then Render gateway and/or Vercel Buyer/Seller; then FQDN probes. Secrets names only in [`references/ci-cd.md`](references/ci-cd.md).
+**Deploy:** `workflow_dispatch` only; requires `confirm_free_tier=true` (**$0 abort** otherwise); re-runs graders by default; then Render gateway and/or required Vercel edges; then FQDN probes. Secrets names only in [`references/ci-cd.md`](references/ci-cd.md).
 
-**Last live stamp (2026-07-23, Free/Hobby):** frozen CF0 application-source fingerprint `cb0769ea45b0f9e9cf63c825706d8fee1eeb3facf97d8e28bb3a832d1d026215`; exact-commit Render deployment `dep-d9gqfcjtqb8s73e0l940` is live at gateway `5431307bf36bb8c906600b3ceea859efb34f9d44`; Buyer `bdd67735f54794a1936030288cf0e41a4c746893` and Seller `872e850cc451d91a63b1f5fd0216490ec2841cdc` Hobby archive deployments are Ready on their FQDNs. Health/identity/NP/site probes returned 200 and bundled Chrome FQDN/Auth0 Buyer/Seller acceptance passed. Public ONDC search remains advisory on the intentionally unseeded catalog; payment is simulated. The deploy workflow now sends Render the checked-out commit explicitly, so a stale service branch cannot select different source. Evidence: [`../ondc-testing/references/evidence/cf0-completion-cb0769-20260723.json`](../ondc-testing/references/evidence/cf0-completion-cb0769-20260723.json); run history: [`references/checklist.md`](references/checklist.md).
+**Last frozen Retail deployment stamp (2026-07-23, Free/Hobby):** exact-commit
+Render deployment `dep-d9gqfcjtqb8s73e0l940` is live at gateway
+`5431307bf36bb8c906600b3ceea859efb34f9d44`; Buyer and Seller Hobby archive
+deployments were Ready and their health/identity/NP/site probes passed.
+Current protocol/catalog state is owned by the
+[PreProd network matrix](../ondc-testing/references/preprod-network-matrix.md),
+not this deploy skill. Run history: [`references/checklist.md`](references/checklist.md).
+
+**Dedicated LBNP deployment stamp (2026-07-26, Render Free):** exact gateway
+commit `b3e81b2ebb29fd10d1a22ecb694d8b2c3953fbee` is live as deploy
+`dep-d9irpocm0tmc73a0st7g`. The existing service owns its second included
+custom domain, `ondclbnp.aadharcha.in`; GoDaddy CNAME, public TLS, dedicated
+status, site verification, and valid challenge/answer readback passed. This is
+endpoint readiness only, not portal subscription or a logistics protocol call.
+
+**Gate 3 LBNP deployment stamp (2026-07-26, Render Free):** exact gateway
+commit `cde2242cb49fb6429766e253ef613f7ff5c083ae` is live as deploy
+`dep-d9iun27aqgkc73an2cpg`. The full workflow grader gate passed; absent Render
+secret names blocked only the workflow deploy step, so the authenticated Render
+CLI deployed the same exact commit to the already verified Free service.
+DNS/TLS/status/site/challenge re-proof passed. This is PreProd protocol
+readiness, not conformance or production.
+
+**Gate 3 holiday-validator deployment stamp (2026-08-01, Render Free):** exact
+gateway commit `63df7ca73faa6096961d9cf1333bc9e2387f5770` is live as deploy
+`dep-d9mna2942hec73e3eq40` on the existing service. The commit contains only
+the LOG10 future-holiday guard and its regression. Gateway, Buyer, Seller, and
+portfolio CI gates passed; GoDaddy CNAME, TLS, LBNP status, site verification,
+valid/invalid challenge readback, and public empty/past holiday 422 checks
+passed. No new service, domain, paid resource, Retail change, or production
+claim was introduced.
 
 ## When to use
 
-- Operator/agent asked to **deploy / redeploy / wake** gateway or Buyer/Seller FQDNs
+- Operator/agent asked to **deploy / redeploy / wake** gateway or Buyer/Seller/LBNP FQDNs
 - PreProd/staging needs **live** `/ondc-site-verification.html` or `/ondc/on_subscribe`
 - Auth0 / CORS / `PUBLIC_GATEWAY_URL` / Vercel rewrites for public hosts
 - Free-tier cold start, logs, or key/env refresh on Render
 
-**Not this skill:** Hermes/WIP browser testing (`portfolio-browser`), portal GST/ONDC UI (`apisetu-partner-onboarding`), Auth0 application design (`authentication`).
+**Not this skill:** browser acceptance (`ondc-testing`), portal GST/ONDC UI
+(`apisetu-partner-onboarding`), Auth0 application design (`authentication`).
 
 ## Free-tier policy (operator hard gate — $0)
 
@@ -105,25 +137,32 @@ Details: [`references/free-tier.md`](references/free-tier.md). Platform docs: [R
 | [`../apisetu-partner-onboarding/references/ondc-sandbox-integration-ladder.md`](../apisetu-partner-onboarding/references/ondc-sandbox-integration-ladder.md) | Code → local smoke → **deploy** → FQDN proof |
 | [`../apisetu-partner-onboarding/references/ondc-sandbox-keys.md`](../apisetu-partner-onboarding/references/ondc-sandbox-keys.md) | Portal PEM materialization |
 | [`../ondc-testing/SKILL.md`](../ondc-testing/SKILL.md) | Post-deploy Buyer/Seller UX matrix (claim→screenshot) |
-| [`../portfolio-browser/SKILL.md`](../portfolio-browser/SKILL.md) | Optional Hermes WIP browser proof after live (not required to ship) |
 
 ## Pre-deploy checklist (gate)
 
 **Do not run CLI deploy / Actions deploy until every item passes.** Full copy: [`references/checklist.md`](references/checklist.md). CI/CD: [`references/ci-cd.md`](references/ci-cd.md).
 
 0. **$0 plan confirm** — Render instance = **Free**; workspace = **Hobby**; Vercel = **Hobby**. Abort upgrade/billing/Disk. Run **maximize free features** (above) + charge-risk watchlist in [`references/free-tier.md`](references/free-tier.md).
-1. **CI graders green** — Portfolio CI (or local equivalents): gitleaks; `./scripts/verify-portfolio.sh --ci`; Buyer/Seller `npm test && npm run build`. Hermes not required.
+1. **CI graders green** — Portfolio CI (or local equivalents): gitleaks; `./scripts/verify-portfolio.sh --ci`; Buyer/Seller `npm test && npm run build`. Browser acceptance runs after deploy.
 2. **Local smoke** — `./scripts/verify-portfolio.sh` if stack available; gateway onboard status OK on `:43101`; if shipping auth, `GET /api/auth/providers` shows expected providers.
 3. **Secrets inventory** — `AUTH0_*`, `SESSION_SECRET` (or gateway session secret env), `CORS_ORIGINS`, `PUBLIC_GATEWAY_URL`, ONDC portal PEMs / `ONDC_*_KEYS_DIR` or equivalent env — **env on host only, never git**.
 4. **Ephemeral FS** — Render Free loses local files on spin-down/redeploy. Set **`DATA_DIR=/tmp/aadharchain-data`** (and `ONDC_ENV_KEYS_DIR=/tmp/ondc-env`). PEMs via env; **never** Disk / SSH-copied persistence.
 5. **CORS + Auth0** — Callbacks on **gateway** FQDN + local; Logout/Web Origins include Buyer/Seller FQDNs + local. See authentication skill.
 6. **Vercel rewrites** — `ondcbuyer`/`ondcseller` `vercel.json` → `gateway.aadharcha.in` `/ondc/np/{buyer|seller}/…` (redeploy required after change).
-7. **Demo mode** — `VITE_COMMERCE_DEMO_MODE=false` only after `commerce_demo_mode_gate.py` evidence (done 2026-07-12 PreProd). Keep payment labels honest (simulated ≠ live UPI).
-8. **WIP/Hermes** — **not required** for deploy. Browser proof after live is optional via portfolio-browser.
+7. **LBNP isolation** — `ondclbnp` `/ondc/:path*` must route to its
+   dedicated gateway namespace and keys, never the Retail Buyer/Seller mapper.
+   Verify the exact edge target before adding GoDaddy DNS; keep `ondcseller`
+   untouched.
+8. **Demo mode** — `VITE_COMMERCE_DEMO_MODE=false` only after `commerce_demo_mode_gate.py` evidence (done 2026-07-12 PreProd). Keep payment labels honest (simulated ≠ live UPI).
 
 ## During deploy
 
-Order: **graders green → Render gateway first → Vercel Buyer + Seller**. Prefer Actions **Portfolio Deploy** (`workflow_dispatch`) when secrets are configured; else CLI below.
+Order: **graders green → Render gateway first → attach/verify its exact custom
+domain target → GoDaddy DNS → public DNS/TLS/endpoint readback**. Add a Vercel
+edge only for an existing SPA that requires one; LBNP routes directly to
+Render. Prefer Actions
+**Portfolio Deploy** (`workflow_dispatch`) when secrets are configured; else
+CLI below.
 
 ### 1. Render gateway
 
@@ -147,7 +186,7 @@ render --version
 
 MCP fallback: Render plugin `list_services` → `get_service` / deploy helpers — use when CLI missing; do not invent Blueprint ownership here (`render-deploy` skill).
 
-### 2. Vercel Buyer / Seller
+### 2. Vercel participant edges
 
 ```bash
 vercel --version
@@ -162,13 +201,15 @@ cd ../ondcseller && vercel --prod
 
 Run post-deploy probes below. On failure: fix env/code, redeploy same surface; **never** upgrade tier / add Disk / open billing as a fix — stay $0.
 
-**After FQDN archive deploy+alias:** immediately hand to [`ondc-testing`](../ondc-testing/SKILL.md) operator-flows deploy-bake smoke — do not stop at probes alone.
+**After Buyer/Seller archive deploy+alias:** hand to
+[`ondc-testing`](../ondc-testing/SKILL.md) for UI acceptance. For onboarding-only
+hosts such as LBNP, hand to partner onboarding after endpoint readback.
 
 ### Rollback notes
 
 - **Render:** Dashboard → previous successful deploy → **Rollback** (or redeploy last known-good commit).
 - **Vercel:** Promote prior deployment in project Deployments, or `vercel rollback` when available for the linked project.
-- Keep Auth0 URLs additive (local + Render) so loopback `sso demo` / hermes still works after public deploy.
+- Keep Auth0 URLs additive (local + Render) so local demo automation still works after public deploy.
 
 ## Post-deploy probes
 
@@ -179,8 +220,10 @@ Allow cold start (~60s) on first Render hit after idle.
 | `GET https://gateway.aadharcha.in/api/health` | 200 |
 | `GET https://gateway.aadharcha.in/api/auth/providers` | JSON; `auth0: true` if Auth0 shipped |
 | `GET …/ondc/np/buyer/status` and `…/seller/status` | 200 + key/onboard fields (not 404) |
+| `GET …/ondc/np/lbnp/status` when shipping LOG10 | 200 + dedicated subscriber/key source; not Buyer/Seller identity |
 | `GET https://ondcbuyer.aadharcha.in/ondc-site-verification.html` | 200 + meta `ondc-site-verification` |
 | `GET https://ondcseller.aadharcha.in/ondc-site-verification.html` | same for seller |
+| `GET https://ondclbnp.aadharcha.in/ondc-site-verification.html` | 200 + LBNP-specific verification after DNS/TLS |
 | `POST` FQDN `/ondc/on_subscribe` (challenge fixture) | `{ "answer": "…" }` after gateway live |
 | SPA shells | Buyer/Seller FQDN 200 Vite app |
 | Auth SPA session | Buyer Sign out + `fetch(gateway/api/auth/me,{credentials:'include'})` authenticated |
@@ -205,13 +248,13 @@ Then hand back to partner-onboarding ladder (lookup / subscribe only if needed).
 | --- | --- |
 | Render Free gateway | Custom domain `gateway.aadharcha.in` Verified + TLS; `PUBLIC_GATEWAY_URL` cut over; onrender subdomain kept |
 | GoDaddy DNS | CNAME `gateway` → `identity-aadhar-gateway-main.onrender.com` (2026-07-12) |
+| LBNP endpoint | Second included Render domain `ondclbnp.aadharcha.in`; GoDaddy CNAME → existing gateway; DNS/TLS/status/site/challenge passed 2026-07-26 |
 | Realtime probe | `/api/realtime/status` → `configured:true` (via gateway FQDN **and** onrender) |
 | Vercel Hobby | Buyer+Seller redeployed non-git bake; `VITE_IDENTITY_*=https://gateway.aadharcha.in`; alias FQDNs |
 | Auth0 | Callback includes `gateway.aadharcha.in`; SPA session **PASS** (auth skill evidence) |
 | Samantha “not configured” false negative | Fixed 17:48 — orb re-probes status; UI shows Text mode ready (evidence in ondc-testing matrix) |
 | AgentGuard write on Free | Fix via **`DATA_DIR=/tmp/aadharchain-data`** (Dockerfile default + env); **no Disk** |
 | Free-tier maximize | **Done** 2026-07-12 evening — `free-tier.md` stamp; health `/api/health`; Hobby Analytics Enable Buyer+Seller; $0 |
-| Render CLI | token often **expired** (`~/.render/cli.yaml`) → **401**; use Hermes dashboard or `render login` — do not invent paid path |
 | PreProd ONDC enable | `ONDC_ENABLED=true` + BAP (`ONDC_SUBSCRIBER_ID`/`BAP_URI`/`UNIQUE_KEY_ID`) + BPP (`ONDC_BPP_ID`/`BPP_URI`/`ONDC_SELLER_UNIQUE_KEY_ID`); keep `*_PEM_B64` + `DATA_DIR=/tmp/aadharchain-data` |
 | Vercel ONDC rewrites | **Both** apps need `/ondc/:path*` → `gateway…/ondc/np/{buyer\|seller}/:path*` (not only `on_subscribe`) — else `on_search`/`search` → SPA/405 |
 | Nested git deploy | Gateway lives in **`aadharchain/`** nested repo (`ingpoc/aadhaar-chain`); workspace root gitignores it — push that repo’s branch for Render |
@@ -239,15 +282,13 @@ vercel login
 curl -sS https://gateway.aadharcha.in/api/health
 curl -sS https://gateway.aadharcha.in/api/ondc/status
 curl -sS https://gateway.aadharcha.in/api/ondc/bpp/status
-python3 scripts/ondc_preprod_smoke.py --base https://gateway.aadharcha.in --search 'AgentGuard PreProd Atta'
 curl -sS -o /dev/null -w "%{http_code}\n" https://ondcbuyer.aadharcha.in/ondc-site-verification.html
 curl -sS -o /dev/null -w "%{http_code}\n" https://ondcseller.aadharcha.in/ondc-site-verification.html
-# Must be JSON ACK, not SPA HTML:
-curl -sS -X POST https://ondcseller.aadharcha.in/ondc/search -H 'Content-Type: application/json' \
-  -d '{"context":{"action":"search","bap_uri":"https://ondcbuyer.aadharcha.in/ondc","bap_id":"ondcbuyer.aadharcha.in","transaction_id":"probe","message_id":"m","domain":"ONDC:RET10","city":"std:080","country":"IND","core_version":"1.2.0"},"message":{"intent":{}}}'
 ```
 
-MCP: Cursor **Render** server when CLI unavailable — authenticate + **select workspace** first; prefer read before mutating. Expired API key → Hermes dashboard.
+MCP: Cursor **Render** server when CLI unavailable — authenticate + **select
+workspace** first; prefer read before mutating. Dashboard fallback uses bundled
+`@chrome`.
 
 ## Do not
 
@@ -256,5 +297,6 @@ MCP: Cursor **Render** server when CLI unavailable — authenticate + **select w
 - Deploy without confirming Free (Render) / Hobby (Vercel)
 - Auto-deploy production on every push — use **Portfolio Deploy** `workflow_dispatch` (or explicit CLI) after green graders
 - Commit `.env`, portal `keys.json`, or PEMs
+- Create a parallel gateway/service, reuse Retail keys, or publish DNS before the exact edge target is verified
 - Claim **production** ONDC or flip commerce demo mode from this skill (PreProd Beckn ≠ prod)
-- Require Hermes/WIP to ship a deploy (but use it when Render CLI token is dead)
+- Make a legacy browser bridge a deploy precondition

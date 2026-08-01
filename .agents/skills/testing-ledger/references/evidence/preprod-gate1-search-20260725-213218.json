@@ -1,0 +1,81 @@
+{
+  "captured_at_utc": "2026-07-25T21:32:18Z",
+  "result": "pass",
+  "scope": "One approved Seller catalog item and one bounded signed PreProd Buyer retail search",
+  "source": {
+    "gateway_commit": "5431307bf36bb8c906600b3ceea859efb34f9d44",
+    "render_service_id": "srv-d7f256f41pts73f68660",
+    "render_state": "live",
+    "persistence_backend": "postgres"
+  },
+  "seller_catalog": {
+    "authority": "Deployed Seller catalog UI through AgentGuard seller.catalog.publish",
+    "item_id": "sampoorna-whole-wheat-atta-1kg",
+    "title": "Sampoorna Whole Wheat Atta 1kg",
+    "description": "Stone-ground whole wheat flour for soft rotis.",
+    "category_id": "Grocery",
+    "price_inr": 89,
+    "inventory": 23,
+    "ui_confirmation": "Sampoorna Whole Wheat Atta 1kg was published.",
+    "bpp_published_item_count": 1
+  },
+  "search": {
+    "query": "atta",
+    "transaction_id": "00fda29f-947d-4e42-89b9-b98b38c96ad6",
+    "message_id": "017ea5df-b08d-4c6e-b3a6-8113f7420d05",
+    "registry_lookup_http": 200,
+    "registry_status": "SUBSCRIBED",
+    "gateway_search_http": 200,
+    "gateway_ack": "ACK",
+    "configured_seller_http": 200,
+    "configured_seller_ack": "ACK",
+    "outbox": [
+      {
+        "outbox_id": 1391,
+        "action": "search",
+        "destination": "https://preprod.gateway.ondc.org/search",
+        "state": "delivered"
+      },
+      {
+        "outbox_id": 1392,
+        "action": "search",
+        "destination": "https://ondcseller.aadharcha.in/ondc/search",
+        "state": "delivered"
+      },
+      {
+        "outbox_id": 1393,
+        "action": "on_search",
+        "destination": "https://ondcbuyer.aadharcha.in/ondc/on_search",
+        "state": "delivered"
+      }
+    ],
+    "inbox": {
+      "inbox_id": 1419,
+      "action": "on_search",
+      "subscriber_id": "ondcseller.aadharcha.in",
+      "bpp_id": "ondcseller.aadharcha.in",
+      "message_id": "5c7f33f1-4566-5861-a302-f1f67cbefcfc",
+      "correlated": true
+    },
+    "catalog": {
+      "source": "ondc-network",
+      "provider_id": "aadhaar-seller-isn",
+      "provider_name": "Sampoorna Groceries",
+      "item_count": 1,
+      "item_id": "sampoorna-whole-wheat-atta-1kg",
+      "item_name": "Sampoorna Whole Wheat Atta 1kg",
+      "price_inr": "89.00",
+      "available_count": "23"
+    }
+  },
+  "diagnostic_note": {
+    "command_exit": 6,
+    "classification": "false_negative",
+    "reason": "ondc_preprod_smoke.py filters the provider-wrapper rows returned by /api/ondc/catalogs for a row-level bpp_id. The authoritative transaction record instead carries bpp_id in the signed on_search context and contains one Seller item."
+  },
+  "gate": {
+    "gate_1": "passed",
+    "later_gates": "not_run",
+    "claim_boundary": "PreProd signed search and non-empty correlated Seller callback only; no order, payment, production ONDC, or official conformance claim."
+  }
+}

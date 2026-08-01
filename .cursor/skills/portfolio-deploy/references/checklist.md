@@ -10,8 +10,8 @@ exact-commit Render `dep-d9gqfcjtqb8s73e0l940` live at gateway
 `bdd67735f54794a1936030288cf0e41a4c746893` and Seller
 `872e850cc451d91a63b1f5fd0216490ec2841cdc` Ready on their FQDNs;
 health/identity/NP/site probes 200; FQDN/Auth0 Buyer/Seller acceptance passed.
-Public ONDC search is advisory on the intentionally unseeded catalog and
-payment remains simulated. Evidence:
+Current protocol/catalog evidence is owned by the PreProd network matrix.
+Deployment evidence:
 [`../../ondc-testing/references/evidence/cf0-completion-cb0769-20260723.json`](../../ondc-testing/references/evidence/cf0-completion-cb0769-20260723.json).
 
 Unchecked boxes below are a copy-per-run template or dated historical run
@@ -30,7 +30,7 @@ Pre-deploy
       Buyer/Seller npm test + build — see references/ci-cd.md
 - [ ] Local verify: ./scripts/verify-portfolio.sh (or agreed subset) if stack up
 - [ ] Gateway local: GET :43101/api/health 200
-- [ ] Onboard local (if shipping ONDC): GET :43101/ondc/np/buyer/status + seller/status ≠ 404
+- [ ] Onboard local (if shipping ONDC): required /ondc/np/{buyer,seller,lbnp}/status routes ≠ 404 and return the intended identity
 - [ ] Auth (if shipping Auth0): GET :43101/api/auth/providers → auth0 true; demo_continue policy matches AADHAAR_CHAIN_ENV
 - [ ] Buyer/Seller build green if frontend changed: npm test && npm run build
 - [ ] Secrets listed for Render (values in Dashboard/CLI only — not git):
@@ -48,7 +48,6 @@ Pre-deploy
 - [ ] VITE_IDENTITY_URL / VITE_IDENTITY_AUTH_ENABLED set for Vercel if auth UI shipping
       (Production **and** Preview)
 - [ ] VITE_COMMERCE_DEMO_MODE not flipped without evidence gate
-- [ ] WIP/Hermes not blocking — deploy does not need browser bridge
 - [ ] Free-tier hard gate: cold start OK; no Disk for PEMs; zero cents / abort paid paths
 - [ ] If using Actions deploy: GH secrets RENDER_* / VERCEL_* set (names in ci-cd.md)
 
@@ -56,13 +55,13 @@ Deploy order
 - [ ] Prefer workflow_dispatch Portfolio Deploy (confirm_free_tier=true) OR:
 - [ ] Redeploy Render gateway
 - [ ] Wake + probe /api/health (allow ~60s cold start)
-- [ ] Redeploy Vercel ondcbuyer
-- [ ] Redeploy Vercel ondcseller
+- [ ] Redeploy only the required Vercel participant edge(s)
+- [ ] Verify the exact edge target before any GoDaddy DNS change
 
 Post-deploy
 - [ ] /api/auth/providers on Render
-- [ ] /ondc/np/{buyer,seller}/status on Render
-- [ ] FQDN /ondc-site-verification.html buyer + seller
+- [ ] Required /ondc/np/{buyer,seller,lbnp}/status on Render
+- [ ] Required FQDN /ondc-site-verification.html
 - [ ] Optional: on_subscribe challenge fixture
 - [ ] Hand off to partner-onboarding ladder for registry lookup/subscribe
 ```
@@ -97,7 +96,7 @@ Post-deploy
 
 ## Run stamp — 2026-07-12 DATA_DIR AgentGuard write ($0)
 
-- [x] Render Free env `DATA_DIR=/tmp/aadharchain-data` (Hermes dashboard Save+rebuild; no Disk)
+- [x] Render Free env `DATA_DIR=/tmp/aadharchain-data` (dashboard Save+rebuild; no Disk)
 - [x] Buyer FQDN: ensure **200**; checkout **Paid** + `rcpt_90c6dec41ab8400f` (ondc-testing matrix 17:56)
 - [x] Seller FQDN: ensure **200** (no Errno 13)
 - [x] SPA Auth0 session still authenticated via `gateway.aadharcha.in` cookie Domain
@@ -120,20 +119,6 @@ Post-deploy
 - [x] Proof: [`../../ondc-testing/references/evidence/demo-mode-off-select-confirm-20260712.json`](../../ondc-testing/references/evidence/demo-mode-off-select-confirm-20260712.json)
 - [x] No Disk / Pro / paid add-ons; **not** production ONDC; payment still simulated
 
-## Run stamp — 2026-07-12 web identity env ($0)
-
-- [x] Vercel Hobby `ondcbuyer` + `ondcseller`: set Production+Preview `VITE_IDENTITY_*`, `VITE_COMMERCE_DEMO_MODE`, `VITE_AGENT_RUNTIME_ENABLED` (were empty — caused missing Sign in)
-- [ ] Redeploy both after wallet-copy purge (WalletProvider stub; no Phantom/Solflare adapters)
-- [ ] Render Free: `render login` required — CLI unauthorized; set `OPENAI_API_KEY`, `OPENAI_REALTIME_MODEL`, `CURSOR_API_KEY` from gateway `.env` (names only; never commit)
-- [ ] Auth0: add Render callback URL (operator dashboard)
-- [x] No paid upgrades; demo mode not flipped
-
-### Vercel UNKNOWN queue / pnpm trap (2026-07-12)
-
-- Stale `pnpm-lock.yaml` made Vercel use frozen `pnpm install` → fail; force `"installCommand": "npm install"` in app `vercel.json`; rename/remove stale pnpm lock.
-- Vendor `@aadharchain/agentguard-contract` under `ondcbuyer|ondcseller/shared/` (`file:./shared/...`) so CLI uploads resolve.
-- Multiple Production deploys stuck **UNKNOWN** with empty builds — cancel stuck deploys in dashboard; retry one at a time on Hobby ($0).
-
 ## Run stamp — 2026-07-23 CF0 exact-source release ($0)
 
 - [x] Frozen application fingerprint `cb0769ea45b0f9e9cf63c825706d8fee1eeb3facf97d8e28bb3a832d1d026215`
@@ -143,3 +128,20 @@ Post-deploy
 - [x] Bundled Chrome FQDN/Auth0 acceptance passed for Buyer and Seller protected surfaces
 - [x] Deploy workflow hardened to send the checked-out gateway commit explicitly; stale Render branch metadata is no longer a source selector
 - [x] No Disk, paid Render instance, Vercel Pro or paid add-on
+
+## Run stamp — 2026-07-26 dedicated LBNP endpoint ($0)
+
+- [x] Render Free exact gateway commit `b3e81b2ebb29fd10d1a22ecb694d8b2c3953fbee` deployed as `dep-d9irpocm0tmc73a0st7g`
+- [x] Second included custom domain `ondclbnp.aadharcha.in` attached to the existing gateway; no new service or Vercel project
+- [x] GoDaddy CNAME `ondclbnp` → `identity-aadhar-gateway-main.onrender.com`; public DNS and TLS passed
+- [x] Dedicated LBNP status, site verification, and valid challenge/answer returned 200; Retail Buyer/Seller probes remained 200
+- [x] No Disk, paid instance/add-on, portal action, registry/logistics call, order, payment, or production claim
+
+## Run stamp — 2026-07-26 Gate 3 LBNP protocol release ($0)
+
+- [x] Nested exact commit `cde2242cb49fb6429766e253ef613f7ff5c083ae`; CI secret scan, gateway tests, and frontend build passed
+- [x] Workspace deploy grader gate passed gitleaks, PostgreSQL gateway verification, Buyer test/build, and Seller test/build
+- [x] Render service `srv-d7f256f41pts73f68660` reconfirmed Free with auto-deploy off
+- [x] Exact commit deployed via authenticated Render CLI as `dep-d9iun27aqgkc73an2cpg` after the workflow reported absent Render secret names
+- [x] GoDaddy DNS chain, TLS, LBNP status, site verification, and valid challenge/answer re-proved
+- [x] No Disk, paid instance/add-on, Vercel deploy, portal 1.b, legal action, payment, shipment, production, or later gate

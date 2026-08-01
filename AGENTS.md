@@ -30,6 +30,30 @@ do not invent parallel auth contracts.
 owns current execution state and evidence gates. Update the relevant owner when
 work changes.
 
+## Active ONDC participant-host gate
+
+Every agent adding an ONDC participant FQDN must use this fail-closed order:
+reuse the existing gateway with isolated identity/keys → deploy the exact
+verified commit → attach and verify the existing Render target → add only the
+approved GoDaddy DNS record → prove public DNS, TLS, site verification, and
+`/ondc/on_subscribe` → only then resume portal access. GoDaddy is DNS only;
+Render is the application runtime. Never reuse Retail keys/mappers, create a
+parallel gateway/service, publish DNS before the runtime target is known, or
+advance a portal/protocol gate from partial evidence. A reproducible defect
+fixed on this path must leave one deterministic regression check in its owner.
+If `Raise Request` generates a modal keypair, that latest pair supersedes the
+outer draft pair: reconcile key ID/fingerprints and re-prove the public endpoint
+before Submit. Protocol Workbench replaces Pramaan only for later verification;
+1.a completion does not authorize 1.b, protocol, conformance, or production.
+For an authorized Workbench run, keep exactly one flow active, satisfy its
+visible input schema, send the signed action before the five-minute expectation
+expires, and derive every later identifier from signed callback/readback. An
+`activeFlow` label alone is not proof that an expectation exists. Treat
+`accept_bpp_terms` and any other legal-semantic field as an operator boundary,
+and preserve the exact Workbench/portal tabs when stopping there. Validate tags
+per outbound action instead of copying callback tags blindly, and advance an
+`INPUT-REQUIRED` step with an empty schema exactly once using empty inputs.
+
 ## Workflow hardening gate (read before changing scripts)
 
 ```

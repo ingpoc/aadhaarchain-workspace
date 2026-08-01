@@ -1,0 +1,58 @@
+{
+  "captured_at_utc": "2026-07-26T05:04:16Z",
+  "result": "pass",
+  "scope": "Gate 2 logistics scope, version, role, and ownership decision only",
+  "source_scan": {
+    "control_commit": "e942658daedfdaac736cc41b63f623e589584d8e",
+    "gateway_checkout_commit": "af06b644bd2e6f9350fcdec8ca7b875394ff20ba",
+    "current_retail_domain": "ONDC:RET10",
+    "current_retail_core_version": "1.2.0",
+    "current_roles": {
+      "ondcbuyer.aadharcha.in": "Retail BAP",
+      "ondcseller.aadharcha.in": "Retail BPP"
+    },
+    "logistics_domain_present": false,
+    "public_logistics_mutation_route_present": false,
+    "negative_guard": "test_public_mutation_routes_cannot_bypass_agentguard asserts /api/commerce-integrations/logistics/transitions is not registered"
+  },
+  "official_contract": {
+    "index": "https://github.com/ONDC-Official",
+    "document": "https://docs.google.com/document/d/1vz1Iawvy4ucUAX1xo-BCNsvm-BZSJFeN80vgwjNI-kc/edit?tab=t.0",
+    "version": "1.2.5",
+    "version_date": "2026-06-10",
+    "domain": "ONDC:LOG10",
+    "baseline": "Immediate Delivery, P2P",
+    "roles": {
+      "LBNP": "Logistics Buyer Network Participant; currently the Retail Seller NP that fills the order; protocol BAP",
+      "LSP": "Logistics Service Provider; protocol BPP"
+    },
+    "compatibility": "1.2.5 is side-by-side compatible with 1.2.0; feature discovery is required and RTO is not fully backward compatible"
+  },
+  "decision": {
+    "active_version": "1.2.5",
+    "accepted_counterparty_versions": [
+      "1.2.5",
+      "1.2.0"
+    ],
+    "counterparty_version_rule": "Accept 1.2.0 only when the selected LSP advertises it; never silently reuse the Retail 1.2.0 mapper",
+    "initial_product_scope": "One B2C Immediate Delivery P2P forward-fulfilment lifecycle; no batch, P2H2P, reverse, RTO, NDR, ePOD, shipping-label, or LSP-support feature until separately admitted",
+    "roles": {
+      "ondcseller.aadharcha.in": "ONDC:LOG10 LBNP/BAP",
+      "ondcbuyer.aadharcha.in": "Retail BAP only; read-only consumer of persisted tracking state",
+      "external_lsp": "ONDC:LOG10 LSP/BPP"
+    },
+    "ownership": {
+      "agentguard": "Authorize consequential create, confirm, update, and cancel logistics actions",
+      "commerce_v1": "Own order, fulfilment, and customer-visible tracking state",
+      "gateway_ondc_adapter": "Own server-side protocol mapping, signing, verification, Registry lookup, inbox/outbox, idempotency, retry, and callback correlation",
+      "external_lsp": "Own logistics quotes and operational fulfilment events",
+      "browser_apps": "Hold no ONDC signing keys or Registry credentials"
+    }
+  },
+  "p4_entry_evidence": [
+    "Redacted PreProd Registry or portal evidence that ondcseller.aadharcha.in is subscribed as an ONDC:LOG10 BAP/LBNP",
+    "An approved PreProd LSP identity with BPP subscriber ID, URI, SUBSCRIBED lookup, supported version, and enabled feature list",
+    "One local deterministic signed contract fixture proving version mapping, ACK/NACK, correlation, replay rejection, and no mutation without AgentGuard"
+  ],
+  "claim_boundary": "No logistics API call, order, payment, FQDN/Auth0 journey, production-money action, official conformance run, or later gate was executed."
+}

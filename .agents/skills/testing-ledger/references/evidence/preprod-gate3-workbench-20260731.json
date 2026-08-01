@@ -1,0 +1,215 @@
+{
+  "schema_version": 1,
+  "captured_at": "2026-08-01T04:25:23Z",
+  "gate": "preprod-gate3-logistics-workbench",
+  "verdict": "pass",
+  "participant": {
+    "subscriber_id": "ondclbnp.aadharcha.in",
+    "subscriber_url": "https://ondclbnp.aadharcha.in/ondc",
+    "domain": "ONDC:LOG10",
+    "version": "1.2.5",
+    "role": "BAP",
+    "use_case": "Logistics (P2P)",
+    "environment": "PRE-PRODUCTION",
+    "scope": "Immediate Delivery P2P forward lifecycle"
+  },
+  "authorization": {
+    "field": "message.order.tags.bap_terms.accept_bpp_terms",
+    "value": "yes",
+    "operator_authorized": true,
+    "authorized_at": "2026-08-01",
+    "boundary": "PreProd synthetic Workbench flow only"
+  },
+  "workbench": {
+    "session_id": "PafpxsF3NAoH3p1uvcHzr152Ec_j3pmT",
+    "flow_id": "IMMEDIATE_DELIVERY_FLOW",
+    "transaction_id": "900b80c1-72a6-430e-8e64-bed93d971a5b",
+    "current_step": "flow_complete",
+    "current_status": "COMPLETE",
+    "record_count": 15,
+    "all_records_ack": true,
+    "missed_steps": [],
+    "extra_steps": [],
+    "records": [
+      {
+        "action": "search",
+        "message_id": "7a62df5e-6939-47c0-860d-c645742dec96",
+        "payload_id": "31ef87a4-c774-4af9-8eb1-3f3678856346",
+        "response": "ACK"
+      },
+      {
+        "action": "on_search",
+        "message_id": "7a62df5e-6939-47c0-860d-c645742dec96",
+        "payload_id": "41c883ec-d966-4614-95b6-24b8967e2f08",
+        "response": "ACK"
+      },
+      {
+        "action": "init",
+        "message_id": "2a8accc6-f5d7-49fd-bec2-de48522a2349",
+        "payload_id": "28e8d164-c31a-43c7-bff7-e8afd65137dc",
+        "response": "ACK"
+      },
+      {
+        "action": "on_init",
+        "message_id": "2a8accc6-f5d7-49fd-bec2-de48522a2349",
+        "payload_id": "5b1d644f-b847-41c8-b1d9-4917dd958a68",
+        "response": "ACK"
+      },
+      {
+        "action": "confirm",
+        "message_id": "4ad7c77c-49f8-40ee-b47e-2db9e8f6226b",
+        "payload_id": "9298d568-9081-48c0-a44d-b62f3c3dff20",
+        "response": "ACK"
+      },
+      {
+        "action": "on_confirm",
+        "message_id": "4ad7c77c-49f8-40ee-b47e-2db9e8f6226b",
+        "payload_id": "9129a919-9c61-43a8-9c35-c99632e57fd8",
+        "response": "ACK"
+      },
+      {
+        "action": "update",
+        "message_id": "440b52d0-7e77-456c-ba32-2b2e2dd20005",
+        "payload_id": "65ba67b3-715e-432b-b287-f24b822d06b6",
+        "response": "ACK"
+      },
+      {
+        "action": "on_update",
+        "message_id": "440b52d0-7e77-456c-ba32-2b2e2dd20005",
+        "payload_id": "b825e28f-3057-4c1f-916e-18a3175ffc77",
+        "response": "ACK"
+      },
+      {
+        "action": "on_status",
+        "message_id": "b37d996b-c751-4e56-8702-7104ab184ade",
+        "payload_id": "0e245836-8e1c-45f3-8842-41e794661645",
+        "response": "ACK"
+      },
+      {
+        "action": "on_status",
+        "message_id": "87271187-3558-4139-8c77-e489fcea392f",
+        "payload_id": "437dd689-2eef-47d4-8987-4abc35b90ef2",
+        "response": "ACK"
+      },
+      {
+        "action": "on_status",
+        "message_id": "f83d5479-9dd6-4c54-afc3-611f96484bdb",
+        "payload_id": "9eedd0eb-cbbf-4615-bfe9-c9017d55359d",
+        "response": "ACK"
+      },
+      {
+        "action": "track",
+        "message_id": "c838753e-7b36-4333-bc15-d32a36e2237b",
+        "payload_id": "21a36cbf-7eeb-41d8-8be4-76d2a83ec679",
+        "response": "ACK"
+      },
+      {
+        "action": "on_track",
+        "message_id": "c838753e-7b36-4333-bc15-d32a36e2237b",
+        "payload_id": "5c877fc6-75f2-416b-bb03-c244fabf7c07",
+        "response": "ACK"
+      },
+      {
+        "action": "on_status",
+        "message_id": "bc753f90-e92f-49f1-af9b-2d42c82ec491",
+        "payload_id": "68c4c298-3e15-4aa7-b4e0-cb805d701a56",
+        "response": "ACK"
+      },
+      {
+        "action": "on_status",
+        "message_id": "cc408dcc-d4a2-4b2f-9439-b8b98f940ad6",
+        "payload_id": "5737843b-7749-4e1f-a47b-3b4327ef1bcd",
+        "response": "ACK"
+      }
+    ]
+  },
+  "public_callback_readback": {
+    "count": 10,
+    "all_core_version": "1.2.5",
+    "all_subscriber_id": "workbench.ondc.tech",
+    "all_signature_verified": true,
+    "inbox_ids": [
+      8668,
+      8669,
+      8860,
+      8861,
+      8862,
+      8863,
+      8864,
+      8866,
+      8867,
+      8868
+    ]
+  },
+  "defects_and_retests": [
+    {
+      "surface": "gateway LOG10 search validation",
+      "failure": "Workbench REQUIRED_MESSAGE_HOLIDAYS rejected an empty holidays array",
+      "fix": "Fail closed unless provider.time.schedule.holidays is a non-empty list of future ISO dates",
+      "regression": "tests/test_ondc_adapter.py -k logistics",
+      "result": "Full gateway suite 236 passed, 50 skipped; Ruff passed; public empty and past dates return 422"
+    },
+    {
+      "surface": "Workbench Immediate Delivery fixture",
+      "failure": "on_init generator called push on a missing fulfillment tags array",
+      "fix": "Corrected the test init from the official example with linked_provider tags",
+      "result": "init and on_init ACKed; no AadhaarChain product assertion changed"
+    },
+    {
+      "surface": "Workbench action-specific tag validation",
+      "failure": "The signed on_init rider_check tag is not valid in confirm",
+      "fix": "Derive confirm from signed callbacks but retain only tags allowed by the confirm action schema",
+      "result": "Official confirm validator ACKed before dispatch"
+    },
+    {
+      "surface": "testing-ledger offline validator",
+      "failure": "gateway_tests_present falsely failed when a root Git worktree omitted the intentionally ignored nested gateway checkout",
+      "fix": "Prefer current-root gateway tests and fall back only to another declared Git worktree, with a deterministic resolver self-test",
+      "result": "Self-test, offline grader, and testing-ledger validator passed"
+    }
+  ],
+  "deployment": {
+    "gateway_commit": "63df7ca73faa6096961d9cf1333bc9e2387f5770",
+    "render_deploy_id": "dep-d9mna2942hec73e3eq40",
+    "render_service_id": "srv-d7f256f41pts73f68660",
+    "render_service_plan": "free",
+    "render_status": "live",
+    "changed_files": [
+      "gateway/app/ondc_routes.py",
+      "gateway/tests/test_ondc_adapter.py"
+    ],
+    "public_reproof": {
+      "godaddy_cname_target": "identity-aadhar-gateway-main.onrender.com",
+      "https_status": 200,
+      "lbnp_status": 200,
+      "site_verification": 200,
+      "valid_on_subscribe_challenge": 200,
+      "on_subscribe_answer_matches": true,
+      "invalid_on_subscribe_challenge": 400,
+      "empty_holidays": 422,
+      "past_holidays": 422
+    }
+  },
+  "quality_gates": {
+    "gateway": "236 passed, 50 skipped",
+    "buyer": "201 passed; build passed",
+    "seller": "tests passed; build passed",
+    "portfolio_ci": "passed",
+    "ruff": "passed"
+  },
+  "blocker": null,
+  "not_run": [
+    "Gate 1 search rerun",
+    "real payment",
+    "real shipment",
+    "live customer data",
+    "production onboarding",
+    "report generation",
+    "later gate"
+  ],
+  "preserved_identities": [
+    "ondcbuyer.aadharcha.in Retail Buyer",
+    "ondcseller.aadharcha.in Retail Seller/ISN"
+  ],
+  "claim_boundary": "Gate 3 official PreProd Workbench Immediate Delivery forward-flow pass only; not production, certification, real shipment, or real payment"
+}

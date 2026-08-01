@@ -902,6 +902,48 @@ gate ran. Evidence:
 Unblock only by publishing an explicitly approved Seller item, then repeating
 one frozen-source signed search and requiring a non-empty correlated callback.
 
+## PreProd Gate 1 closure — 2026-07-25 21:32 UTC
+
+The explicitly approved `Sampoorna Whole Wheat Atta 1kg` listing was published
+through the deployed Seller catalog UI's AgentGuard
+`seller.catalog.publish` authority. The UI confirmed publication, and BPP
+status reported `published_item_count: 1`.
+
+Exactly one frozen-source signed `atta` search then ran against live gateway
+commit `5431307bf36bb8c906600b3ceea859efb34f9d44`. Transaction
+`00fda29f-947d-4e42-89b9-b98b38c96ad6` received registry `SUBSCRIBED`,
+gateway ACK, configured-Seller ACK, three delivered outbox records, and a
+correlated Seller-signed `on_search`. Its `ondc-network` catalog contained the
+approved item at INR 89 with 23 available. Gate 1 is **Pass**.
+
+The smoke helper exited 6 because it looked for `bpp_id` on provider-wrapper
+rows; the persisted callback context correctly identifies
+`ondcseller.aadharcha.in` and contains one item. This is a diagnostic helper
+false negative, not a missing callback. No order, payment, later gate,
+production ONDC, or official conformance claim was made. Evidence:
+[`preprod-gate1-search-20260725-213218.json`](evidence/preprod-gate1-search-20260725-213218.json).
+
+## PreProd Gate 2 logistics decision — 2026-07-26
+
+**Pass (decision scope only).** Current source exposes Retail
+`ONDC:RET10`/`1.2.0` with Buyer as BAP and Seller as BPP. It has no Logistics
+domain or public logistics mutation route; the existing negative route test
+keeps `/api/commerce-integrations/logistics/transitions` unregistered.
+
+The active decision is B2C Logistics `ONDC:LOG10` contract `1.2.5`, initially
+limited to one Immediate Delivery P2P forward-fulfilment lifecycle. The Seller
+NP becomes the Logistics Buyer NP (LBNP/BAP); an external Logistics Service
+Provider is BPP; the Buyer app remains the Retail BAP and reads only persisted
+tracking state. AgentGuard owns consequential-action authorization, CommerceV1
+owns order/fulfilment state, and the gateway owns server-side signed protocol
+transport. No parallel store or browser-held ONDC credential is permitted.
+
+P4 remains blocked until redacted Seller `ONDC:LOG10` BAP/LBNP registration and
+one approved PreProd LSP BPP lookup/version/feature record exist. No external
+logistics call, order, payment, FQDN/Auth0 journey, official conformance run, or
+later gate ran. Evidence:
+[`preprod-gate2-logistics-decision-20260726.json`](evidence/preprod-gate2-logistics-decision-20260726.json).
+
 ## CF2/CF3 FQDN customer campaign — 2026-07-25
 
 - Frozen public-surface fingerprint:
@@ -1017,3 +1059,166 @@ bundled-Chrome campaign.
 **Acceptance boundary:** final local visible Buyer, Seller, two-sided, and
 combined UX acceptance is complete. This does not claim deployment, production
 money, physical microphone proof, pilot completion, spend, or Milestone 9.
+
+## PreProd Gate 2 LBNP endpoint migration — 2026-07-26
+
+**Pass (public onboarding endpoint only).** Gateway commit `b3e81b2e...`
+adds dedicated subscriber `ondclbnp.aadharcha.in`: shared onboarding routes
+accept role `lbnp`, expose callback base
+`https://ondclbnp.aadharcha.in/ondc`, and report the frozen `ONDC:LOG10` /
+`1.2.5` / Immediate Delivery P2P forward-only contract. Retail Buyer/Seller
+application source, keys, catalog, callbacks, and Gate 1 evidence were not
+changed or rerun.
+
+The repository key generator produced a new gitignored Ed25519/X25519 pair.
+Public-key comparison proved both keys differ from Retail Seller. A discovered
+key-workflow defect wrote private PEMs as `0644`; the generator owner now
+creates and self-checks them at `0600`, and the new LBNP pair was corrected to
+`0600`. No private value was printed, committed, uploaded, or placed in portal
+state; no unique key ID was invented.
+
+CI-equivalent proof passed: gateway `233 passed / 50 skipped`, portfolio CI,
+and unchanged Buyer/Seller test+build. The real generated pair returned local
+LBNP status 200 and site verification 200; the deterministic regression
+completed a valid `/ondc/on_subscribe` challenge at 200 and rejected invalid
+input at 400.
+
+Exact deploy `dep-d9irpocm0tmc73a0st7g` is live on the existing Render Free
+gateway. `ondclbnp.aadharcha.in` is its second included custom domain; GoDaddy
+owns the CNAME to the verified Render target. Public DNS and TLS pass. Public
+status and site verification returned 200, and a valid deterministic
+`/ondc/on_subscribe` challenge returned 200 with a matching answer. Existing
+Retail Buyer/Seller status and site-verification probes remained 200.
+No portal action, registry/logistics protocol call, order, or payment occurred.
+Evidence:
+[`preprod-gate2-lbnp-endpoint-migration-20260726.json`](evidence/preprod-gate2-lbnp-endpoint-migration-20260726.json).
+
+**Single next action:** in a separately authorized portal gate, register
+`ondclbnp.aadharcha.in` against Logistics Buyer profile `15462-10220`, stopping
+at authentication, 1.b, legal, key-upload, and registry-mutation boundaries.
+
+## PreProd Gate 2 LBNP portal registration — 2026-07-26
+
+**Blocked before submission.** Profile `15462-10220` visibly reads Logistics
+(B2C), API v1.2, Buyer NP. The 1.a draft is PreProd,
+`ondclbnp.aadharcha.in`, `/ondc`, and `P2P - ONDC:LOG10`. Live/local public-key
+fingerprints match; site verification and a fresh valid challenge remain 200.
+
+The portal exposes no input for those existing public keys. Its only visible
+key path is `Click to generate & download below Key`, with a one-time save
+warning. Without using it, Raise Request produced no review/Submit state and
+List of Requests remained empty. Per the hard stop, no key was generated or
+downloaded; no 1.b, legal, portal request, registry/protocol, order, payment, or
+production action occurred. Retail Buyer/Seller identities were not opened or
+changed. Evidence:
+[`preprod-gate2-lbnp-portal-registration-20260726.json`](evidence/preprod-gate2-lbnp-portal-registration-20260726.json).
+
+**Single user action:** in the open portal draft, click the one-time key
+generation/download button and retain the file securely without sharing it in
+chat. Resume afterward to compare/rotate only the LBNP endpoint keys before
+submission.
+
+## PreProd Gate 3 Logistics conformance — 2026-07-26
+
+**Blocked after exact deployment and signed search/init proof.** Gateway commit
+`cde2242cb49fb6429766e253ef613f7ff5c083ae` is live as Render Free deploy
+`dep-d9iun27aqgkc73an2cpg`. Public DNS/TLS, LBNP status, site verification, and
+a valid challenge/answer all passed.
+
+Signed LOG10 transaction `AA79565B-3815-4D2E-A63A-D8CA8F9E70C5` received
+three registry-matched, signature-verified `on_search` callbacks at `1.2.5`.
+The official Pramaan mock and TapTap each ACKed `init` and returned
+signature-verified `on_init`, but neither supplied the mandatory
+`rider_check/inline_check_for_rider=yes` required by the current Immediate
+Delivery contract. The flow stopped before `confirm`; no update, status, track,
+payment, shipment, production, or legal action ran.
+
+Release friction was fixed at its owners: `.gitleaks.toml` now follows the
+canonical testing-ledger evidence path with a portfolio-deploy validator
+regression, and two PostgreSQL persistence test doubles accept the role-aware
+adapter contract. Full deployment graders passed before the exact CLI deploy.
+
+Portal 1.b remains visibly Pending with its operator attestation unchecked:
+[`preprod-gate3-portal-1b-blocked-20260726.jpg`](evidence/preprod-gate3-portal-1b-blocked-20260726.jpg).
+Full evidence:
+[`preprod-gate3-logistics-conformance-20260726.json`](evidence/preprod-gate3-logistics-conformance-20260726.json).
+
+**Single next action:** in the preserved ONDC portal tab, the operator must
+personally review task 1.b and, only if true, check `I have a working
+application with user interface as required` and click `Complete Task`. Resume
+the four `Verify your build`/Workbench tasks afterward; do not reuse either
+non-compliant `on_init` for `confirm`.
+
+## PreProd Gate 3 Workbench entry — 2026-07-31
+
+**Blocked before Workbench session creation.** The operator completed portal
+1.b. Authenticated readback showed 1.b Completed and exposed verification tasks
+2.a–2.d. Task 2.d opened the official ONDC Workbench; BAP and PRE-PRODUCTION
+were preselected and the dedicated subscriber URL was entered. Bundled Chrome
+control repeatedly timed out while selecting `ONDC:LOG10`, before version or
+use-case selection and before Submit. No Workbench session, report,
+observability token, or protocol call was created.
+
+**Single next action:** close only the stuck `ONDC Workbench` tab, keep the
+authenticated portal open, and reopen task 2.d. Continue with the existing
+subscriber, `ONDC:LOG10`, BAP, PRE-PRODUCTION, and portal-advertised
+version/use-case; preserve the fail-closed stop before `confirm` unless a new
+signature-verified `on_init` includes `inline_check_for_rider=yes`.
+
+## PreProd Gate 3 Workbench search/init — 2026-07-31
+
+**Blocked at an explicit legal boundary, not a protocol transport failure.**
+Official session `PafpxsF3NAoH3p1uvcHzr152Ec_j3pmT` is configured for
+`ONDC:LOG10` `1.2.5`, Logistics (P2P), BAP, PRE-PRODUCTION, Immediate Delivery.
+Corrected transaction `900b80c1-72a6-430e-8e64-bed93d971a5b` has Workbench ACK
+records for `search`, `on_search`, `init`, and `on_init`. Public inbox rows
+`8668` and `8669` independently identify `workbench.ondc.tech` and record
+`signature_verified: true` at `1.2.5`.
+
+The first correlated search exposed a mandatory non-empty future-dated
+`provider.time.schedule.holidays`; the gateway search owner now rejects missing
+or empty values, and the focused LOG10 regression passes. A first init fixture
+then exposed a Workbench generator assumption: omitting the official
+`linked_provider` fulfillment tags caused its `on_init` generator to throw
+before delivery. The corrected init preserved that official tag and completed
+with a signed callback. No product assertion was weakened to accommodate the
+failed fixture.
+
+The canonical testing-ledger validator also had a reproducible local false
+failure because root worktrees intentionally omit the ignored nested gateway
+checkout. The existing grader now prefers the current checkout and falls back
+only to another declared Git worktree. Its in-owner resolution self-test,
+offline grader, and testing-ledger validation all pass; CI behavior remains the
+same because CI checks the gateway out under the current root.
+
+Workbench now listens for `confirm`. Its official flow requires
+`message.order.tags.bap_terms.accept_bpp_terms=yes`; current authority excludes
+legal acceptance. No confirm, update, unsolicited status, track, payment,
+shipment, production, or report-generation action ran. Evidence:
+[`preprod-gate3-workbench-20260731.json`](evidence/preprod-gate3-workbench-20260731.json).
+
+**Single next action:** the operator must explicitly authorize or decline the
+PreProd mock `accept_bpp_terms=yes` field. If authorized, resume this exact
+transaction from its signed `on_init`; do not rerun search or init.
+
+## PreProd Gate 3 Workbench forward lifecycle — 2026-08-01
+
+**Pass.** The operator explicitly authorized the synthetic PreProd
+`accept_bpp_terms=yes` confirm field. Official session
+`PafpxsF3NAoH3p1uvcHzr152Ec_j3pmT`, transaction
+`900b80c1-72a6-430e-8e64-bed93d971a5b`, completed all 15 Immediate Delivery
+steps from the previously proven `on_init` through final unsolicited
+`on_status`. All Workbench records ACKed; missed and extra steps are empty.
+Public LBNP inbox readback contains 10 callbacks from `workbench.ondc.tech`,
+all at `1.2.5` with `signature_verified: true`.
+
+The reproducible holidays defect is fixed in exact gateway commit `63df7ca` and
+one deterministic regression. Gateway `236 passed / 50 skipped`, Buyer `201`
+tests plus build, Seller tests/build, portfolio CI, and Ruff passed. Render Free
+deploy `dep-d9mna2942hec73e3eq40` is live; GoDaddy CNAME, TLS, LBNP status,
+site verification, valid/invalid challenge, and public empty/past holiday 422
+proof passed. Evidence:
+[`preprod-gate3-workbench-20260731.json`](evidence/preprod-gate3-workbench-20260731.json).
+
+**Boundary:** no Gate 1 rerun, real shipment, real payment, production,
+report-generation, certification, or later gate. No in-scope blocker remains.

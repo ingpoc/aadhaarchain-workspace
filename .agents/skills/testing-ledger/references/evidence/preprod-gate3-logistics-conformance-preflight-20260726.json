@@ -1,0 +1,130 @@
+{
+  "evidence_id": "preprod-gate3-logistics-conformance-preflight-20260726",
+  "captured_at_utc": "2026-07-26T10:32:13Z",
+  "environment": "ONDC PreProd",
+  "result": "blocked",
+  "scope": "Gate 3 provider discovery, LOG10 1.2.5 pre-order proof, bounded local forward-lifecycle implementation, and official Workbench readiness only",
+  "official_contract": {
+    "title": "ONDC - API Contract for Logistics (v1.2.5)",
+    "document_id": "1vz1Iawvy4ucUAX1xo-BCNsvm-BZSJFeN80vgwjNI-kc",
+    "revision_id": "AIroW34HOAR6kRc7lPl3hBmUUWe7tNfz6Fh0xb8cwIqRgJNk-80UZdtBA0_1MJ204IlSUA7g8Ue4wMm5184LioA",
+    "domain": "ONDC:LOG10",
+    "core_version": "1.2.5",
+    "baseline_search": "Immediate Delivery, P2P by ONDC:LOG10, fulfillment.type=Delivery",
+    "baseline_pre_order_actions": [
+      "search",
+      "on_search",
+      "init",
+      "on_init",
+      "confirm",
+      "on_confirm"
+    ],
+    "immediate_delivery_forward_requirement": "LSP performs inline rider check in on_init; LBNP confirm carries order preparation estimate and ready_to_ship=yes; LBNP later sends order_ready=yes by update",
+    "compatibility_rule": "1.2.5 is side-by-side compatible with 1.2.0; a 1.2.0 response is accepted only after that BPP advertises 1.2.0, and 1.2.5 features are enabled only from discovery"
+  },
+  "provider_evidence": {
+    "official_registry_lookup": {
+      "http_status": 200,
+      "subscriber_id": "ondc.bringg.space",
+      "status": "SUBSCRIBED",
+      "type": "BPP",
+      "domain": "ONDC:LOG10",
+      "city": "*",
+      "country": "IND",
+      "subscriber_url": "https://ondc.bringg.space/",
+      "valid_from": "2026-06-14T05:55:51.606Z",
+      "valid_until": "2027-06-14T05:55:51.606Z"
+    },
+    "signed_search": {
+      "gateway_http_status": 200,
+      "gateway_ack": "ACK",
+      "transaction_id": "332b7622-458f-4855-8197-d1c331da4dfe",
+      "message_id": "8b7ad1b2-751e-4340-be10-85a6622a00e2",
+      "timestamp": "2026-07-26T10:16:50.593Z",
+      "bap_id": "ondclbnp.aadharcha.in",
+      "bap_uri": "https://ondclbnp.aadharcha.in/ondc",
+      "domain": "ONDC:LOG10",
+      "core_version": "1.2.5",
+      "test_payload": "1 kg non-dangerous Grocery parcel, Immediate Delivery, P2P, Bengaluru PreProd coordinates, no order/payment/shipment"
+    },
+    "correlated_on_search": {
+      "callback_count_for_transaction": 7,
+      "selected_bpp_id": "ondc.bringg.space",
+      "selected_bpp_uri": "https://ondc.bringg.space",
+      "callback_timestamp": "2026-07-26T10:16:51.834Z",
+      "core_version_advertised": "1.2.5",
+      "provider_id": "P1",
+      "provider_name": "LSP Courier Inc",
+      "forward_item_id": "I1",
+      "forward_item_code": "P2P",
+      "category": "Immediate Delivery",
+      "fulfillment_type": "Delivery",
+      "quote": {
+        "currency": "INR",
+        "value": "59.00"
+      },
+      "tat": "PT45M",
+      "enhanced_lsp_features_advertised": [],
+      "scope_selection": "I1 forward Delivery only; the separate RTO quote/fulfillment was not selected"
+    },
+    "claim_boundary": "The outgoing search was signed and the callbacks were transaction/message correlated. The currently deployed callback owner did not verify or durably record the inbound Authorization signature, so these callbacks are discovery evidence, not signed conformance proof."
+  },
+  "implementation": {
+    "checkout": "/Users/gurusharan/Documents/remote-claude/active/apps/AadhaarChainWorkspace/aadharchain",
+    "base_commit": "b3e81b2ebb29fd10d1a22ecb694d8b2c3953fbee",
+    "uncommitted_diff_sha256": "2e3dd5a3b56b1a8e1c2279a69f7baaf84e648e37f3b357123d7ef17b0f24c868",
+    "changed_owners": [
+      "gateway/app/ondc_crypto.py",
+      "gateway/app/ondc_routes.py",
+      "gateway/tests/test_ondc_adapter.py"
+    ],
+    "behavior": [
+      "Dedicated /api/ondc/logistics search/init/confirm/update/status/track routes use only the LBNP identity and keys",
+      "LOG10 is fixed to 1.2.5, Immediate Delivery, P2P forward scope; Retail select and non-Delivery scope fail closed",
+      "Existing durable outbox/inbox transport is reused",
+      "Durable outbox retries derive their signer from the envelope domain so LOG10 retries remain LBNP-signed",
+      "LOG10 callbacks require a current SUBSCRIBED BPP registry record and a matching Ed25519 Authorization signature before ACK/persistence",
+      "A 1.2.0 post-search callback is accepted only after the same BPP advertised 1.2.0 in a correlated on_search",
+      "Third-party registry lookup no longer injects the caller's unique key ID"
+    ],
+    "commerce_v1_boundary": "No CommerceV1 mutation was added: this conformance flow uses protocol test orders only and must not mutate a real/demo retail order or create a second fulfilment owner.",
+    "fail_before": [
+      "The dedicated LOG10 route regression returned HTTP 404",
+      "Third-party lookup injected the Buyer caller key ID and the registry returned NACK 15045 no matching participant"
+    ],
+    "pass_after": [
+      "Dedicated LOG10 regression passed with the LBNP key/domain/version and unsupported select/non-Immediate scope rejected",
+      "Registry-matched callback signature passes and a body tamper NACKs with HTTP 401",
+      "Gateway pytest: 236 passed, 50 skipped",
+      "ONDC focused pytest: 12 passed, 15 skipped",
+      "Black check and git diff check passed"
+    ]
+  },
+  "portal_state": {
+    "profile": "15462-10220",
+    "role": "Logistics (B2C) Buyer NP",
+    "api_label": "v 1.2",
+    "task_1a": "Completed",
+    "task_1b": "Pending",
+    "task_1b_checkbox": "I have a working application with user interface as required",
+    "task_1b_operator_attestation_checked": false,
+    "screenshot": "preprod-gate3-portal-1b-blocked-20260726.jpg",
+    "verify_your_build": "4 Task(s) Pending",
+    "workbench_banner": "ONDC Protocol Workbench replaces Pramaan for protocol testing, compliance validation, and report generation",
+    "official_workbench_registry_record": "workbench.ondc.tech is SUBSCRIBED as ONDC:LOG10 BPP, but no portal Workbench plan/session is available before the 1.b boundary"
+  },
+  "external_mutations": {
+    "preprod_search": true,
+    "preprod_order_or_payment": false,
+    "real_shipment": false,
+    "portal_task_1b": false,
+    "legal_acceptance": false,
+    "production": false,
+    "commit": false,
+    "push": false,
+    "deploy": false
+  },
+  "blocker": "The verified LOG10 implementation exists only as an uncommitted local diff. Official callback-signature proof and Workbench lifecycle testing require that exact diff to be committed, pushed, and deployed. Portal task 1.b is also an explicit operator attestation and remains untouched.",
+  "single_next_action": "Authorize commit, push, and Render deployment of the exact gateway diff SHA-256 2e3dd5a3b56b1a8e1c2279a69f7baaf84e648e37f3b357123d7ef17b0f24c868 from base b3e81b2ebb29fd10d1a22ecb694d8b2c3953fbee. After public re-proof, the operator can personally review and complete 1.b before Workbench conformance.",
+  "claim_boundary": "Gate 3 has not passed. Provider discovery and local implementation passed; no signed inbound callback proof under the new verifier, Workbench report, 1.b completion, logistics order lifecycle, payment, shipment, production, or later-gate claim exists."
+}

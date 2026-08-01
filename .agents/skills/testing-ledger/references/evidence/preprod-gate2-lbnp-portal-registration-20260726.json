@@ -1,0 +1,98 @@
+{
+  "captured_at_utc": "2026-07-26T09:50:17Z",
+  "result": "pass",
+  "scope": "ONDC portal PreProd environment-access registration for the dedicated LOG10 LBNP identity only",
+  "live_prerequisites": {
+    "subscriber_id": "ondclbnp.aadharcha.in",
+    "subscriber_url": "https://ondclbnp.aadharcha.in/ondc",
+    "gateway_commit": "b3e81b2ebb29fd10d1a22ecb694d8b2c3953fbee",
+    "render_deploy_id": "dep-d9itdcjeo5us73ag2v30",
+    "status_role": "lbnp",
+    "status_domain": "ONDC:LOG10",
+    "status_protocol_target": "1.2.5",
+    "status_unique_key_id": "9e7388f4-c68e-4006-ac5a-e7517382999f",
+    "keys_source": "portal-download",
+    "dns_addresses": [
+      "216.24.57.7",
+      "216.24.57.15"
+    ],
+    "tls": "pass",
+    "site_verification_http": 200,
+    "on_subscribe_http": 200,
+    "on_subscribe_answer_matches": true,
+    "private_key_modes": {
+      "signing": "0600",
+      "encryption": "0600"
+    },
+    "portal_encoded_public_key_fingerprints_sha256": {
+      "signing_raw": "b4af3f0e64b5c16ee4b234d28e1b06d2d4ae934bbee22c676e8668ce0ff54e2d",
+      "encryption_der_spki": "78d884b2c9d15be963bd8a8cf346ee7e4cd862cac42c04f89ac38e5c1926f809"
+    },
+    "local_and_live_public_key_fingerprints_match": true
+  },
+  "portal_readback": {
+    "organization_id": "15462",
+    "organization_name": "GURUSHARAN GUPTA HUF",
+    "profile_id": "15462-10220",
+    "profile_domain": "Logistics (B2C)",
+    "profile_api_version": "v 1.2",
+    "profile_role": "Buyer NP",
+    "profile_status": "Integration in Progress",
+    "task": "1.a Provide your pre-production environment details",
+    "registry": "PreProd",
+    "modal_subscriber_id": "ondclbnp.aadharcha.in",
+    "modal_subscriber_url": "/ondc",
+    "rendered_subscriber_url": "https://ondclbnp.aadharcha.in/ondc",
+    "modal_registry_domain": "P2P - ONDC:LOG10",
+    "select_all_cities": true,
+    "unique_key_id": "9e7388f4-c68e-4006-ac5a-e7517382999f",
+    "visible_public_key_fingerprints_match_live": true,
+    "existing_public_key_input_visible": false,
+    "one_time_key_action_visible": "Click to generate & download below Key",
+    "one_time_key_warning_visible": "Please save the key, as you will not be able to generate this again",
+    "list_of_requests_before_submit": "No Configuration added",
+    "raise_request_result": "Raise Request modal opened; required fields, generated keys, and selections read back; Submit enabled and left untouched for the operator",
+    "submit_enabled": true,
+    "submit_clicked_by_agent": false,
+    "submit_clicked_by_operator": true,
+    "task_1a_status_after_reload": "Completed",
+    "task_1a_completed_at_portal": "26/07/2026 03:15 PM",
+    "list_of_requests_after_reload": "No Configuration added",
+    "empty_request_list_interpretation": "portal display defect; superseded by authoritative registry SUBSCRIBED readback",
+    "protocol_workbench_banner": "ONDC Protocol Workbench is replacing Pramaan for later protocol testing, compliance validation, and report generation",
+    "task_1b_attestation_checked": false
+  },
+  "registry_readback": {
+    "lookup_count": 1,
+    "http_status": 200,
+    "registry_url": "https://preprod.registry.ondc.org/v2.0/lookup",
+    "subscriber_id": "ondclbnp.aadharcha.in",
+    "status": "SUBSCRIBED",
+    "unique_key_id": "9e7388f4-c68e-4006-ac5a-e7517382999f",
+    "subscriber_url": "https://ondclbnp.aadharcha.in/ondc",
+    "country": "IND",
+    "domain": "ONDC:LOG10",
+    "type": "BAP",
+    "city": "*",
+    "public_keys_match_portal_and_live": true
+  },
+  "external_mutations": {
+    "portal_submit": true,
+    "portal_key_generation_or_download": true,
+    "portal_key_generation_actor": "operator",
+    "render_env_rotation": true,
+    "render_deploy": true,
+    "task_1b_attestation": false,
+    "legal_acceptance": false,
+    "registry_lookup_read_only": true,
+    "logistics_protocol_call": false,
+    "order_or_payment_call": false
+  },
+  "preserved_identities": [
+    "ondcbuyer.aadharcha.in Retail Buyer",
+    "ondcseller.aadharcha.in Retail Seller/ISN"
+  ],
+  "blocker": null,
+  "single_next_action": "Stop this gate. Task 1.b and Protocol Workbench verification are later gates and require separate authorization/operator evidence.",
+  "claim_boundary": "Dedicated Logistics Buyer/LBNP PreProd registration only: portal task 1.a completed and the authoritative registry returned SUBSCRIBED. No 1.b, Workbench protocol testing, logistics lifecycle, order, payment, production, legal, official conformance, or later-gate claim."
+}

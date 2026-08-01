@@ -24,6 +24,7 @@ import json
 import re
 import subprocess
 import sys
+import tempfile
 import time
 import urllib.error
 import urllib.request
@@ -32,6 +33,52 @@ from pathlib import Path
 from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
+
+
+def _git_worktree_roots(root: Path) -> list[Path]:
+    completed = subprocess.run(
+        ["git", "worktree", "list", "--porcelain"],
+        cwd=root,
+        check=False,
+        text=True,
+        capture_output=True,
+    )
+    if completed.returncode:
+        return []
+    return [
+        Path(line.removeprefix("worktree "))
+        for line in completed.stdout.splitlines()
+        if line.startswith("worktree ")
+    ]
+
+
+def _gateway_tests(root: Path, worktrees: list[Path] | None = None) -> tuple[Path, str]:
+    roots = [root, *(worktrees if worktrees is not None else _git_worktree_roots(root))]
+    for candidate_root in dict.fromkeys(path.resolve() for path in roots):
+        tests = candidate_root / "aadharchain" / "gateway" / "tests"
+        if tests.is_dir() and any(tests.glob("test_*.py")):
+            return tests, "current" if candidate_root == root.resolve() else "git-worktree"
+    return root / "aadharchain" / "gateway" / "tests", "missing"
+
+
+def _self_test() -> int:
+    with tempfile.TemporaryDirectory(prefix="ondc-ci-graders-") as directory:
+        base = Path(directory)
+        current = base / "current"
+        primary = base / "primary"
+        current.mkdir()
+        test_file = primary / "aadharchain" / "gateway" / "tests" / "test_ondc.py"
+        test_file.parent.mkdir(parents=True)
+        test_file.write_text("def test_placeholder(): pass\n", encoding="utf-8")
+        resolved, source = _gateway_tests(current, [current, primary])
+        assert resolved == test_file.parent.resolve() and source == "git-worktree"
+        local_test = current / "aadharchain" / "gateway" / "tests" / "test_local.py"
+        local_test.parent.mkdir(parents=True)
+        local_test.write_text("def test_placeholder(): pass\n", encoding="utf-8")
+        resolved, source = _gateway_tests(current, [primary])
+        assert resolved == local_test.parent.resolve() and source == "current"
+    print(json.dumps({"ok": True, "self_test": "gateway-tests-worktree-resolution"}))
+    return 0
 
 
 def _fetch(
@@ -124,16 +171,18 @@ def grade_offline() -> list[dict[str, Any]]:
             }
         )
 
-    # Local unit tests already cover AgentGuard; assert gateway test file present
-    ag_tests = ROOT / "aadharchain" / "gateway" / "tests"
-    has_ag = ag_tests.is_dir() and any(ag_tests.glob("test_*agentguard*.py")) or any(
-        ag_tests.glob("test_*.py")
-    ) if ag_tests.is_dir() else False
+    # CI checks out the ignored nested gateway into ROOT; local Git worktrees
+    # reuse the primary worktree's independent nested checkout.
+    ag_tests, ag_tests_source = _gateway_tests(ROOT)
+    has_ag = ag_tests.is_dir() and any(ag_tests.glob("test_*.py"))
     rows.append(
         {
             "id": "gateway_tests_present",
-            "ok": bool(ag_tests.is_dir()),
-            "detail": f"tests_dir={ag_tests.is_dir()} sample={has_ag}",
+            "ok": has_ag,
+            "detail": (
+                f"tests_dir={ag_tests.is_dir()} sample={has_ag} "
+                f"source={ag_tests_source}"
+            ),
         }
     )
 
@@ -405,12 +454,16 @@ def main() -> int:
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("--offline", action="store_true", help="PR-blocking local graders")
     p.add_argument("--live", action="store_true", help="FQDN/gateway HTTP graders")
+    p.add_argument("--self-test", action="store_true", help="Run deterministic grader checks")
     p.add_argument("--soft", action="store_true", help="Live: warn-only on fail (exit 0)")
     p.add_argument("--hard", action="store_true", help="Live: fail closed")
     p.add_argument("--gateway", default="https://gateway.aadharcha.in")
     p.add_argument("--buyer", default="https://ondcbuyer.aadharcha.in")
     p.add_argument("--seller", default="https://ondcseller.aadharcha.in")
     args = p.parse_args()
+
+    if args.self_test:
+        return _self_test()
 
     if not args.offline and not args.live:
         args.offline = True

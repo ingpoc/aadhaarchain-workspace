@@ -107,8 +107,9 @@ def _missing_needles(text: str, needles: tuple[str, ...]) -> list[str]:
 
 
 # Landed 2026-08-19 P0 regression names/assertions. Emptying or deleting these
-# tests must fail the offline grader. Buyer: ondc-buyer#8. Seller: ondc-seller#8.
-# Gateway: aadhaar-chain#7 (fail closed until that tree is on main).
+# tests must fail the offline grader. Buyer: ondc-buyer#9 (guest cart).
+# Seller: ondc-seller#8. Gateway: aadhaar-chain#7 (fail closed until that tree
+# is on main).
 BUYER_P0_TEST_GLOBS = ("*.test.ts", "*.test.tsx", "*.spec.ts", "*.spec.tsx")
 SELLER_P0_TEST_GLOBS = BUYER_P0_TEST_GLOBS
 GATEWAY_P0_TEST_GLOBS = ("test_*.py",)
@@ -121,7 +122,8 @@ BUYER_P0_NEEDLES = (
     "/ensure",
     "/resume",
     "does not silently drop a guest add",
-    "shows a sign-in notice instead of a silent no-op",
+    "guest cart survives /cart",
+    "added to cart. Sign in to check out.",
     "Sign in to check out.",
     "collapses a duplicated state value instead of showing KarnatakaKarnataka",
     "does not navigate away for guests or after items were already present",
@@ -166,7 +168,7 @@ GATEWAY_P0_HINT = (
 )
 BUYER_P0_HINT = (
     "buyer_p0_regression_tests_missing - need ondcbuyer tests from "
-    "https://github.com/ingpoc/ondc-buyer/pull/8"
+    "https://github.com/ingpoc/ondc-buyer/pull/9"
 )
 SELLER_P0_HINT = (
     "seller_p0_regression_tests_missing - need ondcseller tests from "

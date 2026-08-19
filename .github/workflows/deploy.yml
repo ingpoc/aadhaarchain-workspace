@@ -12,8 +12,10 @@
 #   hit GitHub OAuth / Security Checkpoint). Ship with this CLI workflow only.
 #   Do NOT target hyphen twins `ondc-buyer` / `ondc-seller` — those historically
 #   kept the custom domains while --prod landed on the no-hyphen vercel.app
-#   aliases. After each Buyer/Seller --prod, index-*.js on vercel.app AND the
-#   public FQDN must match or this workflow fails. HTTP 200 is not enough.
+#   aliases. After each Buyer/Seller --prod, index-*.js on the Hobby aliases
+#   ondcbuyer.vercel.app / ondcseller.vercel.app AND the public FQDN must
+#   match or this workflow fails. HTTP 200 is not enough. Unique DEPLOY_URL
+#   (*-ingpocs-projects.vercel.app) is logged only; that host is not the SPA.
 #
 # Render gateway: identity-aadhar-gateway-main, autoDeploy off, Free. Stay Free.
 #
@@ -281,12 +283,10 @@ jobs:
             | tee /tmp/buyer-deploy.json
           DEPLOY_URL="$(python3 "$GITHUB_WORKSPACE/scripts/ondc_ci_graders.py" --print-deploy-url /tmp/buyer-deploy.json)"
           echo "Buyer production deployment: ${DEPLOY_URL}"
+          # Unique DEPLOY_URL is not the SPA. Fail-closed parity is Hobby alias vs FQDN.
           python3 "$GITHUB_WORKSPACE/scripts/ondc_ci_graders.py" --bundle-parity \
-            --buyer-production "$DEPLOY_URL" \
-            --buyer "${BUYER_URL}" \
-            --parity-id buyer_vercel_app_vs_fqdn \
-            --parity-from "${BUYER_VERCEL_APP}" \
-            --parity-to "${BUYER_URL}"
+            --buyer-production "${BUYER_VERCEL_APP}" \
+            --buyer "${BUYER_URL}"
 
   deploy-seller:
     name: Deploy Vercel Seller
@@ -344,12 +344,10 @@ jobs:
             | tee /tmp/seller-deploy.json
           DEPLOY_URL="$(python3 "$GITHUB_WORKSPACE/scripts/ondc_ci_graders.py" --print-deploy-url /tmp/seller-deploy.json)"
           echo "Seller production deployment: ${DEPLOY_URL}"
+          # Unique DEPLOY_URL is not the SPA. Fail-closed parity is Hobby alias vs FQDN.
           python3 "$GITHUB_WORKSPACE/scripts/ondc_ci_graders.py" --bundle-parity \
-            --seller-production "$DEPLOY_URL" \
-            --seller "${SELLER_URL}" \
-            --parity-id seller_vercel_app_vs_fqdn \
-            --parity-from "${SELLER_VERCEL_APP}" \
-            --parity-to "${SELLER_URL}"
+            --seller-production "${SELLER_VERCEL_APP}" \
+            --seller "${SELLER_URL}"
 
   post-probe:
     name: Post-deploy probes

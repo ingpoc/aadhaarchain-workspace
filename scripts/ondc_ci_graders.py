@@ -24,7 +24,10 @@ Examples:
 
 No secrets. Does not flip VITE_COMMERCE_DEMO_MODE. No UPI/prod order claims.
 Bundle parity is fail-closed on Portfolio Deploy: HTTP 200 on the FQDN is not
-enough if the custom domain still serves a different index-*.js than production.
+enough if the custom domain still serves a different index-*.js than the Hobby
+alias (ondcbuyer.vercel.app / ondcseller.vercel.app). Unique
+*-ingpocs-projects.vercel.app hosts from `vercel deploy --format=json` are not
+the SPA; missing index-*.js there is skip/warn, never FQDN-mismatch.
 """
 from __future__ import annotations
 
@@ -38,6 +41,7 @@ import sys
 import tempfile
 import time
 import urllib.error
+import urllib.parse
 import urllib.request
 import uuid
 from pathlib import Path
@@ -397,6 +401,69 @@ def _self_test_bundle_parity() -> None:
         assert not grade_vercel_project_identity(path, "seller")["ok"]
         missing = grade_vercel_project_identity(path.parent / "missing.json", "buyer")
         assert not missing["ok"]
+    unique_buyer = "https://ondcbuyer-2purdphem-ingpocs-projects.vercel.app"
+    unique_seller = "https://ondcseller-8mt0uojmr-ingpocs-projects.vercel.app"
+    assert is_unique_vercel_app_host(unique_buyer)
+    assert is_unique_vercel_app_host(unique_seller)
+    assert not is_unique_vercel_app_host("https://ondcbuyer.vercel.app")
+    assert not is_unique_vercel_app_host("https://ondcseller.vercel.app")
+    assert not is_unique_vercel_app_host("https://ondcbuyer.aadharcha.in")
+    assert production_alias_for(unique_buyer, "buyer") == CANONICAL_VERCEL_APP["buyer"]
+    assert production_alias_for(unique_seller, "seller") == CANONICAL_VERCEL_APP["seller"]
+    assert production_alias_for(unique_buyer) == CANONICAL_VERCEL_APP["buyer"]
+    left, note = resolve_bundle_parity_left(unique_buyer, "buyer")
+    assert left == CANONICAL_VERCEL_APP["buyer"] and "not the SPA" in note
+    left, note = resolve_bundle_parity_left(unique_seller, "seller")
+    assert left == CANONICAL_VERCEL_APP["seller"] and "not the SPA" in note
+    left, note = resolve_bundle_parity_left(CANONICAL_VERCEL_APP["buyer"], "buyer")
+    assert left == CANONICAL_VERCEL_APP["buyer"] and note == ""
+    geist = '<html class="geist"><div data-dpl-id="dpl_x"></div></html>'
+    assert extract_index_bundle(geist) is None
+    requested = [
+        (
+            "buyer_index_bundle_parity",
+            unique_buyer,
+            CANONICAL_PUBLIC_FQDN["buyer"],
+            "buyer",
+        ),
+        (
+            "buyer_vercel_app_vs_fqdn",
+            CANONICAL_VERCEL_APP["buyer"],
+            CANONICAL_PUBLIC_FQDN["buyer"],
+            "buyer",
+        ),
+        (
+            "seller_index_bundle_parity",
+            unique_seller,
+            CANONICAL_PUBLIC_FQDN["seller"],
+            "seller",
+        ),
+    ]
+    pairs, notes = build_bundle_parity_pairs(requested)
+    assert pairs == [
+        (
+            "buyer_index_bundle_parity",
+            CANONICAL_VERCEL_APP["buyer"],
+            CANONICAL_PUBLIC_FQDN["buyer"],
+            "buyer",
+        ),
+        (
+            "seller_index_bundle_parity",
+            CANONICAL_VERCEL_APP["seller"],
+            CANONICAL_PUBLIC_FQDN["seller"],
+            "seller",
+        ),
+    ]
+    assert all(row["ok"] and row.get("skipped") for row in notes)
+    assert all("not the SPA" in row["detail"] for row in notes)
+    unknown = "https://random-hash-ingpocs-projects.vercel.app"
+    left, note = resolve_bundle_parity_left(unknown)
+    assert left == "" and "not an FQDN mismatch" in note
+    unknown_pairs, unknown_notes = build_bundle_parity_pairs(
+        [("index_bundle_parity", unknown, CANONICAL_PUBLIC_FQDN["buyer"], "")]
+    )
+    assert unknown_pairs == []
+    assert unknown_notes and unknown_notes[0]["ok"] and unknown_notes[0].get("skipped")
 
 
 def _fetch(
@@ -488,6 +555,86 @@ def extract_index_bundle(html: str) -> str | None:
     return match.group(1) if match else None
 
 
+def hostname_of(url: str) -> str:
+    return (urllib.parse.urlparse(normalize_http_url(url)).hostname or "").lower()
+
+
+def canonical_vercel_app_hosts() -> set[str]:
+    return {hostname_of(url) for url in CANONICAL_VERCEL_APP.values()}
+
+
+def is_unique_vercel_app_host(url: str) -> bool:
+    host = hostname_of(url)
+    return host.endswith(".vercel.app") and host not in canonical_vercel_app_hosts()
+
+
+def production_alias_for(url: str, role: str = "") -> str:
+    if role in CANONICAL_VERCEL_APP:
+        return CANONICAL_VERCEL_APP[role]
+    host = hostname_of(url)
+    for candidate, alias in CANONICAL_VERCEL_APP.items():
+        expected = EXPECTED_VERCEL_PROJECT[candidate]
+        if host == hostname_of(alias) or host.startswith(expected + "-"):
+            return alias
+    return ""
+
+
+def resolve_bundle_parity_left(url: str, role: str = "") -> tuple[str, str]:
+    """Map unique vercel.app deploy hosts to the Hobby alias.
+
+    Unique *-ingpocs-projects.vercel.app URLs are not the SPA. Return
+    (fail_closed_left, skip_or_remap_note). Empty left means skip only.
+    """
+    normalized = normalize_http_url(url)
+    if not normalized:
+        return "", ""
+    if not is_unique_vercel_app_host(normalized):
+        return normalized, ""
+    alias = production_alias_for(normalized, role)
+    if alias and not is_unique_vercel_app_host(alias):
+        return alias, (
+            f"skip/warn: unique vercel.app host {normalized} is not the SPA "
+            f"(missing assets/index-*.js is not an FQDN mismatch); "
+            f"comparing Hobby alias {alias}"
+        )
+    return "", (
+        f"skip/warn: unique vercel.app host {normalized} is not the SPA; "
+        "cannot infer Hobby alias — not an FQDN mismatch"
+    )
+
+
+def build_bundle_parity_pairs(
+    requested: list[tuple[str, str, str, str]],
+) -> tuple[list[tuple[str, str, str, str]], list[dict[str, Any]]]:
+    """Dedupe fail-closed pairs and emit skip/warn rows for unique deploy hosts.
+
+    requested items are (check_id, left_url, right_url, role).
+    """
+    pairs: list[tuple[str, str, str, str]] = []
+    notes: list[dict[str, Any]] = []
+    seen: set[tuple[str, str]] = set()
+    for check_id, left_url, right_url, role in requested:
+        left, note = resolve_bundle_parity_left(left_url, role)
+        if note:
+            notes.append(
+                {
+                    "id": f"{check_id}_unique_host_skipped",
+                    "ok": True,
+                    "skipped": True,
+                    "detail": note,
+                }
+            )
+        if not left:
+            continue
+        right = normalize_http_url(right_url)
+        key = (left, right)
+        if key in seen:
+            continue
+        seen.add(key)
+        pairs.append((check_id, left, right, role))
+    return pairs, notes
+
+
 def normalize_http_url(url: str) -> str:
     text = (url or "").strip()
     if not text:
@@ -568,11 +715,19 @@ def grade_index_bundle_parity(
     left_url: str,
     right_url: str,
     *,
+    role: str = "",
     attempts: int = 8,
     sleep_seconds: float = 8,
 ) -> dict[str, Any]:
-    left = normalize_http_url(left_url)
+    left, remap_note = resolve_bundle_parity_left(left_url, role)
     right = normalize_http_url(right_url)
+    if not left:
+        return {
+            "id": check_id,
+            "ok": True,
+            "skipped": True,
+            "detail": remap_note or "skip/warn: unique vercel.app host is not the SPA",
+        }
     last_detail = "parity not attempted"
     for attempt in range(attempts):
         left_code, left_html, _ = _fetch(
@@ -594,6 +749,8 @@ def grade_index_bundle_parity(
             f"right={right} http={right_code} bundle={right_bundle} "
             f"attempts={attempt + 1}"
         )
+        if remap_note:
+            last_detail = f"{last_detail} {remap_note}"
         if matched:
             return {"id": check_id, "ok": True, "detail": last_detail}
         if attempt < attempts - 1:
@@ -606,12 +763,19 @@ def grade_index_bundle_parity(
 
 
 def grade_bundle_parity_pairs(
-    pairs: list[tuple[str, str, str]],
+    pairs: list[tuple[str, str, str]] | list[tuple[str, str, str, str]],
 ) -> list[dict[str, Any]]:
-    return [
-        grade_index_bundle_parity(check_id, left_url, right_url)
-        for check_id, left_url, right_url in pairs
-    ]
+    rows: list[dict[str, Any]] = []
+    for item in pairs:
+        if len(item) == 4:
+            check_id, left_url, right_url, role = item
+        else:
+            check_id, left_url, right_url = item
+            role = ""
+        rows.append(
+            grade_index_bundle_parity(check_id, left_url, right_url, role=role)
+        )
+    return rows
 
 
 def grade_protocol_search(gw: str, by: str, sl: str) -> list[dict[str, Any]]:
@@ -960,7 +1124,7 @@ def main() -> int:
     p.add_argument(
         "--bundle-parity",
         action="store_true",
-        help="Compare assets/index-*.js between vercel.app production and public FQDN",
+        help="Compare assets/index-*.js between Hobby vercel.app alias and public FQDN",
     )
     p.add_argument(
         "--vercel-project-identity",
@@ -979,12 +1143,12 @@ def main() -> int:
     p.add_argument(
         "--buyer-production",
         default="",
-        help="Buyer vercel.app or unique --prod deployment URL",
+        help="Buyer Hobby alias (https://ondcbuyer.vercel.app). Unique deploy URLs are remapped.",
     )
     p.add_argument(
         "--seller-production",
         default="",
-        help="Seller vercel.app or unique --prod deployment URL",
+        help="Seller Hobby alias (https://ondcseller.vercel.app). Unique deploy URLs are remapped.",
     )
     p.add_argument("--self-test", action="store_true", help="Run deterministic grader checks")
     p.add_argument("--soft", action="store_true", help="Live/parity: warn-only on fail (exit 0)")
@@ -1039,32 +1203,43 @@ def main() -> int:
         report["checks"].extend(live_rows)
     parity_ids: set[str] = set()
     if args.bundle_parity:
-        pairs: list[tuple[str, str, str]] = []
+        requested: list[tuple[str, str, str, str]] = []
         if args.parity_from and args.parity_to:
-            pairs.append((args.parity_id, args.parity_from, args.parity_to))
+            requested.append((args.parity_id, args.parity_from, args.parity_to, ""))
         if args.buyer_production:
-            pairs.append(
-                ("buyer_index_bundle_parity", args.buyer_production, args.buyer)
+            requested.append(
+                ("buyer_index_bundle_parity", args.buyer_production, args.buyer, "buyer")
             )
         if args.seller_production:
-            pairs.append(
-                ("seller_index_bundle_parity", args.seller_production, args.seller)
+            requested.append(
+                (
+                    "seller_index_bundle_parity",
+                    args.seller_production,
+                    args.seller,
+                    "seller",
+                )
             )
-        if not pairs:
-            pairs = [
+        if not requested:
+            requested = [
                 (
                     "buyer_index_bundle_parity",
                     CANONICAL_VERCEL_APP["buyer"],
                     args.buyer,
+                    "buyer",
                 ),
                 (
                     "seller_index_bundle_parity",
                     CANONICAL_VERCEL_APP["seller"],
                     args.seller,
+                    "seller",
                 ),
             ]
+        pairs, skip_notes = build_bundle_parity_pairs(requested)
+        for row in skip_notes:
+            print(f"WARN: {row['detail']}", file=sys.stderr)
+        report["checks"].extend(skip_notes)
         parity_rows = grade_bundle_parity_pairs(pairs)
-        parity_ids = {row["id"] for row in parity_rows}
+        parity_ids = {row["id"] for row in parity_rows if not row.get("skipped")}
         report["checks"].extend(parity_rows)
 
     failed = [c for c in report["checks"] if not c.get("ok")]

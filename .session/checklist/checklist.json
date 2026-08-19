@@ -3,7 +3,7 @@
   "project": "AgentGuard",
   "title": "Production launch checklist",
   "warning": "Repository evidence proves code and captured acceptance only. The 2026-08-17 authenticated portal readback is point-in-time UI evidence; payment and production states still require current authoritative proof and separate operator authorization.",
-  "current_blocker": "A4 remains blocked. Buyer/Seller/LBNP Production 1.a modal pairs are materialized locally with Unique Key IDs captured from Raise Request modal UI. keep-both Buyer local draft. Submit, PEM-to-Render, DNS, and registry remain unauthorized. GSTIN still blocks production registry. 2026-08-19 public P0s shipped on FQDNs and do not unblock registry Submit/PEM/DNS.",
+  "current_blocker": "A4 remains blocked. Buyer/Seller/LBNP Production 1.a modal pairs are materialized locally with Unique Key IDs captured from Raise Request modal UI. keep-both Buyer local draft. Submit, PEM-to-Render, DNS, and registry remain unauthorized. GSTIN still blocks production registry. 2026-08-19 public P0s plus live store-setup form and sticky pause are proved on FQDNs and do not unblock registry Submit/PEM/DNS.",
   "operator_decisions": [
     {
       "id": "A4-20260817-01",
@@ -221,12 +221,23 @@
       ],
       "in_force": true,
       "completes_item": false
+    },
+    {
+      "id": "C4-20260819-02",
+      "checklist_id": "C4",
+      "decided_at": "2026-08-19T15:35:00+05:30",
+      "summary": "Record 2026-08-19 live store-setup form and sticky pause proofs; C4 stays pending. No Submit/PEM/DNS, no Auth0 cutover, no PSP.",
+      "choice_ids": [
+        "record-store-pause-live-proofs-c4-pending"
+      ],
+      "in_force": true,
+      "completes_item": false
     }
   ],
   "go_live_path": {
-    "updated_at": "2026-08-19T14:48:00+05:30",
+    "updated_at": "2026-08-19T15:35:00+05:30",
     "updated_by": "agent",
-    "reason": "2026-08-19 public P0s on FQDNs (guest cart, seller order 7BA6FE24, refund over-amount guard, Hobby-vs-FQDN hash parity, checklist skill on main). C4 still pending (live store-setup re-proof, pause auto-resume, official current-source release proof). A5-20260817-03 no-cutover still in force. First agent-owned item remains A5. A4 still parallel_now blocked. Do not start C3/A6. Submit/PEM/DNS/registry still unauthorized.",
+    "reason": "2026-08-19 live store-setup form and sticky pause proved on public FQDNs (plus earlier P0s). C4 still pending (official current-source release proof). A5-20260817-03 no-cutover still in force. First agent-owned item remains A5. A4 still parallel_now blocked. Do not start C3/A6. B4 still pending (signed PreProd retail lifecycle). Submit/PEM/DNS/registry still unauthorized.",
     "parallel_now": [
       "A4"
     ],
@@ -428,7 +439,8 @@
       "evidence_scope": "local",
       "completed_evidence": [
         "Location-aware multi-seller comparison, persisted tracking/return/grievance lifecycle, replacement commitment, Auth0 Buyer-Seller-Buyer acceptance, verified receipts, keyboard flow, and desktop/390px captures passed on the recorded source fingerprint.",
-        "2026-08-19 live guest add-to-cart on ondcbuyer.aadharcha.in after ondc-buyer#9 (squash e7a88de0). Bundle index-CdGITWMz.js on public FQDN and Hobby alias."
+        "2026-08-19 live guest add-to-cart on ondcbuyer.aadharcha.in after ondc-buyer#9 (squash e7a88de0). Bundle index-CdGITWMz.js on public FQDN and Hobby alias.",
+        "2026-08-19 live Buyer FQDN hash index-D_5Z2srK.js matches ondcbuyer.vercel.app after ondc-buyer#10 (squash c496ea07)."
       ],
       "completion_criteria": [
         "A buyer can discover, compare, buy, track delivery, cancel, return or replace, raise a grievance, and obtain support with persisted state and visible outcomes."
@@ -466,7 +478,8 @@
         "Staff roles, SLA-due on accept, Overview attention queue, and Orders SLA/payment/tracking filters are implemented.",
         "Settlement-exception classification (failed/partial/unknown/mismatch) surfaces in Overview attention, Orders settlement filter, and order detail from existing refund ledger fields.",
         "Operational analytics KPIs aggregate open fulfilment, refunded ledger totals, catalog live/low-stock, and open returns without a PSP settlement rail.",
-        "2026-08-19 live Seller saw buyer order 7BA6FE24 after ondc-seller#9 (squash 04551806) and aadhaar-chain#11 (squash 476e256d) short-id GET + refund over-amount guard. Bundle index-_elWluD6.js on ondcseller.aadharcha.in."
+        "2026-08-19 live Seller saw buyer order 7BA6FE24 after ondc-seller#9 (squash 04551806) and aadhaar-chain#11 (squash 476e256d) short-id GET + refund over-amount guard. Bundle index-_elWluD6.js on ondcseller.aadharcha.in.",
+        "2026-08-19 live Seller FQDN hash index-Cph8wtcO.js matches ondcseller.vercel.app after ondc-seller#10 (squash e41f0d6b)."
       ]
     },
     {
@@ -989,14 +1002,12 @@
       "gate": "8 \u00b7 Rollout, rollback, and communications",
       "item": "Current-source public release proof",
       "status_code": "pending",
-      "status": "2026-08-19 public FQDN P0 proof landed (guest cart, seller order 7BA6FE24, refund guard, hash parity) but this is not official current-source release proof. Live leftovers: Seller store-setup was 404 and needs re-proof; pause auto-resume unproved. Full C4 still requires release approval plus fingerprint/Auth0/visual/console evidence on the exact verified source.",
+      "status": "2026-08-19 public FQDN P0s plus live store-setup form and sticky pause are proved, but this is not official current-source release proof. Full C4 still requires release approval plus fingerprint/Auth0/visual/console evidence on the exact verified source.",
       "responsible_owner": "Release owner",
       "evidence_scope": "staging",
       "remaining_work": [
-        "Re-proof live Seller store-setup on ondcseller.aadharcha.in (was 404 during 2026-08-19 browser test).",
-        "Prove pause auto-resume on public Buyer/Seller FQDNs.",
         "After release approval, deploy the exact verified source and retain source fingerprint, deployment identity, Auth0 session, visual result, and console/network evidence.",
-        "Do not treat the 2026-08-19 P0 ship as C4 complete."
+        "Do not treat the 2026-08-19 P0 ship or live store-setup/pause proofs as C4 complete."
       ],
       "completion_criteria": [
         "The exact deployed source passes the required public Buyer/Seller release journeys with no unresolved launch blocker."
@@ -1004,7 +1015,9 @@
       "blocked_by": "Release scope and deployment approval.",
       "operator_boundary": "Deployment requires explicit approval.",
       "completed_evidence": [
-        "2026-08-19 public P0s: ondc-buyer#9 guest cart, ondc-seller#9 + aadhaar-chain#11 order 7BA6FE24 + refund guard, workspace#4 FQDN vs Hobby alias parity, workspace#5 checklist on main. Live https://ondcbuyer.aadharcha.in and https://ondcseller.aadharcha.in."
+        "2026-08-19 public P0s: ondc-buyer#9 guest cart, ondc-seller#9 + aadhaar-chain#11 order 7BA6FE24 + refund guard, workspace#4 FQDN vs Hobby alias parity, workspace#5 checklist on main. Live https://ondcbuyer.aadharcha.in and https://ondcseller.aadharcha.in.",
+        "2026-08-19 live store-setup: aadhaar-chain#12 squash 9be78a22 live on Render identity-aadhar-gateway-main as dep-da2nime1egvs739jpr1g. GET /api/demo-commerce/seller/store is 200 empty draft with setup_required (unauth 401 not 404). Seller ondc-seller#10 squash e41f0d6b on Vercel Hobby ondcseller. Live FQDN hash index-Cph8wtcO.js matches ondcseller.vercel.app. Browser https://ondcseller.aadharcha.in/business shows Set up your store form (Store name, City, PIN, Save draft, Complete store setup). No Store setup unavailable / 404.",
+        "2026-08-19 live sticky pause: Buyer ondc-buyer#10 squash c496ea07 on Vercel Hobby ondcbuyer. Live FQDN hash index-D_5Z2srK.js matches ondcbuyer.vercel.app. Signed-in ondcbuyer.aadharcha.in Agent Guard chip Shopping agent paused; Ask Samantha overlay settled to Text ready \u00b7 shopping agent paused (did not flip active); Activity Verify Intent Receipt verified and pause still held. Resume remained the only clear."
       ],
       "evidence_refs": [
         ".agents/skills/testing-ledger/references/matrix-status.md"

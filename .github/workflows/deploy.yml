@@ -1,6 +1,24 @@
 # Manual / operator-gated deploy. Never auto-deploys on push.
 # HARD POLICY: $0 only — confirm Free (Render) / Hobby (Vercel) before running.
-# Re-runs CI graders, then deploys selected surfaces, then post-probes.
+#
+# Vercel project identity (fail-closed, 2026-08-19):
+#   Buyer  VERCEL_PROJECT_ID_BUYER  → Hobby project `ondcbuyer`  (NO hyphen)
+#          production alias           https://ondcbuyer.vercel.app
+#          public FQDN                https://ondcbuyer.aadharcha.in
+#   Seller VERCEL_PROJECT_ID_SELLER → Hobby project `ondcseller` (NO hyphen)
+#          production alias           https://ondcseller.vercel.app
+#          public FQDN                https://ondcseller.aadharcha.in
+#   Team: Hobby "ingpoc's projects". Git is NOT connected (Connect Git would
+#   hit GitHub OAuth / Security Checkpoint). Ship with this CLI workflow only.
+#   Do NOT target hyphen twins `ondc-buyer` / `ondc-seller` — those historically
+#   kept the custom domains while --prod landed on the no-hyphen vercel.app
+#   aliases. After each Buyer/Seller --prod, index-*.js on vercel.app AND the
+#   public FQDN must match or this workflow fails. HTTP 200 is not enough.
+#
+# Render gateway: identity-aadhar-gateway-main, autoDeploy off, Free. Stay Free.
+#
+# Unique grader jobs only (Buyer/Seller vitest stays in app CI):
+#   AgentGuard contract parity, Gateway pytest+Postgres, offline graders, then deploy.
 name: Portfolio Deploy
 
 on:
@@ -44,11 +62,30 @@ env:
   GATEWAY_URL: https://identity-aadhar-gateway-main.onrender.com
   BUYER_URL: https://ondcbuyer.aadharcha.in
   SELLER_URL: https://ondcseller.aadharcha.in
+  BUYER_VERCEL_APP: https://ondcbuyer.vercel.app
+  SELLER_VERCEL_APP: https://ondcseller.vercel.app
 
 jobs:
   gate:
-    name: Free-tier + grader gate
+    name: Free-tier + unique graders
     runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:17
+        env:
+          POSTGRES_DB: agentguard_test
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_USER: postgres
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres -d agentguard_test"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    env:
+      DATABASE_URL: postgresql://postgres:postgres@127.0.0.1:5432/agentguard_test
+      AADHAAR_CHAIN_ENV: demo
     steps:
       - name: Require free-tier confirmation
         if: ${{ inputs.confirm_free_tier != true }}
@@ -87,11 +124,8 @@ jobs:
         if: ${{ inputs.skip_graders != true }}
         with:
           python-version: "3.12"
-
-      - uses: actions/setup-node@v4
-        if: ${{ inputs.skip_graders != true }}
-        with:
-          node-version: "20"
+          cache: pip
+          cache-dependency-path: aadharchain/gateway/requirements.txt
 
       - name: Install gitleaks
         if: ${{ inputs.skip_graders != true }}
@@ -110,37 +144,46 @@ jobs:
           gitleaks detect --source ondcbuyer --no-git --config .gitleaks.toml --verbose --redact --exit-code 1
           gitleaks detect --source ondcseller --no-git --config .gitleaks.toml --verbose --redact --exit-code 1
 
-      - name: Gateway pytest + verify-portfolio --ci
+      - name: AgentGuard contract parity
         if: ${{ inputs.skip_graders != true }}
-        env:
-          PYTEST_DISABLE_PLUGIN_AUTOLOAD: "1"
+        run: python3 scripts/verify_agentguard_contract_sync.py
+
+      - name: Install gateway deps + PostgreSQL migrations
+        if: ${{ inputs.skip_graders != true }}
+        working-directory: aadharchain/gateway
         run: |
           set -euo pipefail
           python -m pip install --upgrade pip
-          pip install -r aadharchain/gateway/requirements.txt
-          ./scripts/verify-portfolio.sh --ci
+          pip install -r requirements.txt
+          python - <<'PY'
+          import asyncio
+          from pathlib import Path
+
+          from app.persistence import ConnectionPool, MigrationRunner
+
+          async def migrate() -> None:
+              pool = ConnectionPool(min_size=1, max_size=2)
+              await pool.open()
+              try:
+                  applied = await MigrationRunner(pool, Path("migrations")).apply()
+                  print(f"Applied migrations: {applied}")
+              finally:
+                  await pool.close()
+
+          asyncio.run(migrate())
+          PY
+
+      - name: Gateway pytest
+        if: ${{ inputs.skip_graders != true }}
+        env:
+          PYTEST_DISABLE_PLUGIN_AUTOLOAD: "1"
+        run: ./scripts/verify-portfolio.sh --ci --skip-contract
 
       - name: ONDC offline graders
         if: ${{ inputs.skip_graders != true }}
         run: |
           python3 scripts/ondc_ci_graders.py --self-test
           python3 scripts/ondc_ci_graders.py --offline
-
-      - name: Buyer test+build
-        if: ${{ inputs.skip_graders != true }}
-        working-directory: ondcbuyer
-        run: |
-          npm ci
-          npm test
-          npm run build
-
-      - name: Seller test+build
-        if: ${{ inputs.skip_graders != true }}
-        working-directory: ondcseller
-        run: |
-          npm ci
-          npm test
-          npm run build
 
   deploy-gateway:
     name: Deploy Render gateway
@@ -179,7 +222,7 @@ jobs:
             -d "$(jq -n --arg commitId "$GATEWAY_COMMIT" \
               '{clearCache:"do_not_clear",commitId:$commitId}')" \
             | tee /tmp/render-deploy.json
-          echo "Render deploy requested for exact commit ${GATEWAY_COMMIT} (Free plan only — do not upgrade)."
+          echo "Render deploy requested for exact commit ${GATEWAY_COMMIT} (Free plan only — do not upgrade; autoDeploy stays off)."
 
   deploy-buyer:
     name: Deploy Vercel Buyer
@@ -200,28 +243,50 @@ jobs:
           fi
 
       - uses: actions/checkout@v4
+
+      - uses: actions/checkout@v4
         with:
           repository: ${{ env.ONDC_BUYER_REPO }}
           ref: ${{ env.ONDC_BUYER_REF }}
+          path: ondcbuyer
 
       - uses: actions/setup-node@v4
         with:
           node-version: "20"
 
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
       - name: Install Vercel CLI
         run: npm install -g vercel@55
 
-      - name: Deploy Buyer (Hobby)
+      - name: Deploy Buyer (Hobby CLI — no Git integration)
+        working-directory: ondcbuyer
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID_BUYER }}
         run: |
           set -euo pipefail
+          # Fail-closed identity: VERCEL_PROJECT_ID_BUYER must be Hobby project
+          # `ondcbuyer` (no hyphen), not `ondc-buyer`. Git stays disconnected.
           # Do not flip VITE_COMMERCE_DEMO_MODE here — use project env on Vercel.
           vercel pull --yes --environment=production --token="$VERCEL_TOKEN"
+          python3 "$GITHUB_WORKSPACE/scripts/ondc_ci_graders.py" \
+            --vercel-project-identity buyer \
+            --project-json .vercel/project.json
           vercel build --prod --token="$VERCEL_TOKEN"
-          vercel deploy --prebuilt --prod --token="$VERCEL_TOKEN"
+          vercel deploy --prebuilt --prod --yes --token="$VERCEL_TOKEN" --format=json \
+            | tee /tmp/buyer-deploy.json
+          DEPLOY_URL="$(python3 "$GITHUB_WORKSPACE/scripts/ondc_ci_graders.py" --print-deploy-url /tmp/buyer-deploy.json)"
+          echo "Buyer production deployment: ${DEPLOY_URL}"
+          python3 "$GITHUB_WORKSPACE/scripts/ondc_ci_graders.py" --bundle-parity \
+            --buyer-production "$DEPLOY_URL" \
+            --buyer "${BUYER_URL}" \
+            --parity-id buyer_vercel_app_vs_fqdn \
+            --parity-from "${BUYER_VERCEL_APP}" \
+            --parity-to "${BUYER_URL}"
 
   deploy-seller:
     name: Deploy Vercel Seller
@@ -242,27 +307,49 @@ jobs:
           fi
 
       - uses: actions/checkout@v4
+
+      - uses: actions/checkout@v4
         with:
           repository: ${{ env.ONDC_SELLER_REPO }}
           ref: ${{ env.ONDC_SELLER_REF }}
+          path: ondcseller
 
       - uses: actions/setup-node@v4
         with:
           node-version: "20"
 
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
       - name: Install Vercel CLI
         run: npm install -g vercel@55
 
-      - name: Deploy Seller (Hobby)
+      - name: Deploy Seller (Hobby CLI — no Git integration)
+        working-directory: ondcseller
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID_SELLER }}
         run: |
           set -euo pipefail
+          # Fail-closed identity: VERCEL_PROJECT_ID_SELLER must be Hobby project
+          # `ondcseller` (no hyphen), not `ondc-seller`. Git stays disconnected.
           vercel pull --yes --environment=production --token="$VERCEL_TOKEN"
+          python3 "$GITHUB_WORKSPACE/scripts/ondc_ci_graders.py" \
+            --vercel-project-identity seller \
+            --project-json .vercel/project.json
           vercel build --prod --token="$VERCEL_TOKEN"
-          vercel deploy --prebuilt --prod --token="$VERCEL_TOKEN"
+          vercel deploy --prebuilt --prod --yes --token="$VERCEL_TOKEN" --format=json \
+            | tee /tmp/seller-deploy.json
+          DEPLOY_URL="$(python3 "$GITHUB_WORKSPACE/scripts/ondc_ci_graders.py" --print-deploy-url /tmp/seller-deploy.json)"
+          echo "Seller production deployment: ${DEPLOY_URL}"
+          python3 "$GITHUB_WORKSPACE/scripts/ondc_ci_graders.py" --bundle-parity \
+            --seller-production "$DEPLOY_URL" \
+            --seller "${SELLER_URL}" \
+            --parity-id seller_vercel_app_vs_fqdn \
+            --parity-from "${SELLER_VERCEL_APP}" \
+            --parity-to "${SELLER_URL}"
 
   post-probe:
     name: Post-deploy probes
@@ -322,5 +409,15 @@ jobs:
             --gateway https://gateway.aadharcha.in \
             --buyer "${BUYER_URL}" \
             --seller "${SELLER_URL}"
+
+          if [[ "${{ inputs.surface }}" == "all" ]]; then
+            python3 scripts/ondc_ci_graders.py --bundle-parity
+          elif [[ "${{ inputs.surface }}" == "buyer" ]]; then
+            python3 scripts/ondc_ci_graders.py --bundle-parity \
+              --buyer-production "${BUYER_VERCEL_APP}" --buyer "${BUYER_URL}"
+          elif [[ "${{ inputs.surface }}" == "seller" ]]; then
+            python3 scripts/ondc_ci_graders.py --bundle-parity \
+              --seller-production "${SELLER_VERCEL_APP}" --seller "${SELLER_URL}"
+          fi
 
           echo "Post-probes complete. Stay on Free/Hobby — do not upgrade on failure."

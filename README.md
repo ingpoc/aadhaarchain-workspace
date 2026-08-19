@@ -55,3 +55,9 @@ are required by TESTINGPLAN and not implemented yet.
 ## For agents
 
 Read [`AGENTS.md`](AGENTS.md) first, then IMPLEMENTATIONPLAN before structural edits.
+
+## Ship to public FQDNs
+
+Fix → local test → PR CI → merge → Portfolio Deploy. Public `*.aadharcha.in`
+must serve the same `assets/index-*.js` as `ondcbuyer.vercel.app` /
+`ondcseller.vercel.app`. See [`docs/SHIP.md`](docs/SHIP.md).

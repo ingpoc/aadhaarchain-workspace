@@ -84,6 +84,9 @@ python3 scripts/portfolio_browser.py agentguard seller --fixture
 
 # 3. Legacy harness demo-principal SSO helper (no wallet)
 python3 scripts/portfolio_browser.py sso demo buyer
+
+# 4. Before commit / Portfolio Deploy (offline, $0 — see docs/SHIP.md)
+./scripts/local-ship-gate.sh
 ```
 
 Restart ONDC buyer/seller after changing `.env.local`. Solana `:8899` is **not** part of AgentGuard acceptance.
@@ -176,7 +179,7 @@ Set Cursor key in `aadharchain/gateway/.env` (and `flatwatch/backend/.env` for l
 `start-dev.sh`. Keep `VITE_AGENT_RUNTIME_ENABLED=true` in ONDC `.env.local`. Leave
 `VITE_AGENT_CONTROL_PLANE_URL` empty on FQDN so `/api/agent/*` uses same-origin rewrites → **gateway** (not FlatWatch — FQDN FlatWatch 401s portfolio `X-User-Id`). Loopback `.env.local` bake guarded by `loopback.ts`.
 Do **not** force-migrate to OpenAI Agents SDK before the shared tool runner works.
-CI: `ondc_ci_graders.py --offline` blocks PR; FQDN soft graders are advisory (`continue-on-error`) — detail in portfolio-deploy `ci-cd.md`.
+CI: `ondc_ci_graders.py --offline` blocks PR; Buyer/Seller vitest stays in app CI; FQDN functional probes are advisory (`continue-on-error`); deploy fail-closes on FQDN vs `*.vercel.app` `index-*.js` mismatch — detail in portfolio-deploy `ci-cd.md` and `docs/SHIP.md`.
 
 Shared: `shared/cursor_agent_runtime/`, `shared/trust-client/` (host assurance helpers during migration).
 AgentGuard APIs on `:43101` remain the sole authorization boundary.

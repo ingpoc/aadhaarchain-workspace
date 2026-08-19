@@ -59,6 +59,9 @@ REQUIRED_MARKERS: dict[str, tuple[str, ...]] = {
         "Validation is read-only/offline and never deploys",
         "scripts/ondc_ci_graders.py --offline",
         "HARD POLICY: always free tier",
+        "`ondcbuyer` / `ondcseller` (no hyphen)",
+        "assets/index-*.js",
+        "local-ship-gate.sh",
     ),
 }
 

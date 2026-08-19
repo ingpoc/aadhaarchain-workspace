@@ -9,6 +9,8 @@ source "$ROOT/scripts/lib/http-wait.sh"
 RUN_BROWSER=0
 RUN_SSO=0
 CI_MODE=0
+SKIP_CONTRACT=0
+BUNDLE_PARITY=0
 SSO_WALLET="burner"
 SSO_APP="seller"
 LEAVE_URL="http://127.0.0.1:43102/search"
@@ -19,6 +21,8 @@ Usage: ./scripts/verify-portfolio.sh [options]
 
 Options:
   --ci                   API-only CI lane: gateway pytest, no stack start, no Hermes
+  --skip-contract        With --ci: skip AgentGuard contract parity (unique CI job)
+  --bundle-parity        Live: FQDN assets/index-*.js must match *.vercel.app (fail-closed)
   --browser              Full browser lane: smoke + SSO + closeout (single preflight)
   --sso WALLET [APP]     Browser lane with SSO only (burner|solflare, seller|buyer|all)
   --leave-url URL        Closeout page (default :43102/search)
@@ -33,6 +37,8 @@ EOF
 while [[ $# -gt 0 ]]; do
   case "$1" in
     --ci) CI_MODE=1; shift ;;
+    --skip-contract) SKIP_CONTRACT=1; shift ;;
+    --bundle-parity) BUNDLE_PARITY=1; shift ;;
     --browser) RUN_BROWSER=1; shift ;;
     --sso)
       RUN_SSO=1
@@ -60,11 +66,24 @@ if [[ "$CI_MODE" == "1" && ( "$RUN_BROWSER" == "1" || "$RUN_SSO" == "1" ) ]]; th
   echo "error: --ci cannot combine with --browser/--sso (Hermes not available in CI)" >&2
   exit 2
 fi
+if [[ "$SKIP_CONTRACT" == "1" && "$CI_MODE" != "1" ]]; then
+  echo "error: --skip-contract requires --ci" >&2
+  exit 2
+fi
+
+if [[ "$BUNDLE_PARITY" == "1" && "$CI_MODE" == "0" && "$RUN_BROWSER" == "0" && "$RUN_SSO" == "0" ]]; then
+  echo "=== Portfolio verify (bundle parity only) ==="
+  python3 "$ROOT/scripts/ondc_ci_graders.py" --bundle-parity
+  echo "✓ FQDN index-*.js matches vercel.app production"
+  exit 0
+fi
 
 echo "=== Portfolio verify ==="
 
-echo "→ AgentGuard contract parity"
-python3 "$ROOT/scripts/verify_agentguard_contract_sync.py"
+if [[ "$SKIP_CONTRACT" != "1" ]]; then
+  echo "→ AgentGuard contract parity"
+  python3 "$ROOT/scripts/verify_agentguard_contract_sync.py"
+fi
 
 run_gateway_pytest() {
   echo "→ Gateway tests"
@@ -90,6 +109,10 @@ run_gateway_pytest() {
 if [[ "$CI_MODE" == "1" ]]; then
   echo "→ CI mode (API-only; skip stack + Hermes)"
   run_gateway_pytest
+  if [[ "$BUNDLE_PARITY" == "1" ]]; then
+    echo "→ Bundle parity (FQDN vs vercel.app index-*.js)"
+    python3 "$ROOT/scripts/ondc_ci_graders.py" --bundle-parity
+  fi
   echo "✓ Portfolio verify passed (CI)"
   exit 0
 fi
@@ -109,6 +132,11 @@ elif [[ "$RUN_SSO" == "1" ]]; then
   python3 "$ROOT/scripts/portfolio_browser.py" preflight
   PORTFOLIO_SKIP_PREFLIGHT=1 python3 "$ROOT/scripts/portfolio_browser.py" sso "$SSO_WALLET" "$SSO_APP"
   python3 "$ROOT/scripts/portfolio_browser.py" closeout "$LEAVE_URL"
+fi
+
+if [[ "$BUNDLE_PARITY" == "1" ]]; then
+  echo "→ Bundle parity (FQDN vs vercel.app index-*.js)"
+  python3 "$ROOT/scripts/ondc_ci_graders.py" --bundle-parity
 fi
 
 echo "✓ Portfolio verify passed"

@@ -18,9 +18,11 @@ Cadence: **PR** (blocks merge) · **Post** (post-deploy / soft FQDN) · **Night*
 
 | ID / surface | What | Class | Cadence | Owner |
 | --- | --- | --- | --- | --- |
-| `verify-portfolio --ci` | Gateway pytest (AgentGuard, auth, ONDC routes) | **G** | PR | `scripts/verify-portfolio.sh` · `ci.yml` gateway |
-| Buyer npm lint/typecheck/test/build | Unit + build | **G** | PR | `ondcbuyer` · `ci.yml` |
-| Seller npm lint/typecheck/test/build | Unit + build | **G** | PR | `ondcseller` · `ci.yml` |
+| `verify-portfolio --ci` | Gateway pytest (AgentGuard, auth, ONDC routes); `--skip-contract` in the unique gateway job | **G** | PR | `scripts/verify-portfolio.sh` · `ci.yml` gateway |
+| AgentGuard contract parity | Canonical vs Buyer/Seller/gateway fixtures | **G** | PR | `scripts/verify_agentguard_contract_sync.py` · `ci.yml` agentguard-contract |
+| Buyer npm lint/typecheck/test/build | Unit + build | **G** | App PR | `ondcbuyer` app CI — **not** Portfolio CI |
+| Seller npm lint/typecheck/test/build | Unit + build | **G** | App PR | `ondcseller` app CI — **not** Portfolio CI |
+| Local ship gate | Offline graders before commit/deploy | **G** | Ops | `scripts/local-ship-gate.sh` |
 | gitleaks | Secret scan | **G** | PR | `ci.yml` secret-scan |
 | AgentGuard fixture lanes | `portfolio_browser.py agentguard …` | **B** | Ops | portfolio-browser |
 | `commerce_demo_mode_gate` | Refuse demo flip without evidence | **G** | PR + Ops | `scripts/commerce_demo_mode_gate.py` |
@@ -29,6 +31,7 @@ Cadence: **PR** (blocks merge) · **Post** (post-deploy / soft FQDN) · **Night*
 | Seller P0 scanners | Empty store setup, refund copy, dashboard stay, unauth return-to | **G** | PR | `seller_p0_regression_tests` in `ondc_ci_graders.py --offline` |
 | Gateway P0 scanners | Short-id GET, refund `need_approval`, store GET 200 draft | **G** | PR | Fail-closed `gateway_p0_regression_tests_missing` if aadhaar-chain#7 tests disappear |
 | `ondc_ci_graders` live soft | FQDN health/JSON/rewrite/bundle | **H** | Post (non-blocking PR) | `ondc_ci_graders.py --live --soft` |
+| FQDN vs vercel.app `index-*.js` | Custom domain serving this production | **H** | Post fail-closed on deploy; PR advisory `--soft` | `ondc_ci_graders.py --bundle-parity` |
 | Gateway `/api/health` | Wake / liveness | **H** | Post | graders + deploy post-probe |
 | `/api/ondc/status` | enabled+configured JSON | **H** | Post | graders |
 | `/api/realtime/status` | `configured:true` JSON | **H** | Post | graders |
@@ -70,6 +73,8 @@ Cadence: **PR** (blocks merge) · **Post** (post-deploy / soft FQDN) · **Night*
 
 | Blocks PR (`ci.yml`) | Soft / `continue-on-error` | Manual Ops only |
 | --- | --- | --- |
-| gitleaks, gateway pytest, buyer/seller npm, `ondc_ci_graders --offline` | `ondc_ci_graders --live --soft`, optional `ondc_preprod_smoke --ci` | Hermes operator/thorough, agentguard fixture, voice mic |
+| gitleaks, AgentGuard contract, gateway pytest+Postgres, `ondc_ci_graders --offline` | `ondc_ci_graders --live --soft`, `--bundle-parity --soft` on PR, optional `ondc_preprod_smoke --ci` | Hermes operator/thorough, agentguard fixture, voice mic |
 
-Deploy `post-probe` should call `--live --soft` (network flake ≠ billing upgrade).
+Buyer/Seller vitest blocks **app** PRs, not Portfolio CI.
+
+Deploy `post-probe` keeps `--live --soft` (network flake ≠ billing upgrade) and **fail-closes** `--bundle-parity` (FQDN hash must match `*.vercel.app`).

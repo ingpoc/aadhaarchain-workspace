@@ -282,7 +282,7 @@ No secrets committed. No prod registry POST. Demo mode unchanged.
 | Render | **Free** `identity-aadhar-gateway-main`; source `ingpoc/aadhaar-chain` `@codex/ondc-onboard-fqdn-20260712`; commit **`933cadf`** live |
 | Keys on Render | Env `ONDC_*_PEM_B64` → status `keys_source=env`; uk_ids buyer `1aee68ad-…` seller `baf58086-…` |
 | Auth0 | `GET /api/auth/providers` → auth0 true, demo_continue false, runtime_mode staging |
-| Vercel | **Hobby**; FQDN projects **`ondc-buyer`** / **`ondc-seller`** (not ondcbuyer/ondcseller CLI twins) |
+| Vercel | **Hobby**; FQDN projects **`ondc-buyer`** / **`ondc-seller`** that day (historical). **Superseded 2026-08-19:** FQDNs now on no-hyphen `ondcbuyer` / `ondcseller`. |
 | Buyer dpl | `dpl_6TbnYCSW5dK792iVdCPqsbxuKq4g` → `ondcbuyer.aadharcha.in` |
 | Seller dpl | `dpl_3x9Nrr6HdoUwwyg4CTMN96nbBEyR` → `ondcseller.aadharcha.in` |
 | FQDN verify | Both **200** + `meta name=ondc-site-verification` |

@@ -1,6 +1,6 @@
 # ONDC / AgentGuard test inventory
 
-**Owner:** this file. Operator journeys → [`operator-flows.md`](operator-flows.md). CI wiring → [`../../portfolio-deploy/references/ci-cd.md`](../../portfolio-deploy/references/ci-cd.md).  
+**Owner:** this file. Operator journeys → [`operator-flows.md`](operator-flows.md). CI wiring → [`portfolio-deploy`](../../../../.cursor/skills/portfolio-deploy/references/ci-cd.md).
 **Legend (gradeability):**
 
 | Class | Meaning |
@@ -42,6 +42,9 @@ Cadence: **PR** (blocks merge) · **Post** (post-deploy / soft FQDN) · **Night*
 | `ondc_preprod_smoke` | Signed lookup/search/catalog; optional fail-closed item+quote select→init→confirm | **H** | Post / Ops | `scripts/ondc_preprod_smoke.py --search atta --order` (`--ci` soft only) |
 | BPP `ensure-demo-item` + published count | Marker catalog | **H** | Ops | gateway API; skill friction table |
 | Operator flows B-* / S-* | Samantha text journeys | **B** | Ops / Night | [`operator-flows.md`](operator-flows.md) · Hermes scripts |
+| Buyer `track_order` + fulfilment timeline | Latest/specified order readback, no invented courier, history projection and rendered order detail | **G** + **B** | PR / Ops | Buyer unit/build plus local bundled-browser journey |
+| Seller dispatch provider capture | Require actual provider + tracking id before guarded dispatch | **G** + **B** | PR / Ops | Seller unit/build; rendered lifecycle needs an owning Seller principal |
+| Signed LOG10 delivery reconciliation | Deterministically select a signature-verified LOG10 1.2.5 P2P Immediate Delivery offer; reject nonconforming or mismatched `on_init`; build allowlisted confirm; persist-before-ACK and reconcile duplicate/stale/skipped/cancelled lifecycle callbacks into CommerceV1; project one Buyer/Seller/Samantha view | **G** + **B** | PR / Ops | Current freeze `514777d6...`: PostgreSQL gateway 301; Buyer 203/build; Seller 218/build; changed-file Ruff; unchanged-source rendered Pass 1+2 with paused-agent human checkout. External compliant LSP lifecycle remains required. [`packet`](evidence/preprod-taptap-interoperability-packet-20260802.json), [`local acceptance`](evidence/514777d6a5914fff837bf4aedc3249c903cedc3c6345a2774fbcd00fd4fc25ed/local-log10-acceptance-20260802.json) |
 | Independent customer portfolio | Three full-mission actors: post-login Buyer novice, Seller merchant, and cross-app UI/UX + accessibility smoke; no subagent per step; one mission verdict; screenshot read; no internals | **B** | Ops / release | [`independent-customer-gate.md`](independent-customer-gate.md) |
 | Early `/results` visible search | UX ship prove | **B** | Ops | `hermes_operator_visible_search.py` |
 | Thorough FQDN matrix | Full Buyer+Seller | **B** | Night | `hermes_fqdn_e2e_thorough.py` |
@@ -61,6 +64,7 @@ Cadence: **PR** (blocks merge) · **Post** (post-deploy / soft FQDN) · **Night*
 | B-FIND-* (early `/results`) | **B** (+ **H** search API) | UI early-nav Hermes; network search API soft-gradable |
 | B-ADD-* | **B** | Cart DOM; cache harness future |
 | B-NAV-* / S-NAV-* | **B** | Route after tool |
+| B-TRACK-* | **G** + **B** | Read-only `track_order`; Buyer order detail owns current status and timeline |
 | B-CHECKOUT-* / S-REFUND-* | **B** + **G** AG pytest | Page Paid/AG card browser; evaluate/deny in pytest |
 | B-RUNTIME / S-RUNTIME | **B** + **H** runtime JSON | Handoff UI browser; `/api/agent/runtime` grader |
 | B-VOICE-* / S-VOICE-* | **X**/Blocked Hermes | Realtime status **H**; mic **X** |

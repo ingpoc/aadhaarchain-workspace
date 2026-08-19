@@ -1,0 +1,123 @@
+{
+  "schema_version": "testing-receipt.v1",
+  "gate_id": "A4-R1-deploy",
+  "verified_at": "2026-08-17T13:20:00+05:30",
+  "environment": "public FQDN probe after exact-commit Render deploy; PreProd PEMs unchanged",
+  "source_revision": "7beab582d141c6f3f1e089c356ce0df6852a318c",
+  "workspace_head_not_deployed": "2be9e5a5f19be47c938395c073bf947f717cec3d",
+  "authorization": "operator AskQuestion 2026-08-17: deploy current verified gateway HEAD to existing identity-aadhar-gateway-main only",
+  "render_service": {
+    "name": "identity-aadhar-gateway-main",
+    "id": "srv-d7f256f41pts73f68660",
+    "plan": "free",
+    "auto_deploy": "no",
+    "repo": "https://github.com/ingpoc/aadhaar-chain",
+    "branch": "main",
+    "root_dir": "gateway",
+    "onrender_url": "https://identity-aadhar-gateway-main.onrender.com",
+    "live_deploy_id": "dep-da1boulbedkc73cieceg",
+    "live_deploy_commit": "7beab582d141c6f3f1e089c356ce0df6852a318c",
+    "live_deploy_message": "Integrate fail-closed LOG10 delivery reconciliation",
+    "live_deploy_finished_at": "2026-08-17T07:48:17.841411Z",
+    "previous_live_commit": "63df7ca73faa6096961d9cf1333bc9e2387f5770"
+  },
+  "gateway_health": {
+    "url": "https://gateway.aadharcha.in/api/health",
+    "http": 200,
+    "body": {"status": "healthy", "service": "aadhaar-chain-gateway", "version": "1.0.0"}
+  },
+  "runtime_identity": {
+    "registry_env": "preprod",
+    "production_pems_copied": false,
+    "roles": [
+      {
+        "role": "buyer",
+        "subscriber_id": "ondcbuyer.aadharcha.in",
+        "keys_source": "env",
+        "unique_key_id": "1aee68ad-bc2a-4fc4-b233-7e14c6abba9b",
+        "signing_key_present": true,
+        "encryption_key_present": true
+      },
+      {
+        "role": "seller",
+        "subscriber_id": "ondcseller.aadharcha.in",
+        "keys_source": "env",
+        "unique_key_id": "baf58086-7024-438a-becf-4cfa056ec8d9",
+        "signing_key_present": true,
+        "encryption_key_present": true
+      },
+      {
+        "role": "lbnp",
+        "subscriber_id": "ondclbnp.aadharcha.in",
+        "keys_source": "portal-download",
+        "unique_key_id": "9e7388f4-c68e-4006-ac5a-e7517382999f",
+        "signing_key_present": true,
+        "encryption_key_present": true
+      }
+    ]
+  },
+  "fqdn_probes": [
+    {
+      "fqdn": "ondcbuyer.aadharcha.in",
+      "role": "Retail Buyer NP",
+      "site_verification": 200,
+      "on_subscribe_junk_post": 400,
+      "on_subscribe_detail": "decrypt failed (endpoint live; junk rejected)",
+      "overall": "pass_preprod_public"
+    },
+    {
+      "fqdn": "ondcseller.aadharcha.in",
+      "role": "Retail Seller ISN",
+      "site_verification": 200,
+      "on_subscribe_junk_post": 400,
+      "on_subscribe_detail": "decrypt failed (endpoint live; junk rejected)",
+      "overall": "pass_preprod_public"
+    },
+    {
+      "fqdn": "ondclbnp.aadharcha.in",
+      "role": "LOG10 Buyer NP/LBNP",
+      "tls_root": 200,
+      "site_verification": 200,
+      "on_subscribe_junk_post": 400,
+      "on_subscribe_detail": "decrypt failed (endpoint live; junk rejected)",
+      "overall": "pass_preprod_public"
+    }
+  ],
+  "results": [
+    {
+      "scope": "exact-commit Render deploy",
+      "result": "passed",
+      "summary": "Existing Free service identity-aadhar-gateway-main is live at gateway commit 7beab582d141c6f3f1e089c356ce0df6852a318c as dep-da1boulbedkc73cieceg. Auto-deploy remains off. Workspace HEAD 2be9e5a was not deployed."
+    },
+    {
+      "scope": "gateway health",
+      "result": "passed",
+      "summary": "GET https://gateway.aadharcha.in/api/health returned 200 healthy without changing PreProd PEM env."
+    },
+    {
+      "scope": "participant site verification",
+      "result": "passed",
+      "summary": "Buyer, Seller, and LBNP /ondc-site-verification.html returned 200."
+    },
+    {
+      "scope": "on_subscribe route liveness",
+      "result": "partial",
+      "summary": "Junk POST to /ondc/on_subscribe on all three participant FQDNs and matching gateway role paths returned 400 decrypt failed. Valid encrypted production challenge not tested."
+    }
+  ],
+  "not_proven": [
+    "production keypairs on Render runtime",
+    "valid encrypted on_subscribe challenge/answer with production keys",
+    "portal Production 1.a modal reconcile/submit",
+    "production registry readback",
+    "GSTIN-gated production registry enablement"
+  ],
+  "external_actions_taken": [
+    "Render MCP trigger_deploy on existing service srv-d7f256f41pts73f68660 only",
+    "no env var changes",
+    "no GoDaddy DNS changes",
+    "no Buyer/Seller Render custom domains",
+    "no parallel gateway",
+    "no portal submit"
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "schema_version": "ondc-portal-modal-reconcile.v1",
+  "gate_id": "A4",
+  "recorded_at": "2026-08-17T15:48:00+05:30",
+  "authorization": "operator seller-then-lbnp 2026-08-17; human modal generate+download; agent reconcile; no Submit; no Render",
+  "browser": "Comet Control",
+  "session_id": "a4-portal-1a-20260817",
+  "source_download": "~/Downloads/keys (6).json",
+  "download_mtime_ist": "2026-08-17T15:46:38+05:30",
+  "materialized_path": "aadharchain/gateway/.local/ondc-production-portal-modal/seller",
+  "role": "seller",
+  "profile_id": "15462-10011",
+  "subscriber_id": "ondcseller.aadharcha.in",
+  "attribution": "Seller Raise Request modal was the open 1.a surface at generate time; filename keys (6).json after Buyer keys (5).json",
+  "profiles_downloaded": ["buyer", "seller"],
+  "profiles_not_downloaded": ["lbnp"],
+  "unique_key_id_present": true,
+  "unique_key_id": "73de5472-656d-42f2-aa35-2272d709b853",
+  "unique_key_id_status": "captured-from-raise-request-modal-ui; not in keys.json",
+  "registry_env_ui_observed": "PreProd (Registry input disabled/locked)",
+  "operator_claimed": "Production 1.a generate+download",
+  "encryption_public_key_format": "asn1_der_spki_b64",
+  "private_pem_mode": "0600",
+  "submitted": false,
+  "copied_to_render_or_env": false,
+  "portal_download_overwritten": false,
+  "local_draft_overwritten": false,
+  "buyer_local_draft_deleted": false,
+  "modal": {
+    "signing_public_fp16": "57b7bfd44dc8e4bb",
+    "encryption_public_fp16": "d4b04463054a3b5a",
+    "signing_public_sha256": "57b7bfd44dc8e4bbd476f8e304c59823e12b4c2918c8a7a6833b4742c13d1e81",
+    "encryption_public_sha256": "d4b04463054a3b5a345088674cc8285d1f0e88488f9b630c35bdbf8073e559e5"
+  },
+  "local_draft_seller": {
+    "path": "aadharchain/gateway/.local/ondc-production/seller",
+    "unique_key_id": "3d64ce53-3192-41d3-9926-65566e687903",
+    "signing_public_fp16": "34dd53c3a884300a",
+    "encryption_public_fp16": "fab3e30e03955c21",
+    "match": false
+  },
+  "preprod_portal_download_seller": {
+    "path": "aadharchain/gateway/.local/ondc-sandbox/portal-download/seller",
+    "unique_key_id": "baf58086-7024-438a-becf-4cfa056ec8d9",
+    "signing_public_fp16": "e0031e7817d922fb",
+    "encryption_public_fp16": "fcfd57b2783a258e",
+    "match": false
+  },
+  "buyer_modal": {
+    "path": "aadharchain/gateway/.local/ondc-production-portal-modal/buyer",
+    "unique_key_id_present": false,
+    "keep_both_local_draft": true
+  },
+  "lbnp": "Raise Request modal open on same Comet Control lease a4-portal-1a-20260817; waiting on human Generate+Download; not materialized",
+  "not_proven": [
+    "LBNP modal generate/download",
+    "Buyer modal Unique Key ID",
+    "Production environment access (Registry field was PreProd-locked)",
+    "portal or registry Submit",
+    "Render env / production PEM vars"
+  ],
+  "note": "Modal pair supersedes local Seller draft if Submit is later authorized. keep-both for Buyer. Do not delete local drafts. Private PEM contents are not in this receipt. Campaign lease left open for LBNP generate."
+}

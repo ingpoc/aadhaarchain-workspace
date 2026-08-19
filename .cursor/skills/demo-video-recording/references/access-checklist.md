@@ -4,7 +4,7 @@
 
 | # | Check | Command / proof | Pass criteria | Status |
 | --- | --- | --- | --- | --- |
-| 1 | Chrome plugin | Chrome cheap preflight + smallest browser-client check | Existing/claimed Chrome tab controllable | |
+| 1 | Browser proof | bundled `@chrome` | Required FQDN surfaces render | |
 | 2 | Native display | `@Computer` app state + screenshot | Chrome visible on intended display | |
 | 3 | ffmpeg devices | `ffmpeg -f avfoundation -list_devices true -i ""` | Screen index for Comet known | |
 | 4 | Gateway health | `curl` FQDN `gateway.aadharcha.in/health` (wake Free if needed) | 2xx | |
@@ -22,7 +22,7 @@
 | Dry-run on FQDN with Auth0 + live gateway | Record against broken Realtime / unsigned Seller AG |
 | Leave `chrome://extensions` before Hermes SSO/actions; reload WIP SW if sock missing | Point scripts at `~/.hermes` or `launch-wip-chrome` to “fix” Comet |
 | Open orb: semantic role locator `Open Samantha` **once** | `evaluate` clicks for demo beats; double-click orb; rely on `click_text "S"` |
-| Map beats to ondc-testing `W-*` PreProd flows | Invent parallel Pass bars |
+| Map beats to testing-ledger `W-*` PreProd flows | Invent parallel Pass bars |
 | Seed/ensure PreProd marker Atta if fanout empty | Claim prod ONDC / live UPI on VO |
 
 Loopback recovery traps (VITE bake, detached Vite, `:3001` proxy): [`portfolio-browser/references/troubleshooting.md`](../../portfolio-browser/references/troubleshooting.md).  

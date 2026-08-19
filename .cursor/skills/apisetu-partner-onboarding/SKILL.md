@@ -15,13 +15,31 @@ description: >-
 
 Durable owner for multi-rail partner onboarding (ONDC + GST companion + Setu + MeitY paused).
 Browser UI owner: bundled `@chrome`. [portfolio-browser](../portfolio-browser/SKILL.md) is legacy deterministic replay/diagnosis only.
-Ops ladder: [`PRODUCTION-READINESS.md`](../../../PRODUCTION-READINESS.md) § A5–A8, C3.
+Ops ladder: [`.session/docs/PRODUCTION-READINESS.md`](../../../.session/docs/PRODUCTION-READINESS.md) § A1–A4 and B1–B8.
 Deploy / CI: [portfolio-deploy](../portfolio-deploy/SKILL.md). Auth0: [authentication](../authentication/SKILL.md).
 
 **Standing rule:** append durable portal/GST/FQDN findings to this skill + [`references/ondc-portal-ledger.md`](references/ondc-portal-ledger.md); **no secrets** in markdown.
 
 **Do not** claim **production** ONDC or flip `VITE_COMMERCE_DEMO_MODE` without gate evidence.
-**PreProd Beckn search is live** (BAP+BPP) — see [ondc-testing preprod-network-matrix](../ondc-testing/references/preprod-network-matrix.md). That is **not** “live prod network orders.”
+**PreProd Beckn search is live** (BAP+BPP) — see [testing-ledger preprod-network-matrix](../../../.agents/skills/testing-ledger/references/preprod-network-matrix.md). That is **not** “live prod network orders.”
+
+### Portal vs mail; A4 readback; participant-host order
+
+- Authenticated **portal** UI readback ≠ provider-**mail** readback. Mail may
+  corroborate; only dated portal capture is portal proof.
+- A4 portal evidence 2026-08-17:
+  [testing-ledger `ondc-a4-portal-readback-20260817.json`](../../../.agents/skills/testing-ledger/references/evidence/ondc-a4-portal-readback-20260817.json)
+  plus ledger same date. Operator authorized **keys only** then **Generate now**.
+  Modal pairs: gitignored `.local/ondc-production-portal-modal/{buyer,seller,lbnp}`
+  (Buyer regen ukid from Raise Request UI; earlier no-ukid pair aside at
+  `buyer-20260817-no-ukid`; keep-both local draft). Standing modal/key rules:
+  [`ondc-sandbox-keys.md`](references/ondc-sandbox-keys.md). A4 remains blocked
+  on Submit, production PEM env copy, and registry. GoDaddy DNS and registry
+  submit remain forbidden.
+- Keys / Render deploy / GoDaddy DNS / registry submit = **operator-authorized
+  only**. GoDaddy = DNS only; Render = runtime. Fail closed participant-host
+  order (repo `AGENTS.md`): reuse gateway → exact-commit Render attach →
+  GoDaddy DNS → prove DNS/TLS/site/`on_subscribe` → only then portal/protocol.
 
 ## Rails
 
@@ -37,11 +55,13 @@ Deploy / CI: [portfolio-deploy](../portfolio-deploy/SKILL.md). Auth0: [authentic
 
 ### Staging vs PreProd (do not conflate)
 
-| Env | Registry subscribe | Portal UI (2026-07-12 inspect) |
+Official registry URLs and TOC: `~/.agents/skills/ondc` **Registry** + **Sources**.
+**Staging is decommissioned** — do not whitelist or `/subscribe` there.
+
+| Env | Registry subscribe | This app |
 | --- | --- | --- |
-| **Staging** | `https://staging.registry.ondc.org/subscribe` | Optional; local DER keypairs only if deliberately opening Staging |
-| **Pre-Prod** | `https://preprod.registry.ondc.org/ondc/subscribe` | Buyer + Seller **Subscribed**; Grocery `ONDC:RET10`; URIs `/ondc` on FQDNs |
-| **Production** | `https://prod.registry.ondc.org/subscribe` | **Blocked until GSTIN (CA)** |
+| **Pre-Prod** | `https://preprod.registry.ondc.org/ondc/subscribe` | Buyer + Seller + LBNP **Subscribed** |
+| **Production** | `https://prod.registry.ondc.org/subscribe` | **Blocked until GSTIN (CA)** + operator Submit/PEM/DNS |
 
 **Keys:** Downloads **`keys`/`keys.json` = Buyer**, **`key1`/`keys (1).json` = Seller** → gitignored `portal-download/{buyer,seller}/`. PreProd `/on_subscribe` + signed search use **portal** PEMs on Render (`ONDC_*_PEM_B64`). Details: [`ondc-sandbox-keys.md`](references/ondc-sandbox-keys.md). Auth0: [authentication](../authentication/SKILL.md).
 
@@ -49,27 +69,21 @@ Deploy / CI: [portfolio-deploy](../portfolio-deploy/SKILL.md). Auth0: [authentic
 
 | Do | Do not |
 | --- | --- |
-| Match registry env to portal ACK (**PreProd**) | Assume Staging just because docs prefer it |
+| Match registry env to portal ACK (**PreProd**) | Open Staging (retired) or assume Staging because old wiki lists it |
 | Keep portal PEMs on Render; set `ONDC_ENABLED` + BAP/BPP URIs for PreProd test | Blind re-POST `/subscribe` after portal already Subscribed |
 | Keep `VITE_COMMERCE_DEMO_MODE=false` after gate (PreProd); honest “payment simulated” | Claim **prod** network / live UPI / paid orders |
-| Encode friction in this skill + ondc-testing matrix | Invent FQDNs — hosts are operator-confirmed |
+| Encode friction in this skill + testing-ledger matrix | Invent FQDNs — hosts are operator-confirmed |
 | Leave portal 1.b checkbox to operator | Agent-attest build readiness |
 | Derive each Workbench action from signed callback/session readback | Treat an `activeFlow` label as expectation proof |
 | Submit the official Workbench input schema and send within its five-minute expectation | Auto-set `accept_bpp_terms` or another legal-semantic field |
 
-**Keys owner doc:** [`references/ondc-sandbox-keys.md`](references/ondc-sandbox-keys.md). Ladder: [`ondc-sandbox-integration-ladder.md`](references/ondc-sandbox-integration-ladder.md).
+**Keys owner doc:** [`references/ondc-sandbox-keys.md`](references/ondc-sandbox-keys.md). Ladder: [`ondc-sandbox-integration-ladder.md`](references/ondc-sandbox-integration-ladder.md). ONDC docs vs GitHub TOC: `~/.agents/skills/ondc` Sources.
 
-### Operator handoff tab lifecycle
+### Operator handoff
 
-Finalize hard-stop operator tabs with `status: "handoff"`. Login, password,
-OTP/MFA, CAPTCHA, one-time key download, 1.b attestation, legal acceptance,
-and unresolved operator-decision stops make the exact positioned tab part of
-the deliverable. After verifying its visible label and location, call
-`browser.tabs.finalize({ keep: [{ tab, status: "handoff" }] })` as the final
-Chrome action of the turn; do not close, omit, navigate, or call another Chrome
-tool afterward. A later turn must rediscover the exact returned user tab before
-claiming it. Disposable research, duplicate, blank, and error tabs remain
-eligible for normal cleanup.
+Login, password, OTP/MFA, CAPTCHA, one-time key download, 1.b attestation,
+legal acceptance, and unresolved operator decisions are hard stops. Preserve
+the visible portal state for the operator.
 
 ### LOG10 dedicated-identity rule (2026-07-26)
 
@@ -100,40 +114,18 @@ eligible for normal cleanup.
   build-verification tooling, not as a 1.a registration warning or permission
   to start protocol/conformance work.
 
-### Workbench conformance rule (2026-07-31)
+### Workbench
 
-- Use one active flow and one transaction. `activeFlow` persists before the
-  incoming action, while `flowMap` stays empty until Workbench receives it; use
-  the visible listening state or official session readback as the start proof.
-- A Workbench action expectation lasts five minutes. Complete the visible input
-  form first and send the signed action immediately; do not diagnose an expired
-  expectation as an AadhaarChain transaction-ID defect.
-- After each BAP action, read the current step. `INPUT-REQUIRED` means submit
-  Workbench's schema before expecting its mock callback. In the Immediate
-  Delivery flow, the `on_search` feature flags are optional and may remain
-  empty; do not invent advertised LSP features.
-- Build `init` from the signed `on_search`. Preserve the official P2P
-  `linked_provider` fulfillment tag; omitting the tags array makes the current
-  Workbench `on_init` generator fail before callback delivery.
-- Derive `confirm` only from the signed `on_init` and Workbench payload
-  readback. If the official confirm contract requires
-  `bap_terms/accept_bpp_terms=yes`, stop for explicit operator authorization;
-  conformance authorization alone is not legal acceptance.
-- Treat tags as action-specific. Preserve signed identifiers and values, but
-  validate each outbound action before dispatch: `rider_check` is required in
-  this Workbench `on_init` fixture and invalid in `confirm`, so it must not be
-  copied forward blindly.
-- An `INPUT-REQUIRED` step with an empty input array still needs exactly one
-  official `flow/proceed` call with empty inputs. Verify the resulting callback
-  before proceeding again; do not skip or double-trigger it.
-- Keep the exact portal and Workbench tabs as handoff deliverables at any
-  login, key, attestation, legal, or unresolved operator boundary.
+Operating contract: `~/.agents/skills/ondc` (Workbench lane). This app's
+identities: `.ondc/binding.json`. LOG10 Immediate Delivery required
+operator-authorized `accept_bpp_terms=yes`; RET10 prepaid+IGM has ACK'd
+without it — leave unset unless a new run's schema requires it.
 
 ## Current state owner
 
-Use [`.voice/progress.md`](../../../.voice/progress.md) and the
-[PreProd network matrix](../ondc-testing/references/preprod-network-matrix.md)
-for current gate status. This skill owns portal, identity, key, and hard-stop
+Use [`.session/checklist/checklist.json`](../../../.session/checklist/checklist.json) for current gate status and the
+[PreProd network matrix](../../../.agents/skills/testing-ledger/references/preprod-network-matrix.md)
+for retained evidence. This skill owns portal, identity, key, and hard-stop
 rules; it does not maintain a second execution queue.
 
 ## Known non-secret values
@@ -175,8 +167,7 @@ Signup wizard steps / hard-stops / React fill helper: [`ondc-portal.md`](referen
 
 ## ONDC portal — short workflow
 
-1. Open the existing authenticated ONDC portal tab through bundled `@chrome`;
-   never guess a tab ID.
+1. Use bundled `@chrome` for the authenticated ONDC portal surface.
 2. Buyer `15462-10008` — EnvAccessRequest **Pre-Prod Subscribed** for `ondcbuyer.aadharcha.in`. Next: **1.b** (Pending — operator only).
 3. Seller `15462-10011` **ISN** — EnvAccessRequest **Pre-Prod Subscribed** for `ondcseller.aadharcha.in` (12/07/2026 02:44 PM; portal `uk_id` `baf58086-7024-438a-becf-4cfa056ec8d9`). Next: **1.b** (Pending — operator only). Keys/hosting: [`ondc-sandbox-keys.md`](references/ondc-sandbox-keys.md). Ladder: [`ondc-sandbox-integration-ladder.md`](references/ondc-sandbox-integration-ladder.md).
 4. Logistics `15462-10220` — portal 1.a and operator-completed 1.b persisted
@@ -233,6 +224,6 @@ Code: `aadharchain/gateway/app/setu_ekyc.py`. Local demo fixtures remain valid w
 - Demo video (Token Nxt Q33 / PreProd walkthrough) → [demo-video-recording](../demo-video-recording/SKILL.md)
 - Auth0 / gateway session → [authentication](../authentication/SKILL.md)
 - Deploy / CI/CD / Free-Hobby → [portfolio-deploy](../portfolio-deploy/SKILL.md)
-- Buyer/Seller UX matrix → [ondc-testing](../ondc-testing/SKILL.md)
-- Ops → [`PRODUCTION-READINESS.md`](../../../PRODUCTION-READINESS.md)
+- Buyer/Seller UX matrix → [testing-ledger](../../../.agents/skills/testing-ledger/SKILL.md)
+- Ops → [`.session/docs/PRODUCTION-READINESS.md`](../../../.session/docs/PRODUCTION-READINESS.md)
 - Historical Token Nxt application material → [curated answers](references/token-nxt-curated-answers.md) (not an active submission instruction)

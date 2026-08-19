@@ -6,11 +6,11 @@ Discovered / updated 2026-07-12 via Hermes WIP session `ondc-portal-onboard`.
 
 | Surface | URL |
 | --- | --- |
-| Signup | https://portal.ondc.org/sign-up |
-| Login | https://portal.ondc.org / login |
-| Post-signup home / integrations | https://portal.ondc.org/integration-create-plan |
-| Manage Business Info (profile) | https://portal.ondc.org/profile |
-| Declarations and KYC | https://portal.ondc.org/declarations (locked until network status advances) |
+| Signup | <https://portal.ondc.org/sign-up> |
+| Login | <https://portal.ondc.org> / login |
+| Post-signup home / integrations | <https://portal.ondc.org/integration-create-plan> |
+| Manage Business Info (profile) | <https://portal.ondc.org/profile> |
+| Declarations and KYC | <https://portal.ondc.org/declarations> (locked until network status advances) |
 | Maintenance note (seen) | Portal downtime **13 Jul 2026 16:00–22:00** IST |
 
 ## Post-signup status (2026-07-12 afternoon) — **account exists**
@@ -35,7 +35,14 @@ Discovered / updated 2026-07-12 via Hermes WIP session `ondc-portal-onboard`.
 
 **Policy:** staging/sandbox Buyer+Seller first ([`ondc-sandbox-keys.md`](ondc-sandbox-keys.md)); **prod only after GSTIN**. Keys = local Ed25519/X25519 + staging `/subscribe`, not portal “generate & download”.
 
-Evidence: `references/evidence/ondc-postsignup-*-20260712.jpeg`, `ondc-sandbox-*-20260712.jpeg`, `ondc-portal-operator-submit-window-20260712.jpeg`, `ondc-postsubmit-*-20260712.jpeg`. Ledger same date. Auth0: [`../authentication/SKILL.md`](../authentication/SKILL.md).
+**Portal ≠ mail (fail closed):** authenticated portal UI readback is not
+provider-mail readback. Latest A4 portal stamp 2026-08-17:
+[`ondc-a4-portal-readback-20260817.json`](../../../../.agents/skills/testing-ledger/references/evidence/ondc-a4-portal-readback-20260817.json)
+(ledger same date). Keys / Render / GoDaddy DNS / registry submit remain
+operator-authorized; GoDaddy=DNS, Render=runtime; participant-host order in
+repo `AGENTS.md`.
+
+Evidence: `references/evidence/ondc-postsignup-*-20260712.jpeg`, `ondc-sandbox-*-20260712.jpeg`, `ondc-portal-operator-submit-window-20260712.jpeg`, `ondc-postsubmit-*-20260712.jpeg`. Ledger same date. Auth0: [`authentication`](../../authentication/SKILL.md).
 
 ## Wizard structure (signup — historical)
 
@@ -99,6 +106,8 @@ Password / OTP were hard-stops for agents — operator completed signup. Account
 ```bash
 export HERMES_CHROME_BRIDGE_SOCKET=/Users/gurusharan/plugins/hermes-chrome-cursor-wip/run/chrome-bridge.sock
 # Multi-page portal / Token Nxt: durable controller (same session id for whole campaign)
+# Concurrent A4 vs B5: distinct --session-id; never kill the sibling lease.
+# Closeout verified_absent. After Auth0/chrome-error restore the real https URL.
 WORK=/tmp/hermes-ondc-portal-onboard
 python3 /Users/gurusharan/plugins/hermes-chrome-cursor-wip/skill/scripts/durable_lease_controller.py start \
   --session-id ondc-portal-onboard --label ondc-portal --url https://portal.ondc.org \

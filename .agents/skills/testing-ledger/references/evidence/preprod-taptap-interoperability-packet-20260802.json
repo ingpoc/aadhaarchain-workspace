@@ -1,0 +1,90 @@
+{
+  "captured_at": "2026-08-02T11:21:50+05:30",
+  "artifact_type": "redacted_interoperability_packet",
+  "environment": "ONDC PreProd",
+  "provider": {
+    "name": "TapTap Logistics",
+    "bpp_id": "preprod-bpp.taptap.in"
+  },
+  "transaction": {
+    "transaction_id": "6f5a3bf8-fc4e-4b59-b0ab-1d09d7e75201",
+    "search": {
+      "message_id": "f8da9847-d359-41f5-9026-855f35ba1c42",
+      "outbox_id": "pg_out_9885",
+      "inbox_id": 10129,
+      "outbox_event_commitment": "2e70217b18b00cabce28ac740a0af392acb0426350eb1a5b6478ae4e5a14fbc1",
+      "outbox_raw_envelope_commitment": "f1225a62a2702dbacb8d151574c3d61af11bc4f491118bf1005f8b92f927ae91",
+      "inbox_event_commitment": "4f9e44b64d1444761c5dec76a7cd3fe289cae251e11d53706198e3bc0b73e65e",
+      "inbox_raw_envelope_commitment": "7c004601dbed52938cb7cf8b08738cc8b4eeeaf50662f4196c5469a57c89873d"
+    },
+    "init": {
+      "message_id": "49a8c5ad-0bda-4afb-b1bf-53469158404a",
+      "outbox_id": "pg_out_9944",
+      "inbox_id": 10190,
+      "outbox_event_commitment": "ad2dd685e9c3b2349366837f85c4e9bf28b8da7f1bb6e3f284d0195631a38d44",
+      "outbox_raw_envelope_commitment": "f73f608bba56279684dd844c115b328d89186963b3137b6bb742c855e267c8af",
+      "inbox_event_commitment": "e867aa7e31d9f777fadd0db2319c96f0fe14a82f2ad76da8f81af429884cd390",
+      "inbox_raw_envelope_commitment": "6294131aa7640f4f612c08e2c28efcbfbae95d13d2b5afe30dc3071cf84d26b9"
+    }
+  },
+  "selected_offer": {
+    "domain": "ONDC:LOG10",
+    "core_version": "1.2.5",
+    "category_id": "Immediate Delivery",
+    "item_code": "P2P",
+    "fulfillment_type": "Delivery",
+    "quote": {
+      "currency": "INR",
+      "value": "59.00"
+    },
+    "tat": "PT60M"
+  },
+  "signature_verification": {
+    "on_search": "verified_against_subscribed_BPP_registry_key",
+    "on_init": "verified_against_subscribed_BPP_registry_key"
+  },
+  "conformance": {
+    "expected_on_init_tag": {
+      "code": "rider_check",
+      "list": [
+        {
+          "code": "inline_check_for_rider",
+          "value": "yes"
+        }
+      ]
+    },
+    "observed_on_init_fulfillment_tag_codes": [
+      "linked_order",
+      "linked_provider",
+      "state",
+      "rto_action"
+    ],
+    "observed_ready_to_ship": "no",
+    "observed_inline_check_for_rider": "missing",
+    "verdict": "rejected_before_confirm",
+    "identical_payload_retry_allowed": false
+  },
+  "protocol_outcome": {
+    "search_http_status": 200,
+    "search_ack": "ACK",
+    "init_http_status": 200,
+    "init_ack": "ACK",
+    "confirm_count": 0,
+    "update_count": 0,
+    "status_count": 0,
+    "track_count": 0
+  },
+  "official_acceptance_contract": {
+    "b2c_logistics_contract": "https://docs.google.com/document/d/1CkfxtqyLbSQccJZyNmf9BSGzJBH13gcLOk_tywV-LBk/edit",
+    "on_init_validator": "https://github.com/ONDC-Official/reference-implementations/blob/8105e9c57677dbbca22c9fdca897f19454ba5b01/utilities/logistics-b2b/log-verification-utility/utils/logistics/v1.2.5/logOnInit.js",
+    "confirm_validator": "https://github.com/ONDC-Official/reference-implementations/blob/8105e9c57677dbbca22c9fdca897f19454ba5b01/utilities/logistics-b2b/log-verification-utility/utils/logistics/v1.2.5/logConfirm.js"
+  },
+  "redaction": {
+    "payload_bodies_included": false,
+    "addresses_included": false,
+    "contact_details_included": false,
+    "gps_included": false,
+    "authorization_headers_or_keys_included": false
+  },
+  "claim_boundary": "This packet proves a signed PreProd TapTap offer and signed on_init were durably correlated and that the on_init failed the Immediate Delivery rider-check requirement. It does not prove Workbench conformance, an LSP booking, legal-term acceptance, LSP-issued tracking, a real payment, a physical shipment, deployment, production ONDC, or a delivered order."
+}

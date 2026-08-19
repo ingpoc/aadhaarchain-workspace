@@ -17,7 +17,7 @@ description: >-
 
 This skill owns **how** voice and runtime agents are designed. It does not own
 the ONDC customer test inventory or its Pass criteria; those remain in
-[`ondc-testing`](../ondc-testing/SKILL.md).
+[`testing-ledger`](../../../.agents/skills/testing-ledger/SKILL.md).
 
 ## Owner boundary
 
@@ -28,8 +28,9 @@ the ONDC customer test inventory or its Pass criteria; those remain in
 | Current page, visible results, cart/order state, persisted outcome | Product state owners |
 | Short low-latency interaction | Realtime agent |
 | Long multi-step planning or execution | Runtime agent |
-| Customer journeys and Pass/Fail evidence | `ondc-testing` |
+| Customer journeys and Pass/Fail evidence | `testing-ledger` |
 | Consequential-action authority | AgentGuard |
+| Production risk tiers + single approval inbox (C3) | [`references/production-authority.md`](references/production-authority.md) |
 
 **Model owns semantic intent.** Never route a user's utterance with keyword,
 regex, fixed-phrase, or last-token rules. The host may normalize a selected
@@ -128,7 +129,7 @@ semantic understanding with deterministic routing.
 | --- | --- |
 | Dialogue, clarification, short reads/writes, visible navigation | Multi-step plans, research, bulk work, long loops |
 | One turn should settle quickly | Lifecycle may span many turns or minutes |
-| Short natural preamble only when latency is noticeable | Emits `started → heartbeat → completed|failed` |
+| Short natural preamble only when latency is noticeable | Emits `started → heartbeat → completed | failed` |
 | Returns a visible product outcome | Returns a compact outcome and authoritative references |
 
 Delegate a compact brief: customer goal, constraints, relevant current state,

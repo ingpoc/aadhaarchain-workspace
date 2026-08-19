@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""P5 gate: refuse flipping VITE_COMMERCE_DEMO_MODE=false without conformance evidence.
+"""P5 gate: validate evidence for changing the ONDC commerce environment.
 
 Usage:
   python3 scripts/commerce_demo_mode_gate.py --check
@@ -13,7 +13,6 @@ from __future__ import annotations
 
 import argparse
 import json
-import sys
 from pathlib import Path
 
 
@@ -76,10 +75,11 @@ def main() -> int:
         json.dumps(
             {
                 "ok": True,
-                "commerce_demo_mode_required": True,
+                "commerce_demo_mode_required": False,
                 "message": (
-                    "Do not set VITE_COMMERCE_DEMO_MODE=false until ONDC portal A5–A8, "
-                    "staging conformance, and evidence JSON pass --allow-with-evidence."
+                    "PreProd evidence permits VITE_COMMERCE_DEMO_MODE=false for the current "
+                    "FQDN configuration. Production ONDC and real payment remain separately "
+                    "gated by PRODUCTION-READINESS B8, F3, and F5."
                 ),
             },
             indent=2,

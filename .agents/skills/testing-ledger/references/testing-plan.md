@@ -90,7 +90,6 @@ only when the test harness needs it. Never commit secrets or raw PII.
 Two consecutive manual passes are required before browser-flow simplification or
 deleting old validation paths.
 
-
 ### Demo principal auth (Milestone 1 host identity)
 
 Precond: gateway up; `AUTH_DEMO_CONTINUE=true` (local automation). Auth0 preferred for PreProd/staging (`AUTH0_*`).
@@ -224,10 +223,12 @@ Impossible, stale-version and duplicate transitions must not mutate state.
 ### Existing commands
 
 ```bash
-cd aadharchain/gateway && .venv/bin/python -m pytest tests/test_agentguard.py -q
+cd aadharchain/gateway && PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 python3 -m pytest tests/test_agentguard.py -q -p asyncio
 cd ondcbuyer && npm test
 cd ondcseller && npm test
 ```
+
+Never bare `pytest` in `aadharchain/gateway` — host plugin autoload breaks the suite.
 
 Add focused files next to their owners rather than one giant end-to-end unit
 test. Preserve current Buyer journey, cart failure, order, Seller catalog,

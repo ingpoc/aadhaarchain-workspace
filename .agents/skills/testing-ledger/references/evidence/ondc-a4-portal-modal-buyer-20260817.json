@@ -1,0 +1,55 @@
+{
+  "schema_version": "ondc-portal-modal-reconcile.v1",
+  "gate_id": "A4",
+  "recorded_at": "2026-08-17T13:33:01+05:30",
+  "authorization": "operator human generated+downloaded modal keys 2026-08-17; reconcile only; no Submit; no Render",
+  "source_download": "~/Downloads/keys (5).json",
+  "download_mtime_ist": "2026-08-17T13:30:09+05:30",
+  "materialized_path": "aadharchain/gateway/.local/ondc-production-portal-modal/buyer",
+  "role": "buyer",
+  "profile_id": "15462-10008",
+  "subscriber_id": "ondcbuyer.aadharcha.in",
+  "attribution": "filename convention keys.json=Buyer plus Buyer Raise Request modal was the open 1.a surface at generate time",
+  "profiles_downloaded": ["buyer"],
+  "profiles_not_downloaded": ["seller", "lbnp"],
+  "unique_key_id": null,
+  "unique_key_id_status": "not-in-keys-json; portal modal Unique Key ID not captured before Cancel/navigation",
+  "registry_env_ui_observed": "PreProd (Registry input disabled/locked)",
+  "operator_claimed": "Production 1.a generate+download",
+  "encryption_public_key_format": "asn1_der_spki_b64",
+  "private_pem_mode": "0600",
+  "submitted": false,
+  "copied_to_render_or_env": false,
+  "portal_download_overwritten": false,
+  "local_draft_overwritten": false,
+  "modal": {
+    "signing_public_fp16": "dff58a270e9ed255",
+    "encryption_public_fp16": "d3d25f9e40e29b76",
+    "signing_public_sha256": "dff58a270e9ed2552a45902fa90f96c6c1a45b67539f9fe1ea4844614092e7ae",
+    "encryption_public_sha256": "d3d25f9e40e29b76c049f0fd179bd21584276b36f1b982a3d08c3c3685ddd0f1"
+  },
+  "local_draft_buyer": {
+    "path": "aadharchain/gateway/.local/ondc-production/buyer",
+    "unique_key_id": "e4f749da-6990-4b69-a85c-483f2bd8a3d2",
+    "signing_public_fp16": "c8917676136e07fb",
+    "encryption_public_fp16": "4ff4383597146414",
+    "match": false
+  },
+  "preprod_portal_download_buyer": {
+    "path": "aadharchain/gateway/.local/ondc-sandbox/portal-download/buyer",
+    "unique_key_id": "1aee68ad-bc2a-4fc4-b233-7e14c6abba9b",
+    "signing_public_fp16": "35d7fa62daaa968d",
+    "encryption_public_fp16": "e7d26d936ee99cff",
+    "keys_json_sha256": "5d4674bcbc7126f24d96c5d47f6727c07370e0f3928506ad058f9510e4520b3d",
+    "match": false
+  },
+  "seller_lbnp": "no 2026-08-17 modal download found; not materialized",
+  "not_proven": [
+    "portal Unique Key ID for this modal pair",
+    "Production environment access (Registry field was PreProd-locked)",
+    "Seller or LBNP modal generate",
+    "portal or registry Submit",
+    "Render env / production PEM vars"
+  ],
+  "note": "Modal pair supersedes local Buyer draft if Submit is later authorized. Do not delete local drafts until human confirms discard. Private PEM contents are not in this receipt."
+}

@@ -478,7 +478,7 @@ Open boundaries (not release blockers for the PreProd demo claim):
 | Combined local pass 2 | `matrix-run-20260716-002128.json` | **31/31 Pass** — unchanged source; 32/32 screenshots visually accepted; zero turn errors; matrix closeout clean |
 | Buyer checkout semantics | exact tool/backend evidence + screenshots | **Pass ×2** — real INR 25,089 cart → `need_approval`; expensive item removed; INR 89 cart → `allow`, paid order, matching receipt |
 | Seller lifecycle semantics | exact tool/backend evidence + screenshots | **Pass ×2** — publish visibility; accept→fulfill; reject; refund allow + INR 26,000 approval; runtime handoff |
-| Deterministic gates | tests, typecheck, builds, validators, Ruff/diff | **Pass** — Buyer 155 tests; Seller 163 tests; both production builds; `portfolio-browser` and `ondc-testing` validators |
+| Deterministic gates | tests, typecheck, builds, validators, Ruff/diff | **Pass** — Buyer 155 tests; Seller 163 tests; both production builds; `portfolio-browser` and `testing-ledger` validators |
 
 This is local text/runtime browser proof only. It does not refresh deployed FQDN evidence and does not claim physical microphone/WebRTC completion.
 
@@ -509,7 +509,7 @@ Buyer proves the complementary approval receipt and paused-checkout outcome.
 - Diagnostic Fail: `m8-visible-1784208100-a` exposed overwritten Buyer SSO and a stale gateway process; neither was counted as acceptance.
 - Pass A: `m8-visible-1784208200-a` — `order_046194d8c55b46e5` / `txn_7c370c1c44094790`.
 - Pass B: `m8-visible-1784208201-b` — `order_e5539c89c77b4593` / `txn_26866a2a067a46a0`.
-- Retained evidence: `.cursor/skills/ondc-testing/references/evidence/m8-browser-local-authority.md` and six JPEG captures under its sibling `m8-browser-local-authority/` directory.
+- Retained evidence: `.agents/skills/testing-ledger/references/evidence/m8-browser-local-authority.md` and six JPEG captures under its sibling `m8-browser-local-authority/` directory.
 - Closeout: `python3 scripts/portfolio_browser.py closeout http://127.0.0.1:43102/search` passed; WIP bridge remained ready.
 
 ### Milestone 8 contract and visible-flow consolidation — 2026-07-16
@@ -530,7 +530,7 @@ scripts contain no AgentGuard evaluate/consume/pause/mandate API shortcuts.
 | Visual review | **Pass** — six retained screenshots opened and accepted; no competing standalone agent link; global Samantha orb visible |
 | Closeout | **Pass** — WIP bridge ready; Buyer search leave URL requested |
 
-Retained evidence: `.cursor/skills/ondc-testing/references/evidence/m8-contract-flow-consolidation.md`
+Retained evidence: `.agents/skills/testing-ledger/references/evidence/m8-contract-flow-consolidation.md`
 and six JPEGs in its sibling `m8-contract-flow-consolidation/` directory.
 
 ## AgentGuard final local safety candidate — 2026-07-17
@@ -547,7 +547,7 @@ Source SHA-256: `d940189015a07678ac2704554a80da16874d0c0021b15c9b5d2bb7ec54684a0
 | Seller UI/UX bounded retry | `SELLER-UX-D940-A2-BOUNDED-RETRY` | **Tooling Blocked** — owned lease disappeared twice; closeout confirmed owned sessions absent |
 | Buyer/Seller customer passes | — | **Not Tested** on this hash; browser campaign stopped after repeated ownership failure |
 
-Retained evidence: `.cursor/skills/ondc-testing/references/evidence/local-safety-final-20260717-d940.json`.
+Retained evidence: `.agents/skills/testing-ledger/references/evidence/local-safety-final-20260717-d940.json`.
 Prior Seller customer passes were on an invalidated source hash and are not
 counted. Deterministic evidence does not replace the three open visible rows.
 
@@ -562,7 +562,7 @@ Source SHA-256: `af98738a621dfb6109e06d06c2833a20e593cb6e4cf8f08d3edb23dd3781088
 | Closeout | **Pass** — both owned session ids absent; no order or receipt created |
 | Remaining customer campaign | **Not Tested** — stopped before Seller, two-sided, or combined UI/UX dispatch |
 
-Retained evidence: `.cursor/skills/ondc-testing/references/evidence/local-customer-proof-blocker-20260717-af987.json`.
+Retained evidence: `.agents/skills/testing-ledger/references/evidence/local-customer-proof-blocker-20260717-af987.json`.
 Resume only after the WIP Hermes semantic input path is repaired and independently checked; rerun the entire Buyer mission from a fresh principal.
 
 ## Final-hash Buyer proof resumed after Hermes repair — 2026-07-18
@@ -578,7 +578,7 @@ Source SHA-256: `af98738a621dfb6109e06d06c2833a20e593cb6e4cf8f08d3edb23dd3781088
 | Fresh blind Buyer mission | **Tooling Blocked** — labeled search fill first failed; after the one allowed recovery it visibly contained `rice`, then the visible Search click failed with `Locator did not resolve for click` |
 | Data hygiene / closeout | **Pass** — 12 item ids, 8 order ids, and inventory unchanged; no cart/order delta; owned session absent and inventory empty |
 
-Retained evidence: `.cursor/skills/ondc-testing/references/evidence/local-customer-proof-blocker-20260718-af987-search-locator.json`.
+Retained evidence: `.agents/skills/testing-ledger/references/evidence/local-customer-proof-blocker-20260718-af987-search-locator.json`.
 The browser campaign stopped before cart mutation. Seller, two-sided, and combined
 UI/UX remain **Not Tested** on this hash; deterministic or fixture evidence does
 not replace the fresh blind rerun after the locator owner is repaired.
@@ -598,7 +598,7 @@ Source fingerprint: `e95340b069cab63b75f436e0d5fdfe4e667545c40d2ee9b378f1b595791
 | Combined responsive/accessibility smoke | **Pass** — Buyer and Seller desktop shells at 1920×902 each exposed one main, one navigation and one banner, no duplicate IDs, and no horizontal overflow. At 390×844 both navigation dialogs had accessible names/headings, closed with Escape, returned focus to their triggers, and had no horizontal overflow or console errors. Temporary viewport overrides were reset. |
 | FQDN/Auth0 Buyer/Seller | **Pass** — deployed Buyer returned from Auth0 to a verified AgentGuard session, exposed protected navigation/account state, and completed an `atta` search to the truthful zero-match state. Deployed Seller returned from Auth0 to a verified identity, then loaded protected dashboard, catalog and incoming-orders surfaces. Both FQDN journeys had zero console errors. The public ONDC live-search soft grader remains advisory: the public catalog is intentionally unseeded and the first Free-tier calls briefly returned 503 while the service settled. |
 
-Final evidence: `.cursor/skills/ondc-testing/references/evidence/cf1-release-e95340-checkpoint-20260722.json`.
+Final evidence: `.agents/skills/testing-ledger/references/evidence/cf1-release-e95340-checkpoint-20260722.json`.
 
 Remaining exclusions are unchanged: real payments, production ONDC conformance,
 native voice, iOS, multi-seller checkout, and broad redesign.
@@ -622,7 +622,7 @@ Frozen application-source fingerprint:
 | FQDN/Auth0 Buyer/Seller | **Pass** — Buyer re-authenticated to Account Ready and AgentGuard-protected checkout at `/search`; Seller re-authenticated to Verified identity and loaded protected dashboard and orders. Desktop semantic checks found no Buyer duplicate IDs or horizontal overflow. |
 
 Final evidence:
-`.cursor/skills/ondc-testing/references/evidence/cf0-completion-cb0769-20260723.json`.
+`.agents/skills/testing-ledger/references/evidence/cf0-completion-cb0769-20260723.json`.
 
 Residuals are explicitly outside CF0 closure: Vercel dependency audits reported
 19 Buyer and 28 Seller findings that require a separately scoped upgrade and

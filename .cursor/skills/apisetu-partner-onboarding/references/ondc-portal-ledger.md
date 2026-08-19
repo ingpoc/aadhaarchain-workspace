@@ -1,17 +1,17 @@
 # ONDC Participant Portal — ledger
 
-Append-only. Agent/operator sessions driving https://portal.ondc.org signup.
+Append-only. Agent/operator sessions driving <https://portal.ondc.org> signup.
 **Currency rule:** every dated `Next`, `Status`, command, and browser note below
-is historical evidence, not active instruction. Current execution comes from
-[`.voice/progress.md`](../../../../.voice/progress.md); current portal rules
-come from [`../SKILL.md`](../SKILL.md). Never replay an action from this ledger
+is historical evidence, not active instruction. Current readiness comes from
+[`.session/checklist/checklist.json`](../../../../.session/checklist/checklist.json); current portal rules come from
+[`../SKILL.md`](../SKILL.md). Never replay an action from this ledger
 without the current owner authorizing it.
 
 ## 2026-07-12 — session `ondc-portal-onboard`
 
 | Item | Value |
 | --- | --- |
-| URL | https://portal.ondc.org/sign-up |
+| URL | <https://portal.ondc.org/sign-up> |
 | Reached | **Organisation Details** (wizard step 2 active) |
 | Domain | Retail (`#Retail1` checked) |
 | Role | **Buyer NP** (`#1` checked) after deliberate Previous → select → Continue |
@@ -69,7 +69,7 @@ without the current owner authorizing it.
 | Item | Value |
 | --- | --- |
 | Earlier | TRN resume + captcha hard-stop — `gst-trn-radio-20260712.jpeg`, `gst-trn-hardstop-captcha-20260712.jpeg` |
-| URL now | https://reg.gst.gov.in/registration/auth/newappl/business |
+| URL now | <https://reg.gst.gov.in/registration/auth/newappl/business> |
 | Step | Part B **Business Details** (logged in; Profile 0%; due 26/07/2026) |
 | Pre-filled (Part A) | Legal `GURUSHARAN GUPTA HUF`; PAN `AAJHG6948N`; State Maharashtra; District Pune |
 | Agent filled | Trade Name = legal name; Constitution **HUF**; commencement **24/08/2024** |
@@ -180,7 +180,6 @@ Session `ondc-portal-onboard`. No commit. No prod. No demo flip. Auth0 not redon
 
 **Next when cleared:** live verification HTML + on_subscribe on FQDNs → POST staging subscribe drafts → lookup → optional `ONDC_*` wire.
 
-
 ## 2026-07-12 — skill encode + operator PreProd Subscribed (verified)
 
 Append-only. Portal-rescan agent may add more detail after this; do not clobber.
@@ -200,12 +199,11 @@ Append-only. Portal-rescan agent may add more detail after this; do not clobber.
 | Auth parallel | Local Auth0 smoke **PASS** — see authentication skill (`aadharchain-gateway-local`, tenant `dev-ejqlkc0qt84udk7i.us.auth0.com`) |
 | Next | Seller env access; public gateway + Vercel `REPLACE_PUBLIC_GATEWAY_ORIGIN`; verification + on_subscribe; subscribe with **local DER**; GSTIN→prod later |
 
-
 ## 2026-07-12 — /home operator link (Comet AX; WIP SOCKET_DOWN)
 
 | Item | Value |
 | --- | --- |
-| URL | https://portal.ondc.org/home (landed Integrations / create-plan shell) |
+| URL | <https://portal.ondc.org/home> (landed Integrations / create-plan shell) |
 | Logged in | **Yes** — Gurusharan Gupta Gupta |
 | Org | **15462** `GURUSHARAN GUPTA HUF` — **Integration in Progress** |
 | Buyer | `15462-10008` Buyer NP Retail B2C — Continue |
@@ -213,7 +211,6 @@ Append-only. Portal-rescan agent may add more detail after this; do not clobber.
 | WIP | SOCKET_DOWN after one preflight; hermes_run failed; no Hermes cursor_move proof |
 | Evidence | `evidence/ondc-home-operator-link-20260712.jpeg` |
 | Next click | Buyer **Continue** (`15462-10008`) → confirm 1.a PreProd Subscribed still shown; then Seller Continue for 1.a Pending |
-
 
 ## 2026-07-12 — Seller 1.a PreProd Subscribed (parity with Buyer)
 
@@ -236,7 +233,6 @@ Session `ondc-portal-onboard`. WIP sock up; preflight `hermes-wip` exit 0. No co
 | Evidence | `evidence/ondc-seller-continue-after-20260712.jpeg`, `ondc-seller-build-expanded-20260712.jpeg`, `ondc-seller-1a-modal-filled-20260712.jpeg`, `ondc-seller-1a-subscribed-20260712.jpeg`, `ondc-seller-1a-after-submit-20260712.jpeg` |
 | Next | Public gateway + Vercel `REPLACE_PUBLIC_GATEWAY_ORIGIN`; verification + on_subscribe with portal keys; Buyer/Seller **1.b** operator-only; GSTIN→prod later |
 
-
 ## 2026-07-12 — portal keys stored + sandbox integration started
 
 No secrets committed. No prod registry POST. Demo mode unchanged.
@@ -251,7 +247,6 @@ No secrets committed. No prod registry POST. Demo mode unchanged.
 | Render | Onboard routes **404** — redeploy blocked for FQDN challenge |
 | Drafts | `evidence/preprod-subscribe-drafts-20260712.json` (do not POST until live) |
 | Next | Operator Render+Vercel redeploy; Agent FQDN probe + lookup |
-
 
 ## 2026-07-12 — portal keys ingest + sandbox integration start
 
@@ -536,3 +531,198 @@ or later gate ran.
 
 **Next:** stop this gate. A Workbench report or later portal/production gate
 requires separately owned authorization.
+
+## 2026-08-17 — A4 authenticated portal readback (Comet `a4-portal-20260817`)
+
+Read-only. No keys, submits, E-Sign, Complete Task, DNS, Render, or registry
+mutation. Evidence:
+[`.agents/skills/testing-ledger/references/evidence/ondc-a4-portal-readback-20260817.json`](../../../../.agents/skills/testing-ledger/references/evidence/ondc-a4-portal-readback-20260817.json).
+
+| Item | Visible fact |
+| --- | --- |
+| Signed-in account | `Gurusharan Gupta Gupta` |
+| Org | **15462** `GURUSHARAN GUPTA HUF` — **Integration in Progress** |
+| Buyer `15462-10008` | Retail B2C API v1.2 Buyer NP — Integration in Progress; 1.a Completed; Pre-Prod **Subscribed** `ondcbuyer.aadharcha.in`; 1.b Pending |
+| Seller `15462-10011` | Retail B2C API v1.2 Seller NP ISN — Integration in Progress; 1.a Completed; Pre-Prod **Subscribed** `ondcseller.aadharcha.in`; 1.b Pending |
+| Logistics `15462-10220` | Logistics B2C API v1.2 Buyer NP — Integration in Progress; Build components Completed; 1.a Completed Pre-Prod **Subscribed** `ondclbnp.aadharcha.in`; 1.b Completed 01/08/2026; Verify build Pending (4) |
+| Disabled/Inactive/removed | None visible |
+| Portal inactivity/disablement warning | Not shown on Integrations, profile, or journey pages |
+| NP Agreement | Pending — empty signatory; `NP-Agreement.pdf` listed; E-Sign visible, not used |
+| Contacts / other pending | Points of Contact 5 tasks pending per profile; Retail 1.b Pending; Logistics Verify build Pending |
+| Production access | Not visible — only Pre-Prod Subscribed rows (1 each) |
+
+**A4 status:** remains blocked. Keys/DNS/deploy/registry submit still forbidden
+without separate operator authorization.
+
+## 2026-08-17 — A4 Unlock production path (authorization only)
+
+Operator chose **Unlock production path** (not activity-only). Execution has
+not started. No keys, Render deploy, GoDaddy DNS, or portal/registry submit in
+this pass. Next: a follow-up must name exact steps (commit, FQDN slice, key
+scope, DNS records) before the fail-closed participant-host order may run.
+Checklist A4 stays `blocked`.
+
+## 2026-08-17 — A4 keys-only authorization (generate-now not given)
+
+Operator authorized **keys only** (not Render deploy, not GoDaddy DNS, not
+registry submit) for all three profiles:
+
+| Profile | Role | FQDN |
+| --- | --- | --- |
+| `15462-10008` | Retail Buyer NP | `ondcbuyer.aadharcha.in` |
+| `15462-10011` | Retail Seller ISN | `ondcseller.aadharcha.in` |
+| `15462-10220` | Logistics Buyer NP | `ondclbnp.aadharcha.in` |
+
+No **generate now**. No production keypairs written. PreProd
+`portal-download/{buyer,seller,lbnp}` pairs remain the live PreProd identity
+and must not be overwritten. After generate-now, write isolated pairs under
+gitignored `.local/ondc-production/{buyer,seller,lbnp}` via
+`scripts/ondc_generate_keys.py --out …`. Local generate does not portal-submit.
+A later portal 1.a modal pair supersedes any local draft and must be reconciled
+before Submit. Production EnvAccessRequest was not visible on the 2026-08-17
+readback. Retail 1.b is still Pending (operator attestation, not keygen);
+Logistics 1.b is Completed. GSTIN still blocks production registry.
+
+Checklist A4 stays `blocked` on generate-now plus the participant-host gate.
+
+## 2026-08-17 — A4 Generate now (local production drafts only)
+
+Operator said **Generate now**. Isolated local production Ed25519/X25519
+pairs written one FQDN at a time via `scripts/ondc_generate_keys.py --out
+aadharchain/gateway/.local/ondc-production/{buyer,seller,lbnp}`. Encryption
+public format `asn1_der_spki_b64`. Private PEMs `0600`. PreProd
+`portal-download/{buyer,seller,lbnp}` sha256 unchanged.
+
+Public fingerprints and draft `unique_key_id` (not registered; no private
+PEMs):
+[`.agents/skills/testing-ledger/references/evidence/ondc-a4-production-keys-local-20260817.json`](../../../../.agents/skills/testing-ledger/references/evidence/ondc-a4-production-keys-local-20260817.json).
+
+| Role | Profile | FQDN | draft unique_key_id | signing fp16 | encryption fp16 |
+| --- | --- | --- | --- | --- | --- |
+| Buyer NP | `15462-10008` | `ondcbuyer.aadharcha.in` | `e4f749da-6990-4b69-a85c-483f2bd8a3d2` | `c8917676136e07fb` | `4ff4383597146414` |
+| Seller ISN | `15462-10011` | `ondcseller.aadharcha.in` | `3d64ce53-3192-41d3-9926-65566e687903` | `34dd53c3a884300a` | `fab3e30e03955c21` |
+| LBNP | `15462-10220` | `ondclbnp.aadharcha.in` | `d8e11f2c-8791-4855-87df-20ef1df2c8c4` | `e9ba484ada7afcc7` | `e4324b1670701d51` |
+
+Nothing copied to Render env, `.env` production PEM vars, DNS, deploy, or
+portal submit. A later portal Production 1.a modal pair supersedes this
+draft and must be reconciled before Submit. GSTIN still blocks production
+registry. Checklist A4 stays `blocked` on the participant-host gate plus
+portal Production 1.a modal reconcile/submit.
+
+## 2026-08-17 — A4 exact-commit Render deploy (PEM/portal still blocked)
+
+Operator authorized deploy of current gateway HEAD to existing Render
+service `identity-aadhar-gateway-main` only. Nested repo
+`ingpoc/aadhaar-chain` `main` HEAD
+`7beab582d141c6f3f1e089c356ce0df6852a318c` is live as
+`dep-da1boulbedkc73cieceg`. Workspace HEAD `2be9e5a` was not deployed.
+Plan Free; auto-deploy off. No Buyer/Seller Render domains, no parallel
+gateway, no GoDaddy DNS, no production PEM env copy.
+
+Health `gateway.aadharcha.in/api/health` 200. Buyer/Seller/LBNP
+site-verification 200. Junk `/ondc/on_subscribe` 400 decrypt-fail.
+Runtime unique_key_ids remain PreProd (`1aee68ad-…` / `baf58086-…` /
+`9e7388f4-…`). Receipt:
+[`.agents/skills/testing-ledger/references/evidence/a4-render-deploy-7beab58-20260817.json`](../../../../.agents/skills/testing-ledger/references/evidence/a4-render-deploy-7beab58-20260817.json).
+
+Checklist A4 stays `blocked` on production PEM copy, valid production
+challenge, and portal Production 1.a modal reconcile/submit.
+
+## 2026-08-17 — Buyer portal modal generate/download (no Submit)
+
+Human generated and downloaded one portal key file:
+`~/Downloads/keys (5).json` (13:30 IST). Materialized to gitignored
+`.local/ondc-production-portal-modal/buyer` (PEMs `0600`). PreProd
+`portal-download/` and local `.local/ondc-production/` drafts not overwritten.
+
+| Pair | unique_key_id | signing fp16 | encryption fp16 | match |
+| --- | --- | --- | --- | --- |
+| Modal Buyer | not in `keys.json` | `dff58a270e9ed255` | `d3d25f9e40e29b76` | — |
+| Local draft Buyer | `e4f749da-…` | `c8917676136e07fb` | `4ff4383597146414` | **mismatch** |
+| PreProd portal-download Buyer | `1aee68ad-…` | `35d7fa62daaa968d` | `e7d26d936ee99cff` | **mismatch** |
+
+Seller and LBNP: no 2026-08-17 modal download. Raise Request Registry input
+was disabled **PreProd**. Modal pair supersedes local Buyer draft; do not
+delete local until human confirms. **Submit still forbidden.** Nothing copied
+to Render. Receipt:
+[`.agents/skills/testing-ledger/references/evidence/ondc-a4-portal-modal-buyer-20260817.json`](../../../../.agents/skills/testing-ledger/references/evidence/ondc-a4-portal-modal-buyer-20260817.json).
+
+## 2026-08-17 — Seller portal modal generate/download (no Submit)
+
+Comet Control session `a4-portal-1a-20260817`. Human generated and downloaded
+`~/Downloads/keys (6).json` (~15:46 IST) from Seller `15462-10011` Raise
+Request modal. Materialized to gitignored
+`.local/ondc-production-portal-modal/seller` (PEMs `0600`). PreProd
+`portal-download/` and local `.local/ondc-production/` drafts not overwritten.
+Buyer local draft kept (`keep-both`). Registry input disabled **PreProd**.
+Modal Unique Key ID captured from UI. **Cancel, not Submit.**
+
+| Pair | unique_key_id | signing fp16 | encryption fp16 | match |
+| --- | --- | --- | --- | --- |
+| Modal Seller | captured from modal UI | `57b7bfd44dc8e4bb` | `d4b04463054a3b5a` | — |
+| Local draft Seller | `3d64ce53-…` | `34dd53c3a884300a` | `fab3e30e03955c21` | **mismatch** |
+| PreProd portal-download Seller | `baf58086-…` | `e0031e7817d922fb` | `fcfd57b2783a258e` | **mismatch** |
+
+LBNP `15462-10220` Raise Request modal left open on the same lease, waiting
+on human Generate+Download. **Submit still forbidden.** Nothing copied to
+Render. Receipt:
+[`.agents/skills/testing-ledger/references/evidence/ondc-a4-portal-modal-seller-20260817.json`](../../../../.agents/skills/testing-ledger/references/evidence/ondc-a4-portal-modal-seller-20260817.json).
+
+## 2026-08-17 — LBNP portal modal generate/download (no Submit)
+
+Same Comet Control session `a4-portal-1a-20260817`. Human generated and
+downloaded `~/Downloads/keys (7).json` (~15:55 IST) from LBNP `15462-10220`
+Raise Request modal. Materialized to gitignored
+`.local/ondc-production-portal-modal/lbnp` (PEMs `0600`). PreProd
+`portal-download/` and local `.local/ondc-production/` drafts not overwritten.
+Buyer local draft kept (`keep-both`). Registry input disabled **PreProd**.
+Modal Unique Key ID captured from UI. **Cancel, not Submit.**
+
+| Pair | unique_key_id | signing fp16 | encryption fp16 | match |
+| --- | --- | --- | --- | --- |
+| Modal LBNP | captured from modal UI | `cc28a26a05045fd4` | `1c489f11cd87fdfb` | — |
+| Local draft LBNP | `d8e11f2c-…` | `e9ba484ada7afcc7` | `e4324b1670701d51` | **mismatch** |
+| PreProd portal-download LBNP | `9e7388f4-…` | `3c3e8acc7a7c5dd1` | `d17db4c75b66f4b2` | **mismatch** |
+
+Buyer Unique Key ID still missing from `keys.json`. All three modal pairs now
+local. **Submit still forbidden.** Nothing copied to Render. Receipt:
+[`.agents/skills/testing-ledger/references/evidence/ondc-a4-portal-modal-lbnp-20260817.json`](../../../../.agents/skills/testing-ledger/references/evidence/ondc-a4-portal-modal-lbnp-20260817.json).
+
+## 2026-08-17 — Buyer Unique Key ID read-only recapture (no generate)
+
+Comet Control session `a4-buyer-ukid-20260817`. Operator authorized
+`capture-buyer-ukid`. Opened Buyer `15462-10008` Production 1.a read-only.
+Outer Unique Key ID is PreProd prefix `1aee68ad` (Subscribed 12/07/2026), not
+the 2026-08-17 modal pair (`dff58a270e9ed255`). Raise Request modal opened
+empty (no Unique Key ID value; generate control visible). **Did not generate**
+— a new pair would overwrite the materialized Buyer modal keys. **Cancel, not
+Submit.** Lease closeout `verified_absent: true`. keep-both local draft.
+Receipt:
+[`.agents/skills/testing-ledger/references/evidence/ondc-a4-portal-modal-buyer-ukid-20260817.json`](../../../../.agents/skills/testing-ledger/references/evidence/ondc-a4-portal-modal-buyer-ukid-20260817.json).
+
+## 2026-08-17 — Buyer Production 1.a modal regenerate (Unique Key ID)
+
+Comet Control session `a4-buyer-modal-regen-20260817`. Operator authorized
+`generate-new-buyer-modal`. Opened Buyer `15462-10008` Production 1.a Raise
+Request, generated+downloaded a new modal pair (`keys (8).json`), captured
+Unique Key ID from the visible modal UI, **Cancel not Submit**. Previous
+2026-08-17 Buyer modal (signing fp16 `dff58a270e9ed255`, no unique_key_id)
+moved aside to
+`.local/ondc-production-portal-modal/buyer-20260817-no-ukid`. keep-both local
+draft `.local/ondc-production/buyer`. Registry PreProd-locked.
+
+| Pair | unique_key_id | signing fp16 | encryption fp16 | match |
+| --- | --- | --- | --- | --- |
+| New modal Buyer | captured from modal UI | `8247845e30f3e325` | `54e705342ad950d6` | — |
+| Old modal Buyer (aside) | missing | `dff58a270e9ed255` | `d3d25f9e40e29b76` | **mismatch** |
+| Local draft Buyer | `e4f749da-…` | `c8917676136e07fb` | `4ff4383597146414` | **mismatch** |
+| PreProd portal-download Buyer | `1aee68ad-…` | `35d7fa62daaa968d` | `e7d26d936ee99cff` | **mismatch** |
+
+**Submit still forbidden.** Nothing copied to Render. Receipt:
+[`.agents/skills/testing-ledger/references/evidence/ondc-a4-portal-modal-buyer-regen-20260817.json`](../../../../.agents/skills/testing-ledger/references/evidence/ondc-a4-portal-modal-buyer-regen-20260817.json).
+
+## 2026-08-18 — official docs: Staging decommissioned; TOC owner
+
+Official [Onboarding of Participants](https://github.com/ONDC-Official/developer-docs/blob/main/registry/Onboarding%20of%20Participants.md) marks Staging registry **decommissioned**. This app stays PreProd-subscribed. Production still GSTIN + operator Submit/PEM/DNS.
+
+Procedure + docs-vs-GitHub TOC: `~/.agents/skills/ondc` Sources (`references/sources.md`). This ledger and `ondc-sandbox-keys.md` keep **this app's** portal/GST identities only. 2026-07-12 Staging subscribe notes above are historical.

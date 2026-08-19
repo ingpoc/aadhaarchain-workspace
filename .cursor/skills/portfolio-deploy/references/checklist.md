@@ -12,7 +12,7 @@ exact-commit Render `dep-d9gqfcjtqb8s73e0l940` live at gateway
 health/identity/NP/site probes 200; FQDN/Auth0 Buyer/Seller acceptance passed.
 Current protocol/catalog evidence is owned by the PreProd network matrix.
 Deployment evidence:
-[`../../ondc-testing/references/evidence/cf0-completion-cb0769-20260723.json`](../../ondc-testing/references/evidence/cf0-completion-cb0769-20260723.json).
+[`../../../../.agents/skills/testing-ledger/references/evidence/cf0-completion-cb0769-20260723.json`](../../../../.agents/skills/testing-ledger/references/evidence/cf0-completion-cb0769-20260723.json).
 
 Unchecked boxes below are a copy-per-run template or dated historical run
 notes; they are not the current deployment status.
@@ -114,7 +114,7 @@ Post-deploy
 ## Run stamp — 2026-07-12 DATA_DIR AgentGuard write ($0)
 
 - [x] Render Free env `DATA_DIR=/tmp/aadharchain-data` (dashboard Save+rebuild; no Disk)
-- [x] Buyer FQDN: ensure **200**; checkout **Paid** + `rcpt_90c6dec41ab8400f` (ondc-testing matrix 17:56)
+- [x] Buyer FQDN: ensure **200**; checkout **Paid** + `rcpt_90c6dec41ab8400f` (testing-ledger matrix 17:56)
 - [x] Seller FQDN: ensure **200** (no Errno 13)
 - [x] SPA Auth0 session still authenticated via `gateway.aadharcha.in` cookie Domain
 - [x] No paid upgrades; demo mode not flipped
@@ -130,10 +130,10 @@ Post-deploy
 
 ## Run stamp — 2026-07-12 evening demo-mode off + select/confirm ($0)
 
-- [x] Gate: `commerce_demo_mode_gate.py --allow-with-evidence` → [`../../ondc-testing/references/evidence/commerce-demo-mode-gate-20260712.json`](../../ondc-testing/references/evidence/commerce-demo-mode-gate-20260712.json)
+- [x] Gate: `commerce_demo_mode_gate.py --allow-with-evidence` → [`../../../../.agents/skills/testing-ledger/references/evidence/commerce-demo-mode-gate-20260712.json`](../../../../.agents/skills/testing-ledger/references/evidence/commerce-demo-mode-gate-20260712.json)
 - [x] Gateway nested push **`1ba0a0c`** (select/init/confirm BAP+BPP); live note shows select/init/confirm; API ACK path proven
 - [x] Vercel Hobby: `VITE_COMMERCE_DEMO_MODE=false` Prod+Preview Buyer+Seller; archive deploys `dpl_6ynH5M49…` / `dpl_J5rZDKoH…` + FQDN aliases
-- [x] Proof: [`../../ondc-testing/references/evidence/demo-mode-off-select-confirm-20260712.json`](../../ondc-testing/references/evidence/demo-mode-off-select-confirm-20260712.json)
+- [x] Proof: [`../../../../.agents/skills/testing-ledger/references/evidence/demo-mode-off-select-confirm-20260712.json`](../../../../.agents/skills/testing-ledger/references/evidence/demo-mode-off-select-confirm-20260712.json)
 - [x] No Disk / Pro / paid add-ons; **not** production ONDC; payment still simulated
 
 ## Run stamp — 2026-07-23 CF0 exact-source release ($0)

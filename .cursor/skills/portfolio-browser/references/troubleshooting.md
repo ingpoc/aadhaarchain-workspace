@@ -12,7 +12,7 @@ Re-run `python3 scripts/portfolio_browser.py preflight` first.
 | Many Chrome windows after one agent run | New `task_id`/`session_name` per step (e.g. `portfolio-page-diag-{pid}`) opens a new lease | Use default `portfolio-browser`; `closeout` now closes **all** leases via `closeout_leases.py` |
 | Want 2 agents → 2 windows | Need distinct lease ids | Export distinct `HERMES_AGENT_ID` per agent (or `PORTFOLIO_HERMES_MULTI_AGENT=1`) |
 | `WIP Hermes run requires preflight for this session` after shell preflight passed | Hermes lease tokens are process-local; a child runner cannot reuse the wrapper process lease | Child runners must call `wip_hermes.run_with_session_preflight` immediately before `run`; never bypass `LEASE_REQUIRED` |
-| `already leased…` / `Invalid browser lease token` mid form fill; `sessions` still lists the id (`busy: false`) | Agent used short-lived `python3 -c` / one-shot `hermes_run` then exited — token died; extension lease remained | Multi-page / partner fills (Token Nxt, ONDC portal): `durable_lease_controller.py` for the whole campaign (same session id). `hermes_run` only inside one long-lived process. Do not invent a new session id. Owner: hermes-chrome `optimize.md` |
+| `already leased…` / `Invalid browser lease token` mid form fill; `sessions` still lists the id (`busy: false`) | Agent used short-lived `python3 -c` / one-shot `hermes_run` then exited — token died; extension lease remained | Multi-page / partner fills (Token Nxt, ONDC portal): `durable_lease_controller.py` for the whole campaign (same session id). `hermes_run` only inside one long-lived process. Do not invent a new session id. |
 | `Detached while handling command` on checkout fills | Element remounted during a long React action chain | Re-resolve the input with a semantic `locator` and `fill`; split at the remount boundary. Never use an `evaluate` value-setter |
 | `EMPTY_RESPONSE` / `SOCKET_DOWN` | Orphan host, dead pipe, **SW Inactive**, or wrong socket path | **Evidence first** (§ below) — do not `launch-wip-chrome` or switch to `~/.hermes` |
 | `SOCKET_DOWN` + extension On + **service worker (Inactive)** | MV3 SW slept → `connectNative` dropped → native host exited → WIP sock gone (manifests often still correct) | Run `ensure-wip-native-host.sh`; open the exact discovered Chrome profile and reload the WIP extension. Never copy a remembered profile name from this project reference |
@@ -35,7 +35,7 @@ Re-run `python3 scripts/portfolio_browser.py preflight` first.
 | Seller `/orders`: “Orders unavailable” / Failed to fetch | `VITE_API_BASE_URL=http://localhost:3001` with `VITE_COMMERCE_DEMO_MODE=false` | Unset `VITE_API_BASE_URL`. Orders load via `GET /api/demo-commerce/seller/orders` on `:43101` (`OrdersPage` → `listCommerceSellerOrders`). UI pass = filter pills + order cards (or honest empty), **not** spinner forever / error card |
 | Samantha orb fails / panel closes immediately | The orb is a **toggle** and a second click closes it; the page may also have remounted | Re-resolve a semantic role locator for button `Open Samantha` and click once; fill test-id `samantha-orb-text` with `testId` camel case. Split the sequence at a remount boundary instead of using CSS selectors or page JavaScript |
 | Seller `/agentguard` “Sign-in not configured” / no Pause | No demo/Auth0 principal on seller origin | `sso demo seller` then open `/agentguard`; require Sign out + Confirm mandate / Pause agent |
-| `click_text` / Dispatch hangs; `EXTENSION_TIMEOUT` / “content script missing” after a prior `page_context` worked | Click opened `window.prompt`/`confirm`/`alert` (Seller Dispatch tracking ID) or an OS sheet — CS reply freezes; inject/reload theories waste runs | **App handler first:** grep `prompt(`/`confirm(`/`alert(` on that control. JS dialog → Hermes `dialog_handle` + `promptText` (batch with click). OS sheet → `$macos-cua` via hermes `multi-agent.md`. Do not reload while a JS dialog is open; do not burn repeated Accept→Dispatch proofs on inject hypotheses without that one grep |
+| `click_text` / Dispatch hangs; `EXTENSION_TIMEOUT` / “content script missing” after a prior `page_context` worked | Click opened `window.prompt`/`confirm`/`alert` (Seller Dispatch tracking ID) or an OS sheet — CS reply freezes; inject/reload theories waste runs | **App handler first:** grep `prompt(`/`confirm(`/`alert(` on that control. JS dialog → Hermes `dialog_handle` + `promptText` (batch with click). OS sheet → bundled Computer Use. Do not reload while a JS dialog is open; do not burn repeated Accept→Dispatch proofs on inject hypotheses without that one grep |
 
 ## Local VITE bake trap (2026-07-12/13)
 
@@ -48,7 +48,7 @@ ps eww -p "$(pgrep -f 'ondcbuyer/node_modules/.bin/vite' | head -1)" | tr ' ' '\
 # PreProd readiness: prefer FQDN apps with Vercel-baked gateway URL + Auth0
 ```
 
-Owner fix: `scripts/start-dev.sh` `start_node` — strip `VITE_*`, apply `.env.local`, detach. PreProd UX: [`ondc-testing`](../ondc-testing/SKILL.md).
+Owner fix: `scripts/start-dev.sh` `start_node` — strip `VITE_*`, apply `.env.local`, detach. PreProd UX: [`testing-ledger`](../../../../.agents/skills/testing-ledger/SKILL.md).
 
 Portfolio browser **only** accepts:
 
@@ -110,4 +110,4 @@ python3 scripts/portfolio_browser.py preflight
 
 - Overlay always injected; **starts hidden** (`opacity: 0`) until a cursor-driving action.
 - `page_context` / `evaluate` / `snapshot` alone never reveal the pointer.
-- Partner portal / Auth0 / deploy browser work: [apisetu-partner-onboarding](../apisetu-partner-onboarding/SKILL.md), [authentication](../authentication/SKILL.md), [portfolio-deploy](../portfolio-deploy/SKILL.md), [ondc-testing](../ondc-testing/SKILL.md).
+- Partner portal / Auth0 / deploy browser work: [apisetu-partner-onboarding](../../apisetu-partner-onboarding/SKILL.md), [authentication](../../authentication/SKILL.md), [portfolio-deploy](../../portfolio-deploy/SKILL.md), [testing-ledger](../../../../.agents/skills/testing-ledger/SKILL.md).

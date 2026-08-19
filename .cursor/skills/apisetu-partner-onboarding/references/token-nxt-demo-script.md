@@ -14,7 +14,7 @@
 | Demo id | `token-nxt-agentguard-20260715` |
 | Audience | Token Nxt application reviewers (form Q33) |
 | Target length | 1:55–2:10 |
-| Browser driver | Bundled Chrome plugin; reuse a claimed/existing tab when safe |
+| Browser driver | Bundled Chrome plugin |
 | Record surface | FQDN PreProd: Buyer + Seller + gateway |
 | Picture | Chrome full window, 1280×720, 30 fps, screen-only ffmpeg capture |
 | Product voice runtime | OpenAI Realtime, currently deployed as `gpt-realtime-2.1-mini` |
@@ -87,12 +87,12 @@ Recommended built-in voice: `coral`. Generate the narration only after the final
 ## 7. Recording and mux sequence
 
 1. Run the demo-video access checks and a **fresh FQDN dry-run** of all eight beats.
-2. Claim or create the required Buyer and Seller Chrome tabs through the bundled plugin. Keep both on the recorded macOS Space.
+2. Open the Buyer and Seller walkthrough surfaces through the bundled Chrome plugin. Keep both on the recorded macOS Space.
 3. Generate `vo.mp3` with OpenAI `gpt-4o-mini-tts`; measure its duration.
 4. Record a silent Chrome-plugin walkthrough paced to the narration.
 5. Mux `take.mp4` + `vo.mp3` with ffmpeg. If timing differs by more than five percent, revise the narration or redo the take instead of heavily stretching audio.
 6. Extract and read representative frames: title/disclosure, Samantha outcome, mandate, Seller controls, and close.
-7. Finalize Chrome-plugin tabs: close temporary tabs and hand off claimed user tabs.
+7. End browser control using the bundled Chrome plugin's cleanup and handoff guidance.
 8. Upload the final MP4 unlisted and paste the URL into Token Nxt form Q33.
 
 ## 8. Record gate

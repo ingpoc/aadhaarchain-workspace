@@ -1,1 +1,0 @@
-.voice/DESIGN.md

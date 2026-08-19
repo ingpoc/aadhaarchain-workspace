@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "name": "aadharchain-production-checklist",
+  "cwd": "/Users/gurusharan/Documents/remote-claude/active/apps/AadhaarChainWorkspace",
+  "source_paths": [
+    "/Users/gurusharan/Documents/remote-claude/active/apps/AadhaarChainWorkspace/.session/checklist/checklist.json",
+    "/Users/gurusharan/Documents/remote-claude/active/apps/AadhaarChainWorkspace/.session/checklist/hardening-contract.json",
+    "/Users/gurusharan/Documents/remote-claude/active/apps/AadhaarChainWorkspace/.agents/skills/checklist/SKILL.md",
+    "/Users/gurusharan/Documents/remote-claude/active/apps/AadhaarChainWorkspace/scripts/generate_checklist.py",
+    "/Users/gurusharan/.agents/skills/checklist-framework/references/schema.md",
+    "/Users/gurusharan/.agents/skills/checklist-framework/scripts/render_checklist.py"
+  ],
+  "ignore_parts": [
+    ".git",
+    "__pycache__",
+    "node_modules"
+  ],
+  "steps": [
+    {
+      "name": "owner-contract",
+      "command": ["python3", "scripts/generate_checklist.py", "--check"],
+      "timeout_seconds": 30,
+      "budget_seconds": 2,
+      "fail_patterns": ["Traceback", "warning", "stale"]
+    },
+    {
+      "name": "generate",
+      "command": ["python3", "scripts/generate_checklist.py"],
+      "timeout_seconds": 30,
+      "budget_seconds": 2,
+      "fail_patterns": ["Traceback", "warning"]
+    },
+    {
+      "name": "currentness",
+      "command": ["python3", "scripts/generate_checklist.py", "--check-current"],
+      "timeout_seconds": 30,
+      "budget_seconds": 2,
+      "fail_patterns": ["Traceback", "warning", "stale"]
+    },
+    {
+      "name": "renderer-readback",
+      "command": ["python3", "/Users/gurusharan/.agents/skills/checklist-framework/scripts/render_checklist.py", "--root", ".", "--check-current"],
+      "timeout_seconds": 30,
+      "budget_seconds": 2,
+      "fail_patterns": ["Traceback", "warning", "stale"]
+    },
+    {
+      "name": "drams",
+      "command": ["/Users/gurusharan/.agents/skills/drams-design/scripts/validate-drams.sh", "/Users/gurusharan/.agents/skills/checklist-framework/scripts/render_checklist.py"],
+      "timeout_seconds": 30,
+      "budget_seconds": 5,
+      "fail_patterns": ["Traceback", "warning", "Missing token"]
+    },
+    {
+      "name": "workflow-lint",
+      "command": ["workflow", "lint"],
+      "timeout_seconds": 60,
+      "budget_seconds": 10,
+      "fail_patterns": ["Traceback", "warning", "error"]
+    }
+  ],
+  "cleanup": {
+    "command": ["python3", "-c", "from pathlib import Path; assert not list(Path('.session').rglob('*.tmp')); assert not Path('/Users/gurusharan/.agents/skills/checklist-framework/scripts/__pycache__').exists()"],
+    "timeout_seconds": 10
+  },
+  "ledger_path": "~/.cache/elon-algorithm/aadharchain-production-checklist/ledger.json"
+}

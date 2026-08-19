@@ -2,7 +2,9 @@ export const AGENTGUARD_ACTIONS = [
   "buyer.checkout.commit",
   "buyer.order.cancel",
   "buyer.return.submit",
+  "buyer.issue.escalate",
   "buyer.remedy.accept",
+  "buyer.remedy.reject",
   "seller.catalog.publish",
   "seller.catalog.archive",
   "seller.price.change",
@@ -10,6 +12,8 @@ export const AGENTGUARD_ACTIONS = [
   "seller.order.accept",
   "seller.order.reject",
   "seller.fulfilment.commit",
+  "seller.issue.acknowledge",
+  "seller.issue.escalate",
   "seller.remedy.promise",
   "seller.refund.issue",
 ] as const;

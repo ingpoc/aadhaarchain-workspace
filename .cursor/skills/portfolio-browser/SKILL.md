@@ -24,9 +24,9 @@ description: >-
 
 **Legacy window policy (mandatory when this harness is selected):** one working agent → **one** Hermes WIP Chrome window. Two concurrent agents → two windows via distinct `HERMES_AGENT_ID` values. Never invent a new `task_id` / `session_name` per script step — that opens orphan windows. Default lease id is `portfolio-browser` (see `scripts/wip_hermes.py`). End work with `portfolio_browser.py closeout` which now closes **all** active agent leases, not a fixed tab-name list.
 
-**Partner onboarding:** ONDC Participant Portal / Setu.co / MeitY DigiLocker → workflow owned by [`.cursor/skills/apisetu-partner-onboarding/`](../apisetu-partner-onboarding/SKILL.md) + `PRODUCTION-READINESS.md`. Bundled `@chrome` drives current browser work; this skill is only the legacy replay driver. MeitY rail remains **paused** inside that skill.
+**Partner onboarding:** ONDC Participant Portal / Setu.co / MeitY DigiLocker → workflow owned by [`.cursor/skills/apisetu-partner-onboarding/`](../apisetu-partner-onboarding/SKILL.md) + [`.session/docs/PRODUCTION-READINESS.md`](../../../.session/docs/PRODUCTION-READINESS.md). Bundled `@chrome` drives current browser work; this skill is only the legacy replay driver. MeitY rail remains **paused** inside that skill.
 
-**Related:** Samantha/UX matrix → [`ondc-testing`](../ondc-testing/SKILL.md). Auth0 → [`authentication`](../authentication/SKILL.md). FQDN/CI deploy → [`portfolio-deploy`](../portfolio-deploy/SKILL.md). PreProd demo video (Hermes cursor dry-run → record) → [`demo-video-recording`](../demo-video-recording/SKILL.md).
+**Related:** Samantha/UX matrix → [`testing-ledger`](../../../.agents/skills/testing-ledger/SKILL.md). Auth0 → [`authentication`](../authentication/SKILL.md). FQDN/CI deploy → [`portfolio-deploy`](../portfolio-deploy/SKILL.md). PreProd demo video (Hermes cursor dry-run → record) → [`demo-video-recording`](../demo-video-recording/SKILL.md).
 ## Agent context rule (always)
 
 On every Hermes page under test, treat **UI + console + backend** as one compact context.
@@ -36,21 +36,17 @@ Do not conclude pass/fail from UI alone.
 `HERMES_CHROME_BRIDGE_SOCKET=…/hermes-chrome-cursor-wip/run/chrome-bridge.sock`.  
 Load unpacked: `…/hermes-chrome-cursor-wip/deploy/extension`. Do **not** use Codex live Hermes.
 
-**WIP host ownership:** the canonical runtime owner is the
-[`hermes-chrome` skill](/Users/gurusharan/plugins/hermes-chrome-cursor-wip/skill/SKILL.md).
-Before recovery, run
-`/Users/gurusharan/plugins/hermes-chrome-cursor-wip/scripts/ensure-wip-native-host.sh`
-and use its exact Chrome profile. Do not hard-code a profile in this project
-skill, open a different browser's extension page, or duplicate-install the WIP
-extension.
+**WIP host ownership:** this fallback requires the separately installed
+`hermes-chrome-cursor-wip` plugin. If it is absent, skip this lane; do not
+recreate its runtime or extension inside this repository. If installed, use its exact Chrome profile.
 
 **SOCKET_DOWN:** evidence first (`ls`/`lsof` WIP sock + discovered host/profile + manifest `path` + extension **service worker Active vs Inactive**) before repairing. Two distinct causes: (1) SW Inactive → native host died (manifests already `native_host_wip.sh`); (2) classic path trap (`path` → `native_host.py` → binds `~/.hermes/run`). Recover only in the profile returned by `ensure-wip-native-host.sh`: open `chrome://extensions` and reload **Hermes Chrome Bridge (Cursor WIP)**. Do **not** route to another browser/profile, install a second copy, rewrite manifests to `.py`, or switch to live `~/.hermes`. Details: [`references/troubleshooting.md`](references/troubleshooting.md) § WIP socket trap.
 
-**Local stack (2026-07-13):** FQDN `VITE_*` process bake, Vite dying after Shell teardown, SSO on `chrome://` error tabs, orb toggle, `/api`→`:3001` — see troubleshooting table + § Local VITE bake. PreProd UX bar: [`ondc-testing`](../ondc-testing/SKILL.md). Demo video record gate: [`demo-video-recording`](../demo-video-recording/SKILL.md).
+**Local stack (2026-07-13):** FQDN `VITE_*` process bake, Vite dying after Shell teardown, SSO on `chrome://` error tabs, orb toggle, `/api`→`:3001` — see troubleshooting table + § Local VITE bake. PreProd UX bar: [`testing-ledger`](../../../.agents/skills/testing-ledger/SKILL.md). Demo video record gate: [`demo-video-recording`](../demo-video-recording/SKILL.md).
 
 **Cursor / wrong-app traps:** Hermes WIP pointer starts at `opacity: 0` until first move/click; “no cursor” usually = wrong host app (Comet vs Chrome) or window behind IDE — see troubleshooting § Cursor visibility.
 
-**Seller Dispatch tracking prompt:** `window.prompt` — Hermes owns it. Batch `click_text` + `dialog_handle` + `promptText`. Do not reload while open; frozen CS reply ≠ missing script. OS-native / Chrome-shell jobs → `$macos-cua` per hermes-chrome `multi-agent.md` ownership table.
+**Seller Dispatch tracking prompt:** `window.prompt` — Hermes owns it. Batch `click_text` + `dialog_handle` + `promptText`. Do not reload while open; frozen CS reply ≠ missing script. OS-native / Chrome-shell jobs use bundled Computer Use.
 
 | Signal | Source | How |
 | --- | --- | --- |
@@ -142,7 +138,7 @@ python3 scripts/portfolio_browser.py agentguard buyer [--fixture]
 # Two-sided: use unique --run-id via hermes_two_sided_commerce.py for consecutive proofs
 python3 scripts/portfolio_browser.py two-sided [--fixture]
 python3 scripts/hermes_two_sided_commerce.py --fixture --run-id "ag-$(date +%s)-a"
-# M12 Samantha / checkout user journeys → ondc-testing skill
+# M12 Samantha / checkout user journeys → testing-ledger skill
 python3 scripts/hermes_ondc_testing_matrix.py buyer|seller
 
 python3 scripts/portfolio_browser.py closeout [leave_url]
@@ -179,7 +175,7 @@ Harden with the **Elon Algorithm** (`question → make work → verify → delet
 
 | Skill | Role |
 | --- | --- |
-| [`ondc-testing`](../ondc-testing/SKILL.md) | Samantha claim→screenshot matrix (local + web FQDN) |
+| [`testing-ledger`](../../../.agents/skills/testing-ledger/SKILL.md) | Samantha claim→screenshot matrix (local + web FQDN) |
 | [`portfolio-deploy`](../portfolio-deploy/SKILL.md) | CI/CD, Free/Hobby FQDN deploy — not required for local lanes |
 | [`authentication`](../authentication/SKILL.md) | Auth0 / demo SSO principals |
 | [`apisetu-partner-onboarding`](../apisetu-partner-onboarding/SKILL.md) | Portal rails; this skill is driver only |

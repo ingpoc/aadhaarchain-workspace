@@ -1,0 +1,970 @@
+{
+  "schema_version": "checklist-gates.v1",
+  "control_owner": ".agents/skills/testing-ledger/references/checklist-gates.json",
+  "items": [
+    {
+      "checklist_id": "G0",
+      "freshness": "current",
+      "scope_note": "The product boundary is implemented as the controlling launch scope; excluded products and providers cannot satisfy this checklist.",
+      "evidence_refs": [
+        ".session/docs/PRODUCTIDEA.md"
+      ],
+      "gates": [
+        {
+          "id": "G0-T1",
+          "title": "Product target and non-goals are unambiguous",
+          "kind": "product_review",
+          "status_code": "passed",
+          "blocks_completion": true,
+          "criteria": [
+            "AgentGuard is named as the launch product.",
+            "Legacy AadhaarChain, FlatWatch, Solana, production NPCI, and unrelated identity expansion are explicitly outside this launch."
+          ],
+          "procedure": [
+            "Review the canonical product thesis and compare its scope with the checklist."
+          ],
+          "evidence_required": [
+            "Canonical product thesis with explicit product target and non-goals."
+          ]
+        }
+      ]
+    },
+    {
+      "checklist_id": "CF0",
+      "freshness": "historical",
+      "verified_at": "2026-07-23",
+      "source_fingerprint": "cb0769ea45b0f9e9cf63c825706d8fee1eeb3facf97d8e28bb3a832d1d026215",
+      "scope_note": "Frozen contract closure covered deterministic safety, two unchanged-source Buyer passes, two Seller passes, responsive/accessibility smoke, and FQDN/Auth0 acceptance.",
+      "not_proven": [
+        "Current-source release acceptance",
+        "Production ONDC conformance or go-live approval",
+        "Live payment or settlement"
+      ],
+      "revalidate_when": [
+        "The authorization contract or affected Buyer, Seller, or gateway source changes",
+        "Q1 current-source release acceptance is started"
+      ],
+      "evidence_refs": [
+        ".agents/skills/testing-ledger/references/matrix-status.md",
+        ".agents/skills/testing-ledger/references/evidence/cf0-completion-cb0769-20260723.json"
+      ],
+      "gates": [
+        {
+          "id": "CF0-T1",
+          "title": "Deterministic contract and safety suite",
+          "kind": "deterministic",
+          "status_code": "passed",
+          "blocks_completion": true,
+          "criteria": [
+            "The frozen contract matrix and mandatory safety checks pass."
+          ],
+          "procedure": [
+            "Run the retained deterministic portfolio verification against the frozen fingerprint."
+          ],
+          "evidence_required": [
+            "Structured CF0 evidence receipt naming the fingerprint and passing checks."
+          ]
+        },
+        {
+          "id": "CF0-T2",
+          "title": "Buyer unchanged-source acceptance twice",
+          "kind": "customer_journey",
+          "status_code": "passed",
+          "blocks_completion": true,
+          "criteria": [
+            "Two Buyer journeys pass without changing application source between runs."
+          ],
+          "procedure": [
+            "Repeat the mandate-governed Buyer journey twice and compare the frozen source fingerprint."
+          ],
+          "evidence_required": [
+            "Two Buyer receipts tied to the retained CF0 fingerprint."
+          ]
+        },
+        {
+          "id": "CF0-T3",
+          "title": "Seller unchanged-source acceptance twice",
+          "kind": "customer_journey",
+          "status_code": "passed",
+          "blocks_completion": true,
+          "criteria": [
+            "Two Seller lifecycle and refund journeys pass without changing application source."
+          ],
+          "procedure": [
+            "Repeat the Seller protected lifecycle twice against the same frozen source."
+          ],
+          "evidence_required": [
+            "Two Seller receipts tied to the retained CF0 fingerprint."
+          ]
+        },
+        {
+          "id": "CF0-T4",
+          "title": "Responsive and accessibility acceptance",
+          "kind": "rendered_ui",
+          "status_code": "passed",
+          "blocks_completion": true,
+          "criteria": [
+            "Buyer and Seller pass desktop and 390x844 semantic, keyboard, and overflow checks."
+          ],
+          "procedure": [
+            "Run the combined rendered smoke at both retained viewport sizes."
+          ],
+          "evidence_required": [
+            "Rendered acceptance record covering semantics, dialogs, focus, IDs, and overflow."
+          ]
+        },
+        {
+          "id": "CF0-T5",
+          "title": "FQDN and Auth0 acceptance",
+          "kind": "deployed_acceptance",
+          "status_code": "passed",
+          "blocks_completion": true,
+          "criteria": [
+            "Buyer and Seller re-authenticate and reach their protected product surfaces on the public FQDNs."
+          ],
+          "procedure": [
+            "Run sequential Buyer and Seller Auth0 acceptance on the retained deployments."
+          ],
+          "evidence_required": [
+            "Dated public-surface acceptance evidence for both applications."
+          ]
+        }
+      ]
+    },
+    {
+      "checklist_id": "CF1",
+      "freshness": "historical",
+      "verified_at": "2026-07-22",
+      "source_fingerprint": "e95340b069cab63b75f436e0d5fdfe4e667545c40d2ee9b378f1b5957914db26",
+      "scope_note": "Frozen foundation acceptance covered PostgreSQL ownership, deterministic suites, two complete readback cycles, and public Buyer/Seller acceptance; payment remained simulated.",
+      "not_proven": [
+        "Current-source release acceptance",
+        "Live payment or settlement",
+        "Production ONDC conformance"
+      ],
+      "revalidate_when": [
+        "Foundation persistence or deployment source changes",
+        "Q1 current-source release acceptance is started"
+      ],
+      "evidence_refs": [
+        ".agents/skills/testing-ledger/references/evidence/cf1-release-e95340-checkpoint-20260722.json"
+      ],
+      "gates": [
+        {
+          "id": "CF1-T1",
+          "title": "Durable PostgreSQL ownership and readback",
+          "kind": "integration",
+          "status_code": "passed",
+          "blocks_completion": true,
+          "criteria": [
+            "AgentGuard, CommerceV1, and ONDC use the selected PostgreSQL owner and two full cycles survive readback."
+          ],
+          "procedure": [
+            "Run the frozen foundation suite and repeat the complete publish, checkout, payment, refund, and receipt cycle twice."
+          ],
+          "evidence_required": [
+            "Structured CF1 receipt containing database state, two-cycle results, and frozen fingerprint."
+          ]
+        },
+        {
+          "id": "CF1-T2",
+          "title": "Frozen Buyer and Seller release acceptance",
+          "kind": "deployed_acceptance",
+          "status_code": "passed",
+          "blocks_completion": true,
+          "criteria": [
+            "Buyer and Seller pass deterministic, rendered, responsive, accessibility, and FQDN/Auth0 acceptance on the frozen source."
+          ],
+          "procedure": [
+            "Execute the retained local and public acceptance gates without source mutation."
+          ],
+          "evidence_required": [
+            "Structured CF1 release receipt naming deployments, commands, rendered checks, and source fingerprint."
+          ]
+        }
+      ]
+    },
+    {
+      "checklist_id": "A1",
+      "freshness": "provider_mail_20260815_with_portal_snapshot_20260810",
+      "verified_at": "2026-08-15T12:08:55+05:30",
+      "scope_note": "The authenticated portal snapshot is dated 2026-08-10. The direct provider-mail readback on 2026-08-15 corroborates all three profiles as Integration in Progress but does not replace current portal readback or prove production approval.",
+      "not_proven": [
+        "Current authenticated portal state after 2026-08-10",
+        "Production identity, conformance, or go-live approval"
+      ],
+      "evidence_refs": [
+        ".session/evidence/ondc-a1-a2-readback-20260810.json",
+        ".agents/skills/testing-ledger/references/evidence/ondc-huf-mail-readback-20260815.json"
+      ],
+      "gates": [
+        {
+          "id": "A1-V1",
+          "title": "Current ONDC organisation and profile readback",
+          "kind": "provider_verification",
+          "status_code": "passed",
+          "blocks_completion": true,
+          "criteria": [
+            "The portal shows organisation 15462 as GURUSHARAN GUPTA HUF.",
+            "The current participant-profile inventory, role, domain, version, and integration status are visible; A2 owns production-scope approval."
+          ],
+          "procedure": [
+            "Open the ONDC portal organisation and Integrations profile without submitting changes.",
+            "Capture the observation time, exact profile fields, and current status."
+          ],
+          "evidence_required": [
+            "Dated redacted portal capture or export showing the organisation and participant profile.",
+            "Recorded portal URL or section and observation timestamp."
+          ]
+        }
+      ]
+    },
+    {
+      "checklist_id": "A2",
+      "freshness": "current_operator_decision",
+      "verified_at": "2026-08-10T14:04:22+05:30",
+      "scope_note": "A2 approves the initial role/domain matrix only; it does not authorize portal, key, deployment, contract, spending, customer-money, or submission actions.",
+      "evidence_refs": [
+        ".agents/skills/testing-ledger/references/evidence/a2-role-domain-decision-20260810.json"
+      ],
+      "gates": [
+        {
+          "id": "A2-D1",
+          "title": "Approved production role and domain matrix",
+          "kind": "decision_control",
+          "status_code": "passed",
+          "blocks_completion": true,
+          "criteria": [
+            "Buyer NP, Seller NP, or both are explicitly approved.",
+            "Every required ONDC domain and every excluded role/domain are recorded with rationale.",
+            "The matrix is consistent with the A1 portal readback and scopes A4 and B4-B8 without assumptions."
+          ],
+          "procedure": [
+            "Product lead reviews A1 and the intended launch journeys.",
+            "Record the dated decision and approver; do not submit portal changes from this gate."
+          ],
+          "evidence_required": [
+            "Approved dated role/domain matrix with rationale and approver."
+          ]
+        }
+      ]
+    },
+    {
+      "checklist_id": "A3",
+      "freshness": "historical",
+      "verified_at": "2026-08-01T04:25:00+00:00",
+      "scope_note": "Completion applies only to the retained PreProd participant-host gate, not production registration.",
+      "not_proven": [
+        "Production participant registration",
+        "Production conformance or go-live approval"
+      ],
+      "evidence_refs": [
+        ".agents/skills/testing-ledger/references/preprod-network-matrix.md"
+      ],
+      "gates": [
+        {
+          "id": "A3-T1",
+          "title": "PreProd participant-host gate",
+          "kind": "provider_verification",
+          "status_code": "passed",
+          "blocks_completion": true,
+          "criteria": [
+            "Dedicated PreProd identity, registry readback, site verification, on_subscribe, DNS, and TLS all pass for the same participant endpoint."
+          ],
+          "procedure": [
+            "Verify the retained participant identity and independently read back registry, public DNS, TLS, site verification, and callback status."
+          ],
+          "evidence_required": [
+            "Dated PreProd matrix and participant-host evidence naming the verified endpoint."
+          ]
+        }
+      ]
+    },
+    {
+      "checklist_id": "A4",
+      "freshness": "exact_commit_deploy",
+      "verified_at": "2026-08-17T13:20:00+05:30",
+      "scope_note": "A4-L1 proves only the local three-role participant-host foundation; A4 remains incomplete until the external production gates pass. Local production keypairs were generated 2026-08-17 for Buyer 15462-10008, Seller ISN 15462-10011, and Logistics Buyer 15462-10220 under gitignored .local/ondc-production/{buyer,seller,lbnp}. Exact-commit Render deploy 2026-08-17: identity-aadhar-gateway-main live at 7beab582d141c6f3f1e089c356ce0df6852a318c (dep-da1boulbedkc73cieceg, Free, auto-deploy off). PreProd unique_key_ids unchanged; site-verification 200; junk on_subscribe 400 decrypt-fail. Production PEM copy and valid production challenge not done. Portal Production 1.a modal reconcile/submit and registry submit remain unauthorized.",
+      "evidence_refs": [
+        ".agents/skills/testing-ledger/references/evidence/a4-local-participant-host-20260810.json",
+        ".agents/skills/testing-ledger/references/evidence/a4-render-deploy-7beab58-20260817.json",
+        ".agents/skills/testing-ledger/references/evidence/a4-public-participant-host-inventory-20260817.json",
+        ".agents/skills/testing-ledger/references/evidence/ondc-a4-portal-readback-20260817.json",
+        ".agents/skills/testing-ledger/references/evidence/ondc-a4-production-keys-local-20260817.json"
+      ],
+      "gates": [
+        {
+          "id": "A4-L1",
+          "title": "Local isolated participant-host foundation",
+          "kind": "implementation_verification",
+          "status_code": "passed",
+          "blocks_completion": true,
+          "criteria": [
+            "Buyer NP, Seller NP, and Logistics Buyer NP use distinct subscriber IDs and role-specific key roots.",
+            "Each role reports a full callback URL matching its subscriber ID and serves site verification on that host.",
+            "Valid encrypted on_subscribe challenges pass and a mismatched subscriber ID fails closed."
+          ],
+          "procedure": [
+            "Run the parameterized onboarding test for the three A2-approved roles with ephemeral isolated keys.",
+            "Run the focused ONDC adapter and BPP regression set."
+          ],
+          "evidence_required": [
+            "Immutable local receipt with source fingerprints, assertions, results, and explicit production exclusions."
+          ]
+        },
+        {
+          "id": "A4-V1",
+          "title": "Production registry identity and key readback",
+          "kind": "provider_verification",
+          "status_code": "blocked",
+          "blocks_completion": true,
+          "criteria": [
+            "Registry readback matches the A2 roles, domains, subscriber IDs, callback URLs, and active key IDs.",
+            "Recorded public-key fingerprints match the deployed private-key owner without exposing secrets."
+          ],
+          "procedure": [
+            "After A2 approval, create isolated production identity and keys only for approved roles/domains.",
+            "Read back the authoritative registry record and compare every field to A2."
+          ],
+          "evidence_required": [
+            "Redacted registry response, key IDs and fingerprints, observation time, and exact deployed source identity."
+          ]
+        },
+        {
+          "id": "A4-R1",
+          "title": "Public participant-host verification",
+          "kind": "runtime",
+          "status_code": "blocked",
+          "blocks_completion": true,
+          "criteria": [
+            "Public DNS and TLS resolve to the approved runtime.",
+            "Site verification and /ondc/on_subscribe pass against the exact deployed source.",
+            "Invalid or mismatched verification requests fail closed."
+          ],
+          "procedure": [
+            "Deploy the verified source before publishing DNS.",
+            "Probe DNS, TLS, site verification, the challenge route, and negative cases; retain raw results."
+          ],
+          "evidence_required": [
+            "Deployment ID and source fingerprint, DNS/TLS results, endpoint responses, and negative-case proof."
+          ]
+        }
+      ]
+    },
+    {
+      "checklist_id": "A5",
+      "freshness": "current",
+      "verified_at": "2026-08-17T21:25:44+05:30",
+      "scope_note": "A5-C1 proves listed code controls including a durable Postgres session registry on current source. A5 stays incomplete until operator tenant cutover, tenant MFA/Attack Protection, and release-source security acceptance pass. No production tenant or connection cutover from this receipt.",
+      "not_proven": [
+        "Production Auth0 tenant or connection cutover",
+        "Production-tenant MFA or Attack Protection",
+        "Security acceptance on a frozen/release source"
+      ],
+      "revalidate_when": [
+        "Session, Auth0, or AgentGuard authorization source changes",
+        "Q1 current-source release acceptance is started"
+      ],
+      "evidence_refs": [
+        ".agents/skills/testing-ledger/references/evidence/a5-session-controls-durable-20260817.json",
+        ".cursor/skills/authentication/references/auth0-production-policy-draft.md",
+        ".cursor/skills/authentication/SKILL.md"
+      ],
+      "gates": [
+        {
+          "id": "A5-C1",
+          "title": "Listed identity code controls on current source",
+          "kind": "deterministic",
+          "status_code": "passed",
+          "blocks_completion": true,
+          "criteria": [
+            "SESSION_SECRET dual-publish accepts previous then drops it.",
+            "Logout, revoke, and revoke-all deny stolen cookies; the deny-list survives gateway restart on PostgreSQL.",
+            "GET /api/auth/sessions is principal-scoped.",
+            "Buyer/Seller audience isolation and Seller step-up amr=mfa fail closed in staging/production."
+          ],
+          "procedure": [
+            "Run focused gateway pytest with PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 and local loopback DATABASE_URL only.",
+            "Prove revoke/list durability with an isolated schema and a new connection after unbind."
+          ],
+          "evidence_required": [
+            "Immutable receipt naming the pytest command, pass count, local Postgres isolation, and production exclusions."
+          ],
+          "evidence_refs": [
+            ".agents/skills/testing-ledger/references/evidence/a5-session-controls-durable-20260817.json"
+          ],
+          "verified_at": "2026-08-17T21:25:44+05:30"
+        },
+        {
+          "id": "A5-O1",
+          "title": "Production Auth0 tenant and connection cutover",
+          "kind": "provider_verification",
+          "status_code": "blocked",
+          "blocks_completion": true,
+          "criteria": [
+            "A dedicated production Auth0 tenant and Regular Web Application are the live IdP for gateway.aadharcha.in.",
+            "Production callbacks, logout, and web origins match the approved FQDN allowlists."
+          ],
+          "procedure": [
+            "Operator executes tenant/connection cutover out of band after explicit authorization.",
+            "Read back dashboard allowlists and gateway AUTH0_* on the approved runtime without copying secrets into git."
+          ],
+          "evidence_required": [
+            "Operator-authorized tenant cutover receipt with redacted dashboard and runtime readback."
+          ]
+        },
+        {
+          "id": "A5-O2",
+          "title": "Production-tenant MFA and Attack Protection",
+          "kind": "provider_verification",
+          "status_code": "blocked",
+          "blocks_completion": true,
+          "criteria": [
+            "Production-tenant MFA is enabled for Seller elevated writes.",
+            "Attack Protection (bot, brute-force, breached password) is enabled on the production tenant."
+          ],
+          "procedure": [
+            "Operator enables MFA and Attack Protection in the production tenant dashboard.",
+            "Confirm gateway still fail-closes Seller refund/catalog publish without session amr=mfa."
+          ],
+          "evidence_required": [
+            "Operator-authorized tenant policy readback; no secret material."
+          ]
+        },
+        {
+          "id": "A5-R1",
+          "title": "Security acceptance on the release source",
+          "kind": "implementation_verification",
+          "status_code": "pending",
+          "blocks_completion": true,
+          "criteria": [
+            "Each listed A5 control is proved on the frozen/release source used for Q1, not only the working tree."
+          ],
+          "procedure": [
+            "Re-run the retained A5 deterministic suite against the release fingerprint.",
+            "Do not promote current-source pytest to Q1 acceptance."
+          ],
+          "evidence_required": [
+            "Release-source receipt naming the frozen fingerprint and remaining production exclusions."
+          ]
+        }
+      ]
+    },
+    {
+      "checklist_id": "A7",
+      "gates": [
+        {
+          "id": "A7-D1",
+          "title": "Regulated provider approval and production scope",
+          "kind": "provider_acceptance",
+          "status_code": "blocked",
+          "blocks_completion": true,
+          "criteria": [
+            "A regulated provider is contractually and commercially approved for the A2 launch roles, jurisdictions, payment flows, refunds, settlement, and payouts.",
+            "Supported methods, limits, fees, settlement timing, compliance duties, failure ownership, and production activation boundaries are recorded without assumptions.",
+            "The provider confirms production certification and go-live eligibility for the approved merchant or participant identity."
+          ],
+          "procedure": [
+            "Product and finance owners compare candidate capabilities with A2 and the required customer-money journeys.",
+            "Retain the approved scope, contracts, compliance and certification readback; an agent must not select a provider, accept terms, spend, or enable production."
+          ],
+          "evidence_required": [
+            "Redacted approval or contract record, certification status, approved identity and environment, capability matrix, commercials, and named business/compliance owners."
+          ]
+        },
+        {
+          "id": "A7-E1",
+          "title": "End-to-end money safety and reconciliation certification",
+          "kind": "financial_runtime",
+          "status_code": "blocked",
+          "blocks_completion": true,
+          "criteria": [
+            "Payment intent, receipt, and provider records bind the exact order, principal, amount, currency, and authorized action.",
+            "Signed webhooks and callbacks pass authentication, freshness, idempotency, replay, duplicate, late, and out-of-order handling.",
+            "Success, decline, timeout, partial, unknown, refund, settlement, payout, and recovery paths converge without double effect or unexplained financial variance.",
+            "Provider, order, payment, refund, internal ledger, settlement, fee, and payout readbacks reconcile, with an owner for every exception."
+          ],
+          "procedure": [
+            "On one frozen source and provider-approved non-production environment, run representative success, failure, duplicate, delayed, refund, and unknown-outcome journeys.",
+            "Independently reconcile provider exports and signed callbacks with persisted internal records and customer-visible terminal state.",
+            "Retain the provider certification result before any separately authorized production enablement."
+          ],
+          "evidence_required": [
+            "Frozen source fingerprint, provider test or certification report, redacted transaction and callback traces, signature results, reconciliation export, refund proof, and exception dispositions."
+          ]
+        }
+      ]
+    },
+    {
+      "checklist_id": "B1",
+      "freshness": "historical",
+      "verified_at": "2026-07-25",
+      "scope_note": "Completion is limited to frozen PreProd Retail discovery with one approved Seller item.",
+      "not_proven": [
+        "A current catalog rerun",
+        "Order lifecycle",
+        "Production ONDC conformance"
+      ],
+      "evidence_refs": [
+        ".agents/skills/testing-ledger/references/preprod-network-matrix.md",
+        ".agents/skills/testing-ledger/references/evidence/preprod-gate1-search-20260725-213218.json"
+      ],
+      "gates": [
+        {
+          "id": "B1-T1",
+          "title": "Signed Retail discovery correlation",
+          "kind": "preprod_protocol",
+          "status_code": "passed",
+          "blocks_completion": true,
+          "criteria": [
+            "A signed PreProd Retail search receives a correlated, signature-verified on_search containing the approved Seller item and expected price and inventory."
+          ],
+          "procedure": [
+            "Send the frozen signed search, poll by transaction ID, verify callback signature/context, and compare the returned item with the approved catalog record."
+          ],
+          "evidence_required": [
+            "Gate 1 receipt containing transaction correlation, signature result, Seller item, price, inventory, and source identity."
+          ]
+        }
+      ]
+    },
+    {
+      "checklist_id": "B2",
+      "freshness": "historical",
+      "verified_at": "2026-08-01",
+      "scope_note": "Completion applies to the official synthetic Workbench Immediate Delivery flow only.",
+      "not_proven": [
+        "External LSP interoperability",
+        "Physical shipment",
+        "Live payment",
+        "Production ONDC conformance"
+      ],
+      "evidence_refs": [
+        ".agents/skills/testing-ledger/references/matrix-status.md",
+        ".agents/skills/testing-ledger/references/evidence/preprod-gate3-workbench-20260731.json"
+      ],
+      "gates": [
+        {
+          "id": "B2-T1",
+          "title": "Official Workbench LOG10 forward lifecycle",
+          "kind": "preprod_protocol",
+          "status_code": "passed",
+          "blocks_completion": true,
+          "criteria": [
+            "All 15 expected Immediate Delivery steps complete with no missed or extra steps, and every callback is signature-verified and ACKed."
+          ],
+          "procedure": [
+            "Run one official Workbench LOG10 1.2.5 flow, satisfy each visible input boundary, and correlate every callback and readback through final on_status."
+          ],
+          "evidence_required": [
+            "Workbench session and transaction IDs, 15-step record, callback signatures, ACK results, and explicit synthetic-only boundary."
+          ]
+        }
+      ]
+    },
+    {
+      "checklist_id": "B3",
+      "gates": [
+        {
+          "id": "B3-E1",
+          "title": "External compliant LSP lifecycle",
+          "kind": "external_runtime",
+          "status_code": "blocked",
+          "blocks_completion": true,
+          "criteria": [
+            "One external LSP completes signed confirm, update, status, track, cancellation, and exception callbacks with correlation, Buyer/Seller delivery tracking, and terminal state.",
+            "Duplicate, stale, skipped, cancelled, invalid-signature, and mismatched callbacks fail or reconcile safely."
+          ],
+          "procedure": [
+            "Run the authorized frozen-source LOG10 journey against an external compliant LSP through confirm, update, status, track, cancellation, and exception handling.",
+            "Compare signed callbacks, persisted CommerceV1 state, and rendered Buyer/Seller delivery and itinerary tracking."
+          ],
+          "evidence_required": [
+            "LSP identity, source fingerprint, signed callback traces, persisted readback, terminal UI, and exception results."
+          ]
+        }
+      ]
+    },
+    {
+      "checklist_id": "B4",
+      "gates": [
+        {
+          "id": "B4-E1",
+          "title": "Official Retail lifecycle conformance",
+          "kind": "external_runtime",
+          "status_code": "blocked",
+          "blocks_completion": true,
+          "criteria": [
+            "Signed ONDC select, init, confirm, fulfilment, status, track, cancellation, return, refund, and settlement callbacks required by the A2 role/domain matrix complete with correlation, persistence, and ACK/NACK behavior.",
+            "Cancellation, return, replacement, refund, tracking, timeout, retry, duplicate, late, and out-of-order paths meet the active specification."
+          ],
+          "procedure": [
+            "Run the official current-version Retail conformance lane on one frozen source.",
+            "Reconcile protocol records with Buyer, Seller, order, inventory, payment, and receipt state."
+          ],
+          "evidence_required": [
+            "Official flow report, signed message traces, source fingerprint, state readback, and closed defects."
+          ]
+        }
+      ]
+    },
+    {
+      "checklist_id": "B5",
+      "freshness": "current_local",
+      "verified_at": "2026-08-17T20:47:00+05:30",
+      "source_fingerprint": "4fcb5ab71765123b3a127e6dfcaf73e367c7ec12bb098e3008a57743d718cb4c",
+      "scope_note": "B5 completes on preprod/Auth0 signed IGM plus Buyer/Seller-visible outcome; production IGM is A4/B8, not a B5 hang. B5-L1 proves the local durable issue/remedy foundation, B5-L2 proves local operations plus Buyer/Seller readback, and B5-L3 proves signed Retail IGM request/callback correlation plus failure recovery in local protocol simulation. B5-E1 passed for an Auth0-owned signed IGM on Buyer/Seller FQDNs (issue e0809349, order 8F3F56D0). Nested 27e8faa live: native BPP issue_status follows closed commerce; Buyer/Seller show UUID, owner, SLA, and audit. Workbench issue 8382bcef remains subscriber-scoped/open and is not the Auth0 user\u2019s.",
+      "not_proven": [
+        "production IGM",
+        "Auth0-principal match for Workbench-bound issue 8382bcef",
+        "commerce terminal state matching Workbench RESOLVED/CLOSED",
+        "Workbench-mock signed on_confirm POST to the live BAP"
+      ],
+      "evidence_refs": [
+        ".agents/skills/testing-ledger/references/evidence/b5-residuals-bpp-sla-ui-20260817.json",
+        ".agents/skills/testing-ledger/references/evidence/b5-e1-auth0-signed-igm-20260817.json",
+        ".agents/skills/testing-ledger/references/evidence/b5-e1-buyer-seller-readback-20260817.json",
+        ".agents/skills/testing-ledger/references/evidence/b5-e1-workbench-igm-resolve-20260817.json",
+        ".agents/skills/testing-ledger/references/evidence/b5-e1-workbench-igm-bind-20260817.json",
+        ".agents/skills/testing-ledger/references/evidence/b5-e1-workbench-igm-ack-20260817.json",
+        ".agents/skills/testing-ledger/references/evidence/b5-e1-workbench-igm-rerun-20260817.json",
+        ".agents/skills/testing-ledger/references/evidence/b5-e1-track-onconfirm-deploy-20260817.json",
+        ".agents/skills/testing-ledger/references/evidence/b5-e1-workbench-igm-retry-20260817.json",
+        ".agents/skills/testing-ledger/references/evidence/b5-e1-workbench-igm-20260817.json",
+        ".agents/skills/testing-ledger/references/evidence/b5-igm-render-deploy-2e30070-20260817.json",
+        ".agents/skills/testing-ledger/references/evidence/b5-local-foundation-20260810.json",
+        ".agents/skills/testing-ledger/references/evidence/b5-local-operations-20260810.json",
+        ".agents/skills/testing-ledger/references/evidence/b5-local-signed-igm-20260817.json"
+      ],
+      "gates": [
+        {
+          "id": "B5-L1",
+          "title": "Local durable issue and remedy foundation",
+          "kind": "implementation_verification",
+          "status_code": "passed",
+          "blocks_completion": true,
+          "criteria": [
+            "Only the authenticated order owner can create and read the Buyer issue.",
+            "The Seller can acknowledge and propose a remedy, the Buyer can accept it, and durable issue state closes with a verifiable AgentGuard outcome receipt."
+          ],
+          "procedure": [
+            "Run the focused local-file lifecycle, authenticated ownership, domain-state-machine, and PostgreSQL two-sided remedy tests."
+          ],
+          "evidence_required": [
+            "Passing focused test output naming the exercised issue lifecycle and PostgreSQL receipt verification."
+          ]
+        },
+        {
+          "id": "B5-L2",
+          "title": "Local issue operations and customer readback",
+          "kind": "implementation_verification",
+          "status_code": "passed",
+          "blocks_completion": true,
+          "criteria": [
+            "An authenticated Seller can acknowledge an owned issue, assign one responsible owner, and persist measurable response and escalation targets.",
+            "The Buyer can reject a proposed remedy and the issue can enter an escalated state without losing its ordered audit history.",
+            "Buyer and Seller order details show the same lifecycle state, owner, response target, escalation target, and audit timeline returned by the durable API."
+          ],
+          "procedure": [
+            "Run the local-file and PostgreSQL issue lifecycle tests through acknowledgement, remedy rejection, escalation, and terminal closure.",
+            "Build both apps and verify the rendered Buyer and Seller issue cards against the persisted API readback."
+          ],
+          "evidence_required": [
+            "Passing gateway and app tests, production builds, and Buyer/Seller UI captures tied to the same issue ID and source fingerprint."
+          ]
+        },
+        {
+          "id": "B5-L3",
+          "title": "Local signed Retail IGM request, callback correlation, and failure recovery",
+          "kind": "implementation_verification",
+          "status_code": "passed",
+          "blocks_completion": true,
+          "verified_at": "2026-08-17T15:09:20+05:30",
+          "criteria": [
+            "A signed Retail B2C v1.2 IGM issue request uses ONDC:RET10, core_version 1.2.0, and an Authorization header, and binds to an existing local commerce issue.",
+            "A signature-verified on_issue callback correlates to that issue audit timeline; invalid or tampered signatures NACK.",
+            "Dispatch failure remains retryable on the existing ONDC outbox without a parallel signing or storage contract."
+          ],
+          "procedure": [
+            "Run the focused gateway IGM pytest covering signed request, callback correlation, invalid signature, and dispatch failure."
+          ],
+          "evidence_required": [
+            "Passing focused pytest output and an immutable receipt naming the exercised IGM paths and production exclusions."
+          ],
+          "evidence_refs": [
+            ".agents/skills/testing-ledger/references/evidence/b5-local-signed-igm-20260817.json"
+          ]
+        },
+        {
+          "id": "B5-E1",
+          "title": "Official IGM lifecycle and operations",
+          "kind": "external_runtime",
+          "status_code": "passed",
+          "blocks_completion": true,
+          "verified_at": "2026-08-17T20:20:00+05:30",
+          "criteria": [
+            "A customer grievance or support issue is correlated from creation through signed network callbacks, escalation, resolution, and closure.",
+            "The audit history, responsible owner, response target, Buyer/Seller-visible state, and failure recovery agree."
+          ],
+          "procedure": [
+            "Create one authorized representative issue and drive it through the applicable IGM lifecycle.",
+            "Verify signed callbacks, persistence, SLA/escalation behavior, customer UI, and terminal resolution."
+          ],
+          "evidence_required": [
+            "Issue ID, callback trace, audit timeline, UI captures, owner/SLA readback, and terminal result."
+          ],
+          "evidence_refs": [
+            ".agents/skills/testing-ledger/references/evidence/b5-residuals-bpp-sla-ui-20260817.json",
+            ".agents/skills/testing-ledger/references/evidence/b5-e1-auth0-signed-igm-20260817.json",
+            ".agents/skills/testing-ledger/references/evidence/b5-e1-buyer-seller-readback-20260817.json",
+            ".agents/skills/testing-ledger/references/evidence/b5-e1-workbench-igm-resolve-20260817.json"
+          ]
+        }
+      ]
+    },
+    {
+      "checklist_id": "B6",
+      "gates": [
+        {
+          "id": "B6-E1",
+          "title": "Payment, settlement, fee, refund, and payout reconciliation",
+          "kind": "financial_runtime",
+          "status_code": "blocked",
+          "blocks_completion": true,
+          "criteria": [
+            "Order, payment receipt, refund, fee, settlement, and payout records reconcile without unexplained variance.",
+            "Duplicate, delayed, failed, partial, and unknown outcomes converge without double effect and have an assigned exception owner."
+          ],
+          "procedure": [
+            "After A7 provider approval, run representative success and failure journeys with signed provider callbacks.",
+            "Reconcile provider records against orders, payment attempts, refunds, ledger entries, settlements, and payouts."
+          ],
+          "evidence_required": [
+            "Redacted provider records, internal ledger export, reconciliation report, exception results, and ownership evidence."
+          ]
+        }
+      ]
+    },
+    {
+      "checklist_id": "B7",
+      "gates": [
+        {
+          "id": "B7-E1",
+          "title": "Official network observability submission",
+          "kind": "provider_verification",
+          "status_code": "pending",
+          "blocks_completion": true,
+          "criteria": [
+            "Observability keys belong to the approved participant identity and are handled without exposing secrets.",
+            "Official PreProd logs are accepted and the retained report has no unresolved launch-critical defect."
+          ],
+          "procedure": [
+            "Generate observability keys through the approved portal boundary.",
+            "Submit the required logs, retain the official result, and close or explicitly accept every finding."
+          ],
+          "evidence_required": [
+            "Redacted key identity/fingerprint, submission identifier, official report, and finding disposition."
+          ]
+        }
+      ]
+    },
+    {
+      "checklist_id": "Q1",
+      "gates": [
+        {
+          "id": "Q1-R1",
+          "title": "Current-source Gate 8 release receipt",
+          "kind": "release",
+          "status_code": "blocked",
+          "blocks_completion": true,
+          "criteria": [
+            "All required testing-framework gates pass on one unchanged source fingerprint and named environment, including buyer/seller lifecycle, ONDC callbacks, LSP, grievance/support, money recovery, accessibility, and rollout recovery acceptance.",
+            "Buyer and Seller each pass twice, the independent UI/UX and accessibility review has no unresolved P0/P1, and the next full affected review is empty.",
+            "No blocking testing-ledger debt remains."
+          ],
+          "procedure": [
+            "Freeze the release source and environment after product and external scope are closed.",
+            "Run deterministic verification, complete blind Buyer/Seller journeys, specialist gates, and independent re-review without source mutation."
+          ],
+          "evidence_required": [
+            "One Gate 8 receipt naming source, environment, commands, campaign manifest, verdicts, evidence, and zero blocking debt."
+          ]
+        }
+      ]
+    },
+    {
+      "checklist_id": "C4",
+      "gates": [
+        {
+          "id": "C4-R1",
+          "title": "Exact-deployment public Buyer and Seller acceptance",
+          "kind": "staging_release",
+          "status_code": "blocked",
+          "blocks_completion": true,
+          "criteria": [
+            "The public deployment identity matches the Q1 source fingerprint.",
+            "Required FQDN health, Auth0, Buyer, Seller, AgentGuard, callback, visual, console, and backend readbacks pass with no unresolved launch blocker."
+          ],
+          "procedure": [
+            "Deploy the Q1 source after release approval and record the immutable deployment identity.",
+            "Run live probes and the complete public blind journeys; freeze evidence before diagnosis."
+          ],
+          "evidence_required": [
+            "Source fingerprint, deployment ID, FQDNs, Auth0 session boundary, probe outputs, mission verdicts, screenshots, and backend readback."
+          ]
+        }
+      ]
+    },
+    {
+      "checklist_id": "B8",
+      "gates": [
+        {
+          "id": "B8-V1",
+          "title": "Official production conformance and go-live eligibility",
+          "kind": "provider_acceptance",
+          "status_code": "blocked",
+          "blocks_completion": true,
+          "criteria": [
+            "Official conformance covers every role/domain approved in A2 and every required B3-B7 lane.",
+            "The portal and network owners show those roles/domains as production go-live eligible with no unresolved mandatory finding."
+          ],
+          "procedure": [
+            "Submit only after A4, B3-B7, Q1, C4, and applicable launch controls pass.",
+            "Read back the official portal/network decision and reconcile it with the approved scope."
+          ],
+          "evidence_required": [
+            "Official report or identifiers, dated portal readback, approved roles/domains, finding disposition, and go-live eligibility."
+          ]
+        }
+      ]
+    },
+    {
+      "checklist_id": "CF2",
+      "freshness": "current_source",
+      "verified_at": "2026-08-15T14:18:13+05:30",
+      "source_fingerprint": "2b00c00f6bc2f4dfb6fb11b5992cc955053e92125bdd0f5dce91547a75cab92f",
+      "scope_note": "Local Auth0 Buyer and Seller acceptance with simulated payment; Q1 and production boundaries remain separate.",
+      "not_proven": [
+        "current-source release gate Q1",
+        "production payment",
+        "deployment, DNS, or ONDC production submission"
+      ],
+      "revalidate_when": "CF2 application source changes or Q1 begins",
+      "evidence_refs": [
+        ".agents/skills/testing-ledger/references/evidence/cf2-e1-auth0-lifecycle-20260815.json",
+        ".agents/skills/testing-ledger/references/evidence/cf2-e1-auth0-comparison-desktop-20260815.png",
+        ".agents/skills/testing-ledger/references/evidence/cf2-e1-auth0-terminal-desktop-20260815.png",
+        ".agents/skills/testing-ledger/references/evidence/cf2-e1-auth0-terminal-mobile-390-20260815.png"
+      ],
+      "gates": [
+        {
+          "id": "CF2-E1",
+          "title": "Buyer complete-lifecycle acceptance",
+          "kind": "customer_journey",
+          "status_code": "passed",
+          "blocks_completion": true,
+          "criteria": [
+            "A buyer can discover, compare, buy, track delivery, cancel, return or replace, raise a grievance, and obtain support with persisted state and visible outcomes.",
+            "Buyer-visible tracking, remedy, grievance, and support states agree with the correlated order and callback records."
+          ],
+          "procedure": [
+            "On one frozen source, run the complete Buyer journey through each applicable terminal and recovery path.",
+            "Compare rendered Buyer state with persisted order, delivery, remedy, grievance, and support records."
+          ],
+          "evidence_required": [
+            "Source fingerprint, journey traces, persisted readback, Buyer captures, and terminal or recovery results."
+          ]
+        }
+      ]
+    },
+    {
+      "checklist_id": "CF3",
+      "freshness": "current_source",
+      "verified_at": "2026-08-17T11:26:09+05:30",
+      "source_fingerprint": "298bfdea8ef24a286b4c0088e13b8b32eec578a070977056a682e39631e46244",
+      "scope_note": "Local Comet Seller complete-lifecycle acceptance with simulated payment; Q1 and production boundaries remain separate.",
+      "not_proven": [
+        "current-source release gate Q1",
+        "production payment",
+        "deployment, DNS, or ONDC production submission"
+      ],
+      "revalidate_when": "CF3 application source changes or Q1 begins",
+      "evidence_refs": [
+        ".agents/skills/testing-ledger/references/evidence/cf3-e1-seller-lifecycle-20260817.json",
+        ".agents/skills/testing-ledger/references/matrix-status.md"
+      ],
+      "gates": [
+        {
+          "id": "CF3-E1",
+          "title": "Seller complete-lifecycle acceptance",
+          "kind": "customer_journey",
+          "status_code": "passed",
+          "blocks_completion": true,
+          "criteria": [
+            "A seller can onboard, manage roles, import/publish catalog, fulfil to SLA, track delivery/itinerary and payment received, settle/refund, and inspect operational analytics.",
+            "Seller-visible catalogue, fulfilment, delivery, payment, settlement, and analytics records agree with the persisted source of truth."
+          ],
+          "procedure": [
+            "On one frozen source, run seller onboarding, role assignment, catalogue import, fulfilment, tracking, payment receipt, settlement/refund, and analytics readback.",
+            "Compare rendered Seller state with persisted catalogue, order, delivery, payment, settlement, and analytics records."
+          ],
+          "evidence_required": [
+            "Source fingerprint, journey traces, persisted readback, Seller captures, and terminal or recovery results."
+          ],
+          "evidence_refs": [
+            ".agents/skills/testing-ledger/references/evidence/cf3-e1-seller-lifecycle-20260817.json",
+            ".agents/skills/testing-ledger/references/matrix-status.md"
+          ],
+          "verified_at": "2026-08-17T11:26:09+05:30"
+        }
+      ]
+    },
+    {
+      "checklist_id": "O3",
+      "gates": [
+        {
+          "id": "O3-E1",
+          "title": "Provider-backed payment and recovery reconciliation",
+          "kind": "financial_runtime",
+          "status_code": "blocked",
+          "blocks_completion": true,
+          "criteria": [
+            "Signed provider webhooks and idempotency controls reconcile payment receipt, order, refund, fee, settlement, and payout records without unexplained variance.",
+            "Duplicate, delayed, failed, and unknown-outcome recovery converges without double effect and has an assigned exception owner."
+          ],
+          "procedure": [
+            "After A7 provider approval, run representative payment receipt, refund, settlement, payout, duplicate, delayed, failed, and unknown-outcome journeys.",
+            "Reconcile provider records and signed callbacks with orders, internal ledger, customer-visible state, and exception ownership."
+          ],
+          "evidence_required": [
+            "Provider certification or test report, redacted callback and transaction traces, reconciliation export, recovery results, and exception dispositions."
+          ]
+        }
+      ]
+    },
+    {
+      "checklist_id": "G9",
+      "gates": [
+        {
+          "id": "G9-D1",
+          "title": "Product-lead go/no-go decision",
+          "kind": "decision_control",
+          "status_code": "blocked",
+          "blocks_completion": true,
+          "criteria": [
+            "Every required product checklist item and every blocking linked acceptance gate is complete or passed.",
+            "The launch owner, rollback owner, support coverage, release source, deployment, and external approvals are recorded.",
+            "Deferred items remain explicitly outside the launch claim."
+          ],
+          "procedure": [
+            "Review the frozen checklist and linked acceptance receipts without promoting partial evidence.",
+            "Record the dated go or no-go decision and rationale."
+          ],
+          "evidence_required": [
+            "Signed or approved decision record naming the release source, deployment, scope, owners, and retained receipts."
+          ]
+        }
+      ]
+    }
+  ]
+}

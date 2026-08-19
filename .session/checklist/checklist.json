@@ -1,0 +1,1189 @@
+{
+  "schema_version": "checklist-control.v1",
+  "project": "AgentGuard",
+  "title": "Production launch checklist",
+  "warning": "Repository evidence proves code and captured acceptance only. The 2026-08-17 authenticated portal readback is point-in-time UI evidence; payment and production states still require current authoritative proof and separate operator authorization.",
+  "current_blocker": "A4 remains blocked. Buyer/Seller/LBNP Production 1.a modal pairs are materialized locally with Unique Key IDs captured from Raise Request modal UI. keep-both Buyer local draft. Submit, PEM-to-Render, DNS, and registry remain unauthorized. GSTIN still blocks production registry.",
+  "operator_decisions": [
+    {
+      "id": "A4-20260817-01",
+      "checklist_id": "A4",
+      "decided_at": "2026-08-17",
+      "summary": "Unlock production path (not None / Activity only).",
+      "choice_ids": [
+        "unlock-production-path"
+      ],
+      "in_force": true,
+      "completes_item": false
+    },
+    {
+      "id": "A4-20260817-02",
+      "checklist_id": "A4",
+      "decided_at": "2026-08-17",
+      "summary": "Keys only \u2014 not Render, DNS, or registry.",
+      "choice_ids": [
+        "keys-only"
+      ],
+      "in_force": true,
+      "completes_item": false
+    },
+    {
+      "id": "A4-20260817-03",
+      "checklist_id": "A4",
+      "decided_at": "2026-08-17",
+      "summary": "Key profiles: Buyer + Seller + LBNP.",
+      "choice_ids": [
+        "buyer",
+        "seller",
+        "lbnp"
+      ],
+      "in_force": true,
+      "completes_item": false
+    },
+    {
+      "id": "A4-20260817-04",
+      "checklist_id": "A4",
+      "decided_at": "2026-08-17",
+      "summary": "Generate now \u2014 local .local/ondc-production/{buyer,seller,lbnp}; no portal submit.",
+      "choice_ids": [
+        "generate-now-local"
+      ],
+      "in_force": true,
+      "completes_item": false
+    },
+    {
+      "id": "A4-20260817-05",
+      "checklist_id": "A4",
+      "decided_at": "2026-08-17",
+      "summary": "Start participant-host gate for all three FQDNs plus gateway.",
+      "choice_ids": [
+        "start-participant-host-gate"
+      ],
+      "in_force": true,
+      "completes_item": false
+    },
+    {
+      "id": "A4-20260817-06",
+      "checklist_id": "A4",
+      "decided_at": "2026-08-17",
+      "summary": "Deploy current gateway repo HEAD to identity-aadhar-gateway-main. Completed 2026-08-17: commit 7beab582d141c6f3f1e089c356ce0df6852a318c as dep-da1boulbedkc73cieceg (workspace HEAD 2be9e5a not deployed).",
+      "choice_ids": [
+        "deploy-workspace-head"
+      ],
+      "in_force": true,
+      "completes_item": false
+    },
+    {
+      "id": "A4-20260817-07",
+      "checklist_id": "A4",
+      "decided_at": "2026-08-17T13:25:39+05:30",
+      "summary": "Open Production 1.a for Buyer/Seller/LBNP; human modal generate; agent reconcile; no Submit",
+      "choice_ids": [
+        "open_portal_1a"
+      ],
+      "in_force": true,
+      "completes_item": false
+    },
+    {
+      "id": "A4-20260817-08",
+      "checklist_id": "A4",
+      "decided_at": "2026-08-17T13:33:01+05:30",
+      "summary": "Human generated+downloaded portal modal keys 2026-08-17; Buyer only; agent reconcile; no Submit",
+      "choice_ids": [
+        "human_modal_generate_download"
+      ],
+      "in_force": true,
+      "completes_item": false
+    },
+    {
+      "id": "B5-20260817-01",
+      "checklist_id": "B5",
+      "decided_at": "2026-08-17T15:26:23+05:30",
+      "summary": "Authorize PreProd official IGM traffic for the A2 Retail scope \u2014 not production, not a Render deploy, not PEM/DNS/registry.",
+      "choice_ids": [
+        "preprod-official"
+      ],
+      "in_force": true,
+      "completes_item": false
+    },
+    {
+      "id": "B5-20260817-02",
+      "checklist_id": "B5",
+      "decided_at": "2026-08-17T15:28:00+05:30",
+      "summary": "Do not deploy IGM source. Keep B5-E1 authorized but blocked until a later exact-commit Render deploy is approved. No PEM/DNS/registry.",
+      "choice_ids": [
+        "no-deploy-wait"
+      ],
+      "in_force": false,
+      "completes_item": false
+    },
+    {
+      "id": "A4-20260817-09",
+      "checklist_id": "A4",
+      "decided_at": "2026-08-17T15:38:56+05:30",
+      "summary": "Human will generate+download Seller then LBNP Production 1.a modal keys; agent reconcile; no Submit.",
+      "choice_ids": [
+        "seller-then-lbnp"
+      ],
+      "in_force": true,
+      "completes_item": false
+    },
+    {
+      "id": "A4-20260817-10",
+      "checklist_id": "A4",
+      "decided_at": "2026-08-17T15:38:56+05:30",
+      "summary": "Keep Buyer modal + local draft until Unique Key ID captured; do not delete local draft.",
+      "choice_ids": [
+        "keep-both"
+      ],
+      "in_force": true,
+      "completes_item": false
+    },
+    {
+      "id": "B5-20260817-03",
+      "checklist_id": "B5",
+      "decided_at": "2026-08-17T15:42:43+05:30",
+      "summary": "Deploy exact IGM commit to existing identity-aadhar-gateway-main only \u2014 no PEM copy, DNS, registry, or production.",
+      "choice_ids": [
+        "deploy-igm-existing-render"
+      ],
+      "in_force": true,
+      "completes_item": false,
+      "supersedes": [
+        "B5-20260817-02"
+      ]
+    },
+    {
+      "id": "A4-20260817-11",
+      "checklist_id": "A4",
+      "decided_at": "2026-08-17T16:41:07+05:30",
+      "summary": "Open Buyer Production 1.a read-only; capture Unique Key ID from modal UI; no Submit/PEM/DNS.",
+      "choice_ids": [
+        "capture-buyer-ukid"
+      ],
+      "in_force": false,
+      "completes_item": false
+    },
+    {
+      "id": "A4-20260817-12",
+      "checklist_id": "A4",
+      "decided_at": "2026-08-17T16:53:00+05:30",
+      "summary": "Generate+download a new Buyer Production 1.a modal pair, capture Unique Key ID, keep local draft, do not Submit.",
+      "choice_ids": [
+        "generate-new-buyer-modal"
+      ],
+      "in_force": true,
+      "completes_item": false,
+      "supersedes": [
+        "A4-20260817-11"
+      ]
+    },
+    {
+      "id": "A5-20260817-01",
+      "checklist_id": "A5",
+      "decided_at": "2026-08-17T21:01:57+05:30",
+      "summary": "Operator reviewing Auth0 production policy draft; no implement, no tenant cutover until approve.",
+      "choice_ids": [
+        "review-no-implement"
+      ],
+      "in_force": true,
+      "completes_item": false
+    },
+    {
+      "id": "A5-20260817-02",
+      "checklist_id": "A5",
+      "decided_at": "2026-08-17T21:14:35+05:30",
+      "summary": "Operator asked agent to review draft; draft accepted for implementation of listed controls; no Auth0 tenant/connection cutover.",
+      "choice_ids": [
+        "agent-review-pass-implement-no-cutover"
+      ],
+      "in_force": true,
+      "completes_item": false
+    },
+    {
+      "id": "A5-20260817-03",
+      "checklist_id": "A5",
+      "decided_at": "2026-08-17T22:01:26+05:30",
+      "summary": "Do not cut over \u2014 keep A5 partial; no production tenant/connection change.",
+      "choice_ids": [
+        "no-cutover"
+      ],
+      "in_force": true,
+      "completes_item": false
+    }
+  ],
+  "go_live_path": {
+    "updated_at": "2026-08-17T22:01:26+05:30",
+    "updated_by": "agent",
+    "reason": "A5-20260817-03 no-cutover: keep A5 partial; no production Auth0 tenant/connection change. Remaining: unauthorized production tenant/connection cutover, operator tenant MFA/Attack Protection, Q1 release-source security acceptance. First agent-owned item remains A5. A4 still parallel_now blocked. Do not start C3/A6. Submit/PEM/DNS/registry still unauthorized.",
+    "parallel_now": [
+      "A4"
+    ],
+    "phases": [
+      {
+        "label": "Identity and production authority",
+        "items": [
+          "A5",
+          "C3",
+          "A6"
+        ]
+      },
+      {
+        "label": "Operational readiness",
+        "items": [
+          "B7",
+          "O1",
+          "O2",
+          "O4",
+          "O5",
+          "O6",
+          "O7",
+          "O8",
+          "O9"
+        ]
+      },
+      {
+        "label": "External network and money",
+        "items": [
+          "A4",
+          "B3",
+          "B4",
+          "A7",
+          "B6",
+          "O3",
+          "A8"
+        ]
+      },
+      {
+        "label": "Approval and release",
+        "items": [
+          "B8",
+          "Q1",
+          "C4"
+        ]
+      }
+    ]
+  },
+  "areas": [
+    {
+      "id": "scope",
+      "label": "0 \u00b7 Scope and target outcome",
+      "items": [
+        "G0"
+      ]
+    },
+    {
+      "id": "product",
+      "label": "1 \u00b7 Product outcome completeness",
+      "items": [
+        "CF0",
+        "CF1",
+        "CF2",
+        "CF3",
+        "CF4",
+        "CF5",
+        "CF6",
+        "CF7"
+      ]
+    },
+    {
+      "id": "testing",
+      "label": "2 \u00b7 Testing and customer-quality acceptance",
+      "items": [
+        "Q1"
+      ]
+    },
+    {
+      "id": "integrations",
+      "label": "3 \u00b7 Data, integrations, and migrations",
+      "items": [
+        "B1",
+        "B2",
+        "B3",
+        "B4"
+      ]
+    },
+    {
+      "id": "security",
+      "label": "4 \u00b7 Security, privacy, legal, and trust",
+      "items": [
+        "A5",
+        "A8",
+        "C3",
+        "O5",
+        "O6"
+      ]
+    },
+    {
+      "id": "operations",
+      "label": "5 \u00b7 Reliability, observability, operations, and support",
+      "items": [
+        "A6",
+        "B5",
+        "B7",
+        "O1",
+        "O2",
+        "O4",
+        "O9"
+      ]
+    },
+    {
+      "id": "money",
+      "label": "6 \u00b7 Money, billing, and reconciliation",
+      "items": [
+        "A7",
+        "B6",
+        "O3"
+      ]
+    },
+    {
+      "id": "external",
+      "label": "7 \u00b7 External providers, platforms, and approvals",
+      "items": [
+        "A1",
+        "A2",
+        "A3",
+        "A4",
+        "B8"
+      ]
+    },
+    {
+      "id": "rollout",
+      "label": "8 \u00b7 Rollout, rollback, and communications",
+      "items": [
+        "C4",
+        "O7",
+        "O8"
+      ]
+    }
+  ],
+  "items": [
+    {
+      "id": "G0",
+      "gate": "0 \u00b7 Scope and target outcome",
+      "item": "Production target and non-goals",
+      "status_code": "complete",
+      "status": "AgentGuard is the product; legacy AadhaarChain, FlatWatch, Solana, production NPCI, and unrelated identity expansion are outside this launch.",
+      "responsible_owner": "Product lead",
+      "evidence_scope": "document",
+      "completed_evidence": [
+        "The product thesis and non-goals are declared."
+      ],
+      "evidence_refs": [
+        ".session/docs/PRODUCTIDEA.md"
+      ],
+      "priority": "high"
+    },
+    {
+      "id": "CF0",
+      "gate": "1 \u00b7 Product outcome completeness",
+      "item": "Product and authorization contract",
+      "status_code": "complete",
+      "status": "Frozen contract closure passed on 2026-07-23; this is historical foundation evidence, not current-source launch proof.",
+      "responsible_owner": "Product lead",
+      "evidence_scope": "staging",
+      "completed_evidence": [
+        "Journey, lifecycle, authorization decision, write-risk inventory, KPI, Buyer/Seller, deployment, and FQDN/Auth0 acceptance closed at the retained fingerprint."
+      ],
+      "evidence_refs": [
+        ".agents/skills/testing-ledger/references/matrix-status.md",
+        ".session/docs/IMPLEMENTATIONPLAN.md"
+      ],
+      "priority": "high"
+    },
+    {
+      "id": "CF1",
+      "gate": "1 \u00b7 Product outcome completeness",
+      "item": "Durable production foundation",
+      "status_code": "complete",
+      "status": "PostgreSQL ownership and the frozen CF1 release checkpoint passed on 2026-07-22; payment remained simulated.",
+      "responsible_owner": "Engineering lead",
+      "evidence_scope": "staging",
+      "completed_evidence": [
+        "AgentGuard, CommerceV1, and ONDC use the process-selected PostgreSQL owner; two-cycle readback and frozen release acceptance passed."
+      ],
+      "evidence_refs": [
+        ".agents/skills/testing-ledger/references/evidence/cf1-release-e95340-checkpoint-20260722.json"
+      ],
+      "priority": "high"
+    },
+    {
+      "id": "CF2",
+      "gate": "1 \u00b7 Product outcome completeness",
+      "item": "Buyer product lifecycle",
+      "status_code": "complete",
+      "status": "CF2-E1 Buyer complete-lifecycle passed 2026-08-15 on local Auth0 with simulated payment. Q1 remains a separate current-source release item.",
+      "responsible_owner": "Buyer product lead",
+      "evidence_scope": "local",
+      "completed_evidence": [
+        "Location-aware multi-seller comparison, persisted tracking/return/grievance lifecycle, replacement commitment, Auth0 Buyer-Seller-Buyer acceptance, verified receipts, keyboard flow, and desktop/390px captures passed on the recorded source fingerprint."
+      ],
+      "completion_criteria": [
+        "A buyer can discover, compare, buy, track delivery, cancel, return or replace, raise a grievance, and obtain support with persisted state and visible outcomes."
+      ],
+      "evidence_refs": [
+        ".agents/skills/testing-ledger/references/evidence/cf2-e1-auth0-lifecycle-20260815.json",
+        ".agents/skills/testing-ledger/references/matrix-status.md",
+        ".session/docs/IMPLEMENTATIONPLAN.md"
+      ],
+      "priority": "critical"
+    },
+    {
+      "id": "CF3",
+      "gate": "1 \u00b7 Product outcome completeness",
+      "item": "Seller product lifecycle",
+      "status_code": "complete",
+      "status": "CF3-E1 Seller complete-lifecycle PASS on 2026-08-17 (Comet local); product criterion closed. Q1 remains a separate current-source release item.",
+      "responsible_owner": "Seller product lead",
+      "evidence_scope": "local",
+      "completion_criteria": [
+        "A seller can onboard, manage roles, import/publish catalog, fulfil to SLA, track delivery/itinerary and payment received, settle/refund, and inspect operational analytics."
+      ],
+      "evidence_refs": [
+        ".agents/skills/testing-ledger/references/evidence/cf3-e1-seller-lifecycle-20260817.json",
+        ".agents/skills/testing-ledger/references/evidence/cf3-catalog-draft-publish-preview-20260817.json",
+        ".agents/skills/testing-ledger/references/matrix-status.md",
+        ".session/docs/IMPLEMENTATIONPLAN.md",
+        "ondcseller/src/lib/sellerOpsAttention.ts",
+        "ondcseller/src/pages/DashboardPage.tsx"
+      ],
+      "priority": "critical",
+      "completed_evidence": [
+        "CF3-E1 Comet PASS 2026-08-17: store ready, staff invite, CSV draft import, SLA accept, dispatch+tracking, deliver, full refund auth 6065C440, Overview analytics, persist agreement.",
+        "Comet PASS 2026-08-17 for store setup, draft catalog import, Save draft, and Exact publish preview (seller.catalog.publish).",
+        "Staff roles, SLA-due on accept, Overview attention queue, and Orders SLA/payment/tracking filters are implemented.",
+        "Settlement-exception classification (failed/partial/unknown/mismatch) surfaces in Overview attention, Orders settlement filter, and order detail from existing refund ledger fields.",
+        "Operational analytics KPIs aggregate open fulfilment, refunded ledger totals, catalog live/low-stock, and open returns without a PSP settlement rail."
+      ]
+    },
+    {
+      "id": "CF4",
+      "gate": "1 \u00b7 Product outcome completeness",
+      "item": "iOS companion",
+      "status_code": "deferred",
+      "status": "Deferred from the ONDC production launch target.",
+      "responsible_owner": "Product lead",
+      "evidence_scope": "document",
+      "reentry_trigger": "Re-enter after the web Buyer/Seller production launch gates close.",
+      "evidence_refs": [
+        ".session/docs/IMPLEMENTATIONPLAN.md"
+      ],
+      "priority": "medium"
+    },
+    {
+      "id": "CF5",
+      "gate": "1 \u00b7 Product outcome completeness",
+      "item": "Native Realtime voice",
+      "status_code": "deferred",
+      "status": "Deferred; browser and text proof do not establish native physical-audio acceptance.",
+      "responsible_owner": "Product lead",
+      "evidence_scope": "document",
+      "reentry_trigger": "Re-enter with the iOS companion and a physical-device audio acceptance plan.",
+      "evidence_refs": [
+        ".session/docs/IMPLEMENTATIONPLAN.md"
+      ],
+      "priority": "medium"
+    },
+    {
+      "id": "CF6",
+      "gate": "1 \u00b7 Product outcome completeness",
+      "item": "Siri and App Intents",
+      "status_code": "deferred",
+      "status": "Deferred because no native intent target is in this launch.",
+      "responsible_owner": "Product lead",
+      "evidence_scope": "document",
+      "reentry_trigger": "Re-enter after the native app target exists.",
+      "evidence_refs": [
+        ".session/docs/IMPLEMENTATIONPLAN.md"
+      ],
+      "priority": "low"
+    },
+    {
+      "id": "CF7",
+      "gate": "1 \u00b7 Product outcome completeness",
+      "item": "On-device intelligence",
+      "status_code": "deferred",
+      "status": "Optional and deferred from the production launch target.",
+      "responsible_owner": "Product lead",
+      "evidence_scope": "document",
+      "reentry_trigger": "Re-enter only after native core needs a measured on-device capability.",
+      "evidence_refs": [
+        ".session/docs/IMPLEMENTATIONPLAN.md"
+      ],
+      "priority": "low"
+    },
+    {
+      "id": "Q1",
+      "gate": "2 \u00b7 Testing and customer-quality acceptance",
+      "item": "Current-source frozen release acceptance",
+      "status_code": "pending",
+      "status": "No checklist-level testing-framework Gate 8 receipt is declared for the current launch source.",
+      "responsible_owner": "Quality lead",
+      "evidence_scope": "runtime",
+      "remaining_work": [
+        "Agent: freeze the intended release source and target environment after all required product and external gates close.",
+        "Agent: run the testing-framework release gate across required Buyer, Seller, AgentGuard, ONDC, accessibility, money-recovery, and support journeys.",
+        "Attach the single Gate 8 release receipt to this item."
+      ],
+      "completion_criteria": [
+        "One current-source Gate 8 receipt passes with no unresolved launch blocker and names the tested fingerprint and environment."
+      ],
+      "blocked_by": "Product and external launch scope must be frozen first.",
+      "evidence_refs": [
+        ".agents/skills/testing-ledger/",
+        ".session/testing/testing-ledger.json"
+      ],
+      "priority": "critical"
+    },
+    {
+      "id": "A1",
+      "gate": "7 \u00b7 External providers, platforms, and approvals",
+      "item": "ONDC portal account and organisation",
+      "status_code": "complete",
+      "status": "Operator-authenticated portal readback on 2026-08-10 confirmed organisation 15462 and three v1.2 profiles. Direct provider-mail readback on 2026-08-15 corroborates that Retail Buyer, Retail Seller, and Logistics Buyer remain Integration in Progress; it is not a current portal readback.",
+      "responsible_owner": "ONDC onboarding owner",
+      "evidence_scope": "provider",
+      "completed_evidence": [
+        "The exact operator-authenticated Chrome tab showed the signed-in account, organisation ID and legal name, organisation status, and all visible profile IDs, roles, domains, versions, and statuses before the portal's client session was lost on reload.",
+        "The redacted 2026-08-15 direct mailbox receipt retained the latest official ONDC profile-status, inactivity, pending-submission, and ticket observations without treating email as portal or production approval."
+      ],
+      "completion_criteria": [
+        "The authenticated portal shows the correct legal organisation and a current dated inventory of participant profiles; production scope approval remains owned by A2."
+      ],
+      "operator_boundary": "Portal access and any profile change remain operator actions.",
+      "evidence_refs": [
+        ".session/evidence/ondc-a1-a2-readback-20260810.json",
+        ".agents/skills/testing-ledger/references/evidence/ondc-huf-mail-readback-20260815.json",
+        ".agents/skills/testing-ledger/references/matrix-status.md",
+        ".session/docs/PRODUCTION-READINESS.md"
+      ],
+      "priority": "high"
+    },
+    {
+      "id": "A2",
+      "gate": "7 \u00b7 External providers, platforms, and approvals",
+      "item": "Production participant roles and domains",
+      "status_code": "complete",
+      "status": "Approved on 2026-08-10: Retail B2C v1.2 Buyer NP for the Buyer app, Retail B2C v1.2 Seller NP - ISN for the Seller app, and Logistics B2C v1.2 Buyer NP only for Seller fulfilment through an external LSP. Every other role and domain is excluded from the initial launch. The three visible portal profiles remain Integration in Progress.",
+      "responsible_owner": "Product lead",
+      "evidence_scope": "operator",
+      "completed_evidence": [
+        "The product lead explicitly approved A2 in the active task after reviewing the exact proposed matrix and its initial-scope exclusions."
+      ],
+      "completion_criteria": [
+        "One approved role/domain matrix exists and is consistent with the product launch scope.",
+        "A4, B4-B8, and agreement/disclosure work can be scoped from that matrix without assumptions."
+      ],
+      "operator_boundary": "Do not create a ticket, accept terms, or submit participant changes without operator approval.",
+      "evidence_refs": [
+        ".agents/skills/testing-ledger/references/evidence/a2-role-domain-decision-20260810.json",
+        ".session/evidence/ondc-a1-a2-readback-20260810.json",
+        ".agents/skills/testing-ledger/references/preprod-network-matrix.md",
+        ".session/docs/PRODUCTION-READINESS.md"
+      ],
+      "priority": "high"
+    },
+    {
+      "id": "A3",
+      "gate": "7 \u00b7 External providers, platforms, and approvals",
+      "item": "PreProd identity, callback, DNS, and TLS",
+      "status_code": "complete",
+      "status": "Dedicated LBNP identity, registry status, site verification, on_subscribe, DNS, and TLS passed for PreProd.",
+      "responsible_owner": "ONDC engineering owner",
+      "evidence_scope": "preprod",
+      "completed_evidence": [
+        "The isolated PreProd participant endpoint passed the retained participant-host gate."
+      ],
+      "evidence_refs": [
+        ".agents/skills/testing-ledger/references/preprod-network-matrix.md"
+      ],
+      "priority": "high"
+    },
+    {
+      "id": "A4",
+      "gate": "7 \u00b7 External providers, platforms, and approvals",
+      "item": "Production subscriber identity and registry approval",
+      "status_code": "blocked",
+      "status": "Buyer, Seller, and LBNP Production 1.a modal pairs materialized 2026-08-17 under .local/ondc-production-portal-modal/{buyer,seller,lbnp}. Seller, LBNP, and regenerated Buyer unique_key_id captured from Raise Request modal UI. New Buyer modal signing fp16 8247845e30f3e325 supersedes the earlier no-ukid pair dff58a270e9ed255 (preserved aside). keep-both for Buyer local draft. Fingerprints mismatch local drafts. Registry PreProd-locked. Submit, PEM-to-Render, DNS, and registry remain unauthorized.",
+      "responsible_owner": "ONDC engineering owner",
+      "evidence_scope": "production",
+      "completed_evidence": [
+        "A4-L1 passed locally: all three approved roles use isolated subscriber IDs and key roots, report matching full callback URLs, pass valid site/on_subscribe checks, and reject mismatched subscriber IDs.",
+        "2026-08-17 authenticated portal UI readback recorded under ondc-a4-portal-readback-20260817.json (Pre-Prod Subscribed only; no production access).",
+        "2026-08-17 local production Ed25519/X25519 pairs generated under .local/ondc-production/{buyer,seller,lbnp}; encryption_public_key_format asn1_der_spki_b64; private PEMs 0600; PreProd portal-download pairs unchanged; nothing submitted.",
+        "2026-08-17 public participant-host inventory: all three authorized FQDNs pass DNS/TLS/site-verification; junk on_subscribe POST returns 400 decrypt-fail (route live). gateway.aadharcha.in serves Render health; role paths live.",
+        "2026-08-17 exact-commit Render deploy: identity-aadhar-gateway-main (Free, auto-deploy off) live at gateway 7beab582d141c6f3f1e089c356ce0df6852a318c as dep-da1boulbedkc73cieceg. Health 200; PreProd unique_key_ids unchanged; production PEMs not copied.",
+        "2026-08-17 Buyer modal download keys (5).json materialized to .local/ondc-production-portal-modal/buyer; signing fp16 dff58a270e9ed255 mismatches local draft c8917676136e07fb and PreProd 35d7fa62daaa968d. unique_key_id not in keys.json. Seller/LBNP not downloaded. Nothing submitted.",
+        "2026-08-17 Seller modal download keys (6).json materialized to .local/ondc-production-portal-modal/seller; signing fp16 57b7bfd44dc8e4bb mismatches local draft 34dd53c3a884300a and PreProd e0031e7817d922fb. unique_key_id captured from Raise Request modal UI. Registry PreProd-locked. LBNP not downloaded. Nothing submitted.",
+        "2026-08-17 LBNP modal download keys (7).json materialized to .local/ondc-production-portal-modal/lbnp; signing fp16 cc28a26a05045fd4 mismatches local draft e9ba484ada7afcc7 and PreProd 3c3e8acc7a7c5dd1. unique_key_id captured from Raise Request modal UI. Registry PreProd-locked. Cancel not Submit. Nothing copied to Render.",
+        "2026-08-17 Buyer Unique Key ID read-only recapture: Comet a4-buyer-ukid-20260817 opened Buyer 15462-10008 1.a Raise Request empty; generate not clicked; Cancel not Submit; closeout verified_absent. Outer Unique Key ID remains PreProd prefix 1aee68ad. Existing modal pair dff58a270e9ed255 not overwritten.",
+        "2026-08-17 Buyer modal regenerate: keys (8).json materialized to .local/ondc-production-portal-modal/buyer; signing fp16 8247845e30f3e325; unique_key_id captured from Raise Request modal UI. Mismatches local draft c8917676136e07fb and old modal dff58a270e9ed255 preserved aside at buyer-20260817-no-ukid. Cancel not Submit. Nothing copied to Render."
+      ],
+      "remaining_work": [
+        "Keep both Buyer modal pair and local draft .local/ondc-production/buyer; do not delete the local draft. The new Buyer modal pair (signing fp16 8247845e30f3e325, Unique Key ID captured) supersedes the earlier no-ukid modal dff58a270e9ed255 for later Submit; old modal files remain aside at .local/ondc-production-portal-modal/buyer-20260817-no-ukid.",
+        "Do not Submit. Do not copy PEMs to Render, .env production PEM vars, or DNS. Registry submit remains unauthorized. GSTIN still blocks production registry. Portal 1.b, NP Agreement, and Verify build remain operator-only.",
+        "Procedure owner for keys/host/registry: ~/.agents/skills/ondc (Sources TOC + Keys/Host/Registry). This app identities: .ondc/binding.json."
+      ],
+      "completion_criteria": [
+        "Production registry readback shows the approved subscriber roles/domains and keys.",
+        "Public DNS, TLS, site verification, and on_subscribe pass against the exact deployed source."
+      ],
+      "blocked_by": "Submit, PEM-to-Render, DNS, and registry remain unauthorized. GSTIN still blocks production registry. Registry UI was PreProd-locked.",
+      "operator_boundary": "Key generation, DNS publication, and portal submission require explicit operator approval.",
+      "evidence_refs": [
+        ".agents/skills/testing-ledger/references/evidence/ondc-a4-portal-modal-buyer-regen-20260817.json",
+        ".agents/skills/testing-ledger/references/evidence/ondc-a4-portal-modal-buyer-ukid-20260817.json",
+        ".agents/skills/testing-ledger/references/evidence/ondc-a4-portal-modal-lbnp-20260817.json",
+        ".agents/skills/testing-ledger/references/evidence/ondc-a4-portal-modal-seller-20260817.json",
+        ".agents/skills/testing-ledger/references/evidence/ondc-a4-portal-modal-buyer-20260817.json",
+        ".agents/skills/testing-ledger/references/evidence/ondc-a4-production-keys-local-20260817.json",
+        ".agents/skills/testing-ledger/references/evidence/ondc-a4-portal-readback-20260817.json",
+        ".agents/skills/testing-ledger/references/evidence/a4-local-participant-host-20260810.json",
+        ".agents/skills/testing-ledger/references/evidence/a4-render-deploy-7beab58-20260817.json",
+        ".agents/skills/testing-ledger/references/evidence/a4-public-participant-host-inventory-20260817.json",
+        ".agents/skills/testing-ledger/references/evidence/ondc-huf-mail-readback-20260815.json",
+        ".session/docs/PRODUCTION-READINESS.md",
+        "AGENTS.md"
+      ],
+      "priority": "critical"
+    },
+    {
+      "id": "A5",
+      "gate": "4 \u00b7 Security, privacy, legal, and trust",
+      "item": "Production identity and access policy",
+      "status_code": "partial",
+      "status": "A5 stays partial per A5-20260817-03 no-cutover. Agent-reviewed Auth0 production policy accepted for code controls on existing staging/local+FQDN Auth0. Secret dual-publish, durable Postgres session revoke/list, audience isolation, and Seller step-up gates are pytest-proved on current source. No production tenant/connection change.",
+      "responsible_owner": "Security owner",
+      "evidence_scope": "staging",
+      "remaining_work": [
+        "Production Auth0 tenant/connection cutover remains unauthorized (no tenant/connection change, no DNS/PEM/Submit).",
+        "Operator: enable production-tenant MFA and Attack Protection out of band; gateway fail-closes Seller elevated writes in staging/production without amr=mfa.",
+        "Q1: release-source security acceptance still required before A5 can complete (current-source pytest of listed code controls is recorded)."
+      ],
+      "completion_criteria": [
+        "The approved production policy is enforced and security acceptance proves each listed control on the release source."
+      ],
+      "evidence_refs": [
+        ".agents/skills/testing-ledger/references/evidence/a5-session-controls-durable-20260817.json",
+        ".cursor/skills/authentication/references/auth0-production-policy-draft.md",
+        ".cursor/skills/authentication/SKILL.md",
+        "aadharchain/gateway/tests/test_a5_session_controls.py",
+        ".agents/skills/testing-ledger/references/evidence/cf2-e1-auth0-lifecycle-20260815.json",
+        ".cursor/skills/authentication/references/evidence/spa-session-probe-20260712-172223.json",
+        ".agents/skills/testing-ledger/references/matrix-status.md",
+        "AGENTS.md"
+      ],
+      "priority": "critical"
+    },
+    {
+      "id": "A6",
+      "gate": "5 \u00b7 Reliability, observability, operations, and support",
+      "item": "Durable production hosting",
+      "status_code": "partial",
+      "status": "PostgreSQL remains the active owner; A6 recoverability/retention draft is retained in PRODUCTION-READINESS.md. Encrypted backup, restore exercise, failover, capacity, and operator-approved RTO/RPO remain unproved.",
+      "responsible_owner": "Operations lead",
+      "evidence_scope": "staging",
+      "remaining_work": [
+        "Operator-review the A6 recoverability draft in PRODUCTION-READINESS.md (cross-links O6; no invented RTO/RPO).",
+        "Configure encrypted backups and required object retention bound to approved O6 class rules when those exist.",
+        "Run and retain a restore exercise; prove AgentGuard/commerce/ONDC consistency before re-enabling writes.",
+        "Prove failover behavior and capacity for the approved launch envelope.",
+        "Record operator-approved measurable RTO/RPO \u2014 placeholders are not acceptance targets."
+      ],
+      "completion_criteria": [
+        "A dated restore succeeds from encrypted backup within approved recovery objectives.",
+        "Capacity and failover evidence covers the launch envelope."
+      ],
+      "evidence_refs": [
+        ".session/docs/IMPLEMENTATIONPLAN.md",
+        ".session/docs/PRODUCTION-READINESS.md"
+      ],
+      "priority": "critical"
+    },
+    {
+      "id": "A7",
+      "gate": "6 \u00b7 Money, billing, and reconciliation",
+      "item": "Regulated payment and settlement provider",
+      "status_code": "blocked",
+      "status": "Only simulated payment exists; no production PSP or settlement rail is selected.",
+      "responsible_owner": "Product and finance lead",
+      "evidence_scope": "operator",
+      "remaining_work": [
+        "Operator: select and approve a regulated payment provider or PSP/PPI (as applicable in the provider's terminology) for the launch roles.",
+        "Agent and operator: record commercial, compliance, receipt, refund, signed-webhook, idempotency, reconciliation, settlement, payout, and failure/unknown-outcome recovery requirements.",
+        "Agent: integrate and certify the chosen provider before any separately authorized customer-money enablement."
+      ],
+      "completion_criteria": [
+        "The provider is contractually approved and production-certified.",
+        "Receipts, signed webhooks, idempotency, refunds, reconciliation, settlement, payouts, and failure/unknown-outcome recovery pass end to end."
+      ],
+      "blocked_by": "Operator provider selection, commercial approval, and provider onboarding.",
+      "operator_boundary": "Provider selection, contracts, spend, and production enablement require operator approval.",
+      "evidence_refs": [
+        ".session/docs/PRODUCTION-READINESS.md"
+      ],
+      "priority": "critical"
+    },
+    {
+      "id": "A8",
+      "gate": "4 \u00b7 Security, privacy, legal, and trust",
+      "item": "Agreement, contacts, terms, and Buyer disclosures",
+      "status_code": "pending",
+      "status": "ONDC's 2026-08-10 pending-submissions readback confirms that the agreement, operational contacts, Retail Buyer disclosures/static terms, and start-transacting details remain pending for the approved profiles.",
+      "responsible_owner": "Product and legal owner",
+      "evidence_scope": "operator",
+      "remaining_work": [
+        "Review and approve the Network Participant Agreement; do not accept or submit it without operator authorization.",
+        "Prepare order-status, reconciliation/settlement/payout, grievance, customer-grievance, and policy-escalation contacts.",
+        "Approve the Retail Buyer sorting, search-display, static terms, privacy, refund/support, and production go-live disclosures."
+      ],
+      "completion_criteria": [
+        "All required agreements, contacts, terms, and customer disclosures are approved, published, and consistent with the launched roles and money flows."
+      ],
+      "blocked_by": "Product/legal approval, named operational contacts, and current portal submission requirements.",
+      "operator_boundary": "Legal acceptance and external submission require operator approval.",
+      "evidence_refs": [
+        ".agents/skills/testing-ledger/references/evidence/ondc-huf-mail-readback-20260815.json",
+        ".session/docs/PRODUCTION-READINESS.md"
+      ],
+      "priority": "critical"
+    },
+    {
+      "id": "B1",
+      "gate": "3 \u00b7 Data, integrations, and migrations",
+      "item": "Retail signed discovery",
+      "status_code": "complete",
+      "status": "PreProd Gate 1 signed search and correlated on_search with the approved Seller item passed.",
+      "responsible_owner": "ONDC engineering owner",
+      "evidence_scope": "preprod",
+      "completed_evidence": [
+        "Signed discovery passed for the frozen PreProd gate."
+      ],
+      "evidence_refs": [
+        ".agents/skills/testing-ledger/references/preprod-network-matrix.md"
+      ],
+      "priority": "high"
+    },
+    {
+      "id": "B2",
+      "gate": "3 \u00b7 Data, integrations, and migrations",
+      "item": "LOG10 synthetic forward lifecycle",
+      "status_code": "complete",
+      "status": "The official Workbench Immediate Delivery flow completed all 15 expected synthetic steps.",
+      "responsible_owner": "ONDC engineering owner",
+      "evidence_scope": "preprod",
+      "completed_evidence": [
+        "Signature-verified callbacks completed the retained Workbench flow; this is not production or external-LSP proof."
+      ],
+      "evidence_refs": [
+        ".agents/skills/testing-ledger/references/matrix-status.md"
+      ],
+      "priority": "high"
+    },
+    {
+      "id": "B3",
+      "gate": "3 \u00b7 Data, integrations, and migrations",
+      "item": "External LSP interoperability",
+      "status_code": "blocked",
+      "status": "TapTap acknowledged on_init but omitted mandatory rider-check semantics; no later logistics callbacks followed.",
+      "responsible_owner": "ONDC integration owner",
+      "evidence_scope": "provider",
+      "remaining_work": [
+        "Obtain a compliant external LSP on_init for the approved fulfilment flow.",
+        "Agent and external LSP: complete signed confirm, update, status, track, cancellation, and exception callbacks using identifiers from signed readback.",
+        "Agent: retain provider-issued tracking plus Buyer and Seller delivery/itinerary readback, then close the interoperability packet."
+      ],
+      "completion_criteria": [
+        "One external LSP journey completes signed confirm, update, status, track, cancellation, and exception callbacks with correlation, Buyer/Seller delivery tracking, and terminal state."
+      ],
+      "blocked_by": "External LSP behavior and an authorized interoperability rerun.",
+      "operator_boundary": "Do not place a live logistics order without explicit authorization.",
+      "evidence_refs": [
+        ".agents/skills/testing-ledger/references/matrix-status.md",
+        ".agents/skills/testing-ledger/references/preprod-network-matrix.md"
+      ],
+      "priority": "critical"
+    },
+    {
+      "id": "B4",
+      "gate": "3 \u00b7 Data, integrations, and migrations",
+      "item": "Retail order lifecycle on ONDC",
+      "status_code": "pending",
+      "status": "ONDC's 2026-08-10 pending-submissions readback still lists transaction components, component verification, and start-transacting details as pending; the full Retail lifecycle is not accepted.",
+      "responsible_owner": "ONDC integration owner",
+      "evidence_scope": "preprod",
+      "remaining_work": [
+        "Agent: complete signed ONDC select, init, confirm, fulfilment, status, track, cancellation, return, refund, and settlement callbacks for the approved role/domain matrix.",
+        "Persist and reconcile every callback into the sole CommerceV1 owner."
+      ],
+      "completion_criteria": [
+        "The approved official conformance lane completes signed ONDC select, init, confirm, fulfilment, status, track, cancellation, return, refund, and settlement callbacks with correlated, persisted evidence."
+      ],
+      "blocked_by": "A4 production identity/registry approval and incomplete official lifecycle conformance.",
+      "evidence_refs": [
+        ".agents/skills/testing-ledger/references/preprod-network-matrix.md",
+        ".agents/skills/testing-ledger/references/evidence/ondc-huf-mail-readback-20260815.json"
+      ],
+      "priority": "critical"
+    },
+    {
+      "id": "B5",
+      "gate": "5 \u00b7 Reliability, observability, operations, and support",
+      "item": "Issue and grievance management",
+      "status_code": "complete",
+      "status": "B5 complete on preprod/Auth0 signed IGM plus Buyer/Seller-visible outcome (evidence_scope preprod). Issue e0809349 on order 8F3F56D0: signed callbacks, audit, owner, response/escalation targets, closed UI on current FQDNs after nested 27e8faa / dep-da1hs181ne8s73cgcb0g. Workbench 8382bcef is not the Auth0 user\u2019s. Production IGM is A4/B8, not a B5 remaining child.",
+      "responsible_owner": "Support and ONDC operations owner",
+      "evidence_scope": "preprod",
+      "completed_evidence": [
+        "2026-08-17 B5 complete on preprod/Auth0 signed IGM: issue e0809349 on 8F3F56D0. Signed callbacks, audit (10), owner Seller support, response/escalation targets, Buyer/Seller-visible closed outcome on current FQDNs after nested 27e8faa / dep-da1hs181ne8s73cgcb0g. Production IGM is A4/B8, not a B5 remaining child. Workbench 8382bcef is not the Auth0 user\u2019s.",
+        "2026-08-17 B5 residuals: nested 27e8faa live as dep-da1hs181ne8s73cgcb0g. Native POST /api/ondc/issue_status for e0809349 (issue_id only) \u2192 BPP on_issue_status inbox 23249 RESOLVED signature_verified. Commerce SLA filled. Hobby Seller/Buyer FQDNs show UUID e0809349, owner Seller support, response/escalation targets, open audit timeline (10). Pytest 99 passed. Comet b5-residuals-ui-20260817 verified_absent. No Workbench 15\u201318 rerun. No PEM/DNS/Submit. Production IGM unauthorized.",
+        "2026-08-17 Auth0-owned signed IGM: nested 014a6dd live as dep-da1hhcrl550s73fmjrcg. Buyer created e0809349 on 8F3F56D0; signed issue outbox 22922 to ondcseller.aadharcha.in; on_issue 23218 PROCESSING signature_verified; CLOSE \u2192 commerce closed; extra inbound issue_status RESOLVED \u2192 on_issue_status 23227 signature_verified. Buyer badge resolved; Seller closed (UUID omitted). /orders/B5091e6b53 not 500. Workbench 8382bcef still open/subscriber-scoped. Comet b5-e1-auth0-igm-20260817 verified_absent. No Workbench 15\u201318 rerun. No PEM/DNS/Submit.",
+        "2026-08-17 Auth0 Buyer/Seller FQDN readback: public row 8382bcef principal_id=ondcbuyer.aadharcha.in seller_id=workbench.ondc.tech status=open protocol_order B5091e6b53. Unauthenticated issues 401. Signed-in Buyer shows 8F3F56D0/709D9B9E/83A97020 and Auth0 issue fabc818c, not 8382bcef; /orders/B5091e6b53 500. Seller same four Auth0 orders; 709D9B9E closed fulfillment is the Auth0 issue. Comet b5-e1-ui-readback-20260817 verified_absent.",
+        "2026-08-17 IGM issue_actions: nested commit 1db9fa0 live as dep-da1g9jpt0dsc73bqcp0g. BAP issue includes complainant_actions; BPP on_issue/on_issue_status include respondent_actions. Pytest 14 passed/16 skipped. New Workbench session jAq3Wt205M3Il6zX2siGsKS8abHbQgIT / tx 091e6b53-9ce5-49ba-b6ee-414112326d5c. Confirm order B5091e6b53. issue_open_100, on_issue_processing_100, on_issue_resolved_100, issue_close_100 COMPLETE SUCCESS; bound issue 8382bcef-c3ab-41e5-b04e-1088d10ffb84. Signed on_issue inbox 23111 (PROCESSING) and on_issue_status inbox 23113 (RESOLVED), both signature_verified, no Missing issue actions. Mock on_confirm still ERROR. Comet b5-igm-issue-actions-20260817.",
+        "2026-08-17 IGM issue bind: nested commit e55d06e live as dep-da1fvie7bikc7392gof0. Dispatch creates a principal-safe CommerceV1 issue from a confirm-outbox order when none exists. Public POST /api/ondc/issue: no body 422, {} 422, unknown order 404 Unknown order, unknown issue 404 Unknown issue. Pytest 12 passed/16 skipped. New Workbench session YvuUWZPUfH_n-R8soNMIfLVXr2J7M61l / tx d98ec9ac-990c-4793-a5f8-72426afc75b5. Confirm order B5d98ec9ac. issue_open_100 and issue_close_100 COMPLETE SUCCESS; bound issue fd0486d3-aed4-4f92-86f0-46e92b679be3 from signed outbox. Signed on_issue inbox 23086/23087 (signature_verified; mock envelope Missing issue actions). on_issue_resolved COMPLETE ERROR. Comet b5-igm-issue-bind-20260817.",
+        "2026-08-17 BAP ACK Workbench on_confirm: inbound BAP persists callback message_id when transaction_id matches confirm/lifecycle outbox (no NACK on mismatch). Nested commit 8ae415b live as dep-da1fl2h5efls73eervbg. Pytest 11 passed/16 skipped. Live synthetic on_confirm ACK inbox 23056. New Workbench session kRX_rSpaXI1zRMI9rMRHf8idYHniOxh5 / tx f876d453-6c33-4297-952e-7ee54ed50551 ACK select through confirm; track COMPLETE SUCCESS; signed on_track true. Mock on_confirm ERROR without Render POST. IGM issue 404 Unknown issue. Comet b5-igm-ack-20260817.",
+        "Authenticated Buyer issue creation is principal-scoped to the order owner.",
+        "Seller remedy and Buyer acceptance persist a closed issue with a verifiable AgentGuard outcome receipt in PostgreSQL tests.",
+        "A newer Buyer mandate version activates correctly under the stable mandate ID, and PostgreSQL plus rendered Buyer/Seller proof covers acknowledgement, owner/SLA assignment, rejection, escalation, and the ordered audit timeline.",
+        "2026-08-17 signed Retail IGM: /api/ondc/issue signs ONDC:RET10 1.2.0, on_issue correlates to the local issue audit timeline, invalid signatures NACK, and dispatch failure remains outbox-retryable. 5 focused IGM tests plus 135 related ONDC/issue checks passed. Official B5-E1 not run.",
+        "2026-08-17 exact-commit Render deploy 2e300708b7510af770b5da34f33e2792be2c489a as dep-da1ds3flk1mc739qgt4g on existing Free identity-aadhar-gateway-main. Health 200. POST /api/ondc/issue 422 and /ondc/on_issue 400 (not 404). PreProd unique_key_ids unchanged. No PEM/DNS/registry.",
+        "2026-08-17 PreProd Workbench session 2d8cKTuko6HV78i1sQLN3Nx3H3T5bO64 created as BAP RET10 1.2.0 GROCERY. IGM-bearing flow Order_to_confirm_to_fulfillment__Prepaid_with_igm_1.0.0 is WAITING on select after POST /backend-ui/api/sessions/flows/{sessionId} 404. Public on_issue inbox empty. Official IGM not completed.",
+        "2026-08-17 retry: POST /backend-ui/flow/new registered session v83hwowCbAKXBW9wEHtbCTjTC7f1tQHq flow Order_to_confirm_to_fulfillment__Prepaid_with_igm_1.0.0. Transaction d77ff31f-4d1b-4e2e-81ca-53b90a2900cb ACK'd select, on_select, init, on_init, confirm without filling accept_bpp_terms. Mock on_confirm NACK'd (message_id mismatch); public on_confirm/on_issue inbox empty. Track WAITING; POST /api/ondc/track was 404 before f7794fa.",
+        "2026-08-17 Buyer retail track + on_confirm correlation: POST /api/ondc/track signs RET10 track with order_id; on_track signature-verifies like issue; on_confirm NACKs a new message_id when confirm outbox exists; on_status accepts camelCase subscriberID and Authorization keyId. 4 focused tests plus 144 related ONDC/commerce checks passed. Nested commit f7794fa live as dep-da1f80gjo6nc738i40s0. Public track 422 / health 200 / IGM routes still present. Workbench IGM steps 15\u201318 not rerun.",
+        "2026-08-17 Workbench rerun: new session 62RWGJAf_xhJm5O1FgYrf6qUakwSdO__ / tx fa6a6b53-41af-4155-9eea-96ac7d6b90e1 via POST /backend-ui/flow/new. ACK select, on_select, init, on_init, confirm without accept_bpp_terms. Mock on_confirm NACK message_id mismatch expected 8a907724-1f72-4b57-8c6c-14a096baded6 found 54816c38-e7c5-446b-a6e6-503d19a662a1. Public on_confirm/on_issue inbox empty. Track LISTENING not sent (no signed order_id). IGM 15\u201318 not reached. Comet b5-igm-rerun-20260817."
+      ],
+      "completion_criteria": [
+        "A customer grievance or support issue can be traced from creation through resolution with signed network callbacks, audit history, escalation owner, response target, and Buyer/Seller-visible outcome."
+      ],
+      "evidence_refs": [
+        ".agents/skills/testing-ledger/references/evidence/b5-residuals-bpp-sla-ui-20260817.json",
+        ".agents/skills/testing-ledger/references/evidence/b5-e1-auth0-signed-igm-20260817.json",
+        ".agents/skills/testing-ledger/references/evidence/b5-e1-buyer-seller-readback-20260817.json",
+        ".agents/skills/testing-ledger/references/evidence/b5-e1-workbench-igm-resolve-20260817.json",
+        ".agents/skills/testing-ledger/references/evidence/b5-e1-workbench-igm-bind-20260817.json",
+        ".agents/skills/testing-ledger/references/evidence/b5-e1-workbench-igm-ack-20260817.json",
+        ".agents/skills/testing-ledger/references/evidence/b5-e1-workbench-igm-rerun-20260817.json",
+        ".agents/skills/testing-ledger/references/evidence/b5-e1-track-onconfirm-deploy-20260817.json",
+        ".agents/skills/testing-ledger/references/evidence/b5-e1-workbench-igm-retry-20260817.json",
+        ".agents/skills/testing-ledger/references/evidence/b5-e1-workbench-igm-20260817.json",
+        ".agents/skills/testing-ledger/references/evidence/b5-igm-render-deploy-2e30070-20260817.json",
+        ".agents/skills/testing-ledger/references/evidence/b5-local-signed-igm-20260817.json",
+        ".agents/skills/testing-ledger/references/evidence/b5-local-foundation-20260810.json",
+        ".agents/skills/testing-ledger/references/evidence/b5-local-operations-20260810.json",
+        "aadharchain/gateway/tests/test_ondc_track.py",
+        "aadharchain/gateway/tests/test_ondc_igm.py",
+        "aadharchain/gateway/tests/test_commerce_demo.py",
+        "aadharchain/gateway/tests/test_cf2_cf3_lifecycle_postgres.py",
+        "aadharchain/gateway/tests/test_domain_state_machines.py",
+        ".session/docs/PRODUCTION-READINESS.md"
+      ],
+      "priority": "critical"
+    },
+    {
+      "id": "B6",
+      "gate": "6 \u00b7 Money, billing, and reconciliation",
+      "item": "Reconciliation, settlement, and payouts",
+      "status_code": "pending",
+      "status": "Production reconciliation, settlement, payout contacts, and walkthrough are not complete.",
+      "responsible_owner": "Finance operations owner",
+      "evidence_scope": "preprod",
+      "remaining_work": [
+        "Agent: implement the applicable ONDC RSP (reconciliation/settlement) components for the chosen roles and payment rail. Spec owner: ~/.agents/skills/ondc Lifecycle + Sources (protocol-network-extension specifications/rsp). Not a Workbench IGM green.",
+        "Define operational contacts and exception handling.",
+        "Agent and finance owner: complete a walkthrough from order ledger through payment receipt, refund, settlement, and payout."
+      ],
+      "completion_criteria": [
+        "Order, payment, refund, settlement, fee, and payout records reconcile without unexplained variance, and exception ownership is tested."
+      ],
+      "blocked_by": "A7 provider selection and incomplete reconciliation/settlement implementation.",
+      "evidence_refs": [
+        ".session/docs/PRODUCTION-READINESS.md"
+      ],
+      "priority": "critical"
+    },
+    {
+      "id": "B7",
+      "gate": "5 \u00b7 Reliability, observability, operations, and support",
+      "item": "ONDC network observability",
+      "status_code": "pending",
+      "status": "ONDC's 2026-08-10 pending-submissions readback confirms PreProd observability key generation and log submission remain pending; no approved report is retained.",
+      "responsible_owner": "ONDC operations owner",
+      "evidence_scope": "provider",
+      "remaining_work": [
+        "Generate only the approved submission keys (operator).",
+        "Capture redacted protocol logs for the exact conformance source.",
+        "Validate with ONDC log-validation-utility, then operator-submit to ONDC-Official/verification-logs (or the portal path ONDC currently names). Do not treat a Workbench Scenario green as the observability report. Procedure: ~/.agents/skills/ondc Lifecycle + Sources."
+      ],
+      "completion_criteria": [
+        "The official report is retained and every reported defect is closed or explicitly accepted before go-live."
+      ],
+      "operator_boundary": "Key generation and external submission require operator approval.",
+      "evidence_refs": [
+        ".agents/skills/testing-ledger/references/evidence/ondc-huf-mail-readback-20260815.json",
+        ".session/docs/PRODUCTION-READINESS.md"
+      ],
+      "priority": "critical"
+    },
+    {
+      "id": "B8",
+      "gate": "7 \u00b7 External providers, platforms, and approvals",
+      "item": "Official production conformance and go-live approval",
+      "status_code": "pending",
+      "status": "The 2026-08-15 provider-mail readback shows Integration in Progress, pending submissions, and no official production conformance or portal go-live approval.",
+      "responsible_owner": "Product lead",
+      "evidence_scope": "production",
+      "remaining_work": [
+        "Complete every official conformance lane required by the A2 matrix.",
+        "Close provider and portal findings.",
+        "Obtain dated portal approval before enabling a live transaction."
+      ],
+      "completion_criteria": [
+        "The portal and network owners show the approved production roles/domains as go-live eligible, with all mandatory conformance evidence retained."
+      ],
+      "blocked_by": "A4, B3-B7, and all applicable launch controls.",
+      "operator_boundary": "Go-live submission and production enablement require explicit operator approval.",
+      "evidence_refs": [
+        ".agents/skills/testing-ledger/references/evidence/ondc-huf-mail-readback-20260815.json",
+        ".session/docs/PRODUCTION-READINESS.md"
+      ],
+      "priority": "critical"
+    },
+    {
+      "id": "C3",
+      "gate": "4 \u00b7 Security, privacy, legal, and trust",
+      "item": "AgentGuard production authority controls",
+      "status_code": "partial",
+      "status": "Mandates, decisions, exact approvals, pause/revoke, and receipts exist; production risk tiers and the single approval inbox are specified against existing /api/agentguard APIs. Token proof and external security acceptance remain open.",
+      "responsible_owner": "AgentGuard product owner",
+      "evidence_scope": "local",
+      "remaining_work": [
+        "Prove exact authorization tokens across all production write paths.",
+        "Complete external security acceptance for mandate, pause, revoke, receipt, and audit behavior."
+      ],
+      "completion_criteria": [
+        "Every autonomous write is covered by the canonical risk policy, exact approval or mandate, durable receipt, revocation, and audit trail."
+      ],
+      "evidence_refs": [
+        ".cursor/skills/agent-runtime-design/references/production-authority.md",
+        ".agents/skills/testing-ledger/references/matrix-status.md",
+        ".session/docs/IMPLEMENTATIONPLAN.md"
+      ],
+      "priority": "critical"
+    },
+    {
+      "id": "C4",
+      "gate": "8 \u00b7 Rollout, rollback, and communications",
+      "item": "Current-source public release proof",
+      "status_code": "pending",
+      "status": "The latest source has local evidence only; public Buyer/Seller acceptance has not been rerun.",
+      "responsible_owner": "Release owner",
+      "evidence_scope": "staging",
+      "remaining_work": [
+        "After release approval, deploy the exact verified source.",
+        "Prove the paused-agent/manual-checkout separation and affected Buyer/Seller journeys on the public FQDN.",
+        "Retain source fingerprint, deployment identity, Auth0 session, visual result, and console/network evidence."
+      ],
+      "completion_criteria": [
+        "The exact deployed source passes the required public Buyer/Seller release journeys with no unresolved launch blocker."
+      ],
+      "blocked_by": "Release scope and deployment approval.",
+      "operator_boundary": "Deployment requires explicit approval.",
+      "evidence_refs": [
+        ".agents/skills/testing-ledger/references/matrix-status.md"
+      ],
+      "priority": "critical"
+    },
+    {
+      "id": "O1",
+      "gate": "5 \u00b7 Reliability, observability, operations, and support",
+      "item": "Production telemetry, SLOs, and alerting",
+      "status_code": "pending",
+      "status": "Draft telemetry/response-control stubs exist in PRODUCTION-READINESS.md (must-log / must-redact / must-alert for AgentGuard denials, payment-unknown, ONDC callback backlog; SLO placeholders). Not approved; no dashboards or alert drill.",
+      "responsible_owner": "Operations lead",
+      "evidence_scope": "production",
+      "remaining_work": [
+        "Approve numeric SLOs for gateway, Buyer, Seller, callbacks, payments, and agent writes (replace O1 placeholders).",
+        "Implement correlated logs, metrics, traces, dashboards, and paging alerts per O1 must-log / must-redact / must-alert stubs.",
+        "Exercise one alert from trigger through acknowledgement and diagnosis; retain evidence."
+      ],
+      "completion_criteria": [
+        "Approved SLOs and dashboards cover critical paths, and a retained alert drill proves routing and diagnosis."
+      ],
+      "evidence_refs": [
+        ".session/docs/PRODUCTION-READINESS.md"
+      ],
+      "priority": "critical"
+    },
+    {
+      "id": "O2",
+      "gate": "5 \u00b7 Reliability, observability, operations, and support",
+      "item": "Encrypted backup and restore",
+      "status_code": "pending",
+      "status": "PostgreSQL is active; no encrypted production restore exercise is retained.",
+      "responsible_owner": "Operations lead",
+      "evidence_scope": "production",
+      "remaining_work": [
+        "Configure encrypted backups with approved retention and access controls.",
+        "Restore into an isolated environment and verify critical AgentGuard, order, callback, ledger, and receipt records."
+      ],
+      "completion_criteria": [
+        "A dated restore meets approved recovery objectives and record-integrity checks."
+      ],
+      "evidence_refs": [
+        ".session/docs/PRODUCTION-READINESS.md"
+      ],
+      "priority": "critical"
+    },
+    {
+      "id": "O3",
+      "gate": "6 \u00b7 Money, billing, and reconciliation",
+      "item": "Payment, order, refund, and ledger reconciliation",
+      "status_code": "partial",
+      "status": "Simulated payments and refunds have correlation and balanced-ledger evidence; real provider settlement is unproved.",
+      "responsible_owner": "Finance operations owner",
+      "evidence_scope": "local",
+      "remaining_work": [
+        "Agent: integrate the A7 provider with signed webhook and idempotency controls.",
+        "Reconcile real payment, order, refund, fee, settlement, and payout records.",
+        "Agent: exercise duplicate, delayed, failed, and unknown-outcome recovery from payment receipt through refund, settlement, and payout."
+      ],
+      "completion_criteria": [
+        "End-to-end production-like reconciliation closes without unexplained variance and every exception has a tested recovery path."
+      ],
+      "blocked_by": "A7 provider selection and B6 settlement scope.",
+      "evidence_refs": [
+        ".agents/skills/testing-ledger/references/evidence/cf1-release-e95340-checkpoint-20260722.json",
+        "aadharchain/gateway/app/commerce_v1.py"
+      ],
+      "priority": "critical"
+    },
+    {
+      "id": "O4",
+      "gate": "5 \u00b7 Reliability, observability, operations, and support",
+      "item": "Incident and financial-unknown runbooks",
+      "status_code": "pending",
+      "status": "Draft runbook stubs exist in PRODUCTION-READINESS.md (service incident, payment unknown, IGM escalation, key compromise, callback backlog). No named responders, contacts, or retained exercises.",
+      "responsible_owner": "Operations lead",
+      "evidence_scope": "operator",
+      "remaining_work": [
+        "Expand stubs into accepted runbooks; add participant-timeout and refund-failure twins.",
+        "Assign escalation contacts (no stub phone trees) and exercise the highest-risk scenarios with retained evidence."
+      ],
+      "completion_criteria": [
+        "Named responders complete retained exercises within approved response and recovery targets."
+      ],
+      "evidence_refs": [
+        ".session/docs/PRODUCTION-READINESS.md"
+      ],
+      "priority": "critical"
+    },
+    {
+      "id": "O5",
+      "gate": "4 \u00b7 Security, privacy, legal, and trust",
+      "item": "External production security review",
+      "status_code": "pending",
+      "status": "No external production security acceptance is retained.",
+      "responsible_owner": "Security owner",
+      "evidence_scope": "provider",
+      "remaining_work": [
+        "Run lockfile-scoped dependency audits and remediate or explicitly accept every critical or high finding before release.",
+        "Review authentication, sessions, cookies, CORS, tenancy, secrets, PII, agent authorization, payment callbacks, and ONDC signing boundaries.",
+        "Complete penetration testing and close or explicitly accept findings."
+      ],
+      "completion_criteria": [
+        "An independent report covers the release architecture and no unaccepted launch-critical finding remains."
+      ],
+      "operator_boundary": "Vendor engagement and risk acceptance require operator approval.",
+      "evidence_refs": [
+        ".session/docs/PRODUCTION-READINESS.md"
+      ],
+      "priority": "critical"
+    },
+    {
+      "id": "O6",
+      "gate": "4 \u00b7 Security, privacy, legal, and trust",
+      "item": "Privacy, retention, deletion, and model-data policy",
+      "status_code": "pending",
+      "status": "Draft data-class inventory table exists in PRODUCTION-READINESS.md (PII, commerce, payment, ONDC, support, telemetry, model-visible) with TBD retention/deletion. Not approved or enforced.",
+      "responsible_owner": "Privacy owner",
+      "evidence_scope": "operator",
+      "remaining_work": [
+        "Replace TBD retention/deletion with approved values; classify lawful purpose, access, export, minimization, and model eligibility per class.",
+        "Implement and verify deletion and retention controls against the approved inventory."
+      ],
+      "completion_criteria": [
+        "The approved inventory maps every production data class to enforced retention, deletion, access, and model-use rules."
+      ],
+      "evidence_refs": [
+        ".session/docs/PRODUCTION-READINESS.md"
+      ],
+      "priority": "critical"
+    },
+    {
+      "id": "O7",
+      "gate": "8 \u00b7 Rollout, rollback, and communications",
+      "item": "Customer support, audit, and recovery operations",
+      "status_code": "pending",
+      "status": "Support ownership, operational console, and recovery rehearsal are not launch-ready.",
+      "responsible_owner": "Support lead",
+      "evidence_scope": "operator",
+      "remaining_work": [
+        "Assign staffed support and escalation coverage for the launch window.",
+        "Provide safe order, payment, refund, issue, and agent-decision lookup without exposing secrets.",
+        "Rehearse customer recovery and audit export for representative failures."
+      ],
+      "completion_criteria": [
+        "Support can diagnose and recover the approved scenarios within response targets using least-privilege tooling and retained audit evidence."
+      ],
+      "evidence_refs": [
+        ".session/docs/PRODUCTION-READINESS.md"
+      ],
+      "priority": "critical"
+    },
+    {
+      "id": "O8",
+      "gate": "8 \u00b7 Rollout, rollback, and communications",
+      "item": "Phased rollout, rollback, and global agent-write pause",
+      "status_code": "pending",
+      "status": "Per-agent pause exists; launch-wide write containment and rollback are unproved.",
+      "responsible_owner": "Release owner",
+      "evidence_scope": "staging",
+      "remaining_work": [
+        "Define cohort/feature flags and launch metrics.",
+        "Implement a global autonomous-write pause that preserves human-safe recovery paths.",
+        "Exercise rollback and global pause from trigger through verified containment and restoration."
+      ],
+      "completion_criteria": [
+        "A retained rehearsal proves phased enablement, automatic/manual stop conditions, global write containment, rollback, and safe restoration."
+      ],
+      "operator_boundary": "Production rollout and rollback require operator approval.",
+      "evidence_refs": [
+        ".session/docs/IMPLEMENTATIONPLAN.md",
+        ".session/docs/PRODUCTION-READINESS.md"
+      ],
+      "priority": "critical"
+    },
+    {
+      "id": "O9",
+      "gate": "5 \u00b7 Reliability, observability, operations, and support",
+      "item": "Accessibility, load, resilience, and disaster recovery",
+      "status_code": "partial",
+      "status": "Frozen responsive/accessibility acceptance exists; operational resilience is unproved.",
+      "responsible_owner": "Quality and operations lead",
+      "evidence_scope": "staging",
+      "remaining_work": [
+        "Run accessibility acceptance on the exact release source.",
+        "Load-test the approved launch envelope and failure limits.",
+        "Exercise dependency failure, retry/backlog recovery, failover, and disaster recovery."
+      ],
+      "completion_criteria": [
+        "Release accessibility passes and retained load/resilience/DR results meet approved thresholds with no unresolved launch blocker."
+      ],
+      "evidence_refs": [
+        ".agents/skills/testing-ledger/references/evidence/cf1-release-e95340-checkpoint-20260722.json",
+        ".session/docs/PRODUCTION-READINESS.md"
+      ],
+      "priority": "critical"
+    }
+  ]
+}

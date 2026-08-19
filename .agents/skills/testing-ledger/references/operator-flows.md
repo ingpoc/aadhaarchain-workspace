@@ -292,6 +292,19 @@ Same commerce intents via Realtime mic. Pass: connected session + **visible** to
 | **Pass signals** | Tool ok; catalog shows item when feasible |
 | **Settle** | `catalog_publish` ok; optional item visible on `/catalog` |
 | **Change map** | publish; demo-commerce |
+| **Recovery** | After gateway restart, transient **Seller mandate not found** → Settings → Agent Guard → Refresh + Save, then retry Confirm publish. Not a missing-feature claim. |
+| **Precondition** | Local gateway on local Postgres; OpenAPI includes draft/store/item routes before diagnosing UI (see testing-ledger SKILL local preconditions). |
+
+### CF3 catalog path / CF3-E1 (2026-08-17 Comet PASS; product complete)
+
+Re-read Seller/gateway before gap claims. Catalog path PASS earlier the same day.
+CF3-E1 complete-lifecycle PASS (session `cf3-e1-20260817`): store, staff invite,
+CSV draft import, SLA accept, dispatch+tracking, deliver, full refund, Overview
+analytics, persist agreement. Product item complete; Q1 is a separate release
+item. Stamps:
+[`matrix-status.md`](matrix-status.md),
+`evidence/cf3-e1-seller-lifecycle-20260817.json`,
+`evidence/cf3-catalog-*-20260817.*`.
 
 ### S-ORDER-ACCEPT / S-ORDER-REJECT / S-ORDER-FULFIL — Order lifecycle
 
@@ -364,7 +377,7 @@ Prefix **`W-`** (e.g. `W-B-FIND-BANANA`, `W-S-NAV-CAT`). Same Pass bar on `https
 
 ## Session minimum (operator text-mode)
 
-Acceptance is performed first by the experiment-refined pair in [`../SKILL.md`](../SKILL.md): one task-focused novice customer/operator and one combined UX/accessibility reviewer. They use visible UI and natural language only, cap reports, and distinguish App Fail from Tooling Blocked. The implementation agent and fixture-aware scripts may replay these flows for diagnosis, but their results are supporting evidence rather than novice-customer acceptance. Buyer and Seller authenticated runs are sequential because the shared WIP Chrome profile has one gateway session cookie.
+Acceptance is performed first by the experiment-refined pair in [`../SKILL.md`](../SKILL.md): one task-focused novice customer/operator and one combined UX/accessibility reviewer. They use visible UI and natural language only, cap reports, and distinguish App Fail from Tooling Blocked. The implementation agent and fixture-aware scripts may replay these flows for diagnosis, but their results are supporting evidence rather than novice-customer acceptance. Buyer and Seller authenticated runs are sequential because the app audiences share one gateway session cookie.
 
 **Buyer:** `B-HI` → `B-FIND-NL-ATTA` or `B-FIND-ATTA` (prove **early `/results`**) → `B-ADD-*` if cache allows → `B-AG-CONFIRM` when signed-in → nav cart/checkout → checkout if cart non-empty → `B-RUNTIME`.  
 **Seller:** `S-HI` → nav catalog/orders/AG → `S-AG-PAUSE` when signed-in → `S-PUBLISH` or `S-REFUND-*` → `S-RUNTIME` as feasible.  

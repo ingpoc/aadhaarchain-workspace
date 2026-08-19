@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """ONDC testing matrix with Hermes screenshots (claim → screenshot → Pass).
 
-Saves evidence under .cursor/skills/ondc-testing/references/evidence/
+Saves evidence under .agents/skills/testing-ledger/references/evidence/
 Usage:
   python3 scripts/hermes_ondc_testing_matrix.py          # buyer+seller
   python3 scripts/hermes_ondc_testing_matrix.py buyer
@@ -22,8 +22,8 @@ ROOT = pathlib.Path(__file__).resolve().parents[1]
 GATEWAY = "http://127.0.0.1:43101"
 BUYER = "http://127.0.0.1:43102"
 SELLER = "http://127.0.0.1:43103"
-EVIDENCE = ROOT / ".cursor/skills/ondc-testing/references/evidence"
-SESSION = "ondc-testing-matrix"
+EVIDENCE = ROOT / ".agents/skills/testing-ledger/references/evidence"
+SESSION = "testing-ledger-matrix"
 TS = time.strftime("%Y%m%d-%H%M%S")
 TRANSCRIPT_FILE = ROOT / "aadharchain/gateway/data/samantha-transcripts.jsonl"
 

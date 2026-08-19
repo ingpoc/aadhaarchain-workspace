@@ -1,0 +1,49 @@
+{
+  "captured_at": "2026-08-01T19:45:00+05:30",
+  "scope": "One authorized PreProd LOG10 search plus local CommerceV1 Seller-to-Buyer correlation proof",
+  "preprod_search": {
+    "transaction_id": "6f5a3bf8-fc4e-4b59-b0ab-1d09d7e75201",
+    "message_id": "f8da9847-d359-41f5-9026-855f35ba1c42",
+    "outbox_id": "pg_out_9885",
+    "http_status": 200,
+    "ack": "ACK",
+    "lbnp": "ondclbnp.aadharcha.in",
+    "core_version": "1.2.5",
+    "selected_offer": {
+      "signature_verified": true,
+      "bpp_id": "preprod-bpp.taptap.in",
+      "provider_id": "P1",
+      "provider_name": "TapTap Logistics",
+      "item_id": "I1",
+      "item_code": "P2P",
+      "category_id": "Immediate Delivery",
+      "fulfillment_id": "F1",
+      "fulfillment_type": "Delivery",
+      "price": {"currency": "INR", "value": "59.00"},
+      "tat": "PT60M"
+    },
+    "excluded_callbacks": [
+      "www.reachmystore.com was Retail catalog data, not LOG10 P2P Immediate Delivery",
+      "Pramaan mock did not advertise the required P2P item code"
+    ]
+  },
+  "local_lifecycle": {
+    "order_id": "12ee1dc3-828f-402d-a815-e7c98cf0480a",
+    "display_reference": "12EE1DC3",
+    "amount_inr": 59,
+    "tracking_id": "TAPTAP-UI-1201",
+    "final_status": "delivered",
+    "history": ["confirmed", "preparing", "shipped", "delivered"],
+    "seller_rendered": ["TapTap Logistics", "Tracking ID: TAPTAP-UI-1201", "Delivered"],
+    "buyer_rendered": ["Provider TapTap Logistics", "Tracking ID TAPTAP-UI-1201", "confirmed -> preparing -> shipped -> Delivered"],
+    "samantha_text": "Order 12ee1dc3-828f-402d-a815-e7c98cf0480a is delivered. Delivery provider: TapTap Logistics. Tracking ID: TAPTAP-UI-1201."
+  },
+  "validation": {
+    "focused_postgres": "1 passed",
+    "gateway": "237 passed, 51 skipped",
+    "ondc_adapter": "10 passed",
+    "seller": "217 passed; lint 0 errors, 1 pre-existing warning; production build/copy gate passed",
+    "buyer": "203 passed in unchanged source gate; production build/copy gate passed"
+  },
+  "claim_boundary": "The signed on_search offer was correlated to a local simulated CommerceV1 order through a protected Seller dispatch. The tracking ID and delivery transitions are local proof values, not issued by TapTap. No LOG10 init/confirm/status/track request, legal-term acceptance, real payment, physical shipment, deployment, production ONDC, or FQDN lifecycle is claimed."
+}

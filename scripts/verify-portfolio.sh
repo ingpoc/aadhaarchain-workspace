@@ -85,6 +85,9 @@ if [[ "$SKIP_CONTRACT" != "1" ]]; then
   python3 "$ROOT/scripts/verify_agentguard_contract_sync.py"
 fi
 
+echo "→ Product readiness artifact freshness"
+python3 "$ROOT/scripts/generate_checklist.py" --check-current
+
 run_gateway_pytest() {
   echo "→ Gateway tests"
   cd "$ROOT/aadharchain/gateway"

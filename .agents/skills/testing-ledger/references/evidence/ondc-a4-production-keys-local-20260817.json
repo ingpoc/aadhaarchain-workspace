@@ -1,0 +1,72 @@
+{
+  "schema_version": "ondc-local-keygen-receipt.v1",
+  "gate_id": "A4",
+  "recorded_at": "2026-08-17T11:50:10+05:30",
+  "authorization": "operator Generate now 2026-08-17; keys-only; no Render, DNS, deploy, or portal submit",
+  "generator": "python3 scripts/ondc_generate_keys.py --out aadharchain/gateway/.local/ondc-production/{buyer,seller,lbnp}",
+  "source": "local-ondc-production-generate-20260817",
+  "encryption_public_key_format": "asn1_der_spki_b64",
+  "private_pem_mode": "0600",
+  "submitted": false,
+  "copied_to_render_or_env": false,
+  "portal_download_overwritten": false,
+  "portal_download_preprod_uk_ids_unchanged": {
+    "buyer": "1aee68ad-bc2a-4fc4-b233-7e14c6abba9b",
+    "seller": "baf58086-7024-438a-becf-4cfa056ec8d9",
+    "lbnp": "9e7388f4-c68e-4006-ac5a-e7517382999f"
+  },
+  "roles": [
+    {
+      "role": "buyer",
+      "profile_id": "15462-10008",
+      "subscriber_id": "ondcbuyer.aadharcha.in",
+      "path": "aadharchain/gateway/.local/ondc-production/buyer",
+      "unique_key_id": "e4f749da-6990-4b69-a85c-483f2bd8a3d2",
+      "signing_public_fp16": "c8917676136e07fb",
+      "encryption_public_fp16": "4ff4383597146414",
+      "signing_public_sha256": "c8917676136e07fb58f75f5e39f4d13d8be2315c7092b4a01dd78ef5123553be",
+      "encryption_public_sha256": "4ff43835971464141652ee061df59d24ffe614d7d3dce76096bf65dd2e1f3bf4",
+      "signing_private_mode": "0600",
+      "encryption_private_mode": "0600",
+      "generated_at": "2026-08-17T06:19:34.405034+00:00"
+    },
+    {
+      "role": "seller",
+      "profile_id": "15462-10011",
+      "subscriber_id": "ondcseller.aadharcha.in",
+      "path": "aadharchain/gateway/.local/ondc-production/seller",
+      "unique_key_id": "3d64ce53-3192-41d3-9926-65566e687903",
+      "signing_public_fp16": "34dd53c3a884300a",
+      "encryption_public_fp16": "fab3e30e03955c21",
+      "signing_public_sha256": "34dd53c3a884300a31eba5ead65f0af219d8d5a6d29af983bda6b6c4048b152c",
+      "encryption_public_sha256": "fab3e30e03955c21e3c2436e5bc82f34021f30bb5c246d3de189b3b062f1d529",
+      "signing_private_mode": "0600",
+      "encryption_private_mode": "0600",
+      "generated_at": "2026-08-17T06:19:43.512579+00:00"
+    },
+    {
+      "role": "lbnp",
+      "profile_id": "15462-10220",
+      "subscriber_id": "ondclbnp.aadharcha.in",
+      "path": "aadharchain/gateway/.local/ondc-production/lbnp",
+      "unique_key_id": "d8e11f2c-8791-4855-87df-20ef1df2c8c4",
+      "signing_public_fp16": "e9ba484ada7afcc7",
+      "encryption_public_fp16": "e4324b1670701d51",
+      "signing_public_sha256": "e9ba484ada7afcc7a500c49f0348376d4760d55961191346695dd7cd922894f7",
+      "encryption_public_sha256": "e4324b1670701d51357bbde6599519f7306711f2f37506bc46463f185c6b60e1",
+      "signing_private_mode": "0600",
+      "encryption_private_mode": "0600",
+      "generated_at": "2026-08-17T06:19:51.071335+00:00"
+    }
+  ],
+  "not_proven": [
+    "portal Production 1.a modal generate/download",
+    "reconciliation of a modal pair against this local draft",
+    "portal or registry submit",
+    "Render env / production PEM vars",
+    "GoDaddy DNS",
+    "public DNS, TLS, site verification, or /ondc/on_subscribe on production identity",
+    "GSTIN / production registry approval"
+  ],
+  "note": "Local draft unique_key_id values are not registered. A portal 1.a modal pair supersedes this draft and must be reconciled before Submit. Private PEM contents are not in this receipt."
+}

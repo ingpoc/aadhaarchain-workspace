@@ -1,4 +1,8 @@
-# UX simplification design package
+# Historical UX simplification package
+
+Retained visual evidence from the July 2026 simplification pass. It is not a
+current design or readiness owner. Use `.session/docs/DESIGN.md` for design and the
+testing ledger for current acceptance.
 
 Machine-readable validation: [`ux-validation-ledger.json`](ux-validation-ledger.json)
 

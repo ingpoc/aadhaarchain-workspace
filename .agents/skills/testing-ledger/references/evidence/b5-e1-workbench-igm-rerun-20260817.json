@@ -1,0 +1,126 @@
+{
+  "schema_version": "testing-receipt.v1",
+  "gate_id": "B5-E1",
+  "verified_at": "2026-08-17T17:25:51+05:30",
+  "environment": "PreProd Protocol Workbench prepaid+IGM rerun against live public gateway after f7794fa track/on_confirm deploy; not production",
+  "authorization": [
+    "B5-20260817-01 PreProd official IGM",
+    "B5-20260817-03 exact IGM commit on existing identity-aadhar-gateway-main"
+  ],
+  "verdict": "blocked",
+  "does_not_overwrite": [
+    ".agents/skills/testing-ledger/references/evidence/b5-e1-track-onconfirm-deploy-20260817.json",
+    ".agents/skills/testing-ledger/references/evidence/b5-e1-workbench-igm-retry-20260817.json",
+    ".agents/skills/testing-ledger/references/evidence/b5-e1-workbench-igm-20260817.json"
+  ],
+  "public_track_reproof": {
+    "health_url": "https://gateway.aadharcha.in/api/health",
+    "health_http": 200,
+    "track_post_empty_http": 422,
+    "track_post_empty_detail": "track requires order_id",
+    "not_404": true,
+    "on_track_empty_http": 400,
+    "issue_post_empty_http": 422,
+    "on_issue_empty_http": 400,
+    "openapi_paths": {
+      "/api/ondc/track": ["post"],
+      "/ondc/on_track": ["post"],
+      "/api/ondc/issue": ["post"],
+      "/api/ondc/issue_status": ["post"],
+      "/ondc/on_issue": ["post"],
+      "/ondc/on_issue_status": ["post"]
+    },
+    "claimed_live_commit": "f7794fa8170e710c15c82f4e1f8e190e95a79f81",
+    "claimed_live_deploy": "dep-da1f80gjo6nc738i40s0"
+  },
+  "workbench": {
+    "url": "https://workbench.ondc.tech/flow-testing?sessionId=62RWGJAf_xhJm5O1FgYrf6qUakwSdO__&subscriberUrl=https%3A%2F%2Fondcbuyer.aadharcha.in%2Fondc&role=BAP",
+    "session_id": "62RWGJAf_xhJm5O1FgYrf6qUakwSdO__",
+    "prior_sessions_not_reused": [
+      "v83hwowCbAKXBW9wEHtbCTjTC7f1tQHq",
+      "2d8cKTuko6HV78i1sQLN3Nx3H3T5bO64"
+    ],
+    "log10_session_not_used": "PafpxsF3NAoH3p1uvcHzr152Ec_j3pmT",
+    "subscriber_url": "https://ondcbuyer.aadharcha.in/ondc",
+    "role": "BAP",
+    "domain": "ONDC:RET10",
+    "version": "1.2.0",
+    "usecase": "GROCERY",
+    "environment": "PRE-PRODUCTION",
+    "active_flow": "Order_to_confirm_to_fulfillment__Prepaid_with_igm_1.0.0",
+    "transaction_id": "fa6a6b53-41af-4155-9eea-96ac7d6b90e1",
+    "bap_generated_order_id_confirm_outbox": "B5fa6a6b53",
+    "signed_on_confirm_order_id": null,
+    "issue_id": null,
+    "flow_start": "POST /backend-ui/flow/new"
+  },
+  "steps": {
+    "select": {"ack": "ACK", "message_id": "835a1f7c-be52-4458-9d59-73dce7be94ec", "outbox": "pg_out_22729"},
+    "on_select": {"ack": "ACK", "signed_inbox": true, "message_id": "835a1f7c-be52-4458-9d59-73dce7be94ec"},
+    "init": {"ack": "ACK", "message_id": "4cc7093e-f364-4f67-ba00-6962926fe5a7"},
+    "on_init": {"ack": "ACK", "signed_inbox": true, "message_id": "4cc7093e-f364-4f67-ba00-6962926fe5a7", "tags": ["bpp_terms"], "accept_bpp_terms_present": false},
+    "confirm": {"ack": "ACK", "message_id": "8a907724-1f72-4b57-8c6c-14a096baded6", "outbox": "pg_out_22731", "accept_bpp_terms_filled": false, "payment_status_sent": "NOT-PAID"},
+    "on_confirm": {
+      "ack": "NACK",
+      "signed_inbox": false,
+      "workbench_message_id": "54816c38-e7c5-446b-a6e6-503d19a662a1",
+      "error": "message_id mismatch between confirm and on_confirm expected 8a907724-1f72-4b57-8c6c-14a096baded6 but found 54816c38-e7c5-446b-a6e6-503d19a662a1"
+    },
+    "on_status_accepted_through_picked": {"ack": "NACK", "error": "BAD Request: subscriberID not set", "note": "Workbench-recorded string; not present in gateway source. Empty INPUT-REQUIRED proceed was used once per step after on_confirm ERROR."},
+    "track": {"status": "LISTENING", "gateway_post": "not sent; no signed on_confirm order_id"},
+    "issue_steps_15_18": "not reached"
+  },
+  "legal_semantic": {
+    "accept_bpp_terms_filled": false,
+    "confirm_acked_without_bap_terms": true,
+    "confirm_required_accept_bpp_terms": false
+  },
+  "callback_correlation": {
+    "public_on_select_inbox": true,
+    "public_on_init_inbox": true,
+    "public_on_confirm_inbox": false,
+    "public_on_status_inbox": false,
+    "public_on_issue_inbox": [],
+    "public_on_issue_status_inbox": [],
+    "workbench_transaction_id": "fa6a6b53-41af-4155-9eea-96ac7d6b90e1",
+    "issue_id": null
+  },
+  "buyer_seller_readback": "not reached; /api/demo-commerce/buyer/issues 401 without new auth; test-fixtures 404 in non-demo runtime",
+  "blocker": {
+    "surface": "Workbench mock on_confirm message_id",
+    "on_confirm": "Mock on_confirm minted 54816c38-… instead of confirm 8a907724-…. Public BAP ingest correctly NACKs. Signed on_confirm never landed, so track was not sent.",
+    "on_status": "Workbench recorded BAD Request: subscriberID not set. That string is not in gateway source.",
+    "track": "LISTENING; order_id from signed callback/readback was required and absent.",
+    "igm": "issue/on_issue steps 15–18 not reached"
+  },
+  "comet": {
+    "session_id": "b5-igm-rerun-20260817",
+    "label": "B5-IGM-Rerun",
+    "distinct_from": ["b5-igm-retry-20260817", "b5-igm-workbench-20260817", "a4-portal-20260817", "a4-buyer-ukid-20260817"],
+    "a4_leases_not_killed": true
+  },
+  "screenshots": [
+    ".agents/skills/testing-ledger/references/evidence/b5-e1-workbench-igm-rerun-20260817.png"
+  ],
+  "not_proven": [
+    "signed Workbench on_confirm after f7794fa",
+    "signed Workbench on_track",
+    "signed Workbench on_issue / on_issue_status callbacks",
+    "IGM resolution and closure",
+    "Buyer/Seller-visible support outcome for this session",
+    "production IGM"
+  ],
+  "external_actions_taken": [
+    "created new PreProd Workbench session 62RWGJAf_xhJm5O1FgYrf6qUakwSdO__ as BAP RET10 1.2.0 GROCERY",
+    "started flow via POST /backend-ui/flow/new",
+    "sent signed select/init/confirm on public gateway to Workbench mock seller",
+    "did not fill accept_bpp_terms",
+    "did not send track without signed on_confirm order_id",
+    "did not skip to issue",
+    "no PEM copy",
+    "no DNS",
+    "no portal Submit",
+    "no production registry",
+    "no Generate Report"
+  ]
+}

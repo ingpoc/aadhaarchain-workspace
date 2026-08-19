@@ -1,0 +1,71 @@
+{
+  "schema_version": "ondc-portal-modal-reconcile.v1",
+  "gate_id": "A4",
+  "recorded_at": "2026-08-17T17:03:00+05:30",
+  "authorization": "operator generate-new-buyer-modal 2026-08-17; generate+download new Buyer Production 1.a modal pair; capture Unique Key ID; keep local draft; no Submit; no Render; no DNS",
+  "browser": "Comet Control",
+  "session_id": "a4-buyer-modal-regen-20260817",
+  "closeout_verified_absent": true,
+  "source_download": "~/Downloads/keys (8).json",
+  "download_mtime_ist": "2026-08-17T17:01:03+05:30",
+  "materialized_path": "aadharchain/gateway/.local/ondc-production-portal-modal/buyer",
+  "old_modal_preserved_aside": "aadharchain/gateway/.local/ondc-production-portal-modal/buyer-20260817-no-ukid",
+  "role": "buyer",
+  "profile_id": "15462-10008",
+  "subscriber_id": "ondcbuyer.aadharcha.in",
+  "attribution": "Buyer 15462-10008 Production 1.a Raise Request modal was the open surface at generate time; filename keys (8).json after LBNP keys (7).json",
+  "profiles_downloaded": ["buyer", "seller", "lbnp"],
+  "unique_key_id_present": true,
+  "unique_key_id": "0bae20d9-95c0-4ebf-b3eb-87c33ea6fc08",
+  "unique_key_id_status": "captured-from-raise-request-modal-ui; not in keys.json",
+  "registry_env_ui_observed": "PreProd (Registry input disabled/locked)",
+  "operator_claimed": "Production 1.a generate+download",
+  "encryption_public_key_format": "asn1_der_spki_b64",
+  "private_pem_mode": "0600",
+  "submitted": false,
+  "copied_to_render_or_env": false,
+  "portal_download_overwritten": false,
+  "local_draft_overwritten": false,
+  "buyer_local_draft_deleted": false,
+  "old_modal_deleted": false,
+  "cancelled_not_submitted": true,
+  "modal": {
+    "signing_public_fp16": "8247845e30f3e325",
+    "encryption_public_fp16": "54e705342ad950d6",
+    "signing_public_sha256": "8247845e30f3e325e469dbb1694fc6fd3b773ebde14643d0c441799591b769c9",
+    "encryption_public_sha256": "54e705342ad950d671e966b62b6cfb5d76c34e8f9bd37bc22b3b3106548ca633"
+  },
+  "old_modal_buyer": {
+    "path": "aadharchain/gateway/.local/ondc-production-portal-modal/buyer-20260817-no-ukid",
+    "unique_key_id_present": false,
+    "signing_public_fp16": "dff58a270e9ed255",
+    "encryption_public_fp16": "d3d25f9e40e29b76",
+    "match": false,
+    "superseded_for_later_submit": true
+  },
+  "local_draft_buyer": {
+    "path": "aadharchain/gateway/.local/ondc-production/buyer",
+    "unique_key_id": "e4f749da-6990-4b69-a85c-483f2bd8a3d2",
+    "signing_public_fp16": "c8917676136e07fb",
+    "encryption_public_fp16": "4ff4383597146414",
+    "match": false,
+    "keep_both": true
+  },
+  "preprod_portal_download_buyer": {
+    "path": "aadharchain/gateway/.local/ondc-sandbox/portal-download/buyer",
+    "unique_key_id": "1aee68ad-bc2a-4fc4-b233-7e14c6abba9b",
+    "signing_public_fp16": "35d7fa62daaa968d",
+    "encryption_public_fp16": "e7d26d936ee99cff",
+    "match": false
+  },
+  "screenshots": [
+    ".agents/skills/testing-ledger/references/evidence/ondc-a4-buyer-modal-regen-ukid-20260817.png",
+    ".agents/skills/testing-ledger/references/evidence/ondc-a4-buyer-modal-regen-cancelled-20260817.png"
+  ],
+  "not_proven": [
+    "Production environment access (Registry field was PreProd-locked)",
+    "portal or registry Submit",
+    "Render env / production PEM vars"
+  ],
+  "note": "New Buyer modal pair supersedes the 2026-08-17 pair without Unique Key ID (dff58a270e9ed255) for later Submit. Old modal files preserved aside. keep-both for Buyer local draft. Do not Submit. Do not copy to Render. Private PEM contents are not in this receipt."
+}

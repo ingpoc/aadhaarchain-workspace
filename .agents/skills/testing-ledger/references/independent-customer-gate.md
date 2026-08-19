@@ -25,12 +25,11 @@ efficient owners for narrow regression coverage.
 
 ## Efficient execution contract
 
-1. **Main thread prepares the audience.** Verify the WIP host/socket, snapshot
-   mutable item/order ids once, prepare a Seller order or issue with a visible
+1. **Main thread prepares the audience.** Snapshot mutable item/order ids once,
+   prepare a Seller order or issue with a visible
    next action, authenticate the correct Buyer or Seller audience, and prove the
    signed-in landing page before starting a reviewer.
-   Run host/socket preflight once for the campaign, restart only the service
-   whose code or environment changed, and do not start optional wallet/Solana
+   Restart only the service whose code or environment changed, and do not start optional wallet/Solana
    dependencies for AgentGuard customer testing. Clear inherited Buyer cart or
    checkout state before the novice starts; test-data cleanup is setup, not a
    customer milestone.
@@ -44,38 +43,22 @@ efficient owners for narrow regression coverage.
    then run the Seller merchant and the UX reviewer's Seller mission. Never
    alternate audiences merely to keep one reviewer's two app reports adjacent.
    Default to sequential execution. Parallel review is allowed only after
-   separate browser profiles/storage and non-overlapping backend state have
-   been proven; separate windows alone are insufficient isolation.
-   **Preserve operator observability:** every active Chrome test window stays
-   visible and may be tiled so the operator can watch testing as it happens.
-   Do not hide, minimize, or replace visible browser work with headless runs as
-   an efficiency measure. Visible windows are intentional evidence surfaces;
-   they do not by themselves prove storage isolation or make concurrent
-   mutations safe.
-   **Keep the control boundary explicit:** `@chrome` owns all web-page
-   navigation, reads, clicks, form entry, screenshots, and tab lifecycle. If a
-   browser-owned native surface blocks the page and Chrome cannot control it
-   (for example a JavaScript alert/confirm, profile chooser, permission prompt,
-   extension UI, or file picker), pause page actions and use `@Computer` only
-   for that native surface. Fresh-state verify that it cleared, then resume
-   Chrome. Never use Computer Use to replace a page action that Chrome can perform.
-3. **One coherent journey per lease.** In the default Chrome lane, a control
-   lease means one persistent claimed or agent-owned tab for
-   the complete app outcome. Target eight minutes after lease readiness for a
+   isolated browser storage and non-overlapping backend state have been proven.
+3. **One coherent journey per authenticated audience.** Target eight minutes after readiness for a
    customer journey and six minutes for a read-only UX app review; do not split
-   search, cart, checkout, or catalog work into micro-leases or repeated setup
+   search, cart, checkout, or catalog work into partial runs or repeated setup
    follow-ups. If the actor is visibly progressing at the target, allow one
    uninterrupted grace period up to a ten-minute customer or eight-minute UX
-   hard ceiling. Confirmed bridge, renderer, or input wait does not consume the
+   hard ceiling. A confirmed control-layer wait does not consume the
    customer budget and makes the affected run Tooling Blocked rather than an app
    timing verdict. A responsive product that still cannot be understood or
    completed by the hard ceiling is App Fail/usability evidence.
    Complete mandatory outcome slices, including keyboard checks, before optional
    breadth exploration. While the actor is inside that budget, the main thread waits passively: no
    status pings, premature finish requests, or checklist-by-checklist follow-ups.
-   The actor owns this clock and records its lease-ready and verdict times. The
+   The actor owns this clock and records its ready and verdict times. The
    main thread must not derive a deadline from subagent spawn time or send a
-   freeze instruction without an actor-reported lease-ready timestamp.
+   freeze instruction without an actor-reported ready timestamp.
    At the hard ceiling, send one freeze-and-close instruction if the actor has not
    returned.
 4. **Discover through the visible product.** The actor uses its own fresh page
@@ -91,9 +74,7 @@ efficient owners for narrow regression coverage.
 5. **One mission verdict, then close.** Allow natural, visible UI-led correction
    while recording the first point of confusion. Hidden retries, fixture-led
    recovery, and diagnostic hints are forbidden. Inspect every retained
-   screenshot, freeze one mission verdict before diagnostics, close the owned
-   lease, and prove that reviewer's session id is absent. Unrelated active
-   leases are reported and left untouched.
+   screenshot and freeze one mission verdict before diagnostics.
 6. **Verify at source-freeze boundaries.** During diagnosis, run only the
    smallest owner test that proves the defect and affected fix. Once the source
    is frozen, run the full affected suite and production build once, then run
@@ -114,14 +95,29 @@ efficient owners for narrow regression coverage.
    the next actor. Do not dispatch another blind reviewer while cleanup or the
    expected starting state is uncertain.
 
-A bridge or locator failure before the first customer action is a setup/tooling
-block, not product feedback. Clear the browser issue, re-establish the audience,
+A browser-control failure before the first customer action is a setup/tooling
+block, not product feedback. Re-establish the audience,
 and rerun the whole coherent journey. Do not accumulate partial micro-runs as a
 substitute for one customer outcome.
 
+## Browser owner (default vs Comet Control)
+
+- Default acceptance driver: bundled `@chrome`.
+- When the operator requires **Comet Control**: one durable
+  `durable_lease_controller` session id per campaign; never print, persist, or
+  manually pass lease tokens; keep one controller process alive through setup →
+  cases → diagnosis → proof. Concurrent campaigns (A4 portal vs B5 Workbench)
+  use **distinct session ids**; never kill a sibling lease. Closeout
+  `verified_absent`.
+- After Auth0 redirects or `chrome-error://`, restore the real work URL
+  (local `http://127.0.0.1:43101|43102|43103`, or the portal/Workbench
+  `https://` URL) before expecting the content script.
+- Repo-specific ports and journeys stay owned here; Comet mechanics stay in the
+  Comet Control skill.
+
 ## Default portfolio
 
-Use three profiles with complete missions. This is the minimum portfolio that
+Use three roles with complete missions. This is the minimum portfolio that
 keeps Buyer, Seller, and design judgment independent without turning every
 checklist row into a subagent:
 
@@ -152,13 +148,13 @@ relevant customer outcome, never a single locator or repaired step.
 
 ### Mission-level pass signals
 
-| Profile | One mission Pass requires |
+| Role | One mission Pass requires |
 | --- | --- |
 | Novice Buyer | Generic discovery → visible comparison → cart add/edit → checkout → understandable AgentGuard decision → visible paid order/receipt, or an honest denial with no unintended effect |
-| Seller merchant | Publish → persisted visible price/stock → prepared order/issue → assigned accept/refund/AgentGuard action → visible terminal order/remedy state. **Dispatch:** `window.prompt` tracking ID is Hermes (`click_text` + `dialog_handle` + `promptText`). Do not reload while open; frozen page ≠ missing content script. OS-native UI is `$macos-cua` ownership, not a Hermes substitute |
+| Seller merchant | Publish → persisted visible price/stock → prepared order/issue → assigned accept/refund/AgentGuard action → visible terminal order/remedy state |
 | UI/UX + accessibility smoke | Both signed-in app missions completed; primary navigation and controls keyboard-operable; headings/names/state understandable; no blocking overlap; no unresolved P0/P1 finding |
 
-An incomplete mission is **App Fail** unless a bridge/input/lease fault caused
+An incomplete mission is **App Fail** unless a browser-control fault caused
 the stop, in which case it is **Tooling Blocked**. Milestones may be listed as
 Pass or Not Tested inside the report, but they never combine into “Partial
 Pass.” Add a dedicated accessibility specialist when conformance, screen-reader,
@@ -166,16 +162,15 @@ responsive, or mobile behavior is itself a release claim.
 
 ### Dispatch and repetition rule
 
-- Spawn at most one actor per selected profile per pass. Never spawn per page,
+- Spawn at most one actor per selected role per pass. Never spawn per page,
   control, flow ID, or finding.
 - Give the actor one complete goal and enough time for the full journey. A
-  follow-up is allowed only to continue the same profile into its second app
+  follow-up is allowed only to continue the same role into its second app
   audience or to repeat the entire unchanged-source journey.
 - After an App Fail, freeze the report. The main thread diagnoses and fixes the
   owner; customer agents do not inspect code or logs.
-- Allow one bounded browser recovery for a Tooling Blocked mission. If the same
-  lease, bridge, input, or locator failure repeats, stop that campaign with the
-  exact blocker instead of accumulating recovery attempts.
+- A Tooling Blocked mission follows bundled `@chrome` recovery. If the same
+  browser-control failure repeats, stop that campaign with the exact blocker.
 - Retest with the same blind brief in a fresh context and rerun the entire
   affected journey. A focused deterministic test may prove the root cause, but
   it cannot replace the customer rerun.
@@ -194,14 +189,14 @@ publish/order completion. Treat that as the rejected baseline.
 Budget the replacement by outcomes, not click count:
 
 - two audience authentications total: Buyer once, Seller once;
-- Buyer and Seller customer profiles once per required customer pass; one
+- Buyer and Seller customer roles once per required customer pass; one
   combined UX actor per candidate hash, repeated only after an intervening
   visible fix; no diagnostic subagent;
-- one persistent lease per complete app journey: eight-minute customer target
-  or six-minute read-only UX target after lease readiness, with one progress
+- one complete app journey: eight-minute customer target
+  or six-minute read-only UX target after readiness, with one progress
   grace period capped at ten and eight minutes respectively;
 - at most five findings per actor and three screenshots per app journey;
-- no repeated preflight, login, source discovery, or role explanation inside a
+- no repeated login, source discovery, or role explanation inside a
   journey;
 - one compact campaign manifest owned by the main thread: source hash, audience,
   verdict, retained screenshots, created-data delta, cleanup proof, and
@@ -215,21 +210,18 @@ Budget the replacement by outcomes, not click count:
   arguments, known defects, or hidden state.
 - Use visible UI and ordinary language only. No source, logs, APIs, hidden state, or JavaScript-driven interaction.
 - Discover controls from the actor's own visible/semantic page context; the
-  role brief contains no control names. Never target a generated id/name or
-  transient status placeholder. When visible text is ambiguous, use a
-  role-qualified exact accessible name discovered from the page instead of a
-  text-only click.
+  role brief contains no control names.
   For the keyboard smoke, press Tab until focus visibly reaches a discovered
   interactive target, then activate that target. One Tab/Enter on a skip link
   or link to the current page is not evidence that navigation failed.
   For an assistant-specific task, open the orb and type a harmless phrase; for
   manual shopping or read-only review, do not add this requirement. Apply the
-  same stable-label rule to checkout forms. Input/cursor/bridge failure is
+  same stable-label rule to checkout forms. Browser-control failure is
   **Tooling Blocked**.
-- After the lease is ready, use the complete-journey budget above. If the bridge
-  remains healthy but the actor cannot understand or complete the goal in time,
+- After the journey is ready, use the complete-journey budget above. If browser
+  control remains healthy but the actor cannot understand or complete the goal in time,
   report **App Fail** with the point of friction. Report **Tooling Blocked** only
-  for bridge, input, lease, or locator-system failure.
+  for browser-control failure.
 - After navigation, allow any visible loading state to reach its rendered
   success, empty, error, or retry state before judging the page. Prefer a
   discovered settled landmark over a fixed delay. An initial loading frame is
@@ -243,13 +235,11 @@ Budget the replacement by outcomes, not click count:
   screenshots per coherent journey; include exact copy, final URL, and
   closeout.
 - Freeze reports before diagnostics; diagnostics cannot rewrite verdicts.
-- All default actors are sequential because the WIP
-  Chrome profile shares the gateway session cookie. A page showing “Sign out”
+- All default actors are sequential because the app audiences share the gateway
+  session cookie. A page showing “Sign out”
   is not sufficient: the app-audience session must match before the reviewer
   starts, or setup is **Tooling Blocked**. Parallelism requires separately
-  proven profile/storage and backend-state isolation.
-- Use unique window leases and `session_closeout`; require each owned session id
-  to be absent afterward. Do not close or fail the review for unrelated leases.
+  proven storage and backend-state isolation.
 - The main thread snapshots local item/order ids before a mutating review and removes only the created delta after the frozen report. Tests must not pollute the next customer's catalog.
 - Fixture matrices, deterministic replay, API smoke, and implementation-agent browser runs are supporting diagnostics only. They cannot replace this gate.
 

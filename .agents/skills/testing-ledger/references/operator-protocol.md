@@ -17,8 +17,8 @@ Owner detail for the customer-gate lane. Doctrine/modes/locks: `~/.agents/skills
 6. **Map intents → catalog** — match ask to a flow ID in operator-flows; use that ID in matrix-status. If a new operator phrasing appears, **append a row to operator-flows** (do not leave orphans in chat).
 7. **Runtime** — long asks → `delegate_to_runtime_agent`; stay off `/agent`. “Started” proves only handoff, not completion: require the recorded lifecycle `started → heartbeat → completed` (or a visible failed terminal state) and capture the final UI. Gateway `/api/agent/*` on FQDN (not FlatWatch).
 8. **Both apps** — Buyer + Seller each serious run; claim→screenshot→Pass.
-9. **Fix if broken** — wrong/empty results or broken experience → diagnose and root-cause in the main thread; use a focused check only to prove the defect owner, then rerun the blind actor's **entire affected customer journey**. Redeploy only when deployment is in scope and required to make the tested environment contain the fix. **Click hang / Tooling Blocked on Hermes:** before inject/SPA bridge theories, grep the app click handler for `prompt`/`confirm`/`alert` (Seller Dispatch = Hermes `dialog_handle`). See hermes-chrome `optimize.md` §4 and portfolio-browser troubleshooting.
-10. **Hermes contract** — interact through semantic `locator` actions. JS dialogs are Hermes (`dialog_handle`); OS-native UI is `$macos-cua`. Runtime `evaluate` is read-only diagnostics; never mutate inputs, click controls, or seed mandates with page JavaScript.
+9. **Fix if broken** — wrong/empty results or broken experience → diagnose and root-cause in the main thread; use a focused check only to prove the defect owner, then rerun the blind actor's **entire affected customer journey**. Redeploy only when deployment is in scope and required to make the tested environment contain the fix. **Click hang / Tooling Blocked on Hermes:** before inject/SPA bridge theories, grep the app click handler for `prompt`/`confirm`/`alert` (Seller Dispatch = Hermes `dialog_handle`). See portfolio-browser troubleshooting.
+10. **Hermes contract** — interact through semantic `locator` actions. JS dialogs are Hermes (`dialog_handle`); OS-native UI follows bundled Computer Use. Runtime `evaluate` is read-only diagnostics; never mutate inputs, click controls, or seed mandates with page JavaScript.
 
 ## Independent customer gate
 
@@ -103,10 +103,13 @@ From `ondcseller/src/lib/agentTools.ts`: `navigate_to`, `catalog_publish`, `refu
 ## Workflow
 
 ```
-1. portfolio-browser preflight (local) or wake gateway (FQDN)
+1. portfolio-browser preflight (local) or wake gateway (FQDN). When the operator
+   requires Comet Control, follow [`independent-customer-gate.md`](independent-customer-gate.md)
+   browser-owner rules (one durable session; never print lease tokens; restore
+   real http URL after Auth0/`chrome-error`).
 2. Auth: local `sso demo` **or** Auth0 Sign in on FQDN PreProd — stop at OTP for operator; keep gateway awake. **PreProd readiness = FQDN + Auth0 + live gateway.**
 3. Buyer: tools + voice (if configured) + runtime handoff + checkout/payment — screenshots
-4. Seller: tools + refund/publish + AG + runtime — screenshots
+4. Seller: tools + refund/publish + AG + runtime — screenshots. After gateway restart, Refresh+Save Agent Guard if publish hits **mandate not found**.
 5. Append matrix-status.md; encode durable gaps in references/integration-gaps.md
 6. closeout
 ```

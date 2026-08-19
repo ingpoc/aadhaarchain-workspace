@@ -16,7 +16,7 @@ from wip_hermes import ensure_wip_env, load_handler  # noqa: E402
 
 GATEWAY = "http://127.0.0.1:43101"
 BUYER = "http://127.0.0.1:43102"
-EVIDENCE = ROOT / ".cursor/skills/ondc-testing/references/evidence"
+EVIDENCE = ROOT / ".agents/skills/testing-ledger/references/evidence"
 SESSION = "ondc-checkout-retest"
 TS = time.strftime("%Y%m%d-%H%M%S")
 

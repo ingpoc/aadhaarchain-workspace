@@ -4,7 +4,7 @@
 LOG10 path is a separate LBNP identity and must prove its own public endpoint
 before portal registration. **Prod only after GSTIN and separate gate
 evidence. $0 only** — Render Free / Vercel Hobby
-([portfolio-deploy](../portfolio-deploy/SKILL.md)).
+([portfolio-deploy](../../portfolio-deploy/SKILL.md)).
 
 Retail FQDNs: `ondcbuyer.aadharcha.in`, `ondcseller.aadharcha.in`. LOG10:
 `ondclbnp.aadharcha.in` (public onboarding endpoint passed 2026-07-26; portal
@@ -84,5 +84,5 @@ registration pending). Keys: env PEM materialize on Render — see
 - Portal ledger: [`ondc-portal-ledger.md`](ondc-portal-ledger.md)
 - Auth0: [`authentication`](../../authentication/SKILL.md)
 - Deploy / free-tier: [`portfolio-deploy`](../../portfolio-deploy/SKILL.md)
-- Ops A5–A8 / C3–C5: [`PRODUCTION-READINESS.md`](../../../../PRODUCTION-READINESS.md)
-- Current milestone sequencing: [`.voice/IMPLEMENTATIONPLAN.md`](../../../../.voice/IMPLEMENTATIONPLAN.md)
+- Ops A5–A8 / C3–C5: [`.session/docs/PRODUCTION-READINESS.md`](../../../../.session/docs/PRODUCTION-READINESS.md)
+- Current milestone sequencing: [`.session/docs/IMPLEMENTATIONPLAN.md`](../../../../.session/docs/IMPLEMENTATIONPLAN.md)

@@ -1,0 +1,202 @@
+{
+  "schema_version": "testing-receipt.v1",
+  "gate_id": "B5-E1",
+  "verified_at": "2026-08-17T18:15:00+05:30",
+  "environment": "PreProd Protocol Workbench prepaid+IGM after live bind of issue dispatch to confirm-outbox orders; not production",
+  "source_revision": "e55d06efff6d2ecae86bbdd5177ef00001e8066a",
+  "authorization": [
+    "B5-20260817-01 PreProd official IGM",
+    "B5-20260817-03 exact IGM commit on existing identity-aadhar-gateway-main"
+  ],
+  "verdict": "partial",
+  "does_not_overwrite": [
+    ".agents/skills/testing-ledger/references/evidence/b5-e1-workbench-igm-ack-20260817.json",
+    ".agents/skills/testing-ledger/references/evidence/b5-e1-workbench-igm-rerun-20260817.json",
+    ".agents/skills/testing-ledger/references/evidence/b5-e1-track-onconfirm-deploy-20260817.json",
+    ".agents/skills/testing-ledger/references/evidence/b5-e1-workbench-igm-retry-20260817.json",
+    ".agents/skills/testing-ledger/references/evidence/b5-e1-workbench-igm-20260817.json"
+  ],
+  "fix": {
+    "root_cause": "Signed POST /api/ondc/issue required an existing local commerce issue. Workbench IGM had only the confirm-outbox ONDC order (B5…) and no Buyer-created issue row, so dispatch returned 404 Unknown issue.",
+    "change": "When BAP dispatches issue/issue_status for a confirm-outbox order with no local issue, bind_protocol_issue creates a principal-safe CommerceV1 issue from order_id/transaction_id. Unknown order remains 404 Unknown order. Unknown issue_id that is not a confirmed order remains 404 Unknown issue. Empty {} is 422. Missing body is 422 Field required.",
+    "files": [
+      "aadharchain/gateway/app/ondc_routes.py",
+      "aadharchain/gateway/app/commerce_demo.py",
+      "aadharchain/gateway/app/commerce_compat.py",
+      "aadharchain/gateway/migrations/033_b5_protocol_issue_bind.sql",
+      "aadharchain/gateway/tests/test_ondc_igm.py"
+    ]
+  },
+  "pytest": {
+    "command": "cd aadharchain/gateway && PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 python3 -m pytest -p asyncio tests/test_ondc_igm.py tests/test_ondc_track.py tests/test_ondc_bpp.py tests/test_ondc_persistence.py -q",
+    "result": "12 passed, 16 skipped",
+    "focused": [
+      "test_igm_dispatch_binds_confirmed_order_without_local_issue"
+    ]
+  },
+  "render_service": {
+    "name": "identity-aadhar-gateway-main",
+    "id": "srv-d7f256f41pts73f68660",
+    "plan": "free",
+    "auto_deploy": "no",
+    "repo": "https://github.com/ingpoc/aadhaar-chain",
+    "branch": "main",
+    "root_dir": "gateway",
+    "live_deploy_id": "dep-da1fvie7bikc7392gof0",
+    "live_deploy_commit": "e55d06efff6d2ecae86bbdd5177ef00001e8066a",
+    "live_deploy_message": "Bind IGM issue dispatch to confirm-outbox orders",
+    "live_deploy_finished_at": "2026-08-17T12:34:57.766072Z",
+    "previous_live_commit": "8ae415b9b4395d060b665796318faaca300793f9",
+    "previous_live_deploy_id": "dep-da1fl2h5efls73eervbg"
+  },
+  "public_probes": {
+    "health_url": "https://gateway.aadharcha.in/api/health",
+    "health_http": 200,
+    "issue_post_no_body_http": 422,
+    "issue_post_no_body_detail": "Field required",
+    "issue_post_empty_object_http": 422,
+    "issue_post_empty_object_detail": "issue requires issue_id or a confirmed order_id",
+    "issue_post_unknown_order_http": 404,
+    "issue_post_unknown_order_detail": "Unknown order",
+    "issue_post_unknown_issue_http": 404,
+    "issue_post_unknown_issue_detail": "Unknown issue",
+    "on_issue_empty_object_http": 400,
+    "on_issue_no_body_http": 500,
+    "unknown_issue_404_is_not_the_empty_body_status": true,
+    "openapi_paths": {
+      "/api/ondc/issue": ["post"],
+      "/api/ondc/issue_status": ["post"],
+      "/ondc/on_issue": ["post"],
+      "/ondc/on_issue_status": ["post"],
+      "/api/ondc/track": ["post"],
+      "/ondc/on_track": ["post"]
+    }
+  },
+  "workbench": {
+    "url": "https://workbench.ondc.tech/flow-testing?sessionId=YvuUWZPUfH_n-R8soNMIfLVXr2J7M61l&subscriberUrl=https%3A%2F%2Fondcbuyer.aadharcha.in%2Fondc&role=BAP",
+    "session_id": "YvuUWZPUfH_n-R8soNMIfLVXr2J7M61l",
+    "prior_sessions_not_reused": [
+      "kRX_rSpaXI1zRMI9rMRHf8idYHniOxh5",
+      "62RWGJAf_xhJm5O1FgYrf6qUakwSdO__",
+      "v83hwowCbAKXBW9wEHtbCTjTC7f1tQHq",
+      "2d8cKTuko6HV78i1sQLN3Nx3H3T5bO64",
+      "znqHHkpfkzngR_uCqZsopna-PCXeWzaG",
+      "jAP0rYuXXM1Y6Xk0BELyhTPb6l_I0BTv"
+    ],
+    "log10_session_not_used": "PafpxsF3NAoH3p1uvcHzr152Ec_j3pmT",
+    "subscriber_url": "https://ondcbuyer.aadharcha.in/ondc",
+    "role": "BAP",
+    "domain": "ONDC:RET10",
+    "version": "1.2.0",
+    "usecase": "GROCERY",
+    "environment": "PRE-PRODUCTION",
+    "active_flow": "Order_to_confirm_to_fulfillment__Prepaid_with_igm_1.0.0",
+    "transaction_id": "d98ec9ac-990c-4793-a5f8-72426afc75b5",
+    "bap_generated_order_id_confirm_outbox": "B5d98ec9ac",
+    "signed_on_confirm_order_id": null,
+    "issue_id": "fd0486d3-aed4-4f92-86f0-46e92b679be3",
+    "flow_start": "POST /backend-ui/flow/new",
+    "note": "UI-created session (env PRE-PRODUCTION). API-only sessions without env still 500 on flow/new."
+  },
+  "steps": {
+    "select": {"ack": "ACK", "message_id": "b99eb906-7b97-4977-bf2a-eac0d39f48f5", "outbox": "pg_out_22783"},
+    "on_select": {"ack": "ACK", "signed_inbox": true, "message_id": "b99eb906-7b97-4977-bf2a-eac0d39f48f5"},
+    "init": {"ack": "ACK", "message_id": "4f614371-e8e9-4ae0-9c6f-d097dcae792f"},
+    "on_init": {"ack": "ACK", "signed_inbox": true, "message_id": "4f614371-e8e9-4ae0-9c6f-d097dcae792f", "tags": ["bpp_terms"], "accept_bpp_terms_present": false},
+    "confirm": {"ack": "ACK", "message_id": "cac8d29c-19c0-437f-8bf7-998262af9de8", "outbox": "pg_out_22785", "order_id": "B5d98ec9ac", "accept_bpp_terms_filled": false, "payment_status_sent": "NOT-PAID"},
+    "on_confirm": {
+      "workbench_status": "COMPLETE ERROR",
+      "render_post_from_workbench": false,
+      "note": "Track and issue used confirm-outbox order_id B5d98ec9ac; did not wait for mock on_confirm POST."
+    },
+    "track": {"status": "COMPLETE SUCCESS", "gateway_post": "POST /api/ondc/track ACK", "order_id": "B5d98ec9ac", "message_id": "d21f60ce-8245-406a-a003-1ba7614a8ef4", "outbox": "pg_out_22786"},
+    "on_track": {"ack": "ACK", "signed_inbox": true, "inbox_id": 23085, "message_id": "d21f60ce-8245-406a-a003-1ba7614a8ef4"},
+    "issue_open_100": {
+      "status": "COMPLETE SUCCESS",
+      "gateway_post": "POST /api/ondc/issue ACK",
+      "http": 200,
+      "outbox": "pg_out_22787",
+      "message_id": "ecf70b11-2d02-4618-8fbd-8b677054960d",
+      "bound_issue_id": "fd0486d3-aed4-4f92-86f0-46e92b679be3"
+    },
+    "on_issue_processing_100": {"status": "COMPLETE SUCCESS"},
+    "on_issue_resolved_100": {"status": "COMPLETE ERROR", "note": "empty INPUT-REQUIRED proceed; mock did not POST a resolved payload"},
+    "issue_close_100": {
+      "status": "COMPLETE SUCCESS",
+      "gateway_post": "POST /api/ondc/issue ACK",
+      "http": 200,
+      "outbox": "pg_out_22788",
+      "message_id": "34b8bde6-f213-4954-8a01-5dfca350b301",
+      "issue_id": "fd0486d3-aed4-4f92-86f0-46e92b679be3"
+    }
+  },
+  "legal_semantic": {
+    "accept_bpp_terms_filled": false,
+    "confirm_acked_without_bap_terms": true,
+    "confirm_required_accept_bpp_terms": false
+  },
+  "callback_correlation": {
+    "public_on_select_inbox": true,
+    "public_on_init_inbox": true,
+    "public_on_confirm_inbox": false,
+    "public_on_status_inbox": false,
+    "public_on_track_inbox": true,
+    "public_on_issue_inbox": [
+      {
+        "inbox_id": 23086,
+        "message_id": "ecf70b11-2d02-4618-8fbd-8b677054960d",
+        "signature_verified": true,
+        "envelope_error": "Missing issue actions"
+      },
+      {
+        "inbox_id": 23087,
+        "message_id": "34b8bde6-f213-4954-8a01-5dfca350b301",
+        "signature_verified": true,
+        "envelope_error": "Missing issue actions"
+      }
+    ],
+    "public_on_issue_status_inbox": [],
+    "workbench_transaction_id": "d98ec9ac-990c-4793-a5f8-72426afc75b5",
+    "issue_id": "fd0486d3-aed4-4f92-86f0-46e92b679be3",
+    "issue_id_source": "local bind + signed outbox message.issue.id; Workbench on_issue envelope had no issue.id"
+  },
+  "buyer_seller_readback": "not reached; Buyer issues UI remains session/AgentGuard scoped",
+  "blocker": {
+    "surface": "Workbench mock on_confirm / on_issue_resolved delivery",
+    "on_confirm": "Workbench mock on_confirm still COMPLETE ERROR and did not POST to Render. Track and issue proceeded from confirm-outbox order_id.",
+    "track": "COMPLETE SUCCESS using confirm outbox order_id B5d98ec9ac. Signed on_track landed.",
+    "igm": "issue_open_100 and issue_close_100 COMPLETE SUCCESS. Signed on_issue landed twice (signature_verified) but mock envelopes are 400 Missing issue actions. on_issue_resolved_100 COMPLETE ERROR."
+  },
+  "comet": {
+    "session_id": "b5-igm-issue-bind-20260817",
+    "label": "B5-IGM-Bind",
+    "distinct_from": ["b5-igm-ack-20260817", "b5-igm-rerun-20260817", "b5-igm-retry-20260817", "b5-igm-workbench-20260817", "a4-portal-20260817", "a4-buyer-ukid-20260817"],
+    "a4_leases_not_killed": true,
+    "closeout": {"verified_absent": true, "matching_session_count": 0}
+  },
+  "screenshots": [
+    ".agents/skills/testing-ledger/references/evidence/b5-e1-workbench-igm-bind-20260817.png"
+  ],
+  "not_proven": [
+    "Workbench-mock signed on_confirm POST to the live BAP",
+    "Workbench on_issue payload with issue actions / issue.id",
+    "on_issue_resolved SUCCESS and signed on_issue_status",
+    "Buyer/Seller-visible support outcome for this session",
+    "production IGM"
+  ],
+  "external_actions_taken": [
+    "nested aadharchain bind commit e55d06efff6d2ecae86bbdd5177ef00001e8066a already live as dep-da1fvie7bikc7392gof0",
+    "no new Render service; existing Free identity-aadhar-gateway-main only",
+    "created new PreProd Workbench session YvuUWZPUfH_n-R8soNMIfLVXr2J7M61l as BAP RET10 1.2.0 GROCERY PRE-PRODUCTION via Scenario Testing UI",
+    "started flow via POST /backend-ui/flow/new Order_to_confirm_to_fulfillment__Prepaid_with_igm_1.0.0 transaction d98ec9ac-990c-4793-a5f8-72426afc75b5",
+    "sent signed select/init/confirm on public gateway; did not fill accept_bpp_terms",
+    "sent track with confirm order_id B5d98ec9ac after Workbench on_confirm ERROR",
+    "sent issue_open_100 with order_id B5d98ec9ac; gateway bound local issue fd0486d3-aed4-4f92-86f0-46e92b679be3",
+    "derived issue id from signed outbox/readback, then sent issue_close_100",
+    "no PEM copy",
+    "no DNS",
+    "no portal Submit",
+    "no production registry",
+    "no Generate Report"
+  ]
+}

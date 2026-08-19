@@ -64,7 +64,11 @@ FQDN functional journeys stay `--soft`. **Bundle parity** (`assets/index-*.js` o
 is not enough. Vercel projects must be `ondcbuyer` / `ondcseller` (no hyphen), not
 `ondc-buyer` / `ondc-seller`. Git is not connected; CLI `--prod` only.
 
-**Gateway pytest green path (2026-07-12):** `--ci` runs `pytest tests/ -q -p asyncio` with `PYTEST_DISABLE_PLUGIN_AUTOLOAD=1`. Auth0/provider tests **monkeypatch** `settings.auth0_*` off so host `.env` Auth0 creds cannot flip `"auth0": true` mid-suite. Detail: [`references/ci-cd.md`](references/ci-cd.md).
+**Gateway pytest green path (2026-07-12):** always
+`PYTEST_DISABLE_PLUGIN_AUTOLOAD=1` + `-p asyncio` (or
+`./scripts/verify-portfolio.sh --ci`). Bare pytest autoload breaks (anchorpy).
+Auth0 monkeypatch + local `DATABASE_URL` fail-closed:
+[`references/ci-cd.md`](references/ci-cd.md).
 
 **Deploy:** `workflow_dispatch` only; requires `confirm_free_tier=true` (**$0 abort** otherwise); re-runs unique graders by default (not Buyer/Seller vitest); then Render gateway and/or required Vercel edges; then FQDN probes **plus fail-closed index-*.js parity**. Secrets names only in [`references/ci-cd.md`](references/ci-cd.md).
 
@@ -73,7 +77,7 @@ Render deployment `dep-d9gqfcjtqb8s73e0l940` is live at gateway
 `5431307bf36bb8c906600b3ceea859efb34f9d44`; Buyer and Seller Hobby archive
 deployments were Ready and their health/identity/NP/site probes passed.
 Current protocol/catalog state is owned by the
-[PreProd network matrix](../ondc-testing/references/preprod-network-matrix.md),
+[PreProd network matrix](../../../.agents/skills/testing-ledger/references/preprod-network-matrix.md),
 not this deploy skill. Run history: [`references/checklist.md`](references/checklist.md).
 
 **Dedicated LBNP deployment stamp (2026-07-26, Render Free):** exact gateway
@@ -100,6 +104,13 @@ valid/invalid challenge readback, and public empty/past holiday 422 checks
 passed. No new service, domain, paid resource, Retail change, or production
 claim was introduced.
 
+**A4 exact-commit deployment stamp (2026-08-17, Render Free):** gateway
+commit `7beab582d141c6f3f1e089c356ce0df6852a318c` is live as deploy
+`dep-da1boulbedkc73cieceg` on existing `identity-aadhar-gateway-main`.
+Auto-deploy stayed off. Health 200; Buyer/Seller/LBNP site-verification 200;
+junk `/ondc/on_subscribe` 400 decrypt-fail. PreProd PEMs unchanged. No new
+service, domain, paid resource, DNS change, or production claim.
+
 ## When to use
 
 - Operator/agent asked to **deploy / redeploy / wake** gateway or Buyer/Seller/LBNP FQDNs
@@ -107,7 +118,7 @@ claim was introduced.
 - Auth0 / CORS / `PUBLIC_GATEWAY_URL` / Vercel rewrites for public hosts
 - Free-tier cold start, logs, or key/env refresh on Render
 
-**Not this skill:** browser acceptance (`ondc-testing`), portal GST/ONDC UI
+**Not this skill:** browser acceptance (`testing-ledger`), portal GST/ONDC UI
 (`apisetu-partner-onboarding`), Auth0 application design (`authentication`).
 
 ## Free-tier policy (operator hard gate — $0)
@@ -136,6 +147,7 @@ claim was introduced.
 5. Vercel: **abort** Password Protection / Pro / Plus add-ons. HUF git-author block → archive deploy workaround (CLI cheat sheet).
 
 Details: [`references/free-tier.md`](references/free-tier.md). Platform docs: [Render free](https://render.com/docs/free) · [new workspace plans](https://render.com/docs/new-workspace-plans) · [Vercel Hobby](https://vercel.com/docs/plans/hobby) · generic Render deploy: `~/.agents/skills/render-deploy/SKILL.md` · Cursor Render plugin skills — **link, do not copy**.
+
 ## Related skills / ladders
 
 | Doc | Role |
@@ -144,7 +156,7 @@ Details: [`references/free-tier.md`](references/free-tier.md). Platform docs: [R
 | [`../apisetu-partner-onboarding/SKILL.md`](../apisetu-partner-onboarding/SKILL.md) | Portal / keys / PreProd / FQDN policy |
 | [`../apisetu-partner-onboarding/references/ondc-sandbox-integration-ladder.md`](../apisetu-partner-onboarding/references/ondc-sandbox-integration-ladder.md) | Code → local smoke → **deploy** → FQDN proof |
 | [`../apisetu-partner-onboarding/references/ondc-sandbox-keys.md`](../apisetu-partner-onboarding/references/ondc-sandbox-keys.md) | Portal PEM materialization |
-| [`../ondc-testing/SKILL.md`](../ondc-testing/SKILL.md) | Post-deploy Buyer/Seller UX matrix (claim→screenshot) |
+| [`../../../.agents/skills/testing-ledger/SKILL.md`](../../../.agents/skills/testing-ledger/SKILL.md) | Post-deploy Buyer/Seller UX matrix (claim→screenshot) |
 
 ## Pre-deploy checklist (gate)
 
@@ -214,7 +226,7 @@ cd ../ondcseller && vercel --prod
 Run post-deploy probes below. On failure: fix env/code, redeploy same surface; **never** upgrade tier / add Disk / open billing as a fix — stay $0.
 
 **After Buyer/Seller archive deploy+alias:** hand to
-[`ondc-testing`](../ondc-testing/SKILL.md) for UI acceptance. For onboarding-only
+[`testing-ledger`](../../../.agents/skills/testing-ledger/SKILL.md) for UI acceptance. For onboarding-only
 hosts such as LBNP, hand to partner onboarding after endpoint readback.
 
 ### Rollback notes
@@ -265,12 +277,12 @@ Then hand back to partner-onboarding ladder (lookup / subscribe only if needed).
 | Realtime probe | `/api/realtime/status` → `configured:true` (via gateway FQDN **and** onrender) |
 | Vercel Hobby | Buyer+Seller redeployed non-git bake; `VITE_IDENTITY_*=https://gateway.aadharcha.in`; alias FQDNs |
 | Auth0 | Callback includes `gateway.aadharcha.in`; SPA session **PASS** (auth skill evidence) |
-| Samantha “not configured” false negative | Fixed 17:48 — orb re-probes status; UI shows Text mode ready (evidence in ondc-testing matrix) |
+| Samantha “not configured” false negative | Fixed 17:48 — orb re-probes status; UI shows Text mode ready (evidence in testing-ledger matrix) |
 | AgentGuard write on Free | Fix via **`DATA_DIR=/tmp/aadharchain-data`** (Dockerfile default + env); **no Disk** |
 | Free-tier maximize | **Done** 2026-07-12 evening — `free-tier.md` stamp; health `/api/health`; Hobby Analytics Enable Buyer+Seller; $0 |
 | PreProd ONDC enable | `ONDC_ENABLED=true` + BAP (`ONDC_SUBSCRIBER_ID`/`BAP_URI`/`UNIQUE_KEY_ID`) + BPP (`ONDC_BPP_ID`/`BPP_URI`/`ONDC_SELLER_UNIQUE_KEY_ID`); keep `*_PEM_B64` + `DATA_DIR=/tmp/aadharchain-data` |
 | Vercel ONDC rewrites | **Both** apps need `/ondc/:path*` → `gateway…/ondc/np/{buyer\|seller}/:path*` (not only `on_subscribe`) — else `on_search`/`search` → SPA/405 |
-| Nested git deploy | Gateway lives in **`aadharchain/`** nested repo (`ingpoc/aadhaar-chain`); workspace root gitignores it — push that repo’s branch for Render |
+| Nested git deploy | Gateway lives in **`aadharchain/`** nested repo (`ingpoc/aadhaar-chain`); workspace root gitignores it — workspace HEAD is not the gateway SHA. Exact-commit deploy that nested SHA to existing Free `identity-aadhar-gateway-main`; auto-deploy stays **off**. |
 | GitHub multi-account | Before pushing `ingpoc/*`, run `gh auth status`; if another account is active, use `gh auth switch --hostname github.com --user ingpoc` + `gh auth setup-git --hostname github.com` |
 | HUF git-author | Vercel monorepo git deploy → `TEAM_ACCESS_REQUIRED` — **always** non-git stage + `--archive=tgz` + alias FQDN |
 | Hobby Vite bake | `.env.local` loopback must not win on FQDN — `loopback.ts` + empty commerce/`VITE_AGENT_CONTROL_PLANE_URL`; `/api/agent` → **gateway** (FlatWatch FQDN 401s portfolio `X-User-Id`) |

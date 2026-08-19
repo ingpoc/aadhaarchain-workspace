@@ -1,0 +1,43 @@
+{
+  "schema_version": "testing-receipt.v1",
+  "gate_id": "A2-D1",
+  "verified_at": "2026-08-10T14:04:22+05:30",
+  "environment": "product-lead decision in the active Codex task",
+  "result": "passed",
+  "decision": {
+    "approved_roles_domains": [
+      {
+        "domain": "Retail B2C",
+        "version": "1.2",
+        "role": "Buyer NP",
+        "purpose": "Buyer app"
+      },
+      {
+        "domain": "Retail B2C",
+        "version": "1.2",
+        "role": "Seller NP - ISN",
+        "purpose": "Seller app"
+      },
+      {
+        "domain": "Logistics B2C",
+        "version": "1.2",
+        "role": "Buyer NP",
+        "purpose": "Seller fulfilment through an external LSP"
+      }
+    ],
+    "excluded_initial_scope": "Every other ONDC role and domain",
+    "rationale": "The matrix matches the approved two-sided Buyer and Seller product scope and its external-LSP fulfilment dependency."
+  },
+  "approval_evidence": {
+    "approver_role": "Product lead",
+    "statement": "I approve A2"
+  },
+  "not_authorized": [
+    "Portal profile creation or modification",
+    "Production key generation or secret handling",
+    "DNS, deployment, registry, or protocol submission",
+    "Terms acceptance, contracts, spend, or provider selection",
+    "Customer-money or production enablement"
+  ],
+  "external_actions_taken": []
+}

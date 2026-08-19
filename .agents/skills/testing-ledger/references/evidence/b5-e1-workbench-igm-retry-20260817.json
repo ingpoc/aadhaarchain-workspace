@@ -1,0 +1,99 @@
+{
+  "schema_version": "testing-receipt.v1",
+  "gate_id": "B5-E1",
+  "verified_at": "2026-08-17T17:03:41+05:30",
+  "environment": "PreProd Protocol Workbench IGM retry against live public gateway; not production",
+  "authorization": [
+    "B5-20260817-01 PreProd official IGM",
+    "B5-20260817-03 exact IGM commit on existing identity-aadhar-gateway-main"
+  ],
+  "verdict": "blocked",
+  "does_not_overwrite": ".agents/skills/testing-ledger/references/evidence/b5-e1-workbench-igm-20260817.json",
+  "flow_start_404_fix": {
+    "broken_ui_route": "POST https://workbench.ondc.tech/backend-ui/api/sessions/flows/{sessionId}",
+    "broken_ui_http": 404,
+    "working_start": "POST https://workbench.ondc.tech/backend-ui/flow/new",
+    "working_body": ["session_id", "flow_id", "transaction_id", "inputs"],
+    "stale_expectation_clear": "DELETE /backend-ui/sessions/expectation?subscriber_url=&session_id=",
+    "note": "UI Start still posts the 404 route; API /flow/new registers the current session flow. A leftover select expectation returns 500 Already expecting action: select until deleted."
+  },
+  "workbench": {
+    "url": "https://workbench.ondc.tech/flow-testing?sessionId=v83hwowCbAKXBW9wEHtbCTjTC7f1tQHq&subscriberUrl=https%3A%2F%2Fondcbuyer.aadharcha.in%2Fondc&role=BAP",
+    "session_id": "v83hwowCbAKXBW9wEHtbCTjTC7f1tQHq",
+    "prior_404_session_not_used": "2d8cKTuko6HV78i1sQLN3Nx3H3T5bO64",
+    "subscriber_url": "https://ondcbuyer.aadharcha.in/ondc",
+    "role": "BAP",
+    "domain": "ONDC:RET10",
+    "version": "1.2.0",
+    "usecase": "GROCERY",
+    "environment": "PRE-PRODUCTION",
+    "active_flow": "Order_to_confirm_to_fulfillment__Prepaid_with_igm_1.0.0",
+    "transaction_id": "d77ff31f-4d1b-4e2e-81ca-53b90a2900cb",
+    "progress_percent": 56,
+    "bap_generated_order_id": "B5d77ff31",
+    "issue_id": null
+  },
+  "steps": {
+    "select": {"ack": "ACK", "message_id": "4cbd3307-5871-4b4b-bc1c-a4f90b220e8d", "outbox": "pg_out from public /api/ondc/select"},
+    "on_select": {"ack": "ACK", "signed_inbox": true, "message_id": "4cbd3307-5871-4b4b-bc1c-a4f90b220e8d"},
+    "init": {"ack": "ACK", "message_id": "2939cde0-45c4-48ea-9397-1e3ad08c3d8d"},
+    "on_init": {"ack": "ACK", "signed_inbox": true, "message_id": "2939cde0-45c4-48ea-9397-1e3ad08c3d8d", "order_id": null, "tags": ["bpp_terms"], "accept_bpp_terms_present": false},
+    "confirm": {"ack": "ACK", "message_id": "72b2829c-25b8-49ff-8edf-6cc9bfd334b0", "outbox": "pg_out_22703", "accept_bpp_terms_filled": false, "payment_status_sent": "NOT-PAID", "payment_params": "currency+amount from signed on_init quote INR 200.00"},
+    "on_confirm": {"ack": "NACK", "signed_inbox": false, "error": "message_id mismatch between confirm and on_confirm expected 72b2829c-25b8-49ff-8edf-6cc9bfd334b0 but found b4905f64-3064-49f9-8465-95f024d47a76"},
+    "on_status_accepted_through_picked": {"ack": "NACK", "error": "BAD Request: subscriberID not set"},
+    "track": {"status": "LISTENING / WAITING YOU SEND", "gateway_post": "POST /api/ondc/track → 404 Not Found; buyer _dispatch_order_action allows only select/init/confirm"},
+    "issue_steps_15_18": "not reached"
+  },
+  "legal_semantic": {
+    "confirm_input_schema": null,
+    "accept_bpp_terms_filled": false,
+    "confirm_acked_without_bap_terms": true,
+    "official_example_includes_accept_bpp_terms": "message.order.tags[bap_terms].list[accept_bpp_terms]=Y in ONDC-Official prepaid grocery report; not sent"
+  },
+  "callback_correlation": {
+    "public_on_select_inbox": true,
+    "public_on_init_inbox": true,
+    "public_on_confirm_inbox": false,
+    "public_on_issue_inbox": [],
+    "workbench_transaction_id": "d77ff31f-4d1b-4e2e-81ca-53b90a2900cb",
+    "issue_id": null
+  },
+  "prior_failed_transaction": {
+    "transaction_id": "2a7bd614-61d5-4445-b9c0-5939b419d7e5",
+    "select_init_on_init": "ACK",
+    "first_confirm": "NACK PAYMENT_CURRENCY and PAYMENT_AMOUNT only; accept_bpp_terms not named",
+    "second_confirm": "NACK <confirm> not supported after <confirm>"
+  },
+  "blocker": {
+    "surface": "Workbench mock on_confirm + missing retail track dispatch",
+    "on_confirm": "Mock on_confirm used a new message_id; callback never landed in public inbox",
+    "track": "Workbench is WAITING on track YOU SEND; public gateway has no POST /api/ondc/track",
+    "igm": "issue/on_issue not reached; IGM remains steps 15–18"
+  },
+  "comet": {
+    "session_id": "b5-igm-retry-20260817",
+    "label": "B5-IGM-Retry",
+    "distinct_from_a4": ["a4-portal-20260817", "a4-buyer-ukid-20260817"],
+    "a4_leases_not_killed": true
+  },
+  "screenshots": [
+    ".agents/skills/testing-ledger/references/evidence/b5-e1-workbench-igm-retry-20260817.png"
+  ],
+  "not_proven": [
+    "signed Workbench on_confirm",
+    "signed Workbench on_issue / on_issue_status callbacks",
+    "IGM resolution and closure",
+    "Buyer/Seller-visible support outcome for this session",
+    "production IGM"
+  ],
+  "external_actions_taken": [
+    "cleared stale Workbench expectation and started flow via POST /backend-ui/flow/new",
+    "sent signed select/init/confirm on public gateway to Workbench mock seller",
+    "did not fill accept_bpp_terms",
+    "no PEM copy",
+    "no DNS",
+    "no portal Submit",
+    "no production registry",
+    "no Generate Report"
+  ]
+}

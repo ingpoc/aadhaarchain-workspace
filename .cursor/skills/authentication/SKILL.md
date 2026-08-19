@@ -19,16 +19,16 @@ Wallet/burner SSO is hangar — not AG acceptance.
 
 **Standing rule:** append durable auth findings to this skill (+ evidence under `references/evidence/`); **no secrets** in markdown. Deploy/CI → [`portfolio-deploy`](../portfolio-deploy/SKILL.md).
 
-**Docs:** [Auth0 Authorization Code Flow](https://auth0.com/docs/get-started/authentication-and-authorization-flow/authorization-code-flow) · repo [`AGENTS.md`](../../AGENTS.md) Host identity · [`PRODUCTION-READINESS.md`](../../PRODUCTION-READINESS.md) A8b.
+**Docs:** [Auth0 Authorization Code Flow](https://auth0.com/docs/get-started/authentication-and-authorization-flow/authorization-code-flow) · repo [`AGENTS.md`](../../../AGENTS.md) Host identity · [`.session/docs/PRODUCTION-READINESS.md`](../../../.session/docs/PRODUCTION-READINESS.md) · A5 draft [`references/auth0-production-policy-draft.md`](references/auth0-production-policy-draft.md).
 
 ## Owner map (do not invent parallel auth)
 
 | Concern | Owner |
 | --- | --- |
-| OAuth + session mint | [`aadharchain/gateway/app/social_auth_routes.py`](../../aadharchain/gateway/app/social_auth_routes.py) |
-| Signed OAuth `state` | [`aadharchain/gateway/app/oauth_state.py`](../../aadharchain/gateway/app/oauth_state.py) |
-| Session cookie JWT-like HMAC | [`aadharchain/gateway/app/session_auth.py`](../../aadharchain/gateway/app/session_auth.py) |
-| Env | gateway `AUTH0_*`, `AUTH_DEMO_CONTINUE`, optional `GOOGLE_*` — [`.env.example`](../../aadharchain/gateway/.env.example) |
+| OAuth + session mint | [`aadharchain/gateway/app/social_auth_routes.py`](../../../aadharchain/gateway/app/social_auth_routes.py) |
+| Signed OAuth `state` | [`aadharchain/gateway/app/oauth_state.py`](../../../aadharchain/gateway/app/oauth_state.py) |
+| Session cookie JWT-like HMAC | [`aadharchain/gateway/app/session_auth.py`](../../../aadharchain/gateway/app/session_auth.py) |
+| Env | gateway `AUTH0_*`, `AUTH_DEMO_CONTINUE`, optional `GOOGLE_*` — [`.env.example`](../../../aadharchain/gateway/.env.example) |
 | Buyer/Seller UI | `useAuthProviders` + `loginAuth0` in `ondcbuyer` / `ondcseller` `AuthContext` + `App.tsx` |
 | AG principal binding | cookie → AgentGuard routes; body wallet cannot override social/demo session |
 
@@ -50,6 +50,7 @@ sequenceDiagram
 ```
 
 Principals:
+
 - `principal:auth0:…` — production (Auth0 `sub`, `|` → `:`)
 - `principal:google:…` — legacy direct Google (prefer Auth0 Google connection)
 - `principal:demo:…` — local automation only; **forced off** when `AADHAAR_CHAIN_ENV=staging|production` unless `AUTH_DEMO_CONTINUE_FORCE=true`
@@ -160,6 +161,20 @@ Do in order; ONDC portal/whitelist is a **parallel** track (other agent) — not
 
 **Local host trap:** open Buyer/Seller as `http://127.0.0.1:4310x`, not `http://localhost:4310x`. Gateway cookie is host-only on `127.0.0.1`; `localhost` ≠ `127.0.0.1` for SameSite, so Accept succeeds but SPA still looks signed-out. SPAs redirect `localhost` → `127.0.0.1` in DEV (`ensureCanonicalLoopbackHost`). Do **not** fetch `/api/auth/me` via Vite same-origin proxy — cookie never lands on `:43102`/`:43103`.
 
+## A5 session controls (2026-08-17)
+
+Policy: [`references/auth0-production-policy-draft.md`](references/auth0-production-policy-draft.md). Agent review accepted the draft for **code controls on the existing staging/local+FQDN Auth0 setup**. No production tenant/connection cutover.
+
+| Control | Contract |
+| --- | --- |
+| Secret rotation | Mint with `SESSION_SECRET`; parse accepts `SESSION_SECRET` then `SESSION_SECRET_PREVIOUS`. Drop previous after cutover. `AUTH0_CLIENT_SECRET` rotation is operator/Auth0-dashboard only. |
+| Session revocation | Logout / `POST /api/auth/sessions/revoke` deny `sid`; revoke-all denies the principal (new login after `iat` works). **PostgreSQL** on existing gateway `DATABASE_URL` — not process memory. Fail closed if the store is unready in staging/production. |
+| Device/session list | `GET /api/auth/sessions` lists current principal sessions (`sid`, `aud`, `exp`, `device_label`). |
+| Role isolation | Buyer/Seller `aud` aliases (`ondcbuyer`/`buyer`, `ondcseller`/`seller`). AgentGuard ensure/evaluate/execute deny cross-audience reuse. |
+| Step-up | Staging/production Seller refund and catalog publish/archive require session `amr` containing `mfa`. Auth0 start `?step_up=true` adds `prompt=login` + MFA `acr_values`. Demo runtime does not require MFA. Tenant MFA enablement remains operator-out-of-band. |
+
+Do not claim A5 complete without tenant cutover, tenant MFA/Attack Protection, and **release-source** security acceptance. Current-source pytest is not Q1.
+
 ## Auth0 features — fit to this ecosystem
 
 Use Auth0 for **identity**; keep **AgentGuard** as the only money/mandate authority. Do not put AG limits in Auth0 Actions.
@@ -188,8 +203,8 @@ Detail: [`references/auth0-feature-fit.md`](references/auth0-feature-fit.md).
 4. Return URLs must pass `is_allowed_return_url` (CORS / portfolio origins).
 5. OAuth `state` must stay **HMAC-signed** (`oauth_state.py`) — no in-memory-only state for multi-instance.
 6. Secrets stay on gateway; Vite only gets `VITE_IDENTITY_AUTH_ENABLED` + API base URLs.
-7. After auth changes: `PYTHONPATH=. .venv/bin/pytest -q tests/test_oauth_state.py tests/test_session_cookie_flags.py tests/test_social_auth.py`; smoke `GET /api/auth/providers`; for UI use **ondc-testing** / portfolio-browser (Auth0 on FQDN; `sso demo` local only).
-8. Logout: clear `aadharcha_session`; optional Auth0 `/v2/logout` with `returnTo` allowlisted — add when shipping prod logout polish.
+7. After auth changes: run the Local smoke pytest command below (`PYTEST_DISABLE_PLUGIN_AUTOLOAD=1`, loopback `DATABASE_URL` only — never Render migrate). Smoke `GET /api/auth/providers`; UI via **testing-ledger**.
+8. Logout: clear `aadharcha_session` **and** revoke `sid` in the PostgreSQL session registry. Do not keep a process-only deny-list.
 
 ## Local smoke (after operator pastes Auth0 creds)
 
@@ -199,7 +214,7 @@ Detail: [`references/auth0-feature-fit.md`](references/auth0-feature-fit.md).
 curl -s http://127.0.0.1:43101/api/auth/providers
 # expect auth0:true, demo_continue:true (demo mode)
 
-cd aadharchain/gateway && PYTHONPATH=. .venv/bin/pytest -q tests/test_oauth_state.py tests/test_session_cookie_flags.py tests/test_social_auth.py
+cd aadharchain/gateway && DATABASE_URL=postgresql://gurusharan@127.0.0.1:5432/postgres PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 PYTHONPATH=. .venv/bin/pytest -p asyncio tests/test_oauth_state.py tests/test_session_cookie_flags.py tests/test_social_auth.py tests/test_a5_session_controls.py tests/test_a5_session_registry_postgres.py
 
 # UI (Auth0): open Buyer :43102 → Sign in → Universal Login → return → /api/auth/me
 # UI (local without Auth0): python3 scripts/portfolio_browser.py sso demo buyer
@@ -279,8 +294,7 @@ If the refused tab still has the callback URL and `state.exp` is not past, **rel
 
 **Vercel Hobby deploy note:** git author `gupta.huf…` → `TEAM_ACCESS_REQUIRED` / BLOCKED. Workaround: non-git staging + skip remote build + `vercel alias` to `*.aadharcha.in`. No paid upgrade.
 
-**Realtime false negative (2026-07-12 17:48):** Both gateway hosts returned `configured:true` while orb could still show “Realtime not configured” if mount-time `/api/realtime/status` raced or Free cold-start fetch failed. Fix: Buyer/Seller `SamanthaOrb` re-probes status on open (retries). SPA must use `VITE_IDENTITY_URL=https://gateway.aadharcha.in`. Evidence: `../ondc-testing/references/evidence/W-B-VOICE-RT-FIXED-20260712-174850-0.jpeg`.
-
+**Realtime false negative (2026-07-12 17:48):** Both gateway hosts returned `configured:true` while orb could still show “Realtime not configured” if mount-time `/api/realtime/status` raced or Free cold-start fetch failed. Fix: Buyer/Seller `SamanthaOrb` re-probes status on open (retries). SPA must use `VITE_IDENTITY_URL=https://gateway.aadharcha.in`. Evidence: `../../../.agents/skills/testing-ledger/references/evidence/W-B-VOICE-RT-FIXED-20260712-174850-0.jpeg`.
 
 ## Cookie Domain (Render)
 
@@ -294,7 +308,7 @@ Ops: Free custom domains OK (Hobby workspace includes 2). Abort if UI charges fo
 - Use Auth0 to approve checkouts/refunds (that is AgentGuard).
 - Reintroduce wallet as primary AG principal.
 - Claim live ONDC identity / DigiLocker as required for login (Setu/MeitY optional KYC rails).
-- Remove local `AUTH_DEMO_CONTINUE` for hermes/ondc-testing loopback automation.
+- Remove local `AUTH_DEMO_CONTINUE` for hermes/testing-ledger loopback automation.
 - Flip `VITE_COMMERCE_DEMO_MODE` as part of auth work.
 
 ## Related skills
@@ -302,6 +316,6 @@ Ops: Free custom domains OK (Hobby workspace includes 2). Abort if UI charges fo
 | Skill | When |
 | --- | --- |
 | [`portfolio-deploy`](../portfolio-deploy/SKILL.md) | FQDN deploy, `AUTH0_*` / `VITE_IDENTITY_*` on hosts, CI/CD, $0 Free/Hobby |
-| [`ondc-testing`](../ondc-testing/SKILL.md) | Screenshot-proof Buyer/Seller journeys after login (web + local) |
+| [`testing-ledger`](../../../.agents/skills/testing-ledger/SKILL.md) | Screenshot-proof Buyer/Seller journeys after login (web + local) |
 | [`portfolio-browser`](../portfolio-browser/SKILL.md) | Hermes WIP, `sso demo`, preflight; cursor opacity / SW Inactive traps |
 | [`apisetu-partner-onboarding`](../apisetu-partner-onboarding/SKILL.md) | ONDC portal / FQDNs / whitelist — **parallel** to Auth0; MeitY DigiLocker paused |

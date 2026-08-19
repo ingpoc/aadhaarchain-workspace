@@ -20,7 +20,7 @@ from hermes_ondc_testing_matrix import call, eval_states, load_handler, shot_pat
 
 BUYER = "http://127.0.0.1:43102"
 SELLER = "http://127.0.0.1:43103"
-EVIDENCE = ROOT / ".cursor/skills/ondc-testing/references/evidence"
+EVIDENCE = ROOT / ".agents/skills/testing-ledger/references/evidence"
 TRANSCRIPTS = ROOT / "aadharchain/gateway/data/samantha-transcripts.jsonl"
 TS = time.strftime("%Y%m%d-%H%M%S")
 

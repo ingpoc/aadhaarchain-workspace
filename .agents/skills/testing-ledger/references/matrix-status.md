@@ -1,5 +1,179 @@
 # Matrix status ledger
 
+## A5 durable session registry — 2026-08-17 (partial; no tenant cutover)
+
+- Session revoke/list now write-through to local/gateway PostgreSQL (`004_auth_session_registry.sql`). Isolated-schema pytest: revoke-sid, revoke-all, and principal-scoped list survive a new connection. Staging/production fail closed if the store is unready. No Auth0 tenant/connection cutover. No Render migrate from this slice.
+- Evidence: [`evidence/a5-session-controls-durable-20260817.json`](evidence/a5-session-controls-durable-20260817.json). A5-C1 passed. A5 stays **partial** (operator tenant cutover, tenant MFA/Attack Protection, release-source acceptance). Product B5 unchanged.
+
+## B5 complete — 2026-08-17 (preprod/Auth0 signed IGM; production IGM is A4/B8)
+
+- Product B5 is **complete** on `evidence_scope` preprod. B5-E1 stays passed. Auth0 issue `e0809349` on order `8F3F56D0` has signed callbacks, audit, owner, response/escalation targets, and Buyer/Seller-visible closed outcome on current FQDNs after nested `27e8faa` / `dep-da1hs181ne8s73cgcb0g`. Workbench `8382bcef` is not the Auth0 user’s. Production IGM remains A4/B8, not a B5 remaining child. No Workbench/Auth0 IGM rerun this closeout.
+
+## B5 residuals native BPP RESOLVED + SLA/UUID UI — 2026-08-17 (E1 still passed; product B5 testing)
+
+- Nested commit `27e8faa` live on existing Free `identity-aadhar-gateway-main` as `dep-da1hs181ne8s73cgcb0g`. Health 200. Native BAP `POST /api/ondc/issue_status` for Auth0 issue `e0809349` sent issue_id only; BPP `on_issue_status` inbox **23249 RESOLVED** `signature_verified`. Commerce SLA filled (`response_due_at` / `escalation_due_at`). Workbench prepaid+IGM was not rerun. No PEM/DNS/Submit.
+- Hobby Seller `ondcseller.aadharcha.in` and Buyer `ondcbuyer.aadharcha.in` archive-deployed. Auth0 Buyer and Seller order `8F3F56D0` show issue UUID `e0809349-…`, owner Seller support, response/escalation targets, and open audit timeline (10 events). Workbench `8382bcef` is still not the Auth0 user’s. Production IGM unauthorized.
+- Evidence: [`evidence/b5-residuals-bpp-sla-ui-20260817.json`](evidence/b5-residuals-bpp-sla-ui-20260817.json). Prior Auth0 IGM receipt was not overwritten. B5-E1 stays passed. Product B5 stays testing. Comet `b5-residuals-ui-20260817` closeout `verified_absent`.
+
+## B5-E1 Auth0-owned signed IGM — 2026-08-17 (passed; Workbench row still not Auth0-owned)
+
+- Nested commit `014a6dd` live on existing Free `identity-aadhar-gateway-main` as `dep-da1hhcrl550s73fmjrcg`. Health 200. Workbench prepaid+IGM was not rerun. No PEM/DNS/Submit.
+- Auth0 Buyer created fulfillment issue `e0809349-e043-4265-a927-d9f981643709` on order `8F3F56D0`. Signed IGM to our Seller BPP (`ondcseller.aadharcha.in`, not Workbench): outbox issue `22922` delivered; inbox `on_issue` **23218 PROCESSING** `signature_verified`; BAP `issue_status` stays PROCESSING (**23221**); CLOSE then commerce **closed** (`open`→`acknowledged`→`closed`). Extra inbound `POST /ondc/issue_status` with RESOLVED produced inbox **23227** RESOLVED `signature_verified`.
+- Buyer FQDN shows issue UUID with badge **resolved**. Seller FQDN shows the same description as **closed** (issue UUID not in the card header). Protocol `/orders/B5091e6b53` is not 500 (authenticated UI order-not-found; unauthenticated API 401). Workbench `8382bcef` remains subscriber-scoped/`open` and is not claimed as the Auth0 user’s.
+- Evidence: [`evidence/b5-e1-auth0-signed-igm-20260817.json`](evidence/b5-e1-auth0-signed-igm-20260817.json). Prior receipts were not overwritten. B5-E1 passed. Product B5 stays testing (native BPP `issue_status` still PROCESSING unless inbound already RESOLVED; SLA/audit UI gaps; production IGM unauthorized). Comet `b5-e1-auth0-igm-20260817` closeout `verified_absent`.
+
+## B5-E1 Buyer/Seller-visible outcome — 2026-08-17 (principal mismatch; not passed)
+
+- Public Render row `8382bcef-c3ab-41e5-b04e-1088d10ffb84` exists: `principal_id=ondcbuyer.aadharcha.in`, `seller_id=workbench.ondc.tech`, `protocol_order_id=B5091e6b53`, commerce `order_id` null, **status still `open`**. Audit history has five IGM events; signed inbox `issue.status` was null so RESOLVED in `respondent_actions` did not become a commerce terminal state.
+- Unauthenticated `GET /api/demo-commerce/buyer/issues` and `/seller/issues` are **401**. Auth0 Buyer FQDN (`principal:auth0:…`) shows orders `8F3F56D0` / `709D9B9E` / `83A97020` and Auth0-owned issue `fabc818c-…`, not `8382bcef` / `B5091e6b53`. Direct `/orders/B5091e6b53` is **500**. Auth0 Seller shows the same four Auth0 orders; 709D9B9E has the closed Auth0 fulfillment issue, not the Workbench IGM row.
+- Staff lookup for protocol-bound issues and an Auth0-owned signed IGM path were not implemented (not a small existing-path fix). Production IGM still unauthorized.
+- Evidence: [`evidence/b5-e1-buyer-seller-readback-20260817.json`](evidence/b5-e1-buyer-seller-readback-20260817.json). B5-E1 stays pending; product B5 stays testing. Comet `b5-e1-ui-readback-20260817` closeout `verified_absent`.
+
+## B5-E1 Workbench prepaid+IGM resolve — 2026-08-17 (on_issue_resolved SUCCESS)
+
+- Nested commit `1db9fa0` live on existing Free `identity-aadhar-gateway-main` as `dep-da1g9jpt0dsc73bqcp0g`. BAP `issue` now includes `issue_actions.complainant_actions`; BPP `on_issue`/`on_issue_status` include `respondent_actions`. Focused pytest: 14 passed, 16 skipped. Bind contract unchanged (empty issue 422, unknown order/issue 404).
+- New Workbench session `jAq3Wt205M3Il6zX2siGsKS8abHbQgIT` / tx `091e6b53-9ce5-49ba-b6ee-414112326d5c` via Scenario Testing UI then `POST /backend-ui/flow/new`. ACK: select, on_select, init, on_init, confirm. `accept_bpp_terms` not filled. Track COMPLETE SUCCESS. `issue_open_100`, `on_issue_processing_100`, **`on_issue_resolved_100` COMPLETE SUCCESS**, `issue_close_100` COMPLETE SUCCESS. Bound issue `8382bcef-c3ab-41e5-b04e-1088d10ffb84`. Signed `on_issue` inbox 23111 (PROCESSING) and `on_issue_status` inbox 23113 (RESOLVED), both `signature_verified`, no Missing issue actions. Mock `on_confirm` still COMPLETE ERROR without Render POST.
+- Evidence: [`evidence/b5-e1-workbench-igm-resolve-20260817.json`](evidence/b5-e1-workbench-igm-resolve-20260817.json). Prior receipts were not overwritten. B5-E1 stays pending (Buyer/Seller-visible outcome); product B5 stays testing.
+
+## B5-E1 Workbench prepaid+IGM issue bind — 2026-08-17 (issue_open SUCCESS; signed on_issue landed)
+
+- Nested commit `e55d06e` live on existing Free `identity-aadhar-gateway-main` as `dep-da1fvie7bikc7392gof0`. Dispatch binds a principal-safe CommerceV1 issue from a confirm-outbox order when none exists. Public `POST /api/ondc/issue`: no body **422**, `{}` **422**, unknown order **404 Unknown order**, unknown issue_id **404 Unknown issue**. Focused pytest: 12 passed, 16 skipped.
+- New Workbench session `YvuUWZPUfH_n-R8soNMIfLVXr2J7M61l` / tx `d98ec9ac-990c-4793-a5f8-72426afc75b5` via Scenario Testing UI then `POST /backend-ui/flow/new`. ACK: select, on_select, init, on_init, confirm. `accept_bpp_terms` not filled. Track COMPLETE SUCCESS; signed `on_track` inbox true. Mock `on_confirm` still COMPLETE ERROR without Render POST. `issue_open_100` and `issue_close_100` COMPLETE SUCCESS. Bound issue `fd0486d3-aed4-4f92-86f0-46e92b679be3` from signed outbox. Signed `on_issue` inbox 23086/23087 (`signature_verified`; mock envelope `Missing issue actions`). `on_issue_resolved_100` COMPLETE ERROR.
+- Evidence: [`evidence/b5-e1-workbench-igm-bind-20260817.json`](evidence/b5-e1-workbench-igm-bind-20260817.json). Prior receipts were not overwritten. B5-E1 stays pending; product B5 stays testing.
+
+## B5-E1 Workbench prepaid+IGM ACK deploy — 2026-08-17 (BAP ACKs; IGM 15 still listening)
+
+- Nested commit `8ae415b` live on existing Free `identity-aadhar-gateway-main` as `dep-da1fl2h5efls73eervbg`. Inbound BAP ACKs `on_confirm`/`on_status` when `transaction_id` matches the lifecycle outbox even if callback `message_id` differs; mismatch is logged and the callback message_id is persisted. Outbound BPP still echoes the request `message_id`. Focused pytest: 11 passed, 16 skipped. Public track still 422 not 404; empty `on_confirm` is 400 not 404.
+- Live synthetic POST to gateway and `ondcbuyer` `/ondc/on_confirm` with new message_id + confirm `transaction_id` `f876d453-…` returned ACK; inbox `23056`.
+- New Workbench session `kRX_rSpaXI1zRMI9rMRHf8idYHniOxh5` / tx `f876d453-6c33-4297-952e-7ee54ed50551` via `POST /backend-ui/flow/new`. ACK: select, on_select, init, on_init, confirm. `accept_bpp_terms` not filled. Track COMPLETE SUCCESS; signed `on_track` inbox true. Workbench mock `on_confirm` still COMPLETE ERROR with the old pairing string and did not POST to Render. `issue_open_100` LISTENING; `POST /api/ondc/issue` 404 Unknown issue; buyer issues 401. Issue id none.
+- Evidence: [`evidence/b5-e1-workbench-igm-ack-20260817.json`](evidence/b5-e1-workbench-igm-ack-20260817.json). Prior receipts were not overwritten. B5-E1 stays pending; product B5 stays testing.
+
+## B5-E1 Workbench prepaid+IGM rerun — 2026-08-17 (blocked at on_confirm)
+
+- Public track reproof still holds: health 200; `POST /api/ondc/track` 422 not 404; IGM routes present. New session `62RWGJAf_xhJm5O1FgYrf6qUakwSdO__` / tx `fa6a6b53-41af-4155-9eea-96ac7d6b90e1` via `POST /backend-ui/flow/new`. ACK: select, on_select, init, on_init, confirm. `accept_bpp_terms` not filled.
+- Workbench mock `on_confirm` still mints a new message_id (`54816c38-…` vs confirm `8a907724-…`). Public BAP NACKs; signed on_confirm inbox empty. Track LISTENING but not sent (no signed callback order_id). IGM 15–18 not reached. Issue id none.
+- Evidence: [`evidence/b5-e1-workbench-igm-rerun-20260817.json`](evidence/b5-e1-workbench-igm-rerun-20260817.json). Prior receipts were not overwritten. B5-E1 stays pending; product B5 stays testing.
+
+## B5-E1 track/on_confirm deploy — 2026-08-17 (code live; Workbench 15–18 not rerun)
+
+- Root cause: Buyer dispatch had no `/api/ondc/track` (404). Workbench mock `on_confirm` used a new message_id; our BPP also minted uuid5 callback ids. `on_status` `subscriberID not set` was not our previous NACK string; ingest ignored camelCase `subscriberID` and Authorization `keyId`.
+- Nested commit `f7794fa` on existing `identity-aadhar-gateway-main` as `dep-da1f80gjo6nc738i40s0`. Public `POST /api/ondc/track` is 422 (not 404); health 200; IGM routes still present. 4 focused track tests plus 144 related ONDC/commerce checks passed.
+- Workbench IGM steps 15–18 were not started this slice. Next: one `/backend-ui/flow/new` prepaid+IGM flow, send track with confirm message_id rules, then issue/on_issue. Do not fill `accept_bpp_terms`.
+- Evidence: [`evidence/b5-e1-track-onconfirm-deploy-20260817.json`](evidence/b5-e1-track-onconfirm-deploy-20260817.json). Prior receipts were not overwritten. B5-E1 stays pending; product B5 stays testing.
+
+## B5-E1 PreProd Workbench IGM retry — 2026-08-17 (blocked after confirm)
+
+- Flow-start 404 is fixed: UI `POST /backend-ui/api/sessions/flows/{sessionId}` still 404s; `POST /backend-ui/flow/new` registers the current session. Stale `Already expecting action: select` clears with `DELETE /sessions/expectation`.
+- Session `v83hwowCbAKXBW9wEHtbCTjTC7f1tQHq`, transaction `d77ff31f-4d1b-4e2e-81ca-53b90a2900cb`, flow `Order_to_confirm_to_fulfillment__Prepaid_with_igm_1.0.0`. ACK: select, on_select, init, on_init, confirm. `accept_bpp_terms` was not filled; confirm ACK'd without it.
+- Workbench mock `on_confirm` NACK: message_id mismatch (`72b2829c-…` vs `b4905f64-…`); public on_confirm inbox empty. Unsolicited on_status NACK `subscriberID not set`. Track WAITING; `POST /api/ondc/track` is 404. IGM steps 15–18 not reached. Issue id none.
+- Evidence: [`evidence/b5-e1-workbench-igm-retry-20260817.json`](evidence/b5-e1-workbench-igm-retry-20260817.json). 404 receipt [`evidence/b5-e1-workbench-igm-20260817.json`](evidence/b5-e1-workbench-igm-20260817.json) was not overwritten. B5-E1 stays pending; product B5 stays testing.
+
+## B5-E1 PreProd Workbench IGM — 2026-08-17 (blocked at select)
+
+- Public deploy reproof passed: `GET /api/health` 200; `POST /api/ondc/issue` 422 and `/ondc/on_issue` 400 (not 404); OpenAPI lists the four IGM paths. Claimed live commit remains `2e30070` / `dep-da1ds3flk1mc739qgt4g`.
+- Official Workbench session `2d8cKTuko6HV78i1sQLN3Nx3H3T5bO64` created as BAP, `ONDC:RET10` `1.2.0`, GROCERY, PRE-PRODUCTION. RET10 has no standalone IGM usecase; the IGM-bearing flow is `Order_to_confirm_to_fulfillment__Prepaid_with_igm_1.0.0` (issue at steps 15–18).
+- Flow start `POST /backend-ui/api/sessions/flows/2d8cKTuko6HV78i1sQLN3Nx3H3T5bO64` returned 404. UI ActiveFlow is WAITING on `select` with an empty Request pane. No signed select was invented. Public `on_issue` inbox is empty.
+- LOG10 session `PafpxsF3NAoH3p1uvcHzr152Ec_j3pmT` was not reused. A4 Comet leases were not killed. No PEM/DNS/portal Submit/report.
+- Evidence: [`evidence/b5-e1-workbench-igm-20260817.json`](evidence/b5-e1-workbench-igm-20260817.json). B5-E1 stays pending; product B5 stays testing.
+
+## CF2/CF3 uncoupled from Q1 — 2026-08-17
+
+- CF2-E1 and CF3-E1 blocking gates already passed. Product items are
+  `complete`. Q1 owns the frozen-source release receipt and must not keep
+  product items open or block B5.
+- B5 is the remaining product-closure item (`partial`; local issue lifecycle
+  passed, official IGM remaining).
+
+## A4 exact-commit Render deploy — 2026-08-17 (blocked; PEM/portal 1.a)
+
+- Operator authorized deploy of current gateway HEAD to existing
+  `identity-aadhar-gateway-main` only. Nested repo
+  `ingpoc/aadhaar-chain` `main` HEAD
+  `7beab582d141c6f3f1e089c356ce0df6852a318c` is live as
+  `dep-da1boulbedkc73cieceg`. Workspace HEAD `2be9e5a` was not deployed.
+- Service stayed Free; auto-deploy stayed off. No Buyer/Seller Render
+  domains, no parallel gateway, no GoDaddy DNS, no production PEM env copy.
+- Health `https://gateway.aadharcha.in/api/health` 200. Buyer/Seller/LBNP
+  site-verification 200. Junk `/ondc/on_subscribe` POST 400 decrypt-fail on
+  all three FQDNs. Runtime unique_key_ids remain PreProd
+  (`1aee68ad-…` / `baf58086-…` / `9e7388f4-…`).
+- Checklist A4 stays `blocked` on production PEM copy, valid production
+  challenge, and portal Production 1.a modal reconcile/submit.
+- Evidence:
+  [`evidence/a4-render-deploy-7beab58-20260817.json`](evidence/a4-render-deploy-7beab58-20260817.json).
+
+## CF3-E1 Seller complete-lifecycle — 2026-08-17 (PASS; product complete)
+
+- **Comet PASS** (local `:43101`/`:43103`, session `cf3-e1-20260817`) on local
+  Postgres. Combined source fingerprint
+  `298bfdea8ef24a286b4c0088e13b8b32eec578a070977056a682e39631e46244`.
+- Pass: store ready; staff invite (fulfilment); CSV draft import; accept with
+  SLA due; dispatch+tracking; deliver; full refund auth `6065C440`; Overview
+  operational analytics (Refunded ₹95, Catalog live 2); persist agreement on
+  tracking/refund (UI projects Cancelled/Refunded from succeeded refund).
+- Order `245E0B87` / `245e0b87-caff-4842-babd-f9b14f9938ea`. CF3-E1 gate
+  `passed`. Product item complete; Q1 remains a separate release item. B5 is
+  next product-closure work. No A4 keys/DNS/deploy from this receipt.
+- Ops: gateway died mid-run → restart with forced local `DATABASE_URL`; Comet
+  chrome-error recovered via same-session closeout+restart.
+- Evidence:
+  [`evidence/cf3-e1-seller-lifecycle-20260817.json`](evidence/cf3-e1-seller-lifecycle-20260817.json).
+
+## CF3 catalog + fulfilment path stamps — 2026-08-17 (superseded by CF3-E1)
+
+- **Comet PASS** (local `:43101`/`:43103`, session `cf3-catalog-20260817`): store
+  setup; draft CSV import; Save draft; Exact publish preview naming
+  `seller.catalog.publish`; Confirm publish after Agent Guard Refresh/Save.
+- Local ops trap: `start-dev.sh gateway` must not use Render `DATABASE_URL` from
+  `gateway/.env`; force local Postgres. After restart, verify OpenAPI routes
+  before UI blame. Transient **Seller mandate not found** → Agent Guard
+  Refresh + Save.
+- Evidence:
+  [`evidence/cf3-catalog-draft-publish-preview-20260817.json`](evidence/cf3-catalog-draft-publish-preview-20260817.json),
+  [`evidence/cf3-catalog-store-ready-20260817.png`](evidence/cf3-catalog-store-ready-20260817.png),
+  [`evidence/cf3-catalog-draft-import-validation-20260817.png`](evidence/cf3-catalog-draft-import-validation-20260817.png),
+  [`evidence/cf3-catalog-save-draft-20260817.png`](evidence/cf3-catalog-save-draft-20260817.png),
+  [`evidence/cf3-catalog-exact-publish-preview-20260817.png`](evidence/cf3-catalog-exact-publish-preview-20260817.png),
+  [`evidence/cf3-catalog-publish-confirmed-20260817.png`](evidence/cf3-catalog-publish-confirmed-20260817.png),
+  [`evidence/cf3-catalog-agentguard-mandate-missing-20260817.png`](evidence/cf3-catalog-agentguard-mandate-missing-20260817.png).
+
+## A4 local production keys — 2026-08-17 (blocked; host gate + portal 1.a)
+
+- Operator said **Generate now**. Isolated local production Ed25519/X25519
+  pairs written under gitignored
+  `aadharchain/gateway/.local/ondc-production/{buyer,seller,lbnp}`.
+  Encryption public format `asn1_der_spki_b64`; private PEMs `0600`.
+- Public fingerprints / draft `unique_key_id` (not registered; no private PEMs):
+  [`evidence/ondc-a4-production-keys-local-20260817.json`](evidence/ondc-a4-production-keys-local-20260817.json).
+- PreProd `portal-download/{buyer,seller,lbnp}` sha256 unchanged. Nothing
+  copied to Render env, `.env` production PEM vars, DNS, deploy, or portal.
+- Checklist A4 stays `blocked` on the participant-host gate plus portal
+  Production 1.a modal reconcile/submit. A modal pair supersedes this draft.
+
+## A4 keys-only authorization — 2026-08-17 (superseded by generate-now)
+
+- Operator authorized **keys only** for Buyer NP `15462-10008`
+  (`ondcbuyer.aadharcha.in`), Seller ISN `15462-10011`
+  (`ondcseller.aadharcha.in`), and Logistics Buyer `15462-10220`
+  (`ondclbnp.aadharcha.in`). Not Render deploy, not GoDaddy DNS, not registry
+  submit. Later the same day the operator said **Generate now**; local pairs
+  now exist (see entry above).
+- Portal 1.b remains Pending for Retail Buyer/Seller (operator attestation, not
+  keygen). Logistics 1.b is Completed. Production EnvAccessRequest is not
+  visible on the 2026-08-17 portal readback.
+
+## A4 portal readback — 2026-08-17 (blocked; not production)
+
+- Authenticated portal UI readback ≠ provider-mail readback.
+- Stamp: [`evidence/ondc-a4-portal-readback-20260817.json`](evidence/ondc-a4-portal-readback-20260817.json).
+- Pre-Prod Subscribed / Integration in Progress only; production keys, DNS,
+  deploy, and registry submit remain operator-authorized and do not exist.
+- Checklist A4 stays `blocked`. The portal stamp does not unlock the path.
+  A later 2026-08-17 operator choice selected Unlock production path; a further
+  2026-08-17 keys-only authorization named the three profiles but did not give
+  generate-now. A later Generate-now wrote local production draft pairs only;
+  DNS/deploy/submit were not executed.
+
 ## CF0 contract closure — 2026-07-23
 
 - Frozen application-source fingerprint: `cb0769ea45b0f9e9cf63c825706d8fee1eeb3facf97d8e28bb3a832d1d026215` (gateway `5431307bf36bb8c906600b3ceea859efb34f9d44`, Buyer `bdd67735f54794a1936030288cf0e41a4c746893`, Seller `872e850cc451d91a63b1f5fd0216490ec2841cdc`).
@@ -155,7 +329,6 @@ Untested: S-PUBLISH, S-LONG-TRIAGE.
 - `/api/realtime/status`: `configured:true`, `model:gpt-realtime-2.1-mini`.
 - `/api/auth/me`: no session until OTP.
 - Sign in CTA: **visible** Buyer+Seller FQDN. OTP/consent: **not completed**.
-
 
 ## Live web E2E refresh — 2026-07-12 16:32 IST
 
@@ -699,7 +872,7 @@ Commands on unchanged local source:
 - Retained artifact: [`evidence/local-safety-final-20260716-2128.json`](evidence/local-safety-final-20260716-2128.json).
 
 This closes the local deterministic safety rows only. The three final browser
-rows and deployed dependency-honesty row in `TESTINGPLAN.md` remain open until
+rows and deployed dependency-honesty row in the testing-ledger owner remain open until
 the WIP Hermes bridge is healthy and an authorized deployment places the final
 source on the FQDN. Neither condition may be replaced by local or API evidence.
 
@@ -1222,3 +1395,246 @@ proof passed. Evidence:
 
 **Boundary:** no Gate 1 rerun, real shipment, real payment, production,
 report-generation, certification, or later gate. No in-scope blocker remains.
+
+## Buyer delivery tracking readback — 2026-08-01
+
+**Pass for persisted Seller-managed fulfilment; external LSP linkage remains
+unproved.** The signed-in Buyer FQDN listed three orders. Delivered order
+`709D9B9E` visibly showed `Status: Delivered`, `Provider: Standard Courier`,
+`Tracking ID: AG-709D9B9E`, `The seller confirmed delivery completion.`, and
+the saved delivery address. No order or fulfilment mutation ran.
+
+Current source maps persisted `provider_name`, `tracking_id`, fulfilment status,
+and status message into the Buyer order detail. The backend also retains
+fulfilment history, but the Buyer UI does not render that history as a timeline.
+This proof does not connect the synthetic LOG10 Workbench transaction to a
+Retail CommerceV1 order or establish live external-LSP vendor tracking.
+
+## Milestone 12 physical Buyer voice proof — 2026-08-01
+
+**Blocked at the bundled Chrome proof environment; no voice claim.** On source
+commit `2be9e5a5f19be47c938395c073bf947f717cec3d`, the signed-in Buyer page showed
+Account Ready, checkout protected by AgentGuard, and the Samantha entry point.
+Opening Samantha then exhausted the bounded browser interaction. A fresh
+semantic snapshot and the documented visible-DOM fallback both timed out.
+
+Google Chrome `150.0.7871.187` was running and the native-host manifest was
+correct for `com.openai.codexextension`; the bundled profile diagnostic could
+not find an active Chrome profile Preferences directory. No microphone
+permission was accepted, no audio was captured, no voice tool ran, and no
+product or commerce state changed. Text-mode and configured-status evidence do
+not satisfy this gate.
+
+The next bounded continuation reproduced the same proof-environment failure.
+Read-only Chrome discovery worked, but the signed-in `ONDC Buyer` tab remained
+owned by browser session `019fbc5c-be32-78c1-b77f-850d929530ba`; no other active
+AadhaarChain task owned that session. A fresh Chrome tab loaded the Buyer app
+without authentication, then opening its existing search/account controls and
+the final cleanup both timed out. No sign-in, microphone, audio, tool, commerce,
+or source mutation occurred. This strengthens the existing blocker fingerprint;
+it is not a new product finding.
+
+**Single next action:** the operator must release or close the stale signed-in
+`ONDC Buyer` tab/browser session, then leave one Chrome Buyer tab signed in and
+unclaimed. Resume this same M12 proof from a fresh state read, and obtain
+action-time operator confirmation before accepting any microphone permission
+prompt. Do not deploy or rerun completed Gate 1–3 work.
+
+The operator released the stale tabs and the next bounded run recovered Chrome
+interaction. A fresh signed-in Buyer session visibly reached `Voice and text
+ready · microphone on`. The operator reported separately exercising real voice,
+but the retained UI did not expose a modality-linked transcript/tool record, so
+that report is not promoted to full physical-voice acceptance.
+
+At the operator's request, the visible text lane then proved the shared tool
+runner without checkout: `Find atta and add one item to my cart. Do not
+checkout.` navigated to Cart and added `Sampoorna Whole Wheat Atta 1kg × 1` at
+INR 89. A second request persisted `User prefers whole wheat products.` with
+current settings readback. A third navigated to Checkout, where the exact INR 89
+landed-cost quote was visibly bound to AgentGuard's INR 10000 limit; no order or
+payment ran and the microphone remained visibly on. This is typed tool,
+preference, and guarded-navigation proof, not a substitute for voice-originated
+tool proof.
+
+With explicit approval, the shopping agent was paused and the UI read back
+`Shopping agent paused`. Clicking `Authorize exact total and place order` as
+the human buyer returned `agent is paused`; the page remained on the bound INR
+89 quote and returned no order result. The agent was immediately restored and
+the UI read back `Shopping agent on`.
+
+**Finding:** that click was a human checkout, not an agent-originated tool call.
+The operator correctly required manual checkout to remain available while the
+shopping agent is paused. The local correction adds a fail-closed
+`actor: agent | user` request field, binds it into the checkout decision hash,
+keeps Samantha on the default `agent` path, and marks only the manual Checkout
+page as `user`. Buyer tests passed 201/201 plus the production build; gateway
+tests passed 237 with 51 PostgreSQL-dependent skips; Ruff and the full
+testing-ledger validator passed. The explicit PostgreSQL actor regression is
+present but skipped without `DATABASE_URL`; the file-backed actor regression
+passed. No deployment, live successful checkout, order, or payment was run.
+Physical voice-originated tool proof remains open because no retained
+modality-linked voice/tool record was exposed.
+
+The next mic-capable handoff again reached `Voice and text ready · microphone
+on`, but before operator speech the live `__samanthaEvents`,
+`__samanthaTools`, and error arrays were all empty and memory was unchanged.
+The server-only secret boundary is structurally closed: the gateway reads the
+long-lived `OPENAI_API_KEY`, mints an authenticated ephemeral Realtime client
+secret, and sanitizes transcript metadata; focused gateway Realtime tests pass
+3/3. The Buyer requests only that client secret and its focused dialog test
+passes. This does not replace the still-missing physical spoken tool turn.
+
+Three consecutive bounded audits now show the same state: microphone on, no
+Realtime error, no input-audio transcription event, no tool call, and unchanged
+memory because no operator speech landed. Further automation cannot supply
+physical speech without violating this gate. The mic-capable Buyer tab remains
+handed off for an operator-spoken turn; M12 is blocked at that exact boundary.
+
+## Local paused-agent checkout and delivery tracking integration — 2026-08-01
+
+**Pass for current-source manual checkout and text tracking; partial for the
+full Seller-to-Buyer logistics lifecycle.** After restarting the local gateway
+onto the changed source, the Buyer saved an INR 10,000 shopping limit, paused
+the shopping agent, and manually placed one INR 89 simulated order. Order
+`7726C069` was created, the simulated payment succeeded, the signed AgentGuard
+reference verified, and a later Buyer readback still showed `Shopping agent
+paused`. This closes the observed actor-semantics regression locally; it is not
+deployed or FQDN proof.
+
+Samantha text `Track my latest order` invoked the new read-only tracking path,
+kept the UI on the exact order, and rendered that order as `created` and
+awaiting seller confirmation. Source tests also prove latest/specified-order
+selection, persisted provider/tracking/history projection, and no invented
+courier when the backend has none. The Buyer order detail now renders stored
+fulfilment history. Seller dispatch now requires an entered delivery provider
+and tracking ID instead of hardcoding `Standard Courier`.
+
+Buyer tests passed 203/203, lint had zero errors and two pre-existing warnings,
+and the production build/copy gate passed. Seller tests passed 217/217; lint
+and build passed. Gateway tests passed 237 with 51 environment-dependent skips.
+The local demo Seller principal did not own the persisted catalog/order, so a
+rendered Seller dispatch and populated Buyer timeline were not promoted to
+Pass. Synthetic Workbench LOG10 callbacks also remain uncorrelated with Retail
+CommerceV1 orders. No deployment, FQDN mutation, real shipment, or real payment
+occurred.
+
+## Signed LOG10 offer to CommerceV1 delivery lifecycle — 2026-08-01
+
+**Pass locally for one bounded signed-offer correlation and rendered lifecycle;
+not an LSP booking or physical shipment claim.** One explicitly authorized
+PreProd LOG10 search used transaction
+`6f5a3bf8-fc4e-4b59-b0ab-1d09d7e75201`. The gateway returned HTTP 200/ACK and
+three signed callbacks. The server selected only TapTap Logistics because its
+callback was signature-verified LOG10 1.2.5 with item code P2P, category
+Immediate Delivery, and a Delivery fulfilment; the Retail callback and Pramaan
+mock were excluded.
+
+The Seller protected `seller.fulfilment.commit` path now resolves the signed
+offer from the durable ONDC inbox and writes the normalized provider and
+protocol correlation into the existing CommerceV1 `fulfilment` JSON. It does
+not create a parallel logistics store. A focused PostgreSQL regression passed,
+the gateway suite passed 237 with 51 environment skips, the ONDC adapter suite
+passed 10/10, and Seller tests/build/copy gate passed.
+
+Local order `12EE1DC3` then passed the rendered Seller lifecycle Pending →
+Accepted → In progress → Dispatched → Delivered. The dispatch form supplied
+only signed transaction ID plus proof tracking ID `TAPTAP-UI-1201`; the server
+resolved and rendered `TapTap Logistics`. Buyer readback rendered Delivered,
+the exact provider/tracking ID, and confirmed→preparing→shipped→delivered
+history. Samantha text `Track my latest order` returned the same provider,
+tracking ID, and delivered status. Evidence:
+`.agents/skills/testing-ledger/references/evidence/preprod-log10-commerce-correlation-20260801.json`.
+
+No LOG10 init/confirm/status/track request ran. The tracking ID and state
+transitions were local proof fixtures, not TapTap-issued or physical-shipment
+evidence. Deployment, FQDN lifecycle, legal-term acceptance, real payment,
+production ONDC, and physical delivery remain unclaimed.
+
+## TapTap current PreProd init retry — 2026-08-01
+
+**Blocked before confirm; fail-closed behavior passed.** After the operator
+explicitly approved the exact synthetic payload, one TapTap LOG10 `init` was
+sent on transaction `6f5a3bf8-fc4e-4b59-b0ab-1d09d7e75201`, message
+`49a8c5ad-0bda-4afb-b1bf-53469158404a`. TapTap returned HTTP 200/ACK and the
+gateway persisted signature-verified `on_init` inbox record `10190` at contract
+1.2.5 with the INR 59 Immediate Delivery quote.
+
+The callback again omitted the mandatory
+`rider_check/inline_check_for_rider=yes`. Its fulfillment tags were limited to
+`linked_order`, `linked_provider`, `state`, and `rto_action`, with
+`ready_to_ship=no`. The contract therefore prohibited `confirm`. Durable
+outbox readback contains exactly one `search` and one `init`, with zero
+`confirm`, `update`, `status`, or `track` records. Evidence:
+`.agents/skills/testing-ledger/references/evidence/preprod-taptap-init-retry-20260801.json`.
+
+No LSP booking, LSP-issued tracking, real payment, physical shipment,
+production action, or FQDN delivery lifecycle is claimed. The next dependency
+is an external LOG10 BPP returning a compliant `on_init`; retrying the same
+TapTap contract cannot advance this gate.
+
+## ONDC-compliant local delivery reconciliation — 2026-08-02
+
+**Pass for deterministic source/PostgreSQL behavior and two unchanged-source
+local rendered journeys; external LSP acceptance remains open.** Gateway
+transport now rejects unsigned, wrong-domain,
+wrong-action, and non-1.2.5 LOG10 callbacks. Seller AgentGuard deterministically
+ranks signed P2P Immediate Delivery offers and is the only replacement-LSP path
+after conformance rejection. A confirm requires a compliant selected signed
+`on_init`, matching provider/item/fulfilment/quote, and constructs only the
+action-specific `linked_order` id/preparation time and `ready_to_ship=yes`
+state tags. BAP/BPP terms still fail closed at the explicit operator boundary.
+
+The callback path verifies signature/context, persists before ACK, then uses the
+existing inbox lease/retry/dead-letter primitives and protected inbox drain to
+apply idempotent metadata/history to the order located by
+`fulfilment.logistics.transaction_id`. Without PostgreSQL, LOG10 callbacks NACK
+with 503; the file inbox remains development-only. CommerceV1 alone owns
+transitions:
+pending/agent search stays preparing, pickup/out-for-delivery becomes shipped,
+delivered becomes delivered, and cancellation runs only through the existing
+state machine. Unknown, stale, skipped, and regressive callbacks preserve an
+evidence event, flag review, and do not promote stale metadata or invent state.
+
+Current receipts: PostgreSQL gateway `301 passed`; changed-file Ruff passed;
+Buyer `203 passed` and Seller `218 passed`; both production builds/copy gates
+passed. The immutable TapTap packet includes durable search/init
+identifiers and commitments, expected versus observed tags, registry signature
+results, and official validator links:
+[`evidence/preprod-taptap-interoperability-packet-20260802.json`](evidence/preprod-taptap-interoperability-packet-20260802.json).
+The support text is prepared but unsent in
+[`evidence/preprod-taptap-interoperability-draft-20260802.md`](evidence/preprod-taptap-interoperability-draft-20260802.md).
+
+Fingerprint `514777d6...` passed two full local journeys through the bundled
+in-app browser. With the shopping agent paused, human
+checkout created simulated orders `8A0D86E5` / `E31E0401` and verified signed
+authorization references `D0DEF4D1` / `8D56CDC6`. Buyer rendered `Pending`,
+Seller rendered `Pending provider` with ordered history, and Samantha text
+matched the latest CommerceV1 state. Neither UI invented courier, tracking,
+location, ETA, or shipment state. Evidence:
+[`local-log10-acceptance-20260802.json`](evidence/514777d6a5914fff837bf4aedc3249c903cedc3c6345a2774fbcd00fd4fc25ed/local-log10-acceptance-20260802.json).
+
+No external message, deployment, commit/push, legal-term acceptance, compliant
+LSP `on_init`, real shipment, real payment, or new protocol payload occurred.
+
+## CF2 local Auth0 lifecycle acceptance — 2026-08-15
+
+**Pass for CF2-E1 on frozen application fingerprint
+`2b00c00f6bc2f4dfb6fb11b5992cc955053e92125bdd0f5dce91547a75cab92f`.**
+Buyer comparison rendered two Pune offers from two sellers with confirmed
+serviceability ahead of unknown and honest listed-pack pricing. Correlated
+Auth0 order `709D9B9E` retained courier, tracking ID, and ordered fulfilment
+history through delivered state. Buyer return produced verified receipt
+`7F9F4245`; grievance `fabc818c` moved through Seller acknowledgement and a
+verified replacement commitment, then Buyer acceptance closed it with verified
+outcome receipt `D2E36C2E` and five retained history events.
+
+Portfolio CI passed with gateway `251 passed, 53 skipped`; Buyer passed 211
+tests plus typecheck/lint/build, Seller passed 219 plus typecheck/lint/build,
+and the isolated PostgreSQL lifecycle passed. Desktop, 390px, keyboard order,
+accessible actions, persisted readback, and terminal receipt visibility passed.
+Receipt:
+[`evidence/cf2-e1-auth0-lifecycle-20260815.json`](evidence/cf2-e1-auth0-lifecycle-20260815.json).
+
+CF2 product item is **complete** on CF2-E1. Q1 remains the separate
+current-source release gate. No deployment, DNS, production payment, ONDC
+submission, or external shipment was performed or proven.

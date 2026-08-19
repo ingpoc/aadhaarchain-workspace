@@ -12,8 +12,7 @@ Venture: **Aadhar Chain**
 | DNS | same + `?tab=dns` (or DNS tab in UI) |
 | Email users | https://dashboard.godaddy.com/venture/email?ventureId=5f74c5ac-83e6-433b-a6ee-7b497c3a65f3 |
 
-Browser owner: bundled `@chrome`; discover the logged-in GoDaddy tab and claim
-the exact returned tab ID. OTP/login → STOP.
+Browser owner: bundled `@chrome`. OTP/login → STOP.
 
 ## Domain
 
@@ -26,7 +25,7 @@ the exact returned tab ID. OTP/login → STOP.
 | Gateway FQDN | `gateway.aadharcha.in` — CNAME → `identity-aadhar-gateway-main.onrender.com` (added 2026-07-12; Render Free custom domain + TLS) |
 | ONDC Buyer FQDN | `ondcbuyer.aadharcha.in` — operator confirmed 2026-07-12; dig A `76.76.21.21`; HTTPS 200 Vite app |
 | ONDC Seller FQDN | `ondcseller.aadharcha.in` — operator confirmed 2026-07-12; dig A `76.76.21.21`; HTTPS 200 Vite app |
-| ONDC Logistics Buyer FQDN | `ondclbnp.aadharcha.in` — CNAME → `identity-aadhar-gateway-main.onrender.com` (added 2026-07-26, TTL 1 hour) after the exact Render target was verified; public TLS state belongs to `.voice/progress.md`. |
+| ONDC Logistics Buyer FQDN | `ondclbnp.aadharcha.in` — CNAME → `identity-aadhar-gateway-main.onrender.com` (added 2026-07-26, TTL 1 hour) after the exact Render target was verified; current readiness belongs to `.session/checklist/checklist.json`. |
 | Nameservers (last observed 2026-07-11) | GoDaddy `ns73/74.domaincontrol.com` + NS1 `dns1–4.p06.nsone.net` (Vercel-style); re-read before editing |
 | Retail live probe | 2026-07-12 — Buyer/Seller TLS OK. This does not prove the pending LBNP record or endpoint. |
 

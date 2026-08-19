@@ -15,7 +15,7 @@ description: >-
 
 **Standing rule:** append durable recording findings to this skill + `references/`; **no secrets**.
 
-**Drivers:** browser = bundled `@chrome`; native focus/display = bundled `@Computer`. [portfolio-browser](../portfolio-browser/SKILL.md) is legacy replay/diagnosis only. Samantha/UX claims = [ondc-testing](../ondc-testing/SKILL.md) (**PreProd FQDN `W-*` bar**). Deploy/FQDN = [portfolio-deploy](../portfolio-deploy/SKILL.md). Partner/Token Nxt form = [apisetu-partner-onboarding](../apisetu-partner-onboarding/SKILL.md).
+**Drivers:** browser = bundled `@chrome`; native focus/display = bundled `@Computer`. [portfolio-browser](../portfolio-browser/SKILL.md) is legacy replay/diagnosis only. Samantha/UX claims = [testing-ledger](../../../.agents/skills/testing-ledger/SKILL.md) (**PreProd FQDN `W-*` bar**). Deploy/FQDN = [portfolio-deploy](../portfolio-deploy/SKILL.md). Partner/Token Nxt form = [apisetu-partner-onboarding](../apisetu-partner-onboarding/SKILL.md).
 
 **Default record surface:** FQDN PreProd — `ondcbuyer.aadharcha.in` / `ondcseller.aadharcha.in` / `gateway.aadharcha.in` + Auth0. Loopback only for automation recovery.
 
@@ -44,7 +44,7 @@ Run and require Pass before scripting deep UI:
 
 | Check | How | Pass |
 | --- | --- | --- |
-| Chrome plugin | Chrome cheap preflight + smallest browser-client check | Existing/claimed Chrome tab is controllable |
+| Browser proof | bundled `@chrome` | Required FQDN surfaces render |
 | Native display | `@Computer` app state + screenshot | Recorded display/app state is visible |
 | ffmpeg | `which ffmpeg` + `ffmpeg -f avfoundation -list_devices true -i ""` | Screen index known (which monitor has Comet) |
 | PreProd stack | FQDN gateway health + Buyer/Seller 2xx | Realtime `configured:true` if voice claimed |
@@ -56,7 +56,7 @@ Details: [`references/access-checklist.md`](references/access-checklist.md).
 
 **Local trap (2026-07-12/13):** if using loopback for recovery, Vite process env can be FQDN while `.env.local` is loopback (or reverse). `scripts/start-dev.sh` strips inherited `VITE_*`, applies `.env.local`, starts Vite in a **new process group**. Prefer FQDN PreProd for record dry-run.
 
-**Patterns / antipatterns:** [`references/access-checklist.md`](references/access-checklist.md) § Patterns. Driver symptom table: [`portfolio-browser/references/troubleshooting.md`](../portfolio-browser/references/troubleshooting.md). Samantha catalog NL empty: [`ondc-testing`](../ondc-testing/SKILL.md) Friction → fix.
+**Patterns / antipatterns:** [`references/access-checklist.md`](references/access-checklist.md) § Patterns. Driver symptom table: [`portfolio-browser/references/troubleshooting.md`](../portfolio-browser/references/troubleshooting.md). Samantha catalog NL empty: [`testing-ledger`](../../../.agents/skills/testing-ledger/SKILL.md) Friction → fix.
 
 ## Phase 2 — Script (narrative first)
 
@@ -88,7 +88,7 @@ For each beat in the script:
 Matrix template: [`references/step-matrix-template.md`](references/step-matrix-template.md).  
 Token Nxt live matrix: [`../apisetu-partner-onboarding/references/token-nxt-demo-step-matrix.md`](../apisetu-partner-onboarding/references/token-nxt-demo-step-matrix.md).
 
-Map beats to [`ondc-testing`](../ondc-testing/SKILL.md) PreProd flow IDs (`W-B-FIND-NL-ATTA`, `W-B-AG-CONFIRM`, `W-S-AG-PAUSE`, etc.).
+Map beats to [`testing-ledger`](../../../.agents/skills/testing-ledger/SKILL.md) PreProd flow IDs (`W-B-FIND-NL-ATTA`, `W-B-AG-CONFIRM`, `W-S-AG-PAUSE`, etc.).
 
 ### AgentGuard / Samantha selector notes (Buyer)
 
@@ -154,6 +154,6 @@ Commands sketch: [`references/record-commands.md`](references/record-commands.md
 | Surface | Role |
 | --- | --- |
 | [portfolio-browser](../portfolio-browser/SKILL.md) | Hermes WIP preflight / click_* / SSO |
-| [ondc-testing](../ondc-testing/SKILL.md) | PreProd Samantha claim→screenshot Pass bar |
+| [testing-ledger](../../../.agents/skills/testing-ledger/SKILL.md) | PreProd Samantha claim→screenshot Pass bar |
 | [authentication](../authentication/SKILL.md) | Auth0 / demo principal |
 | [apisetu-partner-onboarding](../apisetu-partner-onboarding/SKILL.md) | Token Nxt form + curated answers |

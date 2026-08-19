@@ -1,0 +1,173 @@
+{
+  "schema_version": "testing-receipt.v1",
+  "gate_id": "B5-E1",
+  "verified_at": "2026-08-17T20:10:00+05:30",
+  "environment": "PreProd Auth0-owned signed IGM on Buyer/Seller FQDNs after nested commit 014a6dd; not production; Workbench prepaid+IGM not rerun",
+  "source_revision": "014a6ddf74e0b5b939cfddcf1de48acc856d472c",
+  "authorization": [
+    "B5-20260817-01 PreProd official IGM",
+    "B5-20260817-03 exact IGM commit on existing identity-aadhar-gateway-main"
+  ],
+  "verdict": "passed",
+  "does_not_overwrite": [
+    ".agents/skills/testing-ledger/references/evidence/b5-e1-buyer-seller-readback-20260817.json",
+    ".agents/skills/testing-ledger/references/evidence/b5-e1-workbench-igm-resolve-20260817.json",
+    ".agents/skills/testing-ledger/references/evidence/b5-e1-workbench-igm-bind-20260817.json",
+    ".agents/skills/testing-ledger/references/evidence/b5-e1-workbench-igm-ack-20260817.json",
+    ".agents/skills/testing-ledger/references/evidence/b5-e1-workbench-igm-rerun-20260817.json",
+    ".agents/skills/testing-ledger/references/evidence/b5-e1-track-onconfirm-deploy-20260817.json",
+    ".agents/skills/testing-ledger/references/evidence/b5-e1-workbench-igm-retry-20260817.json",
+    ".agents/skills/testing-ledger/references/evidence/b5-e1-workbench-igm-20260817.json"
+  ],
+  "render_service": {
+    "name": "identity-aadhar-gateway-main",
+    "id": "srv-d7f256f41pts73f68660",
+    "plan": "free",
+    "auto_deploy": "no",
+    "live_deploy_id": "dep-da1hhcrl550s73fmjrcg",
+    "live_deploy_commit": "014a6ddf74e0b5b939cfddcf1de48acc856d472c",
+    "live_deploy_message": "Map IGM RESOLVED from issue_actions and 404 protocol order URLs.",
+    "live_deploy_finished_at": "2026-08-17T14:21:23.128289Z",
+    "previous_live_deploy_id": "dep-da1g9jpt0dsc73bqcp0g",
+    "previous_live_commit": "1db9fa075bc1470487477d9d424be73cefa870c5"
+  },
+  "gateway_health": {
+    "url": "https://gateway.aadharcha.in/api/health",
+    "http": 200
+  },
+  "auth0_owned_issue": {
+    "issue_id": "e0809349-e043-4265-a927-d9f981643709",
+    "commerce_order_id": "8f3f56d0-6f7d-4ac4-9efe-d9447a3ff56e",
+    "order_ref": "8F3F56D0",
+    "principal_id": "principal:auth0:google-oauth2:…",
+    "seller_id": "principal:auth0:google-oauth2:…",
+    "owner_id": "principal:auth0:google-oauth2:…",
+    "reason": "fulfillment",
+    "description": "Package stalled after confirm; need fulfillment update.",
+    "status": "closed",
+    "version": 5,
+    "response_due_at": null,
+    "escalation_due_at": null,
+    "protocol_order_id": null,
+    "protocol_transaction_id": "f37e3870-a420-40c7-b32a-3b1153331eff",
+    "history_len": 8,
+    "history_statuses": [
+      "open",
+      "open",
+      "acknowledged",
+      "acknowledged",
+      "acknowledged",
+      "closed",
+      "closed",
+      "closed"
+    ],
+    "history_notes": [
+      "Customer issue created",
+      "IGM issue dispatched",
+      "IGM on_issue reconciled",
+      "IGM issue_status dispatched",
+      "IGM on_issue_status reconciled",
+      "IGM issue dispatched",
+      "IGM on_issue reconciled",
+      "IGM on_issue_status reconciled"
+    ]
+  },
+  "signed_callbacks": {
+    "transaction_id": "f37e3870-a420-40c7-b32a-3b1153331eff",
+    "destination_bpp": "https://ondcseller.aadharcha.in/ondc/issue",
+    "not_workbench": true,
+    "outbox": [
+      {"outbox_id": 22922, "action": "issue", "state": "delivered"},
+      {"outbox_id": 22923, "action": "on_issue", "state": "delivered"},
+      {"outbox_id": 22925, "action": "issue_status", "state": "delivered"},
+      {"outbox_id": 22926, "action": "on_issue_status", "state": "delivered"},
+      {"outbox_id": 22927, "action": "issue", "state": "delivered"},
+      {"outbox_id": 22928, "action": "on_issue", "state": "delivered"},
+      {"outbox_id": 22931, "action": "on_issue_status", "state": "delivered"}
+    ],
+    "inbox": [
+      {"inbox_id": 23217, "action": "issue", "issue_status": "OPEN", "state": "pending", "signature_verified": null},
+      {"inbox_id": 23218, "action": "on_issue", "issue_status": "PROCESSING", "respondent_actions": ["PROCESSING"], "state": "delivered", "signature_verified": true},
+      {"inbox_id": 23220, "action": "issue_status", "issue_status": null, "state": "pending", "note": "BAP POST /api/ondc/issue_status with issue_id only"},
+      {"inbox_id": 23221, "action": "on_issue_status", "issue_status": "PROCESSING", "respondent_actions": ["PROCESSING"], "state": "delivered", "signature_verified": true},
+      {"inbox_id": 23222, "action": "issue", "issue_status": "CLOSED", "complainant_actions": ["OPEN", "CLOSE"], "state": "pending"},
+      {"inbox_id": 23223, "action": "on_issue", "issue_status": "PROCESSING", "respondent_actions": ["PROCESSING"], "state": "delivered", "signature_verified": true, "note": "BPP on_issue after CLOSE still PROCESSING"},
+      {"inbox_id": 23226, "action": "issue_status", "issue_status": "RESOLVED", "state": "pending", "note": "extra inbound POST /ondc/issue_status with status RESOLVED after CLOSE; not the BAP issue_status-only path"},
+      {"inbox_id": 23227, "action": "on_issue_status", "issue_status": "RESOLVED", "respondent_actions": ["PROCESSING", "RESOLVED"], "state": "delivered", "signature_verified": true}
+    ]
+  },
+  "buyer_ui": {
+    "url": "https://ondcbuyer.aadharcha.in/orders/8f3f56d0-6f7d-4ac4-9efe-d9447a3ff56e",
+    "signed_in": true,
+    "issue_id_visible": "e0809349-e043-4265-a927-d9f981643709",
+    "badge": "resolved",
+    "audit_timeline_control": "not found in this SPA render"
+  },
+  "seller_ui": {
+    "url": "https://ondcseller.aadharcha.in/orders/8f3f56d0-6f7d-4ac4-9efe-d9447a3ff56e",
+    "signed_in": true,
+    "issue_uuid_in_card_header": false,
+    "same_description": true,
+    "status": "closed",
+    "audit_timeline_control": "not found in this SPA render"
+  },
+  "protocol_order_url": {
+    "url": "https://ondcbuyer.aadharcha.in/orders/B5091e6b53",
+    "authenticated_ui": "Order detail unavailable / order not found; not 500",
+    "unauthenticated_html": 200,
+    "unauthenticated_api": {"url": "https://ondcbuyer.aadharcha.in/api/demo-commerce/buyer/orders/B5091e6b53", "http": 401, "detail": "Authenticated principal required.", "not_500": true}
+  },
+  "workbench_issue_not_claimed": {
+    "issue_id": "8382bcef-c3ab-41e5-b04e-1088d10ffb84",
+    "status": "open",
+    "principal_id": "ondcbuyer.aadharcha.in",
+    "seller_id": "workbench.ondc.tech",
+    "shown_on_auth0_buyer_ui": false,
+    "shown_on_auth0_seller_ui": false
+  },
+  "product_gaps": {
+    "native_bpp_issue_status": "BAP POST /api/ondc/issue_status sends issue_id only; BPP stays PROCESSING unless inbound already has RESOLVED. Do not invent a staff console.",
+    "resolution_proposed_hop": "CLOSE walked open→acknowledged→closed before the extra inbound RESOLVED; history has no resolution_proposed.",
+    "seller_issue_uuid": "Seller card shows reason/description/status, not the issue UUID.",
+    "sla": "response_due_at and escalation_due_at null on this official Auth0 IGM issue."
+  },
+  "screenshots": [
+    ".agents/skills/testing-ledger/references/evidence/b5-e1-auth0-buyer-issue-open-20260817.png",
+    ".agents/skills/testing-ledger/references/evidence/b5-e1-auth0-buyer-issue-resolved-20260817.png",
+    ".agents/skills/testing-ledger/references/evidence/b5-e1-auth0-seller-issue-closed-20260817.png",
+    ".agents/skills/testing-ledger/references/evidence/b5-e1-protocol-order-404-20260817.png"
+  ],
+  "comet": {
+    "session_id": "b5-e1-auth0-igm-20260817",
+    "label": "B5-E1-AUTH0",
+    "distinct_from": [
+      "b5-e1-ui-readback-20260817",
+      "b5-igm-issue-actions-20260817",
+      "b5-igm-issue-bind-20260817",
+      "b5-igm-ack-20260817",
+      "b5-igm-rerun-20260817",
+      "b5-igm-retry-20260817",
+      "b5-igm-workbench-20260817",
+      "a4-portal-20260817",
+      "a4-buyer-ukid-20260817"
+    ],
+    "a4_leases_not_killed": true,
+    "closeout": {"verified_absent": true, "matching_session_count": 0}
+  },
+  "not_proven": [
+    "Workbench issue 8382bcef Buyer/Seller-visible outcome",
+    "native BPP issue_status emitting RESOLVED without inbound RESOLVED",
+    "visible audit timeline on Buyer and Seller SPA",
+    "SLA/escalation targets on this official Auth0 IGM issue",
+    "production IGM"
+  ],
+  "external_actions_taken": [
+    "Render MCP list_deploys + read-only Postgres for issue e0809349 and inbox/outbox on tx f37e3870",
+    "Auth0 Buyer and Seller FQDN signed IGM via Comet b5-e1-auth0-igm-20260817",
+    "no Workbench IGM 15–18 rerun",
+    "no PEM copy",
+    "no DNS",
+    "no portal Submit",
+    "no production IGM"
+  ]
+}

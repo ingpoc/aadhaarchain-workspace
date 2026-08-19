@@ -1,0 +1,47 @@
+{
+  "schema_version": "testing-receipt.v1",
+  "gate_id": "B5-L2",
+  "verified_at": "2026-08-10T02:15:18+05:30",
+  "environment": "local Buyer, Seller, and gateway with configured PostgreSQL",
+  "source_fingerprint": "f6b6a7f4b74dcfe11de3ff6819f3496a5cbef794bbc88d594fa162d9a1d1baed",
+  "subject": {
+    "order_id": "56be3cf0-4068-4c31-9283-e7710d5baba6",
+    "issue_id": "1e3af42e-bea0-4780-aa1d-c9dd609b3228"
+  },
+  "results": [
+    {
+      "scope": "local issue lifecycle and authorization",
+      "result": "passed",
+      "summary": "112 gateway checks passed for ownership, acknowledgement, owner/SLA assignment, remedy rejection, escalation, history, and receipt-protected effects."
+    },
+    {
+      "scope": "durable PostgreSQL lifecycle and mandate replacement regression",
+      "result": "passed",
+      "summary": "The focused PostgreSQL journey passed in 166.58 seconds, including confirmation of a newer draft under the stable Buyer mandate ID and open -> acknowledged -> resolution_proposed -> rejected -> escalated persistence."
+    },
+    {
+      "scope": "Buyer and Seller application verification",
+      "result": "passed",
+      "summary": "Buyer 25 focused tests and Seller 43 focused tests passed; both production builds passed."
+    },
+    {
+      "scope": "rendered Buyer and Seller readback",
+      "result": "passed",
+      "summary": "Both order-detail pages rendered the same issue ID, owner, response target, escalation target, five-event audit timeline, and escalated state with zero browser console errors."
+    }
+  ],
+  "artifacts": [
+    "output/playwright/b5-buyer-escalated-20260810.png",
+    "output/playwright/b5-seller-escalated-20260810.png"
+  ],
+  "warnings": [
+    "The configured PostgreSQL verification is remote and latency-bound; elapsed time is not an application pass criterion.",
+    "Third-party deprecation warnings remain and did not change outcomes."
+  ],
+  "not_proven": [
+    "ONDC IGM request or callback interoperability",
+    "duplicate, late, invalid, timeout, retry, or dead-letter network recovery",
+    "authorized PreProd terminal resolution or operational acceptance"
+  ],
+  "external_actions_taken": []
+}

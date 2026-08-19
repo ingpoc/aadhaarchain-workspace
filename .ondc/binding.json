@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "app": "aadharcha-agentguard",
+  "dns_provider": "godaddy",
+  "runtime_provider": "render+vercel",
+  "environments": {
+    "preprod": {
+      "registry_subscribe": "https://preprod.registry.ondc.org/ondc/subscribe",
+      "registry_lookup": "https://preprod.registry.ondc.org/v2.0/lookup"
+    },
+    "production": {
+      "registry_subscribe": "https://prod.registry.ondc.org/subscribe",
+      "registry_lookup": "https://prod.registry.ondc.org/v2.0/lookup"
+    }
+  },
+  "participants": [
+    {
+      "id": "buyer-retail-preprod",
+      "role": "bap",
+      "domain": "ONDC:RET10",
+      "subscriber_id": "ondcbuyer.aadharcha.in",
+      "callback_uri": "https://ondcbuyer.aadharcha.in/ondc",
+      "environment": "preprod",
+      "unique_key_id": "1aee68ad-bc2a-4fc4-b233-7e14c6abba9b",
+      "key_source": "portal-download",
+      "key_material_path": "aadharchain/gateway/.local/ondc-sandbox/portal-download/buyer/",
+      "dns": { "type": "A", "name": "ondcbuyer", "target": "76.76.21.21" },
+      "runtime": {
+        "kind": "edge",
+        "service": "ondc-buyer",
+        "public_url": "https://ondcbuyer.aadharcha.in"
+      },
+      "status": "live"
+    },
+    {
+      "id": "seller-retail-preprod",
+      "role": "bpp",
+      "domain": "ONDC:RET10",
+      "subscriber_id": "ondcseller.aadharcha.in",
+      "callback_uri": "https://ondcseller.aadharcha.in/ondc",
+      "environment": "preprod",
+      "unique_key_id": "baf58086-7024-438a-becf-4cfa056ec8d9",
+      "key_source": "portal-download",
+      "key_material_path": "aadharchain/gateway/.local/ondc-sandbox/portal-download/seller/",
+      "dns": { "type": "A", "name": "ondcseller", "target": "76.76.21.21" },
+      "runtime": {
+        "kind": "edge",
+        "service": "ondc-seller",
+        "public_url": "https://ondcseller.aadharcha.in"
+      },
+      "status": "live"
+    },
+    {
+      "id": "lbnp-log10-preprod",
+      "role": "bap",
+      "domain": "ONDC:LOG10",
+      "subscriber_id": "ondclbnp.aadharcha.in",
+      "callback_uri": "https://ondclbnp.aadharcha.in/ondc",
+      "environment": "preprod",
+      "unique_key_id": "9e7388f4-c68e-4006-ac5a-e7517382999f",
+      "key_source": "portal-download",
+      "key_material_path": "aadharchain/gateway/.local/ondc-sandbox/portal-download/lbnp/",
+      "dns": {
+        "type": "CNAME",
+        "name": "ondclbnp",
+        "target": "identity-aadhar-gateway-main.onrender.com"
+      },
+      "runtime": {
+        "kind": "origin",
+        "service": "identity-aadhar-gateway-main",
+        "public_url": "https://gateway.aadharcha.in"
+      },
+      "status": "live"
+    }
+  ],
+  "workbench": {
+    "base": "https://workbench.ondc.tech",
+    "start_path": "/backend-ui/flow/new",
+    "broken_ui_start_path": "/backend-ui/api/sessions/flows/{sessionId}"
+  }
+}

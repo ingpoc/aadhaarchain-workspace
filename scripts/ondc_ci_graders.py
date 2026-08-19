@@ -908,7 +908,11 @@ def grade_offline() -> list[dict[str, Any]]:
         text=True,
         check=False,
     )
-    ok = proc.returncode == 0
+    try:
+        gate_status = json.loads(proc.stdout)
+    except json.JSONDecodeError:
+        gate_status = {}
+    ok = proc.returncode == 0 and gate_status.get("commerce_demo_mode_required") is False
     rows.append(
         {
             "id": "commerce_demo_mode_gate",

@@ -2,7 +2,7 @@
   "schema_version": 1,
   "name": "cursor-authentication",
   "cwd": "../../../..",
-  "source_paths": ["..", "../../HARDENING.md", "../../../../scripts/validate_cursor_skill.py"],
+  "source_paths": ["..", "../../../../scripts/validate_cursor_skill.py"],
   "ignore_parts": ["evidence", "__pycache__"],
   "steps": [{
     "name": "validate",

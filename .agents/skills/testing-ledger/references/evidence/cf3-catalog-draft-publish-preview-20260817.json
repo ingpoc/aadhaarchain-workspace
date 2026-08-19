@@ -1,0 +1,57 @@
+{
+  "schema": "cf3-catalog-verification.v1",
+  "verified_at": "2026-08-17T10:40:00+05:30",
+  "environment": "local",
+  "tooling": "comet-control",
+  "session_id": "cf3-catalog-20260817",
+  "ports": {
+    "gateway": 43101,
+    "seller": 43103
+  },
+  "database": "postgresql://gurusharan@127.0.0.1:5432/postgres",
+  "item_id": "item_b1aa7216270545a3",
+  "item_title": "Organic mangoes",
+  "steps": [
+    {
+      "id": "1_store_ready",
+      "result": "pass",
+      "notes": "Completed store setup for CF3 Pune Store; redirected to /catalog with Import drafts enabled."
+    },
+    {
+      "id": "2_csv_import_or_save_draft",
+      "result": "pass",
+      "notes": "CSV Import drafts created 1 draft; Save draft on ProductEditPage succeeded after gateway restart with draft PATCH routes."
+    },
+    {
+      "id": "3_draft_validation_section",
+      "result": "pass",
+      "notes": "CatalogPage showed Resolve draft listings with Edit draft and image diagnostic."
+    },
+    {
+      "id": "4_exact_publish_preview",
+      "result": "pass",
+      "notes": "Review and publish opened Exact publish preview naming seller.catalog.publish."
+    },
+    {
+      "id": "5_confirm_publish",
+      "result": "pass",
+      "notes": "First Confirm publish failed with Seller mandate not found after gateway restart; after Agent Guard Refresh/Save authority, Confirm publish published the listing (Visible products 1)."
+    }
+  ],
+  "agentguard_blocker_observed": {
+    "error": "Seller mandate not found",
+    "when": "first Confirm publish after gateway restart",
+    "recovery": "Settings \u2192 Agent Guard \u2192 Refresh + Save authority changes restored active mandate with Publish catalog allowed"
+  },
+  "ops_note": "Initial gateway process lacked draft POST/PATCH in OpenAPI (stale). start-dev.sh gateway alone loaded Render DATABASE_URL from gateway/.env; killed immediately and restarted setsid double-fork with forced local DATABASE_URL only.",
+  "checklist_status_changed": false,
+  "screenshots": [
+    "cf3-catalog-store-ready-20260817.png",
+    "cf3-catalog-draft-import-validation-20260817.png",
+    "cf3-catalog-save-draft-20260817.png",
+    "cf3-catalog-exact-publish-preview-20260817.png",
+    "cf3-catalog-agentguard-mandate-missing-20260817.png",
+    "cf3-catalog-publish-confirmed-20260817.png"
+  ],
+  "user_input_needed": false
+}

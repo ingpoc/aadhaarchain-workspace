@@ -2,7 +2,11 @@
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
-PYTHON_BIN="${PYTHON_BIN:-/Users/gurusharan/.pyenv/versions/3.12.0/bin/python3}"
+PYTHON_BIN="${PYTHON_BIN:-$(command -v python3 || true)}"
+if [[ -z "$PYTHON_BIN" ]]; then
+  echo "python3 is required" >&2
+  exit 1
+fi
 
 echo "=== AadhaarChain Portfolio Setup ==="
 

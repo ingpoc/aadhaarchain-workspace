@@ -18,5 +18,14 @@
 .rumdl_cache/
 .optimization/
 .claude/session-data/
+.playwright-cli/
+.pytest_cache/
+.ruff_cache/
+/.session/*
+!/.session/docs/
+!/.session/docs/**
+!/.session/checklist/
+/.session/checklist/*
+!/.session/checklist/checklist.json
 *.pyc
 .Python

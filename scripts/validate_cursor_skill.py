@@ -25,7 +25,7 @@ REQUIRED_MARKERS: dict[str, tuple[str, ...]] = {
     "apisetu-partner-onboarding": (
         "Browser UI owner: bundled `@chrome`",
         "ondclbnp.aadharcha.in",
-        'Finalize hard-stop operator tabs with `status: "handoff"`',
+        "unresolved operator decisions are hard stops",
         "modal's latest generated/downloaded pair",
         "ONDC Protocol Workbench replaces Pramaan",
         "Current state owner",
@@ -46,7 +46,7 @@ REQUIRED_MARKERS: dict[str, tuple[str, ...]] = {
         "scripts/hermes_ondc_testing_matrix.py",
         'semantic `locator` actions',
         "references/independent-customer-gate.md",
-        "One coherent journey per lease",
+        "One coherent journey per authenticated audience",
         'fork_turns="none"',
     ),
     "portfolio-browser": (
@@ -70,6 +70,12 @@ SKILL_FORBIDDEN_GUIDANCE: dict[str, tuple[str, ...]] = {
         "## Prerequisites (Hermes)",
         "Apply by **15 Jul 2026**",
         "404** today",
+        "browser.tabs.finalize(",
+    ),
+    "testing-ledger": (
+        "One coherent journey per lease",
+        "Chrome profile shares the gateway session cookie",
+        "Use unique window leases",
     ),
     "portfolio-deploy": (
         "intentionally unseeded catalog",
@@ -186,6 +192,7 @@ def validate_domain(name: str) -> None:
                 "tests/test_oauth_state.py",
                 "tests/test_session_cookie_flags.py",
                 "tests/test_social_auth.py",
+                "tests/test_a5_session_controls.py",
             ],
             cwd=ROOT / "aadharchain" / "gateway",
         )

@@ -1,0 +1,44 @@
+{
+  "captured_at": "2026-08-02T11:44:00+05:30",
+  "environment": "local PostgreSQL plus bundled in-app browser",
+  "product_fingerprint": "sha256:514777d6a5914fff837bf4aedc3249c903cedc3c6345a2774fbcd00fd4fc25ed",
+  "source": {
+    "aadharchain": "63df7ca73faa6096961d9cf1333bc9e2387f5770 + diff ff1a5005",
+    "ondcbuyer": "c65ce77f3d0085aa9d27c66843c49ba0e3d7771f + diff fdb0df53",
+    "ondcseller": "03c2745e8cbfc58f96eda3492ac47e1ce932223c + diff 5e95d324"
+  },
+  "automated_receipts": {
+    "gateway_postgresql": "301 passed",
+    "buyer": "203 passed; production build and copy gate passed",
+    "seller": "218 passed; production build and copy gate passed",
+    "changed_python_ruff": "passed"
+  },
+  "manual_passes": [
+    {
+      "pass": 1,
+      "agent_state": "shopping agent paused",
+      "manual_checkout": "passed",
+      "order_reference": "8A0D86E5",
+      "authorization_reference": "D0DEF4D1",
+      "simulated_payment_reference": "A75DD4AD",
+      "buyer_fulfilment": "Pending; order awaiting seller confirmation",
+      "seller_fulfilment": "Pending provider",
+      "fabricated_provider_or_tracking": false
+    },
+    {
+      "pass": 2,
+      "agent_state": "shopping agent paused",
+      "manual_checkout": "passed",
+      "order_reference": "E31E0401",
+      "authorization_reference": "8D56CDC6",
+      "simulated_payment_reference": "664C12A0",
+      "buyer_fulfilment": "Pending; order awaiting seller confirmation",
+      "seller_fulfilment": "Pending provider",
+      "samantha_text_readback": "Latest order is created and waiting for seller confirmation",
+      "fabricated_provider_or_tracking": false
+    }
+  ],
+  "interoperability_packet": "../preprod-taptap-interoperability-packet-20260802.json",
+  "support_draft": "../preprod-taptap-interoperability-draft-20260802.md",
+  "claim_boundary": "The two unchanged-source passes used a temporary local product, simulated payment effects, and no compliant LSP. They prove manual checkout while the shopping agent is paused and accurate provider-pending Buyer, Seller, and Samantha readback. They do not prove Workbench conformance, an LSP booking, LSP-issued tracking, a physical shipment, a real payment, deployment, FQDN behavior, production ONDC, or microphone behavior."
+}

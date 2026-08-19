@@ -1,0 +1,169 @@
+{
+  "schema_version": "testing-receipt.v1",
+  "gate_id": "B5-E1",
+  "verified_at": "2026-08-17T17:51:40+05:30",
+  "environment": "PreProd Protocol Workbench prepaid+IGM after live BAP ACK of Workbench-style on_confirm; not production",
+  "source_revision": "8ae415b9b4395d060b665796318faaca300793f9",
+  "authorization": [
+    "B5-20260817-01 PreProd official IGM",
+    "B5-20260817-03 exact IGM commit on existing identity-aadhar-gateway-main"
+  ],
+  "verdict": "partial",
+  "does_not_overwrite": [
+    ".agents/skills/testing-ledger/references/evidence/b5-e1-workbench-igm-rerun-20260817.json",
+    ".agents/skills/testing-ledger/references/evidence/b5-e1-track-onconfirm-deploy-20260817.json",
+    ".agents/skills/testing-ledger/references/evidence/b5-e1-workbench-igm-retry-20260817.json",
+    ".agents/skills/testing-ledger/references/evidence/b5-e1-workbench-igm-20260817.json"
+  ],
+  "bap_ack_proof": {
+    "pytest": {
+      "command": "cd aadharchain/gateway && PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 python3 -m pytest -p asyncio tests/test_ondc_track.py tests/test_ondc_bpp.py tests/test_ondc_igm.py tests/test_ondc_persistence.py -q",
+      "result": "11 passed, 16 skipped",
+      "focused": [
+        "test_on_confirm_acks_workbench_new_message_id",
+        "test_on_track_verifies_signature_like_issue",
+        "test_ondc_bpp on_confirm echoes request message_id"
+      ]
+    },
+    "live_synthetic_on_confirm": {
+      "urls": [
+        "https://gateway.aadharcha.in/ondc/on_confirm",
+        "https://ondcbuyer.aadharcha.in/ondc/on_confirm"
+      ],
+      "transaction_id": "f876d453-6c33-4297-952e-7ee54ed50551",
+      "confirm_message_id": "a6f53084-5e7f-4445-bcd6-c41ee6169d33",
+      "callback_message_id": "963850dd-b784-4d20-8d21-4ae51e07208e",
+      "http": 200,
+      "ack": "ACK",
+      "inbox_id": 23056,
+      "render_log": "BAP on_confirm message_id mismatch ... ACK and persist callback"
+    }
+  },
+  "render_service": {
+    "name": "identity-aadhar-gateway-main",
+    "id": "srv-d7f256f41pts73f68660",
+    "plan": "free",
+    "auto_deploy": "no",
+    "repo": "https://github.com/ingpoc/aadhaar-chain",
+    "branch": "main",
+    "root_dir": "gateway",
+    "live_deploy_id": "dep-da1fl2h5efls73eervbg",
+    "live_deploy_commit": "8ae415b9b4395d060b665796318faaca300793f9",
+    "live_deploy_message": "ACK Workbench on_confirm with a new callback message_id",
+    "live_deploy_finished_at": "2026-08-17T12:12:30.718496Z",
+    "previous_live_commit": "f7794fa8170e710c15c82f4e1f8e190e95a79f81",
+    "previous_live_deploy_id": "dep-da1f80gjo6nc738i40s0"
+  },
+  "public_probes": {
+    "health_url": "https://gateway.aadharcha.in/api/health",
+    "health_http": 200,
+    "track_post_empty_http": 422,
+    "track_post_empty_detail": "track requires order_id",
+    "on_confirm_empty_http": 400,
+    "on_confirm_not_404": true,
+    "on_track_empty_http": 400,
+    "issue_post_empty_http": 422,
+    "on_issue_empty_http": 400,
+    "openapi_paths": {
+      "/api/ondc/track": ["post"],
+      "/ondc/on_track": ["post"],
+      "/ondc/on_confirm": ["post"],
+      "/api/ondc/issue": ["post"],
+      "/ondc/on_issue": ["post"]
+    }
+  },
+  "workbench": {
+    "url": "https://workbench.ondc.tech/flow-testing?sessionId=kRX_rSpaXI1zRMI9rMRHf8idYHniOxh5&subscriberUrl=https%3A%2F%2Fondcbuyer.aadharcha.in%2Fondc&role=BAP",
+    "session_id": "kRX_rSpaXI1zRMI9rMRHf8idYHniOxh5",
+    "prior_sessions_not_reused": [
+      "62RWGJAf_xhJm5O1FgYrf6qUakwSdO__",
+      "v83hwowCbAKXBW9wEHtbCTjTC7f1tQHq",
+      "2d8cKTuko6HV78i1sQLN3Nx3H3T5bO64"
+    ],
+    "log10_session_not_used": "PafpxsF3NAoH3p1uvcHzr152Ec_j3pmT",
+    "subscriber_url": "https://ondcbuyer.aadharcha.in/ondc",
+    "role": "BAP",
+    "domain": "ONDC:RET10",
+    "version": "1.2.0",
+    "usecase": "GROCERY",
+    "environment": "PRE-PRODUCTION",
+    "active_flow": "Order_to_confirm_to_fulfillment__Prepaid_with_igm_1.0.0",
+    "transaction_id": "f876d453-6c33-4297-952e-7ee54ed50551",
+    "bap_generated_order_id_confirm_outbox": "B5f876d453",
+    "signed_on_confirm_order_id": null,
+    "issue_id": null,
+    "flow_start": "POST /backend-ui/flow/new"
+  },
+  "steps": {
+    "select": {"ack": "ACK", "message_id": "90a6a8f6-a766-4db6-a6e5-56e083e93ee4", "outbox": "pg_out_22753"},
+    "on_select": {"ack": "ACK", "signed_inbox": true, "message_id": "90a6a8f6-a766-4db6-a6e5-56e083e93ee4"},
+    "init": {"ack": "ACK", "message_id": "cd6266bb-af48-4f48-88a6-c531c6f19ef7"},
+    "on_init": {"ack": "ACK", "signed_inbox": true, "message_id": "cd6266bb-af48-4f48-88a6-c531c6f19ef7", "tags": ["bpp_terms"], "accept_bpp_terms_present": false},
+    "confirm": {"ack": "ACK", "message_id": "a6f53084-5e7f-4445-bcd6-c41ee6169d33", "outbox": "pg_out_22755", "accept_bpp_terms_filled": false, "payment_status_sent": "NOT-PAID"},
+    "on_confirm": {
+      "workbench_status": "COMPLETE ERROR",
+      "workbench_message_id": "c0a8cfe2-bc6a-43fd-bd0d-10142cf9342b",
+      "workbench_recorded_error": "message_id mismatch between confirm and on_confirm expected a6f53084-5e7f-4445-bcd6-c41ee6169d33 but found c0a8cfe2-bc6a-43fd-bd0d-10142cf9342b",
+      "render_post_from_workbench": false,
+      "note": "Render app logs show Workbench on_select/on_init POSTs, then confirm, then no on_confirm POST until the later synthetic ACK. Live BAP ACKs the same mismatch class."
+    },
+    "on_status_accepted_through_picked": {"ack": "ERROR", "note": "empty INPUT-REQUIRED proceed used; mock on_status did not land in public inbox"},
+    "track": {"status": "COMPLETE SUCCESS", "gateway_post": "POST /api/ondc/track ACK", "order_id": "B5f876d453", "message_id": "03d116f0-287d-474b-b577-369d718039f4", "outbox": "pg_out_22759"},
+    "on_track": {"ack": "ACK", "signed_inbox": true, "message_id": "03d116f0-287d-474b-b577-369d718039f4"},
+    "issue_open_100": {"status": "LISTENING", "gateway_post": "POST /api/ondc/issue 404 Unknown issue"}
+  },
+  "legal_semantic": {
+    "accept_bpp_terms_filled": false,
+    "confirm_acked_without_bap_terms": true,
+    "confirm_required_accept_bpp_terms": false
+  },
+  "callback_correlation": {
+    "public_on_select_inbox": true,
+    "public_on_init_inbox": true,
+    "public_on_confirm_inbox": "synthetic ACK only; Workbench mock on_confirm did not POST",
+    "public_on_status_inbox": false,
+    "public_on_track_inbox": true,
+    "public_on_issue_inbox": [],
+    "public_on_issue_status_inbox": [],
+    "workbench_transaction_id": "f876d453-6c33-4297-952e-7ee54ed50551",
+    "issue_id": null
+  },
+  "buyer_seller_readback": "not reached; /api/demo-commerce/buyer/issues 401 without new auth",
+  "blocker": {
+    "surface": "Workbench mock on_confirm delivery + local IGM issue binding",
+    "on_confirm": "Workbench recorded the pre-8ae415b NACK string and COMPLETE ERROR. Live gateway/buyer FQDN ACK Workbench-style new message_id. Render has no Workbench POST /ondc/np/buyer/on_confirm for this mock.",
+    "track": "COMPLETE SUCCESS using confirm outbox order_id B5f876d453. Signed on_track landed.",
+    "igm": "issue_open_100 LISTENING. POST /api/ondc/issue requires a local commerce issue; order_id is 404 Unknown issue. Buyer issues 401."
+  },
+  "comet": {
+    "session_id": "b5-igm-ack-20260817",
+    "label": "B5-IGM-ACK",
+    "distinct_from": ["b5-igm-rerun-20260817", "b5-igm-retry-20260817", "b5-igm-workbench-20260817", "a4-portal-20260817", "a4-buyer-ukid-20260817"],
+    "a4_leases_not_killed": true
+  },
+  "screenshots": [
+    ".agents/skills/testing-ledger/references/evidence/b5-e1-workbench-igm-ack-20260817.png"
+  ],
+  "not_proven": [
+    "Workbench-mock signed on_confirm POST to the live BAP",
+    "signed Workbench on_issue / on_issue_status callbacks",
+    "IGM resolution and closure",
+    "Buyer/Seller-visible support outcome for this session",
+    "production IGM"
+  ],
+  "external_actions_taken": [
+    "committed nested aadharchain pairing ACK as 8ae415b9b4395d060b665796318faaca300793f9",
+    "pushed origin/main f7794fa..8ae415b on ingpoc/aadhaar-chain",
+    "Render MCP trigger_deploy on existing Free identity-aadhar-gateway-main as dep-da1fl2h5efls73eervbg",
+    "created new PreProd Workbench session kRX_rSpaXI1zRMI9rMRHf8idYHniOxh5 as BAP RET10 1.2.0 GROCERY",
+    "started flow via POST /backend-ui/flow/new",
+    "sent signed select/init/confirm on public gateway; did not fill accept_bpp_terms",
+    "sent track with confirm order_id B5f876d453 after Workbench on_confirm ERROR",
+    "did not skip to a forged issue payload",
+    "no PEM copy",
+    "no DNS",
+    "no portal Submit",
+    "no production registry",
+    "no Generate Report"
+  ]
+}

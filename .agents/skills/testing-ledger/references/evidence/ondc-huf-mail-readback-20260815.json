@@ -1,0 +1,43 @@
+{
+  "schema_version": "ondc-mail-readback.v1",
+  "observed_at": "2026-08-15T12:08:55+05:30",
+  "observation_mode": "read_only",
+  "source": {
+    "type": "authenticated_organisation_mailbox",
+    "mailbox_identity": "redacted HUF organisation mailbox",
+    "query": "in:anywhere from:do-not-reply@ondc.org -in:spam -in:trash",
+    "sender": "do-not-reply@ondc.org"
+  },
+  "supported_facts": {
+    "organisation_id": "15462",
+    "organisation_name": "GURUSHARAN GUPTA HUF",
+    "latest_provider_message_at": "2026-08-12T11:48:00+05:30",
+    "profile_status": "Integration in Progress",
+    "profiles": [
+      "Retail (B2C) v1.2 Seller NP - Inventory Seller Node (ISN)",
+      "Retail (B2C) v1.2 Buyer NP",
+      "Logistics (B2C) v1.2 Buyer NP"
+    ],
+    "inactivity_warning": "The 2026-08-12 thread requests resumed integration activity and says continued inactivity for 15 days may disable a profile; it does not prove disablement.",
+    "pending_submission_groups_as_of_2026_08_10": [
+      "Network Participant Agreement",
+      "operational, grievance, policy, order-status, reconciliation, settlement, and payout contacts",
+      "transaction, grievance, reconciliation, settlement, payout, and observability components",
+      "component verification and live walkthrough",
+      "PreProd observability keys and log submission",
+      "Buyer disclosures and static terms",
+      "start-transacting details"
+    ],
+    "ticket_onwgr_010218": "ONDC closed the ticket on 2026-08-04 after three days without a response; no newer ONDC response was visible. Closure is not profile or production approval.",
+    "preprod_access": "Approved on 2026-07-12; this is not production approval."
+  },
+  "not_proven": [
+    "Current authenticated portal state",
+    "Profile disablement",
+    "Production keys, registry approval, conformance, or go-live approval",
+    "Customer-money, shipment, settlement, or external LSP acceptance"
+  ],
+  "external_actions_taken": [
+    "Opened the unread 2026-08-12 thread, which marked it read"
+  ]
+}

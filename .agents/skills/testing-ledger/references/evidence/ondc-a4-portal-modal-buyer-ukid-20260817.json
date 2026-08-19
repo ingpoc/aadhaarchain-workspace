@@ -1,0 +1,61 @@
+{
+  "schema_version": "ondc-portal-modal-ukid-readback.v1",
+  "gate_id": "A4",
+  "recorded_at": "2026-08-17T16:44:53+05:30",
+  "authorization": "operator capture-buyer-ukid 2026-08-17; read-only; no Submit; no generate; no PEM; no DNS",
+  "browser": "Comet Control",
+  "session_id": "a4-buyer-ukid-20260817",
+  "closeout_verified_absent": true,
+  "role": "buyer",
+  "profile_id": "15462-10008",
+  "subscriber_id": "ondcbuyer.aadharcha.in",
+  "journey_url": "https://portal.ondc.org/integration-journey-comply?interest=10008&configId=29",
+  "materialized_path": "aadharchain/gateway/.local/ondc-production-portal-modal/buyer",
+  "existing_modal_signing_public_fp16": "dff58a270e9ed255",
+  "unique_key_id_captured": false,
+  "unique_key_id": null,
+  "unique_key_id_status": "Raise Request modal had no Unique Key ID field value; generate would mint a new pair so stopped; existing 2026-08-17 Buyer modal download not overwritten",
+  "new_keys_generated": false,
+  "submitted": false,
+  "copied_to_render_or_env": false,
+  "local_draft_deleted": false,
+  "keep_both_local_draft": true,
+  "cancelled_not_submitted": true,
+  "registry_env_ui_observed": "PreProd (Registry input disabled/locked in Raise Request modal)",
+  "outer_1a": {
+    "task_status": "Completed",
+    "completed_at_portal": "12/07/2026 02:09 PM",
+    "unique_key_id_present": true,
+    "unique_key_id_prefix": "1aee68ad",
+    "unique_key_id_attribution": "PreProd subscribed row / outer 1.a form — not the 2026-08-17 Production modal pair",
+    "list_of_requests": [
+      {
+        "subscriber_id": "ondcbuyer.aadharcha.in",
+        "environment": "Pre-Prod",
+        "request_type": "New Request",
+        "status": "Subscribed",
+        "requested_on": "12/07/2026"
+      }
+    ]
+  },
+  "raise_request_modal": {
+    "opened": true,
+    "unique_key_id_visible": false,
+    "uk_id_input_count_on_page": 1,
+    "generate_control_visible": true,
+    "generate_clicked": false,
+    "subscriber_id_empty": true,
+    "stopped_reason": "capturing Unique Key ID would require Click to generate & download, which would mint a new pair and risk overwriting .local/ondc-production-portal-modal/buyer"
+  },
+  "screenshots": [
+    ".agents/skills/testing-ledger/references/evidence/ondc-a4-buyer-ukid-modal-empty-20260817.png",
+    ".agents/skills/testing-ledger/references/evidence/ondc-a4-buyer-ukid-outer-preprod-20260817.png"
+  ],
+  "not_proven": [
+    "portal Unique Key ID for the 2026-08-17 Buyer modal pair (signing fp16 dff58a270e9ed255)",
+    "Production environment access (Registry field was PreProd-locked)",
+    "portal or registry Submit",
+    "Render env / production PEM vars"
+  ],
+  "note": "keep-both for Buyer local draft. Do not generate a replacement Buyer modal pair without explicit operator authorization. Private PEM contents are not in this receipt."
+}

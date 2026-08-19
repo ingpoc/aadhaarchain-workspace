@@ -1,0 +1,65 @@
+{
+  "status": "passed",
+  "recorded_at": "2026-08-15T14:18:13+05:30",
+  "scope": "local Auth0 Buyer and Seller acceptance; simulated payment only",
+  "source": {
+    "fingerprint_sha256": "2b00c00f6bc2f4dfb6fb11b5992cc955053e92125bdd0f5dce91547a75cab92f",
+    "buyer_worktree_sha256": "f6c832493d47619b0711572ad26608b5bcbfc1f6fdf28bbcd5e81f855afc3a2c",
+    "seller_worktree_sha256": "6dcaa9fa026c044a0761093e28bb36b0dcec03f7d81841188e2ed51b0f98d152",
+    "gateway_worktree_sha256": "cf2831a41359bfa1c9465d874bf9cb8fc34332a863ff11af8f914e6b53f28cd7"
+  },
+  "deterministic": {
+    "portfolio_ci": "passed; gateway 251 passed, 53 skipped",
+    "buyer": "41 files, 211 tests; typecheck, lint, and production build passed",
+    "seller": "27 files, 219 tests; typecheck, lint, and production build passed",
+    "postgresql_lifecycle": "1 passed against isolated local PostgreSQL",
+    "postgresql_coverage": [
+      "cancellation replay and recovery",
+      "tracking and delivery history",
+      "return persistence",
+      "issue SLA and immutable history",
+      "replacement accept, reject, and escalation",
+      "wrong-principal and invalid-transition denial",
+      "paused-agent denial"
+    ]
+  },
+  "browser_acceptance": {
+    "identity": "current Auth0 Buyer and Seller sessions",
+    "order_id": "709d9b9e-db37-42c9-a352-a34e53c09b01",
+    "issue_id": "fabc818c-26dc-4024-b83a-1fc4f88cac1b",
+    "comparison": "2 offers from 2 sellers for Pune; confirmed serviceability ranked ahead of unknown; listed-pack pricing remained explicit",
+    "tracking": "Standard Courier / AG-709D9B9E with ordered confirmed, preparing, shipped, and delivered history",
+    "return_receipt": "7F9F4245 verified",
+    "seller_acknowledgement": "F7D5EF36 succeeded",
+    "replacement_commitment": "108B64CB succeeded",
+    "buyer_outcome_receipt": "D2E36C2E verified",
+    "terminal_state": "closed with five immutable issue-history events",
+    "keyboard": "Tab order reached Search, Cart, Orders, Preferences, search, Account, and Back to orders; Enter activated Back to orders",
+    "responsive": "desktop and 390x844 captures passed without horizontal overflow in the app viewport",
+    "console": "no application errors; only browser-extension and React Router future warnings"
+  },
+  "screenshots": [
+    {
+      "path": ".agents/skills/testing-ledger/references/evidence/cf2-e1-auth0-comparison-desktop-20260815.png",
+      "sha256": "2446749a190ea6c8b102197e52a9fd944c45b4be6341b76ab43bea37f0e3dce3",
+      "shows": "location, match count, distinct seller count, and the existing comparison grid"
+    },
+    {
+      "path": ".agents/skills/testing-ledger/references/evidence/cf2-e1-auth0-terminal-desktop-20260815.png",
+      "sha256": "b0b7b5b198897f020584d95c9e14ac57b78a31b8b3d360c34216d96213721bfc",
+      "shows": "closed grievance, Seller replacement commitment, outcome receipt, return request, tracking history, and delivery"
+    },
+    {
+      "path": ".agents/skills/testing-ledger/references/evidence/cf2-e1-auth0-terminal-mobile-390-20260815.png",
+      "sha256": "4fac9eb7a4298c09e36aa5d97e5a6e62244380c5e5d9751fb1ad195a03279626",
+      "shows": "390px closed grievance, replacement commitment, outcome receipt, return request, and verified authorization"
+    }
+  ],
+  "not_proven": [
+    "production payment",
+    "production ONDC submission or enablement",
+    "deployment or DNS",
+    "external LSP shipment",
+    "current-source release gate Q1"
+  ]
+}

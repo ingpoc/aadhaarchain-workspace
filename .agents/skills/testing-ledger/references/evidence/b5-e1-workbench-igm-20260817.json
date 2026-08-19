@@ -1,0 +1,82 @@
+{
+  "schema_version": "testing-receipt.v1",
+  "gate_id": "B5-E1",
+  "verified_at": "2026-08-17T15:59:40+05:30",
+  "environment": "PreProd Protocol Workbench IGM attempt against live public gateway; not production",
+  "authorization": [
+    "B5-20260817-01 PreProd official IGM",
+    "B5-20260817-03 exact IGM commit on existing identity-aadhar-gateway-main"
+  ],
+  "verdict": "blocked",
+  "source_revision_claimed_live": "2e300708b7510af770b5da34f33e2792be2c489a",
+  "render_deploy_id_claimed": "dep-da1ds3flk1mc739qgt4g",
+  "deploy_reproof": {
+    "health_url": "https://gateway.aadharcha.in/api/health",
+    "health_http": 200,
+    "issue_post_http": 422,
+    "on_issue_post_http": 400,
+    "not_404": true,
+    "openapi_igm_paths": {
+      "/api/ondc/issue": ["post"],
+      "/api/ondc/issue_status": ["post"],
+      "/ondc/on_issue": ["post"],
+      "/ondc/on_issue_status": ["post"]
+    }
+  },
+  "workbench": {
+    "url": "https://workbench.ondc.tech/flow-testing",
+    "session_id": "2d8cKTuko6HV78i1sQLN3Nx3H3T5bO64",
+    "subscriber_url": "https://ondcbuyer.aadharcha.in/ondc",
+    "role": "BAP",
+    "domain": "ONDC:RET10",
+    "version": "1.2.0",
+    "usecase": "GROCERY",
+    "environment": "PRE-PRODUCTION",
+    "active_flow": "Order_to_confirm_to_fulfillment__Prepaid_with_igm_1.0.0",
+    "igm_steps_in_flow": ["15:issue YOU SEND", "16:on_issue MOCK", "17:on_issue_status UNSOLICITED MOCK", "18:issue YOU SEND"],
+    "current_step": "1:select WAITING YOU SEND",
+    "progress_percent": 0,
+    "request_pane": "empty JSON {}",
+    "standalone_igm_usecase": false,
+    "log10_session_not_used": "PafpxsF3NAoH3p1uvcHzr152Ec_j3pmT"
+  },
+  "blocker": {
+    "surface": "Workbench flow start",
+    "http": 404,
+    "url": "https://workbench.ondc.tech/backend-ui/api/sessions/flows/2d8cKTuko6HV78i1sQLN3Nx3H3T5bO64",
+    "method": "POST",
+    "effect": "UI shows WAITING select but no official input schema; signed select was not invented; IGM issue/on_issue steps were not reached"
+  },
+  "callback_correlation": {
+    "public_on_issue_inbox": [],
+    "workbench_transaction_id": null,
+    "issue_id": null,
+    "ack_nack": null
+  },
+  "buyer_seller_readback": "not reached; IGM steps are 15-18 after prepaid grocery select/confirm/fulfillment",
+  "comet": {
+    "session_id": "b5-igm-workbench-20260817",
+    "label": "B5-IGM-Workbench",
+    "distinct_from_a4": ["a4-portal-20260817", "a4-portal-1a-20260817"],
+    "a4_leases_not_killed": true
+  },
+  "screenshots": [
+    ".agents/skills/testing-ledger/references/evidence/b5-e1-workbench-session-20260817.png",
+    ".agents/skills/testing-ledger/references/evidence/b5-e1-igm-flow-waiting-20260817.png"
+  ],
+  "not_proven": [
+    "signed Workbench on_issue / on_issue_status callbacks",
+    "IGM resolution and closure",
+    "Buyer/Seller-visible support outcome for this session",
+    "production IGM"
+  ],
+  "external_actions_taken": [
+    "created PreProd Workbench session 2d8cKTuko6HV78i1sQLN3Nx3H3T5bO64 as BAP RET10 1.2.0 GROCERY",
+    "started flow Order_to_confirm_to_fulfillment__Prepaid_with_igm_1.0.0",
+    "no PEM copy",
+    "no DNS",
+    "no portal Submit",
+    "no production registry",
+    "no Generate Report"
+  ]
+}

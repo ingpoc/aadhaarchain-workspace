@@ -1,0 +1,41 @@
+{
+  "schema_version": "testing-receipt.v1",
+  "gate_id": "B5-L3",
+  "verified_at": "2026-08-17T15:09:20+05:30",
+  "environment": "local gateway pytest without live ONDC registry or production traffic",
+  "source_fingerprint": "10336ff3936dac0388562d6a4029e3f222c2e018650dfffee28d93abc2c66390",
+  "command": "cd aadharchain/gateway && PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 python3 -m pytest -p asyncio tests/test_ondc_igm.py tests/test_ondc_adapter.py tests/test_domain_state_machines.py tests/test_commerce_demo.py tests/test_ondc_bpp.py -q",
+  "results": [
+    {
+      "scope": "signed Retail IGM issue request",
+      "result": "passed",
+      "summary": "POST /api/ondc/issue signs ONDC:RET10 core_version 1.2.0 issue envelopes with Authorization, binds message.issue.id to the local commerce issue, and records the outbox transaction on the issue audit timeline."
+    },
+    {
+      "scope": "on_issue callback correlation",
+      "result": "passed",
+      "summary": "A signature-verified on_issue PROCESSING callback ACKs, correlates to the local issue, and applies the legal open -> acknowledged edge without rebuilding Buyer/Seller issue UI."
+    },
+    {
+      "scope": "IGM failure recovery",
+      "result": "passed",
+      "summary": "Missing or tampered Authorization NACKs. Dispatch exceptions persist outbox status=error with a failed-dispatch audit event so the existing outbox drain/retry path can recover. Duplicate signed callbacks ACK."
+    },
+    {
+      "scope": "Seller BPP IGM ACK and signed on_issue",
+      "result": "passed",
+      "summary": "POST /ondc/issue ACKs Retail IGM and posts a signed on_issue PROCESSING callback using the existing BPP outbox/signing helpers."
+    },
+    {
+      "scope": "related ONDC and local issue regression",
+      "result": "passed",
+      "summary": "140 checks passed across test_ondc_igm.py, test_ondc_adapter.py, test_ondc_bpp.py, test_commerce_demo.py, and test_domain_state_machines.py."
+    }
+  ],
+  "not_proven": [
+    "official PreProd or production IGM traffic",
+    "authorized operational walkthrough with Buyer/Seller support UI captures",
+    "live registry-matched IGM signatures outside local simulation"
+  ],
+  "external_actions_taken": []
+}

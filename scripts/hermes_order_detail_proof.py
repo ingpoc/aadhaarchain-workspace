@@ -16,7 +16,7 @@ import urllib.request
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 GATEWAY = "https://gateway.aadharcha.in"
 BUYER = "https://ondcbuyer.aadharcha.in"
-EVIDENCE = ROOT / ".cursor/skills/ondc-testing/references/evidence"
+EVIDENCE = ROOT / ".agents/skills/testing-ledger/references/evidence"
 SESSION = "web-order-detail-proof"
 TS = time.strftime("%Y%m%d-%H%M%S")
 MID = f"W-B-ORDER-DETAIL-{TS}"

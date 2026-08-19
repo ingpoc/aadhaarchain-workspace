@@ -1,0 +1,40 @@
+{
+  "captured_at": "2026-08-01T21:59:00+05:30",
+  "verdict": "blocked_before_confirm",
+  "scope": "One operator-authorized synthetic TapTap PreProd LOG10 init retry",
+  "authorization": {
+    "operator_approved_exact_synthetic_payload": true,
+    "legal_boundary": "PreProd synthetic flow only"
+  },
+  "transaction": {
+    "transaction_id": "6f5a3bf8-fc4e-4b59-b0ab-1d09d7e75201",
+    "init_message_id": "49a8c5ad-0bda-4afb-b1bf-53469158404a",
+    "init_outbox_id": "pg_out_9944",
+    "bpp_id": "preprod-bpp.taptap.in",
+    "provider": "TapTap Logistics",
+    "dispatch_http_status": 200,
+    "dispatch_ack": "ACK",
+    "on_init_inbox_id": 10190,
+    "on_init_signature_verified": true,
+    "core_version": "1.2.5",
+    "quote": {"currency": "INR", "value": "59.00"},
+    "fulfillment_id": "F1",
+    "fulfillment_type": "Delivery"
+  },
+  "contract_gate": {
+    "required": "fulfillment tag rider_check/inline_check_for_rider=yes",
+    "observed_tags": ["linked_order", "linked_provider", "state", "rto_action"],
+    "observed_ready_to_ship": "no",
+    "inline_check_for_rider": "missing",
+    "confirm_allowed": false
+  },
+  "outbox_proof": {
+    "search_count": 1,
+    "init_count": 1,
+    "confirm_count": 0,
+    "update_count": 0,
+    "status_count": 0,
+    "track_count": 0
+  },
+  "claim_boundary": "Search and one synthetic PreProd init were sent and acknowledged. The signed on_init remained contractually non-compliant, so no confirm, update, status, track, real payment, physical shipment, production action, or LSP-issued tracking occurred."
+}

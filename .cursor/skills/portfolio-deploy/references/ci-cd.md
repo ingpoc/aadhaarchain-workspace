@@ -36,7 +36,7 @@ Hermes / WIP browser lanes are **out of CI** (`verify-portfolio.sh --ci` skips t
 | Gateway pytest | `./scripts/verify-portfolio.sh --ci` | No `start-dev`; TestClient only — see green path below |
 | ONDC Buyer | `npm ci && npm run lint && npm run typecheck && npm test && npm run build` | Does **not** set `VITE_COMMERCE_DEMO_MODE` |
 | ONDC Seller | same npm chain | — |
-| ONDC offline | `python3 scripts/ondc_ci_graders.py --offline` | Demo-mode gate + static; **blocks** `ci-ok` |
+| ONDC offline | `python3 scripts/ondc_ci_graders.py --offline` | Demo-mode gate + 2026-08-19 Buyer/Seller/Gateway P0 test scanners; **blocks** `ci-ok`. Job checks out `aadharchain/`, `ondcbuyer/`, `ondcseller/`. Gateway P0 is fail-closed until aadhaar-chain#7 lands (`gateway_p0_regression_tests_missing`). |
 | ONDC FQDN soft | `ondc_ci_graders.py --live --soft` (+ optional `ondc_preprod_smoke.py --ci`) | `continue-on-error: true` — Free cold start; advisory |
 | Aggregator | job `ci-ok` | Needs secret-scan + gateway + buyer + seller + ondc-offline |
 

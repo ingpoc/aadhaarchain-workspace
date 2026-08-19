@@ -2,7 +2,7 @@
 """Deterministic ONDC / AgentGuard CI graders (no Hermes, no LLM).
 
 Modes:
-  --offline   Local/PR: commerce demo gate + static checks (blocks CI)
+  --offline   Local/PR: commerce demo gate + 2026-08-19 P0 test scanners (blocks CI)
   --live      Read-only FQDN/gateway JSON + rewrite + bundle probes
   --protocol-search  With --live: explicitly dispatch bounded PreProd searches
   --soft      With --live: network/cold-start failures → warn exit 0
@@ -23,6 +23,7 @@ from __future__ import annotations
 import argparse
 import inspect
 import json
+import os
 import re
 import subprocess
 import sys
@@ -63,6 +64,264 @@ def _gateway_tests(root: Path, worktrees: list[Path] | None = None) -> tuple[Pat
     return root / "aadharchain" / "gateway" / "tests", "missing"
 
 
+def _nested_app_root(
+    root: Path,
+    name: str,
+    *,
+    marker: str,
+    worktrees: list[Path] | None = None,
+) -> tuple[Path, str]:
+    roots = [root, *(worktrees if worktrees is not None else _git_worktree_roots(root))]
+    for candidate_root in dict.fromkeys(path.resolve() for path in roots):
+        app = candidate_root / name
+        if (app / marker).exists():
+            return app, "current" if candidate_root == root.resolve() else "git-worktree"
+    return root / name, "missing"
+
+
+def _iter_files(root: Path, patterns: tuple[str, ...]) -> list[Path]:
+    skip_parts = {"node_modules", ".git", "dist", "build", "__pycache__"}
+    files: list[Path] = []
+    for pattern in patterns:
+        files.extend(path for path in root.rglob(pattern) if path.is_file())
+    return sorted({path for path in files if not skip_parts.intersection(path.parts)})
+
+
+def _tree_text(root: Path, patterns: tuple[str, ...]) -> str:
+    return "\n".join(
+        path.read_text(encoding="utf-8", errors="replace")
+        for path in _iter_files(root, patterns)
+    )
+
+
+def _missing_needles(text: str, needles: tuple[str, ...]) -> list[str]:
+    return [needle for needle in needles if needle not in text]
+
+
+# Landed 2026-08-19 P0 regression names/assertions. Emptying or deleting these
+# tests must fail the offline grader. Buyer: ondc-buyer#8. Seller: ondc-seller#8.
+# Gateway: aadhaar-chain#7 (fail closed until that tree is on main).
+BUYER_P0_TEST_GLOBS = ("*.test.ts", "*.test.tsx", "*.spec.ts", "*.spec.tsx")
+SELLER_P0_TEST_GLOBS = BUYER_P0_TEST_GLOBS
+GATEWAY_P0_TEST_GLOBS = ("test_*.py",)
+
+BUYER_P0_NEEDLES = (
+    "does not ensure or resume a paused agent when reading status",
+    "does not resume AgentGuard authority just by opening chat",
+    "stays paused across opening Samantha and verifying an Intent Receipt",
+    "Resume shopping agent",
+    "/ensure",
+    "/resume",
+    "does not silently drop a guest add",
+    "shows a sign-in notice instead of a silent no-op",
+    "Sign in to check out.",
+    "collapses a duplicated state value instead of showing KarnatakaKarnataka",
+    "does not navigate away for guests or after items were already present",
+    "opens the Agent Guard tab from /config?tab=agent-guard",
+    "KarnatakaKarnataka",
+    "shouldRedirectEmptyCheckout",
+)
+
+SELLER_P0_NEEDLES = (
+    "keeps store setup editable when the store record is not found",
+    "does not treat a 404 from the store API as a fatal setup block",
+    "Store setup unavailable",
+    "refund_issue reports AgentGuard need_approval",
+    "approved and executed",
+    "refund_issue does not execute or celebrate a missing order",
+    "refund_issue reports AgentGuard deny while paused",
+    "stays on /dashboard instead of auto-redirecting to store setup",
+    "asks a signed-out deep link to sign in and keeps the return-to path",
+    "signin-return-to",
+)
+
+GATEWAY_P0_NEEDLES = (
+    "test_order_short_id_is_a_hex_prefix_not_a_uuid",
+    "test_seller_store_get_empty_is_200_not_404",
+    "test_seller_refund_over_limit_needs_approval_and_missing_order_is_not_executed",
+    "test_postgres_seller_store_get_empty_is_200_not_404",
+    "test_same_principal_buyer_checkout_lists_on_seller_and_short_id",
+    "test_seller_refund_over_limit_and_missing_order_are_server_enforced",
+    "7BA6FE24",
+    "_order_hex_prefix",
+    '_order_hex_prefix("order_missing") is None',
+    "need_approval",
+    "resource_not_found",
+    "/api/demo-commerce/seller/store",
+    "display_id",
+    "/api/demo-commerce/seller/orders/{display_id}",
+)
+
+GATEWAY_P0_HINT = (
+    "gateway_p0_regression_tests_missing - need aadharchain tests from "
+    "https://github.com/ingpoc/aadhaar-chain/pull/7"
+)
+BUYER_P0_HINT = (
+    "buyer_p0_regression_tests_missing - need ondcbuyer tests from "
+    "https://github.com/ingpoc/ondc-buyer/pull/8"
+)
+SELLER_P0_HINT = (
+    "seller_p0_regression_tests_missing - need ondcseller tests from "
+    "https://github.com/ingpoc/ondc-seller/pull/8"
+)
+
+
+def _p0_scan_row(
+    *,
+    tree: Path,
+    source: str,
+    present_id: str,
+    missing_id: str,
+    needles: tuple[str, ...],
+    patterns: tuple[str, ...],
+    hint: str,
+    required: bool,
+) -> dict[str, Any]:
+    if source == "missing" or not tree.exists():
+        return {
+            "id": missing_id if required else present_id,
+            "ok": not required,
+            "detail": hint if required else f"skipped: {tree.name} tree not present",
+        }
+    text = _tree_text(tree, patterns)
+    missing = _missing_needles(text, needles)
+    if missing:
+        shown = missing if len(missing) <= 8 else [*missing[:8], f"...+{len(missing) - 8}"]
+        return {
+            "id": missing_id,
+            "ok": False,
+            "detail": f"source={source} missing={shown} {hint}",
+        }
+    return {
+        "id": present_id,
+        "ok": True,
+        "detail": f"source={source} files={len(_iter_files(tree, patterns))}",
+    }
+
+
+def grade_p0_regression(
+    root: Path,
+    *,
+    worktrees: list[Path] | None = None,
+    require_app_trees: bool = False,
+) -> list[dict[str, Any]]:
+    """Fail closed if 2026-08-19 Buyer/Seller/Gateway P0 tests were deleted or emptied."""
+    buyer_root, buyer_source = _nested_app_root(
+        root, "ondcbuyer", marker="package.json", worktrees=worktrees
+    )
+    seller_root, seller_source = _nested_app_root(
+        root, "ondcseller", marker="package.json", worktrees=worktrees
+    )
+    gateway_tests, gateway_source = _gateway_tests(root, worktrees)
+    return [
+        _p0_scan_row(
+            tree=buyer_root,
+            source=buyer_source,
+            present_id="buyer_p0_regression_tests",
+            missing_id="buyer_p0_regression_tests_missing",
+            needles=BUYER_P0_NEEDLES,
+            patterns=BUYER_P0_TEST_GLOBS,
+            hint=BUYER_P0_HINT,
+            required=require_app_trees,
+        ),
+        _p0_scan_row(
+            tree=seller_root,
+            source=seller_source,
+            present_id="seller_p0_regression_tests",
+            missing_id="seller_p0_regression_tests_missing",
+            needles=SELLER_P0_NEEDLES,
+            patterns=SELLER_P0_TEST_GLOBS,
+            hint=SELLER_P0_HINT,
+            required=require_app_trees,
+        ),
+        _p0_scan_row(
+            tree=gateway_tests,
+            source=gateway_source,
+            present_id="gateway_p0_regression_tests",
+            missing_id="gateway_p0_regression_tests_missing",
+            needles=GATEWAY_P0_NEEDLES,
+            patterns=GATEWAY_P0_TEST_GLOBS,
+            hint=GATEWAY_P0_HINT,
+            required=True,
+        ),
+    ]
+
+
+def _write_needles(path: Path, needles: tuple[str, ...]) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text("\n".join(needles) + "\n", encoding="utf-8")
+
+
+def _self_test_p0() -> None:
+    with tempfile.TemporaryDirectory(prefix="ondc-ci-p0-") as directory:
+        base = Path(directory)
+        empty = base / "empty"
+        empty.mkdir()
+        missing_rows = grade_p0_regression(
+            empty, worktrees=[], require_app_trees=True
+        )
+        missing_ids = {row["id"] for row in missing_rows if not row["ok"]}
+        assert missing_ids == {
+            "buyer_p0_regression_tests_missing",
+            "seller_p0_regression_tests_missing",
+            "gateway_p0_regression_tests_missing",
+        }, missing_ids
+        skipped = grade_p0_regression(empty, worktrees=[], require_app_trees=False)
+        assert all(
+            row["ok"]
+            for row in skipped
+            if row["id"] in {"buyer_p0_regression_tests", "seller_p0_regression_tests"}
+        )
+        assert any(
+            row["id"] == "gateway_p0_regression_tests_missing" and not row["ok"]
+            for row in skipped
+        )
+
+        weak = base / "weak"
+        weak_gateway = weak / "aadharchain" / "gateway" / "tests" / "test_placeholder.py"
+        weak_gateway.parent.mkdir(parents=True)
+        weak_gateway.write_text("def test_placeholder(): pass\n", encoding="utf-8")
+        _write_needles(weak / "ondcbuyer" / "package.json", ('{"name":"ondc-buyer"}',))
+        _write_needles(
+            weak / "ondcbuyer" / "src" / "pages" / "CheckoutPage.test.tsx",
+            ("it('unrelated') {}",),
+        )
+        _write_needles(weak / "ondcseller" / "package.json", ('{"name":"ondc-seller"}',))
+        _write_needles(
+            weak / "ondcseller" / "src" / "pages" / "BusinessPage.test.tsx",
+            ("it('unrelated') {}",),
+        )
+        weak_rows = grade_p0_regression(weak, worktrees=[], require_app_trees=True)
+        assert {row["id"] for row in weak_rows if not row["ok"]} == {
+            "buyer_p0_regression_tests_missing",
+            "seller_p0_regression_tests_missing",
+            "gateway_p0_regression_tests_missing",
+        }
+
+        good = base / "good"
+        _write_needles(good / "ondcbuyer" / "package.json", ('{"name":"ondc-buyer"}',))
+        _write_needles(
+            good / "ondcbuyer" / "src" / "pages" / "BuyerP0.test.tsx",
+            BUYER_P0_NEEDLES,
+        )
+        _write_needles(good / "ondcseller" / "package.json", ('{"name":"ondc-seller"}',))
+        _write_needles(
+            good / "ondcseller" / "src" / "pages" / "SellerP0.test.tsx",
+            SELLER_P0_NEEDLES,
+        )
+        _write_needles(
+            good / "aadharchain" / "gateway" / "tests" / "test_p0_regressions.py",
+            GATEWAY_P0_NEEDLES,
+        )
+        good_rows = grade_p0_regression(good, worktrees=[], require_app_trees=True)
+        assert all(row["ok"] for row in good_rows), good_rows
+        assert {row["id"] for row in good_rows} == {
+            "buyer_p0_regression_tests",
+            "seller_p0_regression_tests",
+            "gateway_p0_regression_tests",
+        }
+
+
 def _self_test() -> int:
     with tempfile.TemporaryDirectory(prefix="ondc-ci-graders-") as directory:
         base = Path(directory)
@@ -79,11 +338,12 @@ def _self_test() -> int:
         local_test.write_text("def test_placeholder(): pass\n", encoding="utf-8")
         resolved, source = _gateway_tests(current, [primary])
         assert resolved == local_test.parent.resolve() and source == "current"
+    _self_test_p0()
     signature = inspect.signature(grade_live)
     assert signature.parameters["protocol_search"].default is False
     live_source = inspect.getsource(grade_live)
     assert "_post_json(" not in live_source and "if protocol_search:" in live_source
-    print(json.dumps({"ok": True, "self_test": "gateway-worktree-and-live-readonly"}))
+    print(json.dumps({"ok": True, "self_test": "gateway-worktree-p0-and-live-readonly"}))
     return 0
 
 
@@ -330,6 +590,15 @@ def grade_offline() -> list[dict[str, Any]]:
             "detail": f"forbidden={forbidden_browser_mutations} closeout={'close_harness_sessions(handler)' in harness_text}",
         }
     )
+
+    # 2026-08-19 P0: fail if Buyer/Seller/Gateway regression tests were deleted
+    # or emptied. Nested apps are gitignored locally; CI checks them out.
+    rows.extend(
+        grade_p0_regression(
+            ROOT,
+            require_app_trees=os.environ.get("GITHUB_ACTIONS") == "true",
+        )
+    )
     return rows
 
 
@@ -404,6 +673,7 @@ def grade_live(
         ("buyer_api_agent_runtime", f"{by}/api/agent/runtime?app=ondc-buyer", {200}),
         ("seller_api_agent_runtime", f"{sl}/api/agent/runtime?app=ondc-seller", {200}),
         ("seller_commerce_orders_auth_boundary", f"{sl}/api/demo-commerce/seller/orders", {401, 403}),
+        ("seller_commerce_store_auth_boundary", f"{sl}/api/demo-commerce/seller/store", {401, 403}),
         ("buyer_ondc_path", f"{by}/ondc/status", {200}),
         ("seller_ondc_path", f"{sl}/ondc/status", {200}),
     ):

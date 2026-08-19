@@ -205,6 +205,7 @@ def validate_domain(name: str) -> None:
         browser_scripts = sorted((SKILLS_ROOT / name / "scripts").glob("*.py"))
         syntax_check(browser_scripts)
     elif name == "portfolio-deploy":
+        run([sys.executable, "scripts/ondc_ci_graders.py", "--self-test"])
         run(["env", "PYTHONDONTWRITEBYTECODE=1", sys.executable, "scripts/ondc_ci_graders.py", "--offline"])
         gitleaks_config = (ROOT / ".gitleaks.toml").read_text(encoding="utf-8")
         if not all(

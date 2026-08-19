@@ -120,6 +120,12 @@ jobs:
           pip install -r aadharchain/gateway/requirements.txt
           ./scripts/verify-portfolio.sh --ci
 
+      - name: ONDC offline graders
+        if: ${{ inputs.skip_graders != true }}
+        run: |
+          python3 scripts/ondc_ci_graders.py --self-test
+          python3 scripts/ondc_ci_graders.py --offline
+
       - name: Buyer test+build
         if: ${{ inputs.skip_graders != true }}
         working-directory: ondcbuyer

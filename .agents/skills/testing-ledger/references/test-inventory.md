@@ -24,7 +24,10 @@ Cadence: **PR** (blocks merge) · **Post** (post-deploy / soft FQDN) · **Night*
 | gitleaks | Secret scan | **G** | PR | `ci.yml` secret-scan |
 | AgentGuard fixture lanes | `portfolio_browser.py agentguard …` | **B** | Ops | portfolio-browser |
 | `commerce_demo_mode_gate` | Refuse demo flip without evidence | **G** | PR + Ops | `scripts/commerce_demo_mode_gate.py` |
-| `ondc_ci_graders` offline | Gate check + contract smoke | **G** | PR | `scripts/ondc_ci_graders.py --offline` |
+| `ondc_ci_graders` offline | Gate check + 2026-08-19 P0 test scanners | **G** | PR | `scripts/ondc_ci_graders.py --offline` |
+| Buyer P0 scanners | Pause exclusive, guest cart/checkout lock, address collapse, Agent Guard deep link | **G** | PR | `buyer_p0_regression_tests` in `ondc_ci_graders.py --offline` |
+| Seller P0 scanners | Empty store setup, refund copy, dashboard stay, unauth return-to | **G** | PR | `seller_p0_regression_tests` in `ondc_ci_graders.py --offline` |
+| Gateway P0 scanners | Short-id GET, refund `need_approval`, store GET 200 draft | **G** | PR | Fail-closed `gateway_p0_regression_tests_missing` until aadhaar-chain#7 |
 | `ondc_ci_graders` live soft | FQDN health/JSON/rewrite/bundle | **H** | Post (non-blocking PR) | `ondc_ci_graders.py --live --soft` |
 | Gateway `/api/health` | Wake / liveness | **H** | Post | graders + deploy post-probe |
 | `/api/ondc/status` | enabled+configured JSON | **H** | Post | graders |

@@ -209,7 +209,7 @@ jobs:
           node-version: "20"
 
       - name: Install Vercel CLI
-        run: npm install -g vercel@39
+        run: npm install -g vercel@55
 
       - name: Deploy Buyer (Hobby)
         env:
@@ -251,7 +251,7 @@ jobs:
           node-version: "20"
 
       - name: Install Vercel CLI
-        run: npm install -g vercel@39
+        run: npm install -g vercel@55
 
       - name: Deploy Seller (Hobby)
         env:

@@ -52,7 +52,7 @@ registration pending). Keys: env PEM materialize on Render — see
 | Render plan | **Free** (`identity-aadhar-gateway-main`, Docker) |
 | Gateway commit | `933cadf` on `ingpoc/aadhaar-chain` `@codex/ondc-onboard-fqdn-20260712` |
 | Key material | Render env `ONDC_{BUYER,SELLER}_*_PEM_B64` → `/tmp/ondc-env/{role}` |
-| Vercel plan | **Hobby** — projects `ondc-buyer` / `ondc-seller` own FQDNs |
+| Vercel plan | **Hobby** — projects `ondc-buyer` / `ondc-seller` owned FQDNs that day. **Superseded 2026-08-19:** FQDNs on no-hyphen `ondcbuyer` / `ondcseller`; see [`docs/SHIP.md`](../../../../docs/SHIP.md) |
 | Buyer deploy | `dpl_6TbnYCSW5dK792iVdCPqsbxuKq4g` → `ondcbuyer.aadharcha.in` |
 | Seller deploy | `dpl_3x9Nrr6HdoUwwyg4CTMN96nbBEyR` → `ondcseller.aadharcha.in` |
 | Probes | GW health/providers/buyer+seller status **200**; FQDN verify **200** + meta; `POST /ondc/on_subscribe` **400** decrypt (route live, not 404); SPA homes **200** |

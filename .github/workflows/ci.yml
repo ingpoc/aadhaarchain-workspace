@@ -1,6 +1,7 @@
-# Portfolio CI — deterministic graders before any deploy.
+# Portfolio CI — unique graders only. Buyer/Seller vitest stays in app CI.
 # Nested apps live in separate public repos (gitignored locally); this workflow
-# checks them out and runs the same gates as TESTINGPLAN / verify-portfolio.
+# checks them out when a unique job needs the tree.
+# cursor/* branches do not run this workflow until a PR targets main.
 name: Portfolio CI
 
 on:
@@ -47,8 +48,42 @@ jobs:
       - name: Scan workspace tree
         run: gitleaks detect --source . --no-git --config .gitleaks.toml --verbose --redact --exit-code 1
 
+  agentguard-contract:
+    name: AgentGuard contract parity
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Checkout aadharchain
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ env.AADHAAR_CHAIN_REPO }}
+          ref: ${{ env.AADHAAR_CHAIN_REF }}
+          path: aadharchain
+
+      - name: Checkout ondcbuyer
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ env.ONDC_BUYER_REPO }}
+          ref: ${{ env.ONDC_BUYER_REF }}
+          path: ondcbuyer
+
+      - name: Checkout ondcseller
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ env.ONDC_SELLER_REPO }}
+          ref: ${{ env.ONDC_SELLER_REF }}
+          path: ondcseller
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: verify_agentguard_contract_sync
+        run: python3 scripts/verify_agentguard_contract_sync.py
+
   gateway:
-    name: Gateway pytest
+    name: Gateway pytest + Postgres
     runs-on: ubuntu-latest
     services:
       postgres:
@@ -76,20 +111,6 @@ jobs:
           repository: ${{ env.AADHAAR_CHAIN_REPO }}
           ref: ${{ env.AADHAAR_CHAIN_REF }}
           path: aadharchain
-
-      - name: Checkout ondcbuyer contract consumer
-        uses: actions/checkout@v4
-        with:
-          repository: ${{ env.ONDC_BUYER_REPO }}
-          ref: ${{ env.ONDC_BUYER_REF }}
-          path: ondcbuyer
-
-      - name: Checkout ondcseller contract consumer
-        uses: actions/checkout@v4
-        with:
-          repository: ${{ env.ONDC_SELLER_REPO }}
-          ref: ${{ env.ONDC_SELLER_REF }}
-          path: ondcseller
 
       - uses: actions/setup-python@v5
         with:
@@ -124,71 +145,10 @@ jobs:
           asyncio.run(migrate())
           PY
 
-      - name: verify-portfolio --ci (gateway pytest)
+      - name: verify-portfolio --ci --skip-contract (gateway pytest)
         env:
           PYTEST_DISABLE_PLUGIN_AUTOLOAD: "1"
-        run: ./scripts/verify-portfolio.sh --ci
-
-  ondcbuyer:
-    name: ONDC Buyer test+build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          repository: ${{ env.ONDC_BUYER_REPO }}
-          ref: ${{ env.ONDC_BUYER_REF }}
-
-      - uses: actions/setup-node@v4
-        with:
-          node-version: "20"
-          cache: npm
-          cache-dependency-path: package-lock.json
-
-      - name: Install
-        run: npm ci
-
-      - name: Lint
-        run: npm run lint
-
-      - name: Typecheck
-        run: npm run typecheck
-
-      - name: Test
-        run: npm test
-
-      - name: Build
-        # Do not set VITE_COMMERCE_DEMO_MODE here — leave app / Vercel defaults.
-        run: npm run build
-
-  ondcseller:
-    name: ONDC Seller test+build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          repository: ${{ env.ONDC_SELLER_REPO }}
-          ref: ${{ env.ONDC_SELLER_REF }}
-
-      - uses: actions/setup-node@v4
-        with:
-          node-version: "20"
-          cache: npm
-          cache-dependency-path: package-lock.json
-
-      - name: Install
-        run: npm ci
-
-      - name: Lint
-        run: npm run lint
-
-      - name: Typecheck
-        run: npm run typecheck
-
-      - name: Test
-        run: npm test
-
-      - name: Build
-        run: npm run build
+        run: ./scripts/verify-portfolio.sh --ci --skip-contract
 
   ondc-offline:
     name: ONDC offline graders
@@ -247,9 +207,12 @@ jobs:
           python3 scripts/ondc_preprod_smoke.py --ci \
             --base https://gateway.aadharcha.in || true
 
+      - name: Bundle parity (soft on PR — deploy is fail-closed)
+        run: python3 scripts/ondc_ci_graders.py --bundle-parity --soft
+
   ci-ok:
     name: CI graders green
-    needs: [secret-scan, gateway, ondcbuyer, ondcseller, ondc-offline]
+    needs: [secret-scan, agentguard-contract, gateway, ondc-offline]
     runs-on: ubuntu-latest
     steps:
-      - run: echo "All portfolio CI graders passed (FQDN soft probes are advisory)"
+      - run: echo "Portfolio CI unique graders passed (Buyer/Seller vitest is app CI; FQDN probes advisory)"

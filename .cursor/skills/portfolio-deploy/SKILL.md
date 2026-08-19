@@ -43,8 +43,9 @@ Local ports remain `:43101` / `:43102` / `:43103` — see repo [`AGENTS.md`](../
 ## CI/CD lifecycle (dev → graders → deploy)
 
 ```text
-local verify → Portfolio CI (PR/push) → green graders →
-workflow_dispatch deploy (confirm Free/Hobby) → post-probes
+local-ship-gate.sh → app npm test/pytest → app PR CI → merge main →
+Portfolio CI (unique jobs) → workflow_dispatch Portfolio Deploy
+(confirm Free/Hobby) → fail-closed FQDN vs vercel.app index-*.js
 ```
 
 | Piece | Path |
@@ -54,14 +55,18 @@ workflow_dispatch deploy (confirm Free/Hobby) → post-probes
 | Operator deploy (no auto prod on push) | `.github/workflows/deploy.yml` |
 | Local/CI API lane | `./scripts/verify-portfolio.sh --ci` |
 
-**CI graders (fail closed):** gitleaks → gateway pytest via `verify-portfolio.sh --ci` → ondcbuyer npm test+build → ondcseller npm test+build. Browser UI lanes are out of CI. No rumdl/ruff unless already adopted. **Never** flip `VITE_COMMERCE_DEMO_MODE` in CI/deploy.
+**CI graders (fail closed):** gitleaks → AgentGuard contract parity → gateway pytest+Postgres via `verify-portfolio.sh --ci --skip-contract` → `ondc_ci_graders.py --offline`. Buyer/Seller vitest stays in **app CI** (`ingpoc/ondc-buyer`, `ingpoc/ondc-seller`). Browser UI lanes are out of CI. No rumdl/ruff unless already adopted. **Never** flip `VITE_COMMERCE_DEMO_MODE` in CI/deploy.
 
 **Live probes are read-only by default.** CI/deploy must never pass
 `--protocol-search`; that flag requires a separately authorized ONDC search gate.
+FQDN functional journeys stay `--soft`. **Bundle parity** (`assets/index-*.js` on
+`*.vercel.app` vs `*.aadharcha.in`) is fail-closed on Portfolio Deploy — HTTP 200
+is not enough. Vercel projects must be `ondcbuyer` / `ondcseller` (no hyphen), not
+`ondc-buyer` / `ondc-seller`. Git is not connected; CLI `--prod` only.
 
 **Gateway pytest green path (2026-07-12):** `--ci` runs `pytest tests/ -q -p asyncio` with `PYTEST_DISABLE_PLUGIN_AUTOLOAD=1`. Auth0/provider tests **monkeypatch** `settings.auth0_*` off so host `.env` Auth0 creds cannot flip `"auth0": true` mid-suite. Detail: [`references/ci-cd.md`](references/ci-cd.md).
 
-**Deploy:** `workflow_dispatch` only; requires `confirm_free_tier=true` (**$0 abort** otherwise); re-runs graders by default; then Render gateway and/or required Vercel edges; then FQDN probes. Secrets names only in [`references/ci-cd.md`](references/ci-cd.md).
+**Deploy:** `workflow_dispatch` only; requires `confirm_free_tier=true` (**$0 abort** otherwise); re-runs unique graders by default (not Buyer/Seller vitest); then Render gateway and/or required Vercel edges; then FQDN probes **plus fail-closed index-*.js parity**. Secrets names only in [`references/ci-cd.md`](references/ci-cd.md).
 
 **Last frozen Retail deployment stamp (2026-07-23, Free/Hobby):** exact-commit
 Render deployment `dep-d9gqfcjtqb8s73e0l940` is live at gateway
@@ -146,7 +151,7 @@ Details: [`references/free-tier.md`](references/free-tier.md). Platform docs: [R
 **Do not run CLI deploy / Actions deploy until every item passes.** Full copy: [`references/checklist.md`](references/checklist.md). CI/CD: [`references/ci-cd.md`](references/ci-cd.md).
 
 0. **$0 plan confirm** — Render instance = **Free**; workspace = **Hobby**; Vercel = **Hobby**. Abort upgrade/billing/Disk. Run **maximize free features** (above) + charge-risk watchlist in [`references/free-tier.md`](references/free-tier.md).
-1. **CI graders green** — Portfolio CI (or local equivalents): gitleaks; `./scripts/verify-portfolio.sh --ci`; Buyer/Seller `npm test && npm run build`. Browser acceptance runs after deploy.
+1. **CI graders green** — Portfolio CI (or `./scripts/local-ship-gate.sh`): gitleaks; AgentGuard contract parity; `./scripts/verify-portfolio.sh --ci --skip-contract`; `ondc_ci_graders.py --offline`. Buyer/Seller `npm test && npm run build` stay in **app CI**. Browser acceptance runs after deploy.
 2. **Local smoke** — `./scripts/verify-portfolio.sh` if stack available; gateway onboard status OK on `:43101`; if shipping auth, `GET /api/auth/providers` shows expected providers.
 3. **Secrets inventory** — `AUTH0_*`, `SESSION_SECRET` (or gateway session secret env), `CORS_ORIGINS`, `PUBLIC_GATEWAY_URL`, ONDC portal PEMs / `ONDC_*_KEYS_DIR` or equivalent env — **env on host only, never git**.
 4. **Ephemeral FS** — Render Free loses local files on spin-down/redeploy. Set **`DATA_DIR=/tmp/aadharchain-data`** (and `ONDC_ENV_KEYS_DIR=/tmp/ondc-env`). PEMs via env; **never** Disk / SSH-copied persistence.
@@ -193,6 +198,10 @@ MCP fallback: Render plugin `list_services` → `get_service` / deploy helpers �
 
 ```bash
 vercel --version
+# CLI --prod only. Git is not connected on these Hobby projects.
+# VERCEL_PROJECT_ID_* must be no-hyphen `ondcbuyer` / `ondcseller`
+# (not `ondc-buyer` / `ondc-seller`). After --prod, FQDN index-*.js
+# must match ondcbuyer.vercel.app / ondcseller.vercel.app.
 cd ondcbuyer && vercel --prod   # project linked to ondcbuyer.aadharcha.in
 cd ../ondcseller && vercel --prod
 # Env: VITE_IDENTITY_AUTH_ENABLED=true
@@ -228,7 +237,8 @@ Allow cold start (~60s) on first Render hit after idle.
 | `GET https://ondcseller.aadharcha.in/ondc-site-verification.html` | same for seller |
 | `GET https://ondclbnp.aadharcha.in/ondc-site-verification.html` | 200 + LBNP-specific verification after DNS/TLS |
 | `POST` FQDN `/ondc/on_subscribe` (challenge fixture) | `{ "answer": "…" }` after gateway live |
-| SPA shells | Buyer/Seller FQDN 200 Vite app |
+| SPA shells | Buyer/Seller FQDN 200 Vite app **and** `assets/index-*.js` equals `*.vercel.app` |
+| Auth SPA session | Buyer Sign out + `fetch(gateway/api/auth/me,{credentials:'include'})` authenticated |
 | Auth SPA session | Buyer Sign out + `fetch(gateway/api/auth/me,{credentials:'include'})` authenticated |
 
 Then hand back to partner-onboarding ladder (lookup / subscribe only if needed).
@@ -276,10 +286,13 @@ render logs --service <service-id>
 
 # Vercel (Hobby: avoid HUF git-author block; fail-fast non-git stage + alias)
 vercel login
+./scripts/local-ship-gate.sh
 ./scripts/vercel_archive_deploy.sh buyer --confirm-free-tier
 ./scripts/vercel_archive_deploy.sh seller --confirm-free-tier
 # Inspect the stage without deploying:
 ./scripts/vercel_archive_deploy.sh buyer --confirm-free-tier --stage-only
+# Fail-closed public hash vs vercel.app (optional live probe):
+python3 scripts/ondc_ci_graders.py --bundle-parity
 
 # Probes (after wake)
 curl -sS https://gateway.aadharcha.in/api/health

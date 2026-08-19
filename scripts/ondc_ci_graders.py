@@ -5,7 +5,10 @@ Modes:
   --offline   Local/PR: commerce demo gate + 2026-08-19 P0 test scanners (blocks CI)
   --live      Read-only FQDN/gateway JSON + rewrite + bundle probes
   --protocol-search  With --live: explicitly dispatch bounded PreProd searches
+  --bundle-parity  Compare assets/index-*.js on vercel.app vs public FQDN
+  --vercel-project-identity  Fail if pulled project is ondc-buyer/ondc-seller
   --soft      With --live: network/cold-start failures → warn exit 0
+              With --bundle-parity: advisory only (deploy must omit --soft)
   --hard      With --live: any fail → non-zero (post-deploy optional)
 
 Examples:
@@ -15,8 +18,13 @@ Examples:
     --gateway https://gateway.aadharcha.in \\
     --buyer https://ondcbuyer.aadharcha.in \\
     --seller https://ondcseller.aadharcha.in
+  python3 scripts/ondc_ci_graders.py --bundle-parity
+  python3 scripts/ondc_ci_graders.py --vercel-project-identity buyer \\
+    --project-json .vercel/project.json
 
 No secrets. Does not flip VITE_COMMERCE_DEMO_MODE. No UPI/prod order claims.
+Bundle parity is fail-closed on Portfolio Deploy: HTTP 200 on the FQDN is not
+enough if the custom domain still serves a different index-*.js than production.
 """
 from __future__ import annotations
 
@@ -339,12 +347,54 @@ def _self_test() -> int:
         resolved, source = _gateway_tests(current, [primary])
         assert resolved == local_test.parent.resolve() and source == "current"
     _self_test_p0()
+    _self_test_bundle_parity()
     signature = inspect.signature(grade_live)
     assert signature.parameters["protocol_search"].default is False
     live_source = inspect.getsource(grade_live)
     assert "_post_json(" not in live_source and "if protocol_search:" in live_source
-    print(json.dumps({"ok": True, "self_test": "gateway-worktree-p0-and-live-readonly"}))
+    print(json.dumps({"ok": True, "self_test": "gateway-worktree-p0-live-readonly-bundle-parity"}))
     return 0
+
+
+def _self_test_bundle_parity() -> None:
+    html_new = '<script type="module" src="/assets/index-BNEIAZ9p.js"></script>'
+    html_old = '<script type="module" src="/assets/index-XX7NQ1aR.js"></script>'
+    assert extract_index_bundle(html_new) == "index-BNEIAZ9p.js"
+    assert extract_index_bundle(html_old) == "index-XX7NQ1aR.js"
+    assert extract_index_bundle("<html></html>") is None
+    assert (
+        deployment_url_from_vercel_json({"url": "ondcbuyer-abc.vercel.app"})
+        == "https://ondcbuyer-abc.vercel.app"
+    )
+    assert (
+        deployment_url_from_vercel_json({"url": "https://ondcbuyer.vercel.app/"})
+        == "https://ondcbuyer.vercel.app"
+    )
+    assert (
+        deployment_url_from_vercel_json(
+            {"deployment": {"url": "https://ondcseller-xyz.vercel.app"}}
+        )
+        == "https://ondcseller-xyz.vercel.app"
+    )
+    assert (
+        deployment_url_from_vercel_output(
+            'hint\n{"url":"https://ondcbuyer-abc.vercel.app","readyState":"READY"}\n'
+        )
+        == "https://ondcbuyer-abc.vercel.app"
+    )
+    with tempfile.TemporaryDirectory(prefix="ondc-ci-parity-") as directory:
+        path = Path(directory) / "project.json"
+        path.write_text(json.dumps({"projectName": "ondcbuyer"}), encoding="utf-8")
+        assert grade_vercel_project_identity(path, "buyer")["ok"]
+        path.write_text(json.dumps({"projectName": "ondc-buyer"}), encoding="utf-8")
+        hyphen = grade_vercel_project_identity(path, "buyer")
+        assert not hyphen["ok"] and "ondcbuyer" in hyphen["detail"]
+        path.write_text(json.dumps({"name": "ondcseller"}), encoding="utf-8")
+        assert grade_vercel_project_identity(path, "seller")["ok"]
+        path.write_text(json.dumps({"projectName": "ondc-seller"}), encoding="utf-8")
+        assert not grade_vercel_project_identity(path, "seller")["ok"]
+        missing = grade_vercel_project_identity(path.parent / "missing.json", "buyer")
+        assert not missing["ok"]
 
 
 def _fetch(
@@ -354,8 +404,11 @@ def _fetch(
     method: str = "GET",
     data: bytes | None = None,
     timeout: float = 45,
+    retries: int | None = None,
 ) -> tuple[int, str, str]:
-    attempts = 11 if method.upper() == "GET" else 1
+    if retries is None:
+        retries = 11 if method.upper() == "GET" else 1
+    attempts = max(1, retries)
     transient = {0, 429, 502, 503, 504}
     result: tuple[int, str, str] = (0, "request not attempted", "")
     for attempt in range(attempts):
@@ -401,6 +454,162 @@ def _post_json(url: str, payload: dict[str, Any], timeout: float = 60) -> tuple[
         data=json.dumps(payload).encode("utf-8"),
         timeout=timeout,
     )
+
+
+INDEX_ASSET_RE = re.compile(r"assets/(index-[^\"']+\.js)")
+NO_CACHE_HEADERS = {"Cache-Control": "no-cache", "Pragma": "no-cache"}
+CANONICAL_VERCEL_APP = {
+    "buyer": "https://ondcbuyer.vercel.app",
+    "seller": "https://ondcseller.vercel.app",
+}
+CANONICAL_PUBLIC_FQDN = {
+    "buyer": "https://ondcbuyer.aadharcha.in",
+    "seller": "https://ondcseller.aadharcha.in",
+}
+EXPECTED_VERCEL_PROJECT = {
+    "buyer": "ondcbuyer",
+    "seller": "ondcseller",
+}
+HYPHEN_VERCEL_PROJECT = {
+    "buyer": "ondc-buyer",
+    "seller": "ondc-seller",
+}
+BUNDLE_PARITY_HINT = (
+    "custom domain is not serving this production; 2026-08-19 trap: FQDNs must "
+    "live on Vercel projects ondcbuyer/ondcseller (no hyphen), not "
+    "ondc-buyer/ondc-seller"
+)
+
+
+def extract_index_bundle(html: str) -> str | None:
+    match = INDEX_ASSET_RE.search(html or "")
+    return match.group(1) if match else None
+
+
+def normalize_http_url(url: str) -> str:
+    text = (url or "").strip()
+    if not text:
+        return ""
+    if text.startswith("//"):
+        text = "https:" + text
+    elif not text.startswith(("http://", "https://")):
+        text = "https://" + text
+    return text.rstrip("/")
+
+
+def deployment_url_from_vercel_json(payload: Any) -> str:
+    data = json.loads(payload) if isinstance(payload, str) else payload
+    if not isinstance(data, dict):
+        return ""
+    url = data.get("url")
+    deployment = data.get("deployment")
+    if not url and isinstance(deployment, dict):
+        url = deployment.get("url")
+    return normalize_http_url(str(url or ""))
+
+
+def deployment_url_from_vercel_output(text: str) -> str:
+    raw = (text or "").strip()
+    if not raw:
+        return ""
+    try:
+        return deployment_url_from_vercel_json(json.loads(raw))
+    except json.JSONDecodeError:
+        start = raw.find("{")
+        end = raw.rfind("}")
+        if start < 0 or end <= start:
+            return ""
+        try:
+            return deployment_url_from_vercel_json(json.loads(raw[start : end + 1]))
+        except json.JSONDecodeError:
+            return ""
+
+
+def grade_vercel_project_identity(project_json: Path, role: str) -> dict[str, Any]:
+    expected = EXPECTED_VERCEL_PROJECT[role]
+    forbidden = HYPHEN_VERCEL_PROJECT[role]
+    check_id = f"{role}_vercel_project_identity"
+    if not project_json.is_file():
+        return {
+            "id": check_id,
+            "ok": False,
+            "detail": f"missing {project_json} — vercel pull must create project.json",
+        }
+    try:
+        data = json.loads(project_json.read_text(encoding="utf-8"))
+    except json.JSONDecodeError as exc:
+        return {"id": check_id, "ok": False, "detail": f"invalid JSON: {exc}"}
+    if not isinstance(data, dict):
+        return {"id": check_id, "ok": False, "detail": "project.json is not an object"}
+    name = str(data.get("projectName") or data.get("name") or "").strip()
+    if name == expected:
+        return {"id": check_id, "ok": True, "detail": f"projectName={name}"}
+    if name == forbidden:
+        return {
+            "id": check_id,
+            "ok": False,
+            "detail": (
+                f"projectName={name} is the hyphen twin; VERCEL_PROJECT_ID_"
+                f"{role.upper()} must target Hobby project {expected} on "
+                "ingpoc's projects. Git is not connected; CLI --prod only."
+            ),
+        }
+    return {
+        "id": check_id,
+        "ok": False,
+        "detail": f"projectName={name!r} expected {expected} (not {forbidden})",
+    }
+
+
+def grade_index_bundle_parity(
+    check_id: str,
+    left_url: str,
+    right_url: str,
+    *,
+    attempts: int = 8,
+    sleep_seconds: float = 8,
+) -> dict[str, Any]:
+    left = normalize_http_url(left_url)
+    right = normalize_http_url(right_url)
+    last_detail = "parity not attempted"
+    for attempt in range(attempts):
+        left_code, left_html, _ = _fetch(
+            left, headers=NO_CACHE_HEADERS, timeout=30, retries=2
+        )
+        right_code, right_html, _ = _fetch(
+            right, headers=NO_CACHE_HEADERS, timeout=30, retries=2
+        )
+        left_bundle = extract_index_bundle(left_html)
+        right_bundle = extract_index_bundle(right_html)
+        matched = (
+            left_code == 200
+            and right_code == 200
+            and bool(left_bundle)
+            and left_bundle == right_bundle
+        )
+        last_detail = (
+            f"left={left} http={left_code} bundle={left_bundle} "
+            f"right={right} http={right_code} bundle={right_bundle} "
+            f"attempts={attempt + 1}"
+        )
+        if matched:
+            return {"id": check_id, "ok": True, "detail": last_detail}
+        if attempt < attempts - 1:
+            time.sleep(sleep_seconds)
+    return {
+        "id": check_id,
+        "ok": False,
+        "detail": f"{last_detail} {BUNDLE_PARITY_HINT}",
+    }
+
+
+def grade_bundle_parity_pairs(
+    pairs: list[tuple[str, str, str]],
+) -> list[dict[str, Any]]:
+    return [
+        grade_index_bundle_parity(check_id, left_url, right_url)
+        for check_id, left_url, right_url in pairs
+    ]
 
 
 def grade_protocol_search(gw: str, by: str, sl: str) -> list[dict[str, Any]]:
@@ -746,34 +955,115 @@ def main() -> int:
         action="store_true",
         help="With --live, explicitly dispatch bounded PreProd search checks",
     )
+    p.add_argument(
+        "--bundle-parity",
+        action="store_true",
+        help="Compare assets/index-*.js between vercel.app production and public FQDN",
+    )
+    p.add_argument(
+        "--vercel-project-identity",
+        choices=sorted(EXPECTED_VERCEL_PROJECT),
+        help="Fail closed if .vercel/project.json is the hyphen twin project",
+    )
+    p.add_argument("--project-json", type=Path, help="Path to .vercel/project.json")
+    p.add_argument(
+        "--print-deploy-url",
+        type=Path,
+        help="Read Vercel CLI --format=json output and print the deployment URL",
+    )
+    p.add_argument("--parity-from", help="Left URL for a single index-*.js comparison")
+    p.add_argument("--parity-to", help="Right URL for a single index-*.js comparison")
+    p.add_argument("--parity-id", default="index_bundle_parity")
+    p.add_argument(
+        "--buyer-production",
+        default="",
+        help="Buyer vercel.app or unique --prod deployment URL",
+    )
+    p.add_argument(
+        "--seller-production",
+        default="",
+        help="Seller vercel.app or unique --prod deployment URL",
+    )
     p.add_argument("--self-test", action="store_true", help="Run deterministic grader checks")
-    p.add_argument("--soft", action="store_true", help="Live: warn-only on fail (exit 0)")
+    p.add_argument("--soft", action="store_true", help="Live/parity: warn-only on fail (exit 0)")
     p.add_argument("--hard", action="store_true", help="Live: fail closed")
     p.add_argument("--gateway", default="https://gateway.aadharcha.in")
-    p.add_argument("--buyer", default="https://ondcbuyer.aadharcha.in")
-    p.add_argument("--seller", default="https://ondcseller.aadharcha.in")
+    p.add_argument("--buyer", default=CANONICAL_PUBLIC_FQDN["buyer"])
+    p.add_argument("--seller", default=CANONICAL_PUBLIC_FQDN["seller"])
     args = p.parse_args()
 
     if args.protocol_search and not args.live:
         p.error("--protocol-search requires --live")
+    if args.vercel_project_identity and not args.project_json:
+        p.error("--vercel-project-identity requires --project-json")
+    if (args.parity_from or args.parity_to) and not (args.parity_from and args.parity_to):
+        p.error("--parity-from and --parity-to are required together")
+    if (args.parity_from or args.parity_to) and not args.bundle_parity:
+        p.error("--parity-from/--parity-to require --bundle-parity")
+    if (args.buyer_production or args.seller_production) and not args.bundle_parity:
+        p.error("--buyer-production/--seller-production require --bundle-parity")
     if args.self_test:
         return _self_test()
+    if args.print_deploy_url:
+        url = deployment_url_from_vercel_output(
+            args.print_deploy_url.read_text(encoding="utf-8")
+        )
+        if not url:
+            print("Vercel deploy JSON missing url", file=sys.stderr)
+            return 1
+        print(url)
+        return 0
 
-    if not args.offline and not args.live:
+    identity_or_parity = bool(args.vercel_project_identity or args.bundle_parity)
+    if not args.offline and not args.live and not identity_or_parity:
         args.offline = True
 
     report: dict[str, Any] = {"checks": []}
+    if args.vercel_project_identity:
+        report["checks"].append(
+            grade_vercel_project_identity(args.project_json, args.vercel_project_identity)
+        )
     if args.offline:
         report["checks"].extend(grade_offline())
+    live_ids: set[str] = set()
     if args.live:
-        report["checks"].extend(
-            grade_live(
-                args.gateway,
-                args.buyer,
-                args.seller,
-                protocol_search=args.protocol_search,
-            )
+        live_rows = grade_live(
+            args.gateway,
+            args.buyer,
+            args.seller,
+            protocol_search=args.protocol_search,
         )
+        live_ids = {row["id"] for row in live_rows}
+        report["checks"].extend(live_rows)
+    parity_ids: set[str] = set()
+    if args.bundle_parity:
+        pairs: list[tuple[str, str, str]] = []
+        if args.parity_from and args.parity_to:
+            pairs.append((args.parity_id, args.parity_from, args.parity_to))
+        if args.buyer_production:
+            pairs.append(
+                ("buyer_index_bundle_parity", args.buyer_production, args.buyer)
+            )
+        if args.seller_production:
+            pairs.append(
+                ("seller_index_bundle_parity", args.seller_production, args.seller)
+            )
+        if not pairs:
+            pairs = [
+                (
+                    "buyer_index_bundle_parity",
+                    CANONICAL_VERCEL_APP["buyer"],
+                    args.buyer,
+                ),
+                (
+                    "seller_index_bundle_parity",
+                    CANONICAL_VERCEL_APP["seller"],
+                    args.seller,
+                ),
+            ]
+        parity_rows = grade_bundle_parity_pairs(pairs)
+        parity_ids = {row["id"] for row in parity_rows}
+        report["checks"].extend(parity_rows)
 
     failed = [c for c in report["checks"] if not c.get("ok")]
     report["ok"] = len(failed) == 0
@@ -782,12 +1072,26 @@ def main() -> int:
 
     if report["ok"]:
         return 0
-    if args.live and args.soft and not args.hard:
-        print("SOFT: live graders failed but --soft → exit 0", file=sys.stderr)
-        return 0
-    if args.live and not args.hard and not args.soft:
-        # default live = soft for CI safety
-        print("SOFT(default): pass --hard to fail closed", file=sys.stderr)
+
+    live_soft = args.live and not args.hard
+    parity_soft = args.bundle_parity and args.soft and not args.hard
+    blocking: list[str] = []
+    advisory: list[str] = []
+    for check in failed:
+        cid = str(check.get("id", ""))
+        if cid.endswith("_vercel_project_identity"):
+            blocking.append(cid)
+        elif cid in parity_ids:
+            (advisory if parity_soft else blocking).append(cid)
+        elif cid in live_ids:
+            (advisory if live_soft else blocking).append(cid)
+        else:
+            blocking.append(cid)
+    if advisory and not blocking:
+        print(
+            f"SOFT: advisory failures {advisory} → exit 0",
+            file=sys.stderr,
+        )
         return 0
     return 1
 

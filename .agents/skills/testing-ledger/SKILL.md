@@ -72,6 +72,7 @@ python3 scripts/portfolio_browser.py closeout https://ondcbuyer.aadharcha.in/sea
 | `python3 scripts/hermes_operator_visible_search.py` | FQDN early `/results` smoke |
 | `python3 scripts/ondc_ci_graders.py --offline` | PR-blocking offline graders (demo gate + P0 test scanners) |
 | `python3 scripts/ondc_ci_graders.py --live` | Read-only FQDN probes. `--protocol-search` requires a separately authorized search gate. |
+| `python3 scripts/ondc_ci_graders.py --bundle-parity` | Optional live probe: FQDN `index-*.js` vs `*.vercel.app`. Fail-closed on deploy. |
 
 Return capsules: inline JSON matching global testing-framework capsule schema, or evidence JSON under `references/evidence/`.
 

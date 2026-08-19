@@ -26,13 +26,15 @@ Pre-deploy
       Speed Insights Buyer-only; ≤2 Render custom domains; no card-overage trap
 - [ ] Charge-risk watchlist scanned (Disk, Starter, Postgres day-30, domain #3,
       bandwidth near limit + payment method, Vercel Plus add-ons)
-- [ ] CI graders green (Portfolio CI or local): gitleaks; verify-portfolio --ci;
-      Buyer/Seller npm test + build — see references/ci-cd.md
+- [ ] CI graders green (Portfolio CI or `./scripts/local-ship-gate.sh`): gitleaks;
+      AgentGuard contract; verify-portfolio --ci --skip-contract;
+      `ondc_ci_graders.py --offline` — see references/ci-cd.md. Buyer/Seller
+      npm test stays in app CI.
 - [ ] Local verify: ./scripts/verify-portfolio.sh (or agreed subset) if stack up
 - [ ] Gateway local: GET :43101/api/health 200
 - [ ] Onboard local (if shipping ONDC): required /ondc/np/{buyer,seller,lbnp}/status routes ≠ 404 and return the intended identity
 - [ ] Auth (if shipping Auth0): GET :43101/api/auth/providers → auth0 true; demo_continue policy matches AADHAAR_CHAIN_ENV
-- [ ] Buyer/Seller build green if frontend changed: npm test && npm run build
+- [ ] Buyer/Seller build green **in the app repo** if frontend changed: npm test && npm run build
 - [ ] Secrets listed for Render (values in Dashboard/CLI only — not git):
       AUTH0_DOMAIN, AUTH0_CLIENT_ID, AUTH0_CLIENT_SECRET
       SESSION_SECRET (or equivalent session HMAC secret)
@@ -62,7 +64,9 @@ Post-deploy
 - [ ] /api/auth/providers on Render
 - [ ] Required /ondc/np/{buyer,seller,lbnp}/status on Render
 - [ ] Required FQDN /ondc-site-verification.html
-- [ ] Optional: on_subscribe challenge fixture
+- [ ] After Buyer/Seller --prod: FQDN `assets/index-*.js` equals
+      `ondcbuyer.vercel.app` / `ondcseller.vercel.app` (hyphen twins
+      `ondc-buyer` / `ondc-seller` are not FQDN owners)
 - [ ] Hand off to partner-onboarding ladder for registry lookup/subscribe
 ```
 
@@ -84,11 +88,24 @@ Post-deploy
 3. Do not SSH-copy PEMs onto Free instances and expect persistence.
 4. After portal key rotation: update secrets → **redeploy** gateway → re-probe verification.
 
+## Run stamp — 2026-08-19 Vercel FQDN identity (Hobby, $0)
+
+- [x] Hyphen projects `ondc-buyer` / `ondc-seller` previously owned
+      `ondcbuyer.aadharcha.in` / `ondcseller.aadharcha.in` while CLI `--prod`
+      using `VERCEL_PROJECT_ID_*` landed on no-hyphen `ondcbuyer` /
+      `ondcseller` (`ondcbuyer.vercel.app` `index-BNEIAZ9p.js`,
+      `ondcseller.vercel.app` `index-XX7NQ1aR.js`)
+- [x] Custom domains moved onto Hobby team "ingpoc's projects" projects
+      `ondcbuyer` / `ondcseller` (no hyphen). Git stays disconnected.
+- [x] Portfolio Deploy now fail-closes unless FQDN `index-*.js` matches
+      the no-hyphen `*.vercel.app` production alias. HTTP 200 is not enough.
+- [x] No Disk, Pro, Connect Git, or paid add-on
+
 ## Run stamp — 2026-07-12 FQDN redeploy ($0)
 
 - [x] Render Free confirmed; gateway commit **`933cadf`** live; onboard status + providers 200
 - [x] Key material via Render env `ONDC_{BUYER,SELLER}_*_PEM_B64` (ephemeral FS; no Disk)
-- [x] Vercel Hobby; deployed to `ondc-buyer` / `ondc-seller` (FQDN owners `ondcbuyer` / `ondcseller.aadharcha.in`)
+- [x] Vercel Hobby; deployed to `ondc-buyer` / `ondc-seller` (historical FQDN owners that day; **superseded 2026-08-19** — FQDNs now on no-hyphen `ondcbuyer` / `ondcseller`)
 - [x] Post-deploy probes: GW health/providers/buyer+seller status **200**; FQDN `/ondc-site-verification.html` **200** + meta; `POST /ondc/on_subscribe` decrypt path live (400 on junk)
 - [x] Aborted Pro Password Protection; no Disk / paid instance
 - [x] PreProd lookup: auth required — no subscribe POST

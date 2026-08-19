@@ -59,6 +59,9 @@ trap restore_lock EXIT
 (
   cd "$app_dir"
   vercel pull --yes --environment=production
+  python3 "$root/scripts/ondc_ci_graders.py" \
+    --vercel-project-identity "$1" \
+    --project-json .vercel/project.json
   # Vercel's production environment sets NODE_ENV=production. The local
   # TypeScript build still needs dev-only compiler declarations before the
   # already-built dist directory is archived.
@@ -87,12 +90,19 @@ if [[ "$stage_only" == true ]]; then
 fi
 
 deploy_json="$(cd "$stage" && vercel deploy --prod --archive=tgz --yes --format=json)"
-deployment_url="$(printf '%s' "$deploy_json" | jq -r '.deployment.url // empty')"
-ready_state="$(printf '%s' "$deploy_json" | jq -r '.deployment.readyState // empty')"
+deployment_url="$(printf '%s' "$deploy_json" | jq -r '.url // .deployment.url // empty')"
+ready_state="$(printf '%s' "$deploy_json" | jq -r '.readyState // .deployment.readyState // empty')"
 test "$ready_state" = "READY"
 test -n "$deployment_url"
 
 (cd "$stage" && vercel alias set "$deployment_url" "$domain")
+
+python3 "$root/scripts/ondc_ci_graders.py" --bundle-parity \
+  --"$1"-production "https://${deployment_url#https://}" \
+  --"$1" "https://$domain" \
+  --parity-id "${1}_vercel_app_vs_fqdn" \
+  --parity-from "https://${app}.vercel.app" \
+  --parity-to "https://$domain"
 
 jq -n \
   --arg app "$app" \

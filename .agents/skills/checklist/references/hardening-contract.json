@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "name": "checklist",
+  "cwd": "../../../..",
+  "source_paths": [
+    "..",
+    "../../../../scripts/generate_checklist.py",
+    "/Users/gurusharan/.agents/skills/checklist-framework"
+  ],
+  "ignore_parts": [
+    "__pycache__",
+    ".git"
+  ],
+  "steps": [
+    {
+      "name": "framework-validate",
+      "command": ["bash", "/Users/gurusharan/.agents/skills/checklist-framework/scripts/validate.sh"],
+      "timeout_seconds": 30,
+      "budget_seconds": 5,
+      "fail_patterns": ["Traceback", "Skill is invalid", "AssertionError"]
+    },
+    {
+      "name": "exporter-check",
+      "command": ["python3", "scripts/generate_checklist.py", "--check"],
+      "timeout_seconds": 15,
+      "budget_seconds": 3,
+      "fail_patterns": ["Traceback", "AssertionError"]
+    },
+    {
+      "name": "current",
+      "command": ["python3", "scripts/generate_checklist.py", "--check-current"],
+      "timeout_seconds": 15,
+      "budget_seconds": 3,
+      "fail_patterns": ["Traceback", "AssertionError", "stale"]
+    }
+  ],
+  "ledger_path": "~/.cache/elon-algorithm/checklist/ledger.json"
+}

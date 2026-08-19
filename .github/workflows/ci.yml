@@ -203,9 +203,26 @@ jobs:
           ref: ${{ env.AADHAAR_CHAIN_REF }}
           path: aadharchain
 
+      - name: Checkout ondcbuyer
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ env.ONDC_BUYER_REPO }}
+          ref: ${{ env.ONDC_BUYER_REF }}
+          path: ondcbuyer
+
+      - name: Checkout ondcseller
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ env.ONDC_SELLER_REPO }}
+          ref: ${{ env.ONDC_SELLER_REF }}
+          path: ondcseller
+
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+
+      - name: ondc_ci_graders --self-test
+        run: python3 scripts/ondc_ci_graders.py --self-test
 
       - name: ondc_ci_graders --offline
         run: python3 scripts/ondc_ci_graders.py --offline

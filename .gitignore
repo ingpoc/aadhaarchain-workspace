@@ -20,3 +20,10 @@
 .claude/session-data/
 *.pyc
 .Python
+/.session/*
+!/.session/docs/
+!/.session/docs/**
+!/.session/checklist/
+/.session/checklist/*
+!/.session/checklist/checklist.json
+

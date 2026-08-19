@@ -1,0 +1,5 @@
+interface:
+  display_name: "Product Checklist"
+  short_description: "Refresh the AgentGuard product-lead checklist"
+  default_prompt: "Use $checklist to reconcile AgentGuard status and refresh the local checklist dashboard."
+

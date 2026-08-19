@@ -3,7 +3,7 @@
   "project": "AgentGuard",
   "title": "Production launch checklist",
   "warning": "Repository evidence proves code and captured acceptance only. The 2026-08-17 authenticated portal readback is point-in-time UI evidence; payment and production states still require current authoritative proof and separate operator authorization.",
-  "current_blocker": "A4 remains blocked. Buyer/Seller/LBNP Production 1.a modal pairs are materialized locally with Unique Key IDs captured from Raise Request modal UI. keep-both Buyer local draft. Submit, PEM-to-Render, DNS, and registry remain unauthorized. GSTIN still blocks production registry.",
+  "current_blocker": "A4 remains blocked. Buyer/Seller/LBNP Production 1.a modal pairs are materialized locally with Unique Key IDs captured from Raise Request modal UI. keep-both Buyer local draft. Submit, PEM-to-Render, DNS, and registry remain unauthorized. GSTIN still blocks production registry. 2026-08-19 public P0s shipped on FQDNs and do not unblock registry Submit/PEM/DNS.",
   "operator_decisions": [
     {
       "id": "A4-20260817-01",
@@ -210,12 +210,23 @@
       ],
       "in_force": true,
       "completes_item": false
+    },
+    {
+      "id": "C4-20260819-01",
+      "checklist_id": "C4",
+      "decided_at": "2026-08-19T14:48:00+05:30",
+      "summary": "Record 2026-08-19 public FQDN P0 ship; C4 stays pending. No Auth0 production cutover, no Submit/PEM/DNS, no PSP.",
+      "choice_ids": [
+        "record-p0-ship-c4-pending"
+      ],
+      "in_force": true,
+      "completes_item": false
     }
   ],
   "go_live_path": {
-    "updated_at": "2026-08-17T22:01:26+05:30",
+    "updated_at": "2026-08-19T14:48:00+05:30",
     "updated_by": "agent",
-    "reason": "A5-20260817-03 no-cutover: keep A5 partial; no production Auth0 tenant/connection change. Remaining: unauthorized production tenant/connection cutover, operator tenant MFA/Attack Protection, Q1 release-source security acceptance. First agent-owned item remains A5. A4 still parallel_now blocked. Do not start C3/A6. Submit/PEM/DNS/registry still unauthorized.",
+    "reason": "2026-08-19 public P0s on FQDNs (guest cart, seller order 7BA6FE24, refund over-amount guard, Hobby-vs-FQDN hash parity, checklist skill on main). C4 still pending (live store-setup re-proof, pause auto-resume, official current-source release proof). A5-20260817-03 no-cutover still in force. First agent-owned item remains A5. A4 still parallel_now blocked. Do not start C3/A6. Submit/PEM/DNS/registry still unauthorized.",
     "parallel_now": [
       "A4"
     ],
@@ -416,7 +427,8 @@
       "responsible_owner": "Buyer product lead",
       "evidence_scope": "local",
       "completed_evidence": [
-        "Location-aware multi-seller comparison, persisted tracking/return/grievance lifecycle, replacement commitment, Auth0 Buyer-Seller-Buyer acceptance, verified receipts, keyboard flow, and desktop/390px captures passed on the recorded source fingerprint."
+        "Location-aware multi-seller comparison, persisted tracking/return/grievance lifecycle, replacement commitment, Auth0 Buyer-Seller-Buyer acceptance, verified receipts, keyboard flow, and desktop/390px captures passed on the recorded source fingerprint.",
+        "2026-08-19 live guest add-to-cart on ondcbuyer.aadharcha.in after ondc-buyer#9 (squash e7a88de0). Bundle index-CdGITWMz.js on public FQDN and Hobby alias."
       ],
       "completion_criteria": [
         "A buyer can discover, compare, buy, track delivery, cancel, return or replace, raise a grievance, and obtain support with persisted state and visible outcomes."
@@ -453,7 +465,8 @@
         "Comet PASS 2026-08-17 for store setup, draft catalog import, Save draft, and Exact publish preview (seller.catalog.publish).",
         "Staff roles, SLA-due on accept, Overview attention queue, and Orders SLA/payment/tracking filters are implemented.",
         "Settlement-exception classification (failed/partial/unknown/mismatch) surfaces in Overview attention, Orders settlement filter, and order detail from existing refund ledger fields.",
-        "Operational analytics KPIs aggregate open fulfilment, refunded ledger totals, catalog live/low-stock, and open returns without a PSP settlement rail."
+        "Operational analytics KPIs aggregate open fulfilment, refunded ledger totals, catalog live/low-stock, and open returns without a PSP settlement rail.",
+        "2026-08-19 live Seller saw buyer order 7BA6FE24 after ondc-seller#9 (squash 04551806) and aadhaar-chain#11 (squash 476e256d) short-id GET + refund over-amount guard. Bundle index-_elWluD6.js on ondcseller.aadharcha.in."
       ]
     },
     {
@@ -617,7 +630,8 @@
         "2026-08-17 Seller modal download keys (6).json materialized to .local/ondc-production-portal-modal/seller; signing fp16 57b7bfd44dc8e4bb mismatches local draft 34dd53c3a884300a and PreProd e0031e7817d922fb. unique_key_id captured from Raise Request modal UI. Registry PreProd-locked. LBNP not downloaded. Nothing submitted.",
         "2026-08-17 LBNP modal download keys (7).json materialized to .local/ondc-production-portal-modal/lbnp; signing fp16 cc28a26a05045fd4 mismatches local draft e9ba484ada7afcc7 and PreProd 3c3e8acc7a7c5dd1. unique_key_id captured from Raise Request modal UI. Registry PreProd-locked. Cancel not Submit. Nothing copied to Render.",
         "2026-08-17 Buyer Unique Key ID read-only recapture: Comet a4-buyer-ukid-20260817 opened Buyer 15462-10008 1.a Raise Request empty; generate not clicked; Cancel not Submit; closeout verified_absent. Outer Unique Key ID remains PreProd prefix 1aee68ad. Existing modal pair dff58a270e9ed255 not overwritten.",
-        "2026-08-17 Buyer modal regenerate: keys (8).json materialized to .local/ondc-production-portal-modal/buyer; signing fp16 8247845e30f3e325; unique_key_id captured from Raise Request modal UI. Mismatches local draft c8917676136e07fb and old modal dff58a270e9ed255 preserved aside at buyer-20260817-no-ukid. Cancel not Submit. Nothing copied to Render."
+        "2026-08-17 Buyer modal regenerate: keys (8).json materialized to .local/ondc-production-portal-modal/buyer; signing fp16 8247845e30f3e325; unique_key_id captured from Raise Request modal UI. Mismatches local draft c8917676136e07fb and old modal dff58a270e9ed255 preserved aside at buyer-20260817-no-ukid. Cancel not Submit. Nothing copied to Render.",
+        "2026-08-19 gateway identity-aadhar-gateway-main live includes aadhaar-chain#11 order-visibility/short-id GET (workspace Portfolio path). Production PEMs still not copied. Submit/DNS/registry still unauthorized."
       ],
       "remaining_work": [
         "Keep both Buyer modal pair and local draft .local/ondc-production/buyer; do not delete the local draft. The new Buyer modal pair (signing fp16 8247845e30f3e325, Unique Key ID captured) supersedes the earlier no-ukid modal dff58a270e9ed255 for later Submit; old modal files remain aside at .local/ondc-production-portal-modal/buyer-20260817-no-ukid.",
@@ -975,19 +989,23 @@
       "gate": "8 \u00b7 Rollout, rollback, and communications",
       "item": "Current-source public release proof",
       "status_code": "pending",
-      "status": "The latest source has local evidence only; public Buyer/Seller acceptance has not been rerun.",
+      "status": "2026-08-19 public FQDN P0 proof landed (guest cart, seller order 7BA6FE24, refund guard, hash parity) but this is not official current-source release proof. Live leftovers: Seller store-setup was 404 and needs re-proof; pause auto-resume unproved. Full C4 still requires release approval plus fingerprint/Auth0/visual/console evidence on the exact verified source.",
       "responsible_owner": "Release owner",
       "evidence_scope": "staging",
       "remaining_work": [
-        "After release approval, deploy the exact verified source.",
-        "Prove the paused-agent/manual-checkout separation and affected Buyer/Seller journeys on the public FQDN.",
-        "Retain source fingerprint, deployment identity, Auth0 session, visual result, and console/network evidence."
+        "Re-proof live Seller store-setup on ondcseller.aadharcha.in (was 404 during 2026-08-19 browser test).",
+        "Prove pause auto-resume on public Buyer/Seller FQDNs.",
+        "After release approval, deploy the exact verified source and retain source fingerprint, deployment identity, Auth0 session, visual result, and console/network evidence.",
+        "Do not treat the 2026-08-19 P0 ship as C4 complete."
       ],
       "completion_criteria": [
         "The exact deployed source passes the required public Buyer/Seller release journeys with no unresolved launch blocker."
       ],
       "blocked_by": "Release scope and deployment approval.",
       "operator_boundary": "Deployment requires explicit approval.",
+      "completed_evidence": [
+        "2026-08-19 public P0s: ondc-buyer#9 guest cart, ondc-seller#9 + aadhaar-chain#11 order 7BA6FE24 + refund guard, workspace#4 FQDN vs Hobby alias parity, workspace#5 checklist on main. Live https://ondcbuyer.aadharcha.in and https://ondcseller.aadharcha.in."
+      ],
       "evidence_refs": [
         ".agents/skills/testing-ledger/references/matrix-status.md"
       ],

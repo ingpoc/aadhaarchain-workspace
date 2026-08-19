@@ -3,7 +3,7 @@
   "project": "AgentGuard",
   "title": "Production launch checklist",
   "warning": "Repository evidence proves code and captured acceptance only. The 2026-08-17 authenticated portal readback is point-in-time UI evidence; payment and production states still require current authoritative proof and separate operator authorization.",
-  "current_blocker": "A4 remains blocked. Buyer/Seller/LBNP Production 1.a modal pairs are materialized locally with Unique Key IDs captured from Raise Request modal UI. keep-both Buyer local draft. Submit, PEM-to-Render, DNS, and registry remain unauthorized. GSTIN still blocks production registry. 2026-08-19 public P0s plus live store-setup form and sticky pause are proved on FQDNs and do not unblock registry Submit/PEM/DNS.",
+  "current_blocker": "A4 remains blocked. Buyer/Seller/LBNP Production 1.a modal pairs are materialized locally with Unique Key IDs captured from Raise Request modal UI. keep-both Buyer local draft. Submit, PEM-to-Render, DNS, and registry remain unauthorized. GSTIN still blocks production registry. 2026-08-19 B4 in-network persist and Buyer one-click Resume are proved and do not unblock registry Submit/PEM/DNS.",
   "operator_decisions": [
     {
       "id": "A4-20260817-01",
@@ -232,12 +232,23 @@
       ],
       "in_force": true,
       "completes_item": false
+    },
+    {
+      "id": "B4-20260819-01",
+      "checklist_id": "B4",
+      "decided_at": "2026-08-19T16:00:00+05:30",
+      "summary": "Record in-network persist proof on live gateway (signed RET10 select\u2192settlement into CommerceV1). No official Workbench/third-party BPP. No Submit/PEM/DNS, no PSP, no live LSP.",
+      "choice_ids": [
+        "record-in-network-persist-no-workbench"
+      ],
+      "in_force": true,
+      "completes_item": false
     }
   ],
   "go_live_path": {
-    "updated_at": "2026-08-19T15:35:00+05:30",
+    "updated_at": "2026-08-19T16:00:00+05:30",
     "updated_by": "agent",
-    "reason": "2026-08-19 live store-setup form and sticky pause proved on public FQDNs (plus earlier P0s). C4 still pending (official current-source release proof). A5-20260817-03 no-cutover still in force. First agent-owned item remains A5. A4 still parallel_now blocked. Do not start C3/A6. B4 still pending (signed PreProd retail lifecycle). Submit/PEM/DNS/registry still unauthorized.",
+    "reason": "2026-08-19 B4 in-network signed RET10 select\u2192settlement persisted into CommerceV1 on live gateway. Official Workbench/third-party BPP remaining. C4 still pending official current-source release proof (one-click Resume live, not C4 complete). A5-20260817-03 no-cutover still in force. First agent-owned item remains A5. A4 still parallel_now blocked. Do not start C3/A6. Submit/PEM/DNS/registry still unauthorized.",
     "parallel_now": [
       "A4"
     ],
@@ -440,7 +451,8 @@
       "completed_evidence": [
         "Location-aware multi-seller comparison, persisted tracking/return/grievance lifecycle, replacement commitment, Auth0 Buyer-Seller-Buyer acceptance, verified receipts, keyboard flow, and desktop/390px captures passed on the recorded source fingerprint.",
         "2026-08-19 live guest add-to-cart on ondcbuyer.aadharcha.in after ondc-buyer#9 (squash e7a88de0). Bundle index-CdGITWMz.js on public FQDN and Hobby alias.",
-        "2026-08-19 live Buyer FQDN hash index-D_5Z2srK.js matches ondcbuyer.vercel.app after ondc-buyer#10 (squash c496ea07)."
+        "2026-08-19 live Buyer FQDN hash index-D_5Z2srK.js matches ondcbuyer.vercel.app after ondc-buyer#10 (squash c496ea07).",
+        "2026-08-19 live Buyer one-click Resume after ondc-buyer#11 (squash 9b1806e7). Bundle index-Sjb3R03d.js on ondcbuyer.aadharcha.in matching Hobby alias. One Resume click \u2192 Shopping agent on, held through poll and Open Samantha."
       ],
       "completion_criteria": [
         "A buyer can discover, compare, buy, track delivery, cancel, return or replace, raise a grievance, and obtain support with persisted state and visible outcomes."
@@ -835,18 +847,29 @@
       "id": "B4",
       "gate": "3 \u00b7 Data, integrations, and migrations",
       "item": "Retail order lifecycle on ONDC",
-      "status_code": "pending",
-      "status": "ONDC's 2026-08-10 pending-submissions readback still lists transaction components, component verification, and start-transacting details as pending; the full Retail lifecycle is not accepted.",
+      "status_code": "partial",
+      "status": "In-network signed RET10 select\u2192settlement persisted into CommerceV1 on live gateway; official Workbench/third-party BPP lane still remaining.",
       "responsible_owner": "ONDC integration owner",
       "evidence_scope": "preprod",
+      "completed_evidence": [
+        "2026-08-19 in-network PreProd (not official Workbench): aadhaar-chain#13 squash 638f6c83 live on Render identity-aadhar-gateway-main as dep-da2o5rqjnfac73e0ihe0.",
+        "Signed Buyer NP \u2192 Seller NP-ISN on this gateway. Payment simulated. No live LSP.",
+        "transaction_id 8e31d0a0-56aa-4736-8300-6e262817dbed; commerce_order_id 56be3cf0-4068-4c31-9283-e7710d5baba6; protocol_order_id ord_8377845f6a4d.",
+        "Unsigned POST /ondc/on_select without Authorization \u2192 401 NACK missing ONDC Authorization header.",
+        "Signed ACK + inbox delivered: on_select, on_init, on_confirm, on_status, on_track, on_update.",
+        "CommerceV1 fulfilment.retail bound, 6 processed_callbacks, quote INR 250, tracking HTTPS, return refund_pending, refund succeeded 25000 paise, settlement phase refund. Migration 034 applied live.",
+        "In-network on_status always Packed so order stayed preparing (not delivered). Official Workbench / third-party BPP not used.",
+        "POST /api/ondc/update with {} still overly permissive (not a B4 blocker)."
+      ],
       "remaining_work": [
-        "Agent: complete signed ONDC select, init, confirm, fulfilment, status, track, cancellation, return, refund, and settlement callbacks for the approved role/domain matrix.",
-        "Persist and reconcile every callback into the sole CommerceV1 owner."
+        "Agent: complete official PreProd conformance/Workbench signed RET10 select\u2192settlement lane against a third-party BPP (in-network Buyer NP \u2192 Seller NP-ISN is not that lane).",
+        "Buyer client bind via commerce_order_id if needed.",
+        "Do not treat this in-network persist proof as A4."
       ],
       "completion_criteria": [
         "The approved official conformance lane completes signed ONDC select, init, confirm, fulfilment, status, track, cancellation, return, refund, and settlement callbacks with correlated, persisted evidence."
       ],
-      "blocked_by": "A4 production identity/registry approval and incomplete official lifecycle conformance.",
+      "blocked_by": "Official PreProd Workbench / third-party BPP signed lane still remaining. A4 production identity/registry approval still required for production (preprod in-network persist is done).",
       "evidence_refs": [
         ".agents/skills/testing-ledger/references/preprod-network-matrix.md",
         ".agents/skills/testing-ledger/references/evidence/ondc-huf-mail-readback-20260815.json"
@@ -1002,12 +1025,12 @@
       "gate": "8 \u00b7 Rollout, rollback, and communications",
       "item": "Current-source public release proof",
       "status_code": "pending",
-      "status": "2026-08-19 public FQDN P0s plus live store-setup form and sticky pause are proved, but this is not official current-source release proof. Full C4 still requires release approval plus fingerprint/Auth0/visual/console evidence on the exact verified source.",
+      "status": "2026-08-19 public FQDN P0s plus live store-setup form, sticky pause, and one-click Resume are proved, but this is not official current-source release proof. Full C4 still requires release approval plus fingerprint/Auth0/visual/console evidence on the exact verified source.",
       "responsible_owner": "Release owner",
       "evidence_scope": "staging",
       "remaining_work": [
         "After release approval, deploy the exact verified source and retain source fingerprint, deployment identity, Auth0 session, visual result, and console/network evidence.",
-        "Do not treat the 2026-08-19 P0 ship or live store-setup/pause proofs as C4 complete."
+        "Do not treat the 2026-08-19 P0 ship, live store-setup/pause, or one-click Resume proofs as C4 complete."
       ],
       "completion_criteria": [
         "The exact deployed source passes the required public Buyer/Seller release journeys with no unresolved launch blocker."
@@ -1017,7 +1040,8 @@
       "completed_evidence": [
         "2026-08-19 public P0s: ondc-buyer#9 guest cart, ondc-seller#9 + aadhaar-chain#11 order 7BA6FE24 + refund guard, workspace#4 FQDN vs Hobby alias parity, workspace#5 checklist on main. Live https://ondcbuyer.aadharcha.in and https://ondcseller.aadharcha.in.",
         "2026-08-19 live store-setup: aadhaar-chain#12 squash 9be78a22 live on Render identity-aadhar-gateway-main as dep-da2nime1egvs739jpr1g. GET /api/demo-commerce/seller/store is 200 empty draft with setup_required (unauth 401 not 404). Seller ondc-seller#10 squash e41f0d6b on Vercel Hobby ondcseller. Live FQDN hash index-Cph8wtcO.js matches ondcseller.vercel.app. Browser https://ondcseller.aadharcha.in/business shows Set up your store form (Store name, City, PIN, Save draft, Complete store setup). No Store setup unavailable / 404.",
-        "2026-08-19 live sticky pause: Buyer ondc-buyer#10 squash c496ea07 on Vercel Hobby ondcbuyer. Live FQDN hash index-D_5Z2srK.js matches ondcbuyer.vercel.app. Signed-in ondcbuyer.aadharcha.in Agent Guard chip Shopping agent paused; Ask Samantha overlay settled to Text ready \u00b7 shopping agent paused (did not flip active); Activity Verify Intent Receipt verified and pause still held. Resume remained the only clear."
+        "2026-08-19 live sticky pause: Buyer ondc-buyer#10 squash c496ea07 on Vercel Hobby ondcbuyer. Live FQDN hash index-D_5Z2srK.js matches ondcbuyer.vercel.app. Signed-in ondcbuyer.aadharcha.in Agent Guard chip Shopping agent paused; Ask Samantha overlay settled to Text ready \u00b7 shopping agent paused (did not flip active); Activity Verify Intent Receipt verified and pause still held. Resume remained the only clear.",
+        "2026-08-19 live one-click Resume: ondc-buyer#11 squash 9b1806e7 live bundle index-Sjb3R03d.js on ondcbuyer.aadharcha.in matching Hobby alias. One Resume click \u2192 Shopping agent on, held through poll and Open Samantha."
       ],
       "evidence_refs": [
         ".agents/skills/testing-ledger/references/matrix-status.md"

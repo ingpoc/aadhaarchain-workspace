@@ -25,8 +25,11 @@ Fix → local test → PR CI → merge main → Portfolio Deploy → public FQDN
    (Connect Git would hit GitHub OAuth / Security Checkpoint). CLI `--prod`
    via this workflow is the ship path. Stay Render **Free**
    (`identity-aadhar-gateway-main`, autoDeploy off) and Vercel **Hobby**.
-6. **Public URL proof:** deploy fails unless FQDN `index-*.js` equals
-   `vercel.app` `index-*.js`. HTTP 200 on `*.aadharcha.in` is not enough.
+6. **Public URL proof:** deploy fails unless FQDN `index-*.js` equals the
+   Hobby alias (`https://ondcbuyer.vercel.app` / `https://ondcseller.vercel.app`).
+   HTTP 200 on `*.aadharcha.in` is not enough. Do **not** compare against the
+   unique `vercel deploy --format=json` host (`*-ingpocs-projects.vercel.app`);
+   that URL is a Vercel wrapper with no `assets/index-*.js`.
 
 ## Hyphen vs no-hyphen Vercel trap (2026-08-19)
 
@@ -50,8 +53,9 @@ Domains were moved onto Hobby team **"ingpoc's projects"** projects
 `VERCEL_PROJECT_ID_SELLER` must keep targeting those no-hyphen projects.
 
 The next P0 cannot silently land on `vercel.app` while `aadharcha.in` stays
-old: Portfolio Deploy extracts `assets/index-*.js` from both URLs and **fails
-the job** on mismatch. Live FQDN functional journeys stay `--soft`; this hash
-check is fail-closed on deploy.
+old: Portfolio Deploy extracts `assets/index-*.js` from the Hobby alias and
+the public FQDN and **fails the job** on mismatch. The unique
+`*-ingpocs-projects.vercel.app` deploy URL is not the SPA. Live FQDN
+functional journeys stay `--soft`; this hash check is fail-closed on deploy.
 
 Owner detail: [`.cursor/skills/portfolio-deploy/references/ci-cd.md`](../.cursor/skills/portfolio-deploy/references/ci-cd.md).

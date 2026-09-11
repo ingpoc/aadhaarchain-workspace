@@ -55,11 +55,12 @@ Portfolio CI (unique jobs) → workflow_dispatch Portfolio Deploy
 | Operator deploy (no auto prod on push) | `.github/workflows/deploy.yml` |
 | Local/CI API lane | `./scripts/verify-portfolio.sh --ci` |
 
-**CI graders (fail closed):** gitleaks → AgentGuard contract parity → gateway pytest+Postgres via `verify-portfolio.sh --ci --skip-contract` → `ondc_ci_graders.py --offline`. Buyer/Seller vitest stays in **app CI** (`ingpoc/ondc-buyer`, `ingpoc/ondc-seller`). Browser UI lanes are out of CI. No rumdl/ruff unless already adopted. **Never** flip `VITE_COMMERCE_DEMO_MODE` in CI/deploy.
+**CI graders (fail closed):** gitleaks → AgentGuard contract parity → gateway pytest+Postgres via `verify-portfolio.sh --ci --skip-contract` → `ondc_ci_graders.py --offline` → `verify_owner_drift.py`. Buyer/Seller vitest stays in **app CI** (`ingpoc/ondc-buyer`, `ingpoc/ondc-seller`). Browser UI lanes are out of CI. No rumdl/ruff unless already adopted. **Never** flip `VITE_COMMERCE_DEMO_MODE` in CI/deploy.
 
 **Live probes are read-only by default.** CI/deploy must never pass
 `--protocol-search`; that flag requires a separately authorized ONDC search gate.
-FQDN functional journeys stay `--soft`. **Bundle parity** (`assets/index-*.js` on
+FQDN functional journeys stay `--soft` and run on push/`workflow_dispatch` only
+(not PRs). **Bundle parity** (`assets/index-*.js` on
 `*.vercel.app` vs `*.aadharcha.in`) is fail-closed on Portfolio Deploy — HTTP 200
 is not enough. Vercel projects must be `ondcbuyer` / `ondcseller` (no hyphen), not
 `ondc-buyer` / `ondc-seller`. Git is not connected; CLI `--prod` only.

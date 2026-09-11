@@ -187,8 +187,29 @@ jobs:
       - name: ondc_ci_graders --offline
         run: python3 scripts/ondc_ci_graders.py --offline
 
+  # Workspace-only, no nested app checkouts. Catches stale AGENTS/plan status
+  # and CI wiring drift (PR #9 class). Must stay fail-closed and in ci-ok needs.
+  owner-drift:
+    name: Owner / CI instruction drift
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: verify_owner_drift --self-test
+        run: python3 scripts/verify_owner_drift.py --self-test
+
+      - name: verify_owner_drift
+        run: python3 scripts/verify_owner_drift.py
+
+  # Advisory only: Free cold starts. Not in ci-ok needs. Skip on PRs to save
+  # minutes — merge defense is offline + owner-drift; live probes run on main.
   ondc-fqdn-soft:
     name: ONDC FQDN probes (soft)
+    if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     continue-on-error: true
     steps:
@@ -204,15 +225,19 @@ jobs:
             --gateway https://gateway.aadharcha.in \
             --buyer https://ondcbuyer.aadharcha.in \
             --seller https://ondcseller.aadharcha.in
-          python3 scripts/ondc_preprod_smoke.py --ci \
-            --base https://gateway.aadharcha.in || true
 
-      - name: Bundle parity (soft on PR — deploy is fail-closed)
+      - name: PreProd smoke (soft — continue-on-error job)
+        continue-on-error: true
+        run: |
+          python3 scripts/ondc_preprod_smoke.py --ci \
+            --base https://gateway.aadharcha.in
+
+      - name: Bundle parity (soft on main — deploy is fail-closed)
         run: python3 scripts/ondc_ci_graders.py --bundle-parity --soft
 
   ci-ok:
     name: CI graders green
-    needs: [secret-scan, agentguard-contract, gateway, ondc-offline]
+    needs: [secret-scan, agentguard-contract, gateway, ondc-offline, owner-drift]
     runs-on: ubuntu-latest
     steps:
       - run: echo "Portfolio CI unique graders passed (Buyer/Seller vitest is app CI; FQDN probes advisory)"

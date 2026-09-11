@@ -11,6 +11,9 @@ echo "Does not hit Auth0, Chrome, UPI, real ONDC, or AgentMail."
 echo "Does not set VITE_COMMERCE_DEMO_MODE."
 echo
 
+python3 "$ROOT/scripts/verify_owner_drift.py" --self-test
+python3 "$ROOT/scripts/verify_owner_drift.py"
+
 python3 "$ROOT/scripts/ondc_ci_graders.py" --self-test
 python3 "$ROOT/scripts/ondc_ci_graders.py" --offline
 
@@ -33,8 +36,9 @@ Next steps (fail-closed, $0):
      skip app CI until a PR exists — do not "fix" that with paid minutes).
   3. Merge the app PR to main.
   4. Workspace Portfolio CI (this repo, PR → main) is unique jobs only:
-     AgentGuard contract parity, Gateway pytest+Postgres, offline graders.
-     It does not re-run Buyer/Seller vitest.
+     AgentGuard contract parity, Gateway pytest+Postgres, offline graders,
+     owner/CI instruction drift. It does not re-run Buyer/Seller vitest.
+     Live FQDN probes stay advisory (main push only; not PR-blocking).
   5. After merge: GitHub → Actions → Portfolio Deploy → Run workflow
        confirm_free_tier = true
        surface = all | gateway | buyer | seller

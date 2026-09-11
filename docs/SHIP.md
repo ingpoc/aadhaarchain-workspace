@@ -18,8 +18,9 @@ Fix → local test → PR CI → merge main → Portfolio Deploy → public FQDN
    exists — leave that. Merge to `main`.
 4. **Workspace Portfolio CI** (PR → `ingpoc/aadhaarchain-workspace` `main`) is
    unique jobs only: AgentGuard contract parity, Gateway pytest+Postgres,
-   offline graders. It does **not** re-run Buyer/Seller vitest (those stay in
-   app CI).
+   offline graders, owner/CI instruction drift. It does **not** re-run
+   Buyer/Seller vitest (those stay in app CI). Live FQDN probes are advisory
+   on push to `main` only — not a PR merge gate.
 5. **Deploy** is manual: Actions → **Portfolio Deploy** → Run workflow with
    `confirm_free_tier=true`. Git is **not** connected on the Vercel projects
    (Connect Git would hit GitHub OAuth / Security Checkpoint). CLI `--prod`

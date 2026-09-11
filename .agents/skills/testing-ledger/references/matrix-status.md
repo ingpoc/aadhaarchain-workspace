@@ -1222,3 +1222,19 @@ proof passed. Evidence:
 
 **Boundary:** no Gate 1 rerun, real shipment, real payment, production,
 report-generation, certification, or later gate. No in-scope blocker remains.
+
+## FQDN PreProd W-* trio — 2026-09-11 (Blocked)
+
+Current-source FQDN readiness (not a replay of 2026-07-23 local/FQDN CF0).
+
+| ID | Status | Evidence |
+| --- | --- | --- |
+| Auth0 session | **Blocked** | Universal Login reached (`dev-ejqlkc0qt84udk7i.us.auth0.com`); missing test-user email+password |
+| `W-B-FIND-NL-ATTA` | **Blocked** | Requires Auth0 |
+| `W-B-AG-CONFIRM` | **Blocked** | Requires Auth0 |
+| `W-S-AG-PAUSE` | **Blocked** | Requires Auth0 |
+
+Providers: `auth0:true`, `demo_continue:false`. Screenshots under
+`/opt/cursor/artifacts/fqdn-w-gates/`; narrative
+`/cursor/stores/bc-3a14daef-1fff-4d74-a633-eefbb60eacc8/internal/fqdn-w-gates.md`.
+

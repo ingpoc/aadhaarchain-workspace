@@ -148,8 +148,29 @@ callbacks from `workbench.ondc.tech` at `1.2.5`.
 None within Gate 3. Production onboarding, real shipment/payment, Workbench
 report generation, and every later gate remain outside this authorization.
 
+**Release / FQDN `W-*` (2026-09-11):** current-source PreProd readiness trio is
+**Blocked** on Auth0 login completion — not on gateway wiring.
+
+| Gate | Status |
+| --- | --- |
+| `W-B-FIND-NL-ATTA` | Blocked — needs Auth0 session |
+| `W-B-AG-CONFIRM` | Blocked — needs Auth0 session |
+| `W-S-AG-PAUSE` | Blocked — needs Auth0 session |
+
+Proved: Buyer/Seller/gateway FQDN HTTP 200; providers
+`auth0:true` / `demo_continue:false`; authorize `302` to
+`dev-ejqlkc0qt84udk7i.us.auth0.com`; Universal Login shows Email + Password +
+Continue. Missing: Auth0 test-user email+password (or operator Universal Login
+in the Chrome profile). Demo-continue not used. Evidence:
+`/opt/cursor/artifacts/fqdn-w-gates/` and Project store
+`/cursor/stores/bc-3a14daef-1fff-4d74-a633-eefbb60eacc8/internal/fqdn-w-gates.md`. Historical 2026-07-23 FQDN/Auth0 acceptance is
+**not** re-claimed as current-source proof.
+
 ## Single next action
 
-Stop this gate and preserve its evidence. Any Workbench report or later gate
-requires a separately owned scope; do not repeat the completed transaction or
-Gate 1 search.
+For Gate 3: stop and preserve evidence (unchanged).
+
+For release FQDN `W-*`: supply Auth0 PreProd test-user email+password (or
+complete Universal Login in the agent Chrome profile), then re-run
+`W-B-FIND-NL-ATTA` → `W-B-AG-CONFIRM` → `W-S-AG-PAUSE` under Auth0 and record
+only proven results.

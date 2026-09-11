@@ -630,3 +630,23 @@ regression campaign; removed historical token material should be rotated if
 still valid; the public ONDC catalog remains intentionally unseeded. Exclusions
 remain real payments, production ONDC onboarding/conformance, native voice,
 iOS, multi-seller checkout and broad redesign.
+
+## FQDN W-* current-source probe — 2026-09-11 (Blocked)
+
+Checkout `d43e5b532f4414946fdec6779e240c976b7bab27` on `main`. Bundled Chrome /
+computer-use path (Hermes not used). Auth0 required; demo-continue not used.
+
+| Gate | Result |
+| --- | --- |
+| FQDN boot (Buyer/Seller/gateway) | **Pass** — HTTP 200; providers `auth0:true`, `demo_continue:false`, `runtime_mode:staging` |
+| Auth0 authorize + Universal Login | **Partial** — `302` to `dev-ejqlkc0qt84udk7i.us.auth0.com`; UI Email* + Password* + Continue |
+| `W-B-FIND-NL-ATTA` | **Blocked** — no Auth0 session (missing test-user email+password) |
+| `W-B-AG-CONFIRM` | **Blocked** — same |
+| `W-S-AG-PAUSE` | **Blocked** — same |
+
+Exact missing step: Auth0 PreProd test-user email+password for tenant
+`dev-ejqlkc0qt84udk7i.us.auth0.com`, or operator-completed Universal Login in
+the shared Chrome profile. Evidence: `/opt/cursor/artifacts/fqdn-w-gates/` and
+Project store `internal/fqdn-w-gates.md`. Historical 2026-07-23 FQDN/Auth0
+acceptance is not re-claimed as current-source proof.
+

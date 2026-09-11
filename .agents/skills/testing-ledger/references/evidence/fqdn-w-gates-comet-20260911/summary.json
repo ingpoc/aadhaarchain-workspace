@@ -1,0 +1,53 @@
+{
+  "run_id": "fqdn-w-gates-comet-20260911",
+  "browser": "comet-control",
+  "session_id": "fqdn-w-gates-20260911-220940",
+  "plugin_path_requested": "~/.agents/plugin/comet-control",
+  "plugin_path_used": "~/.agents/plugins/comet-control",
+  "fqdn_probes": {
+    "gateway_health": 200,
+    "providers": {
+      "auth0": true,
+      "demo_continue": false,
+      "runtime_mode": "staging"
+    },
+    "buyer": 200,
+    "seller": 200
+  },
+  "auth": {
+    "method": "Auth0 Continue with Google via visible Comet",
+    "account_selected": "gupta.gurusharan@gmail.com",
+    "buyer_principal_ui": "Gurusharan Gupta Gupta",
+    "demo_continue_used": false
+  },
+  "gates": {
+    "W-B-FIND-NL-ATTA": {
+      "status": "Pass",
+      "url": "https://ondcbuyer.aadharcha.in/results?category=grocery&q=atta&preference=whole+wheat%2Corganic",
+      "visible": "Sampoorna Whole Wheat Atta 1kg",
+      "tool": "search_catalog ok; navigateTo q=atta; note: args.query retained raw NL phrasing",
+      "evidence": [
+        "06-W-B-FIND-NL-ATTA.png",
+        "05-buyer-authed-home.png"
+      ]
+    },
+    "W-B-AG-CONFIRM": {
+      "status": "Pass",
+      "url": "https://ondcbuyer.aadharcha.in/config?tab=agent-guard",
+      "visible": "Shopping agent on; Shopping limit saved; Limit on",
+      "evidence": [
+        "09-W-B-AG-CONFIRM-active.png"
+      ]
+    },
+    "W-S-AG-PAUSE": {
+      "status": "Pass",
+      "url": "https://ondcseller.aadharcha.in/config?tab=agent-guard",
+      "visible": "Status: paused; Resume agent; The agent is paused.",
+      "evidence": [
+        "10-seller-ag-before-pause.png",
+        "11-W-S-AG-PAUSE.png"
+      ]
+    }
+  },
+  "blockers": []
+}

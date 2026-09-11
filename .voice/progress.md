@@ -148,29 +148,27 @@ callbacks from `workbench.ondc.tech` at `1.2.5`.
 None within Gate 3. Production onboarding, real shipment/payment, Workbench
 report generation, and every later gate remain outside this authorization.
 
-**Release / FQDN `W-*` (2026-09-11):** current-source PreProd readiness trio is
-**Blocked** on Auth0 login completion — not on gateway wiring.
+**Release / FQDN `W-*` (2026-09-11 Comet resume):** current-source PreProd
+readiness trio **Passed** on Gurusharan Mac mini via visible local Comet
+(`~/.agents/plugins/comet-control`; requested singular `plugin/` path absent).
+Auth0 via Continue with Google (`gupta.gurusharan@gmail.com`). Demo-continue
+not used. Cloud Chrome / FQDN demo-continue bypass not used.
 
 | Gate | Status |
 | --- | --- |
-| `W-B-FIND-NL-ATTA` | Blocked — needs Auth0 session |
-| `W-B-AG-CONFIRM` | Blocked — needs Auth0 session |
-| `W-S-AG-PAUSE` | Blocked — needs Auth0 session |
+| `W-B-FIND-NL-ATTA` | **Pass** — NL ask → `/results?q=atta`; visible Sampoorna Whole Wheat Atta 1kg |
+| `W-B-AG-CONFIRM` | **Pass** — Buyer `/config?tab=agent-guard` shows Shopping agent on / limit saved |
+| `W-S-AG-PAUSE` | **Pass** — Seller AgentGuard paused (`Resume agent`; Status: paused) |
 
-Proved: Buyer/Seller/gateway FQDN HTTP 200; providers
-`auth0:true` / `demo_continue:false`; authorize `302` to
-`dev-ejqlkc0qt84udk7i.us.auth0.com`; Universal Login shows Email + Password +
-Continue. Missing: Auth0 test-user email+password (or operator Universal Login
-in the Chrome profile). Demo-continue not used. Evidence:
-`/opt/cursor/artifacts/fqdn-w-gates/` and Project store
-`/cursor/stores/bc-3a14daef-1fff-4d74-a633-eefbb60eacc8/internal/fqdn-w-gates.md`. Historical 2026-07-23 FQDN/Auth0 acceptance is
-**not** re-claimed as current-source proof.
+Evidence:
+`.agents/skills/testing-ledger/references/evidence/fqdn-w-gates-comet-20260911/`
+(`summary.json` + screenshots). Prior cloud Auth0-block row superseded for this
+trio only; historical 2026-07-23 CF0 acceptance is not re-claimed.
 
 ## Single next action
 
 For Gate 3: stop and preserve evidence (unchanged).
 
-For release FQDN `W-*`: supply Auth0 PreProd test-user email+password (or
-complete Universal Login in the agent Chrome profile), then re-run
-`W-B-FIND-NL-ATTA` → `W-B-AG-CONFIRM` → `W-S-AG-PAUSE` under Auth0 and record
-only proven results.
+For release FQDN `W-*`: trio closed on Comet. Optional follow-ups outside this
+gate: resume Seller agent if paused state is undesirable for other work; store
+Auth0 test-user locator for non-interactive reruns.

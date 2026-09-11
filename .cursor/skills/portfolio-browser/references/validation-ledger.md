@@ -17,8 +17,6 @@ Phase order: make it work → **validate (this file)** → simplify → optimize
 
 Known old seller `tsc` errors are resolved in this workspace. `refundedAmount` compiled as numeric in the installed shared order type; nested `refund.amount` remains a price object.
 
-
-
 ## Milestone 8 cleanup (validated 2026-07-11T14:51Z)
 
 | Change | Result |
@@ -37,7 +35,6 @@ Known old seller `tsc` errors are resolved in this workspace. `refundedAmount` c
 | Two-sided unique runs | **2 pass** `ag-1783781283-36e172`, `ag-1783781283-db290e` |
 | Seller UI sample (judged) | allow `rcpt_7a2140b63d3846db` → approve `rcpt_bd3a041283194f80` → msg `Approval already consumed (replay rejected).` → status `paused` → deny `Agent is paused.` |
 
-
 ## Portfolio API lane
 
 | Step | Preconditions | Pass signal | Manual runs | Notes |
@@ -48,6 +45,7 @@ Known old seller `tsc` errors are resolved in this workspace. `refundedAmount` c
 **Validated bookend (2026-07-06):** `./scripts/verify-portfolio.sh` (default, no `--browser`) — two consecutive exit 0; 43 passed each.
 
 **Hardening (phase 3–4, 2026-07-06):**
+
 - `./scripts/verify-portfolio.sh` promoted as canonical API-only entry (gateway health → auto `start-dev.sh` if down)
 
 **Required:** gateway + ONDC frontends for SSO/browser. FlatWatch required for full stack start only.
@@ -68,6 +66,7 @@ Known old seller `tsc` errors are resolved in this workspace. `refundedAmount` c
 **Validated bookend (2026-07-06):** `python3 scripts/portfolio_browser.py lane burner seller` — two consecutive exit 0.
 
 **Hardening (phase 3–4, 2026-07-06):**
+
 - `lane` subcommand — single preflight for smoke + SSO + closeout
 - Preflight auto-starts `start-dev.sh` when stack down
 - Preflight checks validator `:8899` when burner enabled
@@ -101,6 +100,7 @@ Pass signals for stale ledger: `account … already in use` on `initialize`; `Co
 
 **Validated anchor bookend (2/2):** evening pass + exclusive night pass (58/58 each, ~148s wall on pass 2).
 **Validate session (2026-07-06 night agent):**
+
 - Run 0 (stale ledger, no reset): **fail** — 41 pass / 17 fail, ~135s, `ConstraintHasOne` on verification-oracle config.
 - Run 1 (fresh ledger): **pass** — 58/58, exit 0, ~144s wall.
 - Run 2 (consecutive, polluted ledger, validator restarted): **fail** — 41/17, ~129s (confirms stale-ledger precondition).
@@ -108,15 +108,16 @@ Pass signals for stale ledger: `account … already in use` on `initialize`; `Co
 - **Precondition:** reset `aadharsolana/.local-validator` before each full `validate-onchain.sh`; back-to-back validate without reset is expected to fail.
 
 **Gateway E2E attempt (deploy-only path, same night):**
+
 - `anchor keys sync && anchor build && anchor deploy` (no test): **pass** (~40–43s) when validator exclusive.
 - IDL copy to gateway: done during attempts.
 - `init_identity_registry_config.py`: **fail** — `RPCException` preflight `BlockhashNotFound` (observed with validator process alive). Validate-phase patch: `_coerce_blockhash` + `last_valid_block_height` on confirm (still failing preflight).
 - **Infra:** parallel agents `pkill -f solana-test-validator` / ledger reset → `ECONNREFUSED :8899` mid-lane; treat `:8899` as mutex.
 
-
 **Gateway E2E order (not yet manually run):** fresh ledger → `anchor build && anchor deploy` (no tests) → set `ORACLE_PRIVATE_KEY` + `SOLANA_ON_CHAIN_ENABLED=true` in gateway `.env` → `init_identity_registry_config.py` → approve verification via gateway. Running `validate-onchain.sh` first initializes identity-registry config with **test** oracle; `init_identity_registry_config.py` then no-ops (`Config already initialized`) — gateway oracle will not match.
 
 **Blockers (init config + gateway bridge):**
+
 - **Mutex:** only one agent may own `:8899` + ledger reset (parallel pkill/deploy caused validator death and partial deploy errors).
 - Init config: `BlockhashNotFound` on `send_transaction` preflight — debug with exclusive validator (`solana transfer` sanity, then `send_raw_transaction` + `skip_preflight` if needed).
 - `ORACLE_PRIVATE_KEY` unset in `aadharchain/gateway/.env` — export at runtime from deploy wallet or set locally (do not commit).
@@ -124,6 +125,7 @@ Pass signals for stale ledger: `account … already in use` on `initialize`; `Co
 - Full HTTP E2E: restart gateway with `SOLANA_ON_CHAIN_ENABLED=true` + oracle key → wallet-signed create on `:43100` → verify/approve → metadata `chain_transaction_signature`.
 
 **Next manual steps (init config + gateway bridge):**
+
 1. Reset ledger again (same fresh-ledger block above).
 2. `cd aadharsolana && anchor keys sync && anchor build && anchor deploy` — **do not** run `anchor test`.
 3. Copy IDL: `cp aadharsolana/target/idl/identity_registry.json aadharchain/gateway/idl/`.
@@ -211,6 +213,7 @@ Path: `./scripts/setup.sh` → `./scripts/start-dev.sh` (once per clone or after
 **Validated bookend (2026-07-06):** `./scripts/setup.sh` → stack pass signals on `:43100`–`:43105` (run `./scripts/start-dev.sh` only when URLs not all 2xx). Two consecutive full iterations, exit 0.
 
 **Hardening (phase 3–4, 2026-07-06):**
+
 - Canonical bootstrap: `setup.sh` then conditional `start-dev.sh` (healthy stack = curl bookend only)
 - Pass signals: gateway + FlatWatch `.venv`; four frontend `node_modules` dirs
 
@@ -631,22 +634,24 @@ still valid; the public ONDC catalog remains intentionally unseeded. Exclusions
 remain real payments, production ONDC onboarding/conformance, native voice,
 iOS, multi-seller checkout and broad redesign.
 
-## FQDN W-* current-source probe — 2026-09-11 (Blocked)
+## FQDN W-* current-source probe — 2026-09-11 (Blocked → Pass on Comet)
 
-Checkout `d43e5b532f4414946fdec6779e240c976b7bab27` on `main`. Bundled Chrome /
-computer-use path (Hermes not used). Auth0 required; demo-continue not used.
+Initial cloud probe on `d43e5b532f4414946fdec6779e240c976b7bab27` reached Auth0
+Universal Login then blocked (no test-user credentials / Chrome profile login).
+
+**Resume (same day, Gurusharan Mac mini):** visible Comet Control lease
+`fqdn-w-gates-20260911-220940` via `~/.agents/plugins/comet-control`. Auth0
+Continue with Google (`gupta.gurusharan@gmail.com`). Demo-continue not used.
+No cloud Chrome.
 
 | Gate | Result |
 | --- | --- |
 | FQDN boot (Buyer/Seller/gateway) | **Pass** — HTTP 200; providers `auth0:true`, `demo_continue:false`, `runtime_mode:staging` |
-| Auth0 authorize + Universal Login | **Partial** — `302` to `dev-ejqlkc0qt84udk7i.us.auth0.com`; UI Email* + Password* + Continue |
-| `W-B-FIND-NL-ATTA` | **Blocked** — no Auth0 session (missing test-user email+password) |
-| `W-B-AG-CONFIRM` | **Blocked** — same |
-| `W-S-AG-PAUSE` | **Blocked** — same |
+| Auth0 session | **Pass** — Google account chooser → Buyer principal `Gurusharan Gupta Gupta` |
+| `W-B-FIND-NL-ATTA` | **Pass** — NL ask → `/results?q=atta`; Sampoorna Whole Wheat Atta 1kg visible |
+| `W-B-AG-CONFIRM` | **Pass** — Buyer Agent Guard: Shopping agent on / Shopping limit saved |
+| `W-S-AG-PAUSE` | **Pass** — Seller AgentGuard Status paused; Resume agent control |
 
-Exact missing step: Auth0 PreProd test-user email+password for tenant
-`dev-ejqlkc0qt84udk7i.us.auth0.com`, or operator-completed Universal Login in
-the shared Chrome profile. Evidence: `/opt/cursor/artifacts/fqdn-w-gates/` and
-Project store `internal/fqdn-w-gates.md`. Historical 2026-07-23 FQDN/Auth0
-acceptance is not re-claimed as current-source proof.
-
+Evidence:
+`.agents/skills/testing-ledger/references/evidence/fqdn-w-gates-comet-20260911/`.
+Historical 2026-07-23 FQDN/Auth0 acceptance is not re-claimed as this proof.

@@ -59,8 +59,9 @@ probes did not notice. After each Buyer/Seller `--prod`, extract
 | AgentGuard contract | `python3 scripts/verify_agentguard_contract_sync.py` | Unique job; canonical vs Buyer/Seller/gateway fixtures |
 | Gateway pytest+Postgres | `./scripts/verify-portfolio.sh --ci --skip-contract` | No `start-dev`; TestClient only — see green path below |
 | ONDC offline | `python3 scripts/ondc_ci_graders.py --offline` | Demo-mode gate + 2026-08-19 Buyer/Seller/Gateway P0 test scanners; **blocks** `ci-ok`. Job checks out `aadharchain/`, `ondcbuyer/`, `ondcseller/`. Missing/emptied Gateway P0 tests fail closed (`gateway_p0_regression_tests_missing`; aadhaar-chain#7 is on main). |
-| ONDC FQDN soft | `ondc_ci_graders.py --live --soft` (+ optional `ondc_preprod_smoke.py --ci`) + `--bundle-parity --soft` | `continue-on-error: true` — Free cold start; advisory. Hash mismatch does **not** block the PR. |
-| Aggregator | job `ci-ok` | Needs secret-scan + agentguard-contract + gateway + ondc-offline. **Not** Buyer/Seller npm. |
+| Owner / CI drift | `python3 scripts/verify_owner_drift.py` | Workspace-only (no nested apps). Stale AGENTS/IMPLEMENTATIONPLAN vs `progress.md` markers + CI wiring (fail-closed jobs in `ci-ok`; soft FQDN stays advisory). **Blocks** `ci-ok`. |
+| ONDC FQDN soft | `ondc_ci_graders.py --live --soft` (+ optional `ondc_preprod_smoke.py --ci`) + `--bundle-parity --soft` | `continue-on-error: true`; **not** on PRs (main / dispatch only). Free cold start; advisory. Hash mismatch does **not** block merge. No `\|\| true` swallow. |
+| Aggregator | job `ci-ok` | Needs secret-scan + agentguard-contract + gateway + ondc-offline + owner-drift. **Not** Buyer/Seller npm. **Not** soft FQDN. Required status check name: **CI graders green**. |
 
 **Inventory / gradeability map:** [`.agents/skills/testing-ledger/references/test-inventory.md`](../../../../.agents/skills/testing-ledger/references/test-inventory.md). Hermes browser = Ops only (not CI).
 
@@ -68,7 +69,7 @@ probes did not notice. After each Buyer/Seller `--prod`, extract
 
 | Blocks merge | Soft / advisory |
 | --- | --- |
-| gitleaks, AgentGuard contract, gateway pytest+Postgres, `ondc_ci_graders --offline` | `ondc_ci_graders --live --soft`, `--bundle-parity --soft` on PR, `ondc_preprod_smoke --ci` |
+| gitleaks, AgentGuard contract, gateway pytest+Postgres, `ondc_ci_graders --offline`, `verify_owner_drift` | `ondc_ci_graders --live --soft`, `--bundle-parity --soft`, `ondc_preprod_smoke --ci` (main/dispatch only; never in `ci-ok`) |
 
 Buyer/Seller `npm test` **blocks the app PR**, not this workspace PR.
 
@@ -128,6 +129,7 @@ Optional **Actions variables** (not secrets): `AADHAAR_CHAIN_REPO`, `ONDC_BUYER_
 ```bash
 # Same unique graders Portfolio CI uses (API-only; no Buyer/Seller vitest)
 ./scripts/local-ship-gate.sh
+python3 scripts/verify_owner_drift.py
 ./scripts/verify-portfolio.sh --ci --skip-contract
 
 # App-repo tests (own CI on PR)

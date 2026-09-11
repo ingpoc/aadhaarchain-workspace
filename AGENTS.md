@@ -20,15 +20,18 @@ Read this file first. Repo-local app `GOAL.md` files add outcome detail only.
 | Ops / KYC / ONDC portal later | [`PRODUCTION-READINESS.md`](PRODUCTION-READINESS.md) |
 | Current execution state / evidence gates | [`.voice/progress.md`](.voice/progress.md) |
 
-Work in IMPLEMENTATIONPLAN milestone order. PreProd-ready Token Nxt demo =
-milestones 0–7 + TESTINGPLAN demo gate + FQDN `W-*`. **Agent-as-executor** =
-milestones 10–12 (mandate editor, Cursor tool runner, Buyer Realtime voice).
-Live ONDC = milestone 9 only. AgentGuard remains the sole authorization owner;
-do not invent parallel auth contracts.
+Work in IMPLEMENTATIONPLAN milestone order. **PreProd-ready Token Nxt demo**
+(product exit) = milestones 0–7 + TESTINGPLAN demo gate + FQDN `W-*`.
+Current execution milestone is owned by [`.voice/progress.md`](.voice/progress.md)
+(Gate 3 Workbench conformance **passed**; current-source FQDN `W-*` remains the
+open demo gap). **Agent-as-executor** = milestones 10–12 (mandate editor, Cursor
+tool runner, Buyer Realtime voice). Live ONDC production = milestone 9 only.
+AgentGuard remains the sole authorization owner; do not invent parallel auth
+contracts.
 
-`.voice/IMPLEMENTATIONPLAN.md` owns long-term milestones and sequencing; `.voice/progress.md`
-owns current execution state and evidence gates. Update the relevant owner when
-work changes.
+`.voice/IMPLEMENTATIONPLAN.md` owns long-term milestones and sequencing;
+`.voice/progress.md` owns current execution state and evidence gates — prefer it
+over stale status lines elsewhere. Update the relevant owner when work changes.
 
 ## Active ONDC participant-host gate
 
@@ -99,7 +102,7 @@ Bookends: `.cursor/skills/portfolio-browser/SKILL.md`. Ledger: `.cursor/skills/p
 | --- | --- |
 | Current local Buyer `@Chrome` | **Pass 1 + Pass 2** (2026-07-25, frozen source, PostgreSQL): two mandate-governed orders, simulated payments, signed authorization, and reload persistence |
 | Current local Seller `@Chrome` | **Pass** (2026-07-25): both orders completed full lifecycle/refund; targeted protected archive rerun passed and cleanup returned the catalog to zero products |
-| Current FQDN/Auth0 checkpoint | **Pass 1 + Pass 2** (2026-07-23, unchanged source, PostgreSQL) for Buyer and Seller plus combined responsive/accessibility smoke |
+| Current FQDN/Auth0 checkpoint | **Pass 1 + Pass 2** (2026-07-23, unchanged source, PostgreSQL) for Buyer and Seller plus combined responsive/accessibility smoke — **older than** local demo 2026-07-25; current-source FQDN `W-*` remains open (see `.voice/progress.md`) |
 | Prior CF1 release checkpoint | **Historical pass** (2026-07-22); retained in the validation ledger and superseded as current acceptance by the CF0 contract-closure checkpoint |
 | Legacy `agentguard buyer/seller --fixture` | Historical deterministic/Hermes proof: Seller ×2 (2026-07-11); Buyer API/Hermes and FQDN ×2 (2026-07-14). Historical only; current CF0 acceptance is owned by the bundled Chrome checkpoint |
 | Legacy `two-sided --fixture` | Historical unique-run proof (2026-07-11); historical only, not the owner of current local or FQDN acceptance |
@@ -121,7 +124,7 @@ Default interactive UI control is bundled `@chrome` for browser pages and bundle
 | FlatWatch API / web | http://127.0.0.1:43104 / `:43105` |
 | Solana validator (optional, not AG) | http://127.0.0.1:8899 |
 
-## What is real vs stubbed (reconciled 2026-07-25)
+## What is real vs stubbed (reconciled 2026-07-31; current gates in `.voice/progress.md`)
 
 | Subsystem | Status |
 | --- | --- |
@@ -133,7 +136,7 @@ Default interactive UI control is bundled `@chrome` for browser pages and bundle
 | Authenticated principal on AG APIs | **Real** — session cookie principal; body wallet cannot override social/demo session |
 | ONDC commerce UI labels | **Demo mode off** — `VITE_COMMERCE_DEMO_MODE=false` (gate evidence 2026-07-12); label **ONDC network**; payment still simulated (not live UPI) |
 | Host identity | **Auth0** (FQDN PreProd) + local `AUTH_DEMO_CONTINUE` (Hermes only) |
-| ONDC PreProd Beckn (BAP+BPP) | **Real, partial** — the 2026-07-24 PostgreSQL retest proved signed search delivery and correlated signed `on_search`; the Seller had zero published items, so the callback catalog and Buyer results were empty. Historical **select→init→confirm** ACK + `on_*` stubs remain protocol foundation, not current lifecycle acceptance. Production onboarding and official conformance remain open. Matrix: `.agents/skills/testing-ledger/references/preprod-network-matrix.md` |
+| ONDC PreProd Beckn (BAP+BPP) | **Real, partial** — Gate 1 (2026-07-25): published `Sampoorna Whole Wheat Atta 1kg`, one signed `atta` search, and correlated Seller `on_search` with the approved item (`preprod-gate1-search-20260725-213218.json`). Gate 2–3: LBNP endpoint/registration + official Workbench Immediate Delivery (synthetic mock) passed. Historical Retail **select→init→confirm** ACK + `on_*` stubs remain protocol foundation beyond search. Production onboarding and official production conformance remain open. Current gates: `.voice/progress.md`. Matrix: `.agents/skills/testing-ledger/references/preprod-network-matrix.md` |
 | Buyer mock grocery fallback | **Removed** when ONDC adapter ready |
 | Trust / demo KYC | **Deferred hangar** — not AgentGuard acceptance |
 | MeitY DigiLocker / **prod** ONDC / NPCI agent UPI | **Out of scope** — PRODUCTION-READINESS; UPI Circle AI = CUG only |

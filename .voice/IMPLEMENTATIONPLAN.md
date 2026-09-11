@@ -85,8 +85,9 @@ enforcement, and receipt integrity must be real.
   remain production gaps.
 - Buyer and Seller prove bounded demo journeys, not the complete search-to-
   remedy and onboarding-to-settlement customer lifecycles.
-- ONDC search is PreProd partial; official onboarding, conformance, and the full
-  asynchronous transaction lifecycle remain incomplete.
+- ONDC PreProd Gates 1–3 (Retail search + LBNP Workbench Immediate Delivery) passed
+  per `.voice/progress.md`; official production onboarding/conformance and the full
+  Retail asynchronous transaction lifecycle remain incomplete.
 - Browser Realtime and text tools exist, but native voice, physical-audio proof,
   reconnect, latency/cost telemetry, and voice evaluations remain open.
 - No iOS application, Face ID approval flow, App Intents, Live Activities, or
@@ -509,7 +510,7 @@ Parallel ops/code track documented in `PRODUCTION-READINESS.md`:
 | P2 Portal A5–A8 | **ops** | Operator signup; `scripts/ondc_generate_keys.py` |
 | P3 BAP adapter | **PreProd Gate 1 pass** | Exact live commit `5431307...` proved a signed Retail `ONDC:RET10` search and correlated Seller callback containing the approved atta. No lifecycle or later gate ran. Evidence: `.agents/skills/testing-ledger/references/evidence/preprod-gate1-search-20260725-213218.json`. |
 | P3a Logistics decision gate | **Passed 2026-07-26** | Use B2C Logistics `ONDC:LOG10` contract `1.2.5`; Seller is the LBNP/BAP, an external LSP is BPP, and Buyer remains the Retail BAP/read-only tracking consumer. Initial scope is one Immediate Delivery P2P forward lifecycle. AgentGuard authorizes consequential logistics actions; CommerceV1 owns order/fulfilment state; the gateway owns signed protocol transport. Evidence: `.agents/skills/testing-ledger/references/evidence/preprod-gate2-logistics-decision-20260726.json`. |
-| P4 PSP/logistics/IGM | **not started; external entry blocked** | Public `/api/commerce-integrations/*` mutation routes are intentionally absent. Start logistics implementation only after redacted `ONDC:LOG10` LBNP/BAP registration, an approved PreProd LSP BPP lookup, and supported-version/feature evidence. |
+| P4 PSP/logistics/IGM | **Partial — LOG10 LBNP Gate 3 passed; PSP/IGM not started** | Dedicated LBNP identity, portal 1.a `SUBSCRIBED`, and official Workbench Immediate Delivery (15/15) passed per `.voice/progress.md` (evidence `preprod-gate2-*`, `preprod-gate3-workbench-*`). Public `/api/commerce-integrations/*` mutation routes remain intentionally absent. PSP, IGM/settlement, real shipment/payment, and later gates remain open. |
 | P5 Flip demo mode | **gated** | `scripts/commerce_demo_mode_gate.py` — no flip without evidence |
 
 ## Milestone 10 — Mandate editor
@@ -669,7 +670,7 @@ release or external gates stay explicit in the evidence column.
 | 6. Buyer/Seller UX | **Done** | Seller mandate/Pause; Buyer authority card; simulated labels; builds OK |
 | 7. Browser proof | **Done** | Hermes `agentguard seller --fixture` + `agentguard buyer --fixture` success 2026-07-11 evening; two-sided unique runs `ag-hermes-1783779577-a` / `ag-hermes-1783779578-b`; WIP bridge repaired via `ensure-wip-native-host.sh` |
 | 8. Cleanup | **Done** (2026-07-16) | Consequential Buyer/Seller order, return, fulfilment, catalog publish/archive, checkout, and support writes use AgentGuard plus the shared server exchange. Browser-local catalog/order/support stores and displaced trust-policy callers are deleted. Buyer/Seller clients use shared action, agent, mandate, approval, and intent-receipt types; the standalone `/agent` pages/navigation are deleted in favor of each app's global Samantha orb. Dated Seller/Netlify compatibility callers remain only until their documented post-2026-08-01 deletion gate. Final visible runs `m8-contract-final-1784209300-a` and `m8-contract-final-1784209301-b` preserve unique order/transaction/issue identity across Seller and Buyer. |
-| 9. ONDC integration | **Partial; external conformance blocked** | Signed PreProd search/on_search and configured-Seller discovery are proven; PostgreSQL inbox/outbox, persist-before-ACK, deduplication, correlation, leases, retries and dead-letter recovery are implemented. Full lifecycle semantics, portal onboarding and official conformance remain open. See `.agents/skills/testing-ledger/references/preprod-network-matrix.md` and `matrix-status.md`. |
+| 9. ONDC integration | **Partial; external production conformance blocked** | PreProd Gate 1 Retail search/on_search with published item; LBNP onboarding + Gate 2 decision; Gate 3 Workbench Immediate Delivery 15/15 ACKed (`.voice/progress.md`). PostgreSQL inbox/outbox, persist-before-ACK, deduplication, correlation, leases, retries and dead-letter recovery are implemented. Full Retail lifecycle semantics, production onboarding, and official conformance remain open. See `.agents/skills/testing-ledger/references/preprod-network-matrix.md` and `matrix-status.md`. |
 | 10. Mandate editor | **Done** (2026-07-11) | Seller `/agentguard` edit refund max + allowed actions; Buyer checkout authority card checkout max; gateway `allowed_actions` + limit normalize |
 | 11. Agent tool runner (Cursor) | **Done** (2026-07-11) | `ondcbuyer`/`ondcseller` `agentTools.ts`; Cursor agent context includes tool defs; chat path invokes runner |
 | 12. Buyer Realtime voice | **Partial** (2026-07-14) | Gateway session path, Buyer `SamanthaOrb`, text tools, and mandate/memory integration pass; physical microphone journey remains unproved |

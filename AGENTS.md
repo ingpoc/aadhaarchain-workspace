@@ -121,7 +121,7 @@ Default interactive UI control is bundled `@chrome` for browser pages and bundle
 | FlatWatch API / web | http://127.0.0.1:43104 / `:43105` |
 | Solana validator (optional, not AG) | http://127.0.0.1:8899 |
 
-## What is real vs stubbed (reconciled 2026-07-25)
+## What is real vs stubbed (reconciled 2026-07-31)
 
 | Subsystem | Status |
 | --- | --- |
@@ -133,7 +133,7 @@ Default interactive UI control is bundled `@chrome` for browser pages and bundle
 | Authenticated principal on AG APIs | **Real** — session cookie principal; body wallet cannot override social/demo session |
 | ONDC commerce UI labels | **Demo mode off** — `VITE_COMMERCE_DEMO_MODE=false` (gate evidence 2026-07-12); label **ONDC network**; payment still simulated (not live UPI) |
 | Host identity | **Auth0** (FQDN PreProd) + local `AUTH_DEMO_CONTINUE` (Hermes only) |
-| ONDC PreProd Beckn (BAP+BPP) | **Real, partial** — the 2026-07-24 PostgreSQL retest proved signed search delivery and correlated signed `on_search`; the Seller had zero published items, so the callback catalog and Buyer results were empty. Historical **select→init→confirm** ACK + `on_*` stubs remain protocol foundation, not current lifecycle acceptance. Production onboarding and official conformance remain open. Matrix: `.agents/skills/testing-ledger/references/preprod-network-matrix.md` |
+| ONDC PreProd Beckn (BAP+BPP) | **Real, partial** — PreProd Gate 1 (2026-07-25) proved signed Retail search with a published Seller item and correlated `on_search` (supersedes the empty-catalog 2026-07-24 retest). Dedicated LBNP + Gate 2/3 Immediate Delivery Workbench forward lifecycle passed — see `.voice/progress.md`. Historical Retail **select→init→confirm** ACK + `on_*` stubs remain protocol foundation, not current Retail lifecycle acceptance. Production onboarding and official conformance remain open. Matrix: `.agents/skills/testing-ledger/references/preprod-network-matrix.md` |
 | Buyer mock grocery fallback | **Removed** when ONDC adapter ready |
 | Trust / demo KYC | **Deferred hangar** — not AgentGuard acceptance |
 | MeitY DigiLocker / **prod** ONDC / NPCI agent UPI | **Out of scope** — PRODUCTION-READINESS; UPI Circle AI = CUG only |

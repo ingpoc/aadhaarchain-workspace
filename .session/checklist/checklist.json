@@ -248,7 +248,7 @@
   "go_live_path": {
     "updated_at": "2026-09-13T14:17:50.460569+05:30",
     "updated_by": "agent",
-    "reason": "2026-09-13: GSTIN still blocks A4 Submit/DNS/registry. A5 agent session-control PR https://github.com/ingpoc/aadhaar-chain/pull/26 open with CI fix; first agent-owned item remains A5 until merge + Postgres durability. Do not start C3/A6 until A5 merges. Submit/DNS/registry still unauthorized.",
+    "reason": "2026-09-13 NO-GSTIN ops slice: O1/O4 runbooks, A8 template, B7 log-submit prep, A6/O2 local backup script in .session/docs/PRODUCTION-READINESS.md. C3 pytest evidence recorded; token/O5 acceptance open. A5 remains first agent queue item (PR #26, no Auth0 cutover). A4 parallel_now GSTIN-blocked. Submit/DNS/registry unauthorized.",
     "parallel_now": [
       "A4"
     ],
@@ -725,15 +725,18 @@
       "gate": "5 · Reliability, observability, operations, and support",
       "item": "Durable production hosting",
       "status_code": "partial",
-      "status": "PostgreSQL remains the active owner; A6 recoverability/retention draft is retained in PRODUCTION-READINESS.md. Encrypted backup, restore exercise, failover, capacity, and operator-approved RTO/RPO remain unproved.",
+      "status": "Local-only Postgres backup/restore script added (scripts/local_postgres_backup_restore.sh); encrypted prod backup/restore/failover still unproved.",
       "responsible_owner": "Operations lead",
       "evidence_scope": "staging",
+      "completed_evidence": [
+        "2026-09-13 agent: A6/O2 recoverability draft with RTO/RPO placeholders (operator fills), cross-links O6, and local backup procedure documented.",
+        "2026-09-13 agent: scripts/local_postgres_backup_restore.sh backup + verify-restore (local 127.0.0.1/localhost/::1 only; refuses Render)."
+      ],
       "remaining_work": [
-        "Operator-review the A6 recoverability draft in PRODUCTION-READINESS.md (cross-links O6; no invented RTO/RPO).",
-        "Configure encrypted backups and required object retention bound to approved O6 class rules when those exist.",
-        "Run and retain a restore exercise; prove AgentGuard/commerce/ONDC consistency before re-enabling writes.",
-        "Prove failover behavior and capacity for the approved launch envelope.",
-        "Record operator-approved measurable RTO/RPO — placeholders are not acceptance targets."
+        "Operator: approve RTO/RPO placeholders in .session/docs/PRODUCTION-READINESS.md.",
+        "Operator: configure encrypted production backups and O6-bound retention on Render/Neon.",
+        "Operator: run production restore drill in isolated environment; retain dated evidence.",
+        "Prove failover behavior and capacity for the approved launch envelope."
       ],
       "completion_criteria": [
         "A dated restore succeeds from encrypted backup within approved recovery objectives.",
@@ -741,7 +744,9 @@
       ],
       "evidence_refs": [
         ".session/docs/IMPLEMENTATIONPLAN.md",
-        ".session/docs/PRODUCTION-READINESS.md"
+        ".session/docs/PRODUCTION-READINESS.md",
+        "scripts/local_postgres_backup_restore.sh",
+        ".session/evidence/local-postgres-backup-restore-template.json"
       ],
       "priority": "critical"
     },
@@ -773,14 +778,17 @@
       "id": "A8",
       "gate": "4 · Security, privacy, legal, and trust",
       "item": "Agreement, contacts, terms, and Buyer disclosures",
-      "status_code": "pending",
-      "status": "ONDC's 2026-08-10 pending-submissions readback confirms that the agreement, operational contacts, Retail Buyer disclosures/static terms, and start-transacting details remain pending for the approved profiles.",
+      "status_code": "partial",
+      "status": "Operator fill-in template for ONDC agreement/contacts/disclosures added; portal submission still operator-owned and unauthorized here.",
       "responsible_owner": "Product and legal owner",
       "evidence_scope": "operator",
+      "completed_evidence": [
+        "2026-09-13 agent: A8 template tables for agreement review, ops contacts, Buyer disclosure URLs, and start-transacting checkbox (Submit unauthorized)."
+      ],
       "remaining_work": [
-        "Review and approve the Network Participant Agreement; do not accept or submit it without operator authorization.",
-        "Prepare order-status, reconciliation/settlement/payout, grievance, customer-grievance, and policy-escalation contacts.",
-        "Approve the Retail Buyer sorting, search-display, static terms, privacy, refund/support, and production go-live disclosures."
+        "Operator/legal: review and approve Network Participant Agreement; do not accept or submit without authorization.",
+        "Operator: fill contact placeholders and approve Retail Buyer sorting, terms, privacy, refund/support, and go-live disclosures.",
+        "Operator: publish approved disclosures on Buyer FQDN and match portal submission when A4 authorized."
       ],
       "completion_criteria": [
         "All required agreements, contacts, terms, and customer disclosures are approved, published, and consistent with the launched roles and money flows."
@@ -789,7 +797,8 @@
       "operator_boundary": "Legal acceptance and external submission require operator approval.",
       "evidence_refs": [
         ".agents/skills/testing-ledger/references/evidence/ondc-huf-mail-readback-20260815.json",
-        ".session/docs/PRODUCTION-READINESS.md"
+        ".session/docs/PRODUCTION-READINESS.md",
+        ".session/docs/PRODUCTION-READINESS.md#a8-operator-template"
       ],
       "priority": "critical"
     },
@@ -961,14 +970,17 @@
       "id": "B7",
       "gate": "5 · Reliability, observability, operations, and support",
       "item": "ONDC network observability",
-      "status_code": "pending",
-      "status": "ONDC's 2026-08-10 pending-submissions readback confirms PreProd observability key generation and log submission remain pending; no approved report is retained.",
+      "status_code": "partial",
+      "status": "PreProd observability key + log-submit prep runbook added; portal key generation/submit still operator-owned.",
       "responsible_owner": "ONDC operations owner",
       "evidence_scope": "provider",
+      "completed_evidence": [
+        "2026-09-13 agent: B7 runbook with operator portal key steps, agent capture/validate commands, and evidence retention checklist."
+      ],
       "remaining_work": [
-        "Generate only the approved submission keys (operator).",
-        "Capture redacted protocol logs for the exact conformance source.",
-        "Validate with ONDC log-validation-utility, then operator-submit to ONDC-Official/verification-logs (or the portal path ONDC currently names). Do not treat a Workbench Scenario green as the observability report. Procedure: ~/.agents/skills/ondc Lifecycle + Sources."
+        "Operator: generate PreProd observability submission keys in portal.",
+        "Agent+operator: capture redacted protocol logs for exact conformance source fingerprint.",
+        "Validate with ONDC log-validation-utility; operator-submit to ONDC-Official/verification-logs; retain official report."
       ],
       "completion_criteria": [
         "The official report is retained and every reported defect is closed or explicitly accepted before go-live."
@@ -976,7 +988,8 @@
       "operator_boundary": "Key generation and external submission require operator approval.",
       "evidence_refs": [
         ".agents/skills/testing-ledger/references/evidence/ondc-huf-mail-readback-20260815.json",
-        ".session/docs/PRODUCTION-READINESS.md"
+        ".session/docs/PRODUCTION-READINESS.md",
+        ".session/docs/PRODUCTION-READINESS.md#b7-observability-prep"
       ],
       "priority": "critical"
     },
@@ -1009,12 +1022,16 @@
       "gate": "4 · Security, privacy, legal, and trust",
       "item": "AgentGuard production authority controls",
       "status_code": "partial",
-      "status": "Mandates, decisions, exact approvals, pause/revoke, and receipts exist; production risk tiers and the single approval inbox are specified against existing /api/agentguard APIs. Token proof and external security acceptance remain open.",
+      "status": "Mandates, evaluate/need_approval, exact approval consume-once, pause/revoke, and receipts are pytest-proved on current source (34 passed file-mode suite 2026-09-13). Production risk tiers and single approval inbox mapped in production-authority.md. Exact token proof on every PG write path and external security acceptance (O5) remain open.",
       "responsible_owner": "AgentGuard product owner",
       "evidence_scope": "local",
+      "completed_evidence": [
+        "2026-09-13 pytest: test_agentguard.py + test_agentguard_contract.py + test_agentguard_persistence.py — 34 passed (evaluate allow/deny/need_approval, pause blocks agent not user checkout, consume-once replay conflict, API routes).",
+        "Production tier → action map and /api/agentguard API contract in production-authority.md."
+      ],
       "remaining_work": [
-        "Prove exact authorization tokens across all production write paths.",
-        "Complete external security acceptance for mandate, pause, revoke, receipt, and audit behavior."
+        "Prove exact authorization tokens across all PostgreSQL production write paths (Idempotency-Key + atomic consume).",
+        "Complete external security acceptance (O5) for mandate, pause, revoke, receipt, and audit behavior."
       ],
       "completion_criteria": [
         "Every autonomous write is covered by the canonical risk policy, exact approval or mandate, durable receipt, revocation, and audit trail."
@@ -1022,7 +1039,10 @@
       "evidence_refs": [
         ".cursor/skills/agent-runtime-design/references/production-authority.md",
         ".agents/skills/testing-ledger/references/matrix-status.md",
-        ".session/docs/IMPLEMENTATIONPLAN.md"
+        ".session/docs/IMPLEMENTATIONPLAN.md",
+        "aadharchain/gateway/tests/test_agentguard.py",
+        "aadharchain/gateway/tests/test_agentguard_contract.py",
+        "aadharchain/gateway/tests/test_agentguard_persistence.py"
       ],
       "priority": "critical"
     },
@@ -1058,20 +1078,24 @@
       "id": "O1",
       "gate": "5 · Reliability, observability, operations, and support",
       "item": "Production telemetry, SLOs, and alerting",
-      "status_code": "pending",
-      "status": "Draft telemetry/response-control stubs exist in PRODUCTION-READINESS.md (must-log / must-redact / must-alert for AgentGuard denials, payment-unknown, ONDC callback backlog; SLO placeholders). Not approved; no dashboards or alert drill.",
+      "status_code": "partial",
+      "status": "Draft telemetry/response-control runbook expanded in .session/docs/PRODUCTION-READINESS.md (must-log/redact/alert). Dashboards and alert drill still open.",
       "responsible_owner": "Operations lead",
       "evidence_scope": "production",
+      "completed_evidence": [
+        "2026-09-13 agent: O1 must-log/must-redact/must-alert tables for AgentGuard denials, payment-unknown, ONDC callback backlog; alert routing placeholders and drill checkbox."
+      ],
       "remaining_work": [
-        "Approve numeric SLOs for gateway, Buyer, Seller, callbacks, payments, and agent writes (replace O1 placeholders).",
-        "Implement correlated logs, metrics, traces, dashboards, and paging alerts per O1 must-log / must-redact / must-alert stubs.",
+        "Operator: approve numeric SLOs (replace O1 placeholders in .session/docs/PRODUCTION-READINESS.md).",
+        "Implement correlated logs, metrics, traces, dashboards, and paging alerts per O1 checklist.",
         "Exercise one alert from trigger through acknowledgement and diagnosis; retain evidence."
       ],
       "completion_criteria": [
         "Approved SLOs and dashboards cover critical paths, and a retained alert drill proves routing and diagnosis."
       ],
       "evidence_refs": [
-        ".session/docs/PRODUCTION-READINESS.md"
+        ".session/docs/PRODUCTION-READINESS.md",
+        ".session/docs/PRODUCTION-READINESS.md#o1-telemetry"
       ],
       "priority": "critical"
     },
@@ -1079,19 +1103,24 @@
       "id": "O2",
       "gate": "5 · Reliability, observability, operations, and support",
       "item": "Encrypted backup and restore",
-      "status_code": "pending",
-      "status": "PostgreSQL is active; no encrypted production restore exercise is retained.",
+      "status_code": "partial",
+      "status": "PostgreSQL is active. Local backup/verify-restore script and evidence template exist (scripts/local_postgres_backup_restore.sh; refuses non-local hosts). Encrypted production restore exercise not retained.",
       "responsible_owner": "Operations lead",
       "evidence_scope": "production",
+      "completed_evidence": [
+        "2026-09-13 agent: local-only backup/restore script + integrity count checks documented in .session/docs/PRODUCTION-READINESS.md (A6/O2)."
+      ],
       "remaining_work": [
-        "Configure encrypted backups with approved retention and access controls.",
-        "Restore into an isolated environment and verify critical AgentGuard, order, callback, ledger, and receipt records."
+        "Operator: configure encrypted production backups with approved retention and access controls.",
+        "Operator: restore into isolated production environment and verify AgentGuard, order, callback, ledger, and receipt records."
       ],
       "completion_criteria": [
         "A dated restore meets approved recovery objectives and record-integrity checks."
       ],
       "evidence_refs": [
-        ".session/docs/PRODUCTION-READINESS.md"
+        ".session/docs/PRODUCTION-READINESS.md",
+        "scripts/local_postgres_backup_restore.sh",
+        ".session/evidence/local-postgres-backup-restore-template.json"
       ],
       "priority": "critical"
     },
@@ -1122,8 +1151,8 @@
       "id": "O4",
       "gate": "5 · Reliability, observability, operations, and support",
       "item": "Incident and financial-unknown runbooks",
-      "status_code": "pending",
-      "status": "Draft runbook stubs exist in PRODUCTION-READINESS.md (service incident, payment unknown, IGM escalation, key compromise, callback backlog). No named responders, contacts, or retained exercises.",
+      "status_code": "partial",
+      "status": "Incident runbook stubs expanded with role placeholders and drill checkboxes in PRODUCTION-READINESS.md. Named responders and retained drills still open.",
       "responsible_owner": "Operations lead",
       "evidence_scope": "operator",
       "remaining_work": [
@@ -1134,7 +1163,8 @@
         "Named responders complete retained exercises within approved response and recovery targets."
       ],
       "evidence_refs": [
-        ".session/docs/PRODUCTION-READINESS.md"
+        ".session/docs/PRODUCTION-READINESS.md",
+        ".session/docs/PRODUCTION-READINESS.md#o4-incident-runbooks"
       ],
       "priority": "critical"
     },

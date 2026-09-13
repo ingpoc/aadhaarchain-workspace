@@ -1,0 +1,22 @@
+{
+  "schema_version": "local-postgres-backup-restore.v1",
+  "exercise_at": "{ISO8601_TIMESTAMP}",
+  "operator": "{OPERATOR_NAME}",
+  "database_url_host": "127.0.0.1",
+  "backup_file": ".session/evidence/backups/local-postgres-YYYYMMDD-HHMMSS.dump",
+  "restore_target_db": "agentguard_restore_YYYYMMDDHHMMSS",
+  "integrity_counts": {
+    "agentguard_mandate_versions": 0,
+    "commerce_orders": 0,
+    "commerce_ledger_entries": 0,
+    "ondc_inbox": 0,
+    "agentguard_receipts": 0
+  },
+  "host_policy": "local-only — script refuses Render/production hosts",
+  "operator_next": [
+    "Approve RTO/RPO in .session/docs/PRODUCTION-READINESS.md",
+    "Configure encrypted production backups with approved O6 retention",
+    "Run production restore drill in isolated environment"
+  ],
+  "status": "template — fill after ./scripts/local_postgres_backup_restore.sh verify-restore"
+}

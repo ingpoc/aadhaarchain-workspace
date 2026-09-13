@@ -1,0 +1,150 @@
+{
+  "schema_version": "ondc-portal-readback.v1",
+  "observed_at": "2026-08-17T10:35:00+05:30",
+  "observation_mode": "read_only",
+  "source": {
+    "type": "authenticated_ondc_participant_portal",
+    "url_home": "https://portal.ondc.org/integration-create-plan",
+    "session_id": "a4-portal-20260817",
+    "browser": "Comet Control",
+    "operator_signed_in": true
+  },
+  "supported_facts": {
+    "signed_in_account_display_name": "Gurusharan Gupta Gupta",
+    "organisation_id": "15462",
+    "organisation_name": "GURUSHARAN GUPTA HUF",
+    "legal_entity_name": "GURUSHARAN GUPTA HUF",
+    "organisation_status": "Integration in Progress",
+    "website_url_field": "https://ondcbuyer.aadharcha.in",
+    "profiles": [
+      {
+        "profile_id": "15462-10008",
+        "domain": "Retail (B2C)",
+        "api_version": "v 1.2",
+        "role": "Buyer NP",
+        "integration_status": "Integration in Progress",
+        "journey_url": "https://portal.ondc.org/integration-journey-comply?interest=10008&configId=29",
+        "task_1a": {
+          "status": "Completed",
+          "completed_at_portal": "12/07/2026 02:09 PM",
+          "subscriber_id": "ondcbuyer.aadharcha.in",
+          "subscriber_url": "https://ondcbuyer.aadharcha.in/ondc",
+          "registry_domain": "Grocery - ONDC:RET10",
+          "list_of_requests": [
+            {
+              "subscriber_id": "ondcbuyer.aadharcha.in",
+              "environment": "Pre-Prod",
+              "request_type": "New Request",
+              "status": "Subscribed",
+              "requested_by": "Gurusharan Gupta Gupta",
+              "requested_on": "12/07/2026"
+            }
+          ]
+        },
+        "task_1b_status": "Pending",
+        "production_requests_visible": false
+      },
+      {
+        "profile_id": "15462-10011",
+        "domain": "Retail (B2C)",
+        "api_version": "v 1.2",
+        "role": "Seller NP - Inventory Seller Node (ISN)",
+        "integration_status": "Integration in Progress",
+        "journey_url": "https://portal.ondc.org/integration-journey-comply?interest=10011&configId=31",
+        "task_1a": {
+          "status": "Completed",
+          "completed_at_portal": "12/07/2026 02:44 PM",
+          "subscriber_id": "ondcseller.aadharcha.in",
+          "subscriber_url": "https://ondcseller.aadharcha.in/ondc",
+          "registry_domain": "Grocery - ONDC:RET10",
+          "list_of_requests": [
+            {
+              "subscriber_id": "ondcseller.aadharcha.in",
+              "environment": "Pre-Prod",
+              "request_type": "New Request",
+              "status": "Subscribed",
+              "requested_by": "Gurusharan Gupta Gupta",
+              "requested_on": "12/07/2026"
+            }
+          ]
+        },
+        "task_1b_status": "Pending",
+        "production_requests_visible": false
+      },
+      {
+        "profile_id": "15462-10220",
+        "domain": "Logistics (B2C)",
+        "api_version": "v 1.2",
+        "role": "Buyer NP",
+        "integration_status": "Integration in Progress",
+        "journey_url": "https://portal.ondc.org/integration-journey-comply?interest=10220&configId=35",
+        "task_1a": {
+          "status": "Completed",
+          "completed_at_portal": "26/07/2026 03:15 PM",
+          "subscriber_id": "ondclbnp.aadharcha.in",
+          "subscriber_url": "https://ondclbnp.aadharcha.in/ondc",
+          "registry_domain": "P2P - ONDC:LOG10",
+          "list_of_requests": [
+            {
+              "subscriber_id": "ondclbnp.aadharcha.in",
+              "environment": "Pre-Prod",
+              "request_type": "New Request",
+              "status": "Subscribed",
+              "requested_by": "Gurusharan Gupta Gupta",
+              "requested_on": "26/07/2026"
+            }
+          ]
+        },
+        "task_1b": {
+          "status": "Completed",
+          "completed_at_portal": "01/08/2026 12:59 AM",
+          "attestation_text_visible": "I have a working application with user interface as required"
+        },
+        "build_components_parent_status": "Completed",
+        "verify_your_build_status": "Pending (4 Task(s) Pending)",
+        "production_requests_visible": false
+      }
+    ],
+    "disabled_inactive_or_removed_profiles_visible": false,
+    "inactivity_or_disablement_warning_on_portal_ui": false,
+    "inactivity_deadline_on_portal_ui": null,
+    "pending_without_submit": {
+      "network_participant_agreement": {
+        "tab_url": "https://portal.ondc.org/profile?tab=np-agreement",
+        "signatory_fields": "empty (Name, Email, Mobile, Designation required)",
+        "board_resolution_upload": "empty",
+        "np_agreement_pdf_listed": "NP-Agreement.pdf",
+        "e_sign_button_visible": "E-Sign NP Agreement (appears disabled until signatory filled)"
+      },
+      "contacts": "Provide Points of Contact for this business profile — Pending, 5 Task(s) Pending on each profile journey opened",
+      "retail_buyer_and_seller_1b": "Pending with Complete Task control visible; not clicked",
+      "logistics_verify_build": "Pending, 4 Task(s) Pending",
+      "static_terms_and_disclosures": "Pending on all three profiles",
+      "start_transacting_and_post_live": "Pending on all three profiles"
+    },
+    "preprod_vs_production": {
+      "preprod_subscribed_visible": [
+        "ondcbuyer.aadharcha.in",
+        "ondcseller.aadharcha.in",
+        "ondclbnp.aadharcha.in"
+      ],
+      "production_environment_request_or_access_visible": false
+    },
+    "protocol_workbench_banner": "ONDC Protocol Workbench is now replacing Pramaan as the default tool for protocol testing, compliance validation, and report generation across all domains."
+  },
+  "not_proven": [
+    "Production registry approval or production keys",
+    "Profile disablement (mail 2026-08-12 inactivity threat is not shown as portal UI warning on this readback)",
+    "DNS, Render deploy, or registry mutation during this session"
+  ],
+  "external_actions_taken": [
+    "Read-only authenticated portal navigation and screenshots via Comet Control session a4-portal-20260817"
+  ],
+  "external_actions_not_taken": [
+    "No key generation",
+    "No form submit / Save / E-Sign / Complete Task",
+    "No agreement acceptance",
+    "No profile/DNS/Render/registry changes"
+  ],
+  "keys_dns_deploy_remain_forbidden": true
+}

@@ -1,0 +1,133 @@
+{
+  "schema_version": "testing-receipt.v1",
+  "gate_id": "B5-E1",
+  "verified_at": "2026-08-17T20:20:00+05:30",
+  "environment": "PreProd Auth0 FQDN residuals after nested 27e8faa; not production; Workbench prepaid+IGM not rerun",
+  "source_revision": "27e8faae276cbcef2714175cf45fdb95c833936e",
+  "authorization": [
+    "B5-20260817-01 PreProd official IGM",
+    "B5-20260817-03 exact IGM commit on existing identity-aadhar-gateway-main"
+  ],
+  "verdict": "passed_residuals",
+  "does_not_overwrite": [
+    ".agents/skills/testing-ledger/references/evidence/b5-e1-auth0-signed-igm-20260817.json"
+  ],
+  "render_service": {
+    "name": "identity-aadhar-gateway-main",
+    "id": "srv-d7f256f41pts73f68660",
+    "plan": "free",
+    "auto_deploy": "no",
+    "live_deploy_id": "dep-da1hs181ne8s73cgcb0g",
+    "live_deploy_commit": "27e8faae276cbcef2714175cf45fdb95c833936e",
+    "live_deploy_message": "Emit RESOLVED on native BPP issue_status from closed commerce.",
+    "live_deploy_finished_at": "2026-08-17T14:44:04.990934Z",
+    "previous_live_deploy_id": "dep-da1hhcrl550s73fmjrcg",
+    "previous_live_commit": "014a6ddf74e0b5b939cfddcf1de48acc856d472c"
+  },
+  "spa_deploy": {
+    "seller": {
+      "domain": "ondcseller.aadharcha.in",
+      "deployment_url": "https://ondcseller-jr3d0xk7u-ingpocs-projects.vercel.app",
+      "ready_state": "READY"
+    },
+    "buyer": {
+      "domain": "ondcbuyer.aadharcha.in",
+      "deployment_url": "https://ondcbuyer-4wqqz0jst-ingpocs-projects.vercel.app",
+      "ready_state": "READY"
+    }
+  },
+  "native_bpp_issue_status": {
+    "issue_id": "e0809349-e043-4265-a927-d9f981643709",
+    "transaction_id": "f37e3870-a420-40c7-b32a-3b1153331eff",
+    "bap_post": {
+      "url": "https://gateway.aadharcha.in/api/ondc/issue_status",
+      "body": "issue_id plus existing transaction/bpp target; no inbound RESOLVED",
+      "http": 200,
+      "ack": "ACK",
+      "outbox_id": 22952,
+      "state": "delivered"
+    },
+    "bpp_on_issue_status": {
+      "outbox_id": 22953,
+      "inbox_id": 23249,
+      "issue_status": "RESOLVED",
+      "respondent_actions": ["RESOLVED"],
+      "signature_verified": true,
+      "state": "delivered"
+    }
+  },
+  "auth0_owned_issue": {
+    "issue_id": "e0809349-e043-4265-a927-d9f981643709",
+    "order_ref": "8F3F56D0",
+    "status": "closed",
+    "version": 5,
+    "owner_id": "principal:auth0:google-oauth2:…",
+    "response_due_at": "2026-08-17T18:47:22.137731Z",
+    "escalation_due_at": "2026-08-17T22:47:22.137731Z",
+    "history_len": 10
+  },
+  "buyer_ui": {
+    "url": "https://ondcbuyer.aadharcha.in/orders/8f3f56d0-6f7d-4ac4-9efe-d9447a3ff56e",
+    "signed_in": true,
+    "issue_id_visible": "e0809349-e043-4265-a927-d9f981643709",
+    "badge": "closed",
+    "owner": "Seller support",
+    "response_target_visible": true,
+    "escalation_target_visible": true,
+    "audit_timeline_control": "open details with 10 events"
+  },
+  "seller_ui": {
+    "url": "https://ondcseller.aadharcha.in/orders/8f3f56d0-6f7d-4ac4-9efe-d9447a3ff56e",
+    "signed_in": true,
+    "issue_uuid_in_card_header": true,
+    "issue_id_visible": "e0809349-e043-4265-a927-d9f981643709",
+    "status": "closed",
+    "owner": "Seller support",
+    "response_target_visible": true,
+    "escalation_target_visible": true,
+    "audit_timeline_control": "open details with 10 events"
+  },
+  "screenshots": [
+    ".agents/skills/testing-ledger/references/evidence/b5-residuals-buyer-issue-20260817.png",
+    ".agents/skills/testing-ledger/references/evidence/b5-residuals-seller-issue-20260817.png"
+  ],
+  "tests": {
+    "command": "cd aadharchain/gateway && PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 python3 -m pytest -p asyncio tests/test_ondc_igm.py tests/test_domain_state_machines.py -q",
+    "result": "99 passed",
+    "focused": [
+      "test_seller_bpp_issue_status_follows_closed_commerce",
+      "test_on_issue_maps_resolved_from_issue_actions_when_status_null"
+    ]
+  },
+  "workbench_issue_not_claimed": {
+    "issue_id": "8382bcef-c3ab-41e5-b04e-1088d10ffb84",
+    "note": "Workbench subscriber rows are not the Auth0 user’s issue"
+  },
+  "not_proven": [
+    "production IGM",
+    "Workbench issue 8382bcef Buyer/Seller-visible outcome"
+  ],
+  "comet": {
+    "session_id": "b5-residuals-ui-20260817",
+    "label": "B5-RESIDUALS",
+    "distinct_from": [
+      "b5-e1-auth0-igm-20260817",
+      "b5-e1-ui-readback-20260817",
+      "a4-portal-20260817",
+      "a4-buyer-ukid-20260817"
+    ],
+    "a4_leases_not_killed": true,
+    "closeout": {"verified_absent": true, "matching_session_count": 0}
+  },
+  "external_actions_taken": [
+    "Render exact-commit deploy 27e8faa as dep-da1hs181ne8s73cgcb0g on existing Free identity-aadhar-gateway-main",
+    "Vercel Hobby archive deploy Seller and Buyer FQDNs",
+    "POST /api/ondc/issue_status for e0809349 with issue_id only",
+    "Auth0 Buyer and Seller FQDN UI via Comet b5-residuals-ui-20260817",
+    "no Workbench IGM 15–18 rerun",
+    "no PEM copy",
+    "no DNS",
+    "no portal Submit",
+    "no production IGM"
+  ]
+}

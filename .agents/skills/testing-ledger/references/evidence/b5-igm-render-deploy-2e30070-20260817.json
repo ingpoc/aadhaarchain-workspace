@@ -1,0 +1,142 @@
+{
+  "schema_version": "testing-receipt.v1",
+  "gate_id": "B5-E1-deploy",
+  "verified_at": "2026-08-17T15:42:43+05:30",
+  "environment": "public FQDN probe after exact-commit Render deploy of signed IGM source; PreProd PEMs unchanged; Protocol Workbench IGM not run",
+  "source_revision": "2e300708b7510af770b5da34f33e2792be2c489a",
+  "workspace_head_not_deployed": "2be9e5a5f19be47c938395c073bf947f717cec3d",
+  "authorization": "operator 2026-08-17: deploy IGM source to existing identity-aadhar-gateway-main only after prior preprod-official choice; no PEM copy, DNS, registry, or production",
+  "render_service": {
+    "name": "identity-aadhar-gateway-main",
+    "id": "srv-d7f256f41pts73f68660",
+    "plan": "free",
+    "auto_deploy": "no",
+    "repo": "https://github.com/ingpoc/aadhaar-chain",
+    "branch": "main",
+    "root_dir": "gateway",
+    "onrender_url": "https://identity-aadhar-gateway-main.onrender.com",
+    "live_deploy_id": "dep-da1ds3flk1mc739qgt4g",
+    "live_deploy_commit": "2e300708b7510af770b5da34f33e2792be2c489a",
+    "live_deploy_message": "Add signed Retail IGM issue routes",
+    "live_deploy_finished_at": "2026-08-17T10:11:07.892664Z",
+    "previous_live_commit": "7beab582d141c6f3f1e089c356ce0df6852a318c",
+    "previous_live_deploy_id": "dep-da1boulbedkc73cieceg"
+  },
+  "gateway_health": {
+    "url": "https://gateway.aadharcha.in/api/health",
+    "http": 200,
+    "body": {"status": "healthy", "service": "aadhaar-chain-gateway", "version": "1.0.0"}
+  },
+  "igm_route_probes": [
+    {
+      "method": "POST",
+      "url": "https://gateway.aadharcha.in/api/ondc/issue",
+      "body": {},
+      "http": 422,
+      "not_404": true,
+      "detail": "Field required: issue_id"
+    },
+    {
+      "method": "POST",
+      "url": "https://gateway.aadharcha.in/api/ondc/issue_status",
+      "body": {},
+      "http": 422,
+      "not_404": true,
+      "detail": "Field required: issue_id"
+    },
+    {
+      "method": "POST",
+      "url": "https://gateway.aadharcha.in/ondc/on_issue",
+      "body": {},
+      "http": 400,
+      "not_404": true,
+      "detail": "NACK CORE-ERROR 30000 missing context identifiers"
+    },
+    {
+      "method": "POST",
+      "url": "https://gateway.aadharcha.in/ondc/on_issue_status",
+      "body": {},
+      "http": 400,
+      "not_404": true,
+      "detail": "NACK CORE-ERROR 30000 missing context identifiers"
+    },
+    {
+      "method": "POST",
+      "url": "https://gateway.aadharcha.in/ondc/issue",
+      "body": {},
+      "http": 400,
+      "not_404": true,
+      "detail": "context.bap_id, transaction_id, and message_id are required"
+    }
+  ],
+  "openapi_igm_paths": {
+    "/api/ondc/issue": ["post"],
+    "/api/ondc/issue_status": ["post"],
+    "/ondc/on_issue": ["post"],
+    "/ondc/on_issue_status": ["post"],
+    "/ondc/issue": ["post"],
+    "/ondc/issue_status": ["post"]
+  },
+  "runtime_identity": {
+    "registry_env": "preprod",
+    "production_pems_copied": false,
+    "pem_env_written": false,
+    "roles": [
+      {
+        "role": "buyer",
+        "subscriber_id": "ondcbuyer.aadharcha.in",
+        "keys_source": "env",
+        "unique_key_id": "1aee68ad-bc2a-4fc4-b233-7e14c6abba9b"
+      },
+      {
+        "role": "seller",
+        "subscriber_id": "ondcseller.aadharcha.in",
+        "keys_source": "env",
+        "unique_key_id": "baf58086-7024-438a-becf-4cfa056ec8d9"
+      },
+      {
+        "role": "lbnp",
+        "subscriber_id": "ondclbnp.aadharcha.in",
+        "keys_source": "portal-download",
+        "unique_key_id": "9e7388f4-c68e-4006-ac5a-e7517382999f"
+      }
+    ]
+  },
+  "results": [
+    {
+      "scope": "exact-commit Render deploy",
+      "result": "passed",
+      "summary": "Existing Free service identity-aadhar-gateway-main is live at gateway commit 2e300708b7510af770b5da34f33e2792be2c489a as dep-da1ds3flk1mc739qgt4g. Auto-deploy remains off. Workspace HEAD was not deployed."
+    },
+    {
+      "scope": "gateway health",
+      "result": "passed",
+      "summary": "GET https://gateway.aadharcha.in/api/health returned 200 healthy without changing PreProd PEM env."
+    },
+    {
+      "scope": "IGM route liveness",
+      "result": "passed",
+      "summary": "POST /api/ondc/issue and /ondc/on_issue are registered (422/400 without a body; not 404). OpenAPI lists issue, issue_status, on_issue, and on_issue_status."
+    },
+    {
+      "scope": "PreProd unique_key_ids",
+      "result": "passed",
+      "summary": "Buyer, Seller, and LBNP unique_key_ids match the prior A4 public-host stamp. No PEM env vars were written."
+    }
+  ],
+  "not_proven": [
+    "Protocol Workbench official PreProd IGM (B5-E1 walkthrough)",
+    "signed live on_issue callback against a Workbench transaction",
+    "production IGM traffic",
+    "PEM copy, DNS change, portal submit, or production registry"
+  ],
+  "external_actions_taken": [
+    "committed IGM gateway files plus 032_b5_issue_operations.sql in nested aadharchain repo",
+    "pushed origin/main 7beab58..2e30070 on ingpoc/aadhaar-chain",
+    "Render MCP trigger_deploy on existing service srv-d7f256f41pts73f68660 with commit 2e300708b7510af770b5da34f33e2792be2c489a",
+    "no env var changes",
+    "no GoDaddy DNS changes",
+    "no parallel gateway",
+    "no portal submit"
+  ]
+}

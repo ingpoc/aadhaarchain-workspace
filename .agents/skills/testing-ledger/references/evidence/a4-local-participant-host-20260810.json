@@ -1,0 +1,49 @@
+{
+  "schema_version": "testing-receipt.v1",
+  "gate_id": "A4-L1",
+  "verified_at": "2026-08-10T14:20:00+05:30",
+  "environment": "local gateway test process with generated ephemeral role-specific keys",
+  "source_revision": "7beab582d141c6f3f1e089c356ce0df6852a318c",
+  "source_files": {
+    "aadharchain/gateway/app/ondc_onboard_routes.py": "23b4f91056469144c19a9422f5e77da5b8b330bbeb1768ac2f6e8a0644135aeb",
+    "aadharchain/gateway/tests/test_ondc_adapter.py": "e09075ed34cbc373e1ea93d9cc59d0bf572feff63dd50361ba9b3125e4f53edd"
+  },
+  "results": [
+    {
+      "scope": "isolated participant identities",
+      "result": "passed",
+      "summary": "Buyer NP, Seller NP, and Logistics Buyer NP each resolved a distinct subscriber ID and role-specific key directory."
+    },
+    {
+      "scope": "participant-host callback contract",
+      "result": "passed",
+      "summary": "Each role reported its full HTTPS callback URL and served site verification on its selected host."
+    },
+    {
+      "scope": "on_subscribe validation",
+      "result": "passed",
+      "summary": "A valid encrypted challenge passed for each approved role; a subscriber ID that did not match the selected participant host failed with HTTP 400."
+    },
+    {
+      "scope": "focused ONDC regression",
+      "result": "passed",
+      "summary": "25 ONDC adapter and BPP checks passed with four third-party deprecation warnings."
+    },
+    {
+      "scope": "source-frozen portfolio verification",
+      "result": "passed",
+      "summary": "Two consecutive unchanged-source CI portfolio runs each passed 251 checks with 53 expected skips and 13 third-party deprecation warnings."
+    }
+  ],
+  "warnings": [
+    "The test keys are ephemeral and are not production identity material.",
+    "Third-party deprecation warnings did not change the test outcomes."
+  ],
+  "not_proven": [
+    "production keys or key custody",
+    "authoritative ONDC registry records or approval",
+    "public DNS, TLS, deployment, site verification, or on_subscribe",
+    "portal submission or production enablement"
+  ],
+  "external_actions_taken": []
+}

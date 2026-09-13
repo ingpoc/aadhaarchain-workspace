@@ -236,7 +236,7 @@ export DATABASE_URL='postgresql://USER@127.0.0.1:5432/postgres'
 ./scripts/local_postgres_backup_restore.sh verify-restore
 
 # 3. Fill evidence template
-#    .session/evidence/local-postgres-backup-restore-template.json
+#    .session/docs/local-postgres-backup-restore-template.json
 ```
 
 **Integrity checks (verify-restore):** row counts for `agentguard_mandate_versions`, `commerce_orders`, `commerce_ledger_entries`, `ondc_inbox`, `agentguard_receipts`.

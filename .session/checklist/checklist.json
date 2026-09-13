@@ -3,7 +3,7 @@
   "project": "AgentGuard",
   "title": "Production launch checklist",
   "warning": "Repository evidence proves code and captured acceptance only. The 2026-08-17 authenticated portal readback is point-in-time UI evidence; payment and production states still require current authoritative proof and separate operator authorization.",
-  "current_blocker": "A4 remains blocked. Buyer/Seller/LBNP Production 1.a modal pairs are materialized locally with Unique Key IDs captured from Raise Request modal UI. keep-both Buyer local draft. 2026-09-12 PEM-to-Render + Mini Keychain done (seller/buyer/lbnp PEMs+ukIds; aadhaarchain.render api_key). Live signed on_status/on_track ACK PASS 2026-09-12. Portal Org 15462 GURUSHARAN GUPTA HUF; GSTIN still empty; Submit not clicked. GSTIN, Submit, and DNS still block production registry.",
+  "current_blocker": "A4 remains GSTIN-blocked for production registry Submit/DNS. A5 agent code in aadharchain#26 (no-cutover); awaiting green CI/merge + Postgres durability. No GSTIN work in this slice.",
   "operator_decisions": [
     {
       "id": "A4-20260817-01",
@@ -20,7 +20,7 @@
       "id": "A4-20260817-02",
       "checklist_id": "A4",
       "decided_at": "2026-08-17",
-      "summary": "Keys only \u2014 not Render, DNS, or registry.",
+      "summary": "Keys only — not Render, DNS, or registry.",
       "choice_ids": [
         "keys-only"
       ],
@@ -44,7 +44,7 @@
       "id": "A4-20260817-04",
       "checklist_id": "A4",
       "decided_at": "2026-08-17",
-      "summary": "Generate now \u2014 local .local/ondc-production/{buyer,seller,lbnp}; no portal submit.",
+      "summary": "Generate now — local .local/ondc-production/{buyer,seller,lbnp}; no portal submit.",
       "choice_ids": [
         "generate-now-local"
       ],
@@ -99,7 +99,7 @@
       "id": "B5-20260817-01",
       "checklist_id": "B5",
       "decided_at": "2026-08-17T15:26:23+05:30",
-      "summary": "Authorize PreProd official IGM traffic for the A2 Retail scope \u2014 not production, not a Render deploy, not PEM/DNS/registry.",
+      "summary": "Authorize PreProd official IGM traffic for the A2 Retail scope — not production, not a Render deploy, not PEM/DNS/registry.",
       "choice_ids": [
         "preprod-official"
       ],
@@ -143,7 +143,7 @@
       "id": "B5-20260817-03",
       "checklist_id": "B5",
       "decided_at": "2026-08-17T15:42:43+05:30",
-      "summary": "Deploy exact IGM commit to existing identity-aadhar-gateway-main only \u2014 no PEM copy, DNS, registry, or production.",
+      "summary": "Deploy exact IGM commit to existing identity-aadhar-gateway-main only — no PEM copy, DNS, registry, or production.",
       "choice_ids": [
         "deploy-igm-existing-render"
       ],
@@ -204,7 +204,7 @@
       "id": "A5-20260817-03",
       "checklist_id": "A5",
       "decided_at": "2026-08-17T22:01:26+05:30",
-      "summary": "Do not cut over \u2014 keep A5 partial; no production tenant/connection change.",
+      "summary": "Do not cut over — keep A5 partial; no production tenant/connection change.",
       "choice_ids": [
         "no-cutover"
       ],
@@ -237,7 +237,7 @@
       "id": "B4-20260819-01",
       "checklist_id": "B4",
       "decided_at": "2026-08-19T16:00:00+05:30",
-      "summary": "Record in-network persist proof on live gateway (signed RET10 select\u2192settlement into CommerceV1). No official Workbench/third-party BPP. No Submit/PEM/DNS, no PSP, no live LSP.",
+      "summary": "Record in-network persist proof on live gateway (signed RET10 select→settlement into CommerceV1). No official Workbench/third-party BPP. No Submit/PEM/DNS, no PSP, no live LSP.",
       "choice_ids": [
         "record-in-network-persist-no-workbench"
       ],
@@ -246,9 +246,9 @@
     }
   ],
   "go_live_path": {
-    "updated_at": "2026-08-19T16:00:00+05:30",
+    "updated_at": "2026-09-13T14:17:50.460569+05:30",
     "updated_by": "agent",
-    "reason": "2026-08-19 B4 in-network signed RET10 select\u2192settlement persisted into CommerceV1 on live gateway. Official Workbench/third-party BPP remaining. C4 still pending official current-source release proof (one-click Resume live, not C4 complete). A5-20260817-03 no-cutover still in force. First agent-owned item remains A5. A4 still parallel_now blocked. Do not start C3/A6. Submit/PEM/DNS/registry still unauthorized.",
+    "reason": "2026-09-13: GSTIN still blocks A4 Submit/DNS/registry. A5 agent session-control PR https://github.com/ingpoc/aadhaar-chain/pull/26 open with CI fix; first agent-owned item remains A5 until merge + Postgres durability. Do not start C3/A6 until A5 merges. Submit/DNS/registry still unauthorized.",
     "parallel_now": [
       "A4"
     ],
@@ -300,14 +300,14 @@
   "areas": [
     {
       "id": "scope",
-      "label": "0 \u00b7 Scope and target outcome",
+      "label": "0 · Scope and target outcome",
       "items": [
         "G0"
       ]
     },
     {
       "id": "product",
-      "label": "1 \u00b7 Product outcome completeness",
+      "label": "1 · Product outcome completeness",
       "items": [
         "CF0",
         "CF1",
@@ -321,14 +321,14 @@
     },
     {
       "id": "testing",
-      "label": "2 \u00b7 Testing and customer-quality acceptance",
+      "label": "2 · Testing and customer-quality acceptance",
       "items": [
         "Q1"
       ]
     },
     {
       "id": "integrations",
-      "label": "3 \u00b7 Data, integrations, and migrations",
+      "label": "3 · Data, integrations, and migrations",
       "items": [
         "B1",
         "B2",
@@ -338,7 +338,7 @@
     },
     {
       "id": "security",
-      "label": "4 \u00b7 Security, privacy, legal, and trust",
+      "label": "4 · Security, privacy, legal, and trust",
       "items": [
         "A5",
         "A8",
@@ -349,7 +349,7 @@
     },
     {
       "id": "operations",
-      "label": "5 \u00b7 Reliability, observability, operations, and support",
+      "label": "5 · Reliability, observability, operations, and support",
       "items": [
         "A6",
         "B5",
@@ -362,7 +362,7 @@
     },
     {
       "id": "money",
-      "label": "6 \u00b7 Money, billing, and reconciliation",
+      "label": "6 · Money, billing, and reconciliation",
       "items": [
         "A7",
         "B6",
@@ -371,7 +371,7 @@
     },
     {
       "id": "external",
-      "label": "7 \u00b7 External providers, platforms, and approvals",
+      "label": "7 · External providers, platforms, and approvals",
       "items": [
         "A1",
         "A2",
@@ -382,7 +382,7 @@
     },
     {
       "id": "rollout",
-      "label": "8 \u00b7 Rollout, rollback, and communications",
+      "label": "8 · Rollout, rollback, and communications",
       "items": [
         "C4",
         "O7",
@@ -393,7 +393,7 @@
   "items": [
     {
       "id": "G0",
-      "gate": "0 \u00b7 Scope and target outcome",
+      "gate": "0 · Scope and target outcome",
       "item": "Production target and non-goals",
       "status_code": "complete",
       "status": "AgentGuard is the product; legacy AadhaarChain, FlatWatch, Solana, production NPCI, and unrelated identity expansion are outside this launch.",
@@ -409,7 +409,7 @@
     },
     {
       "id": "CF0",
-      "gate": "1 \u00b7 Product outcome completeness",
+      "gate": "1 · Product outcome completeness",
       "item": "Product and authorization contract",
       "status_code": "complete",
       "status": "Frozen contract closure passed on 2026-07-23; this is historical foundation evidence, not current-source launch proof.",
@@ -426,7 +426,7 @@
     },
     {
       "id": "CF1",
-      "gate": "1 \u00b7 Product outcome completeness",
+      "gate": "1 · Product outcome completeness",
       "item": "Durable production foundation",
       "status_code": "complete",
       "status": "PostgreSQL ownership and the frozen CF1 release checkpoint passed on 2026-07-22; payment remained simulated.",
@@ -442,7 +442,7 @@
     },
     {
       "id": "CF2",
-      "gate": "1 \u00b7 Product outcome completeness",
+      "gate": "1 · Product outcome completeness",
       "item": "Buyer product lifecycle",
       "status_code": "complete",
       "status": "CF2-E1 Buyer complete-lifecycle passed 2026-08-15 on local Auth0 with simulated payment. Q1 remains a separate current-source release item.",
@@ -452,7 +452,7 @@
         "Location-aware multi-seller comparison, persisted tracking/return/grievance lifecycle, replacement commitment, Auth0 Buyer-Seller-Buyer acceptance, verified receipts, keyboard flow, and desktop/390px captures passed on the recorded source fingerprint.",
         "2026-08-19 live guest add-to-cart on ondcbuyer.aadharcha.in after ondc-buyer#9 (squash e7a88de0). Bundle index-CdGITWMz.js on public FQDN and Hobby alias.",
         "2026-08-19 live Buyer FQDN hash index-D_5Z2srK.js matches ondcbuyer.vercel.app after ondc-buyer#10 (squash c496ea07).",
-        "2026-08-19 live Buyer one-click Resume after ondc-buyer#11 (squash 9b1806e7). Bundle index-Sjb3R03d.js on ondcbuyer.aadharcha.in matching Hobby alias. One Resume click \u2192 Shopping agent on, held through poll and Open Samantha."
+        "2026-08-19 live Buyer one-click Resume after ondc-buyer#11 (squash 9b1806e7). Bundle index-Sjb3R03d.js on ondcbuyer.aadharcha.in matching Hobby alias. One Resume click → Shopping agent on, held through poll and Open Samantha."
       ],
       "completion_criteria": [
         "A buyer can discover, compare, buy, track delivery, cancel, return or replace, raise a grievance, and obtain support with persisted state and visible outcomes."
@@ -466,7 +466,7 @@
     },
     {
       "id": "CF3",
-      "gate": "1 \u00b7 Product outcome completeness",
+      "gate": "1 · Product outcome completeness",
       "item": "Seller product lifecycle",
       "status_code": "complete",
       "status": "CF3-E1 Seller complete-lifecycle PASS on 2026-08-17 (Comet local); product criterion closed. Q1 remains a separate current-source release item.",
@@ -496,7 +496,7 @@
     },
     {
       "id": "CF4",
-      "gate": "1 \u00b7 Product outcome completeness",
+      "gate": "1 · Product outcome completeness",
       "item": "iOS companion",
       "status_code": "deferred",
       "status": "Deferred from the ONDC production launch target.",
@@ -510,7 +510,7 @@
     },
     {
       "id": "CF5",
-      "gate": "1 \u00b7 Product outcome completeness",
+      "gate": "1 · Product outcome completeness",
       "item": "Native Realtime voice",
       "status_code": "deferred",
       "status": "Deferred; browser and text proof do not establish native physical-audio acceptance.",
@@ -524,7 +524,7 @@
     },
     {
       "id": "CF6",
-      "gate": "1 \u00b7 Product outcome completeness",
+      "gate": "1 · Product outcome completeness",
       "item": "Siri and App Intents",
       "status_code": "deferred",
       "status": "Deferred because no native intent target is in this launch.",
@@ -538,7 +538,7 @@
     },
     {
       "id": "CF7",
-      "gate": "1 \u00b7 Product outcome completeness",
+      "gate": "1 · Product outcome completeness",
       "item": "On-device intelligence",
       "status_code": "deferred",
       "status": "Optional and deferred from the production launch target.",
@@ -552,7 +552,7 @@
     },
     {
       "id": "Q1",
-      "gate": "2 \u00b7 Testing and customer-quality acceptance",
+      "gate": "2 · Testing and customer-quality acceptance",
       "item": "Current-source frozen release acceptance",
       "status_code": "pending",
       "status": "No checklist-level testing-framework Gate 8 receipt is declared for the current launch source.",
@@ -575,7 +575,7 @@
     },
     {
       "id": "A1",
-      "gate": "7 \u00b7 External providers, platforms, and approvals",
+      "gate": "7 · External providers, platforms, and approvals",
       "item": "ONDC portal account and organisation",
       "status_code": "complete",
       "status": "Operator-authenticated portal readback on 2026-08-10 confirmed organisation 15462 and three v1.2 profiles. Direct provider-mail readback on 2026-08-15 corroborates that Retail Buyer, Retail Seller, and Logistics Buyer remain Integration in Progress; it is not a current portal readback.",
@@ -599,7 +599,7 @@
     },
     {
       "id": "A2",
-      "gate": "7 \u00b7 External providers, platforms, and approvals",
+      "gate": "7 · External providers, platforms, and approvals",
       "item": "Production participant roles and domains",
       "status_code": "complete",
       "status": "Approved on 2026-08-10: Retail B2C v1.2 Buyer NP for the Buyer app, Retail B2C v1.2 Seller NP - ISN for the Seller app, and Logistics B2C v1.2 Buyer NP only for Seller fulfilment through an external LSP. Every other role and domain is excluded from the initial launch. The three visible portal profiles remain Integration in Progress.",
@@ -623,7 +623,7 @@
     },
     {
       "id": "A3",
-      "gate": "7 \u00b7 External providers, platforms, and approvals",
+      "gate": "7 · External providers, platforms, and approvals",
       "item": "PreProd identity, callback, DNS, and TLS",
       "status_code": "complete",
       "status": "Dedicated LBNP identity, registry status, site verification, on_subscribe, DNS, and TLS passed for PreProd.",
@@ -639,7 +639,7 @@
     },
     {
       "id": "A4",
-      "gate": "7 \u00b7 External providers, platforms, and approvals",
+      "gate": "7 · External providers, platforms, and approvals",
       "item": "Production subscriber identity and registry approval",
       "status_code": "blocked",
       "status": "Buyer, Seller, and LBNP Production 1.a modal pairs materialized 2026-08-17 under .local/ondc-production-portal-modal/{buyer,seller,lbnp}. Seller, LBNP, and regenerated Buyer unique_key_id captured from Raise Request modal UI. New Buyer modal signing fp16 8247845e30f3e325 supersedes the earlier no-ukid pair dff58a270e9ed255 (preserved aside). keep-both for Buyer local draft. 2026-09-12 PEM-to-Render + Mini Keychain done (seller/buyer/lbnp PEMs+ukIds; aadhaarchain.render api_key). Live signed on_status/on_track ACK PASS 2026-09-12. Portal 2026-09-12: Org 15462 GURUSHARAN GUPTA HUF; GSTIN still empty; Submit not clicked; DNS/registry still unauthorized.",
@@ -691,16 +691,17 @@
     },
     {
       "id": "A5",
-      "gate": "4 \u00b7 Security, privacy, legal, and trust",
+      "gate": "4 · Security, privacy, legal, and trust",
       "item": "Production identity and access policy",
       "status_code": "partial",
-      "status": "A5 stays partial per A5-20260817-03 no-cutover. Agent-reviewed Auth0 production policy accepted for code controls on existing staging/local+FQDN Auth0. Secret dual-publish, durable Postgres session revoke/list, audience isolation, and Seller step-up gates are pytest-proved on current source. No production tenant/connection change.",
+      "status": "A5 stays partial per A5-20260817-03 no-cutover. 2026-09-13: durable session registry + rotation/revoke/audience/step-up on gateway PR https://github.com/ingpoc/aadhaar-chain/pull/26 ; test_a5_session_controls 10/10 (memory). CI fix pushed (PYTHONPATH/gitleaks). Postgres durability + Render migration 004 + Auth0 MFA + tenant cutover still open.",
       "responsible_owner": "Security owner",
       "evidence_scope": "staging",
       "remaining_work": [
-        "Production Auth0 tenant/connection cutover remains unauthorized (no tenant/connection change, no DNS/PEM/Submit).",
-        "Operator: enable production-tenant MFA and Attack Protection out of band; gateway fail-closes Seller elevated writes in staging/production without amr=mfa.",
-        "Q1: release-source security acceptance still required before A5 can complete (current-source pytest of listed code controls is recorded)."
+        "Merge/deploy aadharchain#26; apply migration 004_auth_session_registry.sql on Render Postgres; re-run durability pytest with local DATABASE_URL.",
+        "Operator: enable production-tenant MFA and Attack Protection out of band (no-cutover still in force).",
+        "Production Auth0 tenant/connection cutover remains unauthorized until operator lifts A5-20260817-03.",
+        "Q1: release-source security acceptance still required before A5 can complete."
       ],
       "completion_criteria": [
         "The approved production policy is enforced and security acceptance proves each listed control on the release source."
@@ -713,13 +714,15 @@
         ".agents/skills/testing-ledger/references/evidence/cf2-e1-auth0-lifecycle-20260815.json",
         ".cursor/skills/authentication/references/evidence/spa-session-probe-20260712-172223.json",
         ".agents/skills/testing-ledger/references/matrix-status.md",
-        "AGENTS.md"
+        "AGENTS.md",
+        "https://github.com/ingpoc/aadhaar-chain/pull/26",
+        "aadharchain/gateway/migrations/004_auth_session_registry.sql"
       ],
       "priority": "critical"
     },
     {
       "id": "A6",
-      "gate": "5 \u00b7 Reliability, observability, operations, and support",
+      "gate": "5 · Reliability, observability, operations, and support",
       "item": "Durable production hosting",
       "status_code": "partial",
       "status": "PostgreSQL remains the active owner; A6 recoverability/retention draft is retained in PRODUCTION-READINESS.md. Encrypted backup, restore exercise, failover, capacity, and operator-approved RTO/RPO remain unproved.",
@@ -730,7 +733,7 @@
         "Configure encrypted backups and required object retention bound to approved O6 class rules when those exist.",
         "Run and retain a restore exercise; prove AgentGuard/commerce/ONDC consistency before re-enabling writes.",
         "Prove failover behavior and capacity for the approved launch envelope.",
-        "Record operator-approved measurable RTO/RPO \u2014 placeholders are not acceptance targets."
+        "Record operator-approved measurable RTO/RPO — placeholders are not acceptance targets."
       ],
       "completion_criteria": [
         "A dated restore succeeds from encrypted backup within approved recovery objectives.",
@@ -744,7 +747,7 @@
     },
     {
       "id": "A7",
-      "gate": "6 \u00b7 Money, billing, and reconciliation",
+      "gate": "6 · Money, billing, and reconciliation",
       "item": "Regulated payment and settlement provider",
       "status_code": "blocked",
       "status": "Only simulated payment exists; no production PSP or settlement rail is selected.",
@@ -768,7 +771,7 @@
     },
     {
       "id": "A8",
-      "gate": "4 \u00b7 Security, privacy, legal, and trust",
+      "gate": "4 · Security, privacy, legal, and trust",
       "item": "Agreement, contacts, terms, and Buyer disclosures",
       "status_code": "pending",
       "status": "ONDC's 2026-08-10 pending-submissions readback confirms that the agreement, operational contacts, Retail Buyer disclosures/static terms, and start-transacting details remain pending for the approved profiles.",
@@ -792,7 +795,7 @@
     },
     {
       "id": "B1",
-      "gate": "3 \u00b7 Data, integrations, and migrations",
+      "gate": "3 · Data, integrations, and migrations",
       "item": "Retail signed discovery",
       "status_code": "complete",
       "status": "PreProd Gate 1 signed search and correlated on_search with the approved Seller item passed.",
@@ -808,7 +811,7 @@
     },
     {
       "id": "B2",
-      "gate": "3 \u00b7 Data, integrations, and migrations",
+      "gate": "3 · Data, integrations, and migrations",
       "item": "LOG10 synthetic forward lifecycle",
       "status_code": "complete",
       "status": "The official Workbench Immediate Delivery flow completed all 15 expected synthetic steps.",
@@ -824,7 +827,7 @@
     },
     {
       "id": "B3",
-      "gate": "3 \u00b7 Data, integrations, and migrations",
+      "gate": "3 · Data, integrations, and migrations",
       "item": "External LSP interoperability",
       "status_code": "blocked",
       "status": "TapTap acknowledged on_init but omitted mandatory rider-check semantics; no later logistics callbacks followed.",
@@ -848,24 +851,24 @@
     },
     {
       "id": "B4",
-      "gate": "3 \u00b7 Data, integrations, and migrations",
+      "gate": "3 · Data, integrations, and migrations",
       "item": "Retail order lifecycle on ONDC",
       "status_code": "partial",
-      "status": "In-network signed RET10 select\u2192settlement persisted into CommerceV1 on live gateway; official Workbench/third-party BPP lane still remaining.",
+      "status": "In-network signed RET10 select→settlement persisted into CommerceV1 on live gateway; official Workbench/third-party BPP lane still remaining.",
       "responsible_owner": "ONDC integration owner",
       "evidence_scope": "preprod",
       "completed_evidence": [
         "2026-08-19 in-network PreProd (not official Workbench): aadhaar-chain#13 squash 638f6c83 live on Render identity-aadhar-gateway-main as dep-da2o5rqjnfac73e0ihe0.",
-        "Signed Buyer NP \u2192 Seller NP-ISN on this gateway. Payment simulated. No live LSP.",
+        "Signed Buyer NP → Seller NP-ISN on this gateway. Payment simulated. No live LSP.",
         "transaction_id 8e31d0a0-56aa-4736-8300-6e262817dbed; commerce_order_id 56be3cf0-4068-4c31-9283-e7710d5baba6; protocol_order_id ord_8377845f6a4d.",
-        "Unsigned POST /ondc/on_select without Authorization \u2192 401 NACK missing ONDC Authorization header.",
+        "Unsigned POST /ondc/on_select without Authorization → 401 NACK missing ONDC Authorization header.",
         "Signed ACK + inbox delivered: on_select, on_init, on_confirm, on_status, on_track, on_update.",
         "CommerceV1 fulfilment.retail bound, 6 processed_callbacks, quote INR 250, tracking HTTPS, return refund_pending, refund succeeded 25000 paise, settlement phase refund. Migration 034 applied live.",
         "In-network on_status always Packed so order stayed preparing (not delivered). Official Workbench / third-party BPP not used.",
         "POST /api/ondc/update with {} still overly permissive (not a B4 blocker)."
       ],
       "remaining_work": [
-        "Agent: complete official PreProd conformance/Workbench signed RET10 select\u2192settlement lane against a third-party BPP (in-network Buyer NP \u2192 Seller NP-ISN is not that lane).",
+        "Agent: complete official PreProd conformance/Workbench signed RET10 select→settlement lane against a third-party BPP (in-network Buyer NP → Seller NP-ISN is not that lane).",
         "Buyer client bind via commerce_order_id if needed.",
         "Do not treat this in-network persist proof as A4."
       ],
@@ -881,16 +884,16 @@
     },
     {
       "id": "B5",
-      "gate": "5 \u00b7 Reliability, observability, operations, and support",
+      "gate": "5 · Reliability, observability, operations, and support",
       "item": "Issue and grievance management",
       "status_code": "complete",
-      "status": "B5 complete on preprod/Auth0 signed IGM plus Buyer/Seller-visible outcome (evidence_scope preprod). Issue e0809349 on order 8F3F56D0: signed callbacks, audit, owner, response/escalation targets, closed UI on current FQDNs after nested 27e8faa / dep-da1hs181ne8s73cgcb0g. Workbench 8382bcef is not the Auth0 user\u2019s. Production IGM is A4/B8, not a B5 remaining child.",
+      "status": "B5 complete on preprod/Auth0 signed IGM plus Buyer/Seller-visible outcome (evidence_scope preprod). Issue e0809349 on order 8F3F56D0: signed callbacks, audit, owner, response/escalation targets, closed UI on current FQDNs after nested 27e8faa / dep-da1hs181ne8s73cgcb0g. Workbench 8382bcef is not the Auth0 user’s. Production IGM is A4/B8, not a B5 remaining child.",
       "responsible_owner": "Support and ONDC operations owner",
       "evidence_scope": "preprod",
       "completed_evidence": [
-        "2026-08-17 B5 complete on preprod/Auth0 signed IGM: issue e0809349 on 8F3F56D0. Signed callbacks, audit (10), owner Seller support, response/escalation targets, Buyer/Seller-visible closed outcome on current FQDNs after nested 27e8faa / dep-da1hs181ne8s73cgcb0g. Production IGM is A4/B8, not a B5 remaining child. Workbench 8382bcef is not the Auth0 user\u2019s.",
-        "2026-08-17 B5 residuals: nested 27e8faa live as dep-da1hs181ne8s73cgcb0g. Native POST /api/ondc/issue_status for e0809349 (issue_id only) \u2192 BPP on_issue_status inbox 23249 RESOLVED signature_verified. Commerce SLA filled. Hobby Seller/Buyer FQDNs show UUID e0809349, owner Seller support, response/escalation targets, open audit timeline (10). Pytest 99 passed. Comet b5-residuals-ui-20260817 verified_absent. No Workbench 15\u201318 rerun. No PEM/DNS/Submit. Production IGM unauthorized.",
-        "2026-08-17 Auth0-owned signed IGM: nested 014a6dd live as dep-da1hhcrl550s73fmjrcg. Buyer created e0809349 on 8F3F56D0; signed issue outbox 22922 to ondcseller.aadharcha.in; on_issue 23218 PROCESSING signature_verified; CLOSE \u2192 commerce closed; extra inbound issue_status RESOLVED \u2192 on_issue_status 23227 signature_verified. Buyer badge resolved; Seller closed (UUID omitted). /orders/B5091e6b53 not 500. Workbench 8382bcef still open/subscriber-scoped. Comet b5-e1-auth0-igm-20260817 verified_absent. No Workbench 15\u201318 rerun. No PEM/DNS/Submit.",
+        "2026-08-17 B5 complete on preprod/Auth0 signed IGM: issue e0809349 on 8F3F56D0. Signed callbacks, audit (10), owner Seller support, response/escalation targets, Buyer/Seller-visible closed outcome on current FQDNs after nested 27e8faa / dep-da1hs181ne8s73cgcb0g. Production IGM is A4/B8, not a B5 remaining child. Workbench 8382bcef is not the Auth0 user’s.",
+        "2026-08-17 B5 residuals: nested 27e8faa live as dep-da1hs181ne8s73cgcb0g. Native POST /api/ondc/issue_status for e0809349 (issue_id only) → BPP on_issue_status inbox 23249 RESOLVED signature_verified. Commerce SLA filled. Hobby Seller/Buyer FQDNs show UUID e0809349, owner Seller support, response/escalation targets, open audit timeline (10). Pytest 99 passed. Comet b5-residuals-ui-20260817 verified_absent. No Workbench 15–18 rerun. No PEM/DNS/Submit. Production IGM unauthorized.",
+        "2026-08-17 Auth0-owned signed IGM: nested 014a6dd live as dep-da1hhcrl550s73fmjrcg. Buyer created e0809349 on 8F3F56D0; signed issue outbox 22922 to ondcseller.aadharcha.in; on_issue 23218 PROCESSING signature_verified; CLOSE → commerce closed; extra inbound issue_status RESOLVED → on_issue_status 23227 signature_verified. Buyer badge resolved; Seller closed (UUID omitted). /orders/B5091e6b53 not 500. Workbench 8382bcef still open/subscriber-scoped. Comet b5-e1-auth0-igm-20260817 verified_absent. No Workbench 15–18 rerun. No PEM/DNS/Submit.",
         "2026-08-17 Auth0 Buyer/Seller FQDN readback: public row 8382bcef principal_id=ondcbuyer.aadharcha.in seller_id=workbench.ondc.tech status=open protocol_order B5091e6b53. Unauthenticated issues 401. Signed-in Buyer shows 8F3F56D0/709D9B9E/83A97020 and Auth0 issue fabc818c, not 8382bcef; /orders/B5091e6b53 500. Seller same four Auth0 orders; 709D9B9E closed fulfillment is the Auth0 issue. Comet b5-e1-ui-readback-20260817 verified_absent.",
         "2026-08-17 IGM issue_actions: nested commit 1db9fa0 live as dep-da1g9jpt0dsc73bqcp0g. BAP issue includes complainant_actions; BPP on_issue/on_issue_status include respondent_actions. Pytest 14 passed/16 skipped. New Workbench session jAq3Wt205M3Il6zX2siGsKS8abHbQgIT / tx 091e6b53-9ce5-49ba-b6ee-414112326d5c. Confirm order B5091e6b53. issue_open_100, on_issue_processing_100, on_issue_resolved_100, issue_close_100 COMPLETE SUCCESS; bound issue 8382bcef-c3ab-41e5-b04e-1088d10ffb84. Signed on_issue inbox 23111 (PROCESSING) and on_issue_status inbox 23113 (RESOLVED), both signature_verified, no Missing issue actions. Mock on_confirm still ERROR. Comet b5-igm-issue-actions-20260817.",
         "2026-08-17 IGM issue bind: nested commit e55d06e live as dep-da1fvie7bikc7392gof0. Dispatch creates a principal-safe CommerceV1 issue from a confirm-outbox order when none exists. Public POST /api/ondc/issue: no body 422, {} 422, unknown order 404 Unknown order, unknown issue 404 Unknown issue. Pytest 12 passed/16 skipped. New Workbench session YvuUWZPUfH_n-R8soNMIfLVXr2J7M61l / tx d98ec9ac-990c-4793-a5f8-72426afc75b5. Confirm order B5d98ec9ac. issue_open_100 and issue_close_100 COMPLETE SUCCESS; bound issue fd0486d3-aed4-4f92-86f0-46e92b679be3 from signed outbox. Signed on_issue inbox 23086/23087 (signature_verified; mock envelope Missing issue actions). on_issue_resolved COMPLETE ERROR. Comet b5-igm-issue-bind-20260817.",
@@ -902,8 +905,8 @@
         "2026-08-17 exact-commit Render deploy 2e300708b7510af770b5da34f33e2792be2c489a as dep-da1ds3flk1mc739qgt4g on existing Free identity-aadhar-gateway-main. Health 200. POST /api/ondc/issue 422 and /ondc/on_issue 400 (not 404). PreProd unique_key_ids unchanged. No PEM/DNS/registry.",
         "2026-08-17 PreProd Workbench session 2d8cKTuko6HV78i1sQLN3Nx3H3T5bO64 created as BAP RET10 1.2.0 GROCERY. IGM-bearing flow Order_to_confirm_to_fulfillment__Prepaid_with_igm_1.0.0 is WAITING on select after POST /backend-ui/api/sessions/flows/{sessionId} 404. Public on_issue inbox empty. Official IGM not completed.",
         "2026-08-17 retry: POST /backend-ui/flow/new registered session v83hwowCbAKXBW9wEHtbCTjTC7f1tQHq flow Order_to_confirm_to_fulfillment__Prepaid_with_igm_1.0.0. Transaction d77ff31f-4d1b-4e2e-81ca-53b90a2900cb ACK'd select, on_select, init, on_init, confirm without filling accept_bpp_terms. Mock on_confirm NACK'd (message_id mismatch); public on_confirm/on_issue inbox empty. Track WAITING; POST /api/ondc/track was 404 before f7794fa.",
-        "2026-08-17 Buyer retail track + on_confirm correlation: POST /api/ondc/track signs RET10 track with order_id; on_track signature-verifies like issue; on_confirm NACKs a new message_id when confirm outbox exists; on_status accepts camelCase subscriberID and Authorization keyId. 4 focused tests plus 144 related ONDC/commerce checks passed. Nested commit f7794fa live as dep-da1f80gjo6nc738i40s0. Public track 422 / health 200 / IGM routes still present. Workbench IGM steps 15\u201318 not rerun.",
-        "2026-08-17 Workbench rerun: new session 62RWGJAf_xhJm5O1FgYrf6qUakwSdO__ / tx fa6a6b53-41af-4155-9eea-96ac7d6b90e1 via POST /backend-ui/flow/new. ACK select, on_select, init, on_init, confirm without accept_bpp_terms. Mock on_confirm NACK message_id mismatch expected 8a907724-1f72-4b57-8c6c-14a096baded6 found 54816c38-e7c5-446b-a6e6-503d19a662a1. Public on_confirm/on_issue inbox empty. Track LISTENING not sent (no signed order_id). IGM 15\u201318 not reached. Comet b5-igm-rerun-20260817."
+        "2026-08-17 Buyer retail track + on_confirm correlation: POST /api/ondc/track signs RET10 track with order_id; on_track signature-verifies like issue; on_confirm NACKs a new message_id when confirm outbox exists; on_status accepts camelCase subscriberID and Authorization keyId. 4 focused tests plus 144 related ONDC/commerce checks passed. Nested commit f7794fa live as dep-da1f80gjo6nc738i40s0. Public track 422 / health 200 / IGM routes still present. Workbench IGM steps 15–18 not rerun.",
+        "2026-08-17 Workbench rerun: new session 62RWGJAf_xhJm5O1FgYrf6qUakwSdO__ / tx fa6a6b53-41af-4155-9eea-96ac7d6b90e1 via POST /backend-ui/flow/new. ACK select, on_select, init, on_init, confirm without accept_bpp_terms. Mock on_confirm NACK message_id mismatch expected 8a907724-1f72-4b57-8c6c-14a096baded6 found 54816c38-e7c5-446b-a6e6-503d19a662a1. Public on_confirm/on_issue inbox empty. Track LISTENING not sent (no signed order_id). IGM 15–18 not reached. Comet b5-igm-rerun-20260817."
       ],
       "completion_criteria": [
         "A customer grievance or support issue can be traced from creation through resolution with signed network callbacks, audit history, escalation owner, response target, and Buyer/Seller-visible outcome."
@@ -934,7 +937,7 @@
     },
     {
       "id": "B6",
-      "gate": "6 \u00b7 Money, billing, and reconciliation",
+      "gate": "6 · Money, billing, and reconciliation",
       "item": "Reconciliation, settlement, and payouts",
       "status_code": "pending",
       "status": "Production reconciliation, settlement, payout contacts, and walkthrough are not complete.",
@@ -956,7 +959,7 @@
     },
     {
       "id": "B7",
-      "gate": "5 \u00b7 Reliability, observability, operations, and support",
+      "gate": "5 · Reliability, observability, operations, and support",
       "item": "ONDC network observability",
       "status_code": "pending",
       "status": "ONDC's 2026-08-10 pending-submissions readback confirms PreProd observability key generation and log submission remain pending; no approved report is retained.",
@@ -979,7 +982,7 @@
     },
     {
       "id": "B8",
-      "gate": "7 \u00b7 External providers, platforms, and approvals",
+      "gate": "7 · External providers, platforms, and approvals",
       "item": "Official production conformance and go-live approval",
       "status_code": "pending",
       "status": "The 2026-08-15 provider-mail readback shows Integration in Progress, pending submissions, and no official production conformance or portal go-live approval.",
@@ -1003,7 +1006,7 @@
     },
     {
       "id": "C3",
-      "gate": "4 \u00b7 Security, privacy, legal, and trust",
+      "gate": "4 · Security, privacy, legal, and trust",
       "item": "AgentGuard production authority controls",
       "status_code": "partial",
       "status": "Mandates, decisions, exact approvals, pause/revoke, and receipts exist; production risk tiers and the single approval inbox are specified against existing /api/agentguard APIs. Token proof and external security acceptance remain open.",
@@ -1025,7 +1028,7 @@
     },
     {
       "id": "C4",
-      "gate": "8 \u00b7 Rollout, rollback, and communications",
+      "gate": "8 · Rollout, rollback, and communications",
       "item": "Current-source public release proof",
       "status_code": "pending",
       "status": "2026-08-19 public FQDN P0s plus live store-setup form, sticky pause, and one-click Resume are proved, but this is not official current-source release proof. Full C4 still requires release approval plus fingerprint/Auth0/visual/console evidence on the exact verified source.",
@@ -1043,8 +1046,8 @@
       "completed_evidence": [
         "2026-08-19 public P0s: ondc-buyer#9 guest cart, ondc-seller#9 + aadhaar-chain#11 order 7BA6FE24 + refund guard, workspace#4 FQDN vs Hobby alias parity, workspace#5 checklist on main. Live https://ondcbuyer.aadharcha.in and https://ondcseller.aadharcha.in.",
         "2026-08-19 live store-setup: aadhaar-chain#12 squash 9be78a22 live on Render identity-aadhar-gateway-main as dep-da2nime1egvs739jpr1g. GET /api/demo-commerce/seller/store is 200 empty draft with setup_required (unauth 401 not 404). Seller ondc-seller#10 squash e41f0d6b on Vercel Hobby ondcseller. Live FQDN hash index-Cph8wtcO.js matches ondcseller.vercel.app. Browser https://ondcseller.aadharcha.in/business shows Set up your store form (Store name, City, PIN, Save draft, Complete store setup). No Store setup unavailable / 404.",
-        "2026-08-19 live sticky pause: Buyer ondc-buyer#10 squash c496ea07 on Vercel Hobby ondcbuyer. Live FQDN hash index-D_5Z2srK.js matches ondcbuyer.vercel.app. Signed-in ondcbuyer.aadharcha.in Agent Guard chip Shopping agent paused; Ask Samantha overlay settled to Text ready \u00b7 shopping agent paused (did not flip active); Activity Verify Intent Receipt verified and pause still held. Resume remained the only clear.",
-        "2026-08-19 live one-click Resume: ondc-buyer#11 squash 9b1806e7 live bundle index-Sjb3R03d.js on ondcbuyer.aadharcha.in matching Hobby alias. One Resume click \u2192 Shopping agent on, held through poll and Open Samantha."
+        "2026-08-19 live sticky pause: Buyer ondc-buyer#10 squash c496ea07 on Vercel Hobby ondcbuyer. Live FQDN hash index-D_5Z2srK.js matches ondcbuyer.vercel.app. Signed-in ondcbuyer.aadharcha.in Agent Guard chip Shopping agent paused; Ask Samantha overlay settled to Text ready · shopping agent paused (did not flip active); Activity Verify Intent Receipt verified and pause still held. Resume remained the only clear.",
+        "2026-08-19 live one-click Resume: ondc-buyer#11 squash 9b1806e7 live bundle index-Sjb3R03d.js on ondcbuyer.aadharcha.in matching Hobby alias. One Resume click → Shopping agent on, held through poll and Open Samantha."
       ],
       "evidence_refs": [
         ".agents/skills/testing-ledger/references/matrix-status.md"
@@ -1053,7 +1056,7 @@
     },
     {
       "id": "O1",
-      "gate": "5 \u00b7 Reliability, observability, operations, and support",
+      "gate": "5 · Reliability, observability, operations, and support",
       "item": "Production telemetry, SLOs, and alerting",
       "status_code": "pending",
       "status": "Draft telemetry/response-control stubs exist in PRODUCTION-READINESS.md (must-log / must-redact / must-alert for AgentGuard denials, payment-unknown, ONDC callback backlog; SLO placeholders). Not approved; no dashboards or alert drill.",
@@ -1074,7 +1077,7 @@
     },
     {
       "id": "O2",
-      "gate": "5 \u00b7 Reliability, observability, operations, and support",
+      "gate": "5 · Reliability, observability, operations, and support",
       "item": "Encrypted backup and restore",
       "status_code": "pending",
       "status": "PostgreSQL is active; no encrypted production restore exercise is retained.",
@@ -1094,7 +1097,7 @@
     },
     {
       "id": "O3",
-      "gate": "6 \u00b7 Money, billing, and reconciliation",
+      "gate": "6 · Money, billing, and reconciliation",
       "item": "Payment, order, refund, and ledger reconciliation",
       "status_code": "partial",
       "status": "Simulated payments and refunds have correlation and balanced-ledger evidence; real provider settlement is unproved.",
@@ -1117,7 +1120,7 @@
     },
     {
       "id": "O4",
-      "gate": "5 \u00b7 Reliability, observability, operations, and support",
+      "gate": "5 · Reliability, observability, operations, and support",
       "item": "Incident and financial-unknown runbooks",
       "status_code": "pending",
       "status": "Draft runbook stubs exist in PRODUCTION-READINESS.md (service incident, payment unknown, IGM escalation, key compromise, callback backlog). No named responders, contacts, or retained exercises.",
@@ -1137,7 +1140,7 @@
     },
     {
       "id": "O5",
-      "gate": "4 \u00b7 Security, privacy, legal, and trust",
+      "gate": "4 · Security, privacy, legal, and trust",
       "item": "External production security review",
       "status_code": "pending",
       "status": "No external production security acceptance is retained.",
@@ -1159,7 +1162,7 @@
     },
     {
       "id": "O6",
-      "gate": "4 \u00b7 Security, privacy, legal, and trust",
+      "gate": "4 · Security, privacy, legal, and trust",
       "item": "Privacy, retention, deletion, and model-data policy",
       "status_code": "pending",
       "status": "Draft data-class inventory table exists in PRODUCTION-READINESS.md (PII, commerce, payment, ONDC, support, telemetry, model-visible) with TBD retention/deletion. Not approved or enforced.",
@@ -1179,7 +1182,7 @@
     },
     {
       "id": "O7",
-      "gate": "8 \u00b7 Rollout, rollback, and communications",
+      "gate": "8 · Rollout, rollback, and communications",
       "item": "Customer support, audit, and recovery operations",
       "status_code": "pending",
       "status": "Support ownership, operational console, and recovery rehearsal are not launch-ready.",
@@ -1200,7 +1203,7 @@
     },
     {
       "id": "O8",
-      "gate": "8 \u00b7 Rollout, rollback, and communications",
+      "gate": "8 · Rollout, rollback, and communications",
       "item": "Phased rollout, rollback, and global agent-write pause",
       "status_code": "pending",
       "status": "Per-agent pause exists; launch-wide write containment and rollback are unproved.",
@@ -1223,7 +1226,7 @@
     },
     {
       "id": "O9",
-      "gate": "5 \u00b7 Reliability, observability, operations, and support",
+      "gate": "5 · Reliability, observability, operations, and support",
       "item": "Accessibility, load, resilience, and disaster recovery",
       "status_code": "partial",
       "status": "Frozen responsive/accessibility acceptance exists; operational resilience is unproved.",

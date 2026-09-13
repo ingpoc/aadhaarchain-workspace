@@ -1,6 +1,6 @@
 # Production readiness — launch ops runbooks (checklist owner)
 
-Operator-facing runbooks for checklist items **O1, O2, O4, A6, A8, B7**. No GSTIN,
+Operator-facing runbooks for checklist items **O1, O2, O4, A5, A6, A7, A8, B7**. No GSTIN,
 portal Submit, DNS, registry, Auth0 tenant cutover, or live PSP signup required to
 prepare or exercise these locally.
 
@@ -9,6 +9,8 @@ prepare or exercise these locally.
 | O1 | [§ O1 — Telemetry, SLOs, alerting](#o1--telemetry-slos-alerting) |
 | O4 | [§ O4 — Incident runbooks](#o4--incident-runbooks) |
 | O2 / A6 | [§ A6 / O2 — Backup and restore](#a6--o2--backup-and-restore) |
+| A5 | [§ A5 — Auth0 MFA + Attack Protection (no cutover)](#a5--auth0-mfa--attack-protection-no-cutover) |
+| A7 | [§ A7 — Razorpay Test Mode secrets](#a7--razorpay-test-mode-secrets) |
 | A8 | [§ A8 — Agreement and contacts template](#a8--agreement-contacts-and-disclosures-template) |
 | B7 | [§ B7 — PreProd observability log submit](#b7--preprod-observability-log-submit) |
 
@@ -352,6 +354,44 @@ npm run validate -- --input /path/to/redacted/logs --domain RET10 --version 1.2.
 - [ ] Agent captured redacted logs for frozen source.
 - [ ] log-validation-utility passed locally.
 - [ ] Operator submitted to ONDC; report archived.
+
+---
+
+## A5 — Auth0 MFA + Attack Protection (no cutover)
+
+**Owner:** Operator · **Constraint:** keep existing staging/FQDN Auth0 tenant. Do **not** create a new production tenant or switch connections until `A5-20260817-03` is lifted.
+
+### Dashboard steps (existing tenant)
+
+1. Auth0 Dashboard → **Security → Multi-factor Auth** → enable MFA for the app used by Buyer/Seller (prefer Adaptive or Always for Seller elevated actions).
+2. **Security → Attack Protection** → enable Brute-force, Suspicious IP throttling, Breached password detection.
+3. Confirm callback/logout URLs still match `gateway.aadharcha.in` / local `43101` allowlist (authentication skill).
+4. Smoke: Buyer Google login + Seller pause still work; Seller elevated write without MFA still fail-closes on gateway.
+
+### Checkbox
+
+- [ ] MFA enabled on current tenant (`{AUTH0_TENANT}`)
+- [ ] Attack Protection toggles on
+- [ ] Buyer + Seller smoke after MFA
+- [ ] Explicit written approval before any tenant/connection cutover
+
+---
+
+## A7 — Razorpay Test Mode secrets
+
+**Owner:** Operator · **Code:** already fail-closes live `rzp_live_*` keys; suite green locally 2026-09-13.
+
+1. Razorpay Dashboard → Test Mode → copy `rzp_test_` key id + secret (never commit).
+2. Set on Render gateway (`identity-aadhar-gateway-main`): `RAZORPAY_KEY_ID`, `RAZORPAY_KEY_SECRET`, `RAZORPAY_WEBHOOK_SECRET`.
+3. Configure webhook to gateway `/api/.../razorpay/webhook` (exact path in gateway skill/routes).
+4. One Test Mode checkout on FQDN; archive payment id in evidence (no live settlement claim).
+
+### Checkbox
+
+- [ ] `rzp_test_*` set on Render (not live)
+- [ ] Webhook verified in Test Mode
+- [ ] One FQDN Test Mode payment evidence retained
+- [ ] Production PSP selection deferred until commercial approval
 
 ---
 

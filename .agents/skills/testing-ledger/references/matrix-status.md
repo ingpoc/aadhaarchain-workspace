@@ -156,7 +156,6 @@ Untested: S-PUBLISH, S-LONG-TRIAGE.
 - `/api/auth/me`: no session until OTP.
 - Sign in CTA: **visible** Buyer+Seller FQDN. OTP/consent: **not completed**.
 
-
 ## Live web E2E refresh — 2026-07-12 16:32 IST
 
 **Unblocked on Free/Hobby:** Auth0 Render callback allowlisted; Vercel BLOCKED deploys deleted; Buyer+Seller Production redeployed (wallet purge + identity bake); Render env `OPENAI_API_KEY` / `OPENAI_REALTIME_MODEL` / `CURSOR_API_KEY` saved+redeployed via dashboard session (CLI key expired).
@@ -1222,3 +1221,18 @@ proof passed. Evidence:
 
 **Boundary:** no Gate 1 rerun, real shipment, real payment, production,
 report-generation, certification, or later gate. No in-scope blocker remains.
+
+## FQDN PreProd W-* trio — 2026-09-11 (Blocked → Pass on Comet resume)
+
+Current-source FQDN readiness (not a replay of 2026-07-23 local/FQDN CF0).
+Resume run on Gurusharan Mac mini used visible Comet Control only.
+
+| ID | Status | Evidence |
+| --- | --- | --- |
+| Auth0 session | **Pass** | Continue with Google in leased Comet → Buyer principal `Gurusharan Gupta Gupta` |
+| `W-B-FIND-NL-ATTA` | **Pass** | `06-W-B-FIND-NL-ATTA.png` — `/results?q=atta`; Sampoorna Whole Wheat Atta 1kg |
+| `W-B-AG-CONFIRM` | **Pass** | `09-W-B-AG-CONFIRM-active.png` — Shopping agent on / Shopping limit saved |
+| `W-S-AG-PAUSE` | **Pass** | `11-W-S-AG-PAUSE.png` — Status paused; Resume agent |
+
+Providers: `auth0:true`, `demo_continue:false`. Bundle:
+[`evidence/fqdn-w-gates-comet-20260911/`](evidence/fqdn-w-gates-comet-20260911/).

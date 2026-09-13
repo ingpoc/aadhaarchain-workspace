@@ -148,8 +148,27 @@ callbacks from `workbench.ondc.tech` at `1.2.5`.
 None within Gate 3. Production onboarding, real shipment/payment, Workbench
 report generation, and every later gate remain outside this authorization.
 
+**Release / FQDN `W-*` (2026-09-11 Comet resume):** current-source PreProd
+readiness trio **Passed** on Gurusharan Mac mini via visible local Comet
+(`~/.agents/plugins/comet-control`; requested singular `plugin/` path absent).
+Auth0 via Continue with Google (`gupta.gurusharan@gmail.com`). Demo-continue
+not used. Cloud Chrome / FQDN demo-continue bypass not used.
+
+| Gate | Status |
+| --- | --- |
+| `W-B-FIND-NL-ATTA` | **Pass** — NL ask → `/results?q=atta`; visible Sampoorna Whole Wheat Atta 1kg |
+| `W-B-AG-CONFIRM` | **Pass** — Buyer `/config?tab=agent-guard` shows Shopping agent on / limit saved |
+| `W-S-AG-PAUSE` | **Pass** — Seller AgentGuard paused (`Resume agent`; Status: paused) |
+
+Evidence:
+`.agents/skills/testing-ledger/references/evidence/fqdn-w-gates-comet-20260911/`
+(`summary.json` + screenshots). Prior cloud Auth0-block row superseded for this
+trio only; historical 2026-07-23 CF0 acceptance is not re-claimed.
+
 ## Single next action
 
-Stop this gate and preserve its evidence. Any Workbench report or later gate
-requires a separately owned scope; do not repeat the completed transaction or
-Gate 1 search.
+For Gate 3: stop and preserve evidence (unchanged).
+
+For release FQDN `W-*`: trio closed on Comet. Optional follow-ups outside this
+gate: resume Seller agent if paused state is undesirable for other work; store
+Auth0 test-user locator for non-interactive reruns.

@@ -1,0 +1,14 @@
+{
+  "schema_version": "local-postgres-backup-restore.v1",
+  "exercise_at": "2026-09-13T14:27:43+05:30",
+  "backup_file": "/Users/gurusharan/Documents/remote-claude/active/apps/AadhaarChainWorkspace/.session/evidence/backups/local-postgres-20260913-142740.dump",
+  "restore_target_db": "agentguard_restore_20260913142741",
+  "host_policy": "local-only (127.0.0.1/localhost/::1)",
+  "integrity_checks": "agentguard_mandate_versions, commerce_orders, commerce_ledger_entries, ondc_inbox, agentguard_receipts",
+  "operator_next": [
+    "Approve RTO/RPO placeholders in .session/docs/PRODUCTION-READINESS.md",
+    "Configure encrypted production backups on Render/Neon",
+    "Run isolated production restore drill (not this script)"
+  ],
+  "status": "local_verify_restore_passed"
+}

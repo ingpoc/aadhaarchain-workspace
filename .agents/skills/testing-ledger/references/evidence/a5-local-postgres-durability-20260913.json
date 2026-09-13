@@ -1,0 +1,17 @@
+{
+  "schema_version": "evidence.v1",
+  "checklist_id": "A5",
+  "title": "Local Postgres durable session registry proof",
+  "recorded_at": "2026-09-13T14:28:56+05:30",
+  "source": "local",
+  "commands": [
+    "brew services start postgresql@17",
+    "DATABASE_URL=postgresql://gurusharan@127.0.0.1:5432/aadharcha_test PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 python -m pytest -q -p asyncio tests/test_a5_session_controls.py tests/test_a5_session_registry_postgres.py"
+  ],
+  "result": "14 passed",
+  "notes": [
+    "Memory + durable Postgres registry tests green on current gateway main (post #26).",
+    "No Auth0 tenant cutover. No Submit/DNS/registry.",
+    "Render deploy of identity-aadhar-gateway-main triggered for migration 004."
+  ]
+}

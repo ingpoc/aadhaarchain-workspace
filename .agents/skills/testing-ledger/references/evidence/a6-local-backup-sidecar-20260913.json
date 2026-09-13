@@ -1,0 +1,9 @@
+{
+  "schema_version": "local-postgres-backup.v1",
+  "recorded_at": "2026-09-13T14:27:40+05:30",
+  "command": "backup",
+  "database_host": "127.0.0.1",
+  "backup_file": "evidence/backups/local-postgres-20260913-142740.dump",
+  "backup_bytes": 11734,
+  "note": "Local-only backup. Production encrypted backup remains operator-owned (A6/O2)."
+}

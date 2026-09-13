@@ -246,9 +246,9 @@
     }
   ],
   "go_live_path": {
-    "updated_at": "2026-09-13T14:28:57.199218+05:30",
+    "updated_at": "2026-09-13T14:31:32.204980+05:30",
     "updated_by": "agent",
-    "reason": "2026-09-13 afternoon: A5 local durability 14/14 + A6 local backup/restore + A7 Razorpay test suite 12/12. Gateway main deploy triggered on Render. GSTIN still blocks A4 Submit/DNS/registry. Next operator: Auth0 MFA, A8 contacts, B7 portal logs, rzp_test keys, confirm Render migration 004.",
+    "reason": "2026-09-13: A5 Render deploy live + local durability/backup/razorpay proofs recorded. GSTIN still blocks A4. Operator next: Auth0 MFA, A8 contacts, B7 portal, rzp_test keys.",
     "parallel_now": [
       "A4"
     ],
@@ -694,7 +694,7 @@
       "gate": "4 · Security, privacy, legal, and trust",
       "item": "Production identity and access policy",
       "status_code": "partial",
-      "status": "A5 stays partial per A5-20260817-03 no-cutover. 2026-09-13: aadharchain#26 merged; local durable Postgres suite 14/14 passed (test_a5_session_controls + test_a5_session_registry_postgres). Render identity-aadhar-gateway-main deploy triggered for migration 004. Remaining: confirm Render migration applied; operator MFA/Attack Protection; tenant cutover authorization; Q1 release-source acceptance.",
+      "status": "A5 stays partial per A5-20260817-03 no-cutover. 2026-09-13: #26 merged; local durability 14/14; Render identity-aadhar-gateway-main deploy dep-daj6bju7bikc73assa00 LIVE; /api/health 200. Remaining: operator MFA/Attack Protection; tenant cutover auth; Q1 release-source acceptance.",
       "responsible_owner": "Security owner",
       "evidence_scope": "staging",
       "remaining_work": [
@@ -717,7 +717,9 @@
         "AGENTS.md",
         "https://github.com/ingpoc/aadhaar-chain/pull/26",
         "aadharchain/gateway/migrations/004_auth_session_registry.sql",
-        ".agents/skills/testing-ledger/references/evidence/a5-local-postgres-durability-20260913.json"
+        ".agents/skills/testing-ledger/references/evidence/a5-local-postgres-durability-20260913.json",
+        "Render deploy dep-daj6bju7bikc73assa00 live",
+        "https://identity-aadhar-gateway-main.onrender.com/api/health"
       ],
       "priority": "critical"
     },

@@ -3,7 +3,7 @@
   "project": "AgentGuard",
   "title": "Production launch checklist",
   "warning": "Repository evidence proves code and captured acceptance only. The 2026-08-17 authenticated portal readback is point-in-time UI evidence; payment and production states still require current authoritative proof and separate operator authorization.",
-  "current_blocker": "A4 remains blocked. Buyer/Seller/LBNP Production 1.a modal pairs are materialized locally with Unique Key IDs captured from Raise Request modal UI. keep-both Buyer local draft. Submit, PEM-to-Render, DNS, and registry remain unauthorized. GSTIN still blocks production registry. 2026-08-19 B4 in-network persist and Buyer one-click Resume are proved and do not unblock registry Submit/PEM/DNS.",
+  "current_blocker": "A4 remains blocked. Buyer/Seller/LBNP Production 1.a modal pairs are materialized locally with Unique Key IDs captured from Raise Request modal UI. keep-both Buyer local draft. 2026-09-12 PEM-to-Render + Mini Keychain done (seller/buyer/lbnp PEMs+ukIds; aadhaarchain.render api_key). Live signed on_status/on_track ACK PASS 2026-09-12. Portal Org 15462 GURUSHARAN GUPTA HUF; GSTIN still empty; Submit not clicked. GSTIN, Submit, and DNS still block production registry.",
   "operator_decisions": [
     {
       "id": "A4-20260817-01",
@@ -642,7 +642,7 @@
       "gate": "7 \u00b7 External providers, platforms, and approvals",
       "item": "Production subscriber identity and registry approval",
       "status_code": "blocked",
-      "status": "Buyer, Seller, and LBNP Production 1.a modal pairs materialized 2026-08-17 under .local/ondc-production-portal-modal/{buyer,seller,lbnp}. Seller, LBNP, and regenerated Buyer unique_key_id captured from Raise Request modal UI. New Buyer modal signing fp16 8247845e30f3e325 supersedes the earlier no-ukid pair dff58a270e9ed255 (preserved aside). keep-both for Buyer local draft. Fingerprints mismatch local drafts. Registry PreProd-locked. Submit, PEM-to-Render, DNS, and registry remain unauthorized.",
+      "status": "Buyer, Seller, and LBNP Production 1.a modal pairs materialized 2026-08-17 under .local/ondc-production-portal-modal/{buyer,seller,lbnp}. Seller, LBNP, and regenerated Buyer unique_key_id captured from Raise Request modal UI. New Buyer modal signing fp16 8247845e30f3e325 supersedes the earlier no-ukid pair dff58a270e9ed255 (preserved aside). keep-both for Buyer local draft. 2026-09-12 PEM-to-Render + Mini Keychain done (seller/buyer/lbnp PEMs+ukIds; aadhaarchain.render api_key). Live signed on_status/on_track ACK PASS 2026-09-12. Portal 2026-09-12: Org 15462 GURUSHARAN GUPTA HUF; GSTIN still empty; Submit not clicked; DNS/registry still unauthorized.",
       "responsible_owner": "ONDC engineering owner",
       "evidence_scope": "production",
       "completed_evidence": [
@@ -656,18 +656,21 @@
         "2026-08-17 LBNP modal download keys (7).json materialized to .local/ondc-production-portal-modal/lbnp; signing fp16 cc28a26a05045fd4 mismatches local draft e9ba484ada7afcc7 and PreProd 3c3e8acc7a7c5dd1. unique_key_id captured from Raise Request modal UI. Registry PreProd-locked. Cancel not Submit. Nothing copied to Render.",
         "2026-08-17 Buyer Unique Key ID read-only recapture: Comet a4-buyer-ukid-20260817 opened Buyer 15462-10008 1.a Raise Request empty; generate not clicked; Cancel not Submit; closeout verified_absent. Outer Unique Key ID remains PreProd prefix 1aee68ad. Existing modal pair dff58a270e9ed255 not overwritten.",
         "2026-08-17 Buyer modal regenerate: keys (8).json materialized to .local/ondc-production-portal-modal/buyer; signing fp16 8247845e30f3e325; unique_key_id captured from Raise Request modal UI. Mismatches local draft c8917676136e07fb and old modal dff58a270e9ed255 preserved aside at buyer-20260817-no-ukid. Cancel not Submit. Nothing copied to Render.",
-        "2026-08-19 gateway identity-aadhar-gateway-main live includes aadhaar-chain#11 order-visibility/short-id GET (workspace Portfolio path). Production PEMs still not copied. Submit/DNS/registry still unauthorized."
+        "2026-08-19 gateway identity-aadhar-gateway-main live includes aadhaar-chain#11 order-visibility/short-id GET (workspace Portfolio path). Production PEMs still not copied. Submit/DNS/registry still unauthorized.",
+        "2026-09-12 PEM-to-Render + Mini Keychain done: seller/buyer/lbnp PEMs+ukIds copied; aadhaarchain.render api_key present.",
+        "2026-09-12 live signed on_status/on_track ACK PASS.",
+        "2026-09-12 portal evidence: Org 15462 GURUSHARAN GUPTA HUF; GSTIN still empty; Submit not clicked; DNS/registry still unauthorized."
       ],
       "remaining_work": [
         "Keep both Buyer modal pair and local draft .local/ondc-production/buyer; do not delete the local draft. The new Buyer modal pair (signing fp16 8247845e30f3e325, Unique Key ID captured) supersedes the earlier no-ukid modal dff58a270e9ed255 for later Submit; old modal files remain aside at .local/ondc-production-portal-modal/buyer-20260817-no-ukid.",
-        "Do not Submit. Do not copy PEMs to Render, .env production PEM vars, or DNS. Registry submit remains unauthorized. GSTIN still blocks production registry. Portal 1.b, NP Agreement, and Verify build remain operator-only.",
+        "Do not Submit. Do not publish DNS. Registry submit remains unauthorized. GSTIN still empty and still blocks production registry. Portal 1.b, NP Agreement, and Verify build remain operator-only.",
         "Procedure owner for keys/host/registry: ~/.agents/skills/ondc (Sources TOC + Keys/Host/Registry). This app identities: .ondc/binding.json."
       ],
       "completion_criteria": [
         "Production registry readback shows the approved subscriber roles/domains and keys.",
         "Public DNS, TLS, site verification, and on_subscribe pass against the exact deployed source."
       ],
-      "blocked_by": "Submit, PEM-to-Render, DNS, and registry remain unauthorized. GSTIN still blocks production registry. Registry UI was PreProd-locked.",
+      "blocked_by": "GSTIN still empty and still blocks production registry. Submit and DNS remain unauthorized.",
       "operator_boundary": "Key generation, DNS publication, and portal submission require explicit operator approval.",
       "evidence_refs": [
         ".agents/skills/testing-ledger/references/evidence/ondc-a4-portal-modal-buyer-regen-20260817.json",

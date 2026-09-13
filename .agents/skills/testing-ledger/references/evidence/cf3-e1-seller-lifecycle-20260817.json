@@ -1,0 +1,95 @@
+{
+  "schema": "cf3-e1-seller-lifecycle.v1",
+  "verified_at": "2026-08-17T11:26:09+05:30",
+  "environment": "local",
+  "tooling": "comet-control",
+  "session_id": "cf3-e1-20260817",
+  "ports": {
+    "gateway": 43101,
+    "seller": 43103
+  },
+  "database": "postgresql://gurusharan@127.0.0.1:5432/postgres",
+  "source": {
+    "git_head": "2be9e5a5f19be47c938395c073bf947f717cec3d",
+    "gateway_tree_sha256": "c7353c649818c74076347b38791ace6f8747751b43b9b7bc0fc284b05786c10f",
+    "ondcseller_tree_sha256": "f6cc899d8b1a33d3a2b4f7ca0b43ffef4c718da0cdcff605800a4e6013b3db87",
+    "combined_sha256": "298bfdea8ef24a286b4c0088e13b8b32eec578a070977056a682e39631e46244"
+  },
+  "principal_id": "principal:demo:seller",
+  "order_id": "245e0b87-caff-4842-babd-f9b14f9938ea",
+  "order_reference": "245E0B87",
+  "item_id": "item_6de38051a9e449ae",
+  "refund_authorization_reference": "6065C440",
+  "refund_receipt_id": "receipt_6065c440e8fa49688ec5608637ed7ee5",
+  "tracking_id": "CF3E1-TRACK-245E0B87",
+  "provider_name": "Demo LSP",
+  "criteria": [
+    {
+      "id": "onboard_store",
+      "result": "pass",
+      "notes": "Business page showed ready CF3 Pune Store (Pune/411001, SLA 24h); Open catalog enabled; staff section unlocked."
+    },
+    {
+      "id": "manage_roles",
+      "result": "pass",
+      "notes": "Invited CF3 Fulfilment Lead as fulfilment (invited); roster persisted after gateway restart."
+    },
+    {
+      "id": "import_publish_catalog",
+      "result": "pass",
+      "notes": "CSV Import drafts created CF3 E1 Toor Dal 1kg draft with Resolve draft listings; Visible products included published CF3 E1 Sharbati Atta 1kg + Organic mangoes."
+    },
+    {
+      "id": "fulfil_to_sla",
+      "result": "pass",
+      "notes": "Accepted paid order 245E0B87; UI Within SLA \u00b7 Due in 24h; persist sla_hours=24 and sla_due_at set on confirm."
+    },
+    {
+      "id": "track_delivery_payment",
+      "result": "pass",
+      "notes": "Dispatched with Demo LSP + tracking CF3E1-TRACK-245E0B87; Complete delivery; Payment received / Paid visible through lifecycle until refund."
+    },
+    {
+      "id": "settle_refund",
+      "result": "pass",
+      "notes": "Confirm full refund INR 95 \u2192 Cancelled + Payment Refunded; authorization reference 6065C440 verified; persist refund_status=succeeded refunded_amount_inr=95."
+    },
+    {
+      "id": "operational_analytics",
+      "result": "pass",
+      "notes": "Dashboard Operational analytics: Refunded (ledger) \u20b995; Catalog live 2; Open fulfilment 0; 1 cancelled/returned; Settlement exceptions 0 (successful refund is not an exception)."
+    },
+    {
+      "id": "persist_agreement",
+      "result": "pass",
+      "notes": "Fixture/persist readback agreed on order_id, tracking_id, provider Demo LSP, refund amount/auth. Seller UI projects succeeded full refund as Cancelled/Refunded (commerceClient mapping); raw commerce status remains delivered with refund_status succeeded."
+    }
+  ],
+  "overall": "pass",
+  "gateway_restart_note": "Gateway died mid-run (ERR_CONNECTION_REFUSED on /api/auth/me). Restarted via start-dev.sh with forced local DATABASE_URL; Comet lease closeout+same session_id restart after chrome-error.",
+  "checklist_implication": "CF3-E1 gate may pass; CF3 product item stays testing until testing-framework release gate Q1 (completion criterion 2), matching CF2 posture.",
+  "b5_may_start": false,
+  "user_input_needed": false,
+  "screenshots": [
+    "cf3-e1-business-store-20260817.png",
+    "cf3-e1-staff-invite-20260817.png",
+    "cf3-e1-catalog-live-20260817.png",
+    "cf3-e1-catalog-import-20260817.png",
+    "cf3-e1-orders-pending-20260817.png",
+    "cf3-e1-order-accepted-20260817.png",
+    "cf3-e1-order-dispatched-20260817.png",
+    "cf3-e1-order-delivered-20260817.png",
+    "cf3-e1-order-refunded-20260817.png",
+    "cf3-e1-dashboard-analytics-20260817.png",
+    "cf3-e1-orders-settlement-filter-20260817.png"
+  ],
+  "persist_excerpt": {
+    "order_id": "245e0b87-caff-4842-babd-f9b14f9938ea",
+    "raw_status": "delivered",
+    "refund_status": "succeeded",
+    "refunded_amount_inr": 95.0,
+    "tracking_id": "CF3E1-TRACK-245E0B87",
+    "provider_name": "Demo LSP",
+    "sla_hours": 24
+  }
+}

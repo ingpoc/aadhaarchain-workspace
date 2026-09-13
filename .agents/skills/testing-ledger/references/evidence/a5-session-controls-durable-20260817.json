@@ -1,0 +1,33 @@
+{
+  "schema_version": "testing-receipt.v1",
+  "gate_id": "A5-C1",
+  "verified_at": "2026-08-17T21:25:44+05:30",
+  "environment": "local gateway pytest against loopback PostgreSQL; no Auth0 tenant cutover; no Render migrate",
+  "source_fingerprint": "2be9e5a5f19be47c938395c073bf947f717cec3d",
+  "source_note": "Workspace HEAD plus uncommitted durable session registry (migration 004, session_registry Postgres write-through). Not Q1 frozen release. Not production tenant.",
+  "command": "cd aadharchain/gateway && DATABASE_URL=postgresql://gurusharan@127.0.0.1:5432/postgres PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 python3 -m pytest -p asyncio tests/test_a5_session_controls.py tests/test_a5_session_registry_postgres.py tests/test_oauth_state.py tests/test_session_cookie_flags.py tests/test_social_auth.py -q",
+  "results": [
+    {
+      "scope": "listed A5 code controls",
+      "result": "passed",
+      "summary": "Secret dual-publish, logout/revoke/revoke-all, principal-scoped session list, Buyer/Seller aud isolation, and Seller step-up amr=mfa remain pytest-green on current source."
+    },
+    {
+      "scope": "durable revoke registry",
+      "result": "passed",
+      "summary": "Isolated local Postgres schema: revoke-sid, revoke-all, and principal-scoped list survive a new connection/process load. Staging/production or postgres backend fail closed if the registry is unready or a write cannot complete."
+    },
+    {
+      "scope": "related auth regression",
+      "result": "passed",
+      "summary": "28 passed across test_a5_session_controls.py, test_a5_session_registry_postgres.py, test_oauth_state.py, test_session_cookie_flags.py, and test_social_auth.py."
+    }
+  ],
+  "not_proven": [
+    "production Auth0 tenant or connection cutover",
+    "production-tenant MFA or Attack Protection enablement",
+    "security acceptance on a frozen/release source (Q1)",
+    "Render/deployed gateway running migration 004"
+  ],
+  "external_actions_taken": []
+}

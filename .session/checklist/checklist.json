@@ -3,7 +3,7 @@
   "project": "AgentGuard",
   "title": "Production launch checklist",
   "warning": "Repository evidence proves code and captured acceptance only. The 2026-08-17 authenticated portal readback is point-in-time UI evidence; payment and production states still require current authoritative proof and separate operator authorization.",
-  "current_blocker": "A4 remains GSTIN-blocked for production registry Submit/DNS. A5 agent code in aadharchain#26 (no-cutover); awaiting green CI/merge + Postgres durability. No GSTIN work in this slice.",
+  "current_blocker": "A4 remains GSTIN-blocked for production registry Submit/DNS. A5 code merged (no-cutover); remaining: local Postgres durability proof, operator MFA, tenant cutover decision. No GSTIN work in this slice.",
   "operator_decisions": [
     {
       "id": "A4-20260817-01",
@@ -246,9 +246,9 @@
     }
   ],
   "go_live_path": {
-    "updated_at": "2026-09-13T14:17:50.460569+05:30",
+    "updated_at": "2026-09-13T14:21:12.822162+05:30",
     "updated_by": "agent",
-    "reason": "2026-09-13 NO-GSTIN ops slice: O1/O4 runbooks, A8 template, B7 log-submit prep, A6/O2 local backup script in .session/docs/PRODUCTION-READINESS.md. C3 pytest evidence recorded; token/O5 acceptance open. A5 remains first agent queue item (PR #26, no Auth0 cutover). A4 parallel_now GSTIN-blocked. Submit/DNS/registry unauthorized.",
+    "reason": "2026-09-13: aadharchain#26 A5 session controls merged (no Auth0 cutover). GSTIN still blocks A4 Submit/DNS/registry. Next agent-owned: continue A5 Postgres durability on local DB + A6 local backup proof; C3 agent pytest already recorded. Submit/DNS/registry still unauthorized.",
     "parallel_now": [
       "A4"
     ],
@@ -694,7 +694,7 @@
       "gate": "4 · Security, privacy, legal, and trust",
       "item": "Production identity and access policy",
       "status_code": "partial",
-      "status": "A5 stays partial per A5-20260817-03 no-cutover. 2026-09-13: durable session registry + rotation/revoke/audience/step-up on gateway PR https://github.com/ingpoc/aadhaar-chain/pull/26 ; test_a5_session_controls 10/10 (memory). CI fix pushed (PYTHONPATH/gitleaks). Postgres durability + Render migration 004 + Auth0 MFA + tenant cutover still open.",
+      "status": "A5 stays partial per A5-20260817-03 no-cutover. 2026-09-13: aadharchain#26 merged — durable session registry + rotation/revoke/audience/step-up; controls tests green in CI. Remaining: local Postgres durability exercise, Render migration 004 on deploy, operator MFA/Attack Protection, tenant cutover authorization, Q1 release-source acceptance.",
       "responsible_owner": "Security owner",
       "evidence_scope": "staging",
       "remaining_work": [
@@ -746,7 +746,7 @@
         ".session/docs/IMPLEMENTATIONPLAN.md",
         ".session/docs/PRODUCTION-READINESS.md",
         "scripts/local_postgres_backup_restore.sh",
-        ".session/evidence/local-postgres-backup-restore-template.json"
+        ".session/docs/local-postgres-backup-restore-template.json"
       ],
       "priority": "critical"
     },
@@ -1079,7 +1079,7 @@
       "gate": "5 · Reliability, observability, operations, and support",
       "item": "Production telemetry, SLOs, and alerting",
       "status_code": "partial",
-      "status": "Draft telemetry/response-control runbook expanded in .session/docs/PRODUCTION-READINESS.md (must-log/redact/alert). Dashboards and alert drill still open.",
+      "status": "2026-09-13 actionable must-log / must-redact / must-alert checklist with role placeholders and SLO placeholders is in .session/docs/PRODUCTION-READINESS.md (O1). Operator must approve numeric SLOs, implement dashboards/alerts, and run drill.",
       "responsible_owner": "Operations lead",
       "evidence_scope": "production",
       "completed_evidence": [
@@ -1120,7 +1120,7 @@
       "evidence_refs": [
         ".session/docs/PRODUCTION-READINESS.md",
         "scripts/local_postgres_backup_restore.sh",
-        ".session/evidence/local-postgres-backup-restore-template.json"
+        ".session/docs/local-postgres-backup-restore-template.json"
       ],
       "priority": "critical"
     },
@@ -1152,19 +1152,21 @@
       "gate": "5 · Reliability, observability, operations, and support",
       "item": "Incident and financial-unknown runbooks",
       "status_code": "partial",
-      "status": "Incident runbook stubs expanded with role placeholders and drill checkboxes in PRODUCTION-READINESS.md. Named responders and retained drills still open.",
+      "status": "2026-09-13 incident runbooks (service down, payment unknown, IGM escalate, key compromise, callback backlog, refund failure, participant timeout) with named role placeholders and drill checkboxes are in .session/docs/PRODUCTION-READINESS.md (O4). Operator must fill contacts and run exercises.",
       "responsible_owner": "Operations lead",
       "evidence_scope": "operator",
+      "completed_evidence": [
+        "2026-09-13 agent: O4 runbooks O4-1 through O4-7 with Detect/Triage/Contain/Recover steps, role placeholders, and agent verification commands where applicable."
+      ],
       "remaining_work": [
-        "Expand stubs into accepted runbooks; add participant-timeout and refund-failure twins.",
-        "Assign escalation contacts (no stub phone trees) and exercise the highest-risk scenarios with retained evidence."
+        "Operator: replace role/contact placeholders with named responders and paging routes.",
+        "Exercise highest-risk scenarios (payment unknown, callback backlog, key compromise); retain .session/evidence/o4-incident-drill-YYYYMMDD.json."
       ],
       "completion_criteria": [
         "Named responders complete retained exercises within approved response and recovery targets."
       ],
       "evidence_refs": [
-        ".session/docs/PRODUCTION-READINESS.md",
-        ".session/docs/PRODUCTION-READINESS.md#o4-incident-runbooks"
+        ".session/docs/PRODUCTION-READINESS.md"
       ],
       "priority": "critical"
     },

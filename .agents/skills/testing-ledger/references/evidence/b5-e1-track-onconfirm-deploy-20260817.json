@@ -1,0 +1,134 @@
+{
+  "schema_version": "testing-receipt.v1",
+  "gate_id": "B5-E1-track",
+  "verified_at": "2026-08-17T17:15:30+05:30",
+  "environment": "public FQDN probe after exact-commit Render deploy of Buyer retail track + on_confirm correlation; PreProd PEMs unchanged; Protocol Workbench IGM steps 15–18 not rerun",
+  "source_revision": "f7794fa8170e710c15c82f4e1f8e190e95a79f81",
+  "does_not_overwrite": [
+    ".agents/skills/testing-ledger/references/evidence/b5-e1-workbench-igm-retry-20260817.json",
+    ".agents/skills/testing-ledger/references/evidence/b5-igm-render-deploy-2e30070-20260817.json"
+  ],
+  "authorization": [
+    "B5-20260817-01 PreProd official IGM",
+    "B5-20260817-03 exact IGM commit on existing identity-aadhar-gateway-main; track/on_confirm required to reach authorized IGM steps"
+  ],
+  "root_cause": {
+    "track_404": "Buyer _dispatch_order_action allowlisted only select/init/confirm; no POST /api/ondc/track existed on the public gateway.",
+    "on_confirm_nack": "Workbench mock on_confirm used a new message_id (b4905f64-…) instead of confirm's 72b2829c-…. Our BPP callback generator also minted uuid5 message_ids; it now reuses the request message_id. BAP ingest NACKs on_confirm when a confirm outbox exists with a different message_id.",
+    "on_status_subscriberID": "Not our previous NACK string. Inbound ingest required context.bpp_id/bap_id/subscriber_id and ignored camelCase subscriberID and Authorization keyId. on_status receive now accepts those."
+  },
+  "render_service": {
+    "name": "identity-aadhar-gateway-main",
+    "id": "srv-d7f256f41pts73f68660",
+    "plan": "free",
+    "auto_deploy": "no",
+    "repo": "https://github.com/ingpoc/aadhaar-chain",
+    "branch": "main",
+    "root_dir": "gateway",
+    "onrender_url": "https://identity-aadhar-gateway-main.onrender.com",
+    "live_deploy_id": "dep-da1f80gjo6nc738i40s0",
+    "live_deploy_commit": "f7794fa8170e710c15c82f4e1f8e190e95a79f81",
+    "live_deploy_message": "Add Buyer retail track and on_confirm correlation",
+    "live_deploy_finished_at": "2026-08-17T11:44:47.050172Z",
+    "previous_live_commit": "2e300708b7510af770b5da34f33e2792be2c489a",
+    "previous_live_deploy_id": "dep-da1ds3flk1mc739qgt4g"
+  },
+  "tests": {
+    "command": "cd aadharchain/gateway && PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 python3 -m pytest -p asyncio tests/test_ondc_track.py tests/test_ondc_igm.py tests/test_ondc_bpp.py tests/test_ondc_adapter.py tests/test_ondc_persistence.py tests/test_commerce_v1_postgres.py tests/test_commerce_demo.py tests/test_domain_state_machines.py tests/test_cf2_cf3_lifecycle_postgres.py -q",
+    "result": "144 passed, 26 skipped",
+    "focused": [
+      "test_buyer_track_dispatch_signs_and_posts_order_id",
+      "test_on_track_verifies_signature_like_issue",
+      "test_on_confirm_requires_confirm_message_id",
+      "test_on_status_accepts_camelcase_and_authorization_subscriber"
+    ]
+  },
+  "gateway_health": {
+    "url": "https://gateway.aadharcha.in/api/health",
+    "http": 200,
+    "body": {"status": "healthy", "service": "aadhaar-chain-gateway", "version": "1.0.0"}
+  },
+  "public_probes": [
+    {
+      "method": "POST",
+      "url": "https://gateway.aadharcha.in/api/ondc/track",
+      "body": {},
+      "http": 422,
+      "not_404": true,
+      "detail": "track requires order_id"
+    },
+    {
+      "method": "POST",
+      "url": "https://gateway.aadharcha.in/ondc/on_track",
+      "body": {},
+      "http": 400,
+      "not_404": true,
+      "detail": "NACK CORE-ERROR 30000 missing context identifiers"
+    },
+    {
+      "method": "POST",
+      "url": "https://gateway.aadharcha.in/api/ondc/issue",
+      "body": {},
+      "http": 422,
+      "not_404": true,
+      "detail": "Field required: issue_id"
+    },
+    {
+      "method": "POST",
+      "url": "https://gateway.aadharcha.in/ondc/on_issue",
+      "body": {},
+      "http": 400,
+      "not_404": true,
+      "detail": "NACK CORE-ERROR 30000 missing context identifiers"
+    }
+  ],
+  "openapi_paths": {
+    "/api/ondc/track": ["post"],
+    "/ondc/on_track": ["post"],
+    "/api/ondc/issue": ["post"],
+    "/api/ondc/issue_status": ["post"],
+    "/ondc/on_issue": ["post"],
+    "/ondc/on_issue_status": ["post"]
+  },
+  "results": [
+    {
+      "scope": "exact-commit Render deploy",
+      "result": "passed",
+      "summary": "Existing Free service identity-aadhar-gateway-main is live at gateway commit f7794fa8170e710c15c82f4e1f8e190e95a79f81 as dep-da1f80gjo6nc738i40s0. Auto-deploy remains off."
+    },
+    {
+      "scope": "public track liveness",
+      "result": "passed",
+      "summary": "POST /api/ondc/track returns 422 track requires order_id, not 404. /ondc/on_track returns 400 NACK, not 404."
+    },
+    {
+      "scope": "IGM routes still present",
+      "result": "passed",
+      "summary": "POST /api/ondc/issue 422 and /ondc/on_issue 400. OpenAPI still lists issue, issue_status, on_issue, on_issue_status plus track/on_track."
+    }
+  ],
+  "not_proven": [
+    "Protocol Workbench official PreProd IGM steps 15–18",
+    "signed live on_confirm against a Workbench transaction after this deploy",
+    "signed live on_track / on_issue callbacks",
+    "Buyer/Seller-visible support outcome",
+    "production IGM",
+    "PEM copy, DNS change, portal submit, or production registry"
+  ],
+  "remaining_work": [
+    "Rerun one flow Order_to_confirm_to_fulfillment__Prepaid_with_igm_1.0.0 via POST /backend-ui/flow/new",
+    "Send track with confirm message_id pairing rules",
+    "Continue issue/on_issue steps 15–18",
+    "Do not fill accept_bpp_terms"
+  ],
+  "external_actions_taken": [
+    "committed B5 protocol files only in nested aadharchain as f7794fa8170e710c15c82f4e1f8e190e95a79f81",
+    "pushed origin/main 2e30070..f7794fa on ingpoc/aadhaar-chain",
+    "Render MCP trigger_deploy on existing service srv-d7f256f41pts73f68660 with commit f7794fa8170e710c15c82f4e1f8e190e95a79f81",
+    "no env var changes",
+    "no GoDaddy DNS changes",
+    "no parallel gateway",
+    "no portal submit",
+    "no new Workbench campaign"
+  ]
+}

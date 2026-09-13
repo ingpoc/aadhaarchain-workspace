@@ -5,7 +5,7 @@ set -euo pipefail
 
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 BACKUP_DIR="${ROOT}/.session/evidence/backups"
-EVIDENCE_TEMPLATE="${ROOT}/.session/evidence/local-postgres-backup-restore-template.json"
+EVIDENCE_TEMPLATE="${ROOT}/.session/docs/local-postgres-backup-restore-template.json"
 
 usage() {
   cat <<'EOF'

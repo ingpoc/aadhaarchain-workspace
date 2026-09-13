@@ -1,0 +1,92 @@
+{
+  "schema_version": "testing-receipt.v1",
+  "gate_id": "A4-R1-inventory",
+  "verified_at": "2026-08-17T13:10:00+05:30",
+  "environment": "public FQDN inventory and curl proof (no deploy/DNS changes)",
+  "source_revision": "2be9e5a5f19be47c938395c073bf947f717cec3d",
+  "render_service": {
+    "name": "identity-aadhar-gateway-main",
+    "onrender_url": "https://identity-aadhar-gateway-main.onrender.com",
+    "health_status": "healthy",
+    "live_deploy_commit": "unverified — Render CLI token expired; last repo-documented commit 5431307bf36bb8c906600b3ceea859efb34f9d44 (dep-d9gqfcjtqb8s73e0l940, 2026-07-23 evidence) not present in current git object database"
+  },
+  "dns_inventory": {
+    "ondcbuyer.aadharcha.in": { "type": "A", "target": "76.76.21.21", "repo_note": "Vercel SPA; GoDaddy A record per godaddy.md" },
+    "ondcseller.aadharcha.in": { "type": "A", "target": "76.76.21.21", "repo_note": "Vercel SPA; GoDaddy A record per godaddy.md" },
+    "ondclbnp.aadharcha.in": { "type": "CNAME", "target": "identity-aadhar-gateway-main.onrender.com", "repo_note": "GoDaddy CNAME added 2026-07-26" },
+    "gateway.aadharcha.in": { "type": "CNAME", "target": "identity-aadhar-gateway-main.onrender.com", "repo_note": "GoDaddy CNAME added 2026-07-12" }
+  },
+  "fqdn_probes": [
+    {
+      "fqdn": "ondcbuyer.aadharcha.in",
+      "role": "Retail Buyer NP",
+      "dns": "pass",
+      "tls_root": 200,
+      "site_verification": 200,
+      "on_subscribe_junk_post": 400,
+      "on_subscribe_detail": "decrypt failed (endpoint live; junk rejected)",
+      "overall": "pass_preprod_public"
+    },
+    {
+      "fqdn": "ondcseller.aadharcha.in",
+      "role": "Retail Seller ISN",
+      "dns": "pass",
+      "tls_root": 200,
+      "site_verification": 200,
+      "on_subscribe_junk_post": 400,
+      "on_subscribe_detail": "decrypt failed (endpoint live; junk rejected)",
+      "overall": "pass_preprod_public"
+    },
+    {
+      "fqdn": "ondclbnp.aadharcha.in",
+      "role": "LOG10 Buyer NP/LBNP",
+      "dns": "pass",
+      "tls_root": 200,
+      "site_verification": 200,
+      "on_subscribe_junk_post": 400,
+      "on_subscribe_detail": "decrypt failed (endpoint live; junk rejected)",
+      "overall": "pass_preprod_public"
+    },
+    {
+      "fqdn": "gateway.aadharcha.in",
+      "role": "Render gateway root (not a subscriber host)",
+      "dns": "pass",
+      "tls_root": 200,
+      "site_verification": 404,
+      "on_subscribe_junk_post": 404,
+      "on_subscribe_detail": "Host/subscriber not mapped; role paths /ondc/np/{buyer|seller|lbnp}/on_subscribe return 400 decrypt failed",
+      "overall": "pass_infrastructure"
+    }
+  ],
+  "results": [
+    {
+      "scope": "public DNS and TLS",
+      "result": "passed",
+      "summary": "All four authorized FQDNs resolve and serve TLS 200."
+    },
+    {
+      "scope": "participant site verification",
+      "result": "passed",
+      "summary": "Buyer, Seller, and LBNP /ondc-site-verification.html returned 200."
+    },
+    {
+      "scope": "on_subscribe route liveness",
+      "result": "partial",
+      "summary": "Junk POST to /ondc/on_subscribe on all three participant FQDNs returned 400 decrypt failed (live route, fail-closed). Valid encrypted challenge with production keys not tested."
+    },
+    {
+      "scope": "Render deploy identity",
+      "result": "blocked",
+      "summary": "Live deploy commit could not be read (CLI token expired). Workspace HEAD differs from last documented deploy; production PEM env copy not executed."
+    }
+  ],
+  "not_proven": [
+    "live Render deploy commit matches verified release source",
+    "production keypairs on Render/Vercel runtime",
+    "valid encrypted on_subscribe challenge/answer with production keys",
+    "portal Production 1.a modal reconcile/submit",
+    "production registry readback",
+    "GSTIN-gated production registry enablement"
+  ],
+  "external_actions_taken": []
+}

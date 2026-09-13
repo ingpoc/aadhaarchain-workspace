@@ -1,0 +1,142 @@
+{
+  "schema_version": "testing-receipt.v1",
+  "gate_id": "B5-E1",
+  "verified_at": "2026-08-17T19:13:00+05:30",
+  "environment": "PreProd Auth0 Buyer/Seller FQDN readback against public Render Postgres issue bound by Workbench IGM; not production",
+  "source_revision": "1db9fa075bc1470487477d9d424be73cefa870c5",
+  "authorization": [
+    "B5-20260817-01 PreProd official IGM",
+    "B5-20260817-03 exact IGM commit on existing identity-aadhar-gateway-main"
+  ],
+  "verdict": "partial",
+  "does_not_overwrite": [
+    ".agents/skills/testing-ledger/references/evidence/b5-e1-workbench-igm-resolve-20260817.json",
+    ".agents/skills/testing-ledger/references/evidence/b5-e1-workbench-igm-bind-20260817.json",
+    ".agents/skills/testing-ledger/references/evidence/b5-e1-workbench-igm-ack-20260817.json",
+    ".agents/skills/testing-ledger/references/evidence/b5-e1-workbench-igm-rerun-20260817.json",
+    ".agents/skills/testing-ledger/references/evidence/b5-e1-track-onconfirm-deploy-20260817.json",
+    ".agents/skills/testing-ledger/references/evidence/b5-e1-workbench-igm-retry-20260817.json",
+    ".agents/skills/testing-ledger/references/evidence/b5-e1-workbench-igm-20260817.json"
+  ],
+  "render_service": {
+    "name": "identity-aadhar-gateway-main",
+    "id": "srv-d7f256f41pts73f68660",
+    "live_deploy_id": "dep-da1g9jpt0dsc73bqcp0g",
+    "live_deploy_commit": "1db9fa075bc1470487477d9d424be73cefa870c5"
+  },
+  "postgres": {
+    "database_resource_id": "dpg-d9hmf4cvikkc73ai1d80-a",
+    "issue": {
+      "issue_id": "8382bcef-c3ab-41e5-b04e-1088d10ffb84",
+      "status": "open",
+      "version": 1,
+      "commerce_order_id": null,
+      "protocol_order_id": "B5091e6b53",
+      "protocol_transaction_id": "091e6b53-9ce5-49ba-b6ee-414112326d5c",
+      "principal_id": "ondcbuyer.aadharcha.in",
+      "seller_id": "workbench.ondc.tech",
+      "owner_id": "workbench.ondc.tech",
+      "reason": "fulfillment",
+      "history_len": 5,
+      "history_statuses": ["open", "open", "open", "open", "open"],
+      "history_notes": [
+        "Protocol-bound IGM issue from confirmed ONDC order",
+        "IGM issue dispatched OPEN signature_verified",
+        "IGM on_issue reconciled signature_verified network_status null",
+        "IGM on_issue_status reconciled signature_verified network_status null",
+        "IGM issue dispatched CLOSED signature_verified; legal hop open→closed denied so status stayed open"
+      ]
+    },
+    "auth0_contrast_issue": {
+      "issue_id": "fabc818c-26dc-4024-b83a-1fc4f88cac1b",
+      "status": "closed",
+      "commerce_order_id": "709d9b9e-db37-42c9-a352-a34e53c09b01",
+      "protocol_order_id": null,
+      "principal_id": "principal:auth0:google-oauth2:…",
+      "seller_id": "principal:auth0:google-oauth2:…",
+      "note": "Same Auth0 Buyer/Seller session shows this issue; it is not the Workbench IGM row."
+    }
+  },
+  "inbox_vs_commerce": {
+    "on_issue_inbox_id": 23111,
+    "on_issue_status_inbox_id": 23113,
+    "envelope_issue_status": null,
+    "respondent_actions": ["PROCESSING", "RESOLVED"],
+    "mapping": "_igm_network_status reads message.issue.status, not respondent_actions, so RESOLVED did not become commerce resolution_proposed"
+  },
+  "api_without_session": {
+    "GET /api/demo-commerce/buyer/issues": {"http": 401, "detail": "Authenticated principal required."},
+    "GET /api/demo-commerce/seller/issues": {"http": 401, "detail": "Authenticated principal required."},
+    "GET /api/auth/me": {"http": 200, "authenticated": false},
+    "GET /api/auth/providers": {"auth0": true, "demo_continue": false, "runtime_mode": "staging"}
+  },
+  "principal_mismatch": {
+    "workbench_issue_principal": "ondcbuyer.aadharcha.in",
+    "workbench_issue_seller": "workbench.ondc.tech",
+    "buyer_list_filter": "session principal_id",
+    "seller_list_filter": "session principal as seller_id",
+    "auth0_session_principal_kind": "principal:auth0:…",
+    "shown_on_auth0_buyer_ui": false,
+    "shown_on_auth0_seller_ui": false,
+    "reason": "Workbench IGM bind uses subscriber_id / bpp_id, not the Auth0 order owner. Protocol success is not customer-visible success."
+  },
+  "buyer_ui": {
+    "url": "https://ondcbuyer.aadharcha.in/orders",
+    "signed_in": true,
+    "visible_order_refs": ["8F3F56D0", "709D9B9E", "83A97020"],
+    "protocol_order_B5091e6b53_visible": false,
+    "issue_8382bcef_visible": false,
+    "auth0_owned_issue_visible_on_709D9B9E": "fabc818c-26dc-4024-b83a-1fc4f88cac1b resolved",
+    "protocol_order_detail_url": "https://ondcbuyer.aadharcha.in/orders/B5091e6b53",
+    "protocol_order_detail": "Order detail unavailable; Commerce request failed (500) via GET /api/demo-commerce/buyer/orders/B5091e6b53"
+  },
+  "seller_ui": {
+    "url": "https://ondcseller.aadharcha.in/orders",
+    "signed_in": true,
+    "visible_order_refs": ["7726C069", "8F3F56D0", "709D9B9E", "83A97020"],
+    "protocol_order_B5091e6b53_visible": false,
+    "issue_8382bcef_visible": false,
+    "auth0_owned_issue_on_709D9B9E": "fulfillment closed (Auth0 commerce issue, not Workbench IGM)"
+  },
+  "product_gap": {
+    "staff_lookup": "not present; Buyer/Seller issue lists are session-principal scoped. Not implemented this slice (would be a new support surface, not a small existing-path fix).",
+    "auth0_owned_signed_igm": "not run; would require a new Auth0-owned prepaid+IGM path, not a small existing-path fix. Do not rerun Workbench 15–18 for this."
+  },
+  "screenshots": [
+    ".agents/skills/testing-ledger/references/evidence/b5-e1-buyer-orders-20260817.png",
+    ".agents/skills/testing-ledger/references/evidence/b5-e1-buyer-order-detail-20260817.png",
+    ".agents/skills/testing-ledger/references/evidence/b5-e1-buyer-protocol-order-500-20260817.png",
+    ".agents/skills/testing-ledger/references/evidence/b5-e1-seller-orders-20260817.png",
+    ".agents/skills/testing-ledger/references/evidence/b5-e1-seller-order-detail-20260817.png"
+  ],
+  "comet": {
+    "session_id": "b5-e1-ui-readback-20260817",
+    "label": "B5-E1-UI",
+    "distinct_from": [
+      "b5-igm-issue-actions-20260817",
+      "b5-igm-issue-bind-20260817",
+      "b5-igm-ack-20260817",
+      "b5-igm-rerun-20260817",
+      "b5-igm-retry-20260817",
+      "b5-igm-workbench-20260817",
+      "a4-portal-20260817",
+      "a4-buyer-ukid-20260817"
+    ],
+    "a4_leases_not_killed": true,
+    "closeout": {"verified_absent": true, "matching_session_count": 0}
+  },
+  "not_proven": [
+    "Buyer/Seller-visible outcome for Workbench issue 8382bcef-c3ab-41e5-b04e-1088d10ffb84",
+    "commerce terminal state matching Workbench RESOLVED/CLOSED",
+    "production IGM"
+  ],
+  "external_actions_taken": [
+    "read-only Render Postgres query for issue 8382bcef and inbox 23111/23113",
+    "Auth0 Buyer and Seller FQDN UI readback via Comet b5-e1-ui-readback-20260817",
+    "no Workbench IGM 15–18 rerun",
+    "no PEM copy",
+    "no DNS",
+    "no portal Submit",
+    "no production IGM"
+  ]
+}

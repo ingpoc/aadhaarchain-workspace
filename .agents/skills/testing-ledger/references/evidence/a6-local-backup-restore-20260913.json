@@ -1,0 +1,21 @@
+{
+  "schema_version": "evidence.v1",
+  "checklist_id": "A6",
+  "title": "Local Postgres backup + verify-restore",
+  "recorded_at": "2026-09-13T14:28:56+05:30",
+  "source": "local",
+  "commands": [
+    "./scripts/local_postgres_backup_restore.sh backup",
+    "./scripts/local_postgres_backup_restore.sh verify-restore"
+  ],
+  "result": "local_verify_restore_passed",
+  "artifacts": [
+    ".session/evidence/backups/local-postgres-20260913-142740.dump",
+    ".session/evidence/backups/local-postgres-20260913-142740.json",
+    ".session/docs/local-postgres-backup-restore-20260913-142743.json"
+  ],
+  "notes": [
+    "Script now resolves postgresql@N client tools matching server major version.",
+    "Production encrypted backup/RTO/RPO still operator-owned."
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "schema_version": "evidence.v1",
+  "checklist_id": "A7",
+  "title": "Razorpay Test Mode suite on current source",
+  "recorded_at": "2026-09-13T14:28:56+05:30",
+  "source": "local",
+  "commands": [
+    "DATABASE_URL=postgresql://gurusharan@127.0.0.1:5432/aadharcha_test PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 python -m pytest -q -p asyncio tests/test_razorpay_test.py tests/test_razorpay_commerce_postgres.py"
+  ],
+  "result": "12 passed",
+  "notes": [
+    "Test-mode only; live keys fail closed.",
+    "Operator still must supply rzp_test_* secrets for FQDN Test Mode and select production PSP later."
+  ]
+}

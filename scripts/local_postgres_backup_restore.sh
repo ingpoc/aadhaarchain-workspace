@@ -9,7 +9,7 @@ EVIDENCE_TEMPLATE="${ROOT}/.session/docs/local-postgres-backup-restore-template.
 
 usage() {
   cat <<'EOF'
-Usage: local_postgres_backup_restore.sh <command> [options]
+Usage: local_postgres_backup_restore.sh <command>
 
 Commands:
   backup          pg_dump custom-format backup to .session/evidence/backups/
@@ -32,6 +32,32 @@ require_cmd() {
     echo "Missing required command: $1" >&2
     exit 1
   }
+}
+
+# Prefer Homebrew client tools that match the running server major version.
+resolve_pg_bin() {
+  local name="$1"
+  local major=""
+  if command -v psql >/dev/null 2>&1; then
+    major="$(psql -h 127.0.0.1 -d postgres -Atqc 'SHOW server_version_num;' 2>/dev/null || true)"
+    if [[ -n "$major" ]]; then
+      major=$((major / 10000))
+    fi
+  fi
+  local candidate
+  if [[ -n "$major" ]]; then
+    for candidate in \
+      "/opt/homebrew/opt/postgresql@${major}/bin/${name}" \
+      "/usr/local/opt/postgresql@${major}/bin/${name}" \
+      "/opt/homebrew/opt/postgresql/bin/${name}"; do
+      if [[ -x "$candidate" ]]; then
+        echo "$candidate"
+        return
+      fi
+    done
+  fi
+  require_cmd "$name"
+  command -v "$name"
 }
 
 assert_local_database_url() {
@@ -77,8 +103,7 @@ import sys
 from urllib.parse import urlparse, urlunparse
 
 parsed = urlparse(sys.argv[1])
-admin = parsed._replace(path="/postgres")
-print(urlunparse(admin))
+print(urlunparse(parsed._replace(path="/postgres")))
 PY
 }
 
@@ -86,17 +111,66 @@ latest_backup() {
   ls -1t "${BACKUP_DIR}"/local-postgres-*.dump 2>/dev/null | head -1 || true
 }
 
+integrity_counts() {
+  local url="$1"
+  local psql_bin="$2"
+  "$psql_bin" "$url" -v ON_ERROR_STOP=1 -At <<'SQL'
+SELECT name || '|' ||
+  CASE
+    WHEN to_regclass(format('%I', name)) IS NULL THEN 'missing'
+    ELSE (
+      SELECT count(*)::text
+      FROM (
+        SELECT 1 FROM agentguard_mandate_versions WHERE name = 'agentguard_mandate_versions'
+        UNION ALL SELECT 1 FROM commerce_orders WHERE name = 'commerce_orders'
+        UNION ALL SELECT 1 FROM commerce_ledger_entries WHERE name = 'commerce_ledger_entries'
+        UNION ALL SELECT 1 FROM ondc_inbox WHERE name = 'ondc_inbox'
+        UNION ALL SELECT 1 FROM agentguard_receipts WHERE name = 'agentguard_receipts'
+      ) _
+    )
+  END
+FROM (VALUES
+  ('agentguard_mandate_versions'),
+  ('commerce_orders'),
+  ('commerce_ledger_entries'),
+  ('ondc_inbox'),
+  ('agentguard_receipts')
+) AS t(name);
+SQL
+}
+
+# Simpler portable integrity probe: missing tables report "missing", else count(*).
+integrity_counts() {
+  local url="$1"
+  local psql_bin="$2"
+  local table
+  for table in \
+    agentguard_mandate_versions \
+    commerce_orders \
+    commerce_ledger_entries \
+    ondc_inbox \
+    agentguard_receipts; do
+    local count
+    count="$("$psql_bin" "$url" -v ON_ERROR_STOP=1 -Atc \
+      "SELECT CASE WHEN to_regclass('${table}') IS NULL THEN 'missing' ELSE (SELECT count(*)::text FROM ${table}) END;")"
+    printf '%s|%s\n' "$table" "$count"
+  done
+}
+
 cmd_backup() {
-  require_cmd pg_dump
-  local url
+  local url pg_dump_bin stamp file
+  pg_dump_bin="$(resolve_pg_bin pg_dump)"
   url="$(resolve_database_url)"
   assert_local_database_url "$url" "DATABASE_URL"
   mkdir -p "$BACKUP_DIR"
-  local stamp file
   stamp="$(date +%Y%m%d-%H%M%S)"
   file="${BACKUP_DIR}/local-postgres-${stamp}.dump"
-  echo "Backing up local database to ${file}"
-  pg_dump "$url" --format=custom --no-owner --no-acl --file="$file"
+  echo "Backing up local database to ${file} (using ${pg_dump_bin})"
+  "$pg_dump_bin" "$url" --format=custom --no-owner --no-acl --file="$file"
+  if [[ ! -s "$file" ]]; then
+    echo "Backup produced an empty file." >&2
+    exit 1
+  fi
   python3 - "$file" "$url" <<'PY'
 import json, sys
 from datetime import datetime, timezone
@@ -119,30 +193,23 @@ print(sidecar)
 PY
 }
 
-integrity_counts() {
-  local url="$1"
-  psql "$url" -v ON_ERROR_STOP=1 -At <<'SQL'
-SELECT 'agentguard_mandate_versions' AS table_name, count(*)::text FROM agentguard_mandate_versions
-UNION ALL SELECT 'commerce_orders', count(*)::text FROM commerce_orders
-UNION ALL SELECT 'commerce_ledger_entries', count(*)::text FROM commerce_ledger_entries
-UNION ALL SELECT 'ondc_inbox', count(*)::text FROM ondc_inbox
-UNION ALL SELECT 'agentguard_receipts', count(*)::text FROM agentguard_receipts;
-SQL
-}
-
 cmd_verify_restore() {
-  require_cmd pg_dump
-  require_cmd pg_restore
-  require_cmd psql
-  require_cmd createdb
-  require_cmd dropdb
-
   local source_url backup target_db target_url admin_url stamp
+  local pg_restore_bin createdb_bin dropdb_bin psql_bin
+  pg_restore_bin="$(resolve_pg_bin pg_restore)"
+  createdb_bin="$(resolve_pg_bin createdb)"
+  dropdb_bin="$(resolve_pg_bin dropdb)"
+  psql_bin="$(resolve_pg_bin psql)"
+
   source_url="$(resolve_database_url)"
   assert_local_database_url "$source_url" "DATABASE_URL"
   backup="${BACKUP_FILE:-$(latest_backup)}"
   if [[ -z "$backup" || ! -f "$backup" ]]; then
     echo "No backup found. Run backup first or set BACKUP_FILE." >&2
+    exit 1
+  fi
+  if [[ ! -s "$backup" ]]; then
+    echo "Backup file is empty (previous pg_dump likely failed). Re-run backup." >&2
     exit 1
   fi
 
@@ -152,7 +219,7 @@ cmd_verify_restore() {
   assert_local_database_url "$admin_url" "admin URL"
 
   echo "Creating temporary database ${target_db}"
-  createdb --maintenance-db="$admin_url" "$target_db"
+  "$createdb_bin" --maintenance-db="$admin_url" "$target_db"
 
   target_url="$(python3 - "$source_url" "$target_db" <<'PY'
 import sys
@@ -163,17 +230,14 @@ PY
 )"
   assert_local_database_url "$target_url" "TARGET_DATABASE_URL"
 
-  cleanup() {
-    dropdb --maintenance-db="$admin_url" --if-exists "$target_db" >/dev/null 2>&1 || true
-  }
-  trap cleanup EXIT
+  trap "'${dropdb_bin}' --maintenance-db='${admin_url}' --if-exists '${target_db}' >/dev/null 2>&1 || true" EXIT
 
-  echo "Restoring ${backup} -> ${target_db}"
-  pg_restore --no-owner --no-acl --dbname="$target_url" "$backup"
+  echo "Restoring ${backup} -> ${target_db} (using ${pg_restore_bin})"
+  "$pg_restore_bin" --no-owner --no-acl --dbname="$target_url" "$backup"
 
   echo "Integrity counts on restored database:"
-  integrity_counts "$target_url" | while IFS='|' read -r table count; do
-    printf "  %-28s %s\n" "$table" "$count"
+  integrity_counts "$target_url" "$psql_bin" | while IFS='|' read -r table count; do
+    printf "  %-32s %s\n" "$table" "$count"
   done
 
   python3 - "$backup" "$target_db" "$EVIDENCE_TEMPLATE" <<'PY'
@@ -196,15 +260,17 @@ payload = {
     ],
     "status": "local_verify_restore_passed",
 }
-out = template.with_name(f"local-postgres-backup-restore-{datetime.now().strftime('%Y%m%d')}.json")
+out = template.with_name(
+    f"local-postgres-backup-restore-{datetime.now().strftime('%Y%m%d-%H%M%S')}.json"
+)
 out.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
 print(out)
 PY
 }
 
 cmd_restore() {
-  require_cmd pg_restore
-  local backup target_url
+  local backup target_url pg_restore_bin
+  pg_restore_bin="$(resolve_pg_bin pg_restore)"
   backup="${BACKUP_FILE:-$(latest_backup)}"
   target_url="${TARGET_DATABASE_URL:-$(resolve_database_url)}"
   if [[ -z "$backup" || ! -f "$backup" ]]; then
@@ -212,9 +278,9 @@ cmd_restore() {
     exit 1
   fi
   assert_local_database_url "$target_url" "TARGET_DATABASE_URL"
-  echo "Restoring ${backup} into ${target_url}"
-  pg_restore --clean --if-exists --no-owner --no-acl --dbname="$target_url" "$backup"
-  echo "Restore complete. Run integrity checks manually if needed."
+  echo "Restoring ${backup} into ${target_url} (using ${pg_restore_bin})"
+  "$pg_restore_bin" --clean --if-exists --no-owner --no-acl --dbname="$target_url" "$backup"
+  echo "Restore complete."
 }
 
 main() {

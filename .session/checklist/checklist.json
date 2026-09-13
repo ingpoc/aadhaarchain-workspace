@@ -3,7 +3,7 @@
   "project": "AgentGuard",
   "title": "Production launch checklist",
   "warning": "Repository evidence proves code and captured acceptance only. The 2026-08-17 authenticated portal readback is point-in-time UI evidence; payment and production states still require current authoritative proof and separate operator authorization.",
-  "current_blocker": "A4 remains GSTIN-blocked for production registry Submit/DNS. A5 code merged (no-cutover); remaining: local Postgres durability proof, operator MFA, tenant cutover decision. No GSTIN work in this slice.",
+  "current_blocker": "A4 remains GSTIN-blocked for production registry Submit/DNS. Agent-owned local proofs for A5 durability, A6 backup/restore, and A7 test-mode are recorded. Operator MFA/A8/B7/PSP keys still open. No Submit/DNS in this slice.",
   "operator_decisions": [
     {
       "id": "A4-20260817-01",
@@ -246,9 +246,9 @@
     }
   ],
   "go_live_path": {
-    "updated_at": "2026-09-13T14:21:12.822162+05:30",
+    "updated_at": "2026-09-13T14:31:32.204980+05:30",
     "updated_by": "agent",
-    "reason": "2026-09-13: aadharchain#26 A5 session controls merged (no Auth0 cutover). GSTIN still blocks A4 Submit/DNS/registry. Next agent-owned: continue A5 Postgres durability on local DB + A6 local backup proof; C3 agent pytest already recorded. Submit/DNS/registry still unauthorized.",
+    "reason": "2026-09-13: A5 Render deploy live + local durability/backup/razorpay proofs recorded. GSTIN still blocks A4. Operator next: Auth0 MFA, A8 contacts, B7 portal, rzp_test keys.",
     "parallel_now": [
       "A4"
     ],
@@ -694,7 +694,7 @@
       "gate": "4 · Security, privacy, legal, and trust",
       "item": "Production identity and access policy",
       "status_code": "partial",
-      "status": "A5 stays partial per A5-20260817-03 no-cutover. 2026-09-13: aadharchain#26 merged — durable session registry + rotation/revoke/audience/step-up; controls tests green in CI. Remaining: local Postgres durability exercise, Render migration 004 on deploy, operator MFA/Attack Protection, tenant cutover authorization, Q1 release-source acceptance.",
+      "status": "A5 stays partial per A5-20260817-03 no-cutover. 2026-09-13: #26 merged; local durability 14/14; Render identity-aadhar-gateway-main deploy dep-daj6bju7bikc73assa00 LIVE; /api/health 200. Remaining: operator MFA/Attack Protection; tenant cutover auth; Q1 release-source acceptance.",
       "responsible_owner": "Security owner",
       "evidence_scope": "staging",
       "remaining_work": [
@@ -716,7 +716,10 @@
         ".agents/skills/testing-ledger/references/matrix-status.md",
         "AGENTS.md",
         "https://github.com/ingpoc/aadhaar-chain/pull/26",
-        "aadharchain/gateway/migrations/004_auth_session_registry.sql"
+        "aadharchain/gateway/migrations/004_auth_session_registry.sql",
+        ".agents/skills/testing-ledger/references/evidence/a5-local-postgres-durability-20260913.json",
+        "Render deploy dep-daj6bju7bikc73assa00 live",
+        "https://identity-aadhar-gateway-main.onrender.com/api/health"
       ],
       "priority": "critical"
     },
@@ -725,7 +728,7 @@
       "gate": "5 · Reliability, observability, operations, and support",
       "item": "Durable production hosting",
       "status_code": "partial",
-      "status": "Local-only Postgres backup/restore script added (scripts/local_postgres_backup_restore.sh); encrypted prod backup/restore/failover still unproved.",
+      "status": "Local backup+verify-restore proved 2026-09-13 via scripts/local_postgres_backup_restore.sh (pg 17 client/server matched). Production encrypted backup, RTO/RPO approval, and failover still open.",
       "responsible_owner": "Operations lead",
       "evidence_scope": "staging",
       "completed_evidence": [
@@ -746,7 +749,9 @@
         ".session/docs/IMPLEMENTATIONPLAN.md",
         ".session/docs/PRODUCTION-READINESS.md",
         "scripts/local_postgres_backup_restore.sh",
-        ".session/docs/local-postgres-backup-restore-template.json"
+        ".session/docs/local-postgres-backup-restore-template.json",
+        ".agents/skills/testing-ledger/references/evidence/a6-local-backup-restore-20260913.json",
+        ".session/docs/local-postgres-backup-restore-20260913-142743.json"
       ],
       "priority": "critical"
     },
@@ -755,7 +760,7 @@
       "gate": "6 · Money, billing, and reconciliation",
       "item": "Regulated payment and settlement provider",
       "status_code": "blocked",
-      "status": "Only simulated payment exists; no production PSP or settlement rail is selected.",
+      "status": "Razorpay Test Mode path exists and is pytest-proved on current source (12 passed, 2026-09-13). Live keys fail closed. Operator must provide rzp_test_* for FQDN Test Mode and later select production PSP.",
       "responsible_owner": "Product and finance lead",
       "evidence_scope": "operator",
       "remaining_work": [
@@ -770,7 +775,8 @@
       "blocked_by": "Operator provider selection, commercial approval, and provider onboarding.",
       "operator_boundary": "Provider selection, contracts, spend, and production enablement require operator approval.",
       "evidence_refs": [
-        ".session/docs/PRODUCTION-READINESS.md"
+        ".session/docs/PRODUCTION-READINESS.md",
+        ".agents/skills/testing-ledger/references/evidence/a7-razorpay-test-mode-20260913.json"
       ],
       "priority": "critical"
     },
@@ -1104,7 +1110,7 @@
       "gate": "5 · Reliability, observability, operations, and support",
       "item": "Encrypted backup and restore",
       "status_code": "partial",
-      "status": "PostgreSQL is active. Local backup/verify-restore script and evidence template exist (scripts/local_postgres_backup_restore.sh; refuses non-local hosts). Encrypted production restore exercise not retained.",
+      "status": "Local restore exercise passed 2026-09-13 (same A6 script). Production restore drill still operator-owned.",
       "responsible_owner": "Operations lead",
       "evidence_scope": "production",
       "completed_evidence": [
@@ -1120,7 +1126,8 @@
       "evidence_refs": [
         ".session/docs/PRODUCTION-READINESS.md",
         "scripts/local_postgres_backup_restore.sh",
-        ".session/docs/local-postgres-backup-restore-template.json"
+        ".session/docs/local-postgres-backup-restore-template.json",
+        ".agents/skills/testing-ledger/references/evidence/a6-local-backup-restore-20260913.json"
       ],
       "priority": "critical"
     },

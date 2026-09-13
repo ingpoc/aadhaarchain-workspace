@@ -1,0 +1,248 @@
+{
+  "schema_version": "checklist-gates.v1",
+  "items": [
+    {
+      "id": "G0",
+      "gate": "0 \u00b7 Scope and target outcome",
+      "completion_criteria": []
+    },
+    {
+      "id": "CF0",
+      "gate": "1 \u00b7 Product outcome completeness",
+      "completion_criteria": []
+    },
+    {
+      "id": "CF1",
+      "gate": "1 \u00b7 Product outcome completeness",
+      "completion_criteria": []
+    },
+    {
+      "id": "CF2",
+      "gate": "1 \u00b7 Product outcome completeness",
+      "completion_criteria": [
+        "A buyer can discover, compare, buy, track delivery, cancel, return or replace, raise a grievance, and obtain support with persisted state and visible outcomes."
+      ]
+    },
+    {
+      "id": "CF3",
+      "gate": "1 \u00b7 Product outcome completeness",
+      "completion_criteria": [
+        "A seller can onboard, manage roles, import/publish catalog, fulfil to SLA, track delivery/itinerary and payment received, settle/refund, and inspect operational analytics."
+      ]
+    },
+    {
+      "id": "CF4",
+      "gate": "1 \u00b7 Product outcome completeness",
+      "completion_criteria": []
+    },
+    {
+      "id": "CF5",
+      "gate": "1 \u00b7 Product outcome completeness",
+      "completion_criteria": []
+    },
+    {
+      "id": "CF6",
+      "gate": "1 \u00b7 Product outcome completeness",
+      "completion_criteria": []
+    },
+    {
+      "id": "CF7",
+      "gate": "1 \u00b7 Product outcome completeness",
+      "completion_criteria": []
+    },
+    {
+      "id": "Q1",
+      "gate": "2 \u00b7 Testing and customer-quality acceptance",
+      "completion_criteria": [
+        "One current-source Gate 8 receipt passes with no unresolved launch blocker and names the tested fingerprint and environment."
+      ]
+    },
+    {
+      "id": "A1",
+      "gate": "7 \u00b7 External providers, platforms, and approvals",
+      "completion_criteria": [
+        "The authenticated portal shows the correct legal organisation and a current dated inventory of participant profiles; production scope approval remains owned by A2."
+      ]
+    },
+    {
+      "id": "A2",
+      "gate": "7 \u00b7 External providers, platforms, and approvals",
+      "completion_criteria": [
+        "One approved role/domain matrix exists and is consistent with the product launch scope.",
+        "A4, B4-B8, and agreement/disclosure work can be scoped from that matrix without assumptions."
+      ]
+    },
+    {
+      "id": "A3",
+      "gate": "7 \u00b7 External providers, platforms, and approvals",
+      "completion_criteria": []
+    },
+    {
+      "id": "A4",
+      "gate": "7 \u00b7 External providers, platforms, and approvals",
+      "completion_criteria": [
+        "Production registry readback shows the approved subscriber roles/domains and keys.",
+        "Public DNS, TLS, site verification, and on_subscribe pass against the exact deployed source."
+      ]
+    },
+    {
+      "id": "A5",
+      "gate": "4 \u00b7 Security, privacy, legal, and trust",
+      "completion_criteria": [
+        "The approved production policy is enforced and security acceptance proves each listed control on the release source."
+      ]
+    },
+    {
+      "id": "A6",
+      "gate": "5 \u00b7 Reliability, observability, operations, and support",
+      "completion_criteria": [
+        "A dated restore succeeds from encrypted backup within approved recovery objectives.",
+        "Capacity and failover evidence covers the launch envelope."
+      ]
+    },
+    {
+      "id": "A7",
+      "gate": "6 \u00b7 Money, billing, and reconciliation",
+      "completion_criteria": [
+        "The provider is contractually approved and production-certified.",
+        "Receipts, signed webhooks, idempotency, refunds, reconciliation, settlement, payouts, and failure/unknown-outcome recovery pass end to end."
+      ]
+    },
+    {
+      "id": "A8",
+      "gate": "4 \u00b7 Security, privacy, legal, and trust",
+      "completion_criteria": [
+        "All required agreements, contacts, terms, and customer disclosures are approved, published, and consistent with the launched roles and money flows."
+      ]
+    },
+    {
+      "id": "B1",
+      "gate": "3 \u00b7 Data, integrations, and migrations",
+      "completion_criteria": []
+    },
+    {
+      "id": "B2",
+      "gate": "3 \u00b7 Data, integrations, and migrations",
+      "completion_criteria": []
+    },
+    {
+      "id": "B3",
+      "gate": "3 \u00b7 Data, integrations, and migrations",
+      "completion_criteria": [
+        "One external LSP journey completes signed confirm, update, status, track, cancellation, and exception callbacks with correlation, Buyer/Seller delivery tracking, and terminal state."
+      ]
+    },
+    {
+      "id": "B4",
+      "gate": "3 \u00b7 Data, integrations, and migrations",
+      "completion_criteria": [
+        "The approved official conformance lane completes signed ONDC select, init, confirm, fulfilment, status, track, cancellation, return, refund, and settlement callbacks with correlated, persisted evidence."
+      ]
+    },
+    {
+      "id": "B5",
+      "gate": "5 \u00b7 Reliability, observability, operations, and support",
+      "completion_criteria": [
+        "A customer grievance or support issue can be traced from creation through resolution with signed network callbacks, audit history, escalation owner, response target, and Buyer/Seller-visible outcome."
+      ]
+    },
+    {
+      "id": "B6",
+      "gate": "6 \u00b7 Money, billing, and reconciliation",
+      "completion_criteria": [
+        "Order, payment, refund, settlement, fee, and payout records reconcile without unexplained variance, and exception ownership is tested."
+      ]
+    },
+    {
+      "id": "B7",
+      "gate": "5 \u00b7 Reliability, observability, operations, and support",
+      "completion_criteria": [
+        "The official report is retained and every reported defect is closed or explicitly accepted before go-live."
+      ]
+    },
+    {
+      "id": "B8",
+      "gate": "7 \u00b7 External providers, platforms, and approvals",
+      "completion_criteria": [
+        "The portal and network owners show the approved production roles/domains as go-live eligible, with all mandatory conformance evidence retained."
+      ]
+    },
+    {
+      "id": "C3",
+      "gate": "4 \u00b7 Security, privacy, legal, and trust",
+      "completion_criteria": [
+        "Every autonomous write is covered by the canonical risk policy, exact approval or mandate, durable receipt, revocation, and audit trail."
+      ]
+    },
+    {
+      "id": "C4",
+      "gate": "8 \u00b7 Rollout, rollback, and communications",
+      "completion_criteria": [
+        "The exact deployed source passes the required public Buyer/Seller release journeys with no unresolved launch blocker."
+      ]
+    },
+    {
+      "id": "O1",
+      "gate": "5 \u00b7 Reliability, observability, operations, and support",
+      "completion_criteria": [
+        "Approved SLOs and dashboards cover critical paths, and a retained alert drill proves routing and diagnosis."
+      ]
+    },
+    {
+      "id": "O2",
+      "gate": "5 \u00b7 Reliability, observability, operations, and support",
+      "completion_criteria": [
+        "A dated restore meets approved recovery objectives and record-integrity checks."
+      ]
+    },
+    {
+      "id": "O3",
+      "gate": "6 \u00b7 Money, billing, and reconciliation",
+      "completion_criteria": [
+        "End-to-end production-like reconciliation closes without unexplained variance and every exception has a tested recovery path."
+      ]
+    },
+    {
+      "id": "O4",
+      "gate": "5 \u00b7 Reliability, observability, operations, and support",
+      "completion_criteria": [
+        "Named responders complete retained exercises within approved response and recovery targets."
+      ]
+    },
+    {
+      "id": "O5",
+      "gate": "4 \u00b7 Security, privacy, legal, and trust",
+      "completion_criteria": [
+        "An independent report covers the release architecture and no unaccepted launch-critical finding remains."
+      ]
+    },
+    {
+      "id": "O6",
+      "gate": "4 \u00b7 Security, privacy, legal, and trust",
+      "completion_criteria": [
+        "The approved inventory maps every production data class to enforced retention, deletion, access, and model-use rules."
+      ]
+    },
+    {
+      "id": "O7",
+      "gate": "8 \u00b7 Rollout, rollback, and communications",
+      "completion_criteria": [
+        "Support can diagnose and recover the approved scenarios within response targets using least-privilege tooling and retained audit evidence."
+      ]
+    },
+    {
+      "id": "O8",
+      "gate": "8 \u00b7 Rollout, rollback, and communications",
+      "completion_criteria": [
+        "A retained rehearsal proves phased enablement, automatic/manual stop conditions, global write containment, rollback, and safe restoration."
+      ]
+    },
+    {
+      "id": "O9",
+      "gate": "5 \u00b7 Reliability, observability, operations, and support",
+      "completion_criteria": [
+        "Release accessibility passes and retained load/resilience/DR results meet approved thresholds with no unresolved launch blocker."
+      ]
+    }
+  ]
+}
